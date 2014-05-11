@@ -10,6 +10,8 @@ class Vec3;
 class Model;
 class Collider;
 class MaterialPoint;
+class Component;
+class RenderComponent;
 
 class GameObject
 {
@@ -23,6 +25,8 @@ public:
 	//MaterialPoint* MPoint;//is this one required?
 	Collider* collider;	//support for one collider for one GameObject node.
 
+	list<Component*> components;
+	list<RenderComponent*> renderComponents;
 
 	list<GameObject*> SubObjects;
 	
@@ -34,6 +38,8 @@ public:
 	GameObject(Vec3* position, Vec3* rotation, Vec3* scale, bool dynamic, Model* mesh, MaterialPoint* mPoint, Collider* collider);
 
 	void AddSubObject(GameObject* object);
+	void AddComponent(Component* component);
+	void AddComponent(RenderComponent* component);
 
 	//void setMaterialPoint(MaterialPoint* mpoint);
 

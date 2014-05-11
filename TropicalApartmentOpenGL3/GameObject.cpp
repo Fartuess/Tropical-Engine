@@ -69,6 +69,16 @@ void GameObject::AddSubObject(GameObject* object)
 	SubObjects.push_back(object);
 }
 
+void GameObject::AddComponent(Component* component)
+{
+	components.push_back(component);
+}
+
+void GameObject::AddComponent(RenderComponent* component)
+{
+	renderComponents.push_back(component);
+}
+
 //void GameObject::setMaterialPoint(MaterialPoint* mpoint)
 //{
 //	MPoint = mpoint;

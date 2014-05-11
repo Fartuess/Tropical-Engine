@@ -90,9 +90,6 @@
     <ClCompile Include="MaterialPoint.cpp">
       <Filter>Source Files\Simulations</Filter>
     </ClCompile>
-    <ClCompile Include="Model.cpp">
-      <Filter>Source Files\Models</Filter>
-    </ClCompile>
     <ClCompile Include="ModelManager.cpp">
       <Filter>Source Files\Models</Filter>
     </ClCompile>
@@ -159,6 +156,18 @@
     <ClCompile Include="generateCylinder.cpp">
       <Filter>Source Files\Model Generation</Filter>
     </ClCompile>
+    <ClCompile Include="Model.cpp">
+      <Filter>Source Files\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelComponent.cpp">
+      <Filter>Source Files\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="Component.cpp">
+      <Filter>Source Files\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderComponent.cpp">
+      <Filter>Source Files\Scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -169,9 +178,6 @@
     </ClInclude>
     <ClInclude Include="Animations_header.h">
       <Filter>Header Files\Animations</Filter>
-    </ClInclude>
-    <ClInclude Include="Model.h">
-      <Filter>Header Files\Models</Filter>
     </ClInclude>
     <ClInclude Include="ModelManager.h">
       <Filter>Header Files\Models</Filter>
@@ -251,9 +257,6 @@
     <ClInclude Include="MaterialManager.h">
       <Filter>Header Files\Shaders</Filter>
     </ClInclude>
-    <ClInclude Include="Component.h">
-      <Filter>Header Files\Scene</Filter>
-    </ClInclude>
     <ClInclude Include="Lighting_header.h">
       <Filter>Header Files\Lighting</Filter>
     </ClInclude>
@@ -262,6 +265,18 @@
     </ClInclude>
     <ClInclude Include="DirectionalLightComponent.h">
       <Filter>Header Files\Lighting</Filter>
+    </ClInclude>
+    <ClInclude Include="Component.h">
+      <Filter>Header Files\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderComponent.h">
+      <Filter>Header Files\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Model.h">
+      <Filter>Header Files\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelComponent.h">
+      <Filter>Header Files\Models</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -67,6 +67,7 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Collision.cpp" />
     <ClCompile Include="CollisionManager.cpp" />
+    <ClCompile Include="Component.cpp" />
     <ClCompile Include="Door.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="generateCone.cpp" />
@@ -82,8 +83,10 @@
     <ClCompile Include="Material.cpp" />
     <ClCompile Include="MaterialPoint.cpp" />
     <ClCompile Include="Model.cpp" />
+    <ClCompile Include="ModelComponent.cpp" />
     <ClCompile Include="ModelManager.cpp" />
     <ClCompile Include="PhysicsManager.cpp" />
+    <ClCompile Include="RenderComponent.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="Structs.cpp" />
@@ -109,11 +112,13 @@
     <ClInclude Include="Material.h" />
     <ClInclude Include="MaterialManager.h" />
     <ClInclude Include="MaterialPoint.h" />
+    <ClInclude Include="ModelComponent.h" />
     <ClInclude Include="ModelGeneration_header.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="ModelManager.h" />
     <ClInclude Include="Models_header.h" />
     <ClInclude Include="PhysicsManager.h" />
+    <ClInclude Include="RenderComponent.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Scene_header.h" />
     <ClInclude Include="Shader.h" />

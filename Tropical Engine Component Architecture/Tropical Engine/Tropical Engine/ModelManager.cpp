@@ -1,0 +1,69 @@
+#include "ModelManager.h"
+#include "Model.h"
+
+
+ModelManager::ModelManager(void)
+{
+}
+
+
+ModelManager::~ModelManager(void)
+{
+	foreach (ModelComponent* modelComponent, modelComponents)
+	{
+		delete modelComponent;
+	}
+	foreach (Model* model, models)
+	{
+		delete model;
+	}
+}
+
+void ModelManager::Load(QString fileUrl, QString name)
+{
+	models.insert(name, new Model(fileUrl));
+}
+
+void ModelManager::Load(Model* model, QString name)
+{
+	models.insert(name, model);
+}
+
+void ModelManager::FlushModel(QString name, bool forced)
+{
+	if(!models.contains(name))
+		return;
+	Model* model = models[name];
+	if(forced)
+	{
+		foreach (ModelComponent* modelComponent, modelComponents)
+		{
+			if(modelComponent->model == model)
+				DropComponent(modelComponent);
+		}
+		delete model;
+	}
+	else
+	{
+		foreach (ModelComponent* modelComponent, modelComponents)
+		{
+			if(modelComponent->model == model)
+				return;
+		}
+		models.remove(name);
+		delete model;
+	}
+}
+
+void ModelManager::DropComponent(ModelComponent* component)
+{
+	delete component;
+}
+
+void ModelManager::DrawAll(CameraComponent* viewer)
+{
+	foreach (ModelComponent* modelComponent, modelComponents)
+	{
+		modelComponent->Draw(viewer);
+	}
+}

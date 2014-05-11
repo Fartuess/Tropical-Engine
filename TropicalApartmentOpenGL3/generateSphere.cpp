@@ -30,9 +30,9 @@ GLUSshape* ModelGenerator::generateSphere(float radius, int subdivisionsAxis, in
 		for(int j = 0; j < subdivisionsAxis; j++)
 		{
 			//
-			vertices->push_back(radius * sinf(i * (M_PI / subdivisionsHeight)) * cosf(j * 2 * M_PI / subdivisionsAxis));
-			vertices->push_back(radius * sinf(i * (M_PI / subdivisionsHeight)) * sinf(j * 2 * M_PI / subdivisionsAxis));
-			vertices->push_back(radius * cosf(i * (M_PI / subdivisionsHeight)));
+			vertices->push_back(radius * sin(i * (M_PI / subdivisionsHeight)) * cos(j * 2 * M_PI / subdivisionsAxis));
+			vertices->push_back(radius * sin(i * (M_PI / subdivisionsHeight)) * sin(j * 2 * M_PI / subdivisionsAxis));
+			vertices->push_back(radius * cos(i * (M_PI / subdivisionsHeight)));
 			vertices->push_back(1.0f);
 
 			normals->push_back(sinf(i * (M_PI / subdivisionsHeight)) * cosf(j * 2 * M_PI / subdivisionsAxis));
@@ -50,11 +50,11 @@ GLUSshape* ModelGenerator::generateSphere(float radius, int subdivisionsAxis, in
 			bitangents->push_back(cosf(i * (M_PI / subdivisionsHeight)));
 			bitangents->push_back(1.0f);
 
-			texCoords->push_back((float)(j * 2 * M_PI * radius / subdivisionsAxis));texCoords->push_back(((float)i / subdivisionsHeight));
+			texCoords->push_back((double)((double)(j * 2 * M_PI * radius) / (double)subdivisionsAxis));texCoords->push_back(((double)i / (double)subdivisionsHeight));
 
-			vertices->push_back(radius * sinf((i + 1) * (M_PI / subdivisionsHeight)) * cosf(j * 2 * M_PI / subdivisionsAxis));
-			vertices->push_back(radius * sinf((i + 1) * (M_PI / subdivisionsHeight)) * sinf(j * 2 * M_PI / subdivisionsAxis));
-			vertices->push_back(radius * cosf((i + 1) * (M_PI / subdivisionsHeight)));
+			vertices->push_back(radius * sin((i + 1) * (M_PI / subdivisionsHeight)) * cos(j * 2 * M_PI / subdivisionsAxis));
+			vertices->push_back(radius * sin((i + 1) * (M_PI / subdivisionsHeight)) * sin(j * 2 * M_PI / subdivisionsAxis));
+			vertices->push_back(radius * cos((i + 1) * (M_PI / subdivisionsHeight)));
 			vertices->push_back(1.0f);
 
 			normals->push_back(sinf((i + 1) * (M_PI / subdivisionsHeight)) * cosf(j * 2 * M_PI / subdivisionsAxis));
@@ -72,11 +72,11 @@ GLUSshape* ModelGenerator::generateSphere(float radius, int subdivisionsAxis, in
 			bitangents->push_back(cosf((i + 1) * (M_PI / subdivisionsHeight)));
 			bitangents->push_back(1.0f);
 
-			texCoords->push_back((float)(j * 2 * M_PI * radius / subdivisionsAxis));texCoords->push_back(((float)(i + 1) / subdivisionsHeight));
+			texCoords->push_back((double)((double)(j * 2 * M_PI * radius) / (double)subdivisionsAxis));texCoords->push_back(((double)(i + 1) / (double)subdivisionsHeight));
 
-			vertices->push_back(radius * sinf(i * (M_PI / subdivisionsHeight)) * cosf((j + 1) * 2 * M_PI / subdivisionsAxis));
-			vertices->push_back(radius * sinf(i * (M_PI / subdivisionsHeight)) * sinf((j + 1) * 2 * M_PI / subdivisionsAxis));
-			vertices->push_back(radius * cosf(i * (M_PI / subdivisionsHeight)));
+			vertices->push_back(radius * sin(i * (M_PI / subdivisionsHeight)) * cos((j + 1) * 2 * M_PI / subdivisionsAxis));
+			vertices->push_back(radius * sin(i * (M_PI / subdivisionsHeight)) * sin((j + 1) * 2 * M_PI / subdivisionsAxis));
+			vertices->push_back(radius * cos(i * (M_PI / subdivisionsHeight)));
 			vertices->push_back(1.0f);
 
 			normals->push_back(sinf(i * (M_PI / subdivisionsHeight)) * cosf((j + 1) * 2 * M_PI / subdivisionsAxis));
@@ -94,12 +94,12 @@ GLUSshape* ModelGenerator::generateSphere(float radius, int subdivisionsAxis, in
 			bitangents->push_back(cosf(i * (M_PI / subdivisionsHeight)));
 			bitangents->push_back(1.0f);
 
-			texCoords->push_back((float)((j + 1) * 2 * M_PI * radius / subdivisionsAxis));texCoords->push_back(((float)i / subdivisionsHeight));
+			texCoords->push_back((double)((double)((j + 1) * 2 * M_PI * radius) / (double)subdivisionsAxis));texCoords->push_back(((double)i / (double)subdivisionsHeight));
 
 			//
-			vertices->push_back(radius * sinf((i + 1) * (M_PI / subdivisionsHeight)) * cosf(j * 2 * M_PI / subdivisionsAxis));
-			vertices->push_back(radius * sinf((i + 1) * (M_PI / subdivisionsHeight)) * sinf(j * 2 * M_PI / subdivisionsAxis));
-			vertices->push_back(radius * cosf((i + 1) * (M_PI / subdivisionsHeight)));
+			vertices->push_back(radius * sin((i + 1) * (M_PI / subdivisionsHeight)) * cos(j * 2 * M_PI / subdivisionsAxis));
+			vertices->push_back(radius * sin((i + 1) * (M_PI / subdivisionsHeight)) * sin(j * 2 * M_PI / subdivisionsAxis));
+			vertices->push_back(radius * cos((i + 1) * (M_PI / subdivisionsHeight)));
 			vertices->push_back(1.0f);
 
 			normals->push_back(sinf((i + 1) * (M_PI / subdivisionsHeight)) * cosf(j * 2 * M_PI / subdivisionsAxis));
@@ -117,11 +117,11 @@ GLUSshape* ModelGenerator::generateSphere(float radius, int subdivisionsAxis, in
 			bitangents->push_back(cosf((i + 1) * (M_PI / subdivisionsHeight)));
 			bitangents->push_back(1.0f);
 
-			texCoords->push_back((float)(j * 2 * M_PI * radius / subdivisionsAxis));texCoords->push_back(((float)(i + 1) / subdivisionsHeight));
+			texCoords->push_back((double)((double)(j * 2 * M_PI * radius) / (double)subdivisionsAxis));texCoords->push_back(((double)(i + 1) / (double)subdivisionsHeight));
 
-			vertices->push_back(radius * sinf((i + 1) * (M_PI / subdivisionsHeight)) * cosf((j + 1) * 2 * M_PI / subdivisionsAxis));
-			vertices->push_back(radius * sinf((i + 1) * (M_PI / subdivisionsHeight)) * sinf((j + 1) * 2 * M_PI / subdivisionsAxis));
-			vertices->push_back(radius * cosf((i + 1) * (M_PI / subdivisionsHeight)));
+			vertices->push_back(radius * sin((i + 1) * (M_PI / subdivisionsHeight)) * cos((j + 1) * 2 * M_PI / subdivisionsAxis));
+			vertices->push_back(radius * sin((i + 1) * (M_PI / subdivisionsHeight)) * sin((j + 1) * 2 * M_PI / subdivisionsAxis));
+			vertices->push_back(radius * cos((i + 1) * (M_PI / subdivisionsHeight)));
 			vertices->push_back(1.0f);
 
 			normals->push_back(sinf((i + 1) * (M_PI / subdivisionsHeight)) * cosf((j + 1) * 2 * M_PI / subdivisionsAxis));
@@ -139,11 +139,11 @@ GLUSshape* ModelGenerator::generateSphere(float radius, int subdivisionsAxis, in
 			bitangents->push_back(cosf((i + 1) * (M_PI / subdivisionsHeight)));
 			bitangents->push_back(1.0f);
 
-			texCoords->push_back((float)((j + 1) * 2 * M_PI * radius / subdivisionsAxis));texCoords->push_back(((float)(i + 1) / subdivisionsHeight));
+			texCoords->push_back((double)((double)((j + 1) * 2 * M_PI * radius) / (double)subdivisionsAxis));texCoords->push_back(((double)(i + 1) / (double)subdivisionsHeight));
 
-			vertices->push_back(radius * sinf(i * (M_PI / subdivisionsHeight)) * cosf((j + 1) * 2 * M_PI / subdivisionsAxis));
-			vertices->push_back(radius * sinf(i * (M_PI / subdivisionsHeight)) * sinf((j + 1) * 2 * M_PI / subdivisionsAxis));
-			vertices->push_back(radius * cosf(i * (M_PI / subdivisionsHeight)));
+			vertices->push_back(radius * sin(i * (M_PI / subdivisionsHeight)) * cos((j + 1) * 2 * M_PI / subdivisionsAxis));
+			vertices->push_back(radius * sin(i * (M_PI / subdivisionsHeight)) * sin((j + 1) * 2 * M_PI / subdivisionsAxis));
+			vertices->push_back(radius * cos(i * (M_PI / subdivisionsHeight)));
 			vertices->push_back(1.0f);
 
 			normals->push_back(sinf(i * (M_PI / subdivisionsHeight)) * cosf((j + 1) * 2 * M_PI / subdivisionsAxis));
@@ -161,7 +161,7 @@ GLUSshape* ModelGenerator::generateSphere(float radius, int subdivisionsAxis, in
 			bitangents->push_back(cosf(i * (M_PI / subdivisionsHeight)));
 			bitangents->push_back(1.0f);
 
-			texCoords->push_back((float)((j + 1) * 2 * M_PI * radius / subdivisionsAxis));texCoords->push_back(((float)i / subdivisionsHeight));
+			texCoords->push_back((double)((double)((j + 1) * 2 * M_PI * radius) / (double)subdivisionsAxis));texCoords->push_back(((double)i / (double)subdivisionsHeight));
 		}
 	}
 

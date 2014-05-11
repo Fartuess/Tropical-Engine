@@ -10,6 +10,8 @@ class ModelManager
 {
 public:
 	static map<string, Model*> models;
+
+	static list<ModelComponent*> modelComponents;
 	
 	static void Load(string name, Model* mesh);	///Loads model from a file
 

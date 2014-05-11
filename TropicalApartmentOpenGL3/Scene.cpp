@@ -174,6 +174,6 @@ void CreateScene()
 	scene->AddSubObject(new GameObject(new Vec3(0.0f, 0.0f, -10.0f), &Vec3Zero, new Vec3(5.0f, 5.0f, 5.0f), false, ModelManager::models.find("proceduralCylinder")->second));
 	ModelManager::Load("proceduralCone", new Model(&Vec3Zero, &Vec3Zero, &Vec3One, ModelGenerator::generateCone(1.0f, 1.0f, 50, 3)));
 	scene->AddSubObject(new GameObject(new Vec3(-10.0f, 0.0f, -10.0f), &Vec3Zero, new Vec3(5.0f, 5.0f, 5.0f), false, ModelManager::models.find("proceduralCone")->second));
-	ModelManager::Load("proceduralSphere", new Model(&Vec3Zero, &Vec3Zero, &Vec3One, ModelGenerator::generateSphere(1.0f, 20, 20)));
+	ModelManager::Load("proceduralSphere", new Model(&Vec3Zero, &Vec3Zero, &Vec3One, ModelGenerator::generateSphere(1.0f, 60, 60)));
 	scene->AddSubObject(new GameObject(new Vec3(0.0f, 0.0f, 0.0f), &Vec3Zero, new Vec3(5.0f, 5.0f, 5.0f), false, ModelManager::models.find("proceduralSphere")->second));
 }
