@@ -6,14 +6,26 @@
 #include <QtCore\qmap.h>
 
 class CameraComponent;
+class ModelBuilder;
 
 class ModelManager :
 	public Singleton<ModelManager>
 {
 public:
 	friend class ModelComponent;
+	friend class ModelBuilder;
 	friend class Material;
 	friend class MaterialManager;
+
+	//enum proceduralModel
+	//{
+	//	Plane,
+	//	Box,
+	//	Cylinder,
+	//	Cone,
+	//	Sphere,
+	//	Torus
+	//};
 private:
 	QMap<QString, Model*> models;
 	QList<ModelComponent*> modelComponents;
@@ -22,8 +34,8 @@ public:
 	~ModelManager(void);
 
 	void Load(QString fileUrl, QString name);
-	void Load(Model* model, QString name);
 private:
+	void Load(Model* model, QString name);
 	void FlushModel(QString name, bool forced = false);
 	void DropComponent(ModelComponent* component);
 public:

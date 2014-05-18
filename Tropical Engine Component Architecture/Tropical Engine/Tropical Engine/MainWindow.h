@@ -1,6 +1,6 @@
 #pragma once
-#include <QtWidgets\qwidget.h>
-class MainWindow : public QWidget
+#include <QtWidgets\qmainwindow.h>
+class MainWindow : public QMainWindow
 {
 public:
 	MainWindow(void);

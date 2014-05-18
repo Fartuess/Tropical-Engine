@@ -9,10 +9,6 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
     <Filter Include="Header Files\Scene">
       <UniqueIdentifier>{171a2f0e-7410-413b-abe7-07dcafb2a9cb}</UniqueIdentifier>
     </Filter>
@@ -69,6 +65,22 @@
     </Filter>
     <Filter Include="Source Files\QtInterface">
       <UniqueIdentifier>{5b24732b-7490-4f6f-a719-925ec1f61c45}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shader Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Tests">
+      <UniqueIdentifier>{a67a40cb-8178-4cb3-bbf5-d05881de1f57}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Tests\OglDevTut03">
+      <UniqueIdentifier>{00d22e2e-5669-47a6-88f1-6cf467eccf4c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Tests\OglDevTut03\Header Files">
+      <UniqueIdentifier>{d0add7fb-ed35-4a05-8d82-971ec2d94ffe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Tests\OglDevTut03\Source Files">
+      <UniqueIdentifier>{33eb4ed1-0a55-477d-9557-08527374df71}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -152,6 +164,12 @@
     </ClCompile>
     <ClCompile Include="MainWindow.cpp">
       <Filter>Source Files\QtInterface</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelBuilder.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="OglDevTut03.cpp">
+      <Filter>Tests\OglDevTut03\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -262,6 +280,12 @@
     </ClInclude>
     <ClInclude Include="MainWindow.h">
       <Filter>Header Files\QtInterface</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelBuilder.h">
+      <Filter>Header Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="OglDevTut03.h">
+      <Filter>Tests\OglDevTut03\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

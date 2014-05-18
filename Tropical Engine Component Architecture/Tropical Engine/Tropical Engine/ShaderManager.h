@@ -1,6 +1,7 @@
 #pragma once
 //#include "_Shader.h"
 #include "singleton.h"
+#include <GL\glew.h>
 #include <QtCore\qstring.h>
 #include <QtCore\qmap.h>
 
@@ -9,6 +10,18 @@ class Shader;
 class ShaderManager :
 	public Singleton<ShaderManager>
 {
+public:
+	struct shaderProgram
+	{
+		GLuint program;
+
+		GLuint computeShader;
+		GLuint vertexShader;
+		GLuint controlTessalationShader;
+		GLuint evaluationTessalationShader;
+		GLuint geometryShader;
+		GLuint fragmentShader;
+	};
 private:
 	QMap<QString, Shader*> shaders;
 
