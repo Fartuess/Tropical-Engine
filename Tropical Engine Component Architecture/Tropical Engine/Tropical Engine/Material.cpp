@@ -2,7 +2,7 @@
 #include "Material.h"
 #include "MaterialManager.h"
 #include "ModelComponent.h"
-#include "ModelManager.h"
+#include "ModelController.h"
 
 Material::Material(Shader* shader, void* params, QString name)
 {
@@ -12,7 +12,7 @@ Material::Material(Shader* shader, void* params, QString name)
 
 Material::~Material(void)
 {
-	foreach(ModelComponent* modelComponent, ModelManager::Instance().modelComponents)
+	foreach(ModelComponent* modelComponent, ModelController::Instance().modelComponents)
 	{
 		if(modelComponent->material == this)
 			modelComponent->material = &this->getShader()->defaultMaterial;

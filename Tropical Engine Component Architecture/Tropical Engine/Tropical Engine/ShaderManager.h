@@ -1,5 +1,4 @@
 #pragma once
-//#include "_Shader.h"
 #include "singleton.h"
 #include <GL\glew.h>
 #include <QtCore\qstring.h>

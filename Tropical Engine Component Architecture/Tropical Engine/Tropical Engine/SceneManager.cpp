@@ -1,3 +1,4 @@
+#include "Level.h"
 #include "SceneManager.h"
 
 
@@ -17,6 +18,11 @@ void SceneManager::LoadLevel(QString fileUrl)
 }
 
 void SceneManager::LoadLevel(QString fileUrl, QString name)
+{
+	///TODO: implement it.
+}
+
+void SceneManager::LoadLevel(Level* level, QString name)
 {
 	///TODO: implement it.
 }

@@ -26,7 +26,7 @@ public:
 	void AttachSubobject(Entity* subobject);
 	void AttachTo(Entity* parrent);
 	void AttachComponent(Component* component);
-	void DeleteComponent(Component* component);
+	void DeleteComponent(Component* component);	//is needed?
 private:
 	void DetachComponent(Component* component);
 };

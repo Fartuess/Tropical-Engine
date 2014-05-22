@@ -5,7 +5,7 @@
 Component::Component(Entity* owner)
 {
 	if(owner != nullptr)
-		this->owner = owner;
+		this->setOwner(owner);
 	else
 		delete this;
 }
@@ -28,9 +28,9 @@ void Component::setOwner(Entity* owner)
 {
 	if(owner != nullptr)
 	{
-		owner->components.removeOne(this);
+		this->owner->components.removeOne(this);
 		this->owner = owner;
-		owner->components.append(this);
+		this->owner->components.append(this);
 	}
 	else
 	{

@@ -31,6 +31,7 @@ int main(int argc, char* argv[])
 	fileMenu->addAction("Exit");
 	assetsMenu->addAction("Import Model");
 	assetsMenu->addAction("Import Texture");
+	miscelanousMenu->addAction("Log");
 	miscelanousMenu->addAction("About");
 	mainMenu->addMenu(fileMenu);
 	mainMenu->addMenu(assetsMenu);

@@ -1,5 +1,5 @@
 #include "ModelComponent.h"
-#include "ModelManager.h"
+#include "ModelController.h"
 #include "Entity.h"
 
 
@@ -7,7 +7,7 @@ ModelComponent::ModelComponent(Entity* owner, Material* material, Model* model, 
 {
 	this->model = model;
 	this->castingShadows = castingShadows;
-	ModelManager::Instance().modelComponents.append(this);
+	ModelController::Instance().AddComponent(this);
 }
 
 
@@ -15,7 +15,7 @@ ModelComponent::~ModelComponent(void)
 {
 	if(owner != nullptr)
 	{
-		ModelManager::Instance().modelComponents.removeOne(this);
+		ModelController::Instance().modelComponents.removeOne(this);
 	}
 }
 

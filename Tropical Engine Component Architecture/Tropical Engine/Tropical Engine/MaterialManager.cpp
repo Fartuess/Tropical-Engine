@@ -2,7 +2,7 @@
 #include "Material.h"
 #include "MaterialManager.h"
 #include "ModelComponent.h"
-#include "ModelManager.h"
+#include "ModelController.h"
 
 
 MaterialManager::MaterialManager(void)
@@ -28,7 +28,7 @@ void MaterialManager::FlushMaterial(QString name, bool forced)
 	Material* material = materials[name];
 	if(forced)
 	{
-		foreach(ModelComponent* modelComponent, ModelManager::Instance().modelComponents)
+		foreach(ModelComponent* modelComponent, ModelController::Instance().modelComponents)
 		{
 			if(modelComponent->material == material)
 				modelComponent->material = &material->getShader()->defaultMaterial;
@@ -37,7 +37,7 @@ void MaterialManager::FlushMaterial(QString name, bool forced)
 	}
 	else
 	{
-		foreach(ModelComponent* modelComponent, ModelManager::Instance().modelComponents)
+		foreach(ModelComponent* modelComponent, ModelController::Instance().modelComponents)
 		{
 			if(modelComponent->material == material)
 				return;
