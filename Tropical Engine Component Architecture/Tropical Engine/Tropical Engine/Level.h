@@ -4,7 +4,7 @@
 #include "Package.h"
 #include <QtCore\qstring.h>
 
-using namespace glm;
+//using namespace glm;
 
 class Level
 {

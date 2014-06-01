@@ -21,6 +21,7 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{9E1020DE-C56C-4863-A466-D0396B936147}</ProjectGuid>
     <RootNamespace>TropicalEngine</RootNamespace>
+    <ProjectName>Tropical Engine</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -74,7 +75,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\Middleware\Qt\include;$(SolutionDir)..\Middleware\glm</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\Middleware\ImageMagick\include;$(SolutionDir)..\Middleware\assimp\include;$(SolutionDir)..\Middleware\glew\include;$(SolutionDir)..\Middleware\Qt\include;$(SolutionDir)..\Middleware\glm</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -87,14 +88,14 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\Middleware\Qt\include;$(SolutionDir)..\Middleware\glew\include;$(SolutionDir)..\Middleware\glm;$(SolutionDir)..\Middleware\assimp\include;$(SolutionDir)..\Middleware\ImageMagick\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\Middleware\Qt\include;$(SolutionDir)..\Middleware\glew\include;$(SolutionDir)..\Middleware\glm;$(SolutionDir)..\Middleware\assimp\include;$(SolutionDir)..\Middleware\ImageMagick\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <BrowseInformation>true</BrowseInformation>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)..\Middleware\Assimp\lib;$(SolutionDir)..\Middleware\ImageMagick\lib;$(SolutionDir)..\Middleware\Qt\lib;$(SolutionDir)..\Middleware\glew\lib\Release\x64;$(SolutionDir)..\Middleware\Qt\bin;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>CORE_DB_Magick++_.lib;CORE_RL_Magick++_.lib;assimp.lib;opengl32.lib;glew32.lib;Qt5Cored.lib;Qt5Guid.lib;Qt5OpenGLd.lib;Qt5Widgetsd.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <SubSystem>NotSet</SubSystem>
+      <SubSystem>Console</SubSystem>
     </Link>
     <Bscmake>
       <PreserveSbr>true</PreserveSbr>
@@ -174,6 +175,7 @@
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="DirectionalLightComponent.cpp" />
     <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="InitializeLevel_03.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="LevelManager.cpp" />
     <ClCompile Include="LightComponent.cpp" />
@@ -200,6 +202,12 @@
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TextureManager.cpp" />
     <ClCompile Include="TransformComponent.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="BasicVertexShader.glsl" />
+    <None Include="PhongBlinnSimple.glsl" />
+    <None Include="Simple_PS.glsl" />
+    <None Include="Simple_VS.glsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

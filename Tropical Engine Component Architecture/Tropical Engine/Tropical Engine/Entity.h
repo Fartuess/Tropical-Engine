@@ -1,5 +1,6 @@
 #pragma once
 #include <QtCore\qlist.h>
+#include <QtCore\qstring.h>
 #include "_Math.h"
 #include "TransformComponent.h"
 
@@ -9,12 +10,14 @@ private:
 	friend class Component;
 
 	Entity* parrent;
-
+public:
 	QList<Entity*> subobjects;
+private:
 	QList<Component*> components;
 
 public:
 	TransformComponent transform;
+	QString* name;
 
 	Entity(void);
 	Entity(glm::vec3 position, glm::vec3 rotation, glm::vec3 scale);

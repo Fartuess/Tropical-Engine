@@ -1,4 +1,6 @@
 #include <glm.hpp>
+#include "Shader.h"
+#include "ShaderManager.h"
 #include "OglDevTut03.h"
 
 void OglDevTut03::Initialize()
@@ -11,6 +13,10 @@ void OglDevTut03::Initialize()
  	glGenBuffers(1, &VBO);
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(Vertices), Vertices, GL_STATIC_DRAW);
+
+	simple = new Shader("../Tropical Engine/Simple_VS.glsl", "../Tropical Engine/Simple_PS.glsl", "Simple");
+
+	InitializeLevel();
 }
 
 void OglDevTut03::Draw()
@@ -20,6 +26,8 @@ void OglDevTut03::Draw()
     glEnableVertexAttribArray(0);
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
+
+	ShaderManager::Instance().UseShader(simple);
 
     glDrawArrays(GL_TRIANGLES, 0, 3);
 

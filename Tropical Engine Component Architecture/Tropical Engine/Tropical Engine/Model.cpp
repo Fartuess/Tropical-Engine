@@ -20,12 +20,12 @@ Model::~Model(void)
 	///TODO: implement it.
 }
 
-Model::MeshEntry::MeshEntry()
+MeshEntry::MeshEntry()
 {
 	///TODO: implement it.
 }
 
-Model::MeshEntry::~MeshEntry()
+MeshEntry::~MeshEntry()
 {
 	///TODO: implement it.
 }

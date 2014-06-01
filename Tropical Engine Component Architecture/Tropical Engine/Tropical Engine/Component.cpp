@@ -28,7 +28,8 @@ void Component::setOwner(Entity* owner)
 {
 	if(owner != nullptr)
 	{
-		this->owner->components.removeOne(this);
+		if(this->owner != nullptr)
+			this->owner->components.removeOne(this);
 		this->owner = owner;
 		this->owner->components.append(this);
 	}

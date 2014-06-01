@@ -82,6 +82,15 @@
     <Filter Include="Tests\OglDevTut03\Source Files">
       <UniqueIdentifier>{33eb4ed1-0a55-477d-9557-08527374df71}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Tests\OglDevTut03\Shaders">
+      <UniqueIdentifier>{784c86d1-fcae-4c3a-ab58-59709e10aa52}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shader Files\Vertex Shader">
+      <UniqueIdentifier>{e3a17d10-de3f-4efa-9355-99dbff994121}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shader Files\Fragment Shader">
+      <UniqueIdentifier>{d7298006-481f-4fd9-9d87-adbb1f147962}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Entity.cpp">
@@ -173,6 +182,9 @@
     </ClCompile>
     <ClCompile Include="ModelController.cpp">
       <Filter>Source Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="InitializeLevel_03.cpp">
+      <Filter>Tests\OglDevTut03\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -293,5 +305,19 @@
     <ClInclude Include="ModelController.h">
       <Filter>Header Files\Model</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Simple_VS.glsl">
+      <Filter>Tests\OglDevTut03\Shaders</Filter>
+    </None>
+    <None Include="Simple_PS.glsl">
+      <Filter>Tests\OglDevTut03\Shaders</Filter>
+    </None>
+    <None Include="BasicVertexShader.glsl">
+      <Filter>Shader Files\Vertex Shader</Filter>
+    </None>
+    <None Include="PhongBlinnSimple.glsl">
+      <Filter>Shader Files\Fragment Shader</Filter>
+    </None>
   </ItemGroup>
 </Project>

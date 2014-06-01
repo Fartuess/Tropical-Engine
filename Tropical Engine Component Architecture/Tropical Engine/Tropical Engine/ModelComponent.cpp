@@ -1,5 +1,9 @@
 #include "ModelComponent.h"
 #include "ModelController.h"
+#include "Model.h"
+#include "Shader.h"
+#include "Material.h"
+#include "ShaderManager.h"
 #include "Entity.h"
 
 
@@ -27,6 +31,21 @@ void ModelComponent::Evaluate()
 void ModelComponent::Draw(CameraComponent* viewer)
 {
 	///TODO: implement it.
+	ShaderManager::Instance().UseShader(material->getShader());
+
+	foreach(MeshEntry meshEntry, model->meshes)
+	{
+		glBindVertexArray(meshEntry.VAO);
+		glEnableVertexAttribArray(material->getShader()->getVertexLocation());
+		glEnableVertexAttribArray(material->getShader()->getNormalLocation());
+		glEnableVertexAttribArray(material->getShader()->getTangentLocation());
+		glEnableVertexAttribArray(material->getShader()->getBitangentLocation());
+		glEnableVertexAttribArray(material->getShader()->getTexcoordLocation());
+		
+
+		glDrawArrays(GL_TRIANGLES, 0, meshEntry.NumVertex);
+
+	}
 }
 
 bool ModelComponent::isCastingShadows()

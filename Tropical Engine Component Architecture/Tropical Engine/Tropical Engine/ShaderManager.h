@@ -23,14 +23,16 @@ public:
 	};
 private:
 	QMap<QString, Shader*> shaders;
-
-	ShaderManager(void);
 public:
+	ShaderManager(void);
 	~ShaderManager(void);
 private:
 	void FlushShader(QString name);
 public:
 	void Load(Shader* shader, QString name);
 	void Load(QString vertexShader, QString fragmentShader, QString name);
+
+	void UseShader(QString name);
+	void UseShader(Shader* shader);
 };
 

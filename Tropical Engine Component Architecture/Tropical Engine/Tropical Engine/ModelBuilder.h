@@ -1,7 +1,7 @@
 #pragma once
 #include <QtCore\qstring.h>
 #include <glm.hpp>
-#include "singleton.h"
+#include "Singleton.h"
 
 class Model;
 class ModelManager;

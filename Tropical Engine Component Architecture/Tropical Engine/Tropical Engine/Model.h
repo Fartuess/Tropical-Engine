@@ -1,5 +1,5 @@
 #pragma once
-#include <gl\glew.h>
+#include <GL\glew.h>
 #include <glm.hpp>
 #include <QtCore\qstring.h>
 #include <QtCore\qvector.h>
@@ -31,36 +31,35 @@ struct Vertex
 	}
 };
 
+struct MeshEntry {
+    MeshEntry();
+
+    ~MeshEntry();
+
+	GLuint vertexVBO;
+	GLuint normalVBO;
+	GLuint tangentVBO;
+	GLuint bitangentVBO;
+	GLuint texcoordVBO;
+
+	GLuint VAO;
+
+	unsigned int NumVertex;
+    unsigned int NumIndices;
+    unsigned int MaterialIndex;
+};
+
 class Model
 {
 private:
-	//GLuint numberVerticies;
-	//
-	//GLuint vertexVBO;
-	//GLuint normalVBO;
-	//GLuint tangentVBO;
-	//GLuint bitangentVBO;
-	//GLuint texcoordVBO;
+	GLuint numberVerticies;
+	
 public:
 	Model();
 	Model(QString fileUrl);
 	~Model(void);
 
-	struct MeshEntry {
-        MeshEntry();
-
-        ~MeshEntry();
-
-        //void Init(const std::vector<Vertex>& Vertices,
-        //          const std::vector<unsigned int>& Indices);
-
-        GLuint VertexBuffer;
-        GLuint IndexBuffer;
-        unsigned int NumIndices;
-        unsigned int MaterialIndex;
-    };
-
 	QVector<MeshEntry> meshes;
-	uint materialCount;
+	GLuint materialCount;
 };
 

@@ -1,4 +1,6 @@
-#pragma comment(linker, "/SUBSYSTEM:windows /ENTRY:mainCRTStartup")
+//#pragma comment(linker, "/SUBSYSTEM:windows /ENTRY:mainCRTStartup")
+
+#include <gl\glew.h>
 
 #include "MainWindow.h"
 #include <QtWidgets\qapplication.h>
@@ -11,6 +13,12 @@
 #include <QtWidgets\qtreeview.h>
 #include <QtWidgets\qpushbutton.h>
 #include "OpenGLWidget.h"
+
+#include "Entity.h"
+#include "Level.h"
+#include "OglDevTut03.h"
+
+Level* OglDevTut03::level;
 
 int main(int argc, char* argv[])
 {
@@ -57,8 +65,8 @@ int main(int argc, char* argv[])
 	addComponentButton->setText("Add Component");
 	QPushButton* deleteComponentButton = new QPushButton();
 	deleteComponentButton->setText("Delete Component");
-	leftPanelButtonLayout->addWidget(addComponentButton);
-	leftPanelButtonLayout->addWidget(deleteComponentButton);
+	//leftPanelButtonLayout->addWidget(addComponentButton);
+	//leftPanelButtonLayout->addWidget(deleteComponentButton);
 	leftPanelButtonFrame->setLayout(leftPanelButtonLayout);
 
 	QLabel* sceneGraphLabel = new QLabel();
@@ -87,6 +95,15 @@ int main(int argc, char* argv[])
 	mainLayoutSplitter->addWidget(rightPanel);
 	mainLayout->addWidget(mainLayoutSplitter);
 	mainWidget->setLayout(mainLayout);
+
+	//foreach(Entity* object, OglDevTut03::level->root.subobjects)
+	//{
+	//	if(object->name != nullptr)
+	//	{
+	//		qDebug(object->name->toLatin1());
+	//	}
+	//}
+
 	mainWindow->show();
 
 	return tropicalEngine.exec();
