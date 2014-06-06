@@ -147,13 +147,18 @@
     <ClInclude Include="ModelComponent.h" />
     <ClInclude Include="ModelController.h" />
     <ClInclude Include="ModelManager.h" />
-    <ClInclude Include="OglDevTut03.h" />
-    <ClInclude Include="OpenGLWidget.h">
+    <CustomBuild Include="OglDevTut03.h">
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)..\Middleware\Qt\moc.exe "%(FullPath)" -o "%(RootDir)%(Directory)moc_%(Filename).cpp"</Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Compiling %(Filename).%(Extension) using MOC</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(RootDir)$(Directory)moc_%(Filename).cpp</Outputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)..\Middleware\Qt\moc.exe;$(InputPath)</AdditionalInputs>
-    </ClInclude>
+    </CustomBuild>
+    <CustomBuild Include="OpenGLWidget.h">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)..\Middleware\Qt\moc.exe "%(FullPath)" -o "%(RootDir)%(Directory)moc_%(Filename).cpp"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Compiling %(Filename).%(Extension) using MOC</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(RootDir)$(Directory)moc_%(Filename).cpp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)..\Middleware\Qt\moc.exe;$(InputPath)</AdditionalInputs>
+    </CustomBuild>
     <ClInclude Include="Package.h" />
     <ClInclude Include="PackageManager.h" />
     <ClInclude Include="PointLightComponent.h" />
@@ -168,6 +173,7 @@
     <ClInclude Include="Texture.h" />
     <ClInclude Include="TextureManager.h" />
     <ClInclude Include="TransformComponent.h" />
+    <ClInclude Include="TropicalEngineApplication.h" />
     <ClInclude Include="_Camera.h" />
     <ClInclude Include="_Component.h" />
     <ClInclude Include="_DesignPatterns.h" />
@@ -193,6 +199,8 @@
     <ClCompile Include="MainWindow.cpp" />
     <ClCompile Include="Material.cpp" />
     <ClCompile Include="MaterialManager.cpp" />
+    <ClCompile Include="moc_OglDevTut03.cpp" />
+    <ClCompile Include="moc_OpenGLWidget.cpp" />
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="ModelBuilder.cpp" />
     <ClCompile Include="ModelBuilder_Box.cpp" />
@@ -200,6 +208,7 @@
     <ClCompile Include="ModelBuilder_Cylinder.cpp" />
     <ClCompile Include="ModelBuilder_Plane.cpp" />
     <ClCompile Include="ModelBuilder_Sphere.cpp" />
+    <ClCompile Include="ModelBuilder_Triangle.cpp" />
     <ClCompile Include="ModelComponent.cpp" />
     <ClCompile Include="ModelController.cpp" />
     <ClCompile Include="ModelManager.cpp" />
@@ -218,6 +227,7 @@
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TextureManager.cpp" />
     <ClCompile Include="TransformComponent.cpp" />
+    <ClCompile Include="TropicalEngineApplication.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="BasicVertexShader.glsl" />

@@ -219,6 +219,18 @@
     <ClCompile Include="TempPlayerComponent.cpp">
       <Filter>Source Files\Input</Filter>
     </ClCompile>
+    <ClCompile Include="ModelBuilder_Triangle.cpp">
+      <Filter>Source Files\Model\ModelBuilder</Filter>
+    </ClCompile>
+    <ClCompile Include="moc_OpenGLWidget.cpp">
+      <Filter>Source Files\QtInterface</Filter>
+    </ClCompile>
+    <ClCompile Include="moc_OglDevTut03.cpp">
+      <Filter>Tests\OglDevTut03\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TropicalEngineApplication.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entity.h">
@@ -326,9 +338,6 @@
     <ClInclude Include="ModelBuilder.h">
       <Filter>Header Files\Model</Filter>
     </ClInclude>
-    <ClInclude Include="OglDevTut03.h">
-      <Filter>Tests\OglDevTut03\Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="LightController.h">
       <Filter>Header Files\Light</Filter>
     </ClInclude>
@@ -344,8 +353,8 @@
     <ClInclude Include="TempPlayerComponent.h">
       <Filter>Header Files\Input</Filter>
     </ClInclude>
-    <ClInclude Include="OpenGLWidget.h">
-      <Filter>Header Files\QtInterface</Filter>
+    <ClInclude Include="TropicalEngineApplication.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -364,5 +373,13 @@
     <None Include="UnlitSimple.glsl">
       <Filter>Shader Files\Fragment Shader</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="OpenGLWidget.h">
+      <Filter>Header Files\QtInterface</Filter>
+    </CustomBuild>
+    <CustomBuild Include="OglDevTut03.h">
+      <Filter>Tests\OglDevTut03\Header Files</Filter>
+    </CustomBuild>
   </ItemGroup>
 </Project>

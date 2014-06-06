@@ -306,7 +306,7 @@ Model* ModelBuilder::CreateBox(QString name, float sizeX, float sizeY, float siz
 	glBufferData(GL_ARRAY_BUFFER, sizeof(texCoords->data()), texCoords->data(), GL_STATIC_DRAW);
 	
 
-	Model* model = new Model();
+	Model* model = new Model(name);
 	model->meshes.append(*Cube);
 	return model;
 }

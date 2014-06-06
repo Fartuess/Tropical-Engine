@@ -88,7 +88,7 @@ Model* ModelBuilder::CreatePlane(QString name, float sizeX, float sizeY, int sub
 	glBufferData(GL_ARRAY_BUFFER, sizeof(texCoords->data()), texCoords->data(), GL_STATIC_DRAW);
 	
 
-	Model* model = new Model();
+	Model* model = new Model(name);
 	model->meshes.append(*Plane);
 	return model;
 }

@@ -18,9 +18,11 @@ public:
 	ModelManager(void);
 	~ModelManager(void);
 
+	Model* getModel(QString name);
+
 	void Load(QString fileUrl, QString name);
-private:
 	void Load(Model* model, QString name);
+private:
 	void FlushModel(QString name, bool forced = false);
 };
 

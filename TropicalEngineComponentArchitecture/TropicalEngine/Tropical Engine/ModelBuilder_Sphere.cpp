@@ -189,7 +189,7 @@ Model* ModelBuilder::CreateSphere(QString name, float radius, int subdivisionsAx
 	glBufferData(GL_ARRAY_BUFFER, sizeof(texCoords->data()), texCoords->data(), GL_STATIC_DRAW);
 	
 
-	Model* model = new Model();
+	Model* model = new Model(name);
 	model->meshes.append(*Sphere);
 	return model;
 }

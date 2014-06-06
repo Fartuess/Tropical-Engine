@@ -128,7 +128,7 @@ Model* ModelBuilder::CreateCone(QString name, float radius, float height, int su
 	glBufferData(GL_ARRAY_BUFFER, sizeof(texCoords->data()), texCoords->data(), GL_STATIC_DRAW);
 	
 
-	Model* model = new Model();
+	Model* model = new Model(name);
 	model->meshes.append(*Cone);
 	return model;
 }

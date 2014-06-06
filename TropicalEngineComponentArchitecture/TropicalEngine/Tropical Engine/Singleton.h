@@ -4,6 +4,7 @@ class Singleton
 {
 protected:
 	static T* instance;
+public:
 	Singleton(void)
 	{
 		if(!instance)

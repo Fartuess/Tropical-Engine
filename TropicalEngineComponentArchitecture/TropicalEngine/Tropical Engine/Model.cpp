@@ -3,12 +3,12 @@
 #include "ModelManager.h"
 
 
-Model::Model() : meshes()
+Model::Model(QString name) : meshes()
 {
-	///TODO: implement it.
+	ModelManager::Instance().Load(this, name);
 }
 
-Model::Model(QString fileUrl) : meshes()
+Model::Model(QString name, QString fileUrl) : meshes()
 {
 	///TODO: implement it.
 	

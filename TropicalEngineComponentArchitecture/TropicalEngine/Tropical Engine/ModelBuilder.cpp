@@ -87,7 +87,7 @@ Model* ModelBuilder::Load(QString name, QString fileUrl)
 	return nullptr;
 }
 
-Model* ModelBuilder::CrateTorus(QString name, float radius, float segmentRadius, int subdivisionsAxis, int subdivisionsHeight)
+Model* ModelBuilder::CreateTorus(QString name, float radius, float segmentRadius, int subdivisionsAxis, int subdivisionsHeight)
 {
 	///TODO: implement it.
 	return nullptr;

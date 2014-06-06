@@ -1,16 +1,18 @@
 #pragma once
-#include <QtCore\qmetaobject.h>
+//#include <QtCore\qmetaobject.h>
 #include <QtWidgets\qwidget.h>
 #include <QtOpenGL\QGLWidget>
 //#include <QtCore\qtimer.h>
 
 class OglDevTut03;
 
+extern OglDevTut03* staticOglDevTut03;
+
 class OpenGLWidget : public QGLWidget
 {
-//	Q_OBJECT
+	Q_OBJECT
 private:
-	OglDevTut03* GLclass;
+	//OglDevTut03* GLclass;
 	//QTimer* timer;
 public:
 	OpenGLWidget(void);
@@ -23,6 +25,8 @@ protected:
 	void keyPressEvent(QKeyEvent* keyEvent);
 	void mouseMoveEvent(QMouseEvent* mouseEvent);
 
-//public slots:
-//	void paintHandle();
+signals:
+	void initializeSignal();
+	void reshapeSignal();
+	void drawSignal();
 };

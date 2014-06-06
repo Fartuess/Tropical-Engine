@@ -15,6 +15,11 @@ ModelManager::~ModelManager(void)
 	}
 }
 
+Model* ModelManager::getModel(QString name)
+{
+	return models[name];
+}
+
 void ModelManager::Load(QString fileUrl, QString name)
 {
 	models.insert(name, new Model(fileUrl));

@@ -18,12 +18,13 @@
 #include "Entity.h"
 #include "Level.h"
 #include "OglDevTut03.h"
+#include "TropicalEngineApplication.h"
 
 Level* OglDevTut03::level;
 
 int main(int argc, char* argv[])
 {
-	QApplication tropicalEngine(argc, argv);
+	TropicalEngineApplication tropicalEngine(argc, argv);
 	MainWindow* mainWindow = new MainWindow();
 	QMenuBar* mainMenu = new QMenuBar();
 	QStatusBar* statusBar = new QStatusBar();
@@ -51,6 +52,7 @@ int main(int argc, char* argv[])
 	QHBoxLayout* mainLayout = new QHBoxLayout();
 	QMenuBar* mainMenuBar = new QMenuBar();
 	QSplitter* mainLayoutSplitter = new QSplitter();
+	staticOglDevTut03 = new OglDevTut03();
 	OpenGLWidget* openGLWindow = new OpenGLWidget();
 	openGLWindow->grabKeyboard();
 	//openGLWindow->grabMouse();

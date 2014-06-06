@@ -7,8 +7,8 @@ class Level;
 class CameraComponent;
 class DirectionalLightComponent;
 
-class SceneManager:
-	public Singleton<SceneManager>
+class SceneManager//:
+	//public Singleton<SceneManager>
 {
 private:
 	QMap<QString, Level*> levels;
