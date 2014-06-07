@@ -23,17 +23,23 @@ void OglDevTut03::Initialize()
 
 	//ModelBuilder::Instance().CreateTriangle("Triangle");
 	//triangleModel = ModelManager::Instance().getModel("Triangle");
-	triangleModel = TropicalEngineApplication::instance()->modelBuilder->CreateTriangle("Triangle");
+	//triangleModel = TropicalEngineApplication::instance()->modelBuilder->CreateTriangle("Triangle");
+
+	ModelBuilder tempModelBuilder = ModelBuilder();
+	triangleModel = tempModelBuilder.CreateTriangle("Triangle");
 
 	cameraPosition = glm::vec2(0.0f, 0.5f);
 
 	glGenBuffers(1, &VBO);
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
 
-	QVector<GLfloat>* testBuffer = new QVector<GLfloat>();
-	testBuffer->size();
+	//QVector<GLfloat>* testBuffer = new QVector<GLfloat>();
+	//testBuffer->size();
 	//triangleModel->meshes[0].testVertices->count();
-	//glBufferData(GL_ARRAY_BUFFER, sizeof(GLfloat) * triangleModel->meshes[0].testVertices->count(), triangleModel->meshes[0].testVertices->data(), GL_STATIC_DRAW);
+	int t1 = sizeof(Vertices);
+	int t2 = sizeof(GLfloat) * triangleModel->meshes[0].testVertices->count();
+	bool test = sizeof(Vertices) == sizeof(GLfloat) * triangleModel->meshes[0].testVertices->count();
+	//glBufferData(GL_ARRAY_BUFFER, sizeof(GLfloat) * 3 * triangleModel->meshes[0].testVertices->count(), triangleModel->meshes[0].testVertices->data(), GL_STATIC_DRAW);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(Vertices), Vertices, GL_STATIC_DRAW);
 
 	simple = new Shader("../Tropical Engine/Simple_VS.glsl", "../Tropical Engine/Simple_PS.glsl", "Simple");

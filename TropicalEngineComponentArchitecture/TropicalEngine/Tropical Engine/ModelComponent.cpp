@@ -10,12 +10,14 @@
 #include "SceneManager.h"
 #include "CameraComponent.h"
 
+#include "TropicalEngineApplication.h"
+
 
 ModelComponent::ModelComponent(Entity* owner, Material* material, Model* model, bool castingShadows):RenderComponent(owner, material)
 {
 	this->model = model;
 	this->castingShadows = castingShadows;
-	ModelController::Instance().AddComponent(this);
+	TropicalEngineApplication::instance()->modelController->AddComponent(this);
 }
 
 
@@ -23,7 +25,7 @@ ModelComponent::~ModelComponent(void)
 {
 	if(owner != nullptr)
 	{
-		ModelController::Instance().modelComponents.removeOne(this);
+		TropicalEngineApplication::instance()->modelController->modelComponents.removeOne(this);
 	}
 }
 
@@ -35,7 +37,7 @@ void ModelComponent::Evaluate()
 void ModelComponent::Draw(CameraComponent* viewer)
 {
 	///TODO: implement it.
-	ShaderManager::Instance().UseShader(material->getShader());
+	TropicalEngineApplication::instance()->shaderManager->UseShader(material->getShader());
 
 	glUniformMatrix4fv(material->getShader()->getModelMatrixLocation(), 16, GL_FALSE, &(owner->transform.getTransformMatrix()[0][0]));
 	glUniformMatrix3fv(material->getShader()->getNormalMatrixLocation(), 9, GL_FALSE, &(owner->transform.getNormalMatrix()[0][0]));

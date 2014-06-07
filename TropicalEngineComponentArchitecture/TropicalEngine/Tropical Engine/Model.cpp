@@ -2,10 +2,11 @@
 #include "Model.h"
 #include "ModelManager.h"
 
+#include "TropicalEngineApplication.h"
 
 Model::Model(QString name) : meshes()
 {
-	ModelManager::Instance().Load(this, name);
+	TropicalEngineApplication::instance()->modelManager->Load(this, name);
 }
 
 Model::Model(QString name, QString fileUrl) : meshes()

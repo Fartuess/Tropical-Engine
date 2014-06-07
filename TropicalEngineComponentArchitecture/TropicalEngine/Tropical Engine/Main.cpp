@@ -52,7 +52,7 @@ int main(int argc, char* argv[])
 	QHBoxLayout* mainLayout = new QHBoxLayout();
 	QMenuBar* mainMenuBar = new QMenuBar();
 	QSplitter* mainLayoutSplitter = new QSplitter();
-	staticOglDevTut03 = new OglDevTut03();
+//	staticOglDevTut03 = new OglDevTut03();
 	OpenGLWidget* openGLWindow = new OpenGLWidget();
 	openGLWindow->grabKeyboard();
 	//openGLWindow->grabMouse();

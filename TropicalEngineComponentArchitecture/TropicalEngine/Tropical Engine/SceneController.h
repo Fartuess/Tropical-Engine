@@ -1,7 +1,7 @@
 #pragma once
 #include "singleton.h"
-class SceneController :
-	public Singleton<SceneController>
+class SceneController// :
+	//public Singleton<SceneController>
 {
 public:
 	SceneController(void);

@@ -3,8 +3,8 @@
 #include "singleton.h"
 #include <QtCore\qstring.h>
 #include <QtCore\qmap.h>
-class MaterialManager :
-	public Singleton<MaterialManager>
+class MaterialManager// :
+	//public Singleton<MaterialManager>
 {
 public:
 	friend class Texture;

@@ -17,6 +17,8 @@
 
 #include "InputController.h"
 
+#include "OglDevTut03.h"
+
 TropicalEngineApplication::TropicalEngineApplication(int argc, char* argv[]) : QApplication(argc, argv)
 {
 	shaderManager = new ShaderManager();
@@ -35,6 +37,8 @@ TropicalEngineApplication::TropicalEngineApplication(int argc, char* argv[]) : Q
 	lightController = new LightController();
 
 	inputController = new InputController();
+
+	renderer = new OglDevTut03();
 }
 
 

@@ -5,8 +5,8 @@
 
 class ModelComponent;
 
-class LightController :
-	public Singleton<LightController>
+class LightController// :
+	//public Singleton<LightController>
 {
 public:
 	friend class LightComponent;

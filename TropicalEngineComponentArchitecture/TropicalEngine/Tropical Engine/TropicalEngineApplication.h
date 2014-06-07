@@ -18,6 +18,8 @@ class LightController;
 
 class InputController;
 
+class OglDevTut03;
+
 class TropicalEngineApplication : public QApplication
 {
 public:
@@ -37,6 +39,8 @@ public:
 	LightController* lightController;
 	
 	InputController* inputController;
+
+	OglDevTut03* renderer;
 
 	TropicalEngineApplication(int argc, char* argv[]);
 	~TropicalEngineApplication(void);

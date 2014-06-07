@@ -31,7 +31,9 @@
 //	}
 //};
 
-struct MeshEntry {
+class MeshEntry
+{
+public:
     MeshEntry();
 
     ~MeshEntry();
@@ -48,7 +50,7 @@ struct MeshEntry {
     GLuint NumIndices;
     GLuint MaterialIndex;
 
-	QVector<GLfloat>* testVertices;
+	QVector<glm::vec3>* testVertices;
 
 
 };

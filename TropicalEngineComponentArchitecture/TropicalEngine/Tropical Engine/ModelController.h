@@ -5,8 +5,8 @@
 class CameraComponent;
 class ModelComponent;
 
-class ModelController :
-	public Singleton<ModelController>
+class ModelController// :
+	//public Singleton<ModelController>
 {
 public:
 	friend class ModelComponent;

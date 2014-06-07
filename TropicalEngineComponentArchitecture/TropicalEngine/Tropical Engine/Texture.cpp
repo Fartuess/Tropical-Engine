@@ -1,11 +1,12 @@
 #include <gl\glew.h>
 #include <QtCore\qfile.h>
 #include <QtCore\qtextstream.h>
-#include <Magick++.h>
-#include <Magick++\Blob.h>
+//#include <Magick++.h>
+//#include <Magick++\Blob.h>
 #include "Texture.h"
 #include "MaterialManager.h"
 
+#include "TropicalEngineApplication.h"
 
 Texture::Texture(QString fileUrl)
 {
@@ -34,7 +35,7 @@ Texture::Texture(QString fileUrl)
 
 Texture::~Texture(void)
 {
-	foreach(Material* material, MaterialManager::Instance().materials)
+	foreach(Material* material, TropicalEngineApplication::instance()->materialManager->materials)
 	{
 		///TODO: set texture parameters equal to this to value typical for
 		//unneccessary if caled from TextureManager

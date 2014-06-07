@@ -4,6 +4,7 @@
 #include "ModelComponent.h"
 #include "ModelController.h"
 
+#include "TropicalEngineApplication.h"
 
 MaterialManager::MaterialManager(void)
 {
@@ -28,7 +29,7 @@ void MaterialManager::FlushMaterial(QString name, bool forced)
 	Material* material = materials[name];
 	if(forced)
 	{
-		foreach(ModelComponent* modelComponent, ModelController::Instance().modelComponents)
+		foreach(ModelComponent* modelComponent, TropicalEngineApplication::instance()->modelController->modelComponents)
 		{
 			if(modelComponent->material == material)
 				modelComponent->material = &material->getShader()->defaultMaterial;
@@ -37,7 +38,7 @@ void MaterialManager::FlushMaterial(QString name, bool forced)
 	}
 	else
 	{
-		foreach(ModelComponent* modelComponent, ModelController::Instance().modelComponents)
+		foreach(ModelComponent* modelComponent, TropicalEngineApplication::instance()->modelController->modelComponents)
 		{
 			if(modelComponent->material == material)
 				return;

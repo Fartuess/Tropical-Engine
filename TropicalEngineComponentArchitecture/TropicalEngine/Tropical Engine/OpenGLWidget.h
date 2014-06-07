@@ -6,7 +6,7 @@
 
 class OglDevTut03;
 
-extern OglDevTut03* staticOglDevTut03;
+//extern OglDevTut03* staticOglDevTut03;
 
 class OpenGLWidget : public QGLWidget
 {

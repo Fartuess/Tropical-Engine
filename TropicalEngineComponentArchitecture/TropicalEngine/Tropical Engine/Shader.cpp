@@ -4,6 +4,8 @@
 #include "ShaderManager.h"
 #include "Shader.h"
 
+#include "TropicalEngineApplication.h"
+
 Shader* Shader::nullShader = nullptr;
 
 Shader::Shader(QString vertexShader, QString fragmentShader, QString name):defaultMaterial(this, nullptr, name)
@@ -50,7 +52,7 @@ Shader::Shader(QString vertexShader, QString fragmentShader, QString name):defau
 	normalMatrixLocation = glGetUniformLocation(this->shaderProgram, "u_normalMatrix");
 	cameraMatrixLocation = glGetUniformLocation(this->shaderProgram, "u_cameraMatrix");
 
-	ShaderManager::Instance().Load(this, name);
+	TropicalEngineApplication::instance()->shaderManager->Load(this, name);
 }
 
 

@@ -1,6 +1,7 @@
 #include "TextureManager.h"
 #include "MaterialManager.h"
 
+#include "TropicalEngineApplication.h"
 
 TextureManager::TextureManager(void)
 {
@@ -9,7 +10,7 @@ TextureManager::TextureManager(void)
 
 TextureManager::~TextureManager(void)
 {
-	foreach(Material* material, MaterialManager::Instance().materials)
+	foreach(Material* material, TropicalEngineApplication::instance()->materialManager->materials)
 	{
 		///TODO: set all textures to null texture;
 	}
@@ -30,7 +31,7 @@ void TextureManager::FlushTexture(QString name, bool forced)
 	}
 	else
 	{
-		foreach(Material* material, MaterialManager::Instance().materials)
+		foreach(Material* material, TropicalEngineApplication::instance()->materialManager->materials)
 		{
 			///TODO: if material uses texture isUsed return;
 		}

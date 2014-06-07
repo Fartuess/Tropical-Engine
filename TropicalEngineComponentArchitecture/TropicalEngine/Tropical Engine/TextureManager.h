@@ -3,8 +3,8 @@
 #include "singleton.h"
 #include <QtCore\qstring.h>
 #include <QtCore\qmap.h>
-class TextureManager :
-	public Singleton<TextureManager>
+class TextureManager// :
+	//public Singleton<TextureManager>
 {
 private:
 	QMap<QString, Texture*> textures;

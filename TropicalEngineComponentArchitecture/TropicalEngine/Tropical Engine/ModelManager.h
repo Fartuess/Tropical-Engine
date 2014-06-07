@@ -6,8 +6,8 @@
 class Model;
 class ModelBuilder;
 
-class ModelManager :
-	public Singleton<ModelManager>
+class ModelManager// :
+	//public Singleton<ModelManager>
 {
 public:
 	friend class ModelComponent;

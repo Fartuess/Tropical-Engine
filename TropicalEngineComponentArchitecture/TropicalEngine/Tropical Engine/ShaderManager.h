@@ -6,8 +6,8 @@
 
 class Shader;
 
-class ShaderManager :
-	public Singleton<ShaderManager>
+class ShaderManager// :
+	//public Singleton<ShaderManager>
 {
 public:
 	struct shaderProgram

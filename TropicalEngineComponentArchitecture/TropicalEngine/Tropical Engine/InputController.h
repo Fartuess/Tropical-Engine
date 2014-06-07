@@ -2,8 +2,8 @@
 #include <glm.hpp>
 #include "CameraComponent.h"
 #include "singleton.h"
-class InputController :
-	public Singleton<InputController>
+class InputController// :
+	//public Singleton<InputController>
 {
 	struct keyState
 	{
