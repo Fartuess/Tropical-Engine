@@ -373,6 +373,9 @@
     <None Include="UnlitSimple.glsl">
       <Filter>Shader Files\Fragment Shader</Filter>
     </None>
+    <None Include="Lighted_PS.glsl">
+      <Filter>Tests\OglDevTut03\Shaders</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="OpenGLWidget.h">
@@ -381,5 +384,10 @@
     <CustomBuild Include="OglDevTut03.h">
       <Filter>Tests\OglDevTut03\Header Files</Filter>
     </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Lighted_VS.glsl">
+      <Filter>Tests\OglDevTut03\Shaders</Filter>
+    </Text>
   </ItemGroup>
 </Project>

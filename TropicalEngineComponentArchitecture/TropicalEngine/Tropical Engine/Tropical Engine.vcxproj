@@ -231,10 +231,14 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="BasicVertexShader.glsl" />
+    <None Include="Lighted_PS.glsl" />
     <None Include="PhongBlinnSimple.glsl" />
     <None Include="Simple_PS.glsl" />
     <None Include="Simple_VS.glsl" />
     <None Include="UnlitSimple.glsl" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Lighted_VS.glsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -47,11 +47,11 @@ public:
 	GLuint VAO;
 
 	GLuint NumVertex;
-    GLuint NumIndices;
+    //GLuint NumIndices;
     GLuint MaterialIndex;
 
-	QVector<glm::vec3>* testVertices;
-
+	//QVector<glm::vec3>* testVertices;
+	GLuint VBOs[2];
 
 };
 

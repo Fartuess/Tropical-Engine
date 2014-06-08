@@ -10,64 +10,37 @@ Model* ModelBuilder::CreateTriangle(QString name)
 	MeshEntry* Triangle = new MeshEntry();
 
 	Triangle->NumVertex = 3;
-	//Triangle->numberIndices = 3;
 
-	QVector<GLfloat>* vertices = new QVector<GLfloat>();
-	QVector<GLfloat>* normals = new QVector<GLfloat>();
-	QVector<GLfloat>* tangents = new QVector<GLfloat>();
-	QVector<GLfloat>* bitangents = new QVector<GLfloat>();
-	QVector<GLfloat>* texCoords = new QVector<GLfloat>();
+	QVector<glm::vec4>* vertices = new QVector<glm::vec4>();
+	QVector<glm::vec3>* normals = new QVector<glm::vec3>();
+	QVector<glm::vec3>* tangents = new QVector<glm::vec3>();
+	QVector<glm::vec3>* bitangents = new QVector<glm::vec3>();
+	QVector<glm::vec2>* texCoords = new QVector<glm::vec2>();
 
-	Triangle->testVertices = new QVector<glm::vec3>();
-	
-	//float verticies_l[] = {	0.0f, 0.0f, 0.0f, 1.0f,
-	//						1.0f, 0.0f, 0.0f, 1.0f,
-	//						1.0f, 1.0f, 0.0f, 1.0f};
-	//float normals_l[] = {	0.0f, 1.0f, 0.0f,
-	//						0.0f, 1.0f, 0.0f,
-	//						0.0f, 1.0f, 0.0f};
-	//float tangents_l[] = {	1.0f, 0.0f, 0.0f,
-	//						1.0f, 0.0f, 0.0f,
-	//						1.0f, 0.0f, 0.0f};
-	//float bitangents_l[] = {0.0f, 0.0f, 1.0f,
-	//						0.0f, 0.0f, 1.0f,
-	//						0.0f, 0.0f, 1.0f};
-	//float texCoords_l[] = {	0.0f, 0.0f,
-	//						1.0f, 0.0f,
-	//						1.0f, 1.0f};
-	//unsigned int indices_l[] = {0, 1, 2};
-	
+	vertices->reserve(Triangle->NumVertex);
+	normals->reserve(Triangle->NumVertex);
+    tangents->reserve(Triangle->NumVertex);
+	bitangents->reserve(Triangle->NumVertex);
+    texCoords->reserve(Triangle->NumVertex);
 
-
-	vertices->reserve(4 * Triangle->NumVertex);
-	normals->reserve(3 * Triangle->NumVertex);
-    tangents->reserve(3 * Triangle->NumVertex);
-	bitangents->reserve(3 * Triangle->NumVertex);
-    texCoords->reserve(2 * Triangle->NumVertex);
-
-	Triangle->testVertices->reserve(4 * Triangle->NumVertex);
 	{
-		vertices->push_back(0.0f); vertices->push_back(0.0f); vertices->push_back(0.0f); vertices->push_back(1.0f);
-		normals->push_back(0.0f); normals->push_back(1.0f); normals->push_back(0.0f);
-		tangents->push_back(1.0f); tangents->push_back(0.0f); tangents->push_back(0.0f);
-		bitangents->push_back(0.0f); bitangents->push_back(0.0f); bitangents->push_back(1.0f);
-		texCoords->push_back(0.0f); texCoords->push_back(0.0f);
+		vertices->push_back(glm::vec4(0.0f, 0.0f, 0.0f, 1.0f));
+		normals->push_back(glm::vec3(0.0f, 1.0f, 0.0f));
+		tangents->push_back(glm::vec3(1.0f, 0.0f, 0.0f));
+		bitangents->push_back(glm::vec3(0.0f, 0.0f, 1.0f));
+		texCoords->push_back(glm::vec2(0.0f, 0.0f));
 
-		vertices->push_back(1.0f); vertices->push_back(0.0f); vertices->push_back(0.0f); vertices->push_back(1.0f);
-		normals->push_back(0.0f); normals->push_back(1.0f); normals->push_back(0.0f);
-		tangents->push_back(1.0f); tangents->push_back(0.0f); tangents->push_back(0.0f);
-		bitangents->push_back(0.0f); bitangents->push_back(0.0f); bitangents->push_back(1.0f);
-		texCoords->push_back(1.0f); texCoords->push_back(0.0f);
+		vertices->push_back(glm::vec4(1.0f, 0.0f, 0.0f, 1.0f));
+		normals->push_back(glm::vec3(0.0f, 1.0f, 0.0f));
+		tangents->push_back(glm::vec3(1.0f, 0.0f, 0.0f));
+		bitangents->push_back(glm::vec3(0.0f, 0.0f, 1.0f));
+		texCoords->push_back(glm::vec2(1.0f, 0.0f));
 
-		vertices->push_back(1.0f); vertices->push_back(1.0f); vertices->push_back(0.0f); vertices->push_back(1.0f);
-		normals->push_back(0.0f); normals->push_back(1.0f); normals->push_back(0.0f);
-		tangents->push_back(1.0f); tangents->push_back(0.0f); tangents->push_back(0.0f);
-		bitangents->push_back(0.0f); bitangents->push_back(0.0f); bitangents->push_back(1.0f);
-		texCoords->push_back(1.0f); texCoords->push_back(1.0f);
-
-		Triangle->testVertices->push_back(glm::vec3(0.0f, 0.0f, 0.0f));// Triangle->testVertices->push_back(1.0f);
-		Triangle->testVertices->push_back(glm::vec3(1.0f, 0.0f, 0.0f));// Triangle->testVertices->push_back(1.0f);
-		Triangle->testVertices->push_back(glm::vec3(1.0f, 1.0f, 0.0f));// Triangle->testVertices->push_back(1.0f);
+		vertices->push_back(glm::vec4(1.0f, 1.0f, 0.0f, 1.0f));
+		normals->push_back(glm::vec3(0.0f, 1.0f, 0.0f));
+		tangents->push_back(glm::vec3(1.0f, 0.0f, 0.0f));
+		bitangents->push_back(glm::vec3(0.0f, 0.0f, 1.0f));
+		texCoords->push_back(glm::vec2(1.0f, 1.0f));
 	}
 
 	glGenVertexArrays(1, &Triangle->VAO);
@@ -75,30 +48,26 @@ Model* ModelBuilder::CreateTriangle(QString name)
 
 	glGenBuffers(1, &Triangle->vertexVBO);
 	glBindBuffer(GL_ARRAY_BUFFER, Triangle->vertexVBO);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices->data()), vertices->data(), GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(glm::vec4) * vertices->size(), vertices->data(), GL_STATIC_DRAW);
 
 	glGenBuffers(1, &Triangle->normalVBO);
 	glBindBuffer(GL_ARRAY_BUFFER, Triangle->normalVBO);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(normals->data()), normals->data(), GL_STATIC_DRAW);
-
+	glBufferData(GL_ARRAY_BUFFER, sizeof(glm::vec3) * vertices->size(), normals->data(), GL_STATIC_DRAW);
+	
 	glGenBuffers(1, &Triangle->tangentVBO);
 	glBindBuffer(GL_ARRAY_BUFFER, Triangle->tangentVBO);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(tangents->data()), tangents->data(), GL_STATIC_DRAW);
-
+	glBufferData(GL_ARRAY_BUFFER, sizeof(glm::vec3) * vertices->size(), tangents->data(), GL_STATIC_DRAW);
+	
 	glGenBuffers(1, &Triangle->bitangentVBO);
 	glBindBuffer(GL_ARRAY_BUFFER, Triangle->bitangentVBO);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(bitangents->data()), bitangents->data(), GL_STATIC_DRAW);
-
+	glBufferData(GL_ARRAY_BUFFER, sizeof(glm::vec3) * vertices->size(), bitangents->data(), GL_STATIC_DRAW);
+	
 	glGenBuffers(1, &Triangle->texcoordVBO);
 	glBindBuffer(GL_ARRAY_BUFFER, Triangle->texcoordVBO);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(texCoords->data()), texCoords->data(), GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(glm::vec2) * vertices->size(), texCoords->data(), GL_STATIC_DRAW);
 	
 
 	Model* model = new Model(name);
 	model->meshes.push_back(*Triangle);
-	//Triangle->testVertices[0];
-	//Triangle->testVertices = &QVector<GLfloat>(*vertices);
-	//Triangle->testVertices->data();
-	Triangle->testVertices->count();
 	return model;
 }
