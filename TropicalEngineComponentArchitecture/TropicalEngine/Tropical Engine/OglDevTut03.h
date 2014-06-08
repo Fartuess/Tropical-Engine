@@ -13,12 +13,13 @@ class OglDevTut03 : public QObject
 private:
 	GLuint VBO;
 	GLuint cameraLocation;
+	GLuint lightLocation;
 	Shader* simple;
 
 	Model* triangleModel;
 public:
 	static glm::vec2 cameraPosition;
-	
+	static glm::vec3 lightVector;
 public:
 	static Level* level;
 

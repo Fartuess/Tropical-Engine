@@ -216,13 +216,13 @@ Model* ModelBuilder::CreateSphere(QString name, float radius, int subdivisionsAx
 		}
 	}
 
-	glGenVertexArrays(1, &Sphere->VAO);
-	glBindVertexArray(Sphere->VAO);
+	//glGenVertexArrays(1, &Sphere->VAO);
+	//glBindVertexArray(Sphere->VAO);
 
-	glGenBuffers(1, &Sphere->vertexVBO);
-	glBindBuffer(GL_ARRAY_BUFFER, Sphere->vertexVBO);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(glm::vec4) * vertices->size(), vertices->data(), GL_STATIC_DRAW);
-	glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 0, 0);
+	//glGenBuffers(1, &Sphere->vertexVBO);
+	//glBindBuffer(GL_ARRAY_BUFFER, Sphere->vertexVBO);
+	//glBufferData(GL_ARRAY_BUFFER, sizeof(glm::vec4) * vertices->size(), vertices->data(), GL_STATIC_DRAW);
+	//glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 0, 0);
 	//
 	//glGenBuffers(1, &Sphere->normalVBO);
 	//glBindBuffer(GL_ARRAY_BUFFER, Sphere->normalVBO);
@@ -232,8 +232,18 @@ Model* ModelBuilder::CreateSphere(QString name, float radius, int subdivisionsAx
 	//glGenBuffers(2, Sphere->VBOs);
 	//glBindBuffer(GL_ARRAY_BUFFER, Sphere->VBOs[0]);
 	//glBufferData(GL_ARRAY_BUFFER, sizeof(glm::vec4) * vertices->size(), vertices->data(), GL_STATIC_DRAW);
+	//glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 0, 0);
 	//glBindBuffer(GL_ARRAY_BUFFER, Sphere->VBOs[1]);
 	//glBufferData(GL_ARRAY_BUFFER, sizeof(glm::vec3) * vertices->size(), normals->data(), GL_STATIC_DRAW);
+	//glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 0, 0);
+
+
+	glGenBuffers(1, &Sphere->vertexVBO);
+	glBindBuffer(GL_ARRAY_BUFFER, Sphere->vertexVBO);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(glm::vec4) * vertices->size() + sizeof(glm::vec3) * vertices->size(), 0, GL_STATIC_DRAW); 
+	glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(glm::vec4) * vertices->size(), vertices->data());
+	glBufferSubData(GL_ARRAY_BUFFER, sizeof(glm::vec4) * vertices->size(), sizeof(glm::vec3) * vertices->size(), normals->data());
+
 
 	//glGenBuffers(1, &Sphere->tangentVBO);
 	//glBindBuffer(GL_ARRAY_BUFFER, Sphere->tangentVBO);

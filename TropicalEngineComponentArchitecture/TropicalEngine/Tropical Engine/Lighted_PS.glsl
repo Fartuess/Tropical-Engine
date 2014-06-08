@@ -1,5 +1,7 @@
 #version 330
 
+uniform vec3 u_lightVector;
+
 in vec3 v_normal;
 
 out vec4 FragColor;
@@ -8,7 +10,7 @@ void main()
 {
 	vec3 baseColor = vec3(1.0, 0.0, 0.0);
 
-	vec3 lightVector = normalize(vec3(-1.0, 0.0, 0.0));
+	vec3 lightVector = normalize(u_lightVector);
 
 	vec3 color = 0.1 * baseColor;
 
@@ -30,7 +32,7 @@ void main()
 		//color += u_light.specularColor * u_material.specularColor * pow(eDotR, u_material.specularExponent);
 	}
 
-	//FragColor = vec4(color, 1.0);
+	FragColor = vec4(color, 1.0);
 
-    FragColor = vec4(1.0, 0.0, 0.0, 1.0);
+    //FragColor = vec4(1.0, 0.0, 0.0, 1.0);
 }

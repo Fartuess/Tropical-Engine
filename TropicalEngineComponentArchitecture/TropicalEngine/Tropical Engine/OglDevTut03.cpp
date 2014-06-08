@@ -15,6 +15,7 @@
 #include <vector>
 
 glm::vec2 OglDevTut03::cameraPosition = glm::vec2(-0.5f, 0.5f);
+glm::vec3 OglDevTut03::lightVector = glm::vec3(0.5f, 0.0f, -1.0f);
 
 void OglDevTut03::Initialize()
 {
@@ -32,6 +33,7 @@ void OglDevTut03::Initialize()
 	triangleModel = tempModelBuilder.CreateSphere("Triangle");
 
 	cameraPosition = glm::vec2(0.0f, 0.5f);
+	lightVector = glm::vec3(-0.5f, 0.0f, -1.0f);
 
 	//glGenBuffers(1, &VBO);
 	//glBindBuffer(GL_ARRAY_BUFFER, VBO);
@@ -74,9 +76,10 @@ void OglDevTut03::Initialize()
 	//glBufferData(GL_ARRAY_BUFFER, sizeof(Vertices), Vertices, GL_STATIC_DRAW);
 
 	//simple = new Shader("../Tropical Engine/Simple_VS.glsl", "../Tropical Engine/Simple_PS.glsl", "Simple");
-	simple = new Shader("../Tropical Engine/Simple_VS.glsl", "../Tropical Engine/Simple_PS.glsl", "Simple");
+	simple = new Shader("../Tropical Engine/Lighted_VS.glsl", "../Tropical Engine/Lighted_PS.glsl", "Simple");
 
 	cameraLocation = glGetUniformLocation(simple->shaderProgram, "u_cameraPosition");
+	lightLocation = glGetUniformLocation(simple->shaderProgram, "u_lightVector");
 
 	InitializeLevel();
 }
@@ -90,9 +93,13 @@ void OglDevTut03::Draw()
 	TropicalEngineApplication::instance()->shaderManager->UseShader(simple);
 
 	glUniform2f(cameraLocation, OglDevTut03::cameraPosition.x, cameraPosition.y);
+	glUniform3f(lightLocation, lightVector.x, lightVector.y, lightVector.z);
+
+	int t1 = simple->getVertexLocation();
+	int t2 = simple->getNormalLocation();
 
 	//glGenVertexArrays(1, &triangleModel->meshes[0].VAO);
-	glBindVertexArray(triangleModel->meshes[0].VAO);
+	//glBindVertexArray(triangleModel->meshes[0].VAO);
 
 	//glEnableVertexAttribArray(simple->getVertexLocation());
 	//glBindBuffer(GL_ARRAY_BUFFER, triangleModel->meshes[0].vertexVBO);
@@ -105,6 +112,12 @@ void OglDevTut03::Draw()
 	//glBindVertexArray(triangleModel->meshes[0].VAO);
 
 	//ShaderManager::Instance().UseShader(simple);
+
+	glBindBuffer(GL_ARRAY_BUFFER, triangleModel->meshes[0].vertexVBO);
+	glEnableVertexAttribArray(t1);
+    glEnableVertexAttribArray(t2);
+	glVertexAttribPointer(t1, 4, GL_FLOAT, GL_FALSE, 0, 0);
+	glVertexAttribPointer(t2, 3, GL_FLOAT, GL_FALSE, 0, (void*)(sizeof(glm::vec4) * triangleModel->meshes[0].NumVertex));
 
 	glDrawArrays(GL_TRIANGLES, 0, triangleModel->meshes[0].NumVertex);
 
