@@ -2,6 +2,7 @@
 #include <GL\glew.h>
 #include <glm.hpp>
 #include <QtCore\qobject.h>
+#include <QtCore\qtime>
 
 class Level;
 class Shader;
@@ -11,15 +12,8 @@ class OglDevTut03 : public QObject
 {
 	Q_OBJECT
 private:
-	GLuint VBO;
-	GLuint cameraLocation;
-	GLuint lightLocation;
-	Shader* simple;
-
-	Model* triangleModel;
-public:
-	static glm::vec2 cameraPosition;
-	static glm::vec3 lightVector;
+	int deltaTime;
+	QTime deltaTimer;
 public:
 	static Level* level;
 

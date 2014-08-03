@@ -1,6 +1,5 @@
 #include "SpotLightComponent.h"
 
-
 SpotLightComponent::SpotLightComponent(Entity* owner, glm::vec3 color, float brightness, float radius, float attenuation,
 									   float outerConeRadius, float innerConeRadius, bool isCastingShadows) :
 LightComponent(owner, color, brightness, isCastingShadows)
@@ -11,9 +10,9 @@ LightComponent(owner, color, brightness, isCastingShadows)
 	this->innerConeRadius = innerConeRadius;
 }
 
-
 SpotLightComponent::~SpotLightComponent(void)
 {
+	///TODO: implement it.
 }
 
 float SpotLightComponent::getRadius()
@@ -50,4 +49,10 @@ void SpotLightComponent::Evaluate()
 void SpotLightComponent::DrawShadows()
 {
 	///TODO: implement it.
+}
+
+QString SpotLightComponent::toXML()
+{
+	///TODO: implement it.
+	return QString(getIndent() + "<SpotLightComponent/>\n");
 }

@@ -1,5 +1,5 @@
 #pragma once
-#include "_Math.h"
+#include <glm.hpp>
 #include "component.h"
 
 //Should it be an abstract class?
@@ -20,4 +20,6 @@ public:
 
 	void Evaluate();
 	void DrawShadows();
+
+	QString toXML() override;
 };

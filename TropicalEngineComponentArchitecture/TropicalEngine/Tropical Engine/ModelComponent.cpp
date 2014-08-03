@@ -1,4 +1,5 @@
 #include <glm.hpp>
+#include <gtc\type_ptr.hpp>
 #include "ModelComponent.h"
 #include "ModelController.h"
 #include "Model.h"
@@ -10,8 +11,10 @@
 #include "SceneManager.h"
 #include "CameraComponent.h"
 
-#include "TropicalEngineApplication.h"
+#include "SceneManager.h"
+#include "DirectionalLightComponent.h"
 
+#include "TropicalEngineApplication.h"
 
 ModelComponent::ModelComponent(Entity* owner, Material* material, Model* model, bool castingShadows):RenderComponent(owner, material)
 {
@@ -19,7 +22,6 @@ ModelComponent::ModelComponent(Entity* owner, Material* material, Model* model, 
 	this->castingShadows = castingShadows;
 	TropicalEngineApplication::instance()->modelController->AddComponent(this);
 }
-
 
 ModelComponent::~ModelComponent(void)
 {
@@ -37,20 +39,48 @@ void ModelComponent::Evaluate()
 void ModelComponent::Draw(CameraComponent* viewer)
 {
 	///TODO: implement it.
-	TropicalEngineApplication::instance()->shaderManager->UseShader(material->getShader());
+	material->Use();
 
-	glUniformMatrix4fv(material->getShader()->getModelMatrixLocation(), 16, GL_FALSE, &(owner->transform.getTransformMatrix()[0][0]));
-	glUniformMatrix3fv(material->getShader()->getNormalMatrixLocation(), 9, GL_FALSE, &(owner->transform.getNormalMatrix()[0][0]));
-	glUniformMatrix4fv(material->getShader()->getCameraMatrixLocation(), 16, GL_FALSE, &(viewer->getMatrix()[0][0]));
+	glm::mat4 check = viewer->getMatrix();
+
+	glUniformMatrix4fv(material->getShader()->getModelMatrixLocation(), 1, GL_FALSE, glm::value_ptr(owner->transform.getTransformMatrix()));
+	glUniformMatrix4fv(material->getShader()->getNormalMatrixLocation(), 1, GL_FALSE, glm::value_ptr(owner->transform.getNormalMatrix()));
+	glUniformMatrix4fv(material->getShader()->getCameraMatrixLocation(), 1, GL_FALSE, glm::value_ptr(viewer->getMatrix()));
+
+	//temp? Light code
+	glUniform3fv(material->getShader()->dirLightVectorLocation, 1, glm::value_ptr(TropicalEngineApplication::instance()->sceneManager->mainLight->getDirection()));
+	glUniform3fv(material->getShader()->dirLightColorLocation, 1, glm::value_ptr(TropicalEngineApplication::instance()->sceneManager->mainLight->color));
+	glUniform1f(material->getShader()->dirLightBrightnessLocation, TropicalEngineApplication::instance()->sceneManager->mainLight->brightness);
+	glUniform1f(material->getShader()->dirLightAmbientLocation, 0.2f);
 	
 	foreach(MeshEntry meshEntry, model->meshes)
 	{
-		glBindVertexArray(meshEntry.VAO);
+		glBindBuffer(GL_ARRAY_BUFFER, meshEntry.vertexVBO);
 		glEnableVertexAttribArray(material->getShader()->getVertexLocation());
 		glEnableVertexAttribArray(material->getShader()->getNormalLocation());
 		glEnableVertexAttribArray(material->getShader()->getTangentLocation());
 		glEnableVertexAttribArray(material->getShader()->getBitangentLocation());
 		glEnableVertexAttribArray(material->getShader()->getTexcoordLocation());
+
+		glVertexAttribPointer(material->getShader()->getVertexLocation(), 4, GL_FLOAT, GL_FALSE, 0,
+			0);
+		glVertexAttribPointer(material->getShader()->getNormalLocation(), 3, GL_FLOAT, GL_FALSE, 0,
+			(void*)(sizeof(glm::vec4) * meshEntry.NumVertex));
+		glVertexAttribPointer(material->getShader()->getTangentLocation(), 3, GL_FLOAT, GL_FALSE, 0,
+			(void*)((
+			sizeof(glm::vec4)
+			+ sizeof(glm::vec3))
+			* meshEntry.NumVertex));
+		glVertexAttribPointer(material->getShader()->getBitangentLocation(), 3, GL_FLOAT, GL_FALSE, 0,
+			(void*)((
+			sizeof(glm::vec4)
+			+ 2 * sizeof(glm::vec3))
+			* meshEntry.NumVertex));
+		glVertexAttribPointer(material->getShader()->getTexcoordLocation(), 2, GL_FLOAT, GL_FALSE, 0,
+			(void*)((
+			sizeof(glm::vec4)
+			+ 3 * sizeof(glm::vec3))
+			* meshEntry.NumVertex));
 		
 		glDrawArrays(GL_TRIANGLES, 0, meshEntry.NumVertex);
 	
@@ -70,4 +100,9 @@ bool ModelComponent::isCastingShadows()
 void ModelComponent::isCastingShadows(bool isCastingShadows)
 {
 	castingShadows = isCastingShadows;
+}
+
+QString ModelComponent::toXML()
+{
+	return QString(getIndent() + "<ModelComponent model = \"" + model->name + "\" material =\"" + material->name + "\"/>\n");
 }

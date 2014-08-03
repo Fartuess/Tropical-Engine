@@ -1,7 +1,9 @@
 #pragma once
+#include "ISerializableToXML.h"
+
 class Entity;
 
-class Component
+class Component : public ISerializableToXML
 {
 public:
 	friend class Entity;

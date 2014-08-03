@@ -1,6 +1,5 @@
 #include "Entity.h"
 
-
 Entity::Entity(void):transform(this)
 {
 	///TODO: implement it.
@@ -70,4 +69,23 @@ void Entity::DetachComponent(Component* component)
 		components.removeOne(component);
 		component->owner = nullptr;
 	}
+}
+
+QString Entity::toXML()
+{
+	QString XMLString = QString(getIndent() + "<Entity name =\"" + *name + "\">\n");
+	increaseIndent();
+	XMLString += transform.toXML();
+	foreach(Component* component, components)
+	{
+		XMLString += component->toXML();
+	}
+	foreach(Entity* subobject, subobjects)
+	{
+		XMLString += subobject->toXML();
+	}
+	decreaseIndent();
+	XMLString += QString(getIndent() + "</Entity>\n");
+
+	return XMLString;
 }

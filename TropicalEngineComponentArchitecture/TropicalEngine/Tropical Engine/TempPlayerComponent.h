@@ -1,5 +1,6 @@
 #pragma once
 #include "cameracomponent.h"
+
 class TempPlayerComponent :
 	public CameraComponent
 {

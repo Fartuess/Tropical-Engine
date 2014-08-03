@@ -1,13 +1,11 @@
 #pragma once
-#include "singleton.h"
 #include <QtCore\qstring.h>
 #include <QtCore\qmap.h>
 
 class Model;
 class ModelBuilder;
 
-class ModelManager// :
-	//public Singleton<ModelManager>
+class ModelManager
 {
 public:
 	friend class ModelComponent;

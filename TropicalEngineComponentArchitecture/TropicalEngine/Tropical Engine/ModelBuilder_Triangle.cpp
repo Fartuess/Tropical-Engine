@@ -7,9 +7,9 @@
 
 Model* ModelBuilder::CreateTriangle(QString name)
 {
-	MeshEntry* Triangle = new MeshEntry();
+	MeshEntry* Mesh = new MeshEntry();
 
-	Triangle->NumVertex = 3;
+	Mesh->NumVertex = 3;
 
 	QVector<glm::vec4>* vertices = new QVector<glm::vec4>();
 	QVector<glm::vec3>* normals = new QVector<glm::vec3>();
@@ -17,11 +17,11 @@ Model* ModelBuilder::CreateTriangle(QString name)
 	QVector<glm::vec3>* bitangents = new QVector<glm::vec3>();
 	QVector<glm::vec2>* texCoords = new QVector<glm::vec2>();
 
-	vertices->reserve(Triangle->NumVertex);
-	normals->reserve(Triangle->NumVertex);
-    tangents->reserve(Triangle->NumVertex);
-	bitangents->reserve(Triangle->NumVertex);
-    texCoords->reserve(Triangle->NumVertex);
+	vertices->reserve(Mesh->NumVertex);
+	normals->reserve(Mesh->NumVertex);
+    tangents->reserve(Mesh->NumVertex);
+	bitangents->reserve(Mesh->NumVertex);
+    texCoords->reserve(Mesh->NumVertex);
 
 	{
 		vertices->push_back(glm::vec4(0.0f, 0.0f, 0.0f, 1.0f));
@@ -43,31 +43,33 @@ Model* ModelBuilder::CreateTriangle(QString name)
 		texCoords->push_back(glm::vec2(1.0f, 1.0f));
 	}
 
-	glGenVertexArrays(1, &Triangle->VAO);
-	glBindVertexArray(Triangle->VAO);
+	glGenVertexArrays(1, &Mesh->vertexVBO);
+	glBindVertexArray(Mesh->vertexVBO);
 
-	glGenBuffers(1, &Triangle->vertexVBO);
-	glBindBuffer(GL_ARRAY_BUFFER, Triangle->vertexVBO);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(glm::vec4) * vertices->size(), vertices->data(), GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER,
+		sizeof(glm::vec4) * vertices->size()
+		+ sizeof(glm::vec3) * vertices->size()
+		+ sizeof(glm::vec3) * vertices->size()
+		+ sizeof(glm::vec3) * vertices->size()
+		+ sizeof(glm::vec2) * vertices->size(), 0, GL_STATIC_DRAW);
 
-	glGenBuffers(1, &Triangle->normalVBO);
-	glBindBuffer(GL_ARRAY_BUFFER, Triangle->normalVBO);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(glm::vec3) * vertices->size(), normals->data(), GL_STATIC_DRAW);
+	glBufferSubData(GL_ARRAY_BUFFER,
+		0,
+		sizeof(glm::vec4) * vertices->size(), vertices->data());
+	glBufferSubData(GL_ARRAY_BUFFER,
+		sizeof(glm::vec4) * vertices->size(),
+		sizeof(glm::vec3) * vertices->size(), normals->data());
+	glBufferSubData(GL_ARRAY_BUFFER,
+		sizeof(glm::vec4) * vertices->size() + sizeof(glm::vec3) * vertices->size(),
+		sizeof(glm::vec3) * vertices->size(), tangents->data());
+	glBufferSubData(GL_ARRAY_BUFFER,
+		sizeof(glm::vec4) * vertices->size() + sizeof(glm::vec3) * vertices->size() + sizeof(glm::vec3) * vertices->size(),
+		sizeof(glm::vec3) * vertices->size(), bitangents->data());
+	glBufferSubData(GL_ARRAY_BUFFER,
+		sizeof(glm::vec4) * vertices->size() + sizeof(glm::vec3) * vertices->size() + sizeof(glm::vec3) * vertices->size() + sizeof(glm::vec3) * vertices->size(),
+		sizeof(glm::vec2) * vertices->size(), texCoords->data());
 	
-	glGenBuffers(1, &Triangle->tangentVBO);
-	glBindBuffer(GL_ARRAY_BUFFER, Triangle->tangentVBO);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(glm::vec3) * vertices->size(), tangents->data(), GL_STATIC_DRAW);
-	
-	glGenBuffers(1, &Triangle->bitangentVBO);
-	glBindBuffer(GL_ARRAY_BUFFER, Triangle->bitangentVBO);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(glm::vec3) * vertices->size(), bitangents->data(), GL_STATIC_DRAW);
-	
-	glGenBuffers(1, &Triangle->texcoordVBO);
-	glBindBuffer(GL_ARRAY_BUFFER, Triangle->texcoordVBO);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(glm::vec2) * vertices->size(), texCoords->data(), GL_STATIC_DRAW);
-	
-
 	Model* model = new Model(name);
-	model->meshes.push_back(*Triangle);
+	model->meshes.push_back(*Mesh);
 	return model;
 }

@@ -5,8 +5,8 @@
 
 TextureManager::TextureManager(void)
 {
+	textureIterator = 0;
 }
-
 
 TextureManager::~TextureManager(void)
 {
@@ -15,6 +15,22 @@ TextureManager::~TextureManager(void)
 		///TODO: set all textures to null texture;
 	}
 }
+
+int TextureManager::getTextureIterator()
+{
+	return textureIterator;
+}
+
+void TextureManager::incrementTextureIterator()
+{
+	textureIterator++;
+}
+
+void TextureManager::resetTextureIterator()
+{
+	textureIterator = 0;
+}
+
 
 void TextureManager::Load(QString name, QString fileUrl)
 {

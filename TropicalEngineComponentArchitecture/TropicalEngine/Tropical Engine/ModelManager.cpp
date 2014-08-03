@@ -1,11 +1,10 @@
 #include "ModelManager.h"
 #include "Model.h"
 
-
 ModelManager::ModelManager(void)
 {
+	///TODO: implement it.
 }
-
 
 ModelManager::~ModelManager(void)
 {

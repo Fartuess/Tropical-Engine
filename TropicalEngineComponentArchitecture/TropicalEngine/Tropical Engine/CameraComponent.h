@@ -1,6 +1,7 @@
 #pragma once
 #include <glm.hpp>
 #include "component.h"
+
 class CameraComponent :
 	public Component
 {
@@ -33,5 +34,7 @@ public:
 
 	glm::mat4x4 getMatrix();
 	void CalculateMatrix();
+
+	QString toXML() override;
 };
 

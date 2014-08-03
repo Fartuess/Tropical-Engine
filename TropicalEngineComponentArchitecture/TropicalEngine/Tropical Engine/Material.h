@@ -1,26 +1,37 @@
 #pragma once
 #include <glm.hpp>
+#include <QtCore\qvector.h>
+#include "ISerializableToXML.h"
 
 class Shader;
+class Texture;
 
-class Material
+class Material : public ISerializableToXML
 {
-	struct MaterialProperties
-	{
-	    glm::vec4 ambientColor;
-	    glm::vec4 diffuseColor;
-	    glm::vec4 specularColor;
-	    GLfloat specularExponent;
-	};
-
+public:
+	QString name;	///TODO: should not be public. Should have getters and setters, because changing internal name doesn't change name in material manager
 private:
 	Shader* shader;
+	QVector<QPair<QString, void*>> parameters;
 public:
-	MaterialProperties properties;
-
 	Material(Shader* shader, void* params, QString name);	//temp declaration
 	~Material(void);
 
 	Shader* getShader();
+	const QVector<QPair<QString, void*>>& getParameters();
+	void Use();
+
+	void ActivateParameter(QString name, void* value);
+private:
+	void ActivateParameter(GLuint location, float* value);
+	void ActivateParameter(GLuint location, glm::vec2* value);
+	void ActivateParameter(GLuint location, glm::vec3* value);
+	void ActivateParameter(GLuint location, glm::vec4* value);
+	void ActivateParameter(GLuint location, glm::mat3* value);
+	void ActivateParameter(GLuint location, glm::mat4* value);
+	void ActivateParameter(GLuint location, Texture* value);
+
+public:
+	QString toXML() override;
 };
 

@@ -1,12 +1,10 @@
 #pragma once
 #include <QtCore\qlist.h>
-#include "singleton.h"
 
 class CameraComponent;
 class ModelComponent;
 
-class ModelController// :
-	//public Singleton<ModelController>
+class ModelController
 {
 public:
 	friend class ModelComponent;

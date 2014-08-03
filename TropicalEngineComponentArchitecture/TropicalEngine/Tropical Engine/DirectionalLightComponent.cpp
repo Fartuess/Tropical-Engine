@@ -1,14 +1,13 @@
 #include "DirectionalLightComponent.h"
 
-
 DirectionalLightComponent::DirectionalLightComponent(Entity* owner, glm::vec3 color, glm::vec3 direction, float brightness, bool isCastingShadows):LightComponent(owner, color, brightness, isCastingShadows)
 {
 	this->direction = direction;
 }
 
-
 DirectionalLightComponent::~DirectionalLightComponent(void)
 {
+	///TODO: implement it.
 }
 
 glm::vec3 DirectionalLightComponent::getDirection()
@@ -31,4 +30,10 @@ void DirectionalLightComponent::Evaluate()
 void DirectionalLightComponent::DrawShadows()
 {
 	///TODO: implement it.
+}
+
+QString DirectionalLightComponent::toXML()
+{
+	///TODO: implement it.
+	return QString(getIndent() + "<DirectionalLightComponent/>\n");
 }

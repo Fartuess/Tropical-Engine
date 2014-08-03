@@ -1,6 +1,5 @@
 #include "PointLightComponent.h"
 
-
 PointLightComponent::PointLightComponent(Entity* owner, glm::vec3 color, float brightness, float radius, float attenuation, bool isCastingShadows) :
 	LightComponent(owner, color, brightness, isCastingShadows)
 {
@@ -8,9 +7,9 @@ PointLightComponent::PointLightComponent(Entity* owner, glm::vec3 color, float b
 	this->attenuation = attenuation;
 }
 
-
 PointLightComponent::~PointLightComponent(void)
 {
+	///TODO: implement it.
 }
 
 float PointLightComponent::getRadius()
@@ -34,4 +33,10 @@ void PointLightComponent::Evaluate()
 void PointLightComponent::DrawShadows()
 {
 	///TODO: implement it.
+}
+
+QString PointLightComponent::toXML()
+{
+	///TODO: implement it.
+	return QString(getIndent() + "<PointLightComponent/>\n");
 }

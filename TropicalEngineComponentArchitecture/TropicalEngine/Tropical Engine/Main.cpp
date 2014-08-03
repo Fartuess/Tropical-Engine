@@ -12,6 +12,9 @@
 #include <QtWidgets\qsplitter.h>
 #include <QtWidgets\qtreeview.h>
 #include <QtWidgets\qpushbutton.h>
+//#include <QtWidgets\qtoolbox.h>
+#include <QtWidgets\qgroupbox.h>
+#include <QtWidgets\qspinbox.h>
 #include <QtCore\qthread.h>
 #include "OpenGLWidget.h"
 
@@ -52,7 +55,6 @@ int main(int argc, char* argv[])
 	QHBoxLayout* mainLayout = new QHBoxLayout();
 	QMenuBar* mainMenuBar = new QMenuBar();
 	QSplitter* mainLayoutSplitter = new QSplitter();
-//	staticOglDevTut03 = new OglDevTut03();
 	OpenGLWidget* openGLWindow = new OpenGLWidget();
 	openGLWindow->grabKeyboard();
 	//openGLWindow->grabMouse();
@@ -63,7 +65,15 @@ int main(int argc, char* argv[])
 
 	QLabel* propertiesLabel = new QLabel();
 	propertiesLabel->setText("Properties");
-	QTreeView* propertiesList = new QTreeView();
+	//QTreeView* propertiesList = new QTreeView();
+	//QToolBox* propertiesToolbox = new QToolBox();
+	QGroupBox* lightGroupBox = new QGroupBox("Light Properties");
+
+	QGroupBox* positionGroupBox = new QGroupBox("Position");
+	QGroupBox* rotationGroupBox = new QGroupBox("Rotation");
+	QGroupBox* scaleGroupBox = new QGroupBox("Scale");
+
+
 	QFrame* leftPanelButtonFrame = new QFrame();
 	QHBoxLayout* leftPanelButtonLayout = new QHBoxLayout();
 	QPushButton* addComponentButton = new QPushButton();
@@ -90,7 +100,12 @@ int main(int argc, char* argv[])
 	leftPanel->setLayout(leftPanelLayout);
 	rightPanel->setLayout(rightPanelLayout);
 	leftPanelLayout->addWidget(propertiesLabel);
-	leftPanelLayout->addWidget(propertiesList);
+	//leftPanelLayout->addWidget(propertiesList);
+	//leftPanelLayout->addWidget(propertiesToolbox);
+	leftPanelLayout->addWidget(lightGroupBox);
+	leftPanelLayout->addWidget(positionGroupBox);
+	leftPanelLayout->addWidget(rotationGroupBox);
+	leftPanelLayout->addWidget(scaleGroupBox);
 	leftPanelLayout->addWidget(leftPanelButtonFrame);
 	rightPanelLayout->addWidget(sceneGraphLabel);
 	rightPanelLayout->addWidget(sceneGraph);

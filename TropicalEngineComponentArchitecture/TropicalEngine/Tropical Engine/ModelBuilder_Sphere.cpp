@@ -5,40 +5,34 @@
 #include "Model.h"
 #include "ModelBuilder.h"
 
-#define BUFFER_OFFSET(i) ((char *)NULL + (i))
-
 Model* ModelBuilder::CreateSphere(QString name, float radius, int subdivisionsAxis, int subdivisionsHeight)
 {
-	MeshEntry* Sphere = new MeshEntry();
+	MeshEntry* Mesh = new MeshEntry();
 
-	Sphere->NumVertex = subdivisionsAxis * subdivisionsHeight * 6;
-	//Sphere->numberIndices = subdivisionsAxis * (subdivisionsHeight * 1);
+	Mesh->NumVertex = subdivisionsAxis * subdivisionsHeight * 6;
 
 	QVector<glm::vec4>* vertices = new QVector<glm::vec4>();
 	QVector<glm::vec3>* normals = new QVector<glm::vec3>();
 	QVector<glm::vec3>* tangents = new QVector<glm::vec3>();
 	QVector<glm::vec3>* bitangents = new QVector<glm::vec3>();
 	QVector<glm::vec2>* texCoords = new QVector<glm::vec2>();
-	//vector<unsigned int>* indices = new vector<unsigned int>();
 
-	vertices->reserve(Sphere->NumVertex);
-	normals->reserve(Sphere->NumVertex);
-    tangents->reserve(Sphere->NumVertex);
-	bitangents->reserve(Sphere->NumVertex);
-    texCoords->reserve(Sphere->NumVertex);
+	vertices->reserve(Mesh->NumVertex);
+	normals->reserve(Mesh->NumVertex);
+    tangents->reserve(Mesh->NumVertex);
+	bitangents->reserve(Mesh->NumVertex);
+    texCoords->reserve(Mesh->NumVertex);
 
 	for(int i = 0; i < subdivisionsHeight; i++)
 	{
 		for(int j = 0; j < subdivisionsAxis; j++)
 		{
-			//
 			vertices->push_back(glm::vec4(
 				radius * sinf(i * (glm::pi<float>() / subdivisionsHeight)) * cosf(j * 2 * glm::pi<float>() / subdivisionsAxis),
 				radius * sinf(i * (glm::pi<float>() / subdivisionsHeight)) * sinf(j * 2 * glm::pi<float>() / subdivisionsAxis),
 				radius * cosf(i * (glm::pi<float>() / subdivisionsHeight)),
 				1.0f
 			));
-			//vertices->push_back(1.0f);
 
 			normals->push_back(glm::vec3(
 				sinf(i * (glm::pi<float>() / subdivisionsHeight)) * cosf(j * 2 * glm::pi<float>() / subdivisionsAxis),
@@ -123,7 +117,6 @@ Model* ModelBuilder::CreateSphere(QString name, float radius, int subdivisionsAx
 				((float)i / subdivisionsHeight)
 				));
 
-			//
 			vertices->push_back(glm::vec4(
 				radius * sinf((i + 1) * (glm::pi<float>() / subdivisionsHeight)) * cosf(j * 2 * glm::pi<float>() / subdivisionsAxis),
 				radius * sinf((i + 1) * (glm::pi<float>() / subdivisionsHeight)) * sinf(j * 2 * glm::pi<float>() / subdivisionsAxis),
@@ -238,12 +231,31 @@ Model* ModelBuilder::CreateSphere(QString name, float radius, int subdivisionsAx
 	//glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 0, 0);
 
 
-	glGenBuffers(1, &Sphere->vertexVBO);
-	glBindBuffer(GL_ARRAY_BUFFER, Sphere->vertexVBO);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(glm::vec4) * vertices->size() + sizeof(glm::vec3) * vertices->size(), 0, GL_STATIC_DRAW); 
-	glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(glm::vec4) * vertices->size(), vertices->data());
-	glBufferSubData(GL_ARRAY_BUFFER, sizeof(glm::vec4) * vertices->size(), sizeof(glm::vec3) * vertices->size(), normals->data());
+	glGenBuffers(1, &Mesh->vertexVBO);
+	glBindBuffer(GL_ARRAY_BUFFER, Mesh->vertexVBO);
 
+	glBufferData(GL_ARRAY_BUFFER,
+		sizeof(glm::vec4) * vertices->size()
+		+ sizeof(glm::vec3) * vertices->size()
+		+ sizeof(glm::vec3) * vertices->size()
+		+ sizeof(glm::vec3) * vertices->size()
+		+ sizeof(glm::vec2) * vertices->size(), 0, GL_STATIC_DRAW);
+
+	glBufferSubData(GL_ARRAY_BUFFER,
+		0,
+		sizeof(glm::vec4) * vertices->size(), vertices->data());
+	glBufferSubData(GL_ARRAY_BUFFER,
+		sizeof(glm::vec4) * vertices->size(),
+		sizeof(glm::vec3) * vertices->size(), normals->data());
+	glBufferSubData(GL_ARRAY_BUFFER,
+		sizeof(glm::vec4) * vertices->size() + sizeof(glm::vec3) * vertices->size(),
+		sizeof(glm::vec3) * vertices->size(), tangents->data());
+	glBufferSubData(GL_ARRAY_BUFFER,
+		sizeof(glm::vec4) * vertices->size() + sizeof(glm::vec3) * vertices->size() + sizeof(glm::vec3) * vertices->size(),
+		sizeof(glm::vec3) * vertices->size(), bitangents->data());
+	glBufferSubData(GL_ARRAY_BUFFER,
+		sizeof(glm::vec4) * vertices->size() + sizeof(glm::vec3) * vertices->size() + sizeof(glm::vec3) * vertices->size() + sizeof(glm::vec3) * vertices->size(),
+		sizeof(glm::vec2) * vertices->size(), texCoords->data());
 
 	//glGenBuffers(1, &Sphere->tangentVBO);
 	//glBindBuffer(GL_ARRAY_BUFFER, Sphere->tangentVBO);
@@ -261,6 +273,6 @@ Model* ModelBuilder::CreateSphere(QString name, float radius, int subdivisionsAx
 	glBindVertexArray(0);
 
 	Model* model = new Model(name);
-	model->meshes.push_back(*Sphere);
+	model->meshes.push_back(*Mesh);
 	return model;
 }

@@ -1,9 +1,8 @@
 #pragma once
 #include <glm.hpp>
 #include "CameraComponent.h"
-#include "singleton.h"
-class InputController// :
-	//public Singleton<InputController>
+
+class InputController
 {
 	struct keyState
 	{
@@ -17,5 +16,5 @@ public:
 	InputController(void);
 	~InputController(void);
 
-	void Update();
+	void Update(int deltaTime);
 };

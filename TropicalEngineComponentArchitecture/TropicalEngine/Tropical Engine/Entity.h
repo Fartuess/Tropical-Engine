@@ -3,8 +3,9 @@
 #include <QtCore\qlist.h>
 #include <QtCore\qstring.h>
 #include "TransformComponent.h"
+#include "ISerializableToXML.h"
 
-class Entity
+class Entity : public ISerializableToXML
 {
 private:
 	friend class Component;
@@ -21,7 +22,6 @@ public:
 
 	Entity(void);
 	Entity(glm::vec3 position, glm::quat rotation, glm::vec3 scale);
-	//Entity(glm::vec3 position, quat rotation, glm::vec3 scale);
 	Entity(TransformComponent transform);
 	~Entity(void);
 
@@ -32,4 +32,7 @@ public:
 	void DeleteComponent(Component* component);	//is needed?
 private:
 	void DetachComponent(Component* component);
+
+public:
+	QString toXML() override;
 };

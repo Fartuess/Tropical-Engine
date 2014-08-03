@@ -14,10 +14,12 @@ public:
 	ModelComponent(Entity* owner, Material* material, Model* model, bool castingShadows = false);
 	~ModelComponent(void);
 
-	void Evaluate() override;
-	void Draw(CameraComponent* viewer) override;
+	void Evaluate();// override;
+	void Draw(CameraComponent* viewer);// override;
 
 	bool isCastingShadows();
 	void isCastingShadows(bool isCastingShadows);
+
+	QString toXML() override;
 };
 

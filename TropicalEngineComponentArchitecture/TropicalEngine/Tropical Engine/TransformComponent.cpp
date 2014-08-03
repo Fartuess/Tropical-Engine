@@ -6,7 +6,7 @@ TransformComponent::TransformComponent(Entity* owner):Component(owner)
 {
 	localPosition = glm::vec3(0.0f, 0.0f, 0.0f);
 	localRotation = glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f));
-	localScale = glm::vec3(0.0f, 0.0f, 0.0f);
+	localScale = glm::vec3(1.0f, 1.0f, 1.0f);
 	EvaluateGlobals();
 }
 
@@ -50,16 +50,15 @@ void TransformComponent::setPosition(glm::vec3 position, bool isGlobal)
 
 void TransformComponent::setLocalPosition(glm::vec3 position)
 {
-	localPosition = position;
-	///TODO: setting global position;
-	Evaluate();
+	///TODO: should be done differently
+	glm::vec3 difference = position - localPosition;
+	LocalTranslate(difference);
 }
 
 void TransformComponent::setGlobalPosition(glm::vec3 position)
 {
-	///TODO: setting local position;
-	globalPosition =position;
-	Evaluate();
+	glm::vec3 difference = position - globalPosition;
+	GlobalTranslate(difference);
 }
 
 void TransformComponent::Translate(glm::vec3 translation, bool isGlobal)
@@ -72,12 +71,20 @@ void TransformComponent::Translate(glm::vec3 translation, bool isGlobal)
 
 void TransformComponent::LocalTranslate(glm::vec3 translation)
 {
-	setLocalPosition(localPosition + translation);
+	///TODO: it should be done differently
+	localPosition += translation;
+	globalPosition += glm::vec3(
+		translation.x * right.x + translation.y * up.x + translation.z * (-front.x),
+		translation.x * right.y + translation.y * up.y + translation.z * (-front.y),
+		translation.x * right.z + translation.y * up.z + translation.z * (-front.z));
+	Evaluate();
 }
 
 void TransformComponent::GlobalTranslate(glm::vec3 translation)
 {
-	setGlobalPosition(localPosition + translation);
+	globalPosition += translation;
+	///TODO: calculate local position.
+	Evaluate();
 }
 
 glm::quat TransformComponent::getRotation(bool isGlobal)
@@ -130,12 +137,21 @@ void TransformComponent::Rotate(glm::quat rotation, bool isGlobal)
 
 void TransformComponent::LocalRotate(glm::quat rotation)
 {
-	setLocalRotation(localRotation + rotation);
+	glm::quat helper;
+	if(glm::axis(rotation) == glm::vec3(0.0f, 1.0f, 0.0f))
+	{
+		helper =  glm::normalize(rotation) * localRotation;
+	}
+	else
+	{
+		helper = glm::normalize(rotation) * localRotation;
+	}
+	setLocalRotation(helper);
 }
 
 void TransformComponent::GlobalRotate(glm::quat rotation)
 {
-	setGlobalRotation(globalRotation + rotation);
+	setGlobalRotation(rotation * localRotation);
 }
 
 glm::vec3 TransformComponent::getScale(bool isGlobal)
@@ -166,15 +182,17 @@ void TransformComponent::setScale(glm::vec3 scale, bool isGlobal)
 
 void TransformComponent::setLocalScale(glm::vec3 scale)
 {
+	glm::vec3 difference = glm::vec3(scale / localScale);
 	localScale = scale;
-	///TODO: globalScale;
+	globalScale = globalScale * difference;
 	Evaluate();
 }
 
 void TransformComponent::setGlobalScale(glm::vec3 scale)
 {
+	glm::vec3 difference = glm::vec3(scale / globalScale);
 	globalScale = scale;
-	///TODO: localScale;
+	localScale = localScale * difference;
 	Evaluate();
 }
 
@@ -202,6 +220,21 @@ glm::mat4x4 TransformComponent::getNormalMatrix()
 	return normalMatrix;
 }
 
+glm::vec3 TransformComponent::getFront()
+{
+	return front;
+}
+
+glm::vec3 TransformComponent::getUp()
+{
+	return up;
+}
+
+glm::vec3 TransformComponent::getRight()
+{
+	return right;
+}
+
 void TransformComponent::EvaluateGlobals()
 {
 	///TODO: implement it.
@@ -209,13 +242,24 @@ void TransformComponent::EvaluateGlobals()
 
 void TransformComponent::EvaluateInternal()
 {
-	if(owner == nullptr)
+	if(owner->getParrent() == nullptr)
 	{
-		transformMatrix = glm::translate(glm::rotate(glm::scale(glm::mat4(), localScale), localRotation.w, glm::vec3(localRotation.x, localRotation.y, localRotation.z)), localPosition);
-		normalMatrix = glm::translate(glm::rotate(glm::transpose(glm::scale(glm::mat4(), localScale)), localRotation.w, glm::vec3(localRotation.x, localRotation.y, localRotation.z)), localPosition);
+		transformMatrix = glm::translate(glm::rotate(glm::scale(glm::mat4(1.0f), localScale), glm::angle(localRotation), glm::axis(localRotation)), localPosition);
+		normalMatrix = glm::translate(glm::rotate(glm::transpose(glm::scale(glm::mat4(1.0f), localScale)), glm::angle(localRotation), glm::axis(localRotation)), localPosition);
+
+		front = glm::vec3(glm::rotate(glm::mat4(1.0f), glm::angle(localRotation), glm::axis(localRotation)) * glm::vec4(0.0f, 0.0f, -1.0f, 1.0f));
+		up = glm::vec3(glm::rotate(glm::mat4(1.0f), glm::angle(localRotation), glm::axis(localRotation)) * glm::vec4(0.0f, 1.0f, 0.0f, 1.0f));
+		right = glm::vec3(glm::rotate(glm::mat4(1.0f), glm::angle(localRotation), glm::axis(localRotation)) * glm::vec4(1.0f, 0.0f, 0.0f, 1.0f));
 	}
-	transformMatrix = glm::translate(glm::rotate(glm::scale(owner->transform.getTransformMatrix(), localScale), localRotation.w, glm::vec3(localRotation.x, localRotation.y, localRotation.z)), localPosition);
-	normalMatrix = glm::translate(glm::rotate(glm::transpose(glm::scale(glm::mat4(), localScale) * owner->transform.getTransformMatrix()), localRotation.w, glm::vec3(localRotation.x, localRotation.y, localRotation.z)), localPosition);
+	else
+	{
+		transformMatrix = owner->getParrent()->transform.getTransformMatrix() * glm::translate(glm::rotate(glm::scale(glm::mat4(1.0f), localScale), glm::angle(localRotation), glm::axis(localRotation)), localPosition);
+		normalMatrix = glm::translate(glm::rotate(glm::transpose(glm::scale(glm::mat4(1.0f), localScale) * owner->getParrent()->transform.getTransformMatrix()), glm::angle(localRotation), glm::axis(localRotation)), localPosition);
+
+		front = glm::vec3(owner->getParrent()->transform.getTransformMatrix() * glm::rotate(glm::mat4(1.0f), glm::angle(localRotation), glm::axis(localRotation)) * glm::vec4(0.0f, 0.0f, -1.0f, 1.0f));
+		up = glm::vec3(owner->getParrent()->transform.getTransformMatrix() * glm::rotate(glm::mat4(1.0f), glm::angle(localRotation), glm::axis(localRotation)) * glm::vec4(0.0f, 1.0f, 0.0f, 1.0f));
+		right = glm::vec3(owner->getParrent()->transform.getTransformMatrix() * glm::rotate(glm::mat4(1.0f), glm::angle(localRotation), glm::axis(localRotation)) * glm::vec4(1.0f, 0.0f, 0.0f, 1.0f));
+	}
 }
 
 void TransformComponent::Evaluate()
@@ -225,4 +269,17 @@ void TransformComponent::Evaluate()
 	{
 		childObject->transform.Evaluate();
 	}
+}
+
+QString TransformComponent::toXML()
+{
+	QString XMLString = QString(getIndent() + "<TransformComponent>\n");
+	increaseIndent();
+	XMLString += QString(getIndent() + "<Position X = \"" + localPosition.x + "\" Y = \"" + localPosition.y + "\" Z = \"" + localPosition.z + "\"/>\n");
+	XMLString += QString(getIndent() + "<Rotation W = \"" + localRotation.w + "X = \"" + localRotation.x + "\" Y = \"" + localRotation.y + "\" Z = \"" + localRotation.z + "\"/>\n");
+	XMLString += QString(getIndent() + "<Scale X = \"" + localScale.x + "\" Y = \"" + localScale.y + "\" Z = \"" + localScale.z + "\"/>\n");
+	decreaseIndent();
+	XMLString += QString(getIndent() + "</TransformComponent>\n");
+
+	return XMLString;
 }

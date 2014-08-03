@@ -1,4 +1,5 @@
 #include "Shader.h"
+#include "ShaderManager.h"
 #include "Material.h"
 #include "MaterialManager.h"
 #include "ModelComponent.h"
@@ -10,7 +11,6 @@ MaterialManager::MaterialManager(void)
 {
 }
 
-
 MaterialManager::~MaterialManager(void)
 {
 	///TODO: implement it.
@@ -19,6 +19,16 @@ MaterialManager::~MaterialManager(void)
 void MaterialManager::Load(Shader* shader, void* params, QString name)	//temporal definition for temporal declaration
 {
 	new Material(shader, params, name);
+}
+
+void MaterialManager::UseMaterial(QString name)
+{
+	materials[name]->Use();
+}
+
+void MaterialManager::UseMaterial(Material* material)
+{
+	material->Use();
 }
 
 void MaterialManager::FlushMaterial(QString name, bool forced)
@@ -32,7 +42,7 @@ void MaterialManager::FlushMaterial(QString name, bool forced)
 		foreach(ModelComponent* modelComponent, TropicalEngineApplication::instance()->modelController->modelComponents)
 		{
 			if(modelComponent->material == material)
-				modelComponent->material = &material->getShader()->defaultMaterial;
+				modelComponent->material = material->getShader()->defaultMaterial;
 		}
 		delete material;
 	}

@@ -1,30 +1,29 @@
 #pragma once
+#include <glm.hpp>
 #include <gtc\quaternion.hpp>
-#include "_Math.h"
-#include "_Component.h"
+#include "Component.h"
 
-///TODO: Figure out how to make quaternions work
 class TransformComponent :
 	public Component
 {
 private:
 	glm::vec3 localPosition;
 	glm::quat localRotation;
-	//glm::vec3 localRotation;
 	glm::vec3 localScale;
 
 	glm::vec3 globalPosition;
 	glm::quat globalRotation;
-	//glm::vec3 globalRotation;
 	glm::vec3 globalScale;
 
 	glm::mat4x4 transformMatrix;
 	glm::mat4x4 normalMatrix;
 
+	glm::vec3 front;
+	glm::vec3 up;
+	glm::vec3 right;
 public:
 
 	TransformComponent(Entity* owner);
-	//TransformComponent(Entity* owner, glm::vec3 localPosition, glm::vec3 localRotation, glm::vec3 localScale);
 	TransformComponent(Entity* owner, glm::vec3 localPosition, glm::quat localRotation, glm::vec3 localScale);
 	~TransformComponent(void);
 
@@ -60,10 +59,16 @@ public:
 	glm::mat4x4 getTransformMatrix();
 	glm::mat4x4 getNormalMatrix();
 
+	glm::vec3 getFront();
+	glm::vec3 getUp();
+	glm::vec3 getRight();
+
 private:
 	void EvaluateGlobals();
 	void EvaluateInternal();
 public:
 	void Evaluate();
+
+	QString toXML() override;
 };
 

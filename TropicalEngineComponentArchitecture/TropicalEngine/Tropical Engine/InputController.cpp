@@ -1,6 +1,5 @@
 #include "InputController.h"
 
-
 InputController::InputController(void)
 {
 	lastMousePosition =glm::vec2(0.0f, 0.0f);
@@ -17,12 +16,12 @@ InputController::InputController(void)
 	pressedKeys.RIGHT = false;
 }
 
-
 InputController::~InputController(void)
 {
+	///TODO: implement it.
 }
 
-void InputController::Update()
+void InputController::Update(int deltaTime)
 {
 	lastMousePosition = mousePosition;
 }

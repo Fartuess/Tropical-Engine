@@ -1,9 +1,7 @@
 #include <gl\glew.h>
 #include <QtCore\qfile.h>
-#include <QtCore\qtextstream.h>
-//#include <Magick++.h>
-//#include <Magick++\Blob.h>
 #include "Texture.h"
+#include "TextureManager.h"
 #include "MaterialManager.h"
 
 #include "TropicalEngineApplication.h"
@@ -66,4 +64,19 @@ void Texture::Load(QString fileUrl)
 	//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 	//
 	//delete image;
+
+	textureData = QPixmap(fileUrl);
+}
+
+void Texture::ActivateTexture(GLuint location)
+{
+	glActiveTexture(GL_TEXTURE0 + TropicalEngineApplication::instance()->textureManager->getTextureIterator());
+	glBindTexture(GL_TEXTURE_2D, textureLocation);
+	glUniform1i(location, TropicalEngineApplication::instance()->textureManager->getTextureIterator());
+	TropicalEngineApplication::instance()->textureManager->incrementTextureIterator();
+}
+
+QString Texture::toXML()
+{
+	return QString(getIndent() + "<Texture filepath = \"" + filename + "\"/>\n");
 }

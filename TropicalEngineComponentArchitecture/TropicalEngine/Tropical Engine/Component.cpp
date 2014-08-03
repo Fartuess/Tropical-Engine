@@ -1,7 +1,6 @@
 #include "Component.h"
 #include "Entity.h"
 
-
 Component::Component(Entity* owner)
 {
 	if(owner != nullptr)
@@ -9,7 +8,6 @@ Component::Component(Entity* owner)
 	else
 		delete this;
 }
-
 
 Component::~Component(void)
 {

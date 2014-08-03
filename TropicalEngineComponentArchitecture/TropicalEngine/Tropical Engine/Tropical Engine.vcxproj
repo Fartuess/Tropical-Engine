@@ -122,11 +122,14 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\Middleware\Qt\include;$(SolutionDir)..\Middleware\glew\include;$(SolutionDir)..\Middleware\glm;$(SolutionDir)..\Middleware\assimp\include;$(SolutionDir)..\Middleware\ImageMagick\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\Middleware\Assimp\lib;$(SolutionDir)..\Middleware\ImageMagick\lib;$(SolutionDir)..\Middleware\Qt\lib;$(SolutionDir)..\Middleware\glew\lib\Release\x64;$(SolutionDir)..\Middleware\Qt\bin;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>assimp.lib;opengl32.lib;glew32.lib;Qt5Cored.lib;Qt5Guid.lib;Qt5OpenGLd.lib;Qt5Widgetsd.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -135,6 +138,7 @@
     <ClInclude Include="DirectionalLightComponent.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="InputController.h" />
+    <ClInclude Include="ISerializableToXML.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="LevelManager.h" />
     <ClInclude Include="LightComponent.h" />
@@ -163,7 +167,6 @@
     <ClInclude Include="PackageManager.h" />
     <ClInclude Include="PointLightComponent.h" />
     <ClInclude Include="RenderComponent.h" />
-    <ClInclude Include="SceneController.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="ShaderManager.h" />
@@ -174,15 +177,7 @@
     <ClInclude Include="TextureManager.h" />
     <ClInclude Include="TransformComponent.h" />
     <ClInclude Include="TropicalEngineApplication.h" />
-    <ClInclude Include="_Camera.h" />
-    <ClInclude Include="_Component.h" />
-    <ClInclude Include="_DesignPatterns.h" />
-    <ClInclude Include="_Light.h" />
-    <ClInclude Include="_Math.h" />
-    <ClInclude Include="_Model.h" />
-    <ClInclude Include="_Scene.h" />
-    <ClInclude Include="_Shader.h" />
-    <ClInclude Include="_Texture.h" />
+    <ClInclude Include="Math.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CameraComponent.cpp" />
@@ -191,6 +186,7 @@
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="InitializeLevel_03.cpp" />
     <ClCompile Include="InputController.cpp" />
+    <ClCompile Include="ISerializableToXML.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="LevelManager.cpp" />
     <ClCompile Include="LightComponent.cpp" />
@@ -199,6 +195,7 @@
     <ClCompile Include="MainWindow.cpp" />
     <ClCompile Include="Material.cpp" />
     <ClCompile Include="MaterialManager.cpp" />
+    <ClCompile Include="Math.cpp" />
     <ClCompile Include="moc_OglDevTut03.cpp" />
     <ClCompile Include="moc_OpenGLWidget.cpp" />
     <ClCompile Include="Model.cpp" />
@@ -208,6 +205,7 @@
     <ClCompile Include="ModelBuilder_Cylinder.cpp" />
     <ClCompile Include="ModelBuilder_Plane.cpp" />
     <ClCompile Include="ModelBuilder_Sphere.cpp" />
+    <ClCompile Include="ModelBuilder_Torus.cpp" />
     <ClCompile Include="ModelBuilder_Triangle.cpp" />
     <ClCompile Include="ModelComponent.cpp" />
     <ClCompile Include="ModelController.cpp" />
@@ -218,7 +216,6 @@
     <ClCompile Include="PackageManager.cpp" />
     <ClCompile Include="PointLightComponent.cpp" />
     <ClCompile Include="RenderComponent.cpp" />
-    <ClCompile Include="SceneController.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="ShaderManager.cpp" />
@@ -232,6 +229,8 @@
   <ItemGroup>
     <None Include="BasicVertexShader.glsl" />
     <None Include="Lighted_PS.glsl" />
+    <None Include="PerspectivePhong_PS.glsl" />
+    <None Include="PerspectiveSimple_VS.glsl" />
     <None Include="PhongBlinnSimple.glsl" />
     <None Include="Simple_PS.glsl" />
     <None Include="Simple_VS.glsl" />

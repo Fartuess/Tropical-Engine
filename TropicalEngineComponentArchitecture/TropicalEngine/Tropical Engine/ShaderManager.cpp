@@ -2,11 +2,9 @@
 #include "Shader.h"
 #include "ShaderManager.h"
 
-
 ShaderManager::ShaderManager(void)
 {
 }
-
 
 ShaderManager::~ShaderManager(void)
 {
@@ -14,6 +12,16 @@ ShaderManager::~ShaderManager(void)
 	{
 		delete shader;
 	}
+}
+
+Shader* ShaderManager::getCurrentShader()
+{
+	return currentShader;
+}
+
+void ShaderManager::setCurrentShader(Shader* shader)
+{
+	currentShader = shader;
 }
 
 void ShaderManager::FlushShader(QString name)
@@ -33,10 +41,10 @@ void ShaderManager::Load(QString vertexShader, QString fragmentShader, QString n
 
 void ShaderManager::UseShader(QString name)
 {
-	glUseProgram(shaders[name]->getShaderProgram());
+	shaders[name]->Use();
 }
 
 void ShaderManager::UseShader(Shader* shader)
 {
-	glUseProgram(shader->getShaderProgram());
+	shader->Use();
 }

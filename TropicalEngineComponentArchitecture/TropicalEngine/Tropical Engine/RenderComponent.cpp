@@ -1,15 +1,13 @@
 #include "RenderComponent.h"
 #include "Shader.h"
 
-
 RenderComponent::RenderComponent(Entity* owner, Material* material):Component(owner)
 {
 	if(material != nullptr)
 		this->material = material;
 	else
-		this->material = &Shader::nullShader->defaultMaterial;
+		this->material = Shader::nullShader->defaultMaterial;
 }
-
 
 RenderComponent::~RenderComponent(void)
 {

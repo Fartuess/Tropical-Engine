@@ -1,10 +1,9 @@
 #include "LightController.h"
 
-
 LightController::LightController(void)
 {
+	///TODO: implement it.
 }
-
 
 LightController::~LightController(void)
 {

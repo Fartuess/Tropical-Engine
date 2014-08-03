@@ -1,12 +1,10 @@
 #pragma once
 #include "LightComponent.h"
-#include "singleton.h"
 #include <QtCore\qlist.h>
 
 class ModelComponent;
 
-class LightController// :
-	//public Singleton<LightController>
+class LightController
 {
 public:
 	friend class LightComponent;

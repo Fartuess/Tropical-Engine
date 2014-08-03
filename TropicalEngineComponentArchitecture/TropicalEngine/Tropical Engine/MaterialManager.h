@@ -1,10 +1,9 @@
 #pragma once
 #include "Material.h"
-#include "singleton.h"
 #include <QtCore\qstring.h>
 #include <QtCore\qmap.h>
-class MaterialManager// :
-	//public Singleton<MaterialManager>
+
+class MaterialManager
 {
 public:
 	friend class Texture;
@@ -18,6 +17,9 @@ public:
 	~MaterialManager(void);
 
 	void Load(Shader* shader, void* params, QString name);	//temporal declaration
+
+	void UseMaterial(QString name);
+	void UseMaterial(Material* material);
 private:
 	void FlushMaterial(QString name, bool forced = false);
 };

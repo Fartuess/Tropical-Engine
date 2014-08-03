@@ -1,10 +1,9 @@
 #pragma once
 #include "Level.h"
-#include "singleton.h"
 #include <QtCore\qstring.h>
 #include <QtCore\qmap.h>
-class LevelManager// :
-	//public Singleton<LevelManager>
+
+class LevelManager
 {
 public:
 	friend class Level;

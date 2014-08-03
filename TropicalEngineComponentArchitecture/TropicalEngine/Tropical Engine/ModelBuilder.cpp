@@ -9,11 +9,13 @@
 
 ModelBuilder::ModelBuilder(void)
 {
+	///TODO: implement it?
 }
 
 
 ModelBuilder::~ModelBuilder(void)
 {
+	///TODO: implement it?
 }
 
 Model* ModelBuilder::Load(QString fileUrl)
@@ -80,14 +82,6 @@ Model* ModelBuilder::Load(QString fileUrl)
 }
 
 Model* ModelBuilder::Load(QString name, QString fileUrl)
-{
-	///TODO: implement it.
-
-
-	return nullptr;
-}
-
-Model* ModelBuilder::CreateTorus(QString name, float radius, float segmentRadius, int subdivisionsAxis, int subdivisionsHeight)
 {
 	///TODO: implement it.
 	return nullptr;

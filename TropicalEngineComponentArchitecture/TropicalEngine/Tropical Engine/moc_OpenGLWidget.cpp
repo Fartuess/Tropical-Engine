@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_OpenGLWidget_t {
-    QByteArrayData data[5];
-    char stringdata[57];
+    QByteArrayData data[7];
+    char stringdata[70];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -33,10 +33,12 @@ QT_MOC_LITERAL(0, 0, 12),
 QT_MOC_LITERAL(1, 13, 16),
 QT_MOC_LITERAL(2, 30, 0),
 QT_MOC_LITERAL(3, 31, 13),
-QT_MOC_LITERAL(4, 45, 10)
+QT_MOC_LITERAL(4, 45, 5),
+QT_MOC_LITERAL(5, 51, 6),
+QT_MOC_LITERAL(6, 58, 10)
     },
     "OpenGLWidget\0initializeSignal\0\0"
-    "reshapeSignal\0drawSignal\0"
+    "reshapeSignal\0width\0height\0drawSignal\0"
 };
 #undef QT_MOC_LITERAL
 
@@ -55,12 +57,12 @@ static const uint qt_meta_data_OpenGLWidget[] = {
 
  // signals: name, argc, parameters, tag, flags
        1,    0,   29,    2, 0x06,
-       3,    0,   30,    2, 0x06,
-       4,    0,   31,    2, 0x06,
+       3,    2,   30,    2, 0x06,
+       6,    0,   35,    2, 0x06,
 
  // signals: parameters
     QMetaType::Void,
-    QMetaType::Void,
+    QMetaType::Void, QMetaType::Int, QMetaType::Int,    4,    5,
     QMetaType::Void,
 
        0        // eod
@@ -72,7 +74,7 @@ void OpenGLWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id
         OpenGLWidget *_t = static_cast<OpenGLWidget *>(_o);
         switch (_id) {
         case 0: _t->initializeSignal(); break;
-        case 1: _t->reshapeSignal(); break;
+        case 1: _t->reshapeSignal((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
         case 2: _t->drawSignal(); break;
         default: ;
         }
@@ -86,7 +88,7 @@ void OpenGLWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id
             }
         }
         {
-            typedef void (OpenGLWidget::*_t)();
+            typedef void (OpenGLWidget::*_t)(int , int );
             if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&OpenGLWidget::reshapeSignal)) {
                 *result = 1;
             }
@@ -98,7 +100,6 @@ void OpenGLWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id
             }
         }
     }
-    Q_UNUSED(_a);
 }
 
 const QMetaObject OpenGLWidget::staticMetaObject = {
@@ -144,9 +145,10 @@ void OpenGLWidget::initializeSignal()
 }
 
 // SIGNAL 1
-void OpenGLWidget::reshapeSignal()
+void OpenGLWidget::reshapeSignal(int _t1, int _t2)
 {
-    QMetaObject::activate(this, &staticMetaObject, 1, 0);
+    void *_a[] = { 0, const_cast<void*>(reinterpret_cast<const void*>(&_t1)), const_cast<void*>(reinterpret_cast<const void*>(&_t2)) };
+    QMetaObject::activate(this, &staticMetaObject, 1, _a);
 }
 
 // SIGNAL 2

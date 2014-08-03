@@ -2,6 +2,7 @@
 #include "CameraComponent.h"
 #include "Entity.h"
 
+#include <QtCore\qdebug.h>
 
 CameraComponent::CameraComponent(Entity* owner, glm::vec3 targetOffset, glm::vec3 up, float fov, float aspectRatio, float zNear, float zFar):Component(owner)
 {
@@ -15,7 +16,6 @@ CameraComponent::CameraComponent(Entity* owner, glm::vec3 targetOffset, glm::vec
 
 	CalculateMatrix();
 }
-
 
 CameraComponent::~CameraComponent(void)
 {
@@ -37,7 +37,7 @@ glm::vec3 CameraComponent::getUp()
 	return up;
 }
 
-void CameraComponent::setUp(glm::vec3 Up)
+void CameraComponent::setUp(glm::vec3 up)
 {
 	this->up = glm::normalize(up);
 }
@@ -58,10 +58,15 @@ float CameraComponent::getAspectRatio()
 	return aspectRatio;
 }
 
+///TODO: Figure out if Calculation of matrix after every change is required since it can be called once in main Draw method
+
 void CameraComponent::setAspectRatio(float aspectRatio)
 {
-	this->aspectRatio = aspectRatio;
-	CalculateMatrix();
+	if(aspectRatio != 0.0f)
+	{
+		this->aspectRatio = aspectRatio;
+		CalculateMatrix();
+	}
 }
 
 float CameraComponent::getZNear()
@@ -86,7 +91,6 @@ void CameraComponent::setZFar(float zFar)
 	CalculateMatrix();
 }
 
-
 glm::mat4x4 CameraComponent::getMatrix()
 {
 	return cameraMatrix;
@@ -94,17 +98,16 @@ glm::mat4x4 CameraComponent::getMatrix()
 
 void CameraComponent::CalculateMatrix()
 {
-	///TODO: implement it.
-	glm::vec3 up2 = glm::cross(up, target);
-	glm::vec3 target2 = glm::cross(target, up2);
+	glm::vec3 targetOffset = owner->transform.getFront();
 
-	glm::mat4x4 cameraProjection = glm::lookAt(this->getOwner()->transform.getPosition(), this->getOwner()->transform.getPosition() + this->target, this->up);
+	glm::mat4x4 cameraProjection = glm::lookAt(this->getOwner()->transform.getPosition(), this->getOwner()->transform.getPosition() + targetOffset, this->up);
 	glm::mat4x4 perspectiveProjection = glm::perspective(fov, aspectRatio, zNear, zFar);
 
 	cameraMatrix = perspectiveProjection * cameraProjection;
+}
 
-	//cameraMatrix[0][0] = up2.x; cameraMatrix[0][1] = up2.y; cameraMatrix[0][2] = up2.z; cameraMatrix[0][3] = 0.0f;
-	//cameraMatrix[1][0] = target2.x; cameraMatrix[1][1] = target2.y; cameraMatrix[1][2] = target2.z; cameraMatrix[1][3] = 0.0f;
-	//cameraMatrix[2][0] = target.x; cameraMatrix[2][1] = target.y; cameraMatrix[2][2] = target.z; cameraMatrix[2][3] = 0.0f;
-	//cameraMatrix[3][0] = 0.0f; cameraMatrix[3][1] = 0.0f; cameraMatrix[3][2] = 0.0f; cameraMatrix[3][3] = 1.0f;
+QString CameraComponent::toXML()
+{
+	///TODO: implement it.
+	return QString(getIndent() + "<CameraComponent/>\n");
 }

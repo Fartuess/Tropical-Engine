@@ -3,7 +3,6 @@
 
 #include "TropicalEngineApplication.h"
 
-
 LightComponent::LightComponent(Entity* owner, glm::vec3 color, float brightness, bool isCastingShadows):Component(owner)
 {
 	this->color = color;
@@ -40,4 +39,10 @@ void LightComponent::Evaluate()
 void LightComponent::DrawShadows()
 {
 	///TODO: implement it.
+}
+
+QString LightComponent::toXML()
+{
+	///TODO: implement it.
+	return QString(getIndent() + "<LightComponent/>\n");
 }

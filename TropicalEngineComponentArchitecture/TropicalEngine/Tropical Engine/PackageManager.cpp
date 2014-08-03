@@ -1,10 +1,8 @@
 #include "PackageManager.h"
 
-
 PackageManager::PackageManager(void)
 {
 }
-
 
 PackageManager::~PackageManager(void)
 {

@@ -100,6 +100,15 @@
     <Filter Include="Source Files\Model\ModelBuilder">
       <UniqueIdentifier>{834317a6-6262-4dc7-b6a7-158236938dac}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Utility">
+      <UniqueIdentifier>{f4fc6c3e-426b-4ce4-8273-a86a7d975b74}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Saving Files">
+      <UniqueIdentifier>{d29400bb-d6b3-4bf4-8610-d486c10c7744}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Saving Files">
+      <UniqueIdentifier>{cd011a97-1712-415d-8b4c-6435ce580970}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Entity.cpp">
@@ -192,9 +201,6 @@
     <ClCompile Include="InitializeLevel_03.cpp">
       <Filter>Tests\OglDevTut03\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SceneController.cpp">
-      <Filter>Source Files\Scene</Filter>
-    </ClCompile>
     <ClCompile Include="InputController.cpp">
       <Filter>Source Files\Input</Filter>
     </ClCompile>
@@ -231,6 +237,15 @@
     <ClCompile Include="TropicalEngineApplication.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Math.cpp">
+      <Filter>Source Files\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelBuilder_Torus.cpp">
+      <Filter>Source Files\Model\ModelBuilder</Filter>
+    </ClCompile>
+    <ClCompile Include="ISerializableToXML.cpp">
+      <Filter>Source Files\Saving Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entity.h">
@@ -239,20 +254,8 @@
     <ClInclude Include="Component.h">
       <Filter>Header Files\Component</Filter>
     </ClInclude>
-    <ClInclude Include="_Component.h">
-      <Filter>Header Files\Component</Filter>
-    </ClInclude>
     <ClInclude Include="TransformComponent.h">
       <Filter>Header Files\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="_Scene.h">
-      <Filter>Header Files\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="_Math.h">
-      <Filter>Header Files\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="_Shader.h">
-      <Filter>Header Files\Shader</Filter>
     </ClInclude>
     <ClInclude Include="RenderComponent.h">
       <Filter>Header Files\Shader</Filter>
@@ -263,20 +266,11 @@
     <ClInclude Include="Material.h">
       <Filter>Header Files\Shader</Filter>
     </ClInclude>
-    <ClInclude Include="_Texture.h">
-      <Filter>Header Files\Texture</Filter>
-    </ClInclude>
     <ClInclude Include="Texture.h">
       <Filter>Header Files\Texture</Filter>
     </ClInclude>
-    <ClInclude Include="_Model.h">
-      <Filter>Header Files\Model</Filter>
-    </ClInclude>
     <ClInclude Include="Model.h">
       <Filter>Header Files\Model</Filter>
-    </ClInclude>
-    <ClInclude Include="_Light.h">
-      <Filter>Header Files\Light</Filter>
     </ClInclude>
     <ClInclude Include="ModelComponent.h">
       <Filter>Header Files\Model</Filter>
@@ -296,9 +290,6 @@
     <ClInclude Include="SceneManager.h">
       <Filter>Header Files\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="_DesignPatterns.h">
-      <Filter>Header Files\DesignPatterns</Filter>
-    </ClInclude>
     <ClInclude Include="Singleton.h">
       <Filter>Header Files\DesignPatterns</Filter>
     </ClInclude>
@@ -306,9 +297,6 @@
       <Filter>Header Files\Model</Filter>
     </ClInclude>
     <ClInclude Include="CameraComponent.h">
-      <Filter>Header Files\Camera</Filter>
-    </ClInclude>
-    <ClInclude Include="_Camera.h">
       <Filter>Header Files\Camera</Filter>
     </ClInclude>
     <ClInclude Include="TextureManager.h">
@@ -344,9 +332,6 @@
     <ClInclude Include="ModelController.h">
       <Filter>Header Files\Model</Filter>
     </ClInclude>
-    <ClInclude Include="SceneController.h">
-      <Filter>Header Files\Scene</Filter>
-    </ClInclude>
     <ClInclude Include="InputController.h">
       <Filter>Header Files\Input</Filter>
     </ClInclude>
@@ -355,6 +340,12 @@
     </ClInclude>
     <ClInclude Include="TropicalEngineApplication.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Math.h">
+      <Filter>Header Files\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="ISerializableToXML.h">
+      <Filter>Header Files\Saving Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -374,6 +365,12 @@
       <Filter>Shader Files\Fragment Shader</Filter>
     </None>
     <None Include="Lighted_PS.glsl">
+      <Filter>Tests\OglDevTut03\Shaders</Filter>
+    </None>
+    <None Include="PerspectiveSimple_VS.glsl">
+      <Filter>Tests\OglDevTut03\Shaders</Filter>
+    </None>
+    <None Include="PerspectivePhong_PS.glsl">
       <Filter>Tests\OglDevTut03\Shaders</Filter>
     </None>
   </ItemGroup>

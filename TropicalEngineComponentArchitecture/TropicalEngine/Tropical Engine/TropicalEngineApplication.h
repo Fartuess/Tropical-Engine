@@ -18,6 +18,8 @@ class LightController;
 
 class InputController;
 
+class CameraComponent;
+
 class OglDevTut03;
 
 class TropicalEngineApplication : public QApplication

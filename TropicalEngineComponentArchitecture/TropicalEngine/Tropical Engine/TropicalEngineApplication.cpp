@@ -11,7 +11,6 @@
 
 #include "PackageManager.h"
 #include "SceneManager.h"
-#include "SceneController.h"
 
 #include "LightController.h"
 
@@ -32,7 +31,6 @@ TropicalEngineApplication::TropicalEngineApplication(int argc, char* argv[]) : Q
 
 	packageManager = new PackageManager();
 	sceneManager = new SceneManager();
-	sceneController = new SceneController();
 
 	lightController = new LightController();
 
@@ -40,7 +38,6 @@ TropicalEngineApplication::TropicalEngineApplication(int argc, char* argv[]) : Q
 
 	renderer = new OglDevTut03();
 }
-
 
 TropicalEngineApplication::~TropicalEngineApplication(void)
 {

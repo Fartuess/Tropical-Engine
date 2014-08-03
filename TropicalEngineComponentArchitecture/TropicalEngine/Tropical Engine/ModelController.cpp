@@ -1,11 +1,10 @@
 #include "ModelController.h"
 #include "ModelComponent.h"
 
-
 ModelController::ModelController(void)
 {
+	///TODO: implement it.
 }
-
 
 ModelController::~ModelController(void)
 {

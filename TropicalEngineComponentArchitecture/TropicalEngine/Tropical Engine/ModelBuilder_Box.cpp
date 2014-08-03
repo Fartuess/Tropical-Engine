@@ -6,15 +6,9 @@
 
 Model* ModelBuilder::CreateBox(QString name, float sizeX, float sizeY, float sizeZ, int subdivisionsX, int subdivisionsY, int subdivisionsZ)
 {
-	MeshEntry* Cube = new MeshEntry();
+	MeshEntry* Mesh = new MeshEntry();
 
-	Cube->NumVertex = subdivisionsX * subdivisionsY * 6 * 6;
-	//Cube->numberIndices = (subdivisionsY - 1) * subdivisionsX * 2
-	//	+ subdivisionsY * (subdivisionsX - 1) * 2
-	//	+ (subdivisionsZ - 1) * subdivisionsY * 2
-	//	+ subdivisionsZ * (subdivisionsY - 1) * 2
-	//	+ (subdivisionsZ - 1) * subdivisionsX * 2
-	//	+ subdivisionsZ * (subdivisionsX - 1) * 2;
+	Mesh->NumVertex = subdivisionsX * subdivisionsY * 6 * 6;
 
 	QVector<glm::vec4>* vertices = new QVector<glm::vec4>();
 	QVector<glm::vec3>* normals = new QVector<glm::vec3>();
@@ -22,17 +16,15 @@ Model* ModelBuilder::CreateBox(QString name, float sizeX, float sizeY, float siz
 	QVector<glm::vec3>* bitangents = new QVector<glm::vec3>();
 	QVector<glm::vec2>* texCoords = new QVector<glm::vec2>();
 
-	//vector<unsigned int>* indices = new vector<unsigned int>();
+	vertices->reserve(Mesh->NumVertex);
+	normals->reserve(Mesh->NumVertex);
+    tangents->reserve(Mesh->NumVertex);
+	bitangents->reserve(Mesh->NumVertex);
+    texCoords->reserve(Mesh->NumVertex);
 
-	vertices->reserve(Cube->NumVertex);
-	normals->reserve(Cube->NumVertex);
-    tangents->reserve(Cube->NumVertex);
-	bitangents->reserve(Cube->NumVertex);
-    texCoords->reserve(Cube->NumVertex);
-
-	for(int j = -1; j < subdivisionsZ - 1; j++)	//Top Face
+	for(int j = 0; j < subdivisionsZ; j++)	//Top Face
 	{
-		for(int i = -1; i < subdivisionsX - 1; i++)
+		for(int i = 0; i < subdivisionsX; i++)
 		{
 			vertices->push_back(glm::vec4(
 				(-0.5f + i) * sizeX / subdivisionsX,
@@ -102,9 +94,9 @@ Model* ModelBuilder::CreateBox(QString name, float sizeX, float sizeY, float siz
 		}
 	}
 
-	for(int j = -1; j < subdivisionsZ - 1; j++)	//Bottom Face
+	for(int j = 0; j < subdivisionsZ; j++)	//Bottom Face
 	{
-		for(int i = -1; i < subdivisionsX - 1; i++)
+		for(int i = 0; i < subdivisionsX; i++)
 		{
 			vertices->push_back(glm::vec4(
 				(-0.5f + i) * sizeX / subdivisionsX,
@@ -174,9 +166,9 @@ Model* ModelBuilder::CreateBox(QString name, float sizeX, float sizeY, float siz
 		}
 	}
 	
-	for(int j = - 1; j < subdivisionsY - 1; j++)	//Front Face
+	for(int j = 0; j < subdivisionsY; j++)	//Front Face
 	{
-		for(int i = - 1; i < subdivisionsX - 1; i++)
+		for(int i = 0; i < subdivisionsX; i++)
 		{
 			vertices->push_back(glm::vec4(
 				(-0.5f + i) * sizeX / subdivisionsX,
@@ -246,9 +238,9 @@ Model* ModelBuilder::CreateBox(QString name, float sizeX, float sizeY, float siz
 		}
 	}
 
-	for(int j = - 1; j < subdivisionsY - 1; j++)	//Back Face
+	for(int j = 0; j < subdivisionsY; j++)	//Back Face
 	{
-		for(int i = - 1; i < subdivisionsX - 1; i++)
+		for(int i = 0; i < subdivisionsX; i++)
 		{
 			vertices->push_back(glm::vec4(
 				(-0.5f + i) * sizeX / subdivisionsX,
@@ -318,9 +310,9 @@ Model* ModelBuilder::CreateBox(QString name, float sizeX, float sizeY, float siz
 		}
 	}
 
-	for(int j = - 1; j < subdivisionsY - 1; j++)	//Left Face
+	for(int j = 0; j < subdivisionsY; j++)	//Left Face
 	{
-		for(int i = - 1; i < subdivisionsZ - 1; i++)
+		for(int i = 0; i < subdivisionsZ; i++)
 		{
 			vertices->push_back(glm::vec4(
 				-0.5f * sizeX,
@@ -390,9 +382,9 @@ Model* ModelBuilder::CreateBox(QString name, float sizeX, float sizeY, float siz
 		}
 	}
 
-	for(int j = - 1; j < subdivisionsY - 1; j++)	//Right Face
+	for(int j = 0; j < subdivisionsY; j++)	//Right Face
 	{
-		for(int i = - 1; i < subdivisionsZ - 1; i++)
+		for(int i = 0; i < subdivisionsZ; i++)
 		{
 			vertices->push_back(glm::vec4(
 				0.5f * sizeX,
@@ -461,33 +453,38 @@ Model* ModelBuilder::CreateBox(QString name, float sizeX, float sizeY, float siz
 			texCoords->push_back(glm::vec2((i + 1) * sizeZ / subdivisionsZ, (j + 1) * sizeY / subdivisionsY));
 		}
 	}
+
+	glGenBuffers(1, &Mesh->vertexVBO);
+	glBindBuffer(GL_ARRAY_BUFFER, Mesh->vertexVBO);
+
+	glBufferData(GL_ARRAY_BUFFER,
+		sizeof(glm::vec4) * vertices->size()
+		+ sizeof(glm::vec3) * vertices->size()
+		+ sizeof(glm::vec3) * vertices->size()
+		+ sizeof(glm::vec3) * vertices->size()
+		+ sizeof(glm::vec2) * vertices->size(), 0, GL_STATIC_DRAW);
+
+	glBufferSubData(GL_ARRAY_BUFFER,
+		0,
+		sizeof(glm::vec4) * vertices->size(), vertices->data());
+	glBufferSubData(GL_ARRAY_BUFFER,
+		sizeof(glm::vec4) * vertices->size(),
+		sizeof(glm::vec3) * vertices->size(), normals->data());
+	glBufferSubData(GL_ARRAY_BUFFER,
+		sizeof(glm::vec4) * vertices->size() + sizeof(glm::vec3) * vertices->size(),
+		sizeof(glm::vec3) * vertices->size(), tangents->data());
+	glBufferSubData(GL_ARRAY_BUFFER,
+		sizeof(glm::vec4) * vertices->size() + sizeof(glm::vec3) * vertices->size() + sizeof(glm::vec3) * vertices->size(),
+		sizeof(glm::vec3) * vertices->size(), bitangents->data());
+	glBufferSubData(GL_ARRAY_BUFFER,
+		sizeof(glm::vec4) * vertices->size() + sizeof(glm::vec3) * vertices->size() + sizeof(glm::vec3) * vertices->size() + sizeof(glm::vec3) * vertices->size(),
+		sizeof(glm::vec2) * vertices->size(), texCoords->data());
+
+	glEnableVertexAttribArray(0); 
+	glBindVertexArray(0);
 	
-	glGenVertexArrays(1, &Cube->VAO);
-	glBindVertexArray(Cube->VAO);
-
-	glGenBuffers(1, &Cube->vertexVBO);
-	glBindBuffer(GL_ARRAY_BUFFER, Cube->vertexVBO);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(glm::vec4) * vertices->size(), vertices->data(), GL_STATIC_DRAW);
-
-	glGenBuffers(1, &Cube->normalVBO);
-	glBindBuffer(GL_ARRAY_BUFFER, Cube->normalVBO);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(glm::vec3) * vertices->size(), normals->data(), GL_STATIC_DRAW);
-
-	//glGenBuffers(1, &Cube->tangentVBO);
-	//glBindBuffer(GL_ARRAY_BUFFER, Cube->tangentVBO);
-	//glBufferData(GL_ARRAY_BUFFER, sizeof(glm::vec3) * vertices->size(), tangents->data(), GL_STATIC_DRAW);
-	//
-	//glGenBuffers(1, &Cube->bitangentVBO);
-	//glBindBuffer(GL_ARRAY_BUFFER, Cube->bitangentVBO);
-	//glBufferData(GL_ARRAY_BUFFER, sizeof(glm::vec3) * vertices->size(), bitangents->data(), GL_STATIC_DRAW);
-	//
-	//glGenBuffers(1, &Cube->texcoordVBO);
-	//glBindBuffer(GL_ARRAY_BUFFER, Cube->texcoordVBO);
-	//glBufferData(GL_ARRAY_BUFFER, sizeof(glm::vec2) * vertices->size(), texCoords->data(), GL_STATIC_DRAW);
-	
-
 	Model* model = new Model(name);
-	model->meshes.append(*Cube);
+	model->meshes.append(*Mesh);
 	return model;
 }
 

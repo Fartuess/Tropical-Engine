@@ -1,13 +1,11 @@
 #pragma once
 #include <QtCore\qstring.h>
 #include <glm.hpp>
-#include "Singleton.h"
 
 class Model;
 class ModelManager;
 
-class ModelBuilder// :
-	//public Singleton<ModelBuilder>
+class ModelBuilder
 {
 public:
 	friend class ModelManager;
@@ -28,6 +26,6 @@ public:
 	Model* CreateCylinder(QString name, float radius = 1.0f, float height = 2.0f, int subdivisionsAxis = 20, int subdivisionsHeight = 1);
 	Model* CreateCone(QString name, float radius = 1.0f, float height = 2.0f, int subdivisionsAxis = 20, int subdivisionsHeight = 1);
 	Model* CreateSphere(QString name, float radius = 1.0f, int subdivisionsAxis = 20, int subdivisionsHeight = 20);
-	Model* CreateTorus(QString name, float radius = 1.0f, float segmentRadius = 0.2f, int subdivisionsAxis = 20, int subdivisionsHeight = 20);
+	Model* CreateTorus(QString name, float radius = 1.0f, float segmentRadius = 0.4f, int subdivisionsAxis = 20, int subdivisionsHeight = 20);
 };
 

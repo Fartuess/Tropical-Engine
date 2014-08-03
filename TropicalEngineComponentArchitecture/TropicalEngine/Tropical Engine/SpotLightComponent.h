@@ -1,5 +1,6 @@
 #pragma once
 #include "lightcomponent.h"
+
 class SpotLightComponent :
 	public LightComponent
 {
@@ -21,5 +22,7 @@ public:
 
 	void Evaluate();
 	void DrawShadows();
+
+	QString toXML() override;
 };
 
