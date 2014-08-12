@@ -91,19 +91,29 @@ void CameraComponent::setZFar(float zFar)
 	CalculateMatrix();
 }
 
-glm::mat4x4 CameraComponent::getMatrix()
+//glm::mat4x4 CameraComponent::getMatrix()
+//{
+//	return cameraMatrix;
+//}
+
+glm::mat4 CameraComponent::getCameraMatrix()
 {
 	return cameraMatrix;
+}
+
+glm::mat4 CameraComponent::getProjectionMatrix()
+{
+	return projectionMatrix;
 }
 
 void CameraComponent::CalculateMatrix()
 {
 	glm::vec3 targetOffset = owner->transform.getFront();
 
-	glm::mat4x4 cameraProjection = glm::lookAt(this->getOwner()->transform.getPosition(), this->getOwner()->transform.getPosition() + targetOffset, this->up);
-	glm::mat4x4 perspectiveProjection = glm::perspective(fov, aspectRatio, zNear, zFar);
+	cameraMatrix = glm::lookAt(this->getOwner()->transform.getPosition(), this->getOwner()->transform.getPosition() + targetOffset, this->up);
+	projectionMatrix = glm::perspective(fov, aspectRatio, zNear, zFar);
 
-	cameraMatrix = perspectiveProjection * cameraProjection;
+	//cameraMatrix = perspectiveProjection * cameraProjection;
 }
 
 QString CameraComponent::toXML()

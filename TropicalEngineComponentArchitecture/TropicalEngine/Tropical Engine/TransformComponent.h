@@ -16,7 +16,7 @@ private:
 	glm::vec3 globalScale;
 
 	glm::mat4x4 transformMatrix;
-	glm::mat4x4 normalMatrix;
+	glm::mat3 normalMatrix;
 
 	glm::vec3 front;
 	glm::vec3 up;
@@ -57,7 +57,7 @@ public:
 	void Scale(glm::vec3 scale);
 
 	glm::mat4x4 getTransformMatrix();
-	glm::mat4x4 getNormalMatrix();
+	glm::mat3 getNormalMatrix();
 
 	glm::vec3 getFront();
 	glm::vec3 getUp();

@@ -24,6 +24,7 @@ private:
 	GLuint modelMatrixLocation;
 	GLuint normalMatrixLocation;
 	GLuint cameraMatrixLocation;
+	GLuint projectionMatrixLocation;
 public:	//temporarily
 	GLuint dirLightVectorLocation;
 	GLuint dirLightColorLocation;
@@ -51,6 +52,7 @@ public:
 	GLuint getModelMatrixLocation();
 	GLuint getNormalMatrixLocation();
 	GLuint getCameraMatrixLocation();
+	GLuint getProjectionMatrixLocation();
 
 	GLenum getParameterType(QString name);
 	GLuint getParameterLocation(QString name);

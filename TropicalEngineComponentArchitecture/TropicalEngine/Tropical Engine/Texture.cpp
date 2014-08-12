@@ -6,28 +6,12 @@
 
 #include "TropicalEngineApplication.h"
 
+#include <QtCore\qdebug.h>
+
 Texture::Texture(QString fileUrl)
 {
-	///TODO: implement it.
-	//QFile* textureFile;
-	//QDataStream* textureStream;
-	//uchar type;	//??
-	//uchar bitsPerPixel;	//??
-	//uint elementsRead;	//??
-	//tgaImage* texture;	//should it be promoted to class field?
-	//
-	//if(fileUrl == nullptr)
-	//	return;
-	//
-	//texture->width = 0;
-	//texture->height = 0;
-	//texture->data = 0;
-	//texture->format = textureFormat::tex_Null;
-	//
-	//textureStream = new QDataStream(textureFile);
-
-	this->filename = fileUrl;
-	Load(filename);
+	this->fileUrl = fileUrl;
+	Load();	//maybe not always should be loaded into GPU when it is load
 }
 
 
@@ -40,43 +24,32 @@ Texture::~Texture(void)
 	}
 }
 
-void Texture::Load(QString fileUrl)
+void Texture::Load()
 {
-	//Magick::Image* image;
-	//Magick::Blob imageData;
-	//
-	//try {
-    //    image = new Magick::Image(filename.toUtf8().constData());
-    //    image->write(&imageData, "RGBA");
-    //}
-    //catch (Magick::Error& Error) {
-	//	//fprintf("Error loading texture '%s': %s", fileUrl.toLocal8Bit().data(), Error.what());
-	//	printf("Error loading texture: %s", Error.what());
-    //    return;// false;
-    //}
-	//
-    //glGenTextures(1, &textureObject);
-    //glBindTexture(textureTarget, textureObject);
-    //glTexImage2D(textureTarget, 0, GL_RGBA, image->columns(), image->rows(), 0, GL_RGBA, GL_UNSIGNED_BYTE, imageData.data());
-	//glTexParameterf(textureTarget, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-	//glTexParameterf(textureTarget, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-	//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-	//
-	//delete image;
+	QImage textureData = QImage(fileUrl);
+	textureData = textureData.convertToFormat(QImage::Format_RGBA8888);
 
-	textureData = QPixmap(fileUrl);
+	//glActiveTexture(GL_TEXTURE0 + TropicalEngineApplication::instance()->textureManager->getTextureIterator());
+	glGenTextures(1, &textureLocation);
+    glBindTexture(GL_TEXTURE_2D, textureLocation);
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, textureData.width(), textureData.height(), 0, GL_RGBA, GL_UNSIGNED_BYTE, textureData.bits());
+	glGenerateMipmap(GL_TEXTURE_2D);
 }
 
 void Texture::ActivateTexture(GLuint location)
 {
 	glActiveTexture(GL_TEXTURE0 + TropicalEngineApplication::instance()->textureManager->getTextureIterator());
 	glBindTexture(GL_TEXTURE_2D, textureLocation);
-	glUniform1i(location, TropicalEngineApplication::instance()->textureManager->getTextureIterator());
+	glUniform1i(location, textureLocation);
+	//int t = TropicalEngineApplication::instance()->textureManager->getTextureIterator();
 	TropicalEngineApplication::instance()->textureManager->incrementTextureIterator();
 }
 
 QString Texture::toXML()
 {
-	return QString(getIndent() + "<Texture filepath = \"" + filename + "\"/>\n");
+	return QString(getIndent() + "<Texture filepath = \"" + fileUrl + "\"/>\n");
 }

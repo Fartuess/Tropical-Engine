@@ -7,17 +7,17 @@
 class Texture : public ISerializableToXML
 {
 private:
-	QString filename;
-	GLenum textureTarget;	//what for?
+	QString fileUrl;
+	//GLenum textureTarget;	//what for?
 	GLuint textureLocation;
-	QPixmap textureData;
+	//QPixmap textureData;	///TODO: figure out if it shpuld be stored in main memory.
 public:
 	Texture(QString fileUrl);
 	~Texture(void);
 
 	static Texture nullTexture;
 
-	void Load(QString fileUrl);
+	void Load();
 
 	void ActivateTexture(GLuint location);
 

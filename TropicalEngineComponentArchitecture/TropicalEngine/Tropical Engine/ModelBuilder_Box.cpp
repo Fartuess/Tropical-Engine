@@ -483,6 +483,7 @@ Model* ModelBuilder::CreateBox(QString name, float sizeX, float sizeY, float siz
 	glEnableVertexAttribArray(0); 
 	glBindVertexArray(0);
 	
+	///TODO: figure out if one should clean Mesh memory here.
 	Model* model = new Model(name);
 	model->meshes.append(*Mesh);
 	return model;

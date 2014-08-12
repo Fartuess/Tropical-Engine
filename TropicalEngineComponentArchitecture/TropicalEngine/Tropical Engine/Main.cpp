@@ -86,6 +86,8 @@ int main(int argc, char* argv[])
 
 	QLabel* sceneGraphLabel = new QLabel();
 	sceneGraphLabel->setText("Scene Graph");
+	//sceneGraphLabel->setPixmap(QPixmap("../Assets/Core/DefaultTexturePNG.png"));
+	//sceneGraphLabel->show();
 	QTreeView* sceneGraph = new QTreeView();
 	QFrame* rightPanelButtonFrame = new QFrame();
 	QHBoxLayout* rightPanelButtonLayout = new QHBoxLayout();

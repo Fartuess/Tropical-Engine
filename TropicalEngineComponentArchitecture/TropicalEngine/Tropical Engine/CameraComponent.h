@@ -8,7 +8,8 @@ class CameraComponent :
 private:
 	glm::vec3 target;
 	glm::vec3 up;
-	glm::mat4x4 cameraMatrix;
+	glm::mat4 cameraMatrix;
+	glm::mat4 projectionMatrix;
 
 	float fov;
 	float aspectRatio;
@@ -32,7 +33,9 @@ public:
 	float getZFar();
 	void setZFar(float zFar);
 
-	glm::mat4x4 getMatrix();
+	//glm::mat4x4 getMatrix();
+	glm::mat4 getCameraMatrix();
+	glm::mat4 getProjectionMatrix();
 	void CalculateMatrix();
 
 	QString toXML() override;

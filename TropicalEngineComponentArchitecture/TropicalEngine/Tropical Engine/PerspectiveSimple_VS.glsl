@@ -1,7 +1,7 @@
 #version 330
 
 uniform mat4 u_transformationMatrix;
-uniform mat4 u_normalMatrix;
+uniform mat3 u_normalMatrix;
 uniform mat4 u_cameraMatrix;
 
 in vec4 a_vertex;
@@ -14,6 +14,6 @@ void main()
 {
 	vec4 vertexHelper = u_transformationMatrix * a_vertex;
 	v_eye = -vec3(a_vertex);
-	v_normal = vec3(u_normalMatrix * vec4(a_normal, 0));
+	v_normal = u_normalMatrix * a_normal, 0;
     gl_Position = u_cameraMatrix * vertexHelper;
 }

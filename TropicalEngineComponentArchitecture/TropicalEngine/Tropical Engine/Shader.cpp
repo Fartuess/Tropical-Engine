@@ -52,6 +52,7 @@ Shader::Shader(QString vertexShader, QString fragmentShader, QString name)
 	modelMatrixLocation = glGetUniformLocation(this->shaderProgram, "u_transformationMatrix");
 	normalMatrixLocation = glGetUniformLocation(this->shaderProgram, "u_normalMatrix");
 	cameraMatrixLocation = glGetUniformLocation(this->shaderProgram, "u_cameraMatrix");
+	projectionMatrixLocation = glGetUniformLocation(this->shaderProgram, "u_projectionMatrix");
 
 	dirLightVectorLocation = glGetUniformLocation(this->shaderProgram, "u_lightVector");
 	dirLightColorLocation = glGetUniformLocation(this->shaderProgram, "u_lightColor");
@@ -109,6 +110,7 @@ Shader::Shader(QMap<QString, GLuint> subshaders, QString name)
 	modelMatrixLocation = glGetUniformLocation(this->shaderProgram, "u_transformationMatrix");
 	normalMatrixLocation = glGetUniformLocation(this->shaderProgram, "u_normalMatrix");
 	cameraMatrixLocation = glGetUniformLocation(this->shaderProgram, "u_cameraMatrix");
+	projectionMatrixLocation = glGetUniformLocation(this->shaderProgram, "u_projectionMatrix");
 
 	dirLightVectorLocation = glGetUniformLocation(this->shaderProgram, "u_lightVector");
 	dirLightColorLocation = glGetUniformLocation(this->shaderProgram, "u_lightColor");
@@ -123,26 +125,36 @@ Shader::Shader(QMap<QString, GLuint> subshaders, QString name)
 void Shader::setUpMaterialParameters()
 {
 	materialParameters = new QMap<QString, QPair<GLenum, GLuint>>();
-	for(int j = 0; j < subprograms->size(); j++)
-	{
+	//for(int j = 0; j < subprograms->size(); j++)
+	//{
 		GLint uniformCount = -1;
 		GLenum glErr = glGetError();
 		GLenum t0 = glErr;
 		glGetProgramiv(shaderProgram, GL_ACTIVE_UNIFORMS, &uniformCount);
 		for(int i = 0; i < uniformCount; i++)
 		{
-			GLchar nameChar[128];// = new GLchar;
+			GLchar nameChar[128];
 			GLsizei nameLenght;
 			GLenum type;
-			glGetActiveUniform(shaderProgram, i, 128, &nameLenght, nullptr, &type, nameChar);
+			GLint size;	//to prevent crash?
+			glGetActiveUniform(shaderProgram, i, 128, &nameLenght, &size, &type, nameChar);
 			QString nameString = QString(nameChar);
+
+			GLuint test = glGetUniformLocation(this->shaderProgram, nameChar);
+
  			if(nameString.startsWith("mat_"))
 			{
 				//nameString.remove(0, 4);
-				materialParameters->insert(nameString, QPair<GLenum, GLuint>(type, i));	//make sure that 'i' is the same as desirable uniform location;
+				
+				materialParameters->insert(nameString, QPair<GLenum, GLuint>(type, glGetUniformLocation(this->shaderProgram, nameChar) + 1));	///TODO: figure out why +1 is needed.
 			}
 		}
-	}
+	//}
+		//test
+		foreach(QString paramname, materialParameters->keys())
+		{
+			qDebug() << paramname << (*materialParameters)[paramname].first << (*materialParameters)[paramname].second;
+		}
 }
 
 Shader::~Shader(void)
@@ -193,6 +205,11 @@ GLuint Shader::getNormalMatrixLocation()
 GLuint Shader::getCameraMatrixLocation()
 {
 	return cameraMatrixLocation;
+}
+
+GLuint Shader::getProjectionMatrixLocation()
+{
+	return projectionMatrixLocation;
 }
 
 GLenum Shader::getParameterType(QString name)

@@ -109,6 +109,9 @@
     <Filter Include="Source Files\Saving Files">
       <UniqueIdentifier>{cd011a97-1712-415d-8b4c-6435ce580970}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Shader Files\Tessalation Shader">
+      <UniqueIdentifier>{5da2d714-ee1e-456d-b9dc-faae3390dd1d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Entity.cpp">
@@ -372,6 +375,27 @@
     </None>
     <None Include="PerspectivePhong_PS.glsl">
       <Filter>Tests\OglDevTut03\Shaders</Filter>
+    </None>
+    <None Include="NormTexcoord_VS.glsl">
+      <Filter>Tests\OglDevTut03\Shaders</Filter>
+    </None>
+    <None Include="TexturedPhong_PS.glsl">
+      <Filter>Tests\OglDevTut03\Shaders</Filter>
+    </None>
+    <None Include="Perspective_NTBTc_VS.glsl">
+      <Filter>Shader Files\Vertex Shader</Filter>
+    </None>
+    <None Include="PhongBlinnBump_PS.glsl">
+      <Filter>Shader Files\Fragment Shader</Filter>
+    </None>
+    <None Include="Perspective_NTBTcTess_VS.glsl">
+      <Filter>Shader Files\Vertex Shader</Filter>
+    </None>
+    <None Include="SimpleTessalation_TCS.glsl">
+      <Filter>Shader Files\Tessalation Shader</Filter>
+    </None>
+    <None Include="VDisplacement_TES.glsl">
+      <Filter>Shader Files\Tessalation Shader</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

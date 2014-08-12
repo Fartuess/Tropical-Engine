@@ -41,11 +41,12 @@ void ModelComponent::Draw(CameraComponent* viewer)
 	///TODO: implement it.
 	material->Use();
 
-	glm::mat4 check = viewer->getMatrix();
+	//glm::mat4 check = viewer->getMatrix();
 
 	glUniformMatrix4fv(material->getShader()->getModelMatrixLocation(), 1, GL_FALSE, glm::value_ptr(owner->transform.getTransformMatrix()));
-	glUniformMatrix4fv(material->getShader()->getNormalMatrixLocation(), 1, GL_FALSE, glm::value_ptr(owner->transform.getNormalMatrix()));
-	glUniformMatrix4fv(material->getShader()->getCameraMatrixLocation(), 1, GL_FALSE, glm::value_ptr(viewer->getMatrix()));
+	glUniformMatrix3fv(material->getShader()->getNormalMatrixLocation(), 1, GL_FALSE, glm::value_ptr(owner->transform.getNormalMatrix()));
+	glUniformMatrix4fv(material->getShader()->getCameraMatrixLocation(), 1, GL_FALSE, glm::value_ptr(viewer->getCameraMatrix()));
+	glUniformMatrix4fv(material->getShader()->getProjectionMatrixLocation(), 1, GL_FALSE, glm::value_ptr(viewer->getProjectionMatrix()));
 
 	//temp? Light code
 	glUniform3fv(material->getShader()->dirLightVectorLocation, 1, glm::value_ptr(TropicalEngineApplication::instance()->sceneManager->mainLight->getDirection()));

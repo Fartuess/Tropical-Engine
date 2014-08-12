@@ -7,13 +7,13 @@
 
 #include "TropicalEngineApplication.h"
 
-Material::Material(Shader* shader, void* params, QString name):parameters()
+Material::Material(Shader* shader, void* params, QString name):parameters()	//params is not needed
 {
 	this->name = name;
 	this->shader = shader;
 	foreach(QString parameterName, this->shader->getMaterialParameters().keys())
 	{
-		parameters.append(QPair<QString, void*>(parameterName, nullptr));
+		parameters[parameterName] =  nullptr;
 	}
 	TropicalEngineApplication::instance()->materialManager->materials.insert(name, this);
 }
@@ -32,27 +32,27 @@ Shader* Material::getShader()
 	return shader;
 }
 
-const QVector<QPair<QString, void*>>& Material::getParameters()
-{
-	return parameters;
-}
+//const QVector<QPair<QString, void*>>& Material::getParameters()
+//{
+//	return parameters;
+//}
 
 void Material::Use()
 {
 	shader->Use();
+	TropicalEngineApplication::instance()->textureManager->resetTextureIterator();
 	if(shader->getCurrentMaterial() != this)
 	{
-		typedef QPair<QString, void*> parameterType;
-		foreach(parameterType parameter, parameters)
+		//typedef QPair<QString, void*> parameterType;
+		foreach(QString parameter, parameters.keys())
 		{
-			ActivateParameter(parameter.first, parameter.second);
+			ActivateParameter(parameter, parameters[parameter]);
 		}
 	}
 }
 
 void Material::ActivateParameter(QString name, void* value)
 {
-	TropicalEngineApplication::instance()->textureManager->resetTextureIterator();
 	GLuint parameterLocation = shader->getParameterLocation(name);
 	switch (shader->getParameterType(name))
 	{
@@ -115,6 +115,11 @@ void Material::ActivateParameter(GLuint location, glm::mat4* value)
 void Material::ActivateParameter(GLuint location, Texture* value)
 {
 	value->ActivateTexture(location);
+}
+
+void Material::SetParameter(QString name, void* parameter)
+{
+	parameters[name] = parameter;
 }
 
 QString Material::toXML()
