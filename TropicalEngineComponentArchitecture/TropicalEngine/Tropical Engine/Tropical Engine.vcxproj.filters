@@ -249,6 +249,9 @@
     <ClCompile Include="ISerializableToXML.cpp">
       <Filter>Source Files\Saving Files</Filter>
     </ClCompile>
+    <ClCompile Include="moc_TropicalEngineApplication.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entity.h">
@@ -341,9 +344,6 @@
     <ClInclude Include="TempPlayerComponent.h">
       <Filter>Header Files\Input</Filter>
     </ClInclude>
-    <ClInclude Include="TropicalEngineApplication.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Math.h">
       <Filter>Header Files\Math</Filter>
     </ClInclude>
@@ -352,12 +352,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Simple_VS.glsl">
-      <Filter>Tests\OglDevTut03\Shaders</Filter>
-    </None>
-    <None Include="Simple_PS.glsl">
-      <Filter>Tests\OglDevTut03\Shaders</Filter>
-    </None>
     <None Include="BasicVertexShader.glsl">
       <Filter>Shader Files\Vertex Shader</Filter>
     </None>
@@ -366,9 +360,6 @@
     </None>
     <None Include="UnlitSimple.glsl">
       <Filter>Shader Files\Fragment Shader</Filter>
-    </None>
-    <None Include="Lighted_PS.glsl">
-      <Filter>Tests\OglDevTut03\Shaders</Filter>
     </None>
     <None Include="PerspectiveSimple_VS.glsl">
       <Filter>Tests\OglDevTut03\Shaders</Filter>
@@ -397,6 +388,21 @@
     <None Include="VDisplacement_TES.glsl">
       <Filter>Shader Files\Tessalation Shader</Filter>
     </None>
+    <None Include="CookTorrance_PS.glsl">
+      <Filter>Shader Files\Fragment Shader</Filter>
+    </None>
+    <None Include="StraussSimple_PS.glsl">
+      <Filter>Shader Files\Fragment Shader</Filter>
+    </None>
+    <None Include="WardIsoSimple_PS.glsl">
+      <Filter>Shader Files\Fragment Shader</Filter>
+    </None>
+    <None Include="WardAnisoSimple_PS.glsl">
+      <Filter>Shader Files\Fragment Shader</Filter>
+    </None>
+    <None Include="PhongBlinnParalax_PS.glsl">
+      <Filter>Shader Files\Fragment Shader</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="OpenGLWidget.h">
@@ -405,10 +411,13 @@
     <CustomBuild Include="OglDevTut03.h">
       <Filter>Tests\OglDevTut03\Header Files</Filter>
     </CustomBuild>
+    <CustomBuild Include="TropicalEngineApplication.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="Lighted_VS.glsl">
-      <Filter>Tests\OglDevTut03\Shaders</Filter>
+    <Text Include="StraussSimple2_PS.glsl">
+      <Filter>Shader Files\Fragment Shader</Filter>
     </Text>
   </ItemGroup>
 </Project>

@@ -27,9 +27,9 @@ void OpenGLWidget::initializeGL()
 {
 	glewInit();
 
-	connect(this, SIGNAL(initializeSignal()), TropicalEngineApplication::instance()->renderer, SLOT(Initialize()));
+	connect(this, SIGNAL(initializeSignal()), TropicalEngineApplication::instance(), SLOT(Initialize()));
 	//connect(this, SIGNAL(reshapeSignal()), staticOglDevTut03, SLOT(reshapeSlot()));
-	connect(this, SIGNAL(drawSignal()), TropicalEngineApplication::instance()->renderer, SLOT(Draw()));
+	connect(this, SIGNAL(drawSignal()), TropicalEngineApplication::instance(), SLOT(Draw()));
 
 	glViewport(0, 0, 1024, 1024);
 	glClearColor(0.05f, 0.05f, 0.05f, 1.0f);

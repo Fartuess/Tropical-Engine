@@ -47,3 +47,20 @@ TropicalEngineApplication* TropicalEngineApplication::instance()
 {
 	return (TropicalEngineApplication*)(QApplication::instance());
 }
+
+void TropicalEngineApplication::Initialize()
+{
+	deltaTimer.start();
+	renderer->InitializeLevel();
+}
+
+void TropicalEngineApplication::Draw()
+{
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	deltaTime = deltaTimer.restart();
+	inputController->Update(deltaTime);
+	sceneManager->getCurrentCamera()->CalculateMatrix();
+
+	sceneManager->EvaluateLevels();	///TODO: Evaluate only changed
+	modelController->DrawAll(sceneManager->getCurrentCamera());
+}

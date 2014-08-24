@@ -8,7 +8,7 @@ class Level;
 class Shader;
 class Model;
 
-class OglDevTut03 : public QObject
+class OglDevTut03 : public QObject	///TODO: Get rid of this class.
 {
 	Q_OBJECT
 private:
@@ -20,6 +20,6 @@ public:
 	void InitializeLevel();
 
 public slots:
-	void Initialize();
-	void Draw();
+	void Initialize();	//Not used anymore
+	void Draw();		//Not used anymore
 };

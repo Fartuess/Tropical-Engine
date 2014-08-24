@@ -176,7 +176,12 @@
     <ClInclude Include="Texture.h" />
     <ClInclude Include="TextureManager.h" />
     <ClInclude Include="TransformComponent.h" />
-    <ClInclude Include="TropicalEngineApplication.h" />
+    <CustomBuild Include="TropicalEngineApplication.h">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)..\Middleware\Qt\moc.exe "%(FullPath)" -o "%(RootDir)%(Directory)moc_%(Filename).cpp</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Compiling %(Filename).%(Extension) using MOC</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(RootDir)$(Directory)moc_%(Filename).cpp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)..\Middleware\Qt\moc.exe;$(InputPath)</AdditionalInputs>
+    </CustomBuild>
     <ClInclude Include="Math.h" />
   </ItemGroup>
   <ItemGroup>
@@ -198,6 +203,7 @@
     <ClCompile Include="Math.cpp" />
     <ClCompile Include="moc_OglDevTut03.cpp" />
     <ClCompile Include="moc_OpenGLWidget.cpp" />
+    <ClCompile Include="moc_TropicalEngineApplication.cpp" />
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="ModelBuilder.cpp" />
     <ClCompile Include="ModelBuilder_Box.cpp" />
@@ -228,23 +234,25 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="BasicVertexShader.glsl" />
-    <None Include="Lighted_PS.glsl" />
+    <None Include="CookTorrance_PS.glsl" />
     <None Include="NormTexcoord_VS.glsl" />
     <None Include="PerspectivePhong_PS.glsl" />
     <None Include="PerspectiveSimple_VS.glsl" />
     <None Include="Perspective_NTBTcTess_VS.glsl" />
     <None Include="Perspective_NTBTc_VS.glsl" />
     <None Include="PhongBlinnBump_PS.glsl" />
+    <None Include="PhongBlinnParalax_PS.glsl" />
     <None Include="PhongBlinnSimple.glsl" />
     <None Include="SimpleTessalation_TCS.glsl" />
-    <None Include="Simple_PS.glsl" />
-    <None Include="Simple_VS.glsl" />
+    <None Include="StraussSimple_PS.glsl" />
     <None Include="TexturedPhong_PS.glsl" />
     <None Include="UnlitSimple.glsl" />
     <None Include="VDisplacement_TES.glsl" />
+    <None Include="WardAnisoSimple_PS.glsl" />
+    <None Include="WardIsoSimple_PS.glsl" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="Lighted_VS.glsl" />
+    <Text Include="StraussSimple2_PS.glsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
