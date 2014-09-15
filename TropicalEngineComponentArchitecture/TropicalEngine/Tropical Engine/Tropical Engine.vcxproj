@@ -166,7 +166,16 @@
     <ClInclude Include="Package.h" />
     <ClInclude Include="PackageManager.h" />
     <ClInclude Include="PointLightComponent.h" />
+    <CustomBuild Include="PropertiesWidget.h">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)..\Middleware\Qt\moc.exe "%(FullPath)" -o "%(RootDir)%(Directory)moc_%(Filename).cpp</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Compiling %(Filename).%(Extension) using MOC</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(RootDir)$(Directory)moc_%(Filename).cpp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)..\Middleware\Qt\moc.exe;$(InputPath)</AdditionalInputs>
+    </CustomBuild>
+    <ClInclude Include="PropertyItem.h" />
     <ClInclude Include="RenderComponent.h" />
+    <ClInclude Include="SceneGraphItem.h" />
+    <ClInclude Include="SceneGraphWidget.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="ShaderManager.h" />
@@ -203,6 +212,7 @@
     <ClCompile Include="Math.cpp" />
     <ClCompile Include="moc_OglDevTut03.cpp" />
     <ClCompile Include="moc_OpenGLWidget.cpp" />
+    <ClCompile Include="moc_PropertiesWidget.cpp" />
     <ClCompile Include="moc_TropicalEngineApplication.cpp" />
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="ModelBuilder.cpp" />
@@ -221,7 +231,11 @@
     <ClCompile Include="Package.cpp" />
     <ClCompile Include="PackageManager.cpp" />
     <ClCompile Include="PointLightComponent.cpp" />
+    <ClCompile Include="PropertiesWidget.cpp" />
+    <ClCompile Include="PropertyItem.cpp" />
     <ClCompile Include="RenderComponent.cpp" />
+    <ClCompile Include="SceneGraphItem.cpp" />
+    <ClCompile Include="SceneGraphWidget.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="ShaderManager.cpp" />
@@ -236,13 +250,14 @@
     <None Include="BasicVertexShader.glsl" />
     <None Include="CookTorrance_PS.glsl" />
     <None Include="NormTexcoord_VS.glsl" />
-    <None Include="PerspectivePhong_PS.glsl" />
+    <None Include="Phong_PS.glsl" />
     <None Include="PerspectiveSimple_VS.glsl" />
     <None Include="Perspective_NTBTcTess_VS.glsl" />
     <None Include="Perspective_NTBTc_VS.glsl" />
     <None Include="PhongBlinnBump_PS.glsl" />
     <None Include="PhongBlinnParalax_PS.glsl" />
-    <None Include="PhongBlinnSimple.glsl" />
+    <None Include="PhongBlinnSimple_PS.glsl" />
+    <None Include="PhongBlinn_PS.glsl" />
     <None Include="SimpleTessalation_TCS.glsl" />
     <None Include="StraussSimple_PS.glsl" />
     <None Include="TexturedPhong_PS.glsl" />

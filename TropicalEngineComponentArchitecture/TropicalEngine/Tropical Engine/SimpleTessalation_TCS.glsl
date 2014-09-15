@@ -22,8 +22,11 @@ void main()
 	v_bitangent_tcs[gl_InvocationID] = v_bitangent_v[gl_InvocationID];
     v_texcoord_tcs[gl_InvocationID]   = v_texcoord_v[gl_InvocationID];
 
-	gl_TessLevelOuter[0] = 7.0;
-    gl_TessLevelOuter[1] = 7.0;
-    gl_TessLevelOuter[2] = 7.0;
-    gl_TessLevelInner[0] = 7.0;
+	if(gl_InvocationID == 0)
+	{
+		gl_TessLevelOuter[0] = 10.0;
+		gl_TessLevelOuter[1] = 10.0;
+		gl_TessLevelOuter[2] = 10.0;
+		gl_TessLevelInner[0] = 10.0;
+	}
 }

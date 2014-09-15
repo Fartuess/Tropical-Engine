@@ -9,6 +9,7 @@ class Entity : public ISerializableToXML
 {
 private:
 	friend class Component;
+	friend class PropertiesWidget;
 
 	Entity* parrent;
 public:

@@ -7,7 +7,19 @@ RenderComponent::RenderComponent(Entity* owner, Material* material):Component(ow
 		this->material = material;
 	else
 		this->material = Shader::nullShader->defaultMaterial;
+	lightedBy = QList<LightComponent*>();
+	InitializeComponentType();
 }
+
+void RenderComponent::InitializeComponentType()
+{
+	if(!isComponentTypeUsed(getName()))
+	{
+		AddParameter("Material", "String");
+	}
+}
+
+QString RenderComponent::COMPONENTGETNAME("Render Component");
 
 RenderComponent::~RenderComponent(void)
 {

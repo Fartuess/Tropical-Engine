@@ -9,5 +9,6 @@ public:
 	~TempPlayerComponent(void);
 
 	void Update();
-};
 
+	QString getName() override;
+};

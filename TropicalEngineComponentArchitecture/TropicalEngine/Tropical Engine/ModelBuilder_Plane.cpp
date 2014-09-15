@@ -22,74 +22,74 @@ Model* ModelBuilder::CreatePlane(QString name, float sizeX, float sizeY, int sub
 	bitangents->reserve(Mesh->NumVertex);
     texCoords->reserve(Mesh->NumVertex);
 
-	for(int j = -1; j < subdivisionsY - 1; j++)
+	for(int j = 0; j < subdivisionsY; j++)
 	{
-		for(int i = -1; i < subdivisionsX - 1; i++)
+		for(int i = 0; i < subdivisionsX; i++)
 		{
 			vertices->push_back(glm::vec4(
-				(-0.5f + i) * sizeX / subdivisionsX,
+				-0.5f * sizeX + (i * sizeX / subdivisionsX),
 				0.0f,
-				(-0.5f + j) * sizeY / subdivisionsY,
+				-0.5f * sizeY + (j * sizeY / subdivisionsY),
 				1.0f
 			));
 			normals->push_back(glm::vec3(0.0f, 1.0f, 0.0f));
 			tangents->push_back(glm::vec3(1.0f, 0.0f, 0.0f));
-			bitangents->push_back(glm::vec3(0.0f, 0.0f, 1.0f));
+			bitangents->push_back(glm::vec3(0.0f, 0.0f, -1.0f));
 			texCoords->push_back(glm::vec2(i * sizeX / subdivisionsX, j * sizeY / subdivisionsY));
 
 			vertices->push_back(glm::vec4(
-				(-0.5f + i) * sizeX / subdivisionsX,
+				-0.5f * sizeX + (i * sizeX / subdivisionsX),
 				0.0f,
-				(-0.5f + j + 1) * sizeY / subdivisionsY,
+				-0.5f * sizeY + ((j + 1) * sizeY / subdivisionsY),
 				1.0f
 			));
 			normals->push_back(glm::vec3(0.0f, 1.0f, 0.0f));
 			tangents->push_back(glm::vec3(1.0f, 0.0f, 0.0f));
-			bitangents->push_back(glm::vec3(0.0f, 0.0f, 1.0f));
+			bitangents->push_back(glm::vec3(0.0f, 0.0f, -1.0f));
 			texCoords->push_back(glm::vec2(i * sizeX / subdivisionsX, (j + 1) * sizeY / subdivisionsY));
 
 			vertices->push_back(glm::vec4(
-				(-0.5f + i + 1) * sizeX / subdivisionsX,
+				-0.5f * sizeX + ((i + 1) * sizeX / subdivisionsX),
 				0.0f,
-				(-0.5f + j) * sizeY / subdivisionsY,
+				-0.5f * sizeY + (j * sizeY / subdivisionsY),
 				1.0f
 			));
 			normals->push_back(glm::vec3(0.0f, 1.0f, 0.0f));
 			tangents->push_back(glm::vec3(1.0f, 0.0f, 0.0f));
-			bitangents->push_back(glm::vec3(0.0f, 0.0f, 1.0f));
+			bitangents->push_back(glm::vec3(0.0f, 0.0f, -1.0f));
 			texCoords->push_back(glm::vec2((i + 1) * sizeX / subdivisionsX, j * sizeY / subdivisionsY));
 
 			vertices->push_back(glm::vec4(
-				(-0.5f + i + 1) * sizeX / subdivisionsX,
+				-0.5f * sizeX + ((i + 1) * sizeX / subdivisionsX),
 				0.0f,
-				(-0.5f + j) * sizeY / subdivisionsY,
+				-0.5f * sizeY + (j * sizeY / subdivisionsY),
 				1.0f
 			));
 			normals->push_back(glm::vec3(0.0f, 1.0f, 0.0f));
 			tangents->push_back(glm::vec3(1.0f, 0.0f, 0.0f));
-			bitangents->push_back(glm::vec3(0.0f, 0.0f, 1.0f));
+			bitangents->push_back(glm::vec3(0.0f, 0.0f, -1.0f));
 			texCoords->push_back(glm::vec2((i + 1) * sizeX / subdivisionsX, j * sizeY / subdivisionsY));
 
 			vertices->push_back(glm::vec4(
-				(-0.5f + i) * sizeX / subdivisionsX,
+				-0.5f * sizeX + (i * sizeX / subdivisionsX),
 				0.0f,
-				(-0.5f + j + 1) * sizeY / subdivisionsY,
+				-0.5f * sizeY + ((j + 1) * sizeY / subdivisionsY),
 				1.0f
 			));
 			normals->push_back(glm::vec3(0.0f, 1.0f, 0.0f));
 			tangents->push_back(glm::vec3(1.0f, 0.0f, 0.0f));
-			bitangents->push_back(glm::vec3(0.0f, 0.0f, 1.0f));
+			bitangents->push_back(glm::vec3(0.0f, 0.0f, -1.0f));
 			texCoords->push_back(glm::vec2(i * sizeX / subdivisionsX, (j + 1) * sizeY / subdivisionsY));
 
 			vertices->push_back(glm::vec4(
-				(-0.5f + i + 1) * sizeX / subdivisionsX,
+				-0.5f * sizeX + ((i + 1) * sizeX / subdivisionsX),
 				0.0f,
-				(-0.5f + j + 1) * sizeY / subdivisionsY,
+				-0.5f * sizeY + ((j + 1) * sizeY / subdivisionsY),
 				1.0f
 			));
 			normals->push_back(glm::vec3(0.0f, 1.0f, 0.0f));
 			tangents->push_back(glm::vec3(1.0f, 0.0f, 0.0f));
-			bitangents->push_back(glm::vec3(0.0f, 0.0f, 1.0f));
+			bitangents->push_back(glm::vec3(0.0f, 0.0f, -1.0f));
 			texCoords->push_back(glm::vec2((i + 1) * sizeX / subdivisionsX, (j + 1) * sizeY / subdivisionsY));
 		}
 	}

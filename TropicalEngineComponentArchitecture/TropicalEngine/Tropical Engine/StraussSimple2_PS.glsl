@@ -1,15 +1,14 @@
 #version 330
-//#define M_PI 3.1415926535897932384626433832795
 
 uniform vec3 u_lightVector;
 uniform vec3 u_lightColor;
 uniform float u_lightBrightness;
-uniform float u_lightAmbient;	//unused, figure out how it should work in strauss.
+uniform float u_lightAmbient;
 
-uniform vec3 mat_albedo;
-uniform float mat_roughness;
-uniform float mat_metaliness;
-uniform float mat_refractionFactor;
+uniform vec3 mat_albedo = vec3(0.5);
+uniform float mat_roughness = 0.5;
+uniform float mat_metaliness = 0.0;
+//uniform float mat_refractionFactor;
 
 in vec3 v_normal;
 in vec3 v_eye;
@@ -34,7 +33,7 @@ void main()
 	// Make sure the interpolated inputs and
     // constant parameters are normalized
     vec3 n = normalize( v_normal );
-    vec3 l = normalize( -u_lightVector );
+    vec3 l = normalize( u_lightVector );
     vec3 v = normalize( v_eye );
     vec3 h = reflect( l, n );
  
@@ -44,35 +43,43 @@ void main()
     float HdotV   = dot( h, v );
     float fNdotL  = fresnel( NdotL );
     float roughness_cubed = mat_roughness * mat_roughness * mat_roughness;
+
+	float d  = ( 1.0 - mat_metaliness * mat_roughness );
+	float Rd = ( 1.0 - roughness_cubed );// * ( 1.0f - fTransparency );
+
+	vec3 color = (d * Rd * mat_albedo) * u_lightColor * u_lightAmbient;
+
+	if (NdotL > 0.0)
+	{
+		// Evaluate the diffuse term
+		
+		vec3 diffuse = NdotL * d * Rd * mat_albedo;
  
-    // Evaluate the diffuse term
-    float d  = ( 1.0 - mat_metaliness * mat_roughness );
-    float Rd = ( 1.0 - roughness_cubed );// * ( 1.0f - fTransparency );
-    vec3 diffuse = NdotL * d * Rd * mat_albedo;
+		// Compute the inputs into the specular term
+		float r = ( 1.0 /*- fTransparency*/ ) - Rd;
  
-    // Compute the inputs into the specular term
-    float r = ( 1.0 /*- fTransparency*/ ) - Rd;
+		float j = fNdotL * microfacetShadow( NdotL ) * microfacetShadow( NdotV );
  
-    float j = fNdotL * microfacetShadow( NdotL ) * microfacetShadow( NdotV );
+		// 'k' is used to provide small off-specular
+		// peak for very rough surfaces. Can be changed
+		// to suit desired results...
+		const float k = 0.1;
+		float reflect = min( 1.0, r + j * ( r + k ) );
  
-    // 'k' is used to provide small off-specular
-    // peak for very rough surfaces. Can be changed
-    // to suit desired results...
-    const float k = 0.1;
-    float reflect = min( 1.0, r + j * ( r + k ) );
+		vec3 vec3_1f = vec3( 1.0, 1.0, 1.0 );
+		vec3 Cs = vec3_1f + mat_metaliness * (1.0 - fNdotL) * (mat_albedo - vec3_1f);
  
-    vec3 vec3_1f = vec3( 1.0, 1.0, 1.0 );
-    vec3 Cs = vec3_1f + mat_metaliness * (1.0 - fNdotL) * (mat_albedo - vec3_1f);
+		// Evaluate the specular term
+		vec3 specular = Cs * reflect;
+		specular *= pow( -HdotV, 3.0 / (1.0 - mat_roughness) );
  
-    // Evaluate the specular term
-    vec3 specular = Cs * reflect;
-    specular *= pow( -HdotV, 3.0 / (1.0 - mat_roughness) );
- 
-    // Composite the final result, ensuring
-    // the values are >= 0.0f yields better results. Some
-    // combinations of inputs generate negative values which
-    // looks wrong when rendered...
-    diffuse  = max( 0.0, diffuse );
-    specular = max( 0.0, specular );
-    fragcolor = vec4( diffuse + specular, 1.0 );
+		// Composite the final result, ensuring
+		// the values are >= 0.0f yields better results. Some
+		// combinations of inputs generate negative values which
+		// looks wrong when rendered...
+		diffuse  = max( vec3(0.0), diffuse );
+		specular = max( vec3(0.0), specular );
+		color += (diffuse + specular) * u_lightColor * u_lightBrightness;
+	}
+    fragColor = vec4(color, 1.0 );
 }

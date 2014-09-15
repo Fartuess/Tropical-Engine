@@ -21,6 +21,11 @@ void SceneManager::setCurrentCamera(CameraComponent* camera)
 	currentCamera = camera;
 }
 
+QMap<QString, Level*>& SceneManager::getLevels()
+{
+	return levels;
+}
+
 void SceneManager::LoadLevel(QString fileUrl)
 {
 	///TODO: implement it.

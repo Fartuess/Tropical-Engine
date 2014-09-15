@@ -30,6 +30,7 @@ void Texture::Load()
 	textureData = textureData.convertToFormat(QImage::Format_RGBA8888);
 
 	//glActiveTexture(GL_TEXTURE0 + TropicalEngineApplication::instance()->textureManager->getTextureIterator());
+
 	glGenTextures(1, &textureLocation);
     glBindTexture(GL_TEXTURE_2D, textureLocation);
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
@@ -44,7 +45,7 @@ void Texture::ActivateTexture(GLuint location)
 {
 	glActiveTexture(GL_TEXTURE0 + TropicalEngineApplication::instance()->textureManager->getTextureIterator());
 	glBindTexture(GL_TEXTURE_2D, textureLocation);
-	glUniform1i(location, textureLocation);
+	glUniform1i(location, TropicalEngineApplication::instance()->textureManager->getTextureIterator());
 	//int t = TropicalEngineApplication::instance()->textureManager->getTextureIterator();
 	TropicalEngineApplication::instance()->textureManager->incrementTextureIterator();
 }

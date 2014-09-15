@@ -23,6 +23,8 @@ class CameraComponent;
 
 class OglDevTut03;
 
+class SceneGraphWidget;
+
 class TropicalEngineApplication : public QApplication
 {
 	Q_OBJECT
@@ -41,7 +43,7 @@ public:
 	
 	PackageManager* packageManager;
 	SceneManager* sceneManager;
-	SceneController* sceneController;
+	SceneGraphWidget* sceneGraph;
 	
 	LightController* lightController;
 	

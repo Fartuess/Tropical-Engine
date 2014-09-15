@@ -101,8 +101,9 @@ void OpenGLWidget::mouseMoveEvent(QMouseEvent* mouseEvent)
 	qDebug() << "X: " << mouseEvent->globalX() << " Y: " << mouseEvent->globalY();
 	TropicalEngineApplication::instance()->inputController->mousePosition = glm::vec2(mouseEvent->globalX(), mouseEvent->globalY());
 
-	glm::quat quat1 = glm::angleAxis(mouseEvent->globalX() / 5.0f, glm::vec3(0.0f, -1.0f, 0.0f));
-	glm::quat quat2 = glm::angleAxis(mouseEvent->globalY() / 5.0f - 90.0f, TropicalEngineApplication::instance()->sceneManager->getCurrentCamera()->getOwner()->transform.getRight());
-
+	glm::quat quat1 = glm::angleAxis(mouseEvent->globalX() / 6.0f, glm::vec3(0.0f, -1.0f, 0.0f));
+	TropicalEngineApplication::instance()->sceneManager->getCurrentCamera()->getOwner()->transform.setLocalRotation(quat1);
+	glm::quat quat2 = glm::angleAxis(mouseEvent->globalY() / 6.0f - 90.0f, TropicalEngineApplication::instance()->sceneManager->getCurrentCamera()->getOwner()->transform.getRight());
+	qDebug() << "X: " << mouseEvent->globalY() / 6.0f - 90.0f;
 	TropicalEngineApplication::instance()->sceneManager->getCurrentCamera()->getOwner()->transform.setLocalRotation(quat2 * quat1);
 }

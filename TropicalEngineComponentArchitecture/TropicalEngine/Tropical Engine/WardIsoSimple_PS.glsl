@@ -6,9 +6,9 @@ uniform vec3 u_lightColor;
 uniform float u_lightBrightness;
 uniform float u_lightAmbient;
 
-uniform vec3 mat_diffuse;
-//uniform vec3 mat_specular;
-uniform float mat_roughness;
+uniform vec3 mat_diffuse = vec3(0.5);
+//uniform vec3 mat_specular = vec3(1.0);
+uniform float mat_roughness = 0.5;
 
 in vec3 v_normal;
 in vec3 v_eye;
@@ -17,10 +17,11 @@ out vec4 fragColor;
 
 void main()
 {
+	vec3 color = mat_diffuse * u_lightColor * u_lightAmbient;
 	// Make sure the interpolated inputs and
     // constant parameters are normalized
     vec3 n = normalize( v_normal );
-    vec3 l = normalize( -u_lightVector );
+    vec3 l = normalize( u_lightVector );
     vec3 v = normalize( v_eye );
     vec3 h = normalize( l + v );
  
@@ -62,5 +63,7 @@ void main()
     vec3 Specular = Ps * ( spec_num / spec_den );
  
     // Composite the final value:
-    fragColor = vec4( dot( n, l ) * (mat_diffuse + Specular ), 1.0 );
+	color += max(0, dot( n, l )) * (mat_diffuse + max(vec3(0.0f), Specular) );
+
+    fragColor = vec4(color, 1.0 );
 }

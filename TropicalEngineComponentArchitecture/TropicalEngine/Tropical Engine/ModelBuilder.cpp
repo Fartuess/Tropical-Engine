@@ -116,17 +116,16 @@ Model* ModelBuilder::Load(QString name, QString fileUrl)
 			const aiVector3D Zero3D(0.0f, 0.0f, 0.0f);
 			for (unsigned int i = 0 ; i < Mesh->NumVertex ; i++)
 			{
-				unsigned int iHelper = Mesh->NumVertex - 1 - i;	//to make it CCW. Not sure if screwing up with normals
-				const aiVector3D* pPos			= &(paiMesh->mVertices[iHelper]);
-				const aiVector3D* pNormal		= &(paiMesh->mNormals[iHelper]);
-				const aiVector3D* pTangent		= &(paiMesh->mTangents[iHelper]);
-				const aiVector3D* pBitangent	= &(paiMesh->mBitangents[iHelper]);
-				const aiVector3D* pTexCoord		= paiMesh->HasTextureCoords(0) ? &(paiMesh->mTextureCoords[0][iHelper]) : &Zero3D;
+				const aiVector3D* pPos			= &(paiMesh->mVertices[i]);
+				const aiVector3D* pNormal		= &(paiMesh->mNormals[i]);
+				const aiVector3D* pTangent		= &(paiMesh->mTangents[i]);
+				const aiVector3D* pBitangent	= &(paiMesh->mBitangents[i]);
+				const aiVector3D* pTexCoord		= paiMesh->HasTextureCoords(0) ? &(paiMesh->mTextureCoords[0][i]) : &Zero3D;
 
 				vertices->push_back(glm::vec4(pPos->x, pPos->y, pPos->z, 1.0f));
-				normals->push_back(glm::vec3(-pNormal->x, -pNormal->y, -pNormal->z));
-				tangents->push_back(glm::vec3(-pTangent->x, -pTangent->y, -pTangent->z));
-				bitangents->push_back(glm::vec3(-pBitangent->x, -pBitangent->y, -pBitangent->z));
+				normals->push_back(glm::vec3(pNormal->x, pNormal->y, pNormal->z));
+				tangents->push_back(glm::vec3(pTangent->x, pTangent->y, pTangent->z));
+				bitangents->push_back(glm::vec3(pBitangent->x, pBitangent->y, pBitangent->z));
 				texCoords->push_back(glm::vec2(pTexCoord->x, pTexCoord->y));
 			}
 			glGenBuffers(1, &Mesh->vertexVBO);

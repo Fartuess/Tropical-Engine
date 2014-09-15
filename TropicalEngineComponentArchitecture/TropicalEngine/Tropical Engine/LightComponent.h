@@ -2,6 +2,8 @@
 #include <glm.hpp>
 #include "component.h"
 
+#define MAX_POINT_LIGHT 2
+
 //Should it be an abstract class?
 class LightComponent :
 	public Component
@@ -14,12 +16,16 @@ protected:
 public:
 	LightComponent(Entity* owner, glm::vec3 color, float brightness = 1.0f, bool isCastingShadows = false);
 	~LightComponent(void);
-
+protected:
+	void InitializeComponentType() override;
+public:
 	bool isCastingShadows();
 	void isCastingShadows(bool isCastingShadows);
 
 	void Evaluate();
 	void DrawShadows();
+
+	QString getName() override;
 
 	QString toXML() override;
 };

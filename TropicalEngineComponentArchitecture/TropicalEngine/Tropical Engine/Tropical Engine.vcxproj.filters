@@ -252,6 +252,21 @@
     <ClCompile Include="moc_TropicalEngineApplication.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SceneGraphWidget.cpp">
+      <Filter>Source Files\QtInterface</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneGraphItem.cpp">
+      <Filter>Source Files\QtInterface</Filter>
+    </ClCompile>
+    <ClCompile Include="PropertiesWidget.cpp">
+      <Filter>Source Files\QtInterface</Filter>
+    </ClCompile>
+    <ClCompile Include="PropertyItem.cpp">
+      <Filter>Source Files\QtInterface</Filter>
+    </ClCompile>
+    <ClCompile Include="moc_PropertiesWidget.cpp">
+      <Filter>Source Files\QtInterface</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entity.h">
@@ -350,21 +365,24 @@
     <ClInclude Include="ISerializableToXML.h">
       <Filter>Header Files\Saving Files</Filter>
     </ClInclude>
+    <ClInclude Include="SceneGraphWidget.h">
+      <Filter>Header Files\QtInterface</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneGraphItem.h">
+      <Filter>Header Files\QtInterface</Filter>
+    </ClInclude>
+    <ClInclude Include="PropertyItem.h">
+      <Filter>Header Files\QtInterface</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="BasicVertexShader.glsl">
       <Filter>Shader Files\Vertex Shader</Filter>
     </None>
-    <None Include="PhongBlinnSimple.glsl">
-      <Filter>Shader Files\Fragment Shader</Filter>
-    </None>
     <None Include="UnlitSimple.glsl">
       <Filter>Shader Files\Fragment Shader</Filter>
     </None>
     <None Include="PerspectiveSimple_VS.glsl">
-      <Filter>Tests\OglDevTut03\Shaders</Filter>
-    </None>
-    <None Include="PerspectivePhong_PS.glsl">
       <Filter>Tests\OglDevTut03\Shaders</Filter>
     </None>
     <None Include="NormTexcoord_VS.glsl">
@@ -403,6 +421,15 @@
     <None Include="PhongBlinnParalax_PS.glsl">
       <Filter>Shader Files\Fragment Shader</Filter>
     </None>
+    <None Include="PhongBlinnSimple_PS.glsl">
+      <Filter>Shader Files\Fragment Shader</Filter>
+    </None>
+    <None Include="PhongBlinn_PS.glsl">
+      <Filter>Shader Files\Fragment Shader</Filter>
+    </None>
+    <None Include="Phong_PS.glsl">
+      <Filter>Shader Files\Fragment Shader</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="OpenGLWidget.h">
@@ -413,6 +440,9 @@
     </CustomBuild>
     <CustomBuild Include="TropicalEngineApplication.h">
       <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="PropertiesWidget.h">
+      <Filter>Header Files\QtInterface</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>

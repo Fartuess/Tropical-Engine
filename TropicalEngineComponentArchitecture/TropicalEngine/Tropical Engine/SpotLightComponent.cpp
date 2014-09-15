@@ -8,11 +8,26 @@ LightComponent(owner, color, brightness, isCastingShadows)
 	this->attenuation = attenuation;
 	this->outerConeRadius = outerConeRadius;
 	this->innerConeRadius = innerConeRadius;
+
+	InitializeComponentType();
 }
 
 SpotLightComponent::~SpotLightComponent(void)
 {
 	///TODO: implement it.
+}
+
+void SpotLightComponent::InitializeComponentType()
+{
+	if(!isComponentTypeUsed(getName()))
+	{
+		SetParrentComponentType("Light Component");
+
+		AddParameter("Radius", "Float");
+		AddParameter("Attenuation", "Float");
+		AddParameter("Outer Radius", "Float");
+		AddParameter("Inner Radius", "Float");
+	}
 }
 
 float SpotLightComponent::getRadius()
@@ -50,6 +65,8 @@ void SpotLightComponent::DrawShadows()
 {
 	///TODO: implement it.
 }
+
+QString SpotLightComponent::COMPONENTGETNAME("SpotLight Component");
 
 QString SpotLightComponent::toXML()
 {

@@ -11,13 +11,17 @@ class RenderComponent :
 {
 public:
 	Material* material;
-private:
+//protected:	//temporarily public
 	QList<LightComponent*> lightedBy;
 public:
 	RenderComponent(Entity* owner, Material* material);
 	~RenderComponent(void);
-
+protected:
+	void InitializeComponentType() override;
+public:
 	virtual void Evaluate() = 0;
 	virtual void Draw(CameraComponent* viewer) = 0;
+
+	QString getName() override;
 };
 

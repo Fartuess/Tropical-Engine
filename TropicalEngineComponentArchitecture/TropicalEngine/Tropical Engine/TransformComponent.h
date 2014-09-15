@@ -26,7 +26,9 @@ public:
 	TransformComponent(Entity* owner);
 	TransformComponent(Entity* owner, glm::vec3 localPosition, glm::quat localRotation, glm::vec3 localScale);
 	~TransformComponent(void);
-
+protected:
+	void InitializeComponentType() override;
+public:
 	glm::vec3 getPosition(bool isGlobal = false);
 	glm::vec3 getLocalPosition();
 	glm::vec3 getGlobalPosition();
@@ -69,6 +71,7 @@ private:
 public:
 	void Evaluate();
 
+	QString getName() override;
 	QString toXML() override;
 };
 

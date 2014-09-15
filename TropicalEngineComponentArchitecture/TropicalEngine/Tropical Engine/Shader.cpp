@@ -3,6 +3,7 @@
 #include <QtCore\qdebug.h>
 #include "ShaderManager.h"
 #include "Shader.h"
+#include "PointLightComponent.h"
 
 #include "TropicalEngineApplication.h"
 
@@ -12,6 +13,9 @@ Shader::Shader(QString vertexShader, QString fragmentShader, QString name)
 {
 	///TODO: implement it.
 	this->name = name;
+
+	drawingMode = GL_TRIANGLES;
+
 	subprograms = new QVector<GLuint>();
 	shaderProgram = glCreateProgram();
 
@@ -51,6 +55,7 @@ Shader::Shader(QString vertexShader, QString fragmentShader, QString name)
 
 	modelMatrixLocation = glGetUniformLocation(this->shaderProgram, "u_transformationMatrix");
 	normalMatrixLocation = glGetUniformLocation(this->shaderProgram, "u_normalMatrix");
+	cameraPositionLocation = glGetUniformLocation(shaderProgram, "u_cameraPosition");
 	cameraMatrixLocation = glGetUniformLocation(this->shaderProgram, "u_cameraMatrix");
 	projectionMatrixLocation = glGetUniformLocation(this->shaderProgram, "u_projectionMatrix");
 
@@ -58,6 +63,21 @@ Shader::Shader(QString vertexShader, QString fragmentShader, QString name)
 	dirLightColorLocation = glGetUniformLocation(this->shaderProgram, "u_lightColor");
 	dirLightBrightnessLocation = glGetUniformLocation(this->shaderProgram, "u_lightBrightness");
 	dirLightAmbientLocation = glGetUniformLocation(this->shaderProgram, "u_lightAmbient");
+
+	pointLightPositionLocations = QVector<GLuint>();
+	pointLightColorLocations = QVector<GLuint>();
+	pointLightBrightnessLocations = QVector<GLuint>();
+	pointLightRadiusLocations = QVector<GLuint>();
+	pointLightAttenuationLocations = QVector<GLuint>();
+
+	for(int i = 0; i < MAX_POINT_LIGHT; i++)
+	{
+		pointLightPositionLocations.append(glGetUniformLocation(this->shaderProgram, QString("u_pointLights[" + QString::number(i) + "].position").toLocal8Bit().data()));
+		pointLightColorLocations.append(glGetUniformLocation(this->shaderProgram, QString("u_pointLights[" + QString::number(i) + "].color").toLocal8Bit().data()));
+		pointLightBrightnessLocations.append(glGetUniformLocation(this->shaderProgram, QString("u_pointLights[" + QString::number(i) + "].brightness").toLocal8Bit().data()));
+		pointLightRadiusLocations.append(glGetUniformLocation(this->shaderProgram, QString("u_pointLights[" + QString::number(i) + "].radius").toLocal8Bit().data()));
+		pointLightAttenuationLocations.append(glGetUniformLocation(this->shaderProgram, QString("u_pointLights[" + QString::number(i) + "].attenuation").toLocal8Bit().data()));
+	}
 
 	setUpMaterialParameters();
 	defaultMaterial = new Material(this, nullptr, QString(name + "_mat"));
@@ -68,6 +88,9 @@ Shader::Shader(QMap<QString, GLuint> subshaders, QString name)
 {
 	///TODO: implement it.
 	this->name = name;
+
+	drawingMode = GL_TRIANGLES;
+
 	subprograms = new QVector<GLuint>();
 	shaderProgram = glCreateProgram();
 
@@ -140,13 +163,18 @@ void Shader::setUpMaterialParameters()
 			glGetActiveUniform(shaderProgram, i, 128, &nameLenght, &size, &type, nameChar);
 			QString nameString = QString(nameChar);
 
-			GLuint test = glGetUniformLocation(this->shaderProgram, nameChar);
+			int test = glGetUniformLocation(this->shaderProgram, nameChar);
+
+			if(test == -1)
+			{
+				int lol = 5050;
+			}
 
  			if(nameString.startsWith("mat_"))
 			{
 				//nameString.remove(0, 4);
 				
-				materialParameters->insert(nameString, QPair<GLenum, GLuint>(type, glGetUniformLocation(this->shaderProgram, nameChar) + 1));	///TODO: figure out why +1 is needed.
+				materialParameters->insert(nameString, QPair<GLenum, GLuint>(type, glGetUniformLocation(this->shaderProgram, nameChar)));	///TODO: figure out why +1 is needed.
 			}
 		}
 	//}
@@ -200,6 +228,11 @@ GLuint Shader::getModelMatrixLocation()
 GLuint Shader::getNormalMatrixLocation()
 {
 	return normalMatrixLocation;
+}
+
+GLuint Shader::getCameraPositionLocation()
+{
+	return cameraPositionLocation;
 }
 
 GLuint Shader::getCameraMatrixLocation()

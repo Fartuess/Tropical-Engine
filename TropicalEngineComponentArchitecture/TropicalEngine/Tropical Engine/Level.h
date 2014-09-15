@@ -10,7 +10,7 @@ class Level : public ISerializableToXML
 public:
 	QString name;
 	Entity root;
-	TransformComponent transform;	//is it needed since we can get same thing by using root?
+	//TransformComponent transform;	//is it needed since we can get same thing by using root?
 private:
 	Package internalPackage;
 	QMap<QString, Package*> usedPackages;

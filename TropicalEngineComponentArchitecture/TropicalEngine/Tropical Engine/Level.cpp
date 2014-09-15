@@ -1,11 +1,11 @@
 #include "Level.h"
 
-Level::Level(glm::vec3 position, glm::quat rotation, glm::vec3 scale, QString name):transform(&(this->root)), internalPackage(name)
+Level::Level(glm::vec3 position, glm::quat rotation, glm::vec3 scale, QString name): internalPackage(name)
 {
 	///TODO: implement it.
 }
 
-Level::Level(TransformComponent transform, QString name):transform(&(this->root)), internalPackage(name)
+Level::Level(TransformComponent transform, QString name): internalPackage(name)
 {
 	///TODO: implement it.
 }

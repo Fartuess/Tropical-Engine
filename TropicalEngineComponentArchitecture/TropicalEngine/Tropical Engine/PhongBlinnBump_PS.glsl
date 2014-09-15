@@ -6,6 +6,8 @@ uniform float u_lightBrightness;
 uniform float u_lightAmbient;
 uniform sampler2D mat_diffuseTexture;
 uniform sampler2D mat_normalTexture;
+uniform vec3 mat_specularColor = vec3(1.0f);	///TODO: figure out how to make it into a texture with default value
+uniform int mat_specularExponent = 30;
 
 in vec3 v_normal;
 in vec3 v_tangent;
@@ -19,9 +21,9 @@ void main()
 {
 	vec3 color = u_lightColor * u_lightAmbient * texture(mat_diffuseTexture, v_texcoord);
 
-	vec3 normal = normalize( texture(mat_normalTexture, v_texcoord).xyz * 2.0 - 1.0 );	//change Y to -Y
+	vec3 normal = normalize( texture(mat_normalTexture, v_texcoord).xyz * 2.0 - 1.0 );
 
-	mat3 TBN = transpose(mat3(v_tangent, -v_bitangent, v_normal));	//changed Y to -Y here? is it good?
+	mat3 TBN = transpose(mat3(v_tangent, v_bitangent, v_normal));
 
 	vec3 lightdir_ts = normalize(TBN * u_lightVector);
 
@@ -38,7 +40,7 @@ void main()
 	
 		color += u_lightColor * u_lightBrightness * texture(mat_diffuseTexture, v_texcoord) * nDotL;
 		
-		color += u_lightColor * u_lightBrightness * pow(nDotH, 20.0);
+		color += u_lightColor * u_lightBrightness * mat_specularColor * pow(nDotH, mat_specularExponent);
 	}
 
 	FragColor = vec4(color, 1.0);

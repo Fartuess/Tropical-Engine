@@ -23,6 +23,7 @@ private:
 
 	GLuint modelMatrixLocation;
 	GLuint normalMatrixLocation;
+	GLuint cameraPositionLocation;
 	GLuint cameraMatrixLocation;
 	GLuint projectionMatrixLocation;
 public:	//temporarily
@@ -30,6 +31,15 @@ public:	//temporarily
 	GLuint dirLightColorLocation;
 	GLuint dirLightBrightnessLocation;
 	GLuint dirLightAmbientLocation;
+
+	QVector<GLuint> pointLightPositionLocations;
+	QVector<GLuint> pointLightColorLocations;
+	QVector<GLuint> pointLightBrightnessLocations;
+	QVector<GLuint> pointLightRadiusLocations;
+	QVector<GLuint> pointLightAttenuationLocations;
+
+	GLuint drawingMode;
+
 public:
 	static Shader* nullShader;
 private:
@@ -51,6 +61,7 @@ public:
 
 	GLuint getModelMatrixLocation();
 	GLuint getNormalMatrixLocation();
+	GLuint getCameraPositionLocation();
 	GLuint getCameraMatrixLocation();
 	GLuint getProjectionMatrixLocation();
 

@@ -16,7 +16,6 @@
 #include <QtWidgets\qgroupbox.h>
 #include <QtWidgets\qspinbox.h>
 #include <QtCore\qthread.h>
-#include "OpenGLWidget.h"
 
 #include "Entity.h"
 #include "Level.h"

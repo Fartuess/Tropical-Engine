@@ -8,6 +8,8 @@ TransformComponent::TransformComponent(Entity* owner):Component(owner)
 	localRotation = glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f));
 	localScale = glm::vec3(1.0f, 1.0f, 1.0f);
 	EvaluateGlobals();
+
+	InitializeComponentType();
 }
 
 TransformComponent::TransformComponent(Entity* owner, glm::vec3 localPosition, glm::quat localRotation, glm::vec3 localScale):Component(owner)
@@ -16,10 +18,23 @@ TransformComponent::TransformComponent(Entity* owner, glm::vec3 localPosition, g
 	this->localRotation = localRotation;
 	this->localScale = localScale;
 	EvaluateGlobals();
+
+	InitializeComponentType();
 }
 
 TransformComponent::~TransformComponent(void)
 {
+
+}
+
+void TransformComponent::InitializeComponentType()
+{
+	if(!isComponentTypeUsed(getName()))
+	{
+		AddParameter("Local Position", "Vec3");
+		AddParameter("Local Rotation", "Vec3");
+		AddParameter("Local Scale", "Vec3");
+	}
 }
 
 glm::vec3 TransformComponent::getPosition(bool isGlobal)
@@ -256,9 +271,9 @@ void TransformComponent::EvaluateInternal()
 		transformMatrix = owner->getParrent()->transform.getTransformMatrix() * glm::translate(glm::rotate(glm::scale(glm::mat4(1.0f), localScale), glm::angle(localRotation), glm::axis(localRotation)), localPosition);
 		normalMatrix = glm::mat3(glm::translate(glm::rotate(glm::transpose(glm::scale(glm::mat4(1.0f), localScale) * owner->getParrent()->transform.getTransformMatrix()), glm::angle(localRotation), glm::axis(localRotation)), localPosition));
 
-		front = glm::vec3(owner->getParrent()->transform.getTransformMatrix() * glm::rotate(glm::mat4(1.0f), glm::angle(localRotation), glm::axis(localRotation)) * glm::vec4(0.0f, 0.0f, -1.0f, 1.0f));
-		up = glm::vec3(owner->getParrent()->transform.getTransformMatrix() * glm::rotate(glm::mat4(1.0f), glm::angle(localRotation), glm::axis(localRotation)) * glm::vec4(0.0f, 1.0f, 0.0f, 1.0f));
-		right = glm::vec3(owner->getParrent()->transform.getTransformMatrix() * glm::rotate(glm::mat4(1.0f), glm::angle(localRotation), glm::axis(localRotation)) * glm::vec4(1.0f, 0.0f, 0.0f, 1.0f));
+		front = glm::normalize(glm::vec3(owner->getParrent()->transform.getTransformMatrix() * glm::rotate(glm::mat4(1.0f), glm::angle(localRotation), glm::axis(localRotation)) * glm::vec4(0.0f, 0.0f, -1.0f, 1.0f)));
+		up = glm::normalize(glm::vec3(owner->getParrent()->transform.getTransformMatrix() * glm::rotate(glm::mat4(1.0f), glm::angle(localRotation), glm::axis(localRotation)) * glm::vec4(0.0f, 1.0f, 0.0f, 1.0f)));
+		right = glm::normalize(glm::vec3(owner->getParrent()->transform.getTransformMatrix() * glm::rotate(glm::mat4(1.0f), glm::angle(localRotation), glm::axis(localRotation)) * glm::vec4(1.0f, 0.0f, 0.0f, 1.0f)));
 	}
 }
 
@@ -270,6 +285,8 @@ void TransformComponent::Evaluate()
 		childObject->transform.Evaluate();
 	}
 }
+
+QString TransformComponent::COMPONENTGETNAME("Transform Component");
 
 QString TransformComponent::toXML()
 {

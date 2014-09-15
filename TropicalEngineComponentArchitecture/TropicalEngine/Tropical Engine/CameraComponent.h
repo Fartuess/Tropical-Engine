@@ -18,7 +18,9 @@ private:
 public:
 	CameraComponent(Entity* owner, glm::vec3 targetOffset, glm::vec3 up, float fov, float aspectRatio, float zNear, float zFar);
 	~CameraComponent(void);
-
+protected:
+	void InitializeComponentType() override;
+public:
 	glm::vec3 getTarget();
 	void setTarget(glm::vec3 targetOffset);
 	glm::vec3 getUp();
@@ -38,6 +40,7 @@ public:
 	glm::mat4 getProjectionMatrix();
 	void CalculateMatrix();
 
+	QString getName() override;
 	QString toXML() override;
 };
 

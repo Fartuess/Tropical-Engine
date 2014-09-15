@@ -11,7 +11,9 @@
 #include <QtWidgets\qspinbox.h>
 #include <QtCore\qthread.h>
 #include "OpenGLWidget.h"
+#include "SceneGraphItem.h"
 
+#include "TropicalEngineApplication.h"
 #include "MainWindow.h"
 
 MainWindow::MainWindow(void)	///TODO: Figure out which references to UI elements should be kept.
@@ -52,14 +54,7 @@ MainWindow::MainWindow(void)	///TODO: Figure out which references to UI elements
 
 	QLabel* propertiesLabel = new QLabel();
 	propertiesLabel->setText("Properties");
-	//QTreeView* propertiesList = new QTreeView();
-	//QToolBox* propertiesToolbox = new QToolBox();
-	QGroupBox* lightGroupBox = new QGroupBox("Light Properties");
-
-	QGroupBox* positionGroupBox = new QGroupBox("Position");
-	QGroupBox* rotationGroupBox = new QGroupBox("Rotation");
-	QGroupBox* scaleGroupBox = new QGroupBox("Scale");
-
+	propertiesWidget = new PropertiesWidget();
 
 	QFrame* leftPanelButtonFrame = new QFrame();
 	QHBoxLayout* leftPanelButtonLayout = new QHBoxLayout();
@@ -75,7 +70,11 @@ MainWindow::MainWindow(void)	///TODO: Figure out which references to UI elements
 	sceneGraphLabel->setText("Scene Graph");
 	//sceneGraphLabel->setPixmap(QPixmap("../Assets/Core/DefaultTexturePNG.png"));
 	//sceneGraphLabel->show();
-	QTreeView* sceneGraph = new QTreeView();
+	sceneGraph = new SceneGraphWidget();
+	TropicalEngineApplication::instance()->sceneGraph = sceneGraph;
+
+	connect(sceneGraph, SIGNAL(itemSelectionChanged()), propertiesWidget, SLOT(Reload()));
+
 	QFrame* rightPanelButtonFrame = new QFrame();
 	QHBoxLayout* rightPanelButtonLayout = new QHBoxLayout();
 	QPushButton* addObjectButton = new QPushButton();
@@ -89,12 +88,7 @@ MainWindow::MainWindow(void)	///TODO: Figure out which references to UI elements
 	leftPanel->setLayout(leftPanelLayout);
 	rightPanel->setLayout(rightPanelLayout);
 	leftPanelLayout->addWidget(propertiesLabel);
-	//leftPanelLayout->addWidget(propertiesList);
-	//leftPanelLayout->addWidget(propertiesToolbox);
-	leftPanelLayout->addWidget(lightGroupBox);
-	leftPanelLayout->addWidget(positionGroupBox);
-	leftPanelLayout->addWidget(rotationGroupBox);
-	leftPanelLayout->addWidget(scaleGroupBox);
+	leftPanelLayout->addWidget(propertiesWidget);
 	leftPanelLayout->addWidget(leftPanelButtonFrame);
 	rightPanelLayout->addWidget(sceneGraphLabel);
 	rightPanelLayout->addWidget(sceneGraph);

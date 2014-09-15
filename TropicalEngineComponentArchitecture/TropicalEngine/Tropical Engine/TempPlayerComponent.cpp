@@ -14,3 +14,5 @@ void TempPlayerComponent::Update()
 {
 	///TODO: implement it.
 }
+
+QString TempPlayerComponent::COMPONENTGETNAME("TempPlayerComponent");

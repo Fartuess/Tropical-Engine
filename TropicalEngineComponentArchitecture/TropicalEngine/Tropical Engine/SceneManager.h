@@ -20,6 +20,8 @@ public:
 	CameraComponent* getCurrentCamera();
 	void setCurrentCamera(CameraComponent* camera);
 
+	QMap<QString, Level*>& getLevels();
+
 	void LoadLevel(QString fileUrl);
 	void LoadLevel(QString fileUrl, QString name);
 	void LoadLevel(Level* level, QString name);

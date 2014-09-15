@@ -14,7 +14,17 @@ CameraComponent::CameraComponent(Entity* owner, glm::vec3 targetOffset, glm::vec
 	this->zNear = zNear;
 	this->zFar = zFar;
 
+	InitializeComponentType();
+
 	CalculateMatrix();
+}
+
+void CameraComponent::InitializeComponentType()
+{
+	if(!isComponentTypeUsed(getName()))
+	{
+		
+	}
 }
 
 CameraComponent::~CameraComponent(void)
@@ -109,12 +119,16 @@ glm::mat4 CameraComponent::getProjectionMatrix()
 void CameraComponent::CalculateMatrix()
 {
 	glm::vec3 targetOffset = owner->transform.getFront();
-
+	//qDebug() << QString(QString::number(targetOffset.x) + ", " + QString::number(targetOffset.y) + ", " + QString::number(targetOffset.z));
 	cameraMatrix = glm::lookAt(this->getOwner()->transform.getPosition(), this->getOwner()->transform.getPosition() + targetOffset, this->up);
+	//qDebug() << QString::number(glm::length(targetOffset));
+	//qDebug() << QString(QString::number(this->getOwner()->transform.getPosition().x) + ", " + QString::number(this->getOwner()->transform.getPosition().y) + ", " + QString::number(this->getOwner()->transform.getPosition().z));
 	projectionMatrix = glm::perspective(fov, aspectRatio, zNear, zFar);
 
 	//cameraMatrix = perspectiveProjection * cameraProjection;
 }
+
+QString CameraComponent::COMPONENTGETNAME("Camera Component");
 
 QString CameraComponent::toXML()
 {

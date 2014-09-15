@@ -18,6 +18,8 @@
 
 #include "OglDevTut03.h"
 
+#include "SceneGraphWidget.h"
+
 TropicalEngineApplication::TropicalEngineApplication(int argc, char* argv[]) : QApplication(argc, argv)
 {
 	shaderManager = new ShaderManager();
@@ -52,11 +54,15 @@ void TropicalEngineApplication::Initialize()
 {
 	deltaTimer.start();
 	renderer->InitializeLevel();
+	sceneGraph->Reload();
 }
 
 void TropicalEngineApplication::Draw()
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+	glPatchParameteri(GL_PATCH_VERTICES, 3);
+
 	deltaTime = deltaTimer.restart();
 	inputController->Update(deltaTime);
 	sceneManager->getCurrentCamera()->CalculateMatrix();

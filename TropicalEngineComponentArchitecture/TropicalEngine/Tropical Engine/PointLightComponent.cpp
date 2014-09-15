@@ -5,11 +5,24 @@ PointLightComponent::PointLightComponent(Entity* owner, glm::vec3 color, float b
 {
 	this->radius = radius;
 	this->attenuation = attenuation;
+
+	InitializeComponentType();
 }
 
 PointLightComponent::~PointLightComponent(void)
 {
 	///TODO: implement it.
+}
+
+void PointLightComponent::InitializeComponentType()
+{
+	if(!isComponentTypeUsed(getName()))
+	{
+		SetParrentComponentType("Light Component");
+
+		AddParameter("Radius", "Float");
+		AddParameter("Attenuation", "Float");
+	}
 }
 
 float PointLightComponent::getRadius()
@@ -34,6 +47,8 @@ void PointLightComponent::DrawShadows()
 {
 	///TODO: implement it.
 }
+
+QString PointLightComponent::COMPONENTGETNAME("PointLight Component");
 
 QString PointLightComponent::toXML()
 {

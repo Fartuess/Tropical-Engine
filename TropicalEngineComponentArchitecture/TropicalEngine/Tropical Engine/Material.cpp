@@ -53,6 +53,8 @@ void Material::Use()
 
 void Material::ActivateParameter(QString name, void* value)
 {
+	if(value == nullptr) return;
+
 	GLuint parameterLocation = shader->getParameterLocation(name);
 	switch (shader->getParameterType(name))
 	{
