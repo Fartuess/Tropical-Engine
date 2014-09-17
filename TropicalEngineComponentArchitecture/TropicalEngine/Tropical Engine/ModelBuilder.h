@@ -1,5 +1,6 @@
 #pragma once
 #include <QtCore\qstring.h>
+#include <QtCore\qvector.h>
 #include <glm.hpp>
 
 class Model;
@@ -17,6 +18,7 @@ private:
 	Model* Load(QString fileUrl);
 public:
 	Model* Load(QString name, QString fileUrl);
+	void CalculateTangentsBitangents(QVector<glm::vec4>& vertices, QVector<glm::vec3>& normals, QVector<glm::vec2>& texcoords, QVector<glm::vec3>& out_tangents, QVector<glm::vec3>& out_bitangents);
 
 	Model* CreateTriangle(QString name);
 	Model* CreatePlane(QString name, float sizeX = 1.0f, float sizeY = 1.0f, int subdivisionsX = 1, int subdivisionsY = 1);

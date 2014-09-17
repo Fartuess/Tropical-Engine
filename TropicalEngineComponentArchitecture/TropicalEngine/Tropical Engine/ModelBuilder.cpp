@@ -23,64 +23,6 @@ ModelBuilder::~ModelBuilder(void)
 
 Model* ModelBuilder::Load(QString fileUrl)
 {
-	/////TODO: implement it.
-	//Assimp::Importer importer;
-	//
-	//const aiScene* modelScene = importer.ReadFile(fileUrl.toUtf8().constData(), aiProcess_Triangulate);
-	//
-	//Model* model = new Model();
-	//
-	//model->meshes.resize(modelScene->mNumMeshes);
-	//model->materialCount = modelScene->mNumMaterials;
-	//
-    //// Initialize the meshes in the scene one by one
-    //for (unsigned int i = 0 ; i < model->meshes.size() ; i++)
-	//{
-    //    const aiMesh* paiMesh = modelScene->mMeshes[i];
-	//
-    //    //m_Entries[i].MaterialIndex = paiMesh->mMaterialIndex;
-    //
-	//	QVector<Vertex> vertices;
-	//	QVector<unsigned int> indices;
-	//
-	//	const aiVector3D Zero3D(0.0f, 0.0f, 0.0f);
-	//
-	//	for (unsigned int i = 0 ; i < paiMesh->mNumVertices ; i++) {
-	//	    const aiVector3D* pPos      = &(paiMesh->mVertices[i]);
-	//	    const aiVector3D* pNormal   = &(paiMesh->mNormals[i]);
-	//		const aiVector3D* pTangent   = &(paiMesh->mTangents[i]);
-	//		const aiVector3D* pBitangent = &(paiMesh->mBitangents[i]);
-	//	    const aiVector3D* pTexCoord = paiMesh->HasTextureCoords(0) ? &(paiMesh->mTextureCoords[0][i]) : &Zero3D;
-	//
-	//	    Vertex vertex	(glm::vec3(pPos->x, pPos->y, pPos->z),
-	//						glm::vec3(pNormal->x, pNormal->y, pNormal->z),
-	//						glm::vec3(pTangent->x, pTangent->y, pTangent->z),
-	//						glm::vec3(pBitangent->x, pBitangent->y, pBitangent->z),
-	//						glm::vec2(pTexCoord->x, pTexCoord->y));
-	//
-	//	    vertices.push_back(vertex);
-	//	}
-	//
-	//	for (unsigned int i = 0 ; i < paiMesh->mNumFaces ; i++) {
-	//	    const aiFace& Face = paiMesh->mFaces[i];
-	//	    assert(Face.mNumIndices == 3);
-	//	    indices.push_back(Face.mIndices[0]);
-	//	    indices.push_back(Face.mIndices[1]);
-	//	    indices.push_back(Face.mIndices[2]);
-	//	}
-	//
-	//	model->meshes[i].NumIndices = indices.size();
-	//
-	//	glGenBuffers(1, &model->meshes[i].VertexBuffer);
-  	//	glBindBuffer(GL_ARRAY_BUFFER, model->meshes[i].VertexBuffer);
-	//	glBufferData(GL_ARRAY_BUFFER, sizeof(Vertex) * vertices.size(), &vertices[0], GL_STATIC_DRAW);
-	//
-	//	glGenBuffers(1, &model->meshes[i].IndexBuffer);
-	//	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, model->meshes[i].IndexBuffer);
-	//	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned int) * model->meshes[i].NumIndices, &indices[0], GL_STATIC_DRAW);
-    //}
-	//
-	//return model;
 	return nullptr;
 }
 
@@ -170,4 +112,62 @@ Model* ModelBuilder::Load(QString name, QString fileUrl)
 	return model;
 	
 	//return nullptr;
+}
+
+void ModelBuilder::CalculateTangentsBitangents(QVector<glm::vec4>& vertices, QVector<glm::vec3>& normals, QVector<glm::vec2>& texcoords, QVector<glm::vec3>& out_tangents, QVector<glm::vec3>& out_bitangents)
+{
+	for (unsigned int i=0; i<vertices.size(); i+=3 ){
+
+		// Shortcuts for vertices
+		glm::vec3 & v0 = glm::vec3(vertices[i+0]);
+		glm::vec3 & v1 = glm::vec3(vertices[i+1]);
+		glm::vec3 & v2 = glm::vec3(vertices[i+2]);
+
+		// Shortcuts for UVs
+		glm::vec2 & uv0 = texcoords[i+0];
+		glm::vec2 & uv1 = texcoords[i+1];
+		glm::vec2 & uv2 = texcoords[i+2];
+
+		// Edges of the triangle : postion delta
+		glm::vec3 deltaPos1 = v1-v0;
+		glm::vec3 deltaPos2 = v2-v0;
+
+		// UV delta
+		glm::vec2 deltaUV1 = uv1-uv0;
+		glm::vec2 deltaUV2 = uv2-uv0;
+
+		float r = 1.0f / (deltaUV1.x * deltaUV2.y - deltaUV1.y * deltaUV2.x);
+		glm::vec3 tangent = (deltaPos1 * deltaUV2.y   - deltaPos2 * deltaUV1.y)*r;
+		glm::vec3 bitangent = (deltaPos2 * deltaUV1.x   - deltaPos1 * deltaUV2.x)*r;
+
+		///TODO: look at comment below and finish implementation!
+		// Set the same tangent for all three vertices of the triangle.
+		// They will be merged later, in vboindexer.cpp
+		out_tangents.push_back(tangent);
+		out_tangents.push_back(tangent);
+		out_tangents.push_back(tangent);
+
+		// Same thing for binormals
+		out_bitangents.push_back(bitangent);
+		out_bitangents.push_back(bitangent);
+		out_bitangents.push_back(bitangent);
+
+	}
+
+	// See "Going Further"
+	for (unsigned int i=0; i<vertices.size(); i+=1 )
+	{
+		glm::vec3 & n = normals[i];
+		glm::vec3 & t = out_tangents[i];
+		glm::vec3 & b = out_bitangents[i];
+		
+		// Gram-Schmidt orthogonalize
+		t = glm::normalize(t - n * glm::dot(n, t));
+		
+		// Calculate handedness
+		if (glm::dot(glm::cross(n, t), b) < 0.0f){
+			t = t * -1.0f;
+		}
+
+	}
 }

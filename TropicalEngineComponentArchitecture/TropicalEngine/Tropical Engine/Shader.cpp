@@ -1,6 +1,8 @@
 #include <QtCore\qfile.h>
 #include <QtCore\qtextstream.h>
 #include <QtCore\qdebug.h>
+#include <QtCore\qregexp.h>
+#include <QtCore\qregularexpression.h>
 #include "ShaderManager.h"
 #include "Shader.h"
 #include "PointLightComponent.h"
@@ -59,27 +61,9 @@ Shader::Shader(QString vertexShader, QString fragmentShader, QString name)
 	cameraMatrixLocation = glGetUniformLocation(this->shaderProgram, "u_cameraMatrix");
 	projectionMatrixLocation = glGetUniformLocation(this->shaderProgram, "u_projectionMatrix");
 
-	dirLightVectorLocation = glGetUniformLocation(this->shaderProgram, "u_lightVector");
-	dirLightColorLocation = glGetUniformLocation(this->shaderProgram, "u_lightColor");
-	dirLightBrightnessLocation = glGetUniformLocation(this->shaderProgram, "u_lightBrightness");
-	dirLightAmbientLocation = glGetUniformLocation(this->shaderProgram, "u_lightAmbient");
-
-	pointLightPositionLocations = QVector<GLuint>();
-	pointLightColorLocations = QVector<GLuint>();
-	pointLightBrightnessLocations = QVector<GLuint>();
-	pointLightRadiusLocations = QVector<GLuint>();
-	pointLightAttenuationLocations = QVector<GLuint>();
-
-	for(int i = 0; i < MAX_POINT_LIGHT; i++)
-	{
-		pointLightPositionLocations.append(glGetUniformLocation(this->shaderProgram, QString("u_pointLights[" + QString::number(i) + "].position").toLocal8Bit().data()));
-		pointLightColorLocations.append(glGetUniformLocation(this->shaderProgram, QString("u_pointLights[" + QString::number(i) + "].color").toLocal8Bit().data()));
-		pointLightBrightnessLocations.append(glGetUniformLocation(this->shaderProgram, QString("u_pointLights[" + QString::number(i) + "].brightness").toLocal8Bit().data()));
-		pointLightRadiusLocations.append(glGetUniformLocation(this->shaderProgram, QString("u_pointLights[" + QString::number(i) + "].radius").toLocal8Bit().data()));
-		pointLightAttenuationLocations.append(glGetUniformLocation(this->shaderProgram, QString("u_pointLights[" + QString::number(i) + "].attenuation").toLocal8Bit().data()));
-	}
-
+	setUpLightParameters();
 	setUpMaterialParameters();
+
 	defaultMaterial = new Material(this, nullptr, QString(name + "_mat"));
 	TropicalEngineApplication::instance()->shaderManager->Load(this, name);
 }
@@ -135,14 +119,34 @@ Shader::Shader(QMap<QString, GLuint> subshaders, QString name)
 	cameraMatrixLocation = glGetUniformLocation(this->shaderProgram, "u_cameraMatrix");
 	projectionMatrixLocation = glGetUniformLocation(this->shaderProgram, "u_projectionMatrix");
 
+	setUpLightParameters();
+	setUpMaterialParameters();
+
+	defaultMaterial = new Material(this, nullptr, QString(name + "_mat"));
+	TropicalEngineApplication::instance()->shaderManager->Load(this, name);
+}
+
+void Shader::setUpLightParameters()
+{
 	dirLightVectorLocation = glGetUniformLocation(this->shaderProgram, "u_lightVector");
 	dirLightColorLocation = glGetUniformLocation(this->shaderProgram, "u_lightColor");
 	dirLightBrightnessLocation = glGetUniformLocation(this->shaderProgram, "u_lightBrightness");
 	dirLightAmbientLocation = glGetUniformLocation(this->shaderProgram, "u_lightAmbient");
 
-	setUpMaterialParameters();
-	defaultMaterial = new Material(this, nullptr, QString(name + "_mat"));
-	TropicalEngineApplication::instance()->shaderManager->Load(this, name);
+	pointLightPositionLocations = QVector<GLuint>();
+	pointLightColorLocations = QVector<GLuint>();
+	pointLightBrightnessLocations = QVector<GLuint>();
+	pointLightRadiusLocations = QVector<GLuint>();
+	pointLightAttenuationLocations = QVector<GLuint>();
+
+	for(int i = 0; i < MAX_POINT_LIGHT; i++)
+	{
+		pointLightPositionLocations.append(glGetUniformLocation(this->shaderProgram, QString("u_pointLights[" + QString::number(i) + "].position").toLocal8Bit().data()));
+		pointLightColorLocations.append(glGetUniformLocation(this->shaderProgram, QString("u_pointLights[" + QString::number(i) + "].color").toLocal8Bit().data()));
+		pointLightBrightnessLocations.append(glGetUniformLocation(this->shaderProgram, QString("u_pointLights[" + QString::number(i) + "].brightness").toLocal8Bit().data()));
+		pointLightRadiusLocations.append(glGetUniformLocation(this->shaderProgram, QString("u_pointLights[" + QString::number(i) + "].radius").toLocal8Bit().data()));
+		pointLightAttenuationLocations.append(glGetUniformLocation(this->shaderProgram, QString("u_pointLights[" + QString::number(i) + "].attenuation").toLocal8Bit().data()));
+	}
 }
 
 void Shader::setUpMaterialParameters()
@@ -265,6 +269,36 @@ Material* Shader::getCurrentMaterial()
 	return currentMaterial;
 }
 
+QString Shader::PreprocessShaderFile(QString shaderFile)
+{
+	QFile f(shaderFile);
+	if (!f.open(QFile::ReadOnly | QFile::Text))
+	{
+		qDebug() << f.errorString();
+		return "";	//if it will go in here, everything will fuck up.
+	}
+    QTextStream in(&f);
+	QString fileString = in.readAll();
+
+	QRegularExpression includeRegexp = QRegularExpression("#include \"([A-Za-z_.]+)\"");
+
+	QStringList includeFilenames = QStringList();
+	QRegularExpressionMatch match = includeRegexp.match(fileString);
+
+	if(match.hasMatch())
+	{
+		includeFilenames.append(match.captured(1));
+	}
+
+	foreach(QString includeFilename, includeFilenames)
+	{
+		qDebug() << includeFilename;
+		fileString.replace(QRegularExpression(QString("#include \"" + includeFilename + "\"")), PreprocessShaderFile(QString("../Tropical Engine/" + includeFilename)));
+	}
+	qDebug() << fileString;
+	return fileString;
+}
+
 void Shader::AddShader(QString shaderFile, GLenum shaderType)
 {
 	GLuint shaderObj = glCreateShader(shaderType);
@@ -274,14 +308,14 @@ void Shader::AddShader(QString shaderFile, GLenum shaderType)
         exit(0);
     }
 
-	QFile f(shaderFile);
-	if (!f.open(QFile::ReadOnly | QFile::Text))
-	{
-		qDebug() << f.errorString();
-		return;	//if it will go in here, everything will fuck up.
-	}
-    QTextStream in(&f);
-	QByteArray shaderArray =  in.readAll().toLocal8Bit();
+	//QFile f(shaderFile);
+	//if (!f.open(QFile::ReadOnly | QFile::Text))
+	//{
+	//	qDebug() << f.errorString();
+	//	return;	//if it will go in here, everything will fuck up.
+	//}
+    //QTextStream in(&f);
+	QByteArray shaderArray =  PreprocessShaderFile(shaderFile).toLocal8Bit();
 	char* shaderText = new char[shaderArray.size() + 1];
 	strcpy_s(shaderText, shaderArray.size() + 1, shaderArray.data());
 

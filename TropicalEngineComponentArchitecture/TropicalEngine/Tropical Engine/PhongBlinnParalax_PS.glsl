@@ -1,4 +1,5 @@
 #version 330
+#include "_PointLight.glsl"
 
 uniform vec3 u_lightVector;
 uniform vec3 u_lightColor;
@@ -14,6 +15,7 @@ in vec3 v_tangent;
 in vec3 v_bitangent;
 in vec3 v_eye;
 in vec2 v_texcoord;
+in vec3 v_globalPosition;
 
 out vec4 FragColor;
 
@@ -107,18 +109,18 @@ void main()
         // a whole iteration).
         height = NB + step * 0.1;
 
-        while ((NB < height) && (height < 1)) {
-            height += step;
-            offsetCoord += delta;
-            NB = texture2D(mat_heightTexture, offsetCoord).r;
-        }
-
-        // We are in shadow if we left the loop because
-        // we hit a point
-		if(NB < height)
-		{
-			selfShadow = 1.0f;
-		}
+//        while ((NB < height) && (height < 1)) {
+//            height += step;
+//            offsetCoord += delta;
+//            NB = texture2D(mat_heightTexture, offsetCoord).r;
+//        }
+//
+//        // We are in shadow if we left the loop because
+//        // we hit a point
+//		if(NB < height)
+//		{
+//			selfShadow = 1.0f;
+//		}
 
         // Shadows will make the whole scene darker, so up the light contribution
         //lightColor = lightColor * 1.2;

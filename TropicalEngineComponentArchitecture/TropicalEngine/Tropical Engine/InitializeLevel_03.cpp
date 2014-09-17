@@ -51,7 +51,7 @@ void OglDevTut03::InitializeLevel()
 	Texture* tessNrmTex = new Texture("../Assets/Core/wall_normals.png");
 	Texture* tessDispTex = new Texture("../Assets/Core/wall_heights.png");
 
-	//phongMaterial->SetParameter("mat_diffuseColor", new glm::vec3(1.0f, 0.7f, 0.0f));
+	phongMaterial->SetParameter("mat_diffuseColor", new glm::vec3(1.0f, 0.7f, 0.0f));
 	phongBlinnMaterial->SetParameter("mat_diffuseColor", new glm::vec3(1.0f, 0.7f, 0.0f));
 	testMaterial->SetParameter("mat_diffuseTexture", testingTexture);
 	testMaterialNRM->SetParameter("mat_diffuseTexture", testingTexture);
@@ -72,9 +72,9 @@ void OglDevTut03::InitializeLevel()
 	straussMaterial->SetParameter("mat_metaliness", new float(0.0f));		//comment to make it metal
 	//straussMaterial->SetParameter("mat_metaliness", new float(1.0f));		//uncomment to make it metal
 	wardIsoMaterial->SetParameter("mat_diffuse", new glm::vec3(1.0f, 0.7f, 0.0f));
-	wardIsoMaterial->SetParameter("mat_roughness", new float(0.5f));
+	wardIsoMaterial->SetParameter("mat_roughness", new float(0.3f));
 	wardAnisoMaterial->SetParameter("mat_diffuse", new glm::vec3(1.0f, 0.7f, 0.0f));
-	wardAnisoMaterial->SetParameter("mat_anisoRoughness", new glm::vec2(0.1f, 0.5f));
+	wardAnisoMaterial->SetParameter("mat_anisoRoughness", new glm::vec2(0.5f, 0.1f));
 
 
 	QMap<QString, GLuint> tessalationSubshaders = QMap<QString, GLuint>();
@@ -111,7 +111,7 @@ void OglDevTut03::InitializeLevel()
 	TropicalEngineApplication::instance()->modelBuilder->Load("MayaBox", "../Assets/TestAssets/MayaBox.obj");
 
 	//planeObject->AttachComponent(new ModelComponent(planeObject, cookTorranceMaterial, TropicalEngineApplication::instance()->modelManager->getModel("Plane")));
-	ModelComponent* testModelComponent = new ModelComponent(planeObject, phongMaterial, TropicalEngineApplication::instance()->modelManager->getModel("Sphere"));
+	ModelComponent* testModelComponent = new ModelComponent(planeObject, wardAnisoMaterial, TropicalEngineApplication::instance()->modelManager->getModel("TestModel2"));
 	planeObject->AttachComponent(testModelComponent);
 	planeObject->name = new QString("TestObject");
 	
@@ -123,19 +123,19 @@ void OglDevTut03::InitializeLevel()
 	mainCamera->name = new QString("Main Camera");
 	level->root.AttachSubobject(mainCamera);
 
-	Entity* lightModelTestingCamera = new Entity(glm::vec3(5.0f, 2.0f, 5.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
+	Entity* lightModelTestingCamera = new Entity(glm::vec3(5.0f, 5.0f, 5.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
 	CameraComponent* lightModelTestingCameraComponent = new CameraComponent(mainCamera, glm::vec3(0.0f, 0.0f, -1.0f), glm::vec3(0.0f, 1.0f, 0.0f), 40.0f, 4.0f / 3.0f, 0.1f, 10000.0f);
 	lightModelTestingCamera->AttachComponent(lightModelTestingCameraComponent);
 	lightModelTestingCamera->name = new QString("Light Model Testing Camera");
 	level->root.AttachSubobject(lightModelTestingCamera);
 
-	Entity* pointLight = new Entity(glm::vec3(-5.0f, 2.0f, -5.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
-	PointLightComponent* pointLightComponent = new PointLightComponent(pointLight, glm::vec3(0.8f, 0.0f, 0.0f), 1.0f, 10.0f, 0.4f);
+	Entity* pointLight = new Entity(glm::vec3(-5.0f, 5.0f, -5.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
+	PointLightComponent* pointLightComponent = new PointLightComponent(pointLight, glm::vec3(1.0f, 0.0f, 0.0f), 1.0f, 1000.0f, 0.4f);
 	pointLight->name = new QString("Point Light");
 	testModelComponent->lightedBy.append(pointLightComponent);
 	level->root.AttachSubobject(pointLight);
 	
 	TropicalEngineApplication::instance()->sceneManager->LoadLevel(level, "TestLevel");
 	TropicalEngineApplication::instance()->sceneManager->setCurrentCamera(mainCameraComponent);
-	TropicalEngineApplication::instance()->sceneManager->mainLight = new DirectionalLightComponent(&level->root, glm::vec3(1.0f, 1.0f, 0.9f), glm::vec3(0.5, 0.2, 1.0));
+	TropicalEngineApplication::instance()->sceneManager->mainLight = new DirectionalLightComponent(&level->root, glm::vec3(1.0f, 1.0f, 0.9f), glm::vec3(0.5, 0.2, 1.0), 1.0f);
 }

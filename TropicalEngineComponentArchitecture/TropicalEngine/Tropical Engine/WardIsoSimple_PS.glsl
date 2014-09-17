@@ -1,5 +1,6 @@
 #version 330
 #define M_PI 3.1415926535897932384626433832795
+#include "_PointLight.glsl"
 
 uniform vec3 u_lightVector;
 uniform vec3 u_lightColor;
@@ -12,24 +13,19 @@ uniform float mat_roughness = 0.5;
 
 in vec3 v_normal;
 in vec3 v_eye;
+in vec3 v_globalPosition;
 
-out vec4 fragColor;
+out vec4 FragColor;
 
-void main()
+void calculateWardIsotropic(in vec3 lightVector, in vec3 lightColor, in float brightness, in vec3 normal, in vec3 eye, float roughness, inout vec3 diffuseIntensity, inout vec3 specularIntensity)
 {
-	vec3 color = mat_diffuse * u_lightColor * u_lightAmbient;
-	// Make sure the interpolated inputs and
-    // constant parameters are normalized
-    vec3 n = normalize( v_normal );
-    vec3 l = normalize( u_lightVector );
-    vec3 v = normalize( v_eye );
-    vec3 h = normalize( l + v );
+    vec3 h = normalize( lightVector + eye );
  
     // Generate any useful aliases
-    float VdotN = dot( v, n );
-    float LdotN = dot( l, n );
-    float HdotN = dot( h, n );
-    float roughness_squared = (mat_roughness * mat_roughness) + 0.0001;
+    float VdotN = dot( eye, normal );
+    float LdotN = dot( lightVector, normal );
+    float HdotN = dot( h, normal );
+    float roughness_squared = (roughness * roughness) + 0.0001;
     // (Adding a small bias to r_sq stops unexpected
     //  results caused by divide-by-zero)
  
@@ -63,7 +59,36 @@ void main()
     vec3 Specular = Ps * ( spec_num / spec_den );
  
     // Composite the final value:
-	color += max(0, dot( n, l )) * (mat_diffuse + max(vec3(0.0f), Specular) );
+	diffuseIntensity += max(0, dot( normal, lightVector )) * lightColor * brightness;
+	specularIntensity +=  max(vec3(0.0f), Specular) * lightColor * brightness * max(0, dot( normal, lightVector ));
+	//color += max(0, dot( normal, lightVector )) * (mat_diffuse + max(vec3(0.0f), Specular) );
 
-    fragColor = vec4(color, 1.0 );
+    //fragColor = vec4(color, 1.0 );
+}
+
+void main()
+{
+	vec3 normal = normalize( v_normal );
+    vec3 lightVector = normalize( u_lightVector );
+    vec3 eye = normalize( v_eye );
+
+	vec3 ambient = mat_diffuse * u_lightColor * u_lightAmbient;
+	vec3 diffuse = vec3(0.0);
+	vec3 specular = vec3(0.0);
+
+	calculateWardIsotropic(lightVector, u_lightColor, u_lightBrightness, normal, eye, mat_roughness, diffuse, specular);
+
+	float brightness;
+	for(int i = 0; i < u_pointLights.length(); i++)
+	{
+		lightVector = calculatePointLightVector(u_pointLights[i], v_globalPosition);
+		brightness = calculatePointLightBrightness(u_pointLights[i], v_globalPosition);
+
+		calculateWardIsotropic(lightVector, u_pointLights[i].color, brightness, normal, eye, mat_roughness, diffuse, specular);
+	}
+
+	diffuse *= mat_diffuse;
+	//specular *= mat_specularColor;
+
+	FragColor = vec4(ambient + diffuse + specular, 1.0);
 }

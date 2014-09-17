@@ -265,6 +265,8 @@
     <None Include="VDisplacement_TES.glsl" />
     <None Include="WardAnisoSimple_PS.glsl" />
     <None Include="WardIsoSimple_PS.glsl" />
+    <None Include="_PointLight.glsl" />
+    <None Include="_SpotLight.glsl" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="StraussSimple2_PS.glsl" />

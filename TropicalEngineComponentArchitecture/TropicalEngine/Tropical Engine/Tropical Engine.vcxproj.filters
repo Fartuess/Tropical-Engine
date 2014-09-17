@@ -112,6 +112,9 @@
     <Filter Include="Shader Files\Tessalation Shader">
       <UniqueIdentifier>{5da2d714-ee1e-456d-b9dc-faae3390dd1d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Shader Files\Fragment Shader\Shader Modules">
+      <UniqueIdentifier>{e849c7c3-4f39-42f8-a9c8-0d4791501065}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Entity.cpp">
@@ -429,6 +432,12 @@
     </None>
     <None Include="Phong_PS.glsl">
       <Filter>Shader Files\Fragment Shader</Filter>
+    </None>
+    <None Include="_PointLight.glsl">
+      <Filter>Shader Files\Fragment Shader\Shader Modules</Filter>
+    </None>
+    <None Include="_SpotLight.glsl">
+      <Filter>Shader Files\Fragment Shader\Shader Modules</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

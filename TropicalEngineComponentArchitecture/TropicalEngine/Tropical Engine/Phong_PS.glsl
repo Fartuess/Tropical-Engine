@@ -1,20 +1,10 @@
 #version 330
+#include "_PointLight.glsl"
 
 uniform vec3 u_lightVector;
 uniform vec3 u_lightColor;
 uniform float u_lightBrightness;
 uniform float u_lightAmbient;
-
-#define MAX_POINT_LIGHTS 2
-struct PointLight
-{
-	vec3 position;
-	vec3 color;
-	float brightness;
-	float radius;
-	float attenuation;
-};
-uniform PointLight u_pointLights[MAX_POINT_LIGHTS];
 
 uniform vec3 mat_diffuseColor = vec3(0.5);
 uniform vec3 mat_specularColor = vec3(1.0);
@@ -25,20 +15,6 @@ in vec3 v_eye;
 in vec3 v_globalPosition;
 
 out vec4 FragColor;
-
-vec3 calculatePointLightVector(PointLight light, vec3 fragmentPosition)
-{
-	return normalize(light.position - fragmentPosition);
-}
-
-float calculatePointLightBrightness(PointLight light, vec3 fragmentPosition)
-{
-	float lightDistance = distance(light.position, fragmentPosition);
-	float lightDistanceFactor = max(1.0 - (lightDistance / light.radius), 0.0);
-
-	return pow(lightDistanceFactor, light.attenuation) * light.brightness;
-	//return lightDistanceFactor;
-}
 
 void calculatePhong(in vec3 lightVector, in vec3 lightColor, in float brightness, in vec3 normal, in vec3 eye, float specularExponent, inout vec3 diffuseIntensity, inout vec3 specularIntensity)
 {

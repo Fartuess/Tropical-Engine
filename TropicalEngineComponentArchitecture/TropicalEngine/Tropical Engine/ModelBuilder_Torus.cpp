@@ -106,74 +106,74 @@ Model* ModelBuilder::CreateTorus(QString name, float radius, float segmentRadius
 			));
 
 			//tangents
-			tangents->push_back(glm::vec3(
+			bitangents->push_back(glm::vec3(
 				(cosf(j * (2 * glm::pi<float>() / subdivisionsAxis))) * cosf(i * (2 * glm::pi<float>() / subdivisionsHeight)),
 				sinf(j * (2 * glm::pi<float>() / subdivisionsAxis)),
 				(cosf(j * (2 * glm::pi<float>() / subdivisionsAxis))) * sinf(i * (2 * glm::pi<float>() / subdivisionsHeight))
 			));
 
-			tangents->push_back(glm::vec3(
+			bitangents->push_back(glm::vec3(
 				(cosf((j + 1) * (2 * glm::pi<float>() / subdivisionsAxis))) * cosf(i * (2 * glm::pi<float>() / subdivisionsHeight)),
 				sinf((j + 1) * (2 * glm::pi<float>() / subdivisionsAxis)),
 				(cosf((j + 1) * (2 * glm::pi<float>() / subdivisionsAxis))) * sinf(i * (2 * glm::pi<float>() / subdivisionsHeight))
 			));
 
-			tangents->push_back(glm::vec3(
+			bitangents->push_back(glm::vec3(
 				(cosf(j * (2 * glm::pi<float>() / subdivisionsAxis))) * cosf((i + 1) * (2 * glm::pi<float>() / subdivisionsHeight)),
 				sinf(j * (2 * glm::pi<float>() / subdivisionsAxis)),
 				(cosf(j * (2 * glm::pi<float>() / subdivisionsAxis))) * sinf((i + 1) * (2 * glm::pi<float>() / subdivisionsHeight))
 			));
 
-			tangents->push_back(glm::vec3(
+			bitangents->push_back(glm::vec3(
 				(cosf((j + 1) * (2 * glm::pi<float>() / subdivisionsAxis))) * cosf((i + 1) * (2 * glm::pi<float>() / subdivisionsHeight)),
 				sinf((j + 1) * (2 * glm::pi<float>() / subdivisionsAxis)),
 				(cosf((j + 1) * (2 * glm::pi<float>() / subdivisionsAxis))) * sinf((i + 1) * (2 * glm::pi<float>() / subdivisionsHeight))
 			));
 
-			tangents->push_back(glm::vec3(
+			bitangents->push_back(glm::vec3(
 				(cosf(j * (2 * glm::pi<float>() / subdivisionsAxis))) * cosf((i + 1) * (2 * glm::pi<float>() / subdivisionsHeight)),
 				sinf(j * (2 * glm::pi<float>() / subdivisionsAxis)),
 				(cosf(j * (2 * glm::pi<float>() / subdivisionsAxis))) * sinf((i + 1) * (2 * glm::pi<float>() / subdivisionsHeight))
 			));
 
-			tangents->push_back(glm::vec3(
+			bitangents->push_back(glm::vec3(
 				(cosf((j + 1) * (2 * glm::pi<float>() / subdivisionsAxis))) * cosf(i * (2 * glm::pi<float>() / subdivisionsHeight)),
 				sinf((j + 1) * (2 * glm::pi<float>() / subdivisionsAxis)),
 				(cosf((j + 1) * (2 * glm::pi<float>() / subdivisionsAxis))) * sinf(i * (2 * glm::pi<float>() / subdivisionsHeight))
 			));
 			
 			//bitangents
-			bitangents->push_back(glm::vec3(
+			tangents->push_back(glm::vec3(
 				(cosf(j * (2 * glm::pi<float>() / subdivisionsAxis))) * cosf(i * (2 * glm::pi<float>() / subdivisionsHeight)),
 				sinf(j * (2 * glm::pi<float>() / subdivisionsAxis)),
 				(cosf(j * (2 * glm::pi<float>() / subdivisionsAxis))) * sinf(i * (2 * glm::pi<float>() / subdivisionsHeight))
 			));
 
-			bitangents->push_back(glm::vec3(
+			tangents->push_back(glm::vec3(
 				(cosf((j + 1) * (2 * glm::pi<float>() / subdivisionsAxis))) * cosf(i * (2 * glm::pi<float>() / subdivisionsHeight)),
 				sinf((j + 1) * (2 * glm::pi<float>() / subdivisionsAxis)),
 				(cosf((j + 1) * (2 * glm::pi<float>() / subdivisionsAxis))) * sinf(i * (2 * glm::pi<float>() / subdivisionsHeight))
 			));
 
-			bitangents->push_back(glm::vec3(
+			tangents->push_back(glm::vec3(
 				(cosf(j * (2 * glm::pi<float>() / subdivisionsAxis))) * cosf((i + 1) * (2 * glm::pi<float>() / subdivisionsHeight)),
 				sinf(j * (2 * glm::pi<float>() / subdivisionsAxis)),
 				(cosf(j * (2 * glm::pi<float>() / subdivisionsAxis))) * sinf((i + 1) * (2 * glm::pi<float>() / subdivisionsHeight))
 			));
 
-			bitangents->push_back(glm::vec3(
+			tangents->push_back(glm::vec3(
 				(cosf((j + 1) * (2 * glm::pi<float>() / subdivisionsAxis))) * cosf((i + 1) * (2 * glm::pi<float>() / subdivisionsHeight)),
 				sinf((j + 1) * (2 * glm::pi<float>() / subdivisionsAxis)),
 				(cosf((j + 1) * (2 * glm::pi<float>() / subdivisionsAxis))) * sinf((i + 1) * (2 * glm::pi<float>() / subdivisionsHeight))
 			));
 
-			bitangents->push_back(glm::vec3(
+			tangents->push_back(glm::vec3(
 				(cosf(j * (2 * glm::pi<float>() / subdivisionsAxis))) * cosf((i + 1) * (2 * glm::pi<float>() / subdivisionsHeight)),
 				sinf(j * (2 * glm::pi<float>() / subdivisionsAxis)),
 				(cosf(j * (2 * glm::pi<float>() / subdivisionsAxis))) * sinf((i + 1) * (2 * glm::pi<float>() / subdivisionsHeight))
 			));
 
-			bitangents->push_back(glm::vec3(
+			tangents->push_back(glm::vec3(
 				(cosf((j + 1) * (2 * glm::pi<float>() / subdivisionsAxis))) * cosf(i * (2 * glm::pi<float>() / subdivisionsHeight)),
 				sinf((j + 1) * (2 * glm::pi<float>() / subdivisionsAxis)),
 				(cosf((j + 1) * (2 * glm::pi<float>() / subdivisionsAxis))) * sinf(i * (2 * glm::pi<float>() / subdivisionsHeight))

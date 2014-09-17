@@ -50,13 +50,13 @@ Model* ModelBuilder::CreateCone(QString name, float radius, float height, int su
 			normals->push_back(glm::vec3(cosf(j * (2 * glm::pi<float>() / subdivisionsAxis)), 0.0f, sinf(j * (2 * glm::pi<float>() / subdivisionsAxis))));
 			normals->push_back(glm::vec3(cosf((j + 1) * (2 * glm::pi<float>() / subdivisionsAxis)), 0.0f, sinf((j + 1) * (2 * glm::pi<float>() / subdivisionsAxis))));
 
-			tangents->push_back(glm::vec3(0.0f, 1.0f, 0.0f));
-			tangents->push_back(glm::vec3(0.0f, 1.0f, 0.0f));
-			tangents->push_back(glm::vec3(0.0f, 1.0f, 0.0f));
+			bitangents->push_back(glm::vec3(0.0f, -1.0f, 0.0f));
+			bitangents->push_back(glm::vec3(0.0f, -1.0f, 0.0f));
+			bitangents->push_back(glm::vec3(0.0f, -1.0f, 0.0f));
 			
-			bitangents->push_back(glm::vec3(sinf(j * (2 / subdivisionsAxis)), 0.0f, cosf(j * (2 / subdivisionsAxis))));
-			bitangents->push_back(glm::vec3(sinf(j * (2 / subdivisionsAxis)), 0.0f, cosf(j * (2 / subdivisionsAxis))));
-			bitangents->push_back(glm::vec3(sinf((j + 1) * (2 / subdivisionsAxis)), 0.0f, cosf((j + 1) * (2 / subdivisionsAxis))));
+			tangents->push_back(glm::vec3(sinf(j * (2 * glm::pi<float>() / subdivisionsAxis)), 0.0f, cosf(j * (2 * glm::pi<float>() / subdivisionsAxis))));
+			tangents->push_back(glm::vec3(sinf(j * (2 * glm::pi<float>() / subdivisionsAxis)), 0.0f, cosf(j * (2 * glm::pi<float>() / subdivisionsAxis))));
+			tangents->push_back(glm::vec3(sinf((j + 1) * (2 * glm::pi<float>() / subdivisionsAxis)), 0.0f, cosf((j + 1) * (2 * glm::pi<float>() / subdivisionsAxis))));
 
 			texCoords->push_back(glm::vec2((float)(j * 2 * glm::pi<float>() * radius / subdivisionsAxis), ((float)i / subdivisionsHeight)));
 			texCoords->push_back(glm::vec2((float)(j * 2 * glm::pi<float>() * radius / subdivisionsAxis), ((float)(i + 1) / subdivisionsHeight)));
@@ -82,13 +82,13 @@ Model* ModelBuilder::CreateCone(QString name, float radius, float height, int su
 			normals->push_back(glm::vec3(cosf((j + 1) * (2 * glm::pi<float>() / subdivisionsAxis)), 0.0f, sinf((j + 1) * (2 * glm::pi<float>() / subdivisionsAxis))));
 			normals->push_back(glm::vec3(cosf(j * (2 * glm::pi<float>() / subdivisionsAxis)), 0.0f, sinf(j * (2 * glm::pi<float>() / subdivisionsAxis))));
 
-			tangents->push_back(glm::vec3(0.0f, 1.0f, 0.0f));
-			tangents->push_back(glm::vec3(0.0f, 1.0f, 0.0f));
-			tangents->push_back(glm::vec3(0.0f, 1.0f, 0.0f));
+			bitangents->push_back(glm::vec3(0.0f, -1.0f, 0.0f));
+			bitangents->push_back(glm::vec3(0.0f, -1.0f, 0.0f));
+			bitangents->push_back(glm::vec3(0.0f, -1.0f, 0.0f));
 			
-			bitangents->push_back(glm::vec3(sinf((j + 1) * (2 / subdivisionsAxis)), 0.0f, cosf((j + 1) * (2 / subdivisionsAxis))));
-			bitangents->push_back(glm::vec3(sinf((j + 1) * (2 / subdivisionsAxis)), 0.0f, cosf((j + 1) * (2 / subdivisionsAxis))));
-			bitangents->push_back(glm::vec3(sinf(j * (2 / subdivisionsAxis)), 0.0f, cosf(j * (2 / subdivisionsAxis))));
+			tangents->push_back(glm::vec3(sinf((j + 1) * (2 * glm::pi<float>() / subdivisionsAxis)), 0.0f, cosf((j + 1) * (2 * glm::pi<float>() / subdivisionsAxis))));
+			tangents->push_back(glm::vec3(sinf((j + 1) * (2 * glm::pi<float>() / subdivisionsAxis)), 0.0f, cosf((j + 1) * (2 * glm::pi<float>() / subdivisionsAxis))));
+			tangents->push_back(glm::vec3(sinf(j * (2 * glm::pi<float>() / subdivisionsAxis)), 0.0f, cosf(j * (2 * glm::pi<float>() / subdivisionsAxis))));
 
 			texCoords->push_back(glm::vec2((float)((j + 1) * 2 * glm::pi<float>() * radius / subdivisionsAxis), ((float)(i + 1) / subdivisionsHeight)));
 			texCoords->push_back(glm::vec2((float)((j + 1) * 2 * glm::pi<float>() * radius / subdivisionsAxis), ((float)i / subdivisionsHeight)));
@@ -119,9 +119,9 @@ Model* ModelBuilder::CreateCone(QString name, float radius, float height, int su
 			normals->push_back(glm::vec3(0.0f, -1.0f, 0.0f));
 			normals->push_back(glm::vec3(0.0f, -1.0f, 0.0f));
 
-			tangents->push_back(glm::vec3(-1.0f, 0.0f, 0.0f));
-			tangents->push_back(glm::vec3(-1.0f, 0.0f, 0.0f));
-			tangents->push_back(glm::vec3(-1.0f, 0.0f, 0.0f));
+			tangents->push_back(glm::vec3(1.0f, 0.0f, 0.0f));
+			tangents->push_back(glm::vec3(1.0f, 0.0f, 0.0f));
+			tangents->push_back(glm::vec3(1.0f, 0.0f, 0.0f));
 			
 			bitangents->push_back(glm::vec3(0.0f, 0.0f, -1.0f));
 			bitangents->push_back(glm::vec3(0.0f, 0.0f, -1.0f));

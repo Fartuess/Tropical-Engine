@@ -50,6 +50,7 @@ public:
 	Shader(QMap<QString, GLuint> subshaders, QString name);
 	~Shader(void);
 
+	void setUpLightParameters();
 	void setUpMaterialParameters();
 
 	GLuint getShaderProgram();
@@ -71,6 +72,7 @@ public:
 
 	Material* getCurrentMaterial();
 private:
+	QString PreprocessShaderFile(QString shaderFile);
 	void AddShader(QString shaderFile, GLenum shaderType);
 public:
 	void Use();
