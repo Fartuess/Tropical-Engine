@@ -35,7 +35,7 @@ void calculateBlinn(in vec3 lightVector, in vec3 lightColor, in float brightness
 
 void main()
 {
-	vec3 ambient = u_lightColor * u_lightAmbient * texture(mat_diffuseTexture, v_texcoord);
+	vec3 ambient = u_lightColor * u_lightAmbient * texture(mat_diffuseTexture, v_texcoord).rgb;
 	vec3 diffuse = vec3(0.0);
 	vec3 specular = vec3(0.0);
 
@@ -58,7 +58,7 @@ void main()
 		calculateBlinn(lightVector, u_pointLights[i].color, brightness, normal, eye, mat_specularExponent, diffuse, specular);
 	}
 
-	diffuse *= texture(mat_diffuseTexture, v_texcoord);
+	diffuse *= texture(mat_diffuseTexture, v_texcoord).rgb;
 	specular *= mat_specularColor;
 
 	FragColor = vec4(ambient + diffuse + specular, 1.0);

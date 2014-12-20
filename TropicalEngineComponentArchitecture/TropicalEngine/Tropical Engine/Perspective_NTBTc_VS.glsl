@@ -31,7 +31,7 @@ void main()
 	v_bitangent = u_normalMatrix * a_bitangent;
 	v_texcoord = a_texcoord;
 
-	v_globalPosition = vertexHelper;
+	v_globalPosition = vertexHelper.xyz;
 
     gl_Position = u_projectionMatrix * u_cameraMatrix * vertexHelper;
 }

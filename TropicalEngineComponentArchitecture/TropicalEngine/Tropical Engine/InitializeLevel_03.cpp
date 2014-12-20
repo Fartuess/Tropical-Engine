@@ -51,6 +51,16 @@ void OglDevTut03::InitializeLevel()
 	Texture* tessNrmTex = new Texture("../Assets/Core/wall_normals.png");
 	Texture* tessDispTex = new Texture("../Assets/Core/wall_heights.png");
 
+	//Texture* tessVecDispTex = new Texture("../Assets/TestAssets/vectorEar.png");
+
+	Texture* tessVecDispTex = new Texture("../Assets/TestAssets/vectorCube_occlusion.tga");
+	Texture* tessVecDispTexNRM = new Texture("../Assets/TestAssets/vectorCube_normals.tga");
+	Texture* tessVecDispTexDISP = new Texture("../Assets/TestAssets/vectorCube_directions.tga");
+	Texture* tessVecDispTexDISP_TS = new Texture("../Assets/TestAssets/vectorCube_2_directions.tga");
+
+	Texture* tgaTest = new Texture("../Assets/TestAssets/dickbutt.tga");
+	Texture* tgaRleTest = new Texture("../Assets/TestAssets/dickbutt_RLE.tga");	//apparently Qt TGA importer doesn't read TGA compressed with RLE.
+
 	phongMaterial->SetParameter("mat_diffuseColor", new glm::vec3(1.0f, 0.7f, 0.0f));
 	phongBlinnMaterial->SetParameter("mat_diffuseColor", new glm::vec3(1.0f, 0.7f, 0.0f));
 	testMaterial->SetParameter("mat_diffuseTexture", testingTexture);
@@ -80,7 +90,7 @@ void OglDevTut03::InitializeLevel()
 	QMap<QString, GLuint> tessalationSubshaders = QMap<QString, GLuint>();
 	tessalationSubshaders["../Tropical Engine/Perspective_NTBTcTess_VS.glsl"] = GL_VERTEX_SHADER;
 	tessalationSubshaders["../Tropical Engine/SimpleTessalation_TCS.glsl"] = GL_TESS_CONTROL_SHADER;
-	tessalationSubshaders["../Tropical Engine/VDisplacement_TES.glsl"] = GL_TESS_EVALUATION_SHADER;
+	tessalationSubshaders["../Tropical Engine/Displacement_TES.glsl"] = GL_TESS_EVALUATION_SHADER;
 	tessalationSubshaders["../Tropical Engine/PhongBlinnBump_PS.glsl"] = GL_FRAGMENT_SHADER;
 	Shader* tessalationShader = new Shader(tessalationSubshaders, "TessalationTest");
 	tessalationShader->drawingMode = GL_PATCHES;
@@ -92,13 +102,43 @@ void OglDevTut03::InitializeLevel()
 	testTessalationMaterial->SetParameter("mat_displacementTexture", tessDispTex);
 	testTessalationMaterial->SetParameter("mat_displacementScale", new float(0.1f));
 
+	QMap<QString, GLuint> distanceTessalationSubshaders = QMap<QString, GLuint>();
+	distanceTessalationSubshaders["../Tropical Engine/Perspective_NTBTcTess_VS.glsl"] = GL_VERTEX_SHADER;
+	distanceTessalationSubshaders["../Tropical Engine/DistanceBasedTesselation_TCS.glsl"] = GL_TESS_CONTROL_SHADER;
+	distanceTessalationSubshaders["../Tropical Engine/Displacement_TES.glsl"] = GL_TESS_EVALUATION_SHADER;
+	distanceTessalationSubshaders["../Tropical Engine/PhongBlinnBump_PS.glsl"] = GL_FRAGMENT_SHADER;
+
+	Shader* distanceTessalationShader = new Shader(distanceTessalationSubshaders, "DistanceTessalationTest");
+	distanceTessalationShader->drawingMode = GL_PATCHES;
+	Material* distanceTessalationMaterial = new Material(distanceTessalationShader, nullptr, "DistanceTessalationMat");
+
+	distanceTessalationMaterial->SetParameter("mat_diffuseTexture", tgaTest);
+	distanceTessalationMaterial->SetParameter("mat_normalTexture", tessNrmTex);
+	distanceTessalationMaterial->SetParameter("mat_displacementTexture", tessDispTex);
+	distanceTessalationMaterial->SetParameter("mat_displacementScale", new float(0.1f));
+
+	QMap<QString, GLuint> vectorTessalationSubshaders = QMap<QString, GLuint>();
+	vectorTessalationSubshaders["../Tropical Engine/Perspective_NTBTcTess_VS.glsl"] = GL_VERTEX_SHADER;
+	vectorTessalationSubshaders["../Tropical Engine/DistanceBasedTesselation_TCS.glsl"] = GL_TESS_CONTROL_SHADER;
+	vectorTessalationSubshaders["../Tropical Engine/VectorDisplacement_TES.glsl"] = GL_TESS_EVALUATION_SHADER;
+	vectorTessalationSubshaders["../Tropical Engine/PhongBlinnBump_PS.glsl"] = GL_FRAGMENT_SHADER;
+
+	Shader* vectorTessalationShader = new Shader(vectorTessalationSubshaders, "VectorTessalationTest");
+	vectorTessalationShader->drawingMode = GL_PATCHES;
+	Material* vectorTessalationMaterial = new Material(vectorTessalationShader, nullptr, "VectorTessalationMat");
+
+	vectorTessalationMaterial->SetParameter("mat_diffuseTexture", tessVecDispTex);
+	vectorTessalationMaterial->SetParameter("mat_normalTexture", tessVecDispTexNRM);
+	vectorTessalationMaterial->SetParameter("mat_displacementTexture", tessVecDispTexDISP_TS);
+	vectorTessalationMaterial->SetParameter("mat_displacementScale", new float(0.5f));
+	vectorTessalationMaterial->SetParameter("mat_tesselationMultiplier", new float(128.0f));
 	
 	//qDebug() << QImageReader::supportedImageFormats();
 
 	Entity* planeObject = new Entity(glm::vec3(0.0f, 0.0f, 0.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
 
 	TropicalEngineApplication::instance()->modelBuilder->CreatePlane("Plane", 10.0f, 10.0f, 50, 50);
-	TropicalEngineApplication::instance()->modelBuilder->CreateBox("Box");
+	TropicalEngineApplication::instance()->modelBuilder->CreateBox("Box", glm::vec3(1.0f, 1.0f, 1.0f));
 	TropicalEngineApplication::instance()->modelBuilder->CreateBox("BoxDense",glm::vec3(1.0f),glm::vec3(10,10,10));
 	TropicalEngineApplication::instance()->modelBuilder->CreateCylinder("Cylinder");
 	TropicalEngineApplication::instance()->modelBuilder->CreateCylinder("CylinderDense", 1.0f, 2.0f, 40, 10);
@@ -107,11 +147,14 @@ void OglDevTut03::InitializeLevel()
 	TropicalEngineApplication::instance()->modelBuilder->CreateTorus("Torus");
 	TropicalEngineApplication::instance()->modelBuilder->Load("TestModel", "../Assets/TestAssets/TestModel.obj");
 	TropicalEngineApplication::instance()->modelBuilder->Load("TestModel2", "../Assets/TestAssets/TestModel2.obj");
+	TropicalEngineApplication::instance()->modelBuilder->Load("TestTesselation", "../Assets/TestAssets/TestTesselation.obj");
 	TropicalEngineApplication::instance()->modelBuilder->Load("Teapot", "../Assets/TestAssets/teapot.obj");
 	TropicalEngineApplication::instance()->modelBuilder->Load("MayaBox", "../Assets/TestAssets/MayaBox.obj");
+	TropicalEngineApplication::instance()->modelBuilder->Load("VectorSphere", "../Assets/TestAssets/vectorDispSphere.obj");
+	TropicalEngineApplication::instance()->modelBuilder->Load("VectorCube", "../Assets/TestAssets/vectorCube_LP_DENSE_T.obj");
 
 	//planeObject->AttachComponent(new ModelComponent(planeObject, cookTorranceMaterial, TropicalEngineApplication::instance()->modelManager->getModel("Plane")));
-	ModelComponent* testModelComponent = new ModelComponent(planeObject, wardAnisoMaterial, TropicalEngineApplication::instance()->modelManager->getModel("TestModel2"));
+	ModelComponent* testModelComponent = new ModelComponent(planeObject, vectorTessalationMaterial, TropicalEngineApplication::instance()->modelManager->getModel("VectorCube"));
 	planeObject->AttachComponent(testModelComponent);
 	planeObject->name = new QString("TestObject");
 	

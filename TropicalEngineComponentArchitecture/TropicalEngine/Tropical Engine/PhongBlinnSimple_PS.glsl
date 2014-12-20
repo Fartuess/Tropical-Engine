@@ -14,13 +14,7 @@ out vec4 FragColor;
 
 void main()
 {
-	vec3 color = u_lightColor * u_lightAmbient * texture(mat_diffuseTexture, v_texcoord);
-
-	//vec3 normal = normalize( texture(mat_normalTexture, v_texcoord).xyz * 2.0 - 1.0 );	//change Y to -Y
-	//
-	//mat3 TBN = transpose(mat3(v_tangent, -v_bitangent, v_normal));	//changed Y to -Y here? is it good?
-	//
-	//vec3 lightdir_ts = normalize(TBN * u_lightVector);
+	vec3 color = u_lightColor * u_lightAmbient * texture(mat_diffuseTexture, v_texcoord).rgb;
 
 	vec3 normal = normalize(v_normal);
 
@@ -35,7 +29,7 @@ void main()
 		vec3 H = (u_lightVector + eye)/length(u_lightVector + eye);	//maybe just use normalize?
 		float nDotH = max(dot(normal, H), 0.0);
 	
-		color += u_lightColor * u_lightBrightness * texture(mat_diffuseTexture, v_texcoord) * nDotL;
+		color += u_lightColor * u_lightBrightness * texture(mat_diffuseTexture, v_texcoord).rgb * nDotL;
 		
 		color += u_lightColor * u_lightBrightness * pow(nDotH, 20.0);
 	}

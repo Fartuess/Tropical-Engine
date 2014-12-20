@@ -52,7 +52,7 @@ glm::vec3 TransformComponent::getLocalPosition()
 
 glm::vec3 TransformComponent::getGlobalPosition()
 {
-	return globalPosition;
+	return glm::mat3(owner->getParrent()->transform.getTransformMatrix()) * globalPosition;
 }
 
 void TransformComponent::setPosition(glm::vec3 position, bool isGlobal)

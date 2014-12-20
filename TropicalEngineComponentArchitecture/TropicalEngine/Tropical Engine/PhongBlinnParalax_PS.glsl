@@ -67,7 +67,7 @@ void main()
     height = NB;
 
     // Choose the color at the location we hit
-    const vec3 texelcolor = texture2D(mat_diffuseTexture, offsetCoord).rgb;
+    vec3 texelcolor = texture2D(mat_diffuseTexture, offsetCoord).rgb;
 
     vec3 tsL = normalize(lightdir_ts);
 
@@ -80,10 +80,10 @@ void main()
     // of the bump scale and number of steps.
 //    tsN = normalize(texture2D(normalBumpMap, offsetCoord + vec2(tsN.x, -tsN.y) * mipScale).xyz * 2 - 1 + tsN);
 
-    const vec3 tsH = normalize(tsL + normalize(tsE));
+    vec3 tsH = normalize(tsL + normalize(tsE));
 
-    const float NdotL = max(0, dot(tsN, tsL));
-    const float NdotH = max(0, dot(tsN, tsH));
+    float NdotL = max(0, dot(tsN, tsL));
+    float NdotH = max(0, dot(tsN, tsH));
     float spec = pow(NdotH, 5);
 
     //vec3 lightColor = vec3(1.5, 1.5, 1) * 0.9;
@@ -100,7 +100,7 @@ void main()
 	{
 
         // Trace a shadow ray along the light vector.
-        const int numShadowSteps = int(mix(60, 5 ,tsL.z));
+        int numShadowSteps = int(mix(60, 5 ,tsL.z));
         step = 1.0 / numShadowSteps;
         delta = vec2(tsL.x, -tsL.y) * mat_bumpScale / (numShadowSteps * tsL.z);
 

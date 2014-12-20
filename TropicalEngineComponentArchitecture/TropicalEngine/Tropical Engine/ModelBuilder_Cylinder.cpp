@@ -58,9 +58,9 @@ Model* ModelBuilder::CreateCylinder(QString name, float radius, float height, in
 			bitangents->push_back(glm::vec3(0.0f, -1.0f, 0.0f));
 			bitangents->push_back(glm::vec3(0.0f, -1.0f, 0.0f));
 
-			qDebug() << QString::number(glm::vec3(sinf(j * (2 * glm::pi<float>() / subdivisionsAxis)), 0.0f, cosf(j * (2 * glm::pi<float>() / subdivisionsAxis))).x);
-			qDebug() << QString::number(glm::vec3(sinf(j * (2 * glm::pi<float>() / subdivisionsAxis)), 0.0f, cosf(j * (2 * glm::pi<float>() / subdivisionsAxis))).x);
-			qDebug() << QString::number(glm::vec3(sinf((j + 1) * (2 * glm::pi<float>() / subdivisionsAxis)), 0.0f, cosf((j + 1) * (2 * glm::pi<float>() / subdivisionsAxis))).x);
+			//qDebug() << QString::number(glm::vec3(sinf(j * (2 * glm::pi<float>() / subdivisionsAxis)), 0.0f, cosf(j * (2 * glm::pi<float>() / subdivisionsAxis))).x);
+			//qDebug() << QString::number(glm::vec3(sinf(j * (2 * glm::pi<float>() / subdivisionsAxis)), 0.0f, cosf(j * (2 * glm::pi<float>() / subdivisionsAxis))).x);
+			//qDebug() << QString::number(glm::vec3(sinf((j + 1) * (2 * glm::pi<float>() / subdivisionsAxis)), 0.0f, cosf((j + 1) * (2 * glm::pi<float>() / subdivisionsAxis))).x);
 			
 			tangents->push_back(glm::vec3(sinf(j * (2 * glm::pi<float>() / subdivisionsAxis)), 0.0f, cosf(j * (2 * glm::pi<float>() / subdivisionsAxis))));
 			tangents->push_back(glm::vec3(sinf(j * (2 * glm::pi<float>() / subdivisionsAxis)), 0.0f, cosf(j * (2 * glm::pi<float>() / subdivisionsAxis))));

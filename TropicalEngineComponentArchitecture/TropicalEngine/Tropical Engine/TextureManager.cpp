@@ -3,9 +3,17 @@
 
 #include "TropicalEngineApplication.h"
 
+#include <QtCore\qdebug.h>
+#include <QtGui\qimagereader.h>
+
 TextureManager::TextureManager(void)
 {
 	textureIterator = 0;
+
+	foreach(QByteArray it, QImageReader::supportedImageFormats())
+	{
+		qDebug() << QString(it);
+	}
 }
 
 TextureManager::~TextureManager(void)

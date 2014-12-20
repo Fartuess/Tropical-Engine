@@ -137,6 +137,7 @@
     <ClInclude Include="Component.h" />
     <ClInclude Include="DirectionalLightComponent.h" />
     <ClInclude Include="Entity.h" />
+    <ClInclude Include="GuiStyleManager.h" />
     <ClInclude Include="InputController.h" />
     <ClInclude Include="ISerializableToXML.h" />
     <ClInclude Include="Level.h" />
@@ -198,6 +199,7 @@
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="DirectionalLightComponent.cpp" />
     <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="GuiStyleManager.cpp" />
     <ClCompile Include="InitializeLevel_03.cpp" />
     <ClCompile Include="InputController.cpp" />
     <ClCompile Include="ISerializableToXML.cpp" />
@@ -249,6 +251,7 @@
   <ItemGroup>
     <None Include="BasicVertexShader.glsl" />
     <None Include="CookTorrance_PS.glsl" />
+    <None Include="DistanceBasedTesselation_TCS.glsl" />
     <None Include="NormTexcoord_VS.glsl" />
     <None Include="Phong_PS.glsl" />
     <None Include="PerspectiveSimple_VS.glsl" />
@@ -261,8 +264,10 @@
     <None Include="SimpleTessalation_TCS.glsl" />
     <None Include="StraussSimple_PS.glsl" />
     <None Include="TexturedPhong_PS.glsl" />
+    <None Include="TropicalEngineEditorStyle.css" />
     <None Include="UnlitSimple.glsl" />
-    <None Include="VDisplacement_TES.glsl" />
+    <None Include="Displacement_TES.glsl" />
+    <None Include="VectorDisplacement_TES.glsl" />
     <None Include="WardAnisoSimple_PS.glsl" />
     <None Include="WardIsoSimple_PS.glsl" />
     <None Include="_PointLight.glsl" />

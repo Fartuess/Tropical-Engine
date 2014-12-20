@@ -25,6 +25,8 @@ class OglDevTut03;
 
 class SceneGraphWidget;
 
+class GuiStyleManager;
+
 class TropicalEngineApplication : public QApplication
 {
 	Q_OBJECT
@@ -50,6 +52,8 @@ public:
 	InputController* inputController;
 
 	OglDevTut03* renderer;	//temporarily
+
+	GuiStyleManager* styleManager;
 
 	TropicalEngineApplication(int argc, char* argv[]);
 	~TropicalEngineApplication(void);

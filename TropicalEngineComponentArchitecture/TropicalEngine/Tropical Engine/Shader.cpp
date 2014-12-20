@@ -57,7 +57,7 @@ Shader::Shader(QString vertexShader, QString fragmentShader, QString name)
 
 	modelMatrixLocation = glGetUniformLocation(this->shaderProgram, "u_transformationMatrix");
 	normalMatrixLocation = glGetUniformLocation(this->shaderProgram, "u_normalMatrix");
-	cameraPositionLocation = glGetUniformLocation(shaderProgram, "u_cameraPosition");
+	cameraPositionLocation = glGetUniformLocation(this->shaderProgram, "u_cameraPosition");
 	cameraMatrixLocation = glGetUniformLocation(this->shaderProgram, "u_cameraMatrix");
 	projectionMatrixLocation = glGetUniformLocation(this->shaderProgram, "u_projectionMatrix");
 
@@ -117,6 +117,7 @@ Shader::Shader(QMap<QString, GLuint> subshaders, QString name)
 	modelMatrixLocation = glGetUniformLocation(this->shaderProgram, "u_transformationMatrix");
 	normalMatrixLocation = glGetUniformLocation(this->shaderProgram, "u_normalMatrix");
 	cameraMatrixLocation = glGetUniformLocation(this->shaderProgram, "u_cameraMatrix");
+	cameraPositionLocation = glGetUniformLocation(this->shaderProgram, "u_cameraPosition");
 	projectionMatrixLocation = glGetUniformLocation(this->shaderProgram, "u_projectionMatrix");
 
 	setUpLightParameters();
@@ -183,10 +184,10 @@ void Shader::setUpMaterialParameters()
 		}
 	//}
 		//test
-		foreach(QString paramname, materialParameters->keys())
-		{
-			qDebug() << paramname << (*materialParameters)[paramname].first << (*materialParameters)[paramname].second;
-		}
+		//foreach(QString paramname, materialParameters->keys())
+		//{
+		//	qDebug() << paramname << (*materialParameters)[paramname].first << (*materialParameters)[paramname].second;
+		//}
 }
 
 Shader::~Shader(void)
@@ -292,10 +293,10 @@ QString Shader::PreprocessShaderFile(QString shaderFile)
 
 	foreach(QString includeFilename, includeFilenames)
 	{
-		qDebug() << includeFilename;
+		//qDebug() << includeFilename;
 		fileString.replace(QRegularExpression(QString("#include \"" + includeFilename + "\"")), PreprocessShaderFile(QString("../Tropical Engine/" + includeFilename)));
 	}
-	qDebug() << fileString;
+	//qDebug() << fileString;
 	return fileString;
 }
 

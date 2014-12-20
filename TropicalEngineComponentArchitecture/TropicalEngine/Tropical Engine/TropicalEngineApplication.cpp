@@ -20,6 +20,8 @@
 
 #include "SceneGraphWidget.h"
 
+#include "GuiStyleManager.h""
+
 TropicalEngineApplication::TropicalEngineApplication(int argc, char* argv[]) : QApplication(argc, argv)
 {
 	shaderManager = new ShaderManager();
@@ -39,6 +41,10 @@ TropicalEngineApplication::TropicalEngineApplication(int argc, char* argv[]) : Q
 	inputController = new InputController();
 
 	renderer = new OglDevTut03();
+
+	styleManager = new GuiStyleManager();
+	styleManager->ChangeStyle(*this, "../Tropical Engine/TropicalEngineEditorStyle.css");
+
 }
 
 TropicalEngineApplication::~TropicalEngineApplication(void)

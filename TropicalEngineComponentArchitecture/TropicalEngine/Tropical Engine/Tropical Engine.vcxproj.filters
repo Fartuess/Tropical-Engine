@@ -115,6 +115,9 @@
     <Filter Include="Shader Files\Fragment Shader\Shader Modules">
       <UniqueIdentifier>{e849c7c3-4f39-42f8-a9c8-0d4791501065}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{f7bca792-3a5e-4bf1-b2ef-e9766693b66f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Entity.cpp">
@@ -270,6 +273,9 @@
     <ClCompile Include="moc_PropertiesWidget.cpp">
       <Filter>Source Files\QtInterface</Filter>
     </ClCompile>
+    <ClCompile Include="GuiStyleManager.cpp">
+      <Filter>Source Files\QtInterface</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entity.h">
@@ -377,6 +383,9 @@
     <ClInclude Include="PropertyItem.h">
       <Filter>Header Files\QtInterface</Filter>
     </ClInclude>
+    <ClInclude Include="GuiStyleManager.h">
+      <Filter>Header Files\QtInterface</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="BasicVertexShader.glsl">
@@ -404,9 +413,6 @@
       <Filter>Shader Files\Vertex Shader</Filter>
     </None>
     <None Include="SimpleTessalation_TCS.glsl">
-      <Filter>Shader Files\Tessalation Shader</Filter>
-    </None>
-    <None Include="VDisplacement_TES.glsl">
       <Filter>Shader Files\Tessalation Shader</Filter>
     </None>
     <None Include="CookTorrance_PS.glsl">
@@ -438,6 +444,18 @@
     </None>
     <None Include="_SpotLight.glsl">
       <Filter>Shader Files\Fragment Shader\Shader Modules</Filter>
+    </None>
+    <None Include="DistanceBasedTesselation_TCS.glsl">
+      <Filter>Shader Files\Tessalation Shader</Filter>
+    </None>
+    <None Include="Displacement_TES.glsl">
+      <Filter>Shader Files\Tessalation Shader</Filter>
+    </None>
+    <None Include="VectorDisplacement_TES.glsl">
+      <Filter>Shader Files\Tessalation Shader</Filter>
+    </None>
+    <None Include="TropicalEngineEditorStyle.css">
+      <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

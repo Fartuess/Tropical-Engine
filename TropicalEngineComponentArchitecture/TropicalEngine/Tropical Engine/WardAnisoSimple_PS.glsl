@@ -45,12 +45,12 @@ void calculateWardAnisotropic(in vec3 lightVector, in vec3 lightColor, in float 
     s_den       *= sqrt( LdotN * VdotN );
  
     // Compute the final specular term
-    vec3 Specular = /*Ps * */ ( exp( beta ) / s_den );
+	float Specular = /*Ps * */ ( exp( beta ) / s_den );
  
     // Composite the final value:
 
 	diffuseIntensity += max(0, dot( normal, lightVector )) * lightColor * brightness;
-	specularIntensity +=  max(vec3(0.0f), Specular) * lightColor * brightness * max(0, dot( normal, lightVector ));
+	specularIntensity +=  max(0.0f, Specular) * lightColor * brightness * max(0, dot( normal, lightVector ));
 
 	//diffuseIntensity +=
 	//specularIntensity +=

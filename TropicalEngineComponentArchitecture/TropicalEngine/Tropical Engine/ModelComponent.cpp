@@ -62,8 +62,12 @@ void ModelComponent::Draw(CameraComponent* viewer)
 	glUniformMatrix4fv(usedShader->getModelMatrixLocation(), 1, GL_FALSE, glm::value_ptr(owner->transform.getTransformMatrix()));
 	glUniformMatrix3fv(usedShader->getNormalMatrixLocation(), 1, GL_FALSE, glm::value_ptr(owner->transform.getNormalMatrix()));
 	glUniform3fv(usedShader->getCameraPositionLocation(), 1, glm::value_ptr(viewer->getOwner()->transform.getLocalPosition()));	///TODO: Change to global position when it will work
+	//glUniform3fv(usedShader->getCameraPositionLocation(), 1, glm::value_ptr(viewer->getOwner()->transform.getGlobalPosition()));
+	//qDebug() << glm::length(viewer->getOwner()->transform.getLocalPosition());
+	//qDebug() << viewer->getOwner()->transform.getLocalPosition().x << " " << viewer->getOwner()->transform.getLocalPosition().y << " " << viewer->getOwner()->transform.getLocalPosition().z;
 	glUniformMatrix4fv(usedShader->getCameraMatrixLocation(), 1, GL_FALSE, glm::value_ptr(viewer->getCameraMatrix()));
 	glUniformMatrix4fv(usedShader->getProjectionMatrixLocation(), 1, GL_FALSE, glm::value_ptr(viewer->getProjectionMatrix()));
+	
 
 	//temp? Light code
 	//glm::quat helperQuat = viewer->getOwner()->transform.getLocalRotation();
@@ -79,7 +83,7 @@ void ModelComponent::Draw(CameraComponent* viewer)
 		for(int i = 0; i < glm::min(MAX_POINT_LIGHT, lightedBy.size()); i++)	///TODO: Assuming that it is lighted only by pointlights. Change it later to work properly
 		{
 			PointLightComponent* light = static_cast<PointLightComponent*>(lightedBy[i]);
-			qDebug() << QString::number(light->getOwner()->transform.getLocalPosition().x) + QString::number(light->getOwner()->transform.getLocalPosition().y) + QString::number(light->getOwner()->transform.getLocalPosition().z);
+			//qDebug() << QString::number(light->getOwner()->transform.getLocalPosition().x) + QString::number(light->getOwner()->transform.getLocalPosition().y) + QString::number(light->getOwner()->transform.getLocalPosition().z);
 			glUniform3fv(usedShader->pointLightPositionLocations[i], 1, glm::value_ptr(light->getOwner()->transform.getLocalPosition()));
 			glUniform3fv(usedShader->pointLightColorLocations[i], 1, glm::value_ptr(light->color));
 			glUniform1f(usedShader->pointLightBrightnessLocations[i], light->brightness);
@@ -117,6 +121,8 @@ void ModelComponent::Draw(CameraComponent* viewer)
 			+ 3 * sizeof(glm::vec3))
 			* meshEntry.NumVertex));
 		
+		//glPolygonMode(GL_FRONT, GL_LINE);
+		//glPolygonMode(GL_BACK, GL_LINE);
 		//glDrawArrays(GL_PATCHES, 0, meshEntry.NumVertex);
 		glDrawArrays(usedShader->drawingMode, 0, meshEntry.NumVertex);
 		//glDrawArrays(GL_TRIANGLES, 0, meshEntry.NumVertex);

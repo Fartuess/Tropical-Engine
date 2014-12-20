@@ -26,7 +26,16 @@ Texture::~Texture(void)
 
 void Texture::Load()
 {
-	QImage textureData = QImage(fileUrl);
+	QImage textureData;
+	if(fileUrl.endsWith(".tga", Qt::CaseInsensitive))
+	{
+		textureData = QImage(fileUrl).mirrored(false, true);
+	}
+	else
+	{
+		textureData = QImage(fileUrl);
+	}
+
 	textureData = textureData.convertToFormat(QImage::Format_RGBA8888);
 
 	//glActiveTexture(GL_TEXTURE0 + TropicalEngineApplication::instance()->textureManager->getTextureIterator());
