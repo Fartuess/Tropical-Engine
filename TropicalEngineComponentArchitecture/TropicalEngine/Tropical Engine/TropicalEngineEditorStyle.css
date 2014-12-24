@@ -4,6 +4,12 @@ QWidget
     color: white;
 }
 
+QLayout
+{
+    margin: 0px;
+    padding: 0px;
+}
+
 QMenuBar
 {
     background-color: #2d2d30;
@@ -107,3 +113,8 @@ QHeaderView::section
     {
         border-right: none;
     }
+
+QLabel#Title
+{
+    font-size: 16px;
+}

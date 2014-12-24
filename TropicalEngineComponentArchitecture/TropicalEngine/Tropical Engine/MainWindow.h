@@ -16,24 +16,33 @@
 
 class MainWindow : public QMainWindow
 {
+	//Q_OBJECT
 public:
+	QWidget* TitleBar;
+	QHBoxLayout* TitleBarLayout;
+
 	QMenuBar* mainMenu;
 	QStatusBar* statusBar;
 	QMenu* fileMenu;
 	QMenu* assetsMenu;
 	QMenu* miscelanousMenu;
+	QWidget* superWidget;
 	QWidget* mainWidget;
+	QVBoxLayout* superLayout;	
 	QHBoxLayout* mainLayout;
 	OpenGLWidget* openGLWindow;
 
-	QMenuBar* mainMenuBar;
+	QMenuBar* mainMenuBar;	//is it needed?
 	QVBoxLayout* leftPanelLayout;
 	QVBoxLayout* rightPanelLayout;
 
 	SceneGraphWidget* sceneGraph;
 	PropertiesWidget* propertiesWidget;
 
-	MainWindow(void);
+private:
+	QSizePolicy* expandVertically;
+public:
+	MainWindow(QWidget* parrent = 0, bool isFrameless = false);
 	~MainWindow(void);
 };
 

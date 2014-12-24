@@ -27,8 +27,10 @@ Level* OglDevTut03::level;
 int main(int argc, char* argv[])
 {
 	TropicalEngineApplication tropicalEngine(argc, argv);
-	MainWindow* mainWindow = new MainWindow();
-	mainWindow->show();
+	MainWindow mainWindow(0, true);// = new MainWindow();
+	//mainWindow->setWindowFlags(Qt::FramelessWindowHint);
+	//mainWindow.show();
+	//mainWindow->setWindowFlags(Qt::FramelessWindowHint);
 
 	return tropicalEngine.exec();
 }

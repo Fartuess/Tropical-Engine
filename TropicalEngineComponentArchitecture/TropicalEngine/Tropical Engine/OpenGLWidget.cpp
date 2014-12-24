@@ -17,6 +17,7 @@
 
 OpenGLWidget::OpenGLWidget(void)
 {
+	//setWindowFlags(Qt::
 }
 
 OpenGLWidget::~OpenGLWidget(void)

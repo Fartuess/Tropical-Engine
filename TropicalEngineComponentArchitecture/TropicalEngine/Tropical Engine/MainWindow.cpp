@@ -10,14 +10,44 @@
 #include <QtWidgets\qgroupbox.h>
 #include <QtWidgets\qspinbox.h>
 #include <QtCore\qthread.h>
+
 #include "OpenGLWidget.h"
 #include "SceneGraphItem.h"
 
 #include "TropicalEngineApplication.h"
 #include "MainWindow.h"
 
-MainWindow::MainWindow(void)	///TODO: Figure out which references to UI elements should be kept.
+MainWindow::MainWindow(QWidget* parrent, bool isFrameless): QMainWindow(parrent)
+	///TODO: Figure out which references to UI elements should be kept.
 {
+	if(isFrameless == true)
+	{
+		setWindowFlags(Qt::FramelessWindowHint | Qt::WindowMinMaxButtonsHint | Qt::WindowSystemMenuHint);
+	}
+
+	show();
+	resize(800, 600);
+
+	expandVertically = new QSizePolicy(QSizePolicy::Minimum, QSizePolicy::Maximum);
+
+	TitleBar = new QWidget();
+	TitleBarLayout = new QHBoxLayout();
+	//TitleBar->setMinimumHeight(30);
+	//TitleBar->setMaximumHeight(30);
+	TitleBar->setSizePolicy(*expandVertically);
+
+	QLabel* Title = new QLabel("Tropical Engine");
+	Title->setObjectName("Title");
+	QPushButton* minimize = new QPushButton("-");
+	QPushButton* maximize = new QPushButton("O");
+	QPushButton* close = new QPushButton("X");
+
+	TitleBarLayout->addWidget(Title);
+	TitleBarLayout->addStretch();
+	TitleBarLayout->addWidget(minimize);
+	TitleBarLayout->addWidget(maximize);
+	TitleBarLayout->addWidget(close);
+
 	mainMenu = new QMenuBar();
 	statusBar = new QStatusBar();
 	statusBar->showMessage("Engine Initialized");
@@ -28,8 +58,9 @@ MainWindow::MainWindow(void)	///TODO: Figure out which references to UI elements
 	miscelanousMenu = new QMenu();
 	miscelanousMenu->setTitle("Miscelanous");
 
+	superWidget = new QWidget();
 	mainWidget = new QWidget();
-	setCentralWidget(mainWidget);
+	setCentralWidget(superWidget);
 	fileMenu->addAction("Exit");
 	assetsMenu->addAction("Import Model");
 	assetsMenu->addAction("Import Texture");
@@ -38,10 +69,16 @@ MainWindow::MainWindow(void)	///TODO: Figure out which references to UI elements
 	mainMenu->addMenu(fileMenu);
 	mainMenu->addMenu(assetsMenu);
 	mainMenu->addMenu(miscelanousMenu);
-	setMenuBar(mainMenu);
-	setStatusBar(statusBar);
+	//setMenuBar(mainMenu);
+	//setStatusBar(statusBar);
+	mainMenu->setSizePolicy(*expandVertically);
+	statusBar->setSizePolicy(*expandVertically);
+	//mainMenu->setMaximumHeight(20);
+	//statusBar->setMaximumHeight(20);
 
+	superLayout = new QVBoxLayout();
 	mainLayout = new QHBoxLayout();
+	
 	mainMenuBar = new QMenuBar();
 	QSplitter* mainLayoutSplitter = new QSplitter();
 	openGLWindow = new OpenGLWidget();
@@ -98,6 +135,19 @@ MainWindow::MainWindow(void)	///TODO: Figure out which references to UI elements
 	mainLayoutSplitter->addWidget(rightPanel);
 	mainLayout->addWidget(mainLayoutSplitter);
 	mainWidget->setLayout(mainLayout);
+	superWidget->setLayout(superLayout);
+
+	if(isFrameless)
+	{
+		superLayout->addWidget(TitleBar);
+	}
+	superLayout->addWidget(mainMenu);
+	superLayout->addWidget(mainWidget);
+	superLayout->addWidget(statusBar);
+	superLayout->setMargin(0);
+	superLayout->setSpacing(0);
+
+	TitleBar->setLayout(TitleBarLayout);
 }
 
 MainWindow::~MainWindow(void)
