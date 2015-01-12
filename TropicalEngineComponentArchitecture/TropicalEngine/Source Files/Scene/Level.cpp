@@ -33,3 +33,10 @@ QString Level::toXML()
 
 	return XMLString;
 }
+
+QJsonObject Level::toJSON()
+{
+	///TODO: implement it.
+	QJsonObject JSON = QJsonObject();
+	return JSON;
+}

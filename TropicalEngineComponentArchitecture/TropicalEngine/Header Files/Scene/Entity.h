@@ -4,8 +4,9 @@
 #include <QtCore\qstring.h>
 #include "Scene\TransformComponent.h"
 #include "Serialization/ISerializableToXML.h"
+#include "Serialization/ISerializableToJSON.h"
 
-class Entity : public ISerializableToXML
+class Entity : public ISerializableToXML, public ISerializableToJSON
 {
 private:
 	friend class Component;
@@ -36,4 +37,5 @@ private:
 
 public:
 	QString toXML() override;
+	QJsonObject toJSON() override;
 };

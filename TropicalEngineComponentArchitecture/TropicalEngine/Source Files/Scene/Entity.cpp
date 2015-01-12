@@ -93,3 +93,22 @@ QString Entity::toXML()
 
 	return XMLString;
 }
+
+QJsonObject Entity::toJSON()
+{
+	QJsonObject JSON = QJsonObject();
+	QJsonArray* componentsArray = new QJsonArray();
+	QJsonArray* subobjectsArray = new QJsonArray();
+
+	foreach(Component* component, components)
+	{
+		subobjectsArray->push_back(component->toJSON());
+	}
+
+	foreach(Entity* subobject, subobjects)
+	{
+		subobjectsArray->push_back(subobject->toJSON());
+	}
+
+	return JSON;
+}

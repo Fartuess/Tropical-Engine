@@ -300,3 +300,10 @@ QString TransformComponent::toXML()
 
 	return XMLString;
 }
+
+QJsonObject TransformComponent::toJSON()
+{
+	///TODO: implement it.
+	QJsonObject JSON = QJsonObject();
+	return JSON;
+}

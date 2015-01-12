@@ -58,3 +58,10 @@ QString LightComponent::toXML()
 	///TODO: implement it.
 	return QString(getIndent() + "<LightComponent/>\n");
 }
+
+QJsonObject LightComponent::toJSON()
+{
+	///TODO: implement it.
+	QJsonObject JSON = QJsonObject();
+	return JSON;
+}

@@ -135,3 +135,10 @@ QString CameraComponent::toXML()
 	///TODO: implement it.
 	return QString(getIndent() + "<CameraComponent/>\n");
 }
+
+QJsonObject CameraComponent::toJSON()
+{
+	///TODO: implement it.
+	QJsonObject JSON = QJsonObject();
+	return JSON;
+}

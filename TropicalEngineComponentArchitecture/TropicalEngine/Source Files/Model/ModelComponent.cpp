@@ -151,3 +151,10 @@ QString ModelComponent::toXML()
 {
 	return QString(getIndent() + "<ModelComponent model = \"" + model->name + "\" material =\"" + material->name + "\"/>\n");
 }
+
+QJsonObject ModelComponent::toJSON()
+{
+	///TODO: implement it.
+	QJsonObject JSON = QJsonObject();
+	return JSON;
+}

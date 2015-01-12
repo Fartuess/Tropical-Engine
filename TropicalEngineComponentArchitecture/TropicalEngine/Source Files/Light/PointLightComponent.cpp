@@ -55,3 +55,10 @@ QString PointLightComponent::toXML()
 	///TODO: implement it.
 	return QString(getIndent() + "<PointLightComponent/>\n");
 }
+
+QJsonObject PointLightComponent::toJSON()
+{
+	///TODO: implement it.
+	QJsonObject JSON = QJsonObject();
+	return JSON;
+}

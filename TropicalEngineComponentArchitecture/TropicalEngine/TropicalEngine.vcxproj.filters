@@ -309,6 +309,9 @@
     <ClInclude Include="Header Files\Scene\TransformComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Header Files\Serialization\ISerializableToJSON.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="Header Files\TropicalEngineApplication.h">

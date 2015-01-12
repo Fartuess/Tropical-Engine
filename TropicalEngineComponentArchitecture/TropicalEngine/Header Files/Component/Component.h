@@ -2,10 +2,11 @@
 #include <QtCore/qmap.h>
 
 #include "Serialization/ISerializableToXML.h"
+#include "Serialization/ISerializableToJSON.h"
 
 class Entity;
 
-class Component : public ISerializableToXML
+class Component : public ISerializableToXML, public ISerializableToJSON
 {
 public:
 	friend class Entity;

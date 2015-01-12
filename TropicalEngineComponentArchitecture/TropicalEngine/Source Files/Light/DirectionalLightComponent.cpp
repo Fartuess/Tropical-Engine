@@ -51,3 +51,10 @@ QString DirectionalLightComponent::toXML()
 	///TODO: implement it.
 	return QString(getIndent() + "<DirectionalLightComponent/>\n");
 }
+
+QJsonObject DirectionalLightComponent::toJSON()
+{
+	///TODO: implement it.
+	QJsonObject JSON = QJsonObject();
+	return JSON;
+}

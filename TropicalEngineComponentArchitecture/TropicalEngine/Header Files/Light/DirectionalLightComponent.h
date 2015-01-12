@@ -20,5 +20,6 @@ public:
 
 	QString getName() override;
 	QString toXML() override;
+	QJsonObject toJSON() override;
 };
 

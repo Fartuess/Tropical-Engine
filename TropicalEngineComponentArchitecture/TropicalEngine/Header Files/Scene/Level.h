@@ -4,8 +4,9 @@
 #include "Package\Package.h"
 #include <QtCore\qstring.h>
 #include "Serialization/ISerializableToXML.h"
+#include "Serialization/ISerializableToJSON.h"
 
-class Level : public ISerializableToXML
+class Level : public ISerializableToXML, public ISerializableToJSON
 {
 public:
 	QString name;
@@ -20,4 +21,5 @@ public:
 	~Level(void);
 
 	QString toXML() override;
+	QJsonObject toJSON() override;
 };

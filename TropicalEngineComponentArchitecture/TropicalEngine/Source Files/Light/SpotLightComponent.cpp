@@ -73,3 +73,10 @@ QString SpotLightComponent::toXML()
 	///TODO: implement it.
 	return QString(getIndent() + "<SpotLightComponent/>\n");
 }
+
+QJsonObject SpotLightComponent::toJSON()
+{
+	///TODO: implement it.
+	QJsonObject JSON = QJsonObject();
+	return JSON;
+}
