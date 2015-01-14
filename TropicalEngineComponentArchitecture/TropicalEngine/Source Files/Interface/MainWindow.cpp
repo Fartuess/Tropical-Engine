@@ -16,37 +16,40 @@
 
 #include "TropicalEngineApplication.h"
 #include "Interface\MainWindow.h"
+#include "Interface\TitleBar.h"
 
 MainWindow::MainWindow(QWidget* parrent, bool isFrameless): QMainWindow(parrent)
 	///TODO: Figure out which references to UI elements should be kept.
 {
 	if(isFrameless == true)
 	{
-		setWindowFlags(Qt::FramelessWindowHint | Qt::WindowMinMaxButtonsHint | Qt::WindowSystemMenuHint);
+		setWindowFlags(Qt::FramelessWindowHint | Qt::WindowMinMaxButtonsHint | Qt::WindowSystemMenuHint | Qt::WindowTitleHint | Qt::WindowCloseButtonHint);
 	}
 
 	show();
 	resize(800, 600);
 
 	expandVertically = new QSizePolicy(QSizePolicy::Minimum, QSizePolicy::Maximum);
+	//
+	//TitleBar = new QWidget();
+	//TitleBarLayout = new QHBoxLayout();
+	////TitleBar->setMinimumHeight(30);
+	////TitleBar->setMaximumHeight(30);
+	//TitleBar->setSizePolicy(*expandVertically);
+	//
+	//QLabel* Title = new QLabel("Tropical Engine");
+	//Title->setObjectName("Title");
+	//QPushButton* minimize = new QPushButton("-");
+	//QPushButton* maximize = new QPushButton("O");
+	//QPushButton* close = new QPushButton("X");
+	//
+	//TitleBarLayout->addWidget(Title);
+	//TitleBarLayout->addStretch();
+	//TitleBarLayout->addWidget(minimize);
+	//TitleBarLayout->addWidget(maximize);
+	//TitleBarLayout->addWidget(close);
 
-	TitleBar = new QWidget();
-	TitleBarLayout = new QHBoxLayout();
-	//TitleBar->setMinimumHeight(30);
-	//TitleBar->setMaximumHeight(30);
-	TitleBar->setSizePolicy(*expandVertically);
-
-	QLabel* Title = new QLabel("Tropical Engine");
-	Title->setObjectName("Title");
-	QPushButton* minimize = new QPushButton("-");
-	QPushButton* maximize = new QPushButton("O");
-	QPushButton* close = new QPushButton("X");
-
-	TitleBarLayout->addWidget(Title);
-	TitleBarLayout->addStretch();
-	TitleBarLayout->addWidget(minimize);
-	TitleBarLayout->addWidget(maximize);
-	TitleBarLayout->addWidget(close);
+	titleBar = new TitleBar(this);
 
 	mainMenu = new QMenuBar();
 	statusBar = new QStatusBar();
@@ -139,7 +142,7 @@ MainWindow::MainWindow(QWidget* parrent, bool isFrameless): QMainWindow(parrent)
 
 	if(isFrameless)
 	{
-		superLayout->addWidget(TitleBar);
+		superLayout->addWidget(titleBar);
 	}
 	superLayout->addWidget(mainMenu);
 	superLayout->addWidget(mainWidget);
@@ -147,7 +150,7 @@ MainWindow::MainWindow(QWidget* parrent, bool isFrameless): QMainWindow(parrent)
 	superLayout->setMargin(0);
 	superLayout->setSpacing(0);
 
-	TitleBar->setLayout(TitleBarLayout);
+	//titleBar->setLayout(TitleBarLayout);
 }
 
 MainWindow::~MainWindow(void)

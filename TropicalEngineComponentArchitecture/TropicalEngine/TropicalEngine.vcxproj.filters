@@ -199,6 +199,15 @@
     <ClCompile Include="Source Files\Scene\LevelManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source Files\Interface\TitleBar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_TitleBar.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_TitleBar.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Header Files\Component\Component.h">
@@ -324,6 +333,9 @@
       <Filter>Header Files</Filter>
     </CustomBuild>
     <CustomBuild Include="Header Files\Interface\PropertiesWidget.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Header Files\Interface\TitleBar.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
   </ItemGroup>

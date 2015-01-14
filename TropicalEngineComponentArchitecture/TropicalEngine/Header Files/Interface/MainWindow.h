@@ -18,7 +18,7 @@ class MainWindow : public QMainWindow
 {
 	//Q_OBJECT
 public:
-	QWidget* TitleBar;
+	QWidget* titleBar;
 	QHBoxLayout* TitleBarLayout;
 
 	QMenuBar* mainMenu;
