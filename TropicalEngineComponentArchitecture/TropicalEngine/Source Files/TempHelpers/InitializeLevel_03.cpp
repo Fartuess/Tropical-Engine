@@ -15,8 +15,9 @@
 
 #include "TropicalEngineApplication.h"
 
-//#include<QtCore\qdebug.h>
+#include<QtCore\qdebug.h>
 //#include <QtGui\qimagereader.h>
+#include <QtCore\qjsondocument.h>
 
 void OglDevTut03::InitializeLevel()
 {
@@ -182,5 +183,7 @@ void OglDevTut03::InitializeLevel()
 	TropicalEngineApplication::instance()->sceneManager->LoadLevel(level, "TestLevel");
 	TropicalEngineApplication::instance()->sceneManager->setCurrentCamera(mainCameraComponent);
 	TropicalEngineApplication::instance()->sceneManager->mainLight = new DirectionalLightComponent(&level->root, glm::vec3(1.0f, 1.0f, 0.9f), glm::vec3(0.5, 0.2, 1.0), 1.0f);
+
+	qDebug() << QJsonDocument(level->toJSON()).toJson();
 	
 }

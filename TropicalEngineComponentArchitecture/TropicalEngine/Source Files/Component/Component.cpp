@@ -126,3 +126,10 @@ QMap<QString, QString> Component::getParameters(QString componentTypeName)
 		return QMap<QString, QString>();
 	}
 }
+
+QJsonObject Component::toJSON()
+{
+	QJsonObject JSON = QJsonObject();
+	JSON["type"] = getName();
+	return JSON;
+}

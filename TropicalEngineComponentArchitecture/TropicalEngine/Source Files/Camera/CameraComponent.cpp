@@ -139,6 +139,21 @@ QString CameraComponent::toXML()
 QJsonObject CameraComponent::toJSON()
 {
 	///TODO: implement it.
-	QJsonObject JSON = QJsonObject();
+	QJsonObject JSON = Component::toJSON();
+	QJsonObject targetObject = QJsonObject();
+	targetObject["x"] = target.x;
+	targetObject["y"] = target.y;
+	targetObject["z"] = target.z;
+	JSON["target"] = targetObject;
+	QJsonObject upObject = QJsonObject();
+	upObject["x"] = up.x;
+	upObject["y"] = up.y;
+	upObject["z"] = up.z;
+	JSON["up"] = upObject;
+	JSON["fov"] = fov;
+	JSON["aspect ratio"] = aspectRatio;
+	JSON["Z near"] = zNear;
+	JSON["Z far"] = zFar;
+
 	return JSON;
 }

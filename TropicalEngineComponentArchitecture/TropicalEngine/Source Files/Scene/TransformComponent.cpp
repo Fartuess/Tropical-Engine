@@ -304,6 +304,26 @@ QString TransformComponent::toXML()
 QJsonObject TransformComponent::toJSON()
 {
 	///TODO: implement it.
-	QJsonObject JSON = QJsonObject();
+	QJsonObject JSON = Component::toJSON();
+	QJsonObject position = QJsonObject();
+	position["x"] = localPosition.x;
+	position["y"] = localPosition.y;
+	position["z"] = localPosition.z;
+	JSON["position"] = position;
+	QJsonObject rotation = QJsonObject();
+	QJsonObject rotationAxis = QJsonObject();
+	glm::vec3 rotationAxisVector = glm::axis(localRotation);
+	rotationAxis["x"] = rotationAxisVector.x;
+	rotationAxis["y"] = rotationAxisVector.y;
+	rotationAxis["z"] = rotationAxisVector.z;
+	rotation["axis"] = rotationAxis;
+	rotation["angle"] = glm::angle(localRotation);
+	JSON["rotation"] = rotation;
+	QJsonObject scale = QJsonObject();
+	scale["x"] = localScale.x;
+	scale["y"] = localScale.y;
+	scale["z"] = localScale.z;
+	JSON["scale"] = scale;
+
 	return JSON;
 }

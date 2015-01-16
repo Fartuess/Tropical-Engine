@@ -59,6 +59,8 @@ protected:
 	void AddParameter(QString name, QString type);
 public:
 	static QMap<QString, QString> getParameters(QString componentTypeName);	//if so change here as well
+
+	QJsonObject toJSON() override;
 };
 
 #define COMPONENTGETNAME(name)\

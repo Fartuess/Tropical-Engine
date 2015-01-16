@@ -59,6 +59,9 @@ QString PointLightComponent::toXML()
 QJsonObject PointLightComponent::toJSON()
 {
 	///TODO: implement it.
-	QJsonObject JSON = QJsonObject();
+	QJsonObject JSON = LightComponent::toJSON();
+	JSON["radius"] = radius;
+	JSON["attenuation"] = attenuation;
+
 	return JSON;
 }

@@ -155,6 +155,9 @@ QString ModelComponent::toXML()
 QJsonObject ModelComponent::toJSON()
 {
 	///TODO: implement it.
-	QJsonObject JSON = QJsonObject();
+	QJsonObject JSON = Component::toJSON();
+	JSON["model"] = model->name;
+	JSON["cast shadows"] = castingShadows;
+
 	return JSON;
 }

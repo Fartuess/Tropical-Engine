@@ -77,6 +77,11 @@ QString SpotLightComponent::toXML()
 QJsonObject SpotLightComponent::toJSON()
 {
 	///TODO: implement it.
-	QJsonObject JSON = QJsonObject();
+	QJsonObject JSON = LightComponent::toJSON();
+	JSON["radius"] = radius;
+	JSON["attenuation"] = attenuation;
+	JSON["inner cone radius"] = innerConeRadius;
+	JSON["outer cone radius"] = outerConeRadius;
+
 	return JSON;
 }

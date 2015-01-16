@@ -97,18 +97,21 @@ QString Entity::toXML()
 QJsonObject Entity::toJSON()
 {
 	QJsonObject JSON = QJsonObject();
-	QJsonArray* componentsArray = new QJsonArray();
-	QJsonArray* subobjectsArray = new QJsonArray();
+	QJsonArray componentsArray = QJsonArray();
+	QJsonArray subobjectsArray = QJsonArray();
 
 	foreach(Component* component, components)
 	{
-		subobjectsArray->push_back(component->toJSON());
+		componentsArray.push_back(component->toJSON());
 	}
 
 	foreach(Entity* subobject, subobjects)
 	{
-		subobjectsArray->push_back(subobject->toJSON());
+		subobjectsArray.push_back(subobject->toJSON());
 	}
+
+	JSON["components"] = componentsArray;
+	JSON["subobjects"] = subobjectsArray;
 
 	return JSON;
 }

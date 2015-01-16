@@ -62,6 +62,14 @@ QString LightComponent::toXML()
 QJsonObject LightComponent::toJSON()
 {
 	///TODO: implement it.
-	QJsonObject JSON = QJsonObject();
+	QJsonObject JSON = Component::toJSON();
+	QJsonObject colorObject = QJsonObject();
+	colorObject["r"] = color.r;
+	colorObject["g"] = color.g;
+	colorObject["b"] = color.b;
+	JSON["color"] = colorObject;
+	JSON["brightness"] = brightness;
+	JSON["casting shadows"] = castingShadows;
+
 	return JSON;
 }

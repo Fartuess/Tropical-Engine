@@ -36,7 +36,13 @@ QString Level::toXML()
 
 QJsonObject Level::toJSON()
 {
-	///TODO: implement it.
 	QJsonObject JSON = QJsonObject();
+	JSON["name"] = name;
+	JSON["url"] = "PLACEHOLDER";
+	QJsonObject rootObject = root.toJSON();
+	JSON["root entity"] = rootObject;
+
+	///TODO: Packages serialization.
+
 	return JSON;
 }

@@ -55,6 +55,12 @@ QString DirectionalLightComponent::toXML()
 QJsonObject DirectionalLightComponent::toJSON()
 {
 	///TODO: implement it.
-	QJsonObject JSON = QJsonObject();
+	QJsonObject JSON = LightComponent::toJSON();
+	QJsonObject directionObject = QJsonObject();
+	directionObject["x"] = direction.x;
+	directionObject["y"] = direction.y;
+	directionObject["z"] = direction.z;
+	JSON["direction"] = directionObject;
+
 	return JSON;
 }
