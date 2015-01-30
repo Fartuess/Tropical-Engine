@@ -16,7 +16,7 @@
 
 class MainWindow : public QMainWindow
 {
-	//Q_OBJECT
+	Q_OBJECT
 public:
 	QWidget* titleBar;
 	QHBoxLayout* TitleBarLayout;
@@ -44,5 +44,8 @@ private:
 public:
 	MainWindow(QWidget* parrent = 0, bool isFrameless = false);
 	~MainWindow(void);
+
+public slots:
+	void saveAs();
 };
 

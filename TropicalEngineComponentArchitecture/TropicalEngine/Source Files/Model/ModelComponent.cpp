@@ -157,6 +157,7 @@ QJsonObject ModelComponent::toJSON()
 	///TODO: implement it.
 	QJsonObject JSON = Component::toJSON();
 	JSON["model"] = model->name;
+	JSON["material"] = material->name;
 	JSON["cast shadows"] = castingShadows;
 
 	return JSON;

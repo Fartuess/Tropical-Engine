@@ -10,6 +10,7 @@
 #include <QtWidgets\qgroupbox.h>
 #include <QtWidgets\qspinbox.h>
 #include <QtCore\qthread.h>
+#include <QtWidgets\qfiledialog.h>
 
 #include "Interface\OpenGLWidget.h"
 #include "Interface\SceneGraphItem.h"
@@ -64,6 +65,9 @@ MainWindow::MainWindow(QWidget* parrent, bool isFrameless): QMainWindow(parrent)
 	superWidget = new QWidget();
 	mainWidget = new QWidget();
 	setCentralWidget(superWidget);
+	QAction* saveAsAction = fileMenu->addAction("Save as");
+	connect(saveAsAction, SIGNAL(triggered()), this, SLOT(saveAs()));
+
 	fileMenu->addAction("Exit");
 	assetsMenu->addAction("Import Model");
 	assetsMenu->addAction("Import Texture");
@@ -155,4 +159,9 @@ MainWindow::MainWindow(QWidget* parrent, bool isFrameless): QMainWindow(parrent)
 
 MainWindow::~MainWindow(void)
 {
+}
+
+void MainWindow::saveAs()
+{
+	QFileDialog fileDialog = QFileDialog((QWidget*)this, Qt::FramelessWindowHint | Qt::WindowMinMaxButtonsHint | Qt::WindowSystemMenuHint | Qt::WindowTitleHint | Qt::WindowCloseButtonHint);
 }
