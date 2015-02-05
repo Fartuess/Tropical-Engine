@@ -2,7 +2,7 @@
 
 InputController::InputController(void)
 {
-	lastMousePosition =glm::vec2(0.0f, 0.0f);
+	lastMousePosition = glm::vec2(0.0f, 0.0f);
 	mousePosition = glm::vec2(0.0f, 0.0f);
 	pressedKeys.W = false;
 	pressedKeys.A = false;

@@ -1,0 +1,206 @@
+{
+    "name": "",
+    "root entity": {
+        "components": [
+            {
+                "position": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                },
+                "rotation": {
+                    "angle": 180,
+                    "axis": {
+                        "x": 0,
+                        "y": 1,
+                        "z": 0
+                    }
+                },
+                "scale": {
+                    "x": 1,
+                    "y": 1,
+                    "z": 1
+                },
+                "type": "Transform Component"
+            },
+            {
+                "brightness": 1,
+                "casting shadows": false,
+                "color": {
+                    "b": 0.89999997615814209,
+                    "g": 1,
+                    "r": 1
+                },
+                "direction": {
+                    "x": 0.5,
+                    "y": 0.20000000298023224,
+                    "z": 1
+                },
+                "type": "DirectionalLight Component"
+            }
+        ],
+        "subobjects": [
+            {
+                "components": [
+                    {
+                        "position": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 0
+                        },
+                        "rotation": {
+                            "angle": 180,
+                            "axis": {
+                                "x": 0,
+                                "y": 1,
+                                "z": 0
+                            }
+                        },
+                        "scale": {
+                            "x": 1,
+                            "y": 1,
+                            "z": 1
+                        },
+                        "type": "Transform Component"
+                    },
+                    {
+                        "cast shadows": false,
+                        "material": "VectorTessalationMat",
+                        "model": "VectorCube",
+                        "type": "Model Component"
+                    }
+                ],
+                "subobjects": [
+                ]
+            },
+            {
+                "components": [
+                    {
+                        "position": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 5
+                        },
+                        "rotation": {
+                            "angle": 180,
+                            "axis": {
+                                "x": 0,
+                                "y": 1,
+                                "z": 0
+                            }
+                        },
+                        "scale": {
+                            "x": 1,
+                            "y": 1,
+                            "z": 1
+                        },
+                        "type": "Transform Component"
+                    },
+                    {
+                        "Z far": 10000,
+                        "Z near": 0.10000000149011612,
+                        "aspect ratio": 0.79559117555618286,
+                        "fov": 40,
+                        "target": {
+                            "x": 0,
+                            "y": 0,
+                            "z": -1
+                        },
+                        "type": "Camera Component",
+                        "up": {
+                            "x": 0,
+                            "y": 1,
+                            "z": 0
+                        }
+                    }
+                ],
+                "subobjects": [
+                ]
+            },
+            {
+                "components": [
+                    {
+                        "position": {
+                            "x": 5,
+                            "y": 5,
+                            "z": 5
+                        },
+                        "rotation": {
+                            "angle": 180,
+                            "axis": {
+                                "x": 0,
+                                "y": 1,
+                                "z": 0
+                            }
+                        },
+                        "scale": {
+                            "x": 1,
+                            "y": 1,
+                            "z": 1
+                        },
+                        "type": "Transform Component"
+                    },
+                    {
+                        "Z far": 10000,
+                        "Z near": 0.10000000149011612,
+                        "aspect ratio": 1.3333333730697632,
+                        "fov": 40,
+                        "target": {
+                            "x": 0,
+                            "y": 0,
+                            "z": -1
+                        },
+                        "type": "Camera Component",
+                        "up": {
+                            "x": 0,
+                            "y": 1,
+                            "z": 0
+                        }
+                    }
+                ],
+                "subobjects": [
+                ]
+            },
+            {
+                "components": [
+                    {
+                        "position": {
+                            "x": -5,
+                            "y": 5,
+                            "z": -5
+                        },
+                        "rotation": {
+                            "angle": 180,
+                            "axis": {
+                                "x": 0,
+                                "y": 1,
+                                "z": 0
+                            }
+                        },
+                        "scale": {
+                            "x": 1,
+                            "y": 1,
+                            "z": 1
+                        },
+                        "type": "Transform Component"
+                    },
+                    {
+                        "attenuation": 0.40000000596046448,
+                        "brightness": 1,
+                        "casting shadows": false,
+                        "color": {
+                            "b": 0,
+                            "g": 0,
+                            "r": 1
+                        },
+                        "radius": 1000,
+                        "type": "PointLight Component"
+                    }
+                ],
+                "subobjects": [
+                ]
+            }
+        ]
+    },
+    "url": "PLACEHOLDER"
+}

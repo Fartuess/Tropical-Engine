@@ -11,13 +11,21 @@
 #include <QtWidgets\qspinbox.h>
 #include <QtCore\qthread.h>
 #include <QtWidgets\qfiledialog.h>
+#include <QtCore\qjsondocument.h>
 
 #include "Interface\OpenGLWidget.h"
 #include "Interface\SceneGraphItem.h"
 
 #include "TropicalEngineApplication.h"
+#include "Interface\GuiStyleManager.h"
+
 #include "Interface\MainWindow.h"
 #include "Interface\TitleBar.h"
+
+#include "Scene\SceneManager.h"
+#include "Scene\Level.h"
+
+#include <QtCore\qdebug.h>
 
 MainWindow::MainWindow(QWidget* parrent, bool isFrameless): QMainWindow(parrent)
 	///TODO: Figure out which references to UI elements should be kept.
@@ -163,5 +171,21 @@ MainWindow::~MainWindow(void)
 
 void MainWindow::saveAs()
 {
-	QFileDialog fileDialog = QFileDialog((QWidget*)this, Qt::FramelessWindowHint | Qt::WindowMinMaxButtonsHint | Qt::WindowSystemMenuHint | Qt::WindowTitleHint | Qt::WindowCloseButtonHint);
+	QString fileName = QFileDialog::getSaveFileName(this,
+		tr("Save Level"), "",
+		tr("ASCII Tropical Level (*.tlvl);;All Files (*)")
+		);
+		//, 0,
+		//QFileDialog::DontUseNativeDialog);
+	qDebug() << fileName;
+
+	QFile file(fileName);
+	if (!file.open(QIODevice::WriteOnly))
+	{
+		return;
+	}
+	QTextStream out(&file);
+	///TODO: figure out which level to save
+	out << 	QJsonDocument(TropicalEngineApplication::instance()->sceneManager->getLevels().first()->toJSON()).toJson();
+	file.close();
 }

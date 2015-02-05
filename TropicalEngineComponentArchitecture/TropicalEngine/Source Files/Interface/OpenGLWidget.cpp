@@ -13,11 +13,15 @@
 
 #include <QtWidgets\qapplication.h>
 #include <QtCore\qthread.h>
+#include <QtWidgets\qdesktopwidget.h>
+
 #include "TropicalEngineApplication.h"
 
 OpenGLWidget::OpenGLWidget(void)
 {
-	//setWindowFlags(Qt::
+	screenCenter = new QPoint(QApplication::desktop()->screenGeometry().center());
+	abstractMousePosition = new QPoint(*screenCenter);
+	mouseGrabPoint = new QPoint(0, 0);
 }
 
 OpenGLWidget::~OpenGLWidget(void)
@@ -97,14 +101,34 @@ void OpenGLWidget::keyPressEvent(QKeyEvent* keyEvent)
 		}
 }
 
+void OpenGLWidget::mousePressEvent(QMouseEvent* mouseEvent)
+{
+	*mouseGrabPoint = mouseEvent->globalPos();
+	previousCursor = new QCursor(cursor());
+	this->setCursor(Qt::BlankCursor);
+}
+
+void OpenGLWidget::mouseReleaseEvent(QMouseEvent* mouseEvent)
+{
+	QCursor::setPos(*mouseGrabPoint);
+	this->setCursor(*previousCursor);
+	delete previousCursor;
+}
+
 void OpenGLWidget::mouseMoveEvent(QMouseEvent* mouseEvent)
 {
-	//qDebug() << "X: " << mouseEvent->globalX() << " Y: " << mouseEvent->globalY();
-	TropicalEngineApplication::instance()->inputController->mousePosition = glm::vec2(mouseEvent->globalX(), mouseEvent->globalY());
+	*abstractMousePosition += mouseEvent->globalPos() - *screenCenter;
 
-	glm::quat quat1 = glm::angleAxis(mouseEvent->globalX() / 6.0f, glm::vec3(0.0f, -1.0f, 0.0f));
+	//TropicalEngineApplication::instance()->inputController->mousePosition = glm::vec2(mouseEvent->globalX(), mouseEvent->globalY());
+	TropicalEngineApplication::instance()->inputController->mousePosition = glm::vec2(abstractMousePosition->x(), abstractMousePosition->y());
+
+	//glm::quat quat1 = glm::angleAxis(mouseEvent->globalX() / 6.0f, glm::vec3(0.0f, -1.0f, 0.0f));
+	glm::quat quat1 = glm::angleAxis(abstractMousePosition->x() / 6.0f, glm::vec3(0.0f, -1.0f, 0.0f));
 	TropicalEngineApplication::instance()->sceneManager->getCurrentCamera()->getOwner()->transform.setLocalRotation(quat1);
-	glm::quat quat2 = glm::angleAxis(mouseEvent->globalY() / 6.0f - 90.0f, TropicalEngineApplication::instance()->sceneManager->getCurrentCamera()->getOwner()->transform.getRight());
-	//qDebug() << "X: " << mouseEvent->globalY() / 6.0f - 90.0f;
+	//glm::quat quat2 = glm::angleAxis(mouseEvent->globalY() / 6.0f - 90.0f, TropicalEngineApplication::instance()->sceneManager->getCurrentCamera()->getOwner()->transform.getRight());
+	glm::quat quat2 = glm::angleAxis(abstractMousePosition->y() / 6.0f - 90.0f, TropicalEngineApplication::instance()->sceneManager->getCurrentCamera()->getOwner()->transform.getRight());
+
 	TropicalEngineApplication::instance()->sceneManager->getCurrentCamera()->getOwner()->transform.setLocalRotation(quat2 * quat1);
+
+	QCursor::setPos(*screenCenter);
 }

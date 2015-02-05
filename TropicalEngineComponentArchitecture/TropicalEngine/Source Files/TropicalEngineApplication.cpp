@@ -20,7 +20,7 @@
 
 #include "Interface\SceneGraphWidget.h"
 
-#include "Interface/GuiStyleManager.h""
+#include "Interface/GuiStyleManager.h"
 
 TropicalEngineApplication::TropicalEngineApplication(int argc, char* argv[]) : QApplication(argc, argv)
 {
