@@ -30,12 +30,15 @@ void PropertiesWidget::Reload()
 		delete takeTopLevelItem(0);
 	}
 
-	Entity* entity = static_cast<SceneGraphItem*>((static_cast<SceneGraphWidget*>(sender())->selectedItems()[0]))->entity;
-
-	foreach(Component* component, entity->components)
+	if (static_cast<SceneGraphWidget*>(sender())->selectedItems().empty() == false)
 	{
-		PropertyItem* propertyItem = new PropertyItem(component->getName());
-		propertyItem->Reload(component);
-		addTopLevelItem(propertyItem);
+		Entity* entity = static_cast<SceneGraphItem*>((static_cast<SceneGraphWidget*>(sender())->selectedItems()[0]))->entity;
+
+		foreach(Component* component, entity->components)
+		{
+			PropertyItem* propertyItem = new PropertyItem(component->getName());
+			propertyItem->Reload(component);
+			addTopLevelItem(propertyItem);
+		}
 	}
 }

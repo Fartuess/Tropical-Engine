@@ -12,7 +12,7 @@ Level::Level(TransformComponent transform, QString name): internalPackage(name)
 
 Level::~Level(void)
 {
-	///TODO: implement it.
+	///TODO: figure out unloading used packages if neccessary.
 }
 
 QString Level::toXML()

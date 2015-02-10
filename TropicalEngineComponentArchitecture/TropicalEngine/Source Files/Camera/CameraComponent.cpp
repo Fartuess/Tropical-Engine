@@ -1,6 +1,8 @@
 #include <gtc\matrix_transform.hpp>
 #include "Camera/CameraComponent.h"
 #include "Scene/Entity.h"
+#include "TropicalEngineApplication.h"
+#include "Scene/SceneManager.h"
 
 #include <QtCore\qdebug.h>
 
@@ -29,7 +31,11 @@ void CameraComponent::InitializeComponentType()
 
 CameraComponent::~CameraComponent(void)
 {
-	///TODO: implement it.
+	///TODO: Figure out how to separate it from engine core.
+	if (TropicalEngineApplication::instance()->sceneManager->getCurrentCamera() == this)
+	{
+		TropicalEngineApplication::instance()->sceneManager->setCurrentCamera(nullptr);
+	}
 }
 
 glm::vec3 CameraComponent::getTarget()

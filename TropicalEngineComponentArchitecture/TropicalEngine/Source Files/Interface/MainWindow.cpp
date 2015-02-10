@@ -25,6 +25,10 @@
 #include "Scene\SceneManager.h"
 #include "Scene\Level.h"
 
+#include "Model\ModelController.h"
+
+#include "Camera\CameraComponent.h"
+
 #include <QtCore\qdebug.h>
 
 MainWindow::MainWindow(QWidget* parrent, bool isFrameless): QMainWindow(parrent)
@@ -73,10 +77,16 @@ MainWindow::MainWindow(QWidget* parrent, bool isFrameless): QMainWindow(parrent)
 	superWidget = new QWidget();
 	mainWidget = new QWidget();
 	setCentralWidget(superWidget);
-	QAction* saveAsAction = fileMenu->addAction("Save as");
-	connect(saveAsAction, SIGNAL(triggered()), this, SLOT(saveAs()));
 
-	fileMenu->addAction("Exit");
+	QAction* newAction = fileMenu->addAction("New");
+	connect(newAction, SIGNAL(triggered()), this, SLOT(newLevel()));
+	QAction* saveAction = fileMenu->addAction("Save");
+	connect(saveAction, SIGNAL(triggered()), this, SLOT(saveLevel()));
+	QAction* saveAsAction = fileMenu->addAction("Save as");
+	connect(saveAsAction, SIGNAL(triggered()), this, SLOT(saveLevelAs()));
+	QAction* exitAction = fileMenu->addAction("Exit");
+	connect(exitAction, SIGNAL(triggered()), this, SLOT(close()));
+
 	assetsMenu->addAction("Import Model");
 	assetsMenu->addAction("Import Texture");
 	miscelanousMenu->addAction("Log");
@@ -169,7 +179,27 @@ MainWindow::~MainWindow(void)
 {
 }
 
-void MainWindow::saveAs()
+void MainWindow::newLevel()
+{
+	TropicalEngineApplication::instance()->sceneManager->Clear();
+	Level* newLevel = new Level(glm::vec3(0.0f, 0.0f, 0.0f), glm::quat(0.0f, (glm::vec3(0.0f, 1.0f, 0.0f))), glm::vec3(1.0f, 1.0f, 1.0f));
+	Entity* mainCamera = new Entity(glm::vec3(0.0f, 0.0f, 5.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
+	mainCamera->name = "Main Camera";
+	CameraComponent* mainCameraComponent = new CameraComponent(mainCamera, glm::vec3(0.0f, 0.0f, -1.0f), glm::vec3(0.0f, 1.0f, 0.0f), 40.0f, 4.0f / 3.0f, 0.1f, 10000.0f);
+	newLevel->root.AttachSubobject(mainCamera);
+	TropicalEngineApplication::instance()->sceneManager->LoadLevel(newLevel, "Untitled Level");
+
+	//temp
+	TropicalEngineApplication::instance()->modelController = new ModelController();
+	sceneGraph->Reload();
+}
+
+void MainWindow::saveLevel()
+{
+	///TODO: Implement
+}
+
+void MainWindow::saveLevelAs()
 {
 	QString fileName = QFileDialog::getSaveFileName(this,
 		tr("Save Level"), "",

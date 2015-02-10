@@ -9,6 +9,9 @@ TransformComponent::TransformComponent(Entity* owner):Component(owner)
 	localScale = glm::vec3(1.0f, 1.0f, 1.0f);
 	EvaluateGlobals();
 
+	//temp?
+	//Evaluate();
+
 	InitializeComponentType();
 }
 
@@ -18,6 +21,9 @@ TransformComponent::TransformComponent(Entity* owner, glm::vec3 localPosition, g
 	this->localRotation = localRotation;
 	this->localScale = localScale;
 	EvaluateGlobals();
+
+	//temp?
+	//Evaluate();
 
 	InitializeComponentType();
 }

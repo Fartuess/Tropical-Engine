@@ -20,6 +20,7 @@ SceneGraphWidget::~SceneGraphWidget(void)
 
 void SceneGraphWidget::Reload()
 {
+	clear();
 	QMap<QString, Level*>& levels = TropicalEngineApplication::instance()->sceneManager->getLevels();
 	foreach(QString levelName, levels.keys())
 	{

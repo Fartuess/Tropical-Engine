@@ -20,7 +20,7 @@ private:
 
 public:
 	TransformComponent transform;
-	QString* name;
+	QString name;
 
 	Entity(void);
 	Entity(glm::vec3 position, glm::quat rotation, glm::vec3 scale);

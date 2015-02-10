@@ -18,10 +18,10 @@ void SceneGraphItem::Reload()
 	foreach(Entity* subobject, entity->subobjects)
 	{
 		SceneGraphItem* levelItem;
-		if(*subobject->name != "")
+		if(subobject->name != "")
 		{
 			//qDebug() << *subobject->name;
-			levelItem = new SceneGraphItem(*subobject->name, subobject);
+			levelItem = new SceneGraphItem(subobject->name, subobject);
 		}
 		else
 		{

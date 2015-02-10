@@ -20,8 +20,26 @@ Entity::Entity(TransformComponent transform):transform(transform)
 
 Entity::~Entity(void)
 {
-	parrent = nullptr;
-	///TODO: implement it.
+	//parrent = nullptr;
+	///TODO: make sure it is properly implemented.
+	QList<Entity*> helperSubobjectList = QList<Entity*>(subobjects);
+	foreach(Entity* subobject, helperSubobjectList)
+	{
+		subobject->parrent = nullptr;
+		delete subobject;
+	}
+	QList<Component*> helperComponentList = QList<Component*>(components);
+	foreach(Component* component, helperComponentList)
+	{
+		if (component->getName() != "Transform Component")	//transform component will remove by itself
+		{
+			delete component;
+		}
+	}
+	if (parrent != nullptr)
+	{
+		parrent->subobjects.removeOne(this);
+	}
 }
 
 Entity* Entity::getParrent()
@@ -77,7 +95,7 @@ void Entity::DetachComponent(Component* component)
 
 QString Entity::toXML()
 {
-	QString XMLString = QString(getIndent() + "<Entity name =\"" + *name + "\">\n");
+	QString XMLString = QString(getIndent() + "<Entity name =\"" + name + "\">\n");
 	increaseIndent();
 	XMLString += transform.toXML();
 	foreach(Component* component, components)

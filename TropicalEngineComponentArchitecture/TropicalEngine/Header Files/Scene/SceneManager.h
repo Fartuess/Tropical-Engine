@@ -26,6 +26,7 @@ public:
 	void LoadLevel(QString fileUrl, QString name);
 	void LoadLevel(Level* level, QString name);
 	void UnloadLevel(QString name);
+	void Clear();
 
 	void EvaluateLevels();
 };

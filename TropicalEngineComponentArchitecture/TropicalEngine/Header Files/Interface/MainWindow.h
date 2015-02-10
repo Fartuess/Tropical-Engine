@@ -46,6 +46,8 @@ public:
 	~MainWindow(void);
 
 public slots:
-	void saveAs();
+	void newLevel();
+	void saveLevel();
+	void saveLevelAs();
 };
 

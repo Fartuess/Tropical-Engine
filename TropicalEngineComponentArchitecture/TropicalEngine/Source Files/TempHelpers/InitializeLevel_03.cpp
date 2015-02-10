@@ -158,25 +158,25 @@ void OglDevTut03::InitializeLevel()
 	//planeObject->AttachComponent(new ModelComponent(planeObject, cookTorranceMaterial, TropicalEngineApplication::instance()->modelManager->getModel("Plane")));
 	ModelComponent* testModelComponent = new ModelComponent(planeObject, vectorTessalationMaterial, TropicalEngineApplication::instance()->modelManager->getModel("VectorCube"));
 	planeObject->AttachComponent(testModelComponent);
-	planeObject->name = new QString("TestObject");
+	planeObject->name = QString("TestObject");
 	
 	level->root.AttachSubobject(planeObject);
 	
 	Entity* mainCamera = new Entity(glm::vec3(0.0f, 0.0f, 5.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
 	CameraComponent* mainCameraComponent = new CameraComponent(mainCamera, glm::vec3(0.0f, 0.0f, -1.0f), glm::vec3(0.0f, 1.0f, 0.0f), 40.0f, 4.0f / 3.0f, 0.1f, 10000.0f);
 	mainCamera->AttachComponent(mainCameraComponent);
-	mainCamera->name = new QString("Main Camera");
+	mainCamera->name = QString("Main Camera");
 	level->root.AttachSubobject(mainCamera);
 
 	Entity* lightModelTestingCamera = new Entity(glm::vec3(5.0f, 5.0f, 5.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
 	CameraComponent* lightModelTestingCameraComponent = new CameraComponent(mainCamera, glm::vec3(0.0f, 0.0f, -1.0f), glm::vec3(0.0f, 1.0f, 0.0f), 40.0f, 4.0f / 3.0f, 0.1f, 10000.0f);
 	lightModelTestingCamera->AttachComponent(lightModelTestingCameraComponent);
-	lightModelTestingCamera->name = new QString("Light Model Testing Camera");
+	lightModelTestingCamera->name = QString("Light Model Testing Camera");
 	level->root.AttachSubobject(lightModelTestingCamera);
 
 	Entity* pointLight = new Entity(glm::vec3(-5.0f, 5.0f, -5.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
 	PointLightComponent* pointLightComponent = new PointLightComponent(pointLight, glm::vec3(1.0f, 0.0f, 0.0f), 1.0f, 1000.0f, 0.4f);
-	pointLight->name = new QString("Point Light");
+	pointLight->name = QString("Point Light");
 	testModelComponent->lightedBy.append(pointLightComponent);
 	level->root.AttachSubobject(pointLight);
 	
