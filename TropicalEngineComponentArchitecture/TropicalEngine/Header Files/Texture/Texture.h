@@ -3,8 +3,9 @@
 #include <GL/glew.h>
 #include <QtGui\qpixmap.h>
 #include "Serialization/ISerializableToXML.h"
+#include "Serialization/ISerializableToJSON.h"
 
-class Texture : public ISerializableToXML
+class Texture : public ISerializableToXML, public ISerializableToJSON
 {
 private:
 	QString fileUrl;
@@ -22,5 +23,6 @@ public:
 	void ActivateTexture(GLuint location);
 
 	QString toXML() override;
+	QJsonObject toJSON() override;
 };
 

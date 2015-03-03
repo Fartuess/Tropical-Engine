@@ -2,11 +2,12 @@
 #include <glm.hpp>
 #include <QtCore\qvector.h>
 #include "Serialization/ISerializableToXML.h"
+#include "Serialization/ISerializableToJSON.h"
 
 class Shader;
 class Texture;
 
-class Material : public ISerializableToXML
+class Material : public ISerializableToXML, public ISerializableToJSON
 {
 public:
 	QString name;	///TODO: should not be public. Should have getters and setters, because changing internal name doesn't change name in material manager
@@ -14,11 +15,12 @@ private:
 	Shader* shader;
 	QMap<QString, void*> parameters;
 public:
-	Material(Shader* shader, void* params, QString name);	//temp declaration
+	Material(Shader* shader, void* params, QString name);	///TODO: Rethink constructor.
 	~Material(void);
 
 	Shader* getShader();
-	//const QVector<QPair<QString, void*>>& getParameters();	
+	///TODO: figure out if it is easy to implement parameter get and getAll
+	//const QVector<QPair<QString, void*>>& getParameters();
 	void Use();
 
 	void ActivateParameter(QString name, void* value);
@@ -34,5 +36,6 @@ public:
 	void SetParameter(QString name, void* parameter);
 
 	QString toXML() override;
+	QJsonObject toJSON() override;
 };
 

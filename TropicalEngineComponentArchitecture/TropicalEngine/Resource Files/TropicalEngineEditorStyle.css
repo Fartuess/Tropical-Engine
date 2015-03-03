@@ -1,0 +1,120 @@
+QWidget
+{
+    background-color: #2d2d30;
+    color: white;
+}
+
+QLayout
+{
+    margin: 0px;
+    padding: 0px;
+}
+
+QMenuBar
+{
+    background-color: #2d2d30;
+    color: white;
+    text-transform: uppercase;
+}
+
+    QMenuBar::item
+    {
+        background-color: #2d2d30;
+        color: white;
+        text-transform: uppercase;
+    }
+
+        QMenuBar::item:hover
+        {
+            background-color: #3f3f46;
+        }
+
+QPushButton
+{
+    background-color: #3f3f46;
+    text-transform: uppercase;
+    padding: 6px;
+    border-style: none;
+}
+
+QAbstractScrollArea
+{
+    background-color: #252526;
+    border-style: none;
+}
+
+QScrollBar
+{
+    background-color: #3e3e42;
+    border-style: none;
+    margin: 0px 15px 0 15px;
+}
+
+    QScrollBar::handle
+    {
+        background-color: #686868;
+        margin: 4px;
+        min-width: 20px;
+    }
+
+    QScrollBar:left-arrow:horizontal, QScrollBar::right-arrow:horizontal
+    {
+     border-style: none;
+     width: 15px;
+     height: 15px;
+     margin: 2px;
+     background-color: #686868;
+    }
+
+    QScrollBar::add-line:horizontal {
+     border: none;
+     background: #3e3e42;
+     width: 15px;
+     subcontrol-position: right;
+     subcontrol-origin: margin;
+ }
+
+ QScrollBar::sub-line:horizontal {
+     border: none;
+     background: #3e3e42;
+     width: 15px;
+     subcontrol-position: left;
+     subcontrol-origin: margin;
+ }
+    
+    QScrollBar::add-page:horizontal, QScrollBar::sub-page:horizontal
+    {
+        background: none;
+        border-style: none;
+        
+    }
+
+QHeaderView::section
+{
+    background-color: #2d2d30;
+    border: none;
+    border-right: 1px solid #6c6c6c;
+    padding: 4px;
+}
+
+QHeaderView::section
+{
+    background-color: #2d2d30;
+    border-right: 1px solid #686868;
+    padding: 4px;
+}
+
+    QHeaderView::section:first
+    {
+        border-left: none;
+    }
+
+    QHeaderView::section:last
+    {
+        border-right: none;
+    }
+
+QLabel#Title
+{
+    font-size: 16px;
+}

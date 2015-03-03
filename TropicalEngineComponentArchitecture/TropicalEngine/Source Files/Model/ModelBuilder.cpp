@@ -106,14 +106,11 @@ Model* ModelBuilder::Load(QString name, QString fileUrl)
 	{
 		qDebug() << "Error parsing '%s': '%s'" << fileUrl << QString(Importer.GetErrorString());
 		return nullptr;
-        //printf("Error parsing '%s': '%s'\n", Filename.c_str(), Importer.GetErrorString());
     }
-
 	return model;
-	
-	//return nullptr;
 }
 
+///TODO: Figure out if it is still needed.
 void ModelBuilder::CalculateTangentsBitangents(QVector<glm::vec4>& vertices, QVector<glm::vec3>& normals, QVector<glm::vec2>& texcoords, QVector<glm::vec3>& out_tangents, QVector<glm::vec3>& out_bitangents)
 {
 	for (unsigned int i=0; i<vertices.size(); i+=3 ){

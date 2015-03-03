@@ -63,3 +63,8 @@ QString Texture::toXML()
 {
 	return QString(getIndent() + "<Texture filepath = \"" + fileUrl + "\"/>\n");
 }
+
+QJsonObject Texture::toJSON()
+{
+	return QJsonObject();
+}

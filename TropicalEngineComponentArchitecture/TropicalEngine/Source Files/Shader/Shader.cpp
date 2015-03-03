@@ -361,3 +361,8 @@ QString Shader::toXML()
 
 	return XMLString;
 }
+
+QJsonObject Shader::toJSON()
+{
+	return QJsonObject();
+}

@@ -8,7 +8,6 @@
 #include <QtWidgets\qsplitter.h>
 #include <QtWidgets\qtreeview.h>
 #include <QtWidgets\qpushbutton.h>
-//#include <QtWidgets\qtoolbox.h>
 #include <QtWidgets\qgroupbox.h>
 #include "Interface\OpenGLWidget.h"
 #include "Interface\SceneGraphWidget.h"
@@ -28,7 +27,7 @@ public:
 	QMenu* miscelanousMenu;
 	QWidget* superWidget;
 	QWidget* mainWidget;
-	QVBoxLayout* superLayout;	
+	QVBoxLayout* superLayout;
 	QHBoxLayout* mainLayout;
 	OpenGLWidget* openGLWindow;
 

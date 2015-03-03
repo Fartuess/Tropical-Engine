@@ -31,6 +31,7 @@ void ModelManager::Load(Model* model, QString name)
 
 void ModelManager::FlushModel(QString name, bool forced)
 {
+	///TODO: implement it.
 	//if(!models.contains(name))
 	//	return;
 	//Model* model = models[name];

@@ -14,7 +14,6 @@
 #include <QtWidgets\qsplitter.h>
 #include <QtWidgets\qtreeview.h>
 #include <QtWidgets\qpushbutton.h>
-//#include <QtWidgets\qtoolbox.h>
 #include <QtWidgets\qgroupbox.h>
 #include <QtWidgets\qspinbox.h>
 #include <QtCore\qthread.h>
@@ -30,14 +29,7 @@ Level* OglDevTut03::level;
 int main(int argc, char* argv[])
 {
 	TropicalEngineApplication tropicalEngine(argc, argv);
-	MainWindow mainWindow(0, true);// = new MainWindow();
-
-	/*
-	//mainWindow->setWindowFlags(Qt::FramelessWindowHint);
-	//mainWindow.show();
-	//mainWindow->setWindowFlags(Qt::FramelessWindowHint);
-	*/
+	MainWindow mainWindow(0, true);
 
 	return tropicalEngine.exec();
-	//return 0;
 }

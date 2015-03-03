@@ -1,6 +1,7 @@
 #pragma once
 #include <QtWidgets\qapplication.h>
 #include <QtCore\qtime>
+#include <QtCore\qsettings.h>
 
 class ShaderManager;
 class MaterialManager;
@@ -31,29 +32,43 @@ class TropicalEngineApplication : public QApplication
 {
 	Q_OBJECT
 private:
+	/*
+	 * Delta time.
+	 */
 	int deltaTime;
 	QTime deltaTimer;
 public:
+	/*
+	* Resource management
+	*/
 	ShaderManager* shaderManager;
 	MaterialManager* materialManager;
-	
 	TextureManager* textureManager;
-	
 	ModelManager* modelManager;
-	ModelController* modelController;
 	ModelBuilder* modelBuilder;
-	
 	PackageManager* packageManager;
+	/*
+	* Scene controlling
+	*/
 	SceneManager* sceneManager;
-	SceneGraphWidget* sceneGraph;
-	
+	ModelController* modelController;
 	LightController* lightController;
-	
+	/*
+	* Input
+	*/
 	InputController* inputController;
 
 	OglDevTut03* renderer;	//temporarily
-
+	/*
+	* Gui
+	*/
 	GuiStyleManager* styleManager;
+	SceneGraphWidget* sceneGraph;
+	/*
+	* Settings
+	*/
+	QSettings* EngineSettings;
+	QSettings* EditorSettings;
 
 	TropicalEngineApplication(int argc, char* argv[]);
 	~TropicalEngineApplication(void);

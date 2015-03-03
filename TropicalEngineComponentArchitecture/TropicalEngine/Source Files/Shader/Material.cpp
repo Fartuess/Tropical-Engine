@@ -135,3 +135,8 @@ QString Material::toXML()
 
 	return XMLString;
 }
+
+QJsonObject Material::toJSON()
+{
+	return QJsonObject();
+}

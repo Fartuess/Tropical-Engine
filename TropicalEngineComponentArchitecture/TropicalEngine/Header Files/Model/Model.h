@@ -4,6 +4,7 @@
 #include <QtCore\qstring.h>
 #include <QtCore\qvector.h>
 #include "Serialization/ISerializableToXML.h"
+#include "Serialization/ISerializableToJSON.h"
 
 class MeshEntry
 {
@@ -27,7 +28,7 @@ public:
 	void Finalize();
 };
 
-class Model : public ISerializableToXML
+class Model : public ISerializableToXML, public ISerializableToJSON
 {
 public:
 	QString name;	///TODO: should not be public. Should have getters and setters, because changing internal name doesn't change name in model manager
@@ -42,5 +43,6 @@ public:
 	GLuint materialCount;
 
 	QString toXML() override;
+	QJsonObject toJSON() override;
 };
 

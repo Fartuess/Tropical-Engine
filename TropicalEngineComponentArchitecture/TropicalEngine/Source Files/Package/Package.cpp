@@ -39,6 +39,11 @@ QString Package::Asset::toXML()
 	return XMLString;
 }
 
+QJsonObject Package::Asset::toJSON()
+{
+	return QJsonObject();
+}
+
 Package::Package(QString name)	//??
 {
 	this->name = name;
@@ -70,4 +75,9 @@ QString Package::toXML()
 	XMLString += QString(getIndent() + "</Package>\n");
 
 	return XMLString;
+}
+
+QJsonObject Package::toJSON()
+{
+	return QJsonObject();
 }

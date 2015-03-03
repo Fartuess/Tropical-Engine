@@ -22,7 +22,6 @@ public:
 	void setOwner(Entity* owner);
 protected:
 	void Detach();
-
 private:
 	static QMap<QString, unsigned int> componentTypeMap;
 protected:
@@ -31,28 +30,16 @@ public:
 	virtual QString getName() = 0;
 	static bool isComponentTypeUsed(QString name);
 	static unsigned int getComponentType(QString name);
-
-//#define ComponentTypeIsInitialized()\
-//	componentTypeMap.contains(getName());
-
 private:
 	static QMap<QString, QString> parrentComponentTypeMap;
 protected:
 	static QString getParrentType(QString componentTypeName);
 	void SetParrentComponentType(QString parrentTypeName);
-
-//#define COMPONENTPARRENTTYPE(parrentComponent)\
-//	getParrentType()\
-//	{\
-//		return parrentComponent;\
-//	}
-
 private:
 	static QMap<QString, unsigned int> parameterTypeMap;
 	static void AddParameterType(QString name);
 public:
 	static unsigned int getParameterType(QString name);
-
 private:
 	static QMap<QString, QMap<QString, QString>> parameters;	//maybe instead of last QString use unsigned int
 protected:

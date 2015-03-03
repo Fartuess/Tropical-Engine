@@ -16,6 +16,7 @@ public:
 	MaterialManager(void);
 	~MaterialManager(void);
 
+	///TODO: Rethink Load method.
 	void Load(Shader* shader, void* params, QString name);	//temporal declaration
 
 	void UseMaterial(QString name);

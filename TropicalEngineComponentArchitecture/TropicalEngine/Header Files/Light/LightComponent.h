@@ -4,7 +4,7 @@
 
 #define MAX_POINT_LIGHT 2
 
-//Should it be an abstract class?
+///TODO: Should it be an abstract class?
 class LightComponent :
 	public Component
 {

@@ -43,8 +43,10 @@ TropicalEngineApplication::TropicalEngineApplication(int argc, char* argv[]) : Q
 	renderer = new OglDevTut03();
 
 	styleManager = new GuiStyleManager();
-	styleManager->ChangeStyle(*this, "./Resources/TropicalEngineEditorStyle.css");
+	styleManager->ChangeStyle(*this, "./Resource Files/TropicalEngineEditorStyle.css");
 
+	EngineSettings = new QSettings("./Resource Files/EngineSettings.ini", QSettings::IniFormat);
+	EditorSettings = new QSettings("./Resource Files/EditorSettings.ini", QSettings::IniFormat);
 }
 
 TropicalEngineApplication::~TropicalEngineApplication(void)

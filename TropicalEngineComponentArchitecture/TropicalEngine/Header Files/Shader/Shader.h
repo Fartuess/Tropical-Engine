@@ -6,7 +6,7 @@
 #include "Shader\Material.h"
 #include "Serialization/ISerializableToXML.h"
 
-class Shader : public ISerializableToXML
+class Shader : public ISerializableToXML, public ISerializableToJSON
 {
 public:
 	QString name;	///TODO: should not be public. Should have getters and setters, because changing internal name doesn't change name in shader manager
@@ -78,4 +78,5 @@ public:
 	void Use();
 
 	QString toXML() override;
+	QJsonObject toJSON() override;
 };

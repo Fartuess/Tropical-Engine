@@ -31,6 +31,7 @@ void OglDevTut03::InitializeLevel()
 	Shader* phongBlinnShader = new Shader("./Shader Files/Perspective_NTBTc_VS.glsl", "./Shader Files/PhongBlinn_PS.glsl", "BlinnPhong");
 	Shader* testShader = new Shader("./Shader Files/Perspective_NTBTc_VS.glsl", "./Shader Files/PhongBlinnSimple_PS.glsl", "TexturedPhong");
 	Shader* testShaderNRM = new Shader("./Shader Files/Perspective_NTBTc_VS.glsl", "./Shader Files/PhongBlinnBump_PS.glsl", "BumpedPhong");
+	Shader* maskedShader = new Shader("./Shader Files/Perspective_NTBTc_VS.glsl", "./Shader Files/PhongBlinnBumpMask_PS.glsl", "MaskedBumpedBlinnPhong");
 	Shader* phongBlinnParalaxShader = new Shader("./Shader Files/Perspective_NTBTc_VS.glsl", "./Shader Files/PhongBlinnParalax_PS.glsl", "ParalaxedPhong");
 	Shader* cookTorranceShader = new Shader("./Shader Files/Perspective_NTBTc_VS.glsl", "./Shader Files/CookTorrance_PS.glsl", "CookTorrance");
 	Shader* straussShader = new Shader("./Shader Files/Perspective_NTBTc_VS.glsl", "./Shader Files/StraussSimple2_PS.glsl", "Strauss");
@@ -40,6 +41,7 @@ void OglDevTut03::InitializeLevel()
 	Material* phongBlinnMaterial = new Material(phongBlinnShader, nullptr, "Blinn-Phong Material");
 	Material* testMaterial = new Material(testShader, nullptr, "Textured Material");
 	Material* testMaterialNRM = new Material(testShaderNRM, nullptr, "Bumped Material");
+	Material* maskedMaterial = new Material(maskedShader, nullptr, "Masked Material");
 	Material* phongBlinnParalaxMaterial = new Material(phongBlinnParalaxShader, nullptr, "Paralaxed Material");
 	Material* cookTorranceMaterial = new Material(cookTorranceShader, nullptr, "CookTorrance Material");
 	Material* straussMaterial = new Material(straussShader, nullptr, "Strauss Material");
@@ -48,6 +50,9 @@ void OglDevTut03::InitializeLevel()
 
 	Texture* testingTexture = new Texture("./Assets/Core/DefaultTexture.png");
 	Texture* testingTextureNormal = new Texture("./Assets/Core/DefaultTexture_NRM.png");
+
+	Texture* testGearTexture = new Texture("./Assets/TestAssets/Gear_occlusion.tga");
+	Texture* testGearTextureNormal = new Texture("./Assets/TestAssets/Gear_normals.tga");
 
 	Texture* tessDiffTex = new Texture("./Assets/Core/wall_base.png");
 	Texture* tessNrmTex = new Texture("./Assets/Core/wall_normals.png");
@@ -68,6 +73,8 @@ void OglDevTut03::InitializeLevel()
 	testMaterial->SetParameter("mat_diffuseTexture", testingTexture);
 	testMaterialNRM->SetParameter("mat_diffuseTexture", testingTexture);
 	testMaterialNRM->SetParameter("mat_normalTexture", tessNrmTex);
+	maskedMaterial->SetParameter("mat_diffuseTexture", testGearTexture);
+	maskedMaterial->SetParameter("mat_normalTexture", testGearTextureNormal);
 	phongBlinnParalaxMaterial->SetParameter("mat_diffuseTexture", tessDiffTex);
 	phongBlinnParalaxMaterial->SetParameter("mat_normalTexture", tessNrmTex);
 	phongBlinnParalaxMaterial->SetParameter("mat_heightTexture", tessDispTex);
@@ -155,8 +162,8 @@ void OglDevTut03::InitializeLevel()
 	TropicalEngineApplication::instance()->modelBuilder->Load("VectorSphere", "./Assets/TestAssets/vectorDispSphere.obj");
 	TropicalEngineApplication::instance()->modelBuilder->Load("VectorCube", "./Assets/TestAssets/vectorCube_LP_DENSE_T.obj");
 
-	//planeObject->AttachComponent(new ModelComponent(planeObject, cookTorranceMaterial, TropicalEngineApplication::instance()->modelManager->getModel("Plane")));
-	ModelComponent* testModelComponent = new ModelComponent(planeObject, vectorTessalationMaterial, TropicalEngineApplication::instance()->modelManager->getModel("VectorCube"));
+	planeObject->AttachComponent(new ModelComponent(planeObject, cookTorranceMaterial, TropicalEngineApplication::instance()->modelManager->getModel("Plane")));
+	ModelComponent* testModelComponent = new ModelComponent(planeObject, maskedMaterial, TropicalEngineApplication::instance()->modelManager->getModel("Box"));
 	planeObject->AttachComponent(testModelComponent);
 	planeObject->name = QString("TestObject");
 	

@@ -13,7 +13,6 @@ Model::Model(QString name) : meshes()
 Model::Model(QString name, QString fileUrl) : meshes()
 {
 	///TODO: implement it.
-	
 }
 
 Model::~Model(void)
@@ -46,4 +45,9 @@ QString Model::toXML()
 	///TODO: implement it.
 	//remember that there are two kinds of models - loaded from a file and generated
 	return QString();
+}
+
+QJsonObject Model::toJSON()
+{
+	return QJsonObject();
 }

@@ -29,6 +29,7 @@
 
 #include "Camera\CameraComponent.h"
 
+#include <QtCore\qsettings.h>
 #include <QtCore\qdebug.h>
 
 MainWindow::MainWindow(QWidget* parrent, bool isFrameless): QMainWindow(parrent)
@@ -40,27 +41,10 @@ MainWindow::MainWindow(QWidget* parrent, bool isFrameless): QMainWindow(parrent)
 	}
 
 	show();
-	resize(800, 600);
+	resize(TropicalEngineApplication::instance()->EditorSettings->value("MainWindow/size", QSize(600, 800)).toSize());
+	TropicalEngineApplication::instance()->EditorSettings->setValue("MainWindow/size", QSize(800, 600));
 
 	expandVertically = new QSizePolicy(QSizePolicy::Minimum, QSizePolicy::Maximum);
-	//
-	//TitleBar = new QWidget();
-	//TitleBarLayout = new QHBoxLayout();
-	////TitleBar->setMinimumHeight(30);
-	////TitleBar->setMaximumHeight(30);
-	//TitleBar->setSizePolicy(*expandVertically);
-	//
-	//QLabel* Title = new QLabel("Tropical Engine");
-	//Title->setObjectName("Title");
-	//QPushButton* minimize = new QPushButton("-");
-	//QPushButton* maximize = new QPushButton("O");
-	//QPushButton* close = new QPushButton("X");
-	//
-	//TitleBarLayout->addWidget(Title);
-	//TitleBarLayout->addStretch();
-	//TitleBarLayout->addWidget(minimize);
-	//TitleBarLayout->addWidget(maximize);
-	//TitleBarLayout->addWidget(close);
 
 	titleBar = new TitleBar(this);
 

@@ -35,7 +35,6 @@ public:
 	float getZFar();
 	void setZFar(float zFar);
 
-	//glm::mat4x4 getMatrix();
 	glm::mat4 getCameraMatrix();
 	glm::mat4 getProjectionMatrix();
 	void CalculateMatrix();
