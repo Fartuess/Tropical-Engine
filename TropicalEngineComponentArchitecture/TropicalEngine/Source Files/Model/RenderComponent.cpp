@@ -3,7 +3,7 @@
 
 RenderComponent::RenderComponent(Entity* owner, Material* material):Component(owner)
 {
-	if(material != nullptr)
+	if (material != nullptr)
 		this->material = material;
 	else
 		this->material = Shader::nullShader->defaultMaterial;
@@ -13,7 +13,7 @@ RenderComponent::RenderComponent(Entity* owner, Material* material):Component(ow
 
 void RenderComponent::InitializeComponentType()
 {
-	if(!isComponentTypeUsed(getName()))
+	if (!isComponentTypeUsed(getName()))
 	{
 		AddParameter("Material", "String");
 	}

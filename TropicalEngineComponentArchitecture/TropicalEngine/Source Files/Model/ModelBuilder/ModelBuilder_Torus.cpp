@@ -23,9 +23,9 @@ Model* ModelBuilder::CreateTorus(QString name, float radius, float segmentRadius
 	bitangents->reserve(Mesh->NumVertex);
     texCoords->reserve(Mesh->NumVertex);
 
-	for(int i = 0; i < subdivisionsHeight; i++)
+	for (int i = 0; i < subdivisionsHeight; i++)
 	{
-		for(int j = 0; j < subdivisionsAxis; j++)
+		for (int j = 0; j < subdivisionsAxis; j++)
 		{
 			vertices->push_back(glm::vec4(
 				(radius + (segmentRadius * cosf(j * (2 * glm::pi<float>() / subdivisionsAxis)))) * cosf(i * (2 * glm::pi<float>() / subdivisionsHeight)),

@@ -22,9 +22,9 @@ Model* ModelBuilder::CreateBox(QString name, float sizeX, float sizeY, float siz
 	bitangents->reserve(Mesh->NumVertex);
     texCoords->reserve(Mesh->NumVertex);
 
-	for(int j = 0; j < subdivisionsZ; j++)	//Top Face
+	for (int j = 0; j < subdivisionsZ; j++)	//Top Face
 	{
-		for(int i = 0; i < subdivisionsX; i++)
+		for (int i = 0; i < subdivisionsX; i++)
 		{
 			vertices->push_back(glm::vec4(
 				-0.5f * sizeX + (i * sizeX / subdivisionsX),
@@ -94,9 +94,9 @@ Model* ModelBuilder::CreateBox(QString name, float sizeX, float sizeY, float siz
 		}
 	}
 
-	for(int j = 0; j < subdivisionsZ; j++)	//Bottom Face
+	for (int j = 0; j < subdivisionsZ; j++)	//Bottom Face
 	{
-		for(int i = 0; i < subdivisionsX; i++)
+		for (int i = 0; i < subdivisionsX; i++)
 		{
 			vertices->push_back(glm::vec4(
 				-0.5f * sizeX + (i * sizeX / subdivisionsX),
@@ -166,9 +166,9 @@ Model* ModelBuilder::CreateBox(QString name, float sizeX, float sizeY, float siz
 		}
 	}
 	
-	for(int j = 0; j < subdivisionsY; j++)	//Front Face
+	for (int j = 0; j < subdivisionsY; j++)	//Front Face
 	{
-		for(int i = 0; i < subdivisionsX; i++)
+		for (int i = 0; i < subdivisionsX; i++)
 		{
 			vertices->push_back(glm::vec4(
 				-0.5f * sizeX + (i * sizeX / subdivisionsX),
@@ -238,9 +238,9 @@ Model* ModelBuilder::CreateBox(QString name, float sizeX, float sizeY, float siz
 		}
 	}
 
-	for(int j = 0; j < subdivisionsY; j++)	//Back Face
+	for (int j = 0; j < subdivisionsY; j++)	//Back Face
 	{
-		for(int i = 0; i < subdivisionsX; i++)
+		for (int i = 0; i < subdivisionsX; i++)
 		{
 			vertices->push_back(glm::vec4(
 				-0.5f * sizeX + (i * sizeX / subdivisionsX),
@@ -310,9 +310,9 @@ Model* ModelBuilder::CreateBox(QString name, float sizeX, float sizeY, float siz
 		}
 	}
 
-	for(int j = 0; j < subdivisionsY; j++)	//Left Face
+	for (int j = 0; j < subdivisionsY; j++)	//Left Face
 	{
-		for(int i = 0; i < subdivisionsZ; i++)
+		for (int i = 0; i < subdivisionsZ; i++)
 		{
 			vertices->push_back(glm::vec4(
 				-0.5f * sizeX,
@@ -382,9 +382,9 @@ Model* ModelBuilder::CreateBox(QString name, float sizeX, float sizeY, float siz
 		}
 	}
 
-	for(int j = 0; j < subdivisionsY; j++)	//Right Face
+	for (int j = 0; j < subdivisionsY; j++)	//Right Face
 	{
-		for(int i = 0; i < subdivisionsZ; i++)
+		for (int i = 0; i < subdivisionsZ; i++)
 		{
 			vertices->push_back(glm::vec4(
 				0.5f * sizeX,

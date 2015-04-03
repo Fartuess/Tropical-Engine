@@ -23,13 +23,13 @@ Entity::~Entity(void)
 	//parrent = nullptr;
 	///TODO: make sure it is properly implemented.
 	QList<Entity*> helperSubobjectList = QList<Entity*>(subobjects);
-	foreach(Entity* subobject, helperSubobjectList)
+	for (Entity* subobject : helperSubobjectList)
 	{
 		subobject->parrent = nullptr;
 		delete subobject;
 	}
 	QList<Component*> helperComponentList = QList<Component*>(components);
-	foreach(Component* component, helperComponentList)
+	for (Component* component : helperComponentList)
 	{
 		if (component->getName() != "Transform Component")	//transform component will remove by itself
 		{
@@ -49,7 +49,7 @@ Entity* Entity::getParrent()
 
 void Entity::AttachSubobject(Entity* subobject)
 {
-	if(subobject != nullptr)
+	if (subobject != nullptr)
 	{
 		subobjects.append(subobject);
 		subobject->parrent = this;
@@ -58,7 +58,7 @@ void Entity::AttachSubobject(Entity* subobject)
 
 void Entity::AttachTo(Entity* parrent)
 {
-	if(parrent != nullptr)
+	if (parrent != nullptr)
 	{
 		this->parrent = parrent;
 		parrent->subobjects.append(this);
@@ -67,7 +67,7 @@ void Entity::AttachTo(Entity* parrent)
 
 void Entity::AttachComponent(Component* component)
 {
-	if(component != nullptr)
+	if (component != nullptr)
 	{
 		component->getOwner()->DetachComponent(component);
 		component->owner = this;
@@ -77,7 +77,7 @@ void Entity::AttachComponent(Component* component)
 
 void Entity::DeleteComponent(Component* component)
 {
-	if(component != nullptr)
+	if (component != nullptr)
 	{
 		components.removeOne(component);
 		delete component;
@@ -86,7 +86,7 @@ void Entity::DeleteComponent(Component* component)
 
 void Entity::DetachComponent(Component* component)
 {
-	if(component != nullptr)
+	if (component != nullptr)
 	{
 		components.removeOne(component);
 		component->owner = nullptr;
@@ -98,11 +98,11 @@ QString Entity::toXML()
 	QString XMLString = QString(getIndent() + "<Entity name =\"" + name + "\">\n");
 	increaseIndent();
 	XMLString += transform.toXML();
-	foreach(Component* component, components)
+	for (Component* component : components)
 	{
 		XMLString += component->toXML();
 	}
-	foreach(Entity* subobject, subobjects)
+	for (Entity* subobject : subobjects)
 	{
 		XMLString += subobject->toXML();
 	}
@@ -118,12 +118,12 @@ QJsonObject Entity::toJSON()
 	QJsonArray componentsArray = QJsonArray();
 	QJsonArray subobjectsArray = QJsonArray();
 
-	foreach(Component* component, components)
+	for (Component* component : components)
 	{
 		componentsArray.push_back(component->toJSON());
 	}
 
-	foreach(Entity* subobject, subobjects)
+	for (Entity* subobject : subobjects)
 	{
 		subobjectsArray.push_back(subobject->toJSON());
 	}

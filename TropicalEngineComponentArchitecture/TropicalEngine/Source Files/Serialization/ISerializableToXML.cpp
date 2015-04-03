@@ -25,7 +25,7 @@ int ISerializableToXML::getIndentLevel()
 QString ISerializableToXML::getIndent()
 {
 	QString indent = "";
-	for(int i = 0; i < indentLevel; i++)
+	for (int i = 0; i < indentLevel; i++)
 	{
 		indent += "\t";
 	}

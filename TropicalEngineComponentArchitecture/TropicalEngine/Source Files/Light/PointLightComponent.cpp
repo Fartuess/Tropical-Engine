@@ -16,7 +16,7 @@ PointLightComponent::~PointLightComponent(void)
 
 void PointLightComponent::InitializeComponentType()
 {
-	if(!isComponentTypeUsed(getName()))
+	if (!isComponentTypeUsed(getName()))
 	{
 		SetParrentComponentType("Light Component");
 
@@ -34,7 +34,7 @@ void PointLightComponent::setRadius(float radius)
 {
 	this->radius = radius;
 	Evaluate();
-	if(castingShadows)
+	if (castingShadows)
 		DrawShadows();
 }
 

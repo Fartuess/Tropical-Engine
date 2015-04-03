@@ -37,7 +37,7 @@ void Component::setOwner(Entity* owner)
 	{
 		if (this->owner != nullptr)
 		{
-			qDebug() << this->owner->components.count();
+			//qDebug() << this->owner->components.count();
 			this->owner->components.removeOne(this);
 		}
 		this->owner = owner;

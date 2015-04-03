@@ -3,7 +3,7 @@
 
 PropertyItem::PropertyItem(QString name)
 {
-	if(!isTemplateItemsInitialized)
+	if (!isTemplateItemsInitialized)
 	{
 		isTemplateItemsInitialized = true;
 		InitializeTemplateItems();
@@ -16,7 +16,7 @@ PropertyItem::PropertyItem(QString name, PropertyItem* otherItem)
 {
 	this->name = name;
 	setText(0, name);
-	for(int i = 0; i < otherItem->childCount(); i++)
+	for (int i = 0; i < otherItem->childCount(); i++)
 	{
 		addChild(new PropertyItem(static_cast<PropertyItem*>(otherItem->child(i))->name, static_cast<PropertyItem*>(otherItem->child(i))));
 	}
@@ -36,10 +36,10 @@ void PropertyItem::Reload(Component* component)
 	this->component = component;
 
 	QMap<QString, QString> parameters = Component::getParameters(component->getName());
-	foreach(QString parameter, parameters.keys())
+	for (QString parameter : parameters.keys())
 	{
 		PropertyItem* parameterItem;
-		if(templateItems.contains(parameters[parameter]))
+		if (templateItems.contains(parameters[parameter]))
 		{
 			parameterItem = CloneTemplateItem(parameter, parameters[parameter]);
 			//theoretically change component for each child as well

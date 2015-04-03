@@ -19,7 +19,7 @@ SpotLightComponent::~SpotLightComponent(void)
 
 void SpotLightComponent::InitializeComponentType()
 {
-	if(!isComponentTypeUsed(getName()))
+	if (!isComponentTypeUsed(getName()))
 	{
 		SetParrentComponentType("Light Component");
 
@@ -39,7 +39,7 @@ void SpotLightComponent::setRadius(float radius)
 {
 	this->radius = radius;
 	Evaluate();
-	if(castingShadows)
+	if (castingShadows)
 		DrawShadows();
 }
 
@@ -52,7 +52,7 @@ void SpotLightComponent::setOuterConeRadius(float outerConeRadius)
 {
 	this->outerConeRadius = outerConeRadius;
 	Evaluate();
-	if(castingShadows)
+	if (castingShadows)
 		DrawShadows();
 }
 

@@ -22,9 +22,9 @@ Model* ModelBuilder::CreatePlane(QString name, float sizeX, float sizeY, int sub
 	bitangents->reserve(Mesh->NumVertex);
     texCoords->reserve(Mesh->NumVertex);
 
-	for(int j = 0; j < subdivisionsY; j++)
+	for (int j = 0; j < subdivisionsY; j++)
 	{
-		for(int i = 0; i < subdivisionsX; i++)
+		for (int i = 0; i < subdivisionsX; i++)
 		{
 			vertices->push_back(glm::vec4(
 				-0.5f * sizeX + (i * sizeX / subdivisionsX),

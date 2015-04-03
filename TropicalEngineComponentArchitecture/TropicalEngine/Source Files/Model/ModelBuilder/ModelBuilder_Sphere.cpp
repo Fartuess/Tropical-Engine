@@ -23,9 +23,9 @@ Model* ModelBuilder::CreateSphere(QString name, float radius, int subdivisionsAx
 	bitangents->reserve(Mesh->NumVertex);
     texCoords->reserve(Mesh->NumVertex);
 
-	for(int i = 0; i < subdivisionsHeight; i++)
+	for (int i = 0; i < subdivisionsHeight; i++)
 	{
-		for(int j = 0; j < subdivisionsAxis; j++)
+		for (int j = 0; j < subdivisionsAxis; j++)
 		{
 			vertices->push_back(glm::vec4(
 				radius * sinf(i * (glm::pi<float>() / subdivisionsHeight)) * cosf(j * 2 * glm::pi<float>() / subdivisionsAxis),

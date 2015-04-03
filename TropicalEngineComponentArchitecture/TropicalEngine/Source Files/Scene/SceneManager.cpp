@@ -63,7 +63,7 @@ void SceneManager::UnloadLevel(QString name)
 void SceneManager::Clear()
 {
 	QList<Level*> currentLevels = levels.values();
-	foreach(Level* level, currentLevels)
+	for (Level* level : currentLevels)
 	{
 		//delete level;
 	}
@@ -72,7 +72,7 @@ void SceneManager::Clear()
 
 void SceneManager::EvaluateLevels()
 {
-	foreach(Level* level, levels)
+	for (Level* level : levels)
 	{
 		level->root.transform.Evaluate();
 	}

@@ -162,8 +162,8 @@ void OglDevTut03::InitializeLevel()
 	TropicalEngineApplication::instance()->modelBuilder->Load("VectorSphere", "./Assets/TestAssets/vectorDispSphere.obj");
 	TropicalEngineApplication::instance()->modelBuilder->Load("VectorCube", "./Assets/TestAssets/vectorCube_LP_DENSE_T.obj");
 
-	planeObject->AttachComponent(new ModelComponent(planeObject, cookTorranceMaterial, TropicalEngineApplication::instance()->modelManager->getModel("Plane")));
-	ModelComponent* testModelComponent = new ModelComponent(planeObject, maskedMaterial, TropicalEngineApplication::instance()->modelManager->getModel("Box"));
+	//planeObject->AttachComponent(new ModelComponent(planeObject, cookTorranceMaterial, TropicalEngineApplication::instance()->modelManager->getModel("Plane")));
+	ModelComponent* testModelComponent = new ModelComponent(planeObject, vectorTessalationMaterial, TropicalEngineApplication::instance()->modelManager->getModel("VectorCube"));
 	planeObject->AttachComponent(testModelComponent);
 	planeObject->name = QString("TestObject");
 	

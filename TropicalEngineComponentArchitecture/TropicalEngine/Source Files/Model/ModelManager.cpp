@@ -8,7 +8,7 @@ ModelManager::ModelManager(void)
 
 ModelManager::~ModelManager(void)
 {
-	foreach (Model* model, models)
+	for (Model* model : models)
 	{
 		delete model;
 	}

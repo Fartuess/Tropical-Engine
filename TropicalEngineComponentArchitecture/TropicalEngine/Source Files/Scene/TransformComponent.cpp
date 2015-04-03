@@ -35,7 +35,7 @@ TransformComponent::~TransformComponent(void)
 
 void TransformComponent::InitializeComponentType()
 {
-	if(!isComponentTypeUsed(getName()))
+	if (!isComponentTypeUsed(getName()))
 	{
 		AddParameter("Local Position", "Vec3");
 		AddParameter("Local Rotation", "Vec3");
@@ -45,7 +45,7 @@ void TransformComponent::InitializeComponentType()
 
 glm::vec3 TransformComponent::getPosition(bool isGlobal)
 {
-	if(isGlobal)
+	if (isGlobal)
 		return globalPosition;
 	else
 		return localPosition;
@@ -63,7 +63,7 @@ glm::vec3 TransformComponent::getGlobalPosition()
 
 void TransformComponent::setPosition(glm::vec3 position, bool isGlobal)
 {
-	if(isGlobal)
+	if (isGlobal)
 		setGlobalPosition(position);
 	else
 		setLocalPosition(position);
@@ -84,7 +84,7 @@ void TransformComponent::setGlobalPosition(glm::vec3 position)
 
 void TransformComponent::Translate(glm::vec3 translation, bool isGlobal)
 {
-	if(isGlobal)
+	if (isGlobal)
 		GlobalTranslate(translation);
 	else
 		LocalTranslate(translation);
@@ -110,7 +110,7 @@ void TransformComponent::GlobalTranslate(glm::vec3 translation)
 
 glm::quat TransformComponent::getRotation(bool isGlobal)
 {
-	if(isGlobal)
+	if (isGlobal)
 		return getGlobalRotation();
 	else
 		return getLocalRotation();
@@ -128,7 +128,7 @@ glm::quat TransformComponent::getGlobalRotation()
 
 void TransformComponent::setRotation(glm::quat rotation, bool isGlobal)
 {
-	if(isGlobal)
+	if (isGlobal)
 		setGlobalRotation(rotation);
 	else
 		setLocalRotation(rotation);
@@ -150,7 +150,7 @@ void TransformComponent::setGlobalRotation(glm::quat rotation)
 
 void TransformComponent::Rotate(glm::quat rotation, bool isGlobal)
 {
-	if(isGlobal)
+	if (isGlobal)
 		GlobalRotate(rotation);
 	else
 		LocalRotate(rotation);
@@ -159,7 +159,7 @@ void TransformComponent::Rotate(glm::quat rotation, bool isGlobal)
 void TransformComponent::LocalRotate(glm::quat rotation)
 {
 	glm::quat helper;
-	if(glm::axis(rotation) == glm::vec3(0.0f, 1.0f, 0.0f))
+	if (glm::axis(rotation) == glm::vec3(0.0f, 1.0f, 0.0f))
 	{
 		helper =  glm::normalize(rotation) * localRotation;
 	}
@@ -177,7 +177,7 @@ void TransformComponent::GlobalRotate(glm::quat rotation)
 
 glm::vec3 TransformComponent::getScale(bool isGlobal)
 {
-	if(isGlobal)
+	if (isGlobal)
 		return globalScale;
 	else
 		return localScale;
@@ -195,7 +195,7 @@ glm::vec3 TransformComponent::getGlobalScale()
 
 void TransformComponent::setScale(glm::vec3 scale, bool isGlobal)
 {
-	if(isGlobal)
+	if (isGlobal)
 		setGlobalScale(scale);
 	else
 		setLocalScale(scale);
@@ -263,7 +263,7 @@ void TransformComponent::EvaluateGlobals()
 
 void TransformComponent::EvaluateInternal()
 {
-	if(owner->getParrent() == nullptr)
+	if (owner->getParrent() == nullptr)
 	{
 		transformMatrix = glm::translate(glm::rotate(glm::scale(glm::mat4(1.0f), localScale), glm::angle(localRotation), glm::axis(localRotation)), localPosition);
 		normalMatrix = glm::mat3(glm::translate(glm::rotate(glm::transpose(glm::scale(glm::mat4(1.0f), localScale)), glm::angle(localRotation), glm::axis(localRotation)), localPosition));
@@ -286,7 +286,7 @@ void TransformComponent::EvaluateInternal()
 void TransformComponent::Evaluate()
 {
 	EvaluateInternal();
-	foreach(Entity* childObject, getOwner()->subobjects)
+	for (Entity* childObject : getOwner()->subobjects)
 	{
 		childObject->transform.Evaluate();
 	}

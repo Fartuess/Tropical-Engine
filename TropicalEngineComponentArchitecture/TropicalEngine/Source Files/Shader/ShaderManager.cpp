@@ -8,7 +8,7 @@ ShaderManager::ShaderManager(void)
 
 ShaderManager::~ShaderManager(void)
 {
-	foreach(Shader* shader, shaders)
+	for (Shader* shader : shaders)
 	{
 		delete shader;
 	}

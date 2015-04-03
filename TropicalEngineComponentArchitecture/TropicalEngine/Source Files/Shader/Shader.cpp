@@ -83,7 +83,7 @@ Shader::Shader(QMap<QString, GLuint> subshaders, QString name)
         exit(1);
     }
 
-	foreach(QString subshader, subshaders.keys())
+	for (QString subshader : subshaders.keys())
 	{
 		AddShader(subshader, subshaders[subshader]);
 	}
@@ -140,7 +140,7 @@ void Shader::setUpLightParameters()
 	pointLightRadiusLocations = QVector<GLuint>();
 	pointLightAttenuationLocations = QVector<GLuint>();
 
-	for(int i = 0; i < MAX_POINT_LIGHT; i++)
+	for (int i = 0; i < MAX_POINT_LIGHT; i++)
 	{
 		pointLightPositionLocations.append(glGetUniformLocation(this->shaderProgram, QString("u_pointLights[" + QString::number(i) + "].position").toLocal8Bit().data()));
 		pointLightColorLocations.append(glGetUniformLocation(this->shaderProgram, QString("u_pointLights[" + QString::number(i) + "].color").toLocal8Bit().data()));
@@ -159,7 +159,7 @@ void Shader::setUpMaterialParameters()
 		GLenum glErr = glGetError();
 		GLenum t0 = glErr;
 		glGetProgramiv(shaderProgram, GL_ACTIVE_UNIFORMS, &uniformCount);
-		for(int i = 0; i < uniformCount; i++)
+		for (int i = 0; i < uniformCount; i++)
 		{
 			GLchar nameChar[128];
 			GLsizei nameLenght;
@@ -170,12 +170,12 @@ void Shader::setUpMaterialParameters()
 
 			int test = glGetUniformLocation(this->shaderProgram, nameChar);
 
-			if(test == -1)
+			if (test == -1)
 			{
 				int lol = 5050;
 			}
 
- 			if(nameString.startsWith("mat_"))
+ 			if (nameString.startsWith("mat_"))
 			{
 				//nameString.remove(0, 4);
 				
@@ -286,12 +286,12 @@ QString Shader::PreprocessShaderFile(QString shaderFile)
 	QStringList includeFilenames = QStringList();
 	QRegularExpressionMatch match = includeRegexp.match(fileString);
 
-	if(match.hasMatch())
+	if (match.hasMatch())
 	{
 		includeFilenames.append(match.captured(1));
 	}
 
-	foreach(QString includeFilename, includeFilenames)
+	for (QString includeFilename : includeFilenames)
 	{
 		//qDebug() << includeFilename;
 		fileString.replace(QRegularExpression(QString("#include \"" + includeFilename + "\"")), PreprocessShaderFile(QString("./Shader Files/" + includeFilename)));
@@ -341,7 +341,7 @@ void Shader::AddShader(QString shaderFile, GLenum shaderType)
 
 void Shader::Use()
 {
-	if(this != TropicalEngineApplication::instance()->shaderManager->getCurrentShader())
+	if (this != TropicalEngineApplication::instance()->shaderManager->getCurrentShader())
 	{
 		glUseProgram(shaderProgram);
 		TropicalEngineApplication::instance()->shaderManager->setCurrentShader(this);

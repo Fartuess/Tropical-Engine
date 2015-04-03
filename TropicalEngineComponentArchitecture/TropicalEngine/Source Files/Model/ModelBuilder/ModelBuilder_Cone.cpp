@@ -23,12 +23,12 @@ Model* ModelBuilder::CreateCone(QString name, float radius, float height, int su
 	bitangents->reserve(Mesh->NumVertex);
     texCoords->reserve(Mesh->NumVertex);
 
-	for(int i = 0; i < subdivisionsHeight; i++)
+	for (int i = 0; i < subdivisionsHeight; i++)
 	{
 		float h = radius * (1 - ((float)(i) / subdivisionsHeight));
 		float h2 = radius * (1 - ((float)(i + 1) / subdivisionsHeight));
 		//one loop
-		for(int j = 0; j < subdivisionsAxis; j++)
+		for (int j = 0; j < subdivisionsAxis; j++)
 		{
 			vertices->push_back(glm::vec4(
 				h * cosf(j * (2 * glm::pi<float>() / subdivisionsAxis)),
@@ -96,7 +96,7 @@ Model* ModelBuilder::CreateCone(QString name, float radius, float height, int su
 		}
 	}
 
-	for(int j = 0; j < subdivisionsAxis; j++)
+	for (int j = 0; j < subdivisionsAxis; j++)
 	{
 			//Bottom
 			vertices->push_back(glm::vec4(

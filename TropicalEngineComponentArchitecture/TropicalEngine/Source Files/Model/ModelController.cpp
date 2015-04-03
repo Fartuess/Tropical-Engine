@@ -8,7 +8,7 @@ ModelController::ModelController(void)
 
 ModelController::~ModelController(void)
 {
-	foreach (ModelComponent* modelComponent, modelComponents)
+	for (ModelComponent* modelComponent : modelComponents)
 	{
 		delete modelComponent;
 	}
@@ -27,7 +27,7 @@ void ModelController::DropComponent(ModelComponent* component)
 
 void ModelController::DrawAll(CameraComponent* viewer)
 {
-	foreach (ModelComponent* modelComponent, modelComponents)
+	for (ModelComponent* modelComponent : modelComponents)
 	{
 		modelComponent->Draw(viewer);
 	}

@@ -14,7 +14,7 @@ QString Package::Asset::toXML()
 {
 	///TODO: implement it.
 	QString XMLString = "";
-	switch(type)
+	switch (type)
 	{
 	case AssetType::Entity:
 		XMLString += static_cast<Entity*>(asset_ptr)->toXML();
@@ -67,7 +67,7 @@ QString Package::toXML()
 {
 	QString XMLString = QString(getIndent() + "<Package name = \"" + name + "\">\n");
 	increaseIndent();
-	foreach(Asset asset, assets)
+	for (Asset asset : assets)
 	{
 		XMLString += asset.toXML();
 	}

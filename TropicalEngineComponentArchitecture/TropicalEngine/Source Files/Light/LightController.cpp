@@ -7,7 +7,7 @@ LightController::LightController(void)
 
 LightController::~LightController(void)
 {
-	foreach (LightComponent* lightComponent, lights)
+	for (LightComponent* lightComponent : lights)
 	{
 		delete lightComponent;
 	}
@@ -30,7 +30,7 @@ void LightController::DropComponent(LightComponent* component)
 
 void LightController::EvaluateAll()
 {
-	foreach (LightComponent* light, lights)
+	for (LightComponent* light : lights)
 	{
 		light->Evaluate();
 	}

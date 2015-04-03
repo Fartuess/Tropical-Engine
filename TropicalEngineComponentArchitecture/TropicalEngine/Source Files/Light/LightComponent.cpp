@@ -10,7 +10,7 @@ LightComponent::LightComponent(Entity* owner, glm::vec3 color, float brightness,
 	this->castingShadows = isCastingShadows;
 	TropicalEngineApplication::instance()->lightController->lights.append(this);
 	Evaluate();
-	if(castingShadows)
+	if (castingShadows)
 		DrawShadows();
 
 	InitializeComponentType();
@@ -18,7 +18,7 @@ LightComponent::LightComponent(Entity* owner, glm::vec3 color, float brightness,
 
 void LightComponent::InitializeComponentType()
 {
-	if(!isComponentTypeUsed(getName()))
+	if (!isComponentTypeUsed(getName()))
 	{
 		AddParameter("Brightness", "Float");
 		AddParameter("Color", "ColorRGB");

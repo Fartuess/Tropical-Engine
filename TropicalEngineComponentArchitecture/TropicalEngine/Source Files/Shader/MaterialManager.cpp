@@ -34,23 +34,23 @@ void MaterialManager::UseMaterial(Material* material)
 void MaterialManager::FlushMaterial(QString name, bool forced)
 {
 	///TODO: implement it.
-	if(!materials.contains(name))
+	if (!materials.contains(name))
 		return;
 	Material* material = materials[name];
-	if(forced)
+	if (forced)
 	{
-		foreach(ModelComponent* modelComponent, TropicalEngineApplication::instance()->modelController->modelComponents)
+		for (ModelComponent* modelComponent : TropicalEngineApplication::instance()->modelController->modelComponents)
 		{
-			if(modelComponent->material == material)
+			if (modelComponent->material == material)
 				modelComponent->material = material->getShader()->defaultMaterial;
 		}
 		delete material;
 	}
 	else
 	{
-		foreach(ModelComponent* modelComponent, TropicalEngineApplication::instance()->modelController->modelComponents)
+		for (ModelComponent* modelComponent : TropicalEngineApplication::instance()->modelController->modelComponents)
 		{
-			if(modelComponent->material == material)
+			if (modelComponent->material == material)
 				return;
 		}
 		delete material;

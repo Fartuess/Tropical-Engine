@@ -31,7 +31,7 @@ ModelComponent::ModelComponent(Entity* owner, Material* material, Model* model, 
 
 ModelComponent::~ModelComponent(void)
 {
-	if(owner != nullptr)
+	if (owner != nullptr)
 	{
 		TropicalEngineApplication::instance()->modelController->modelComponents.removeOne(this);
 	}
@@ -39,7 +39,7 @@ ModelComponent::~ModelComponent(void)
 
 void ModelComponent::InitializeComponentType()
 {
-	if(!isComponentTypeUsed(getName()))
+	if (!isComponentTypeUsed(getName()))
 	{
 		SetParrentComponentType("Render Component");
 
@@ -78,9 +78,9 @@ void ModelComponent::Draw(CameraComponent* viewer)
 	glUniform1f(usedShader->dirLightBrightnessLocation, TropicalEngineApplication::instance()->sceneManager->mainLight->brightness);
 	glUniform1f(usedShader->dirLightAmbientLocation, 0.2f);
 
-	if(usedShader->pointLightPositionLocations.size() > 0)
+	if (usedShader->pointLightPositionLocations.size() > 0)
 	{
-		for(int i = 0; i < glm::min(MAX_POINT_LIGHT, lightedBy.size()); i++)	///TODO: Assuming that it is lighted only by pointlights. Change it later to work properly
+		for (int i = 0; i < glm::min(MAX_POINT_LIGHT, lightedBy.size()); i++)	///TODO: Assuming that it is lighted only by pointlights. Change it later to work properly
 		{
 			PointLightComponent* light = static_cast<PointLightComponent*>(lightedBy[i]);
 			//qDebug() << QString::number(light->getOwner()->transform.getLocalPosition().x) + QString::number(light->getOwner()->transform.getLocalPosition().y) + QString::number(light->getOwner()->transform.getLocalPosition().z);
@@ -92,7 +92,7 @@ void ModelComponent::Draw(CameraComponent* viewer)
 		}
 	}
 	
-	foreach(MeshEntry meshEntry, model->meshes)
+	for (MeshEntry meshEntry : model->meshes)
 	{
 		glBindBuffer(GL_ARRAY_BUFFER, meshEntry.vertexVBO);
 		glEnableVertexAttribArray(usedShader->getVertexLocation());

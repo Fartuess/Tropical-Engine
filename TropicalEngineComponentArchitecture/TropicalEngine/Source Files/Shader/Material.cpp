@@ -11,7 +11,7 @@ Material::Material(Shader* shader, void* params, QString name):parameters()	//pa
 {
 	this->name = name;
 	this->shader = shader;
-	foreach(QString parameterName, this->shader->getMaterialParameters().keys())
+	for (QString parameterName : this->shader->getMaterialParameters().keys())
 	{
 		parameters[parameterName] =  nullptr;
 	}
@@ -20,9 +20,9 @@ Material::Material(Shader* shader, void* params, QString name):parameters()	//pa
 
 Material::~Material(void)
 {
-	foreach(ModelComponent* modelComponent, TropicalEngineApplication::instance()->modelController->modelComponents)
+	for (ModelComponent* modelComponent : TropicalEngineApplication::instance()->modelController->modelComponents)
 	{
-		if(modelComponent->material == this)
+		if (modelComponent->material == this)
 			modelComponent->material = this->getShader()->defaultMaterial;
 	}
 }
@@ -41,10 +41,10 @@ void Material::Use()
 {
 	shader->Use();
 	TropicalEngineApplication::instance()->textureManager->resetTextureIterator();
-	if(shader->getCurrentMaterial() != this)
+	if (shader->getCurrentMaterial() != this)
 	{
 		//typedef QPair<QString, void*> parameterType;
-		foreach(QString parameter, parameters.keys())
+		for (QString parameter : parameters.keys())
 		{
 			ActivateParameter(parameter, parameters[parameter]);
 		}
@@ -53,7 +53,7 @@ void Material::Use()
 
 void Material::ActivateParameter(QString name, void* value)
 {
-	if(value == nullptr) return;
+	if (value == nullptr) return;
 
 	GLuint parameterLocation = shader->getParameterLocation(name);
 	switch (shader->getParameterType(name))

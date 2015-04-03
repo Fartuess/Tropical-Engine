@@ -17,7 +17,7 @@ Texture::Texture(QString fileUrl)
 
 Texture::~Texture(void)
 {
-	foreach(Material* material, TropicalEngineApplication::instance()->materialManager->materials)
+	for (Material* material : TropicalEngineApplication::instance()->materialManager->materials)
 	{
 		///TODO: set texture parameters equal to this to value typical for
 		//unneccessary if caled from TextureManager
@@ -27,7 +27,7 @@ Texture::~Texture(void)
 void Texture::Load()
 {
 	QImage textureData;
-	if(fileUrl.endsWith(".tga", Qt::CaseInsensitive))
+	if (fileUrl.endsWith(".tga", Qt::CaseInsensitive))
 	{
 		textureData = QImage(fileUrl).mirrored(false, true);
 	}

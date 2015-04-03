@@ -14,7 +14,7 @@ DirectionalLightComponent::~DirectionalLightComponent(void)
 
 void DirectionalLightComponent::InitializeComponentType()
 {
-	if(!isComponentTypeUsed(getName()))
+	if (!isComponentTypeUsed(getName()))
 	{
 		SetParrentComponentType("Light Component");
 
@@ -30,7 +30,7 @@ glm::vec3 DirectionalLightComponent::getDirection()
 void DirectionalLightComponent::setDirection(glm::vec3 direction)
 {
 	this->direction = direction;
-	if(castingShadows)
+	if (castingShadows)
 		DrawShadows();
 }
 

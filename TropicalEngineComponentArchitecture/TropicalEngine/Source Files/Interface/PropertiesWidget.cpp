@@ -10,7 +10,6 @@ PropertiesWidget::PropertiesWidget(void)
 	QStringList* headerLabels = new QStringList();;
 	*headerLabels << "Name" << "Value";
 	setHeaderLabels(*headerLabels);
-	//setHeaderHidden(true);
 }
 
 
@@ -34,7 +33,7 @@ void PropertiesWidget::Reload()
 	{
 		Entity* entity = static_cast<SceneGraphItem*>((static_cast<SceneGraphWidget*>(sender())->selectedItems()[0]))->entity;
 
-		foreach(Component* component, entity->components)
+		for (Component* component : entity->components)
 		{
 			PropertyItem* propertyItem = new PropertyItem(component->getName());
 			propertyItem->Reload(component);
