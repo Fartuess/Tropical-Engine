@@ -8,12 +8,13 @@
 
 class Shader : public ISerializableToXML, public ISerializableToJSON
 {
+private:
+	QString name;
 public:
-	QString name;	///TODO: should not be public. Should have getters and setters, because changing internal name doesn't change name in shader manager
 	Material* defaultMaterial;
 public:	//temporarily
 	GLuint shaderProgram;
-	QVector<GLuint>* subprograms;	//is it needed?
+	QMap<QString, GLuint> subprograms;	///TODO: Value is shader type from now. Not it's address in GPU?
 private:
 	GLuint vertexLocation;
 	GLuint normalLocation;
@@ -52,6 +53,9 @@ public:
 
 	void setUpLightParameters();
 	void setUpMaterialParameters();
+
+	QString getName();
+	void setName(QString name);
 
 	GLuint getShaderProgram();
 	GLuint getVertexLocation();

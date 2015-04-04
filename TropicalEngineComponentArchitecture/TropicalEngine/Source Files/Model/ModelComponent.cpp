@@ -149,15 +149,15 @@ QString ModelComponent::COMPONENTGETNAME("Model Component");
 
 QString ModelComponent::toXML()
 {
-	return QString(getIndent() + "<ModelComponent model = \"" + model->name + "\" material =\"" + material->name + "\"/>\n");
+	return QString(getIndent() + "<ModelComponent model = \"" + model->getName() + "\" material =\"" + material->getName() + "\"/>\n");
 }
 
 QJsonObject ModelComponent::toJSON()
 {
 	///TODO: implement it.
 	QJsonObject JSON = Component::toJSON();
-	JSON["model"] = model->name;
-	JSON["material"] = material->name;
+	JSON["model"] = model->getName();
+	JSON["material"] = material->getName();
 	JSON["cast shadows"] = castingShadows;
 
 	return JSON;

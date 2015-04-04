@@ -18,7 +18,7 @@ Shader::Shader(QString vertexShader, QString fragmentShader, QString name)
 
 	drawingMode = GL_TRIANGLES;
 
-	subprograms = new QVector<GLuint>();
+	//subprograms = new QVector<GLuint>();
 	shaderProgram = glCreateProgram();
 
     if (shaderProgram == 0) {
@@ -75,7 +75,7 @@ Shader::Shader(QMap<QString, GLuint> subshaders, QString name)
 
 	drawingMode = GL_TRIANGLES;
 
-	subprograms = new QVector<GLuint>();
+	//subprograms = new QVector<GLuint>();
 	shaderProgram = glCreateProgram();
 
     if (shaderProgram == 0) {
@@ -193,6 +193,17 @@ void Shader::setUpMaterialParameters()
 Shader::~Shader(void)
 {
 	///TODO: implement it.
+}
+
+QString Shader::getName()
+{
+	return name;
+}
+
+void Shader::setName(QString name)
+{
+	///TODO: change key name in Shader managers.
+	this->name = name;
 }
 
 GLuint Shader::getShaderProgram()
@@ -336,7 +347,7 @@ void Shader::AddShader(QString shaderFile, GLenum shaderType)
     }
 
 	glAttachShader(this->shaderProgram, shaderObj);
-	subprograms->append(shaderObj);
+	subprograms[shaderFile] = shaderObj;
 }
 
 void Shader::Use()
@@ -364,5 +375,17 @@ QString Shader::toXML()
 
 QJsonObject Shader::toJSON()
 {
-	return QJsonObject();
+	QJsonObject JSON = QJsonObject();
+	JSON["name"] = name;
+	QJsonArray subshadersJSON = QJsonArray();
+	for (QString subshader : subprograms.keys())
+	{
+		QJsonObject subshaderJSON = QJsonObject();
+		subshaderJSON["url"] = subshader;
+		subshaderJSON["type"] = QString::number(subprograms[subshader]);
+		subshadersJSON.push_back(subshaderJSON);
+	}
+	JSON["subshaders"] = subshadersJSON;
+
+	return JSON;
 }

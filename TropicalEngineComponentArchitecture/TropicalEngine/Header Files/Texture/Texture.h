@@ -8,7 +8,8 @@
 class Texture : public ISerializableToXML, public ISerializableToJSON
 {
 private:
-	QString fileUrl;
+	QString fileUrl;	///TODO: Figure out how to implement changing paths.
+	QString name;
 	//GLenum textureTarget;	//what for?
 	GLuint textureLocation;
 	//QPixmap textureData;	///TODO: figure out if it shpuld be stored in main memory.
@@ -17,6 +18,9 @@ public:
 	~Texture(void);
 
 	static Texture nullTexture;
+
+	QString getName();
+	void setName(QString name);
 
 	void Load();
 

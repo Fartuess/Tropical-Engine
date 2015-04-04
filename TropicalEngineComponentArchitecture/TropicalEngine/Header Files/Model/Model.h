@@ -30,8 +30,11 @@ public:
 
 class Model : public ISerializableToXML, public ISerializableToJSON
 {
+private:
+	QString name;
 public:
-	QString name;	///TODO: should not be public. Should have getters and setters, because changing internal name doesn't change name in model manager
+	QString getName();
+	void setName(QString name);
 private:
 	QString fileUrl;
 public:

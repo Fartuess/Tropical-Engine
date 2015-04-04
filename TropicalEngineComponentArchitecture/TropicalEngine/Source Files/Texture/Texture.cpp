@@ -14,7 +14,6 @@ Texture::Texture(QString fileUrl)
 	Load();	//maybe not always should be loaded into GPU when it is load
 }
 
-
 Texture::~Texture(void)
 {
 	for (Material* material : TropicalEngineApplication::instance()->materialManager->materials)
@@ -22,6 +21,17 @@ Texture::~Texture(void)
 		///TODO: set texture parameters equal to this to value typical for
 		//unneccessary if caled from TextureManager
 	}
+}
+
+QString Texture::getName()
+{
+	return name;
+}
+
+void Texture::setName(QString name)
+{
+	///TODO: change keyname in Texture Managers.
+	this->name = name;
 }
 
 void Texture::Load()
@@ -66,5 +76,9 @@ QString Texture::toXML()
 
 QJsonObject Texture::toJSON()
 {
-	return QJsonObject();
+	QJsonObject JSON = QJsonObject();
+	JSON["name"] = name;
+	JSON["url"] = fileUrl;
+
+	return JSON;
 }

@@ -9,8 +9,11 @@ class Texture;
 
 class Material : public ISerializableToXML, public ISerializableToJSON
 {
+private:
+	QString name;
 public:
-	QString name;	///TODO: should not be public. Should have getters and setters, because changing internal name doesn't change name in material manager
+	QString getName();
+	void setName(QString name);
 private:
 	Shader* shader;
 	QMap<QString, void*> parameters;

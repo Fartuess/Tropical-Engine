@@ -20,6 +20,17 @@ Model::~Model(void)
 	///TODO: implement it.
 }
 
+QString Model::getName()
+{
+	return name;
+}
+
+void Model::setName(QString name)
+{
+	///TODO: implement changing keynames in Model Managers.
+	this->name = name;
+}
+
 MeshEntry::MeshEntry()
 {
 	///TODO: implement it.
@@ -49,5 +60,10 @@ QString Model::toXML()
 
 QJsonObject Model::toJSON()
 {
-	return QJsonObject();
+	///TODO: Add support of generated models serialization;
+	QJsonObject JSON = QJsonObject();
+	JSON["name"] = name;
+	JSON["url"] = fileUrl;
+
+	return JSON;
 }
