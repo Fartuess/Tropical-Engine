@@ -1,6 +1,6 @@
 #include <glm.hpp>
 #include <QtCore\qvector.h>
-#include "Input/InputController.h"
+#include "Input\InputManager.h"
 #include "Shader\Shader.h"
 #include "Model\Model.h"
 #include "Model\ModelManager.h"
@@ -23,7 +23,7 @@ void OglDevTut03::Draw()
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	deltaTime = deltaTimer.restart();
-	TropicalEngineApplication::instance()->inputController->Update(deltaTime);
+	TropicalEngineApplication::instance()->inputManager->Update();
 	TropicalEngineApplication::instance()->sceneManager->getCurrentCamera()->CalculateMatrix();
 
 	TropicalEngineApplication::instance()->sceneManager->EvaluateLevels();	///TODO: Evaluate only changed

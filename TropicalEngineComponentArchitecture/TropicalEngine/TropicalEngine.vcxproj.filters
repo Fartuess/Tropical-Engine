@@ -91,9 +91,6 @@
     <ClCompile Include="Source Files\TempHelpers\InitializeLevel_03.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source Files\Input\InputController.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Source Files\Serialization\ISerializableToXML.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -214,6 +211,12 @@
     <ClCompile Include="GeneratedFiles\Release\moc_MainWindow.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="Source Files\Input\InputAction.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Files\Input\InputManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="Header Files\TropicalEngineApplication.h">
@@ -248,9 +251,6 @@
       <Filter>Header Files</Filter>
     </CustomBuild>
     <CustomBuild Include="Header Files\Interface\GuiStyleManager.h">
-      <Filter>Header Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="Header Files\Input\InputController.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
     <CustomBuild Include="Header Files\Serialization\ISerializableToJSON.h">
@@ -343,5 +343,13 @@
     <CustomBuild Include="Header Files\Scene\TransformComponent.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
+    <CustomBuild Include="Header Files\Input\InputManager.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Header Files\Input\InputAction.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

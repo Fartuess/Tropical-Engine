@@ -6,7 +6,7 @@
 #include <QtCore\qdebug.h>
 #include "Scene/Entity.h"
 #include "Camera/CameraComponent.h"
-#include "Input/InputController.h"
+#include "Input\InputManager.h"
 #include "Scene\SceneManager.h"
 #include "TempHelpers\OglDevTut03.h"
 #include "Interface\OpenGLWidget.h"
@@ -67,38 +67,45 @@ void OpenGLWidget::keyPressEvent(QKeyEvent* keyEvent)
 {
 	glm::vec3 front = TropicalEngineApplication::instance()->sceneManager->getCurrentCamera()->getOwner()->transform.getFront();
 	glm::vec3 right = TropicalEngineApplication::instance()->sceneManager->getCurrentCamera()->getOwner()->transform.getRight();
-	switch ( keyEvent->key() ) {
+	switch ( keyEvent->key() )
+	{
 		case Qt::Key_W:
 			//qDebug("W pressed");
-			TropicalEngineApplication::instance()->inputController->pressedKeys.W = true;
+			//TropicalEngineApplication::instance()->inputManager->pressedKeys.W = true;
 			TropicalEngineApplication::instance()->sceneManager->getCurrentCamera()->getOwner()->transform.LocalTranslate(front * (0.1f));
 			break;
 		case Qt::Key_S:
 			//qDebug("S pressed");
-			TropicalEngineApplication::instance()->inputController->pressedKeys.S = true;
+			//TropicalEngineApplication::instance()->inputManager->pressedKeys.S = true;
 			TropicalEngineApplication::instance()->sceneManager->getCurrentCamera()->getOwner()->transform.LocalTranslate(front * (-0.1f));
 			break;
 		case Qt::Key_A:
 			//qDebug("A pressed");
-			TropicalEngineApplication::instance()->inputController->pressedKeys.A = true;
+			//TropicalEngineApplication::instance()->inputManager->pressedKeys.A = true;
 			TropicalEngineApplication::instance()->sceneManager->getCurrentCamera()->getOwner()->transform.LocalTranslate(right * (-0.1f));
 			break;
 		case Qt::Key_D:
 			//qDebug("D pressed");
-			TropicalEngineApplication::instance()->inputController->pressedKeys.D = true;
+			//TropicalEngineApplication::instance()->inputManager->pressedKeys.D = true;
 			TropicalEngineApplication::instance()->sceneManager->getCurrentCamera()->getOwner()->transform.LocalTranslate(right * (0.1f));
 			break;
 		case Qt::Key_Space:
 			//qDebug("Space pressed");
-			TropicalEngineApplication::instance()->inputController->pressedKeys.D = true;
+			//TropicalEngineApplication::instance()->inputManager->pressedKeys.D = true;
 			TropicalEngineApplication::instance()->sceneManager->getCurrentCamera()->getOwner()->transform.LocalTranslate(glm::vec3(0.0f, 0.1f, 0.0f));
 			break;
 		case Qt::Key_C:
 			//qDebug("C pressed");
-			TropicalEngineApplication::instance()->inputController->pressedKeys.D = true;
+			//TropicalEngineApplication::instance()->inputManager->pressedKeys.D = true;
 			TropicalEngineApplication::instance()->sceneManager->getCurrentCamera()->getOwner()->transform.LocalTranslate(glm::vec3(0.0f, -0.1f, 0.0f));
 			break;
-		}
+	}
+	TropicalEngineApplication::instance()->inputManager->Press(keyEvent->key());
+}
+
+void OpenGLWidget::keyReleaseEvent(QKeyEvent* keyEvent)
+{
+	TropicalEngineApplication::instance()->inputManager->Release(keyEvent->key());
 }
 
 void OpenGLWidget::mousePressEvent(QMouseEvent* mouseEvent)
@@ -121,7 +128,7 @@ void OpenGLWidget::mouseMoveEvent(QMouseEvent* mouseEvent)
 	*abstractMousePosition += mouseEvent->globalPos() - *screenCenter;
 
 	//TropicalEngineApplication::instance()->inputController->mousePosition = glm::vec2(mouseEvent->globalX(), mouseEvent->globalY());
-	TropicalEngineApplication::instance()->inputController->mousePosition = glm::vec2(abstractMousePosition->x(), abstractMousePosition->y());
+	TropicalEngineApplication::instance()->inputManager->mousePosition = glm::vec2(abstractMousePosition->x(), abstractMousePosition->y());
 
 	//glm::quat quat1 = glm::angleAxis(mouseEvent->globalX() / 6.0f, glm::vec3(0.0f, -1.0f, 0.0f));
 	glm::quat quat1 = glm::angleAxis(abstractMousePosition->x() / 6.0f, glm::vec3(0.0f, -1.0f, 0.0f));

@@ -18,7 +18,7 @@ class SceneController;
 
 class LightController;
 
-class InputController;
+class InputManager;
 
 class CameraComponent;
 
@@ -56,7 +56,7 @@ public:
 	/*
 	* Input
 	*/
-	InputController* inputController;
+	InputManager* inputManager;
 
 	OglDevTut03* renderer;	//temporarily
 	/*

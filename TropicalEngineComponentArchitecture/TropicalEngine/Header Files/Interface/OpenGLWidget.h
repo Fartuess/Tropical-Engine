@@ -22,6 +22,7 @@ protected:
 	void paintGL();
 
 	void keyPressEvent(QKeyEvent* keyEvent) override;
+	void keyReleaseEvent(QKeyEvent* keyEvent) override;
 	void mousePressEvent(QMouseEvent* mouseEvent) override;
 	void mouseReleaseEvent(QMouseEvent* mouseEvent) override;
 	void mouseMoveEvent(QMouseEvent* mouseEvent) override;

@@ -14,7 +14,7 @@
 
 #include "Light\LightController.h"
 
-#include "Input/InputController.h"
+#include "Input\InputManager.h"
 
 #include "TempHelpers\OglDevTut03.h"
 
@@ -38,7 +38,7 @@ TropicalEngineApplication::TropicalEngineApplication(int argc, char* argv[]) : Q
 
 	lightController = new LightController();
 
-	inputController = new InputController();
+	inputManager = new InputManager();
 
 	renderer = new OglDevTut03();
 
@@ -72,7 +72,7 @@ void TropicalEngineApplication::Draw()
 	glPatchParameteri(GL_PATCH_VERTICES, 3);
 
 	deltaTime = deltaTimer.restart();
-	inputController->Update(deltaTime);
+	inputManager->Update();
 	
 	sceneManager->getCurrentCamera()->CalculateMatrix();
 

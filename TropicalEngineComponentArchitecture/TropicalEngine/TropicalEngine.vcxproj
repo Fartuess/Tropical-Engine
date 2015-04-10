@@ -67,13 +67,14 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="Source Files\Input\InputAction.cpp" />
     <ClCompile Include="Source Files\Camera\CameraComponent.cpp" />
     <ClCompile Include="Source Files\Component\Component.cpp" />
     <ClCompile Include="Source Files\Light\DirectionalLightComponent.cpp" />
     <ClCompile Include="Source Files\Scene\Entity.cpp" />
     <ClCompile Include="Source Files\Interface\GuiStyleManager.cpp" />
     <ClCompile Include="Source Files\TempHelpers\InitializeLevel_03.cpp" />
-    <ClCompile Include="Source Files\Input\InputController.cpp" />
+    <ClCompile Include="Source Files\Input\InputManager.cpp" />
     <ClCompile Include="Source Files\Serialization\ISerializableToXML.cpp" />
     <ClCompile Include="Source Files\Scene\Level.cpp" />
     <ClCompile Include="Source Files\Scene\LevelManager.cpp" />
@@ -268,7 +269,7 @@
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </AdditionalInputs>
     </CustomBuild>
-    <CustomBuild Include="Header Files\Input\InputController.h">
+    <CustomBuild Include="Header Files\Input\InputManager.h">
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
       </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Performing Custom Build Tools</Message>
@@ -1339,6 +1340,9 @@
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </AdditionalInputs>
     </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Header Files\Input\InputAction.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{B12702AD-ABFB-343A-A199-8E24837244A3}</ProjectGuid>
