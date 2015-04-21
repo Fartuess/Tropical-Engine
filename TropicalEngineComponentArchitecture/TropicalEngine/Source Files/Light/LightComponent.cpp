@@ -18,7 +18,7 @@ LightComponent::LightComponent(Entity* owner, glm::vec3 color, float brightness,
 
 void LightComponent::InitializeComponentType()
 {
-	if (!isComponentTypeUsed(getName()))
+	if (!isComponentTypeUsed(getTypeName()))
 	{
 		AddParameter("Brightness", "Float");
 		AddParameter("Color", "ColorRGB");
@@ -51,7 +51,7 @@ void LightComponent::DrawShadows()
 	///TODO: implement it.
 }
 
-QString LightComponent::COMPONENTGETNAME("Light Component");
+QString LightComponent::GETTYPENAME("Light Component");
 
 QString LightComponent::toXML()
 {

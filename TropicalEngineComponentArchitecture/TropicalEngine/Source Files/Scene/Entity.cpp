@@ -31,7 +31,7 @@ Entity::~Entity(void)
 	QList<Component*> helperComponentList = QList<Component*>(components);
 	for (Component* component : helperComponentList)
 	{
-		if (component->getName() != "Transform Component")	//transform component will remove by itself
+		if (component->getTypeName() != "Transform Component")	//transform component will remove by itself
 		{
 			delete component;
 		}
@@ -92,6 +92,8 @@ void Entity::DetachComponent(Component* component)
 		component->owner = nullptr;
 	}
 }
+
+QString Entity::GETTYPENAME("Entity");
 
 QString Entity::toXML()
 {

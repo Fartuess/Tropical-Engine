@@ -35,7 +35,7 @@ void PropertiesWidget::Reload()
 
 		for (Component* component : entity->components)
 		{
-			PropertyItem* propertyItem = new PropertyItem(component->getName());
+			PropertyItem* propertyItem = new PropertyItem(component->getTypeName());
 			propertyItem->Reload(component);
 			addTopLevelItem(propertyItem);
 		}

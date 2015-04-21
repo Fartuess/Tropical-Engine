@@ -19,7 +19,7 @@ SpotLightComponent::~SpotLightComponent(void)
 
 void SpotLightComponent::InitializeComponentType()
 {
-	if (!isComponentTypeUsed(getName()))
+	if (!isComponentTypeUsed(getTypeName()))
 	{
 		SetParrentComponentType("Light Component");
 
@@ -66,7 +66,7 @@ void SpotLightComponent::DrawShadows()
 	///TODO: implement it.
 }
 
-QString SpotLightComponent::COMPONENTGETNAME("SpotLight Component");
+QString SpotLightComponent::GETTYPENAME("SpotLight Component");
 
 QString SpotLightComponent::toXML()
 {

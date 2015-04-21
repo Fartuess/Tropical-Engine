@@ -71,7 +71,7 @@ private:
 public:
 	void Evaluate();
 
-	QString getName() override;
+	QString getTypeName() override;
 	QString toXML() override;
 	QJsonObject toJSON() override;
 };

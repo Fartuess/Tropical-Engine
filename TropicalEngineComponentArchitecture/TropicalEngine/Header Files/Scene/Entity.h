@@ -36,6 +36,7 @@ private:
 	void DetachComponent(Component* component);
 
 public:
+	QString getTypeName() override;
 	QString toXML() override;
 	QJsonObject toJSON() override;
 };

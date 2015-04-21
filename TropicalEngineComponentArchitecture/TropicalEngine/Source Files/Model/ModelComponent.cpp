@@ -39,7 +39,7 @@ ModelComponent::~ModelComponent(void)
 
 void ModelComponent::InitializeComponentType()
 {
-	if (!isComponentTypeUsed(getName()))
+	if (!isComponentTypeUsed(getTypeName()))
 	{
 		SetParrentComponentType("Render Component");
 
@@ -145,7 +145,7 @@ void ModelComponent::isCastingShadows(bool isCastingShadows)
 	castingShadows = isCastingShadows;
 }
 
-QString ModelComponent::COMPONENTGETNAME("Model Component");
+QString ModelComponent::GETTYPENAME("Model Component");
 
 QString ModelComponent::toXML()
 {

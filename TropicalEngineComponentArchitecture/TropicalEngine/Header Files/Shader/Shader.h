@@ -81,6 +81,7 @@ private:
 public:
 	void Use();
 
+	QString getTypeName() override;
 	QString toXML() override;
 	QJsonObject toJSON() override;
 };

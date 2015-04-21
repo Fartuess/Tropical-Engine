@@ -14,7 +14,7 @@ DirectionalLightComponent::~DirectionalLightComponent(void)
 
 void DirectionalLightComponent::InitializeComponentType()
 {
-	if (!isComponentTypeUsed(getName()))
+	if (!isComponentTypeUsed(getTypeName()))
 	{
 		SetParrentComponentType("Light Component");
 
@@ -44,7 +44,7 @@ void DirectionalLightComponent::DrawShadows()
 	///TODO: implement it.
 }
 
-QString DirectionalLightComponent::COMPONENTGETNAME("DirectionalLight Component");
+QString DirectionalLightComponent::GETTYPENAME("DirectionalLight Component");
 
 QString DirectionalLightComponent::toXML()
 {

@@ -16,7 +16,7 @@ PointLightComponent::~PointLightComponent(void)
 
 void PointLightComponent::InitializeComponentType()
 {
-	if (!isComponentTypeUsed(getName()))
+	if (!isComponentTypeUsed(getTypeName()))
 	{
 		SetParrentComponentType("Light Component");
 
@@ -48,7 +48,7 @@ void PointLightComponent::DrawShadows()
 	///TODO: implement it.
 }
 
-QString PointLightComponent::COMPONENTGETNAME("PointLight Component");
+QString PointLightComponent::GETTYPENAME("PointLight Component");
 
 QString PointLightComponent::toXML()
 {

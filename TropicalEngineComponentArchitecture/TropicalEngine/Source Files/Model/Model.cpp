@@ -51,6 +51,8 @@ void MeshEntry::Finalize()
 	//glBufferSubData(GL_ARRAY_BUFFER, sizeof(glm::vec4) * vertices->size(), sizeof(glm::vec3) * vertices->size(), normals->data());
 }
 
+QString Model::GETTYPENAME("Model");
+
 QString Model::toXML()
 {
 	///TODO: implement it.

@@ -15,6 +15,8 @@ Level::~Level(void)
 	///TODO: figure out unloading used packages if neccessary.
 }
 
+QString Level::GETTYPENAME("Level");
+
 QString Level::toXML()
 {
 	///TODO: finish implementing it.

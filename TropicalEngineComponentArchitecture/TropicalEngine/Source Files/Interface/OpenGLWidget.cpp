@@ -100,12 +100,12 @@ void OpenGLWidget::keyPressEvent(QKeyEvent* keyEvent)
 			TropicalEngineApplication::instance()->sceneManager->getCurrentCamera()->getOwner()->transform.LocalTranslate(glm::vec3(0.0f, -0.1f, 0.0f));
 			break;
 	}
-	TropicalEngineApplication::instance()->inputManager->Press(keyEvent->key());
+	TropicalEngineApplication::instance()->inputManager->PressKey(keyEvent->key());
 }
 
 void OpenGLWidget::keyReleaseEvent(QKeyEvent* keyEvent)
 {
-	TropicalEngineApplication::instance()->inputManager->Release(keyEvent->key());
+	TropicalEngineApplication::instance()->inputManager->ReleaseKey(keyEvent->key());
 }
 
 void OpenGLWidget::mousePressEvent(QMouseEvent* mouseEvent)

@@ -18,7 +18,7 @@ public:
 	void Evaluate();
 	void DrawShadows();
 
-	QString getName() override;
+	QString getTypeName() override;
 	QString toXML() override;
 	QJsonObject toJSON() override;
 };

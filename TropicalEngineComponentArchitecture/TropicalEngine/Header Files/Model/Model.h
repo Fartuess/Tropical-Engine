@@ -45,6 +45,7 @@ public:
 	QVector<MeshEntry> meshes;
 	GLuint materialCount;
 
+	QString getTypeName() override;
 	QString toXML() override;
 	QJsonObject toJSON() override;
 };

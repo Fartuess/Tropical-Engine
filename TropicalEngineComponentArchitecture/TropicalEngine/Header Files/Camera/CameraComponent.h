@@ -39,7 +39,7 @@ public:
 	glm::mat4 getProjectionMatrix();
 	void CalculateMatrix();
 
-	QString getName() override;
+	QString getTypeName() override;
 	QString toXML() override;
 	QJsonObject toJSON() override;
 };

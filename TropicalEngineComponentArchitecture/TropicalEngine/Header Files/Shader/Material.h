@@ -38,6 +38,7 @@ private:
 public:
 	void SetParameter(QString name, void* parameter);
 
+	QString getTypeName() override;
 	QString toXML() override;
 	QJsonObject toJSON() override;
 };

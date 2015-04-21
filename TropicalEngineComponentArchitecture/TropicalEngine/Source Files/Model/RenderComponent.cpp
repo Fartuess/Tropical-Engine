@@ -13,13 +13,13 @@ RenderComponent::RenderComponent(Entity* owner, Material* material):Component(ow
 
 void RenderComponent::InitializeComponentType()
 {
-	if (!isComponentTypeUsed(getName()))
+	if (!isComponentTypeUsed(getTypeName()))
 	{
 		AddParameter("Material", "String");
 	}
 }
 
-QString RenderComponent::COMPONENTGETNAME("Render Component");
+QString RenderComponent::GETTYPENAME("Render Component");
 
 RenderComponent::~RenderComponent(void)
 {

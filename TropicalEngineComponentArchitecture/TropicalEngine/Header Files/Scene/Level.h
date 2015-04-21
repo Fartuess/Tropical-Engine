@@ -20,6 +20,7 @@ public:
 	Level(TransformComponent transform, QString name = nullptr);
 	~Level(void);
 
+	QString getTypeName() override;
 	QString toXML() override;
 	QJsonObject toJSON() override;
 };

@@ -35,7 +35,7 @@ TransformComponent::~TransformComponent(void)
 
 void TransformComponent::InitializeComponentType()
 {
-	if (!isComponentTypeUsed(getName()))
+	if (!isComponentTypeUsed(getTypeName()))
 	{
 		AddParameter("Local Position", "Vec3");
 		AddParameter("Local Rotation", "Vec3");
@@ -292,7 +292,7 @@ void TransformComponent::Evaluate()
 	}
 }
 
-QString TransformComponent::COMPONENTGETNAME("Transform Component");
+QString TransformComponent::GETTYPENAME("Transform Component");
 
 QString TransformComponent::toXML()
 {

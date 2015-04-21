@@ -22,6 +22,6 @@ public:
 	virtual void Evaluate() = 0;
 	virtual void Draw(CameraComponent* viewer) = 0;
 
-	QString getName() override;
+	QString getTypeName() override;
 };
 

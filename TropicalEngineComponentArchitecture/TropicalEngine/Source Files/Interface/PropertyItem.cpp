@@ -35,7 +35,7 @@ void PropertyItem::Reload(Component* component)
 	///Figure out if it is important if we copy maps for time saving or not to save memory
 	this->component = component;
 
-	QMap<QString, QString> parameters = Component::getParameters(component->getName());
+	QMap<QString, QString> parameters = Component::getParameters(component->getTypeName());
 	for (QString parameter : parameters.keys())
 	{
 		PropertyItem* parameterItem;

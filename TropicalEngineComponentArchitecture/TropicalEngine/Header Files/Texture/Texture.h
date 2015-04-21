@@ -26,6 +26,7 @@ public:
 
 	void ActivateTexture(GLuint location);
 
+	QString getTypeName() override;
 	QString toXML() override;
 	QJsonObject toJSON() override;
 };

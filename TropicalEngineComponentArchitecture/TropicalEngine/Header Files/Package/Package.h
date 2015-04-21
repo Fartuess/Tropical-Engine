@@ -4,41 +4,28 @@
 #include <QtCore\qmap.h>
 #include "Serialization/ISerializableToXML.h"
 #include "Serialization/ISerializableToJSON.h"
+#include "Serialization/IDeserializableFromJSON.h"
+#include "Asset.h"
 
-enum class AssetType
-	{
-		Entity,
-		Shader,
-		Material,
-		Texture,
-		Model
-	};
-
-class Package : public ISerializableToXML, public ISerializableToJSON
+class Package : public ISerializableToXML, public ISerializableToJSON, public IDeserializableFromJSON
 {
-	class Asset : public ISerializableToXML, public ISerializableToJSON
-	{
-	public:
-		AssetType type;
-		void* asset_ptr;
-
-		Asset(AssetType type, void* asset_ptr);
-
-		QString toXML() override;
-		QJsonObject toJSON() override;
-	};
-
 private:
 	QMap<QString, Asset> assets;
 	QString name;
+
+	static Package templateObject;
 public:
 	Package(QString name);
 	~Package(void);
+public:
+	static Package InitializeType();
 
 	QString getName();
 	void setName(QString name);
 
+	QString getTypeName() override;
 	QString toXML() override;
 	QJsonObject toJSON() override;
+	IDeserializableFromJSON& fromJSON(QJsonObject JSON) override;
 };
 

@@ -135,6 +135,8 @@ void Material::SetParameter(QString name, void* parameter)
 	parameters[name] = parameter;
 }
 
+QString Material::GETTYPENAME("Material");
+
 QString Material::toXML()
 {
 	///TODO: implement it.

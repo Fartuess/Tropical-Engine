@@ -19,6 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source Files\Package\AssetManager.cpp" />
+    <ClCompile Include="Source Files\Package\Asset.cpp" />
     <ClCompile Include="GeneratedFiles\Debug\moc_MainWindow.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
@@ -1342,7 +1344,11 @@
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Header Files\Package\AssetManager.h" />
+    <ClInclude Include="Header Files\Package\Asset.h" />
     <ClInclude Include="Header Files\Input\InputAction.h" />
+    <ClInclude Include="Header Files\Serialization\IDeserializableFromJSON.h" />
+    <ClInclude Include="Header Files\Utills\INamedType.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{B12702AD-ABFB-343A-A199-8E24837244A3}</ProjectGuid>

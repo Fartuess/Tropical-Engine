@@ -10,5 +10,5 @@ public:
 
 	void Update();
 
-	QString getName() override;
+	QString getTypeName() override;
 };

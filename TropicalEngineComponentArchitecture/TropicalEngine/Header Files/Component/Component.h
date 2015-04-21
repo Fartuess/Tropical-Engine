@@ -3,10 +3,13 @@
 
 #include "Serialization/ISerializableToXML.h"
 #include "Serialization/ISerializableToJSON.h"
+#include "Serialization/IDeserializableFromJSON.h"
+
+#include "Package/AssetManager.h"
 
 class Entity;
 
-class Component : public ISerializableToXML, public ISerializableToJSON
+class Component : public ISerializableToXML, public ISerializableToJSON 
 {
 public:
 	friend class Entity;
@@ -27,7 +30,7 @@ private:
 protected:
 	void AddComponentType(QString name);
 public:
-	virtual QString getName() = 0;
+	//virtual QString getName() = 0;
 	static bool isComponentTypeUsed(QString name);
 	static unsigned int getComponentType(QString name);
 private:
@@ -49,9 +52,3 @@ public:
 
 	QJsonObject toJSON() override;
 };
-
-#define COMPONENTGETNAME(name)\
-	getName()\
-	{\
-		return name;\
-	}

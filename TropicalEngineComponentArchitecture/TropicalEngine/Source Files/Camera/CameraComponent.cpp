@@ -23,9 +23,9 @@ CameraComponent::CameraComponent(Entity* owner, glm::vec3 targetOffset, glm::vec
 
 void CameraComponent::InitializeComponentType()
 {
-	if(!isComponentTypeUsed(getName()))
+	if(!isComponentTypeUsed(getTypeName()))
 	{
-		
+		///TODO: ??
 	}
 }
 
@@ -124,7 +124,7 @@ void CameraComponent::CalculateMatrix()
 	projectionMatrix = glm::perspective(fov, aspectRatio, zNear, zFar);
 }
 
-QString CameraComponent::COMPONENTGETNAME("Camera Component");
+QString CameraComponent::GETTYPENAME("Camera Component");
 
 QString CameraComponent::toXML()
 {

@@ -22,7 +22,7 @@ public:
 	bool isCastingShadows();
 	void isCastingShadows(bool isCastingShadows);
 
-	QString getName() override;
+	QString getTypeName() override;
 	QString toXML() override;
 	QJsonObject toJSON() override;
 };

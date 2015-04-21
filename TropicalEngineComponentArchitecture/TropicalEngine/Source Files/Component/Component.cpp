@@ -89,7 +89,7 @@ QString Component::getParrentType(QString componentTypeName)
 
 void Component::SetParrentComponentType(QString parrentTypeName)
 {
-	parrentComponentTypeMap[getName()] = parrentTypeName;
+	parrentComponentTypeMap[getTypeName()] = parrentTypeName;
 }
 
 QMap<QString, unsigned int> Component::parameterTypeMap = QMap<QString, unsigned int>();
@@ -110,9 +110,9 @@ void Component::AddParameter(QString name, QString typeName)
 {
 	if(!parameterTypeMap.contains(typeName))
 		AddParameterType(typeName);
-	if(!parameters.contains(getName()))
-		parameters[getName()] = QMap<QString, QString>();
-	parameters[getName()].insert(name, typeName);
+	if (!parameters.contains(getTypeName()))
+		parameters[getTypeName()] = QMap<QString, QString>();
+	parameters[getTypeName()].insert(name, typeName);
 }
 
 QMap<QString, QString> Component::getParameters(QString componentTypeName)
@@ -130,6 +130,6 @@ QMap<QString, QString> Component::getParameters(QString componentTypeName)
 QJsonObject Component::toJSON()
 {
 	QJsonObject JSON = QJsonObject();
-	JSON["type"] = getName();
+	JSON["type"] = getTypeName();
 	return JSON;
 }
