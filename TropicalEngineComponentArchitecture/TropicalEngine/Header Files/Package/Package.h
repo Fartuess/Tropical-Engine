@@ -17,7 +17,7 @@ private:
 public:
 	Package(QString name);
 	~Package(void);
-public:
+
 	static Package InitializeType();
 
 	QString getName();

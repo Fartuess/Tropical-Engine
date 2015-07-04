@@ -29,7 +29,7 @@ QString Level::toXML()
 	{
 		XMLString += package->toXML();
 	}*/
-	XMLString += root.toXML();
+	//XMLString += root.toXML();
 	decreaseIndent();
 	XMLString += QString(getIndent() + "</Level>\n");
 

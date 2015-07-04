@@ -4,6 +4,12 @@
 #include "Component\Component.h"
 #include "Scene/Entity.h"
 
+Component::Component()
+{
+	owner = nullptr;
+
+}
+
 Component::Component(Entity* owner)
 {
 	this->owner = nullptr;
@@ -126,6 +132,8 @@ QMap<QString, QString> Component::getParameters(QString componentTypeName)
 		return QMap<QString, QString>();
 	}
 }
+
+//QString Component::GETTYPENAME("Component");
 
 QJsonObject Component::toJSON()
 {

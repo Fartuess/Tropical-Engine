@@ -13,6 +13,8 @@ public:
 	Material* material;
 //protected:	//temporarily public
 	QList<LightComponent*> lightedBy;
+protected:
+	RenderComponent();
 public:
 	RenderComponent(Entity* owner, Material* material);
 	~RenderComponent(void);

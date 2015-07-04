@@ -6,6 +6,10 @@
 
 #include <QtCore\qdebug.h>
 
+CameraComponent CameraComponent::templateObject = CameraComponent::InitializeType();
+
+CameraComponent::CameraComponent() {}
+
 CameraComponent::CameraComponent(Entity* owner, glm::vec3 targetOffset, glm::vec3 up, float fov, float aspectRatio, float zNear, float zFar):Component(owner)
 {
 	setTarget(targetOffset);
@@ -21,6 +25,13 @@ CameraComponent::CameraComponent(Entity* owner, glm::vec3 targetOffset, glm::vec
 	CalculateMatrix();
 }
 
+CameraComponent CameraComponent::InitializeType()
+{
+	CameraComponent& cameraComponent = *(new CameraComponent());
+	AssetManager::addAssetType("Camera Component", &cameraComponent);
+	return cameraComponent;
+}
+
 void CameraComponent::InitializeComponentType()
 {
 	if(!isComponentTypeUsed(getTypeName()))
@@ -32,9 +43,12 @@ void CameraComponent::InitializeComponentType()
 CameraComponent::~CameraComponent(void)
 {
 	///TODO: Figure out how to separate it from engine core.
-	if (TropicalEngineApplication::instance()->sceneManager->getCurrentCamera() == this)
+	if (owner != nullptr)
 	{
-		TropicalEngineApplication::instance()->sceneManager->setCurrentCamera(nullptr);
+		if (TropicalEngineApplication::instance()->sceneManager->getCurrentCamera() == this)
+		{
+			TropicalEngineApplication::instance()->sceneManager->setCurrentCamera(nullptr);
+		}
 	}
 }
 
@@ -126,11 +140,11 @@ void CameraComponent::CalculateMatrix()
 
 QString CameraComponent::GETTYPENAME("Camera Component");
 
-QString CameraComponent::toXML()
-{
-	///TODO: implement it.
-	return QString(getIndent() + "<CameraComponent/>\n");
-}
+//QString CameraComponent::toXML()
+//{
+//	///TODO: implement it.
+//	return QString(getIndent() + "<CameraComponent/>\n");
+//}
 
 QJsonObject CameraComponent::toJSON()
 {
@@ -152,4 +166,10 @@ QJsonObject CameraComponent::toJSON()
 	JSON["Z far"] = zFar;
 
 	return JSON;
+}
+
+IDeserializableFromJSON& CameraComponent::fromJSON(QJsonObject JSON)
+{
+	///TODO: implement this.
+	return *(new CameraComponent());
 }

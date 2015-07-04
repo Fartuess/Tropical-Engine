@@ -10,9 +10,15 @@ public:
 	Model* model;
 private:
 	bool castingShadows;
+
+	static ModelComponent templateObject;
+protected:
+	ModelComponent();
 public:
 	ModelComponent(Entity* owner, Material* material, Model* model, bool castingShadows = false);
 	~ModelComponent(void);
+
+	static ModelComponent InitializeType();
 protected:
 	void InitializeComponentType() override;
 public:
@@ -23,7 +29,8 @@ public:
 	void isCastingShadows(bool isCastingShadows);
 
 	QString getTypeName() override;
-	QString toXML() override;
+	//QString toXML() override;
 	QJsonObject toJSON() override;
+	IDeserializableFromJSON& fromJSON(QJsonObject JSON) override;
 };
 

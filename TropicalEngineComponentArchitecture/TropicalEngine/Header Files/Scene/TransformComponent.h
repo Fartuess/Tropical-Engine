@@ -21,11 +21,16 @@ private:
 	glm::vec3 front;
 	glm::vec3 up;
 	glm::vec3 right;
-public:
 
+	static TransformComponent templateObject;
+protected:
+	TransformComponent();
+public:
 	TransformComponent(Entity* owner);
 	TransformComponent(Entity* owner, glm::vec3 localPosition, glm::quat localRotation, glm::vec3 localScale);
 	~TransformComponent(void);
+
+	static TransformComponent InitializeType();
 protected:
 	void InitializeComponentType() override;
 public:
@@ -72,7 +77,8 @@ public:
 	void Evaluate();
 
 	QString getTypeName() override;
-	QString toXML() override;
+	//QString toXML() override;
 	QJsonObject toJSON() override;
+	IDeserializableFromJSON& fromJSON(QJsonObject JSON) override;
 };
 

@@ -6,7 +6,7 @@
 #include "Serialization/ISerializableToXML.h"
 #include "Serialization/ISerializableToJSON.h"
 
-class Entity : public ISerializableToXML, public ISerializableToJSON
+class Entity : public ISerializableToJSON
 {
 private:
 	friend class Component;
@@ -37,6 +37,6 @@ private:
 
 public:
 	QString getTypeName() override;
-	QString toXML() override;
+	//QString toXML() override;
 	QJsonObject toJSON() override;
 };

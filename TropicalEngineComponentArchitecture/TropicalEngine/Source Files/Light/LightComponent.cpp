@@ -3,6 +3,8 @@
 
 #include "TropicalEngineApplication.h"
 
+LightComponent::LightComponent() {}
+
 LightComponent::LightComponent(Entity* owner, glm::vec3 color, float brightness, bool isCastingShadows):Component(owner)
 {
 	this->color = color;
@@ -27,7 +29,10 @@ void LightComponent::InitializeComponentType()
 
 LightComponent::~LightComponent(void)
 {
-	TropicalEngineApplication::instance()->lightController->lights.removeOne(this);
+	if (owner != nullptr)
+	{
+		TropicalEngineApplication::instance()->lightController->lights.removeOne(this);
+	}
 }
 
 bool LightComponent::isCastingShadows()
@@ -53,11 +58,11 @@ void LightComponent::DrawShadows()
 
 QString LightComponent::GETTYPENAME("Light Component");
 
-QString LightComponent::toXML()
-{
-	///TODO: implement it.
-	return QString(getIndent() + "<LightComponent/>\n");
-}
+//QString LightComponent::toXML()
+//{
+//	///TODO: implement it.
+//	return QString(getIndent() + "<LightComponent/>\n");
+//}
 
 QJsonObject LightComponent::toJSON()
 {

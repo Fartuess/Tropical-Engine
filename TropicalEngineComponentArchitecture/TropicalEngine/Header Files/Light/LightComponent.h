@@ -13,6 +13,8 @@ public:
 	float brightness;
 protected:
 	bool castingShadows;
+
+	LightComponent();
 public:
 	LightComponent(Entity* owner, glm::vec3 color, float brightness = 1.0f, bool isCastingShadows = false);
 	~LightComponent(void);
@@ -27,6 +29,6 @@ public:
 
 	QString getTypeName() override;
 
-	QString toXML() override;
+	//QString toXML() override;
 	QJsonObject toJSON() override;
 };

@@ -15,9 +15,16 @@ private:
 	float aspectRatio;
 	float zNear;
 	float zFar;
+
+	static CameraComponent templateObject;
+protected:
+	CameraComponent();
+
 public:
 	CameraComponent(Entity* owner, glm::vec3 targetOffset, glm::vec3 up, float fov, float aspectRatio, float zNear, float zFar);
 	~CameraComponent(void);
+
+	static CameraComponent InitializeType();
 protected:
 	void InitializeComponentType() override;
 public:
@@ -40,7 +47,8 @@ public:
 	void CalculateMatrix();
 
 	QString getTypeName() override;
-	QString toXML() override;
+	//QString toXML() override;
 	QJsonObject toJSON() override;
+	IDeserializableFromJSON& fromJSON(QJsonObject JSON) override;
 };
 

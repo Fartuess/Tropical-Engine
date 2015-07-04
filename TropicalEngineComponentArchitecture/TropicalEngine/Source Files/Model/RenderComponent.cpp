@@ -1,6 +1,8 @@
 #include "Model\RenderComponent.h"
 #include "Shader\Shader.h"
 
+RenderComponent::RenderComponent() {}
+
 RenderComponent::RenderComponent(Entity* owner, Material* material):Component(owner)
 {
 	if (material != nullptr)

@@ -3,7 +3,7 @@
 
 #include "Utills\INamedType.h"
 
-class IDeserializableFromJSON : public INamedType
+class IDeserializableFromJSON : virtual public INamedType
 {
 public:
 	virtual IDeserializableFromJSON& fromJSON(QJsonObject JSON) = 0;

@@ -140,7 +140,7 @@ void OglDevTut03::InitializeLevel()
 	vectorTessalationMaterial->SetParameter("mat_normalTexture", tessVecDispTexNRM);
 	vectorTessalationMaterial->SetParameter("mat_displacementTexture", tessVecDispTexDISP_TS);
 	vectorTessalationMaterial->SetParameter("mat_displacementScale", new float(0.5f));
-	vectorTessalationMaterial->SetParameter("mat_tesselationMultiplier", new float(128.0f));
+	vectorTessalationMaterial->SetParameter("mat_tesselationMultiplier", new float(64.0f));
 	
 	//qDebug() << QImageReader::supportedImageFormats();
 

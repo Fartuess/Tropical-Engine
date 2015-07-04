@@ -1,5 +1,9 @@
 #include "Light/DirectionalLightComponent.h"
 
+DirectionalLightComponent DirectionalLightComponent::templateObject = DirectionalLightComponent::InitializeType();
+
+DirectionalLightComponent::DirectionalLightComponent() {}
+
 DirectionalLightComponent::DirectionalLightComponent(Entity* owner, glm::vec3 color, glm::vec3 direction, float brightness, bool isCastingShadows):LightComponent(owner, color, brightness, isCastingShadows)
 {
 	this->direction = direction;
@@ -10,6 +14,13 @@ DirectionalLightComponent::DirectionalLightComponent(Entity* owner, glm::vec3 co
 DirectionalLightComponent::~DirectionalLightComponent(void)
 {
 	///TODO: implement it.
+}
+
+DirectionalLightComponent DirectionalLightComponent::InitializeType()
+{
+	DirectionalLightComponent& directionalLightComponent = *(new DirectionalLightComponent());
+	AssetManager::addAssetType("Directional Light Component", &directionalLightComponent);
+	return directionalLightComponent;
 }
 
 void DirectionalLightComponent::InitializeComponentType()
@@ -46,11 +57,11 @@ void DirectionalLightComponent::DrawShadows()
 
 QString DirectionalLightComponent::GETTYPENAME("DirectionalLight Component");
 
-QString DirectionalLightComponent::toXML()
-{
-	///TODO: implement it.
-	return QString(getIndent() + "<DirectionalLightComponent/>\n");
-}
+//QString DirectionalLightComponent::toXML()
+//{
+//	///TODO: implement it.
+//	return QString(getIndent() + "<DirectionalLightComponent/>\n");
+//}
 
 QJsonObject DirectionalLightComponent::toJSON()
 {
@@ -63,4 +74,10 @@ QJsonObject DirectionalLightComponent::toJSON()
 	JSON["direction"] = directionObject;
 
 	return JSON;
+}
+
+IDeserializableFromJSON& DirectionalLightComponent::fromJSON(QJsonObject JSON)
+{
+	///TODO: implement this.
+	return *(new DirectionalLightComponent());
 }

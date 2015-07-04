@@ -2,6 +2,10 @@
 #include "Scene\TransformComponent.h"
 #include "Scene/Entity.h"
 
+TransformComponent TransformComponent::templateObject = TransformComponent::InitializeType();
+
+TransformComponent::TransformComponent() {}
+
 TransformComponent::TransformComponent(Entity* owner):Component(owner)
 {
 	localPosition = glm::vec3(0.0f, 0.0f, 0.0f);
@@ -31,6 +35,13 @@ TransformComponent::TransformComponent(Entity* owner, glm::vec3 localPosition, g
 TransformComponent::~TransformComponent(void)
 {
 
+}
+
+TransformComponent TransformComponent::InitializeType()
+{
+	TransformComponent& transformComponent = *(new TransformComponent());
+	AssetManager::addAssetType("Transform Component", &transformComponent);
+	return transformComponent;
 }
 
 void TransformComponent::InitializeComponentType()
@@ -294,18 +305,18 @@ void TransformComponent::Evaluate()
 
 QString TransformComponent::GETTYPENAME("Transform Component");
 
-QString TransformComponent::toXML()
-{
-	QString XMLString = QString(getIndent() + "<TransformComponent>\n");
-	increaseIndent();
-	XMLString += QString(getIndent() + "<Position X = \"" + localPosition.x + "\" Y = \"" + localPosition.y + "\" Z = \"" + localPosition.z + "\"/>\n");
-	XMLString += QString(getIndent() + "<Rotation W = \"" + localRotation.w + "X = \"" + localRotation.x + "\" Y = \"" + localRotation.y + "\" Z = \"" + localRotation.z + "\"/>\n");
-	XMLString += QString(getIndent() + "<Scale X = \"" + localScale.x + "\" Y = \"" + localScale.y + "\" Z = \"" + localScale.z + "\"/>\n");
-	decreaseIndent();
-	XMLString += QString(getIndent() + "</TransformComponent>\n");
-
-	return XMLString;
-}
+//QString TransformComponent::toXML()
+//{
+//	QString XMLString = QString(getIndent() + "<TransformComponent>\n");
+//	increaseIndent();
+//	XMLString += QString(getIndent() + "<Position X = \"" + localPosition.x + "\" Y = \"" + localPosition.y + "\" Z = \"" + localPosition.z + "\"/>\n");
+//	XMLString += QString(getIndent() + "<Rotation W = \"" + localRotation.w + "X = \"" + localRotation.x + "\" Y = \"" + localRotation.y + "\" Z = \"" + localRotation.z + "\"/>\n");
+//	XMLString += QString(getIndent() + "<Scale X = \"" + localScale.x + "\" Y = \"" + localScale.y + "\" Z = \"" + localScale.z + "\"/>\n");
+//	decreaseIndent();
+//	XMLString += QString(getIndent() + "</TransformComponent>\n");
+//
+//	return XMLString;
+//}
 
 QJsonObject TransformComponent::toJSON()
 {
@@ -332,4 +343,10 @@ QJsonObject TransformComponent::toJSON()
 	JSON["scale"] = scale;
 
 	return JSON;
+}
+
+IDeserializableFromJSON& TransformComponent::fromJSON(QJsonObject JSON)
+{
+	///TODO: implement this.
+	return *(new TransformComponent());
 }

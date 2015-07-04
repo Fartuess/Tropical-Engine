@@ -11,4 +11,5 @@ public:
 	void Update();
 
 	QString getTypeName() override;
+	IDeserializableFromJSON& fromJSON(QJsonObject JSON) override;
 };

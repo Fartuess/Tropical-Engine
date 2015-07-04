@@ -9,12 +9,15 @@
 
 class Entity;
 
-class Component : public ISerializableToXML, public ISerializableToJSON 
+class Component : public ISerializableToJSON, public IDeserializableFromJSON
 {
 public:
 	friend class Entity;
 protected:
 	Entity* owner;
+
+protected:
+	Component();
 public:
 	Component(Entity* owner);
 	~Component(void);
@@ -50,5 +53,6 @@ protected:
 public:
 	static QMap<QString, QString> getParameters(QString componentTypeName);	//if so change here as well
 
+	//QString getTypeName() = 0;
 	QJsonObject toJSON() override;
 };

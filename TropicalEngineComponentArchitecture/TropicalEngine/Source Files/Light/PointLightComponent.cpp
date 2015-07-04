@@ -1,5 +1,9 @@
 #include "Light\PointLightComponent.h"
 
+PointLightComponent PointLightComponent::templateObject = PointLightComponent::InitializeType();
+
+PointLightComponent::PointLightComponent() {}
+
 PointLightComponent::PointLightComponent(Entity* owner, glm::vec3 color, float brightness, float radius, float attenuation, bool isCastingShadows) :
 	LightComponent(owner, color, brightness, isCastingShadows)
 {
@@ -12,6 +16,13 @@ PointLightComponent::PointLightComponent(Entity* owner, glm::vec3 color, float b
 PointLightComponent::~PointLightComponent(void)
 {
 	///TODO: implement it.
+}
+
+PointLightComponent PointLightComponent::InitializeType()
+{
+	PointLightComponent& pointLightComponent = *(new PointLightComponent());
+	AssetManager::addAssetType("Point Light Component", &pointLightComponent);
+	return pointLightComponent;
 }
 
 void PointLightComponent::InitializeComponentType()
@@ -50,11 +61,11 @@ void PointLightComponent::DrawShadows()
 
 QString PointLightComponent::GETTYPENAME("PointLight Component");
 
-QString PointLightComponent::toXML()
-{
-	///TODO: implement it.
-	return QString(getIndent() + "<PointLightComponent/>\n");
-}
+//QString PointLightComponent::toXML()
+//{
+//	///TODO: implement it.
+//	return QString(getIndent() + "<PointLightComponent/>\n");
+//}
 
 QJsonObject PointLightComponent::toJSON()
 {
@@ -64,4 +75,10 @@ QJsonObject PointLightComponent::toJSON()
 	JSON["attenuation"] = attenuation;
 
 	return JSON;
+}
+
+IDeserializableFromJSON& PointLightComponent::fromJSON(QJsonObject JSON)
+{
+	///TODO: implement this.
+	return *(new PointLightComponent());
 }

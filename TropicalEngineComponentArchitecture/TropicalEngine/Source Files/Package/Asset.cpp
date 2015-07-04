@@ -14,7 +14,7 @@ Asset::~Asset()
 
 Asset Asset::InitializeType()
 {
-	Asset asset = Asset();
+	Asset& asset = Asset();
 	AssetManager::addAssetType("Asset", &asset);
 	return asset;
 }

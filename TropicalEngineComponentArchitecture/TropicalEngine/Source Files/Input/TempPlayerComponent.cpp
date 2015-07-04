@@ -16,3 +16,9 @@ void TempPlayerComponent::Update()
 }
 
 QString TempPlayerComponent::GETTYPENAME("TempPlayerComponent");
+
+IDeserializableFromJSON& TempPlayerComponent::fromJSON(QJsonObject JSON)
+{
+	///TODO: implement this.
+	return *(new TempPlayerComponent(nullptr, glm::vec3(0.0f, 0.0f, -1.0f), glm::vec3(0.0f, 1.0f, 0.0f), 40.0f, 4.0f / 3.0f, 0.1f, 10000.0f));
+}

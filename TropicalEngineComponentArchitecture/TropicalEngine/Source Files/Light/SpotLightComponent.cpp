@@ -1,5 +1,9 @@
 #include "Light\SpotLightComponent.h"
 
+SpotLightComponent SpotLightComponent::templateObject = SpotLightComponent::InitializeType();
+
+SpotLightComponent::SpotLightComponent() {}
+
 SpotLightComponent::SpotLightComponent(Entity* owner, glm::vec3 color, float brightness, float radius, float attenuation,
 									   float outerConeRadius, float innerConeRadius, bool isCastingShadows) :
 LightComponent(owner, color, brightness, isCastingShadows)
@@ -15,6 +19,13 @@ LightComponent(owner, color, brightness, isCastingShadows)
 SpotLightComponent::~SpotLightComponent(void)
 {
 	///TODO: implement it.
+}
+
+SpotLightComponent SpotLightComponent::InitializeType()
+{
+	SpotLightComponent& spotLightComponent = *(new SpotLightComponent());
+	AssetManager::addAssetType("Spot Light Component", &spotLightComponent);
+	return spotLightComponent;
 }
 
 void SpotLightComponent::InitializeComponentType()
@@ -68,11 +79,11 @@ void SpotLightComponent::DrawShadows()
 
 QString SpotLightComponent::GETTYPENAME("SpotLight Component");
 
-QString SpotLightComponent::toXML()
-{
-	///TODO: implement it.
-	return QString(getIndent() + "<SpotLightComponent/>\n");
-}
+//QString SpotLightComponent::toXML()
+//{
+//	///TODO: implement it.
+//	return QString(getIndent() + "<SpotLightComponent/>\n");
+//}
 
 QJsonObject SpotLightComponent::toJSON()
 {
@@ -84,4 +95,10 @@ QJsonObject SpotLightComponent::toJSON()
 	JSON["outer cone radius"] = outerConeRadius;
 
 	return JSON;
+}
+
+IDeserializableFromJSON& SpotLightComponent::fromJSON(QJsonObject JSON)
+{
+	///TODO: implement this.
+	return *(new SpotLightComponent());
 }

@@ -4,7 +4,7 @@
 
 #include "Utills\INamedType.h"
 
-class ISerializableToJSON : public INamedType
+class ISerializableToJSON : virtual public INamedType
 {
 public:
 	virtual QJsonObject toJSON() = 0;

@@ -46,7 +46,7 @@ Package::~Package(void)	//??
 
 Package Package::InitializeType()
 {
-	Package package = Package("TemplatePackage");
+	Package& package = Package("TemplatePackage");
 	AssetManager::addAssetType("Package", &package);
 	return package;
 }

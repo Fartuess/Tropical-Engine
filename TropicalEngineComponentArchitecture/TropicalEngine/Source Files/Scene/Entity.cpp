@@ -95,24 +95,24 @@ void Entity::DetachComponent(Component* component)
 
 QString Entity::GETTYPENAME("Entity");
 
-QString Entity::toXML()
-{
-	QString XMLString = QString(getIndent() + "<Entity name =\"" + name + "\">\n");
-	increaseIndent();
-	XMLString += transform.toXML();
-	for (Component* component : components)
-	{
-		XMLString += component->toXML();
-	}
-	for (Entity* subobject : subobjects)
-	{
-		XMLString += subobject->toXML();
-	}
-	decreaseIndent();
-	XMLString += QString(getIndent() + "</Entity>\n");
-
-	return XMLString;
-}
+//QString Entity::toXML()
+//{
+//	QString XMLString = QString(getIndent() + "<Entity name =\"" + name + "\">\n");
+//	increaseIndent();
+//	XMLString += transform.toXML();
+//	for (Component* component : components)
+//	{
+//		//XMLString += component->toXML();
+//	}
+//	for (Entity* subobject : subobjects)
+//	{
+//		XMLString += subobject->toXML();
+//	}
+//	decreaseIndent();
+//	XMLString += QString(getIndent() + "</Entity>\n");
+//
+//	return XMLString;
+//}
 
 QJsonObject Entity::toJSON()
 {

@@ -20,6 +20,10 @@
 
 #include <QtCore\qdebug.h>
 
+ModelComponent ModelComponent::templateObject = ModelComponent::InitializeType();
+
+ModelComponent::ModelComponent() {}
+
 ModelComponent::ModelComponent(Entity* owner, Material* material, Model* model, bool castingShadows):RenderComponent(owner, material)
 {
 	this->model = model;
@@ -35,6 +39,13 @@ ModelComponent::~ModelComponent(void)
 	{
 		TropicalEngineApplication::instance()->modelController->modelComponents.removeOne(this);
 	}
+}
+
+ModelComponent ModelComponent::InitializeType()
+{
+	ModelComponent& modelComponent = *(new ModelComponent());
+	AssetManager::addAssetType("Model Component", &modelComponent);
+	return modelComponent;
 }
 
 void ModelComponent::InitializeComponentType()
@@ -147,10 +158,10 @@ void ModelComponent::isCastingShadows(bool isCastingShadows)
 
 QString ModelComponent::GETTYPENAME("Model Component");
 
-QString ModelComponent::toXML()
-{
-	return QString(getIndent() + "<ModelComponent model = \"" + model->getName() + "\" material =\"" + material->getName() + "\"/>\n");
-}
+//QString ModelComponent::toXML()
+//{
+//	return QString(getIndent() + "<ModelComponent model = \"" + model->getName() + "\" material =\"" + material->getName() + "\"/>\n");
+//}
 
 QJsonObject ModelComponent::toJSON()
 {
@@ -161,4 +172,10 @@ QJsonObject ModelComponent::toJSON()
 	JSON["cast shadows"] = castingShadows;
 
 	return JSON;
+}
+
+IDeserializableFromJSON& ModelComponent::fromJSON(QJsonObject JSON)
+{
+	///TODO: implement this.
+	return *(new ModelComponent());
 }
