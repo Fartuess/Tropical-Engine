@@ -1,29 +1,32 @@
-# README #
+# Tropical Engine - OpenGL4 C++ 3D Game Engine #
 
-This README would normally document whatever steps are necessary to get your application up and running.
+Author: Adam "Fartuess" Beczyński
 
-### What is this repository for? ###
+"TropicalEngineComponentArchitecture" - Current Project
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+"Tropical Apartment Scene" - Old OpenGL3 Project.
 
-### How do I get set up? ###
+### Languages technologies and libraries used ###
+* C++
+* OpenGL4
+* GLSL
+* Qt5
+* Open Asset Importer
+* GLEW
+* GLM
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
-
-### Contribution guidelines ###
-
-* Writing tests
-* Code review
-* Other guidelines
-
-### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact
+### Features ###
+* Component architecture
+* Level serialization
+* Quite flexible system of managing shaders and materials
+* Various lighting models (Phong, Blinn-Phong, Cook-Torrance, Strauss, Isotropic Ward, Anisotropic Ward)
+* Bump mapping (normal mapping)
+* Steep Parralax Mapping
+* Alpha testing (aka masked translucency)
+* Adaptive tessalation
+* Vertex displacement and vector displacement.
+* Directional lights
+* Point lights
+* Qt interface
+* Custom style of interface
+* Custom window frame
