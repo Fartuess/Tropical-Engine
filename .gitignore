@@ -1,0 +1,9 @@
+*.suo
+*.filters
+*.log
+*.tlog
+*.lastbuildstate
+*.pdb
+TropicalEngineComponentArchitecture/TropicalEngine/x64/**/*.obj
+*.ilk
+*.sdf
