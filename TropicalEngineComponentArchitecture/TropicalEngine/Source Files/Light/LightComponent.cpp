@@ -1,5 +1,5 @@
-#include "Light\LightComponent.h"
-#include "Light\LightController.h"
+#include "Light/LightComponent.h"
+#include "Light/LightController.h"
 
 #include "TropicalEngineApplication.h"
 

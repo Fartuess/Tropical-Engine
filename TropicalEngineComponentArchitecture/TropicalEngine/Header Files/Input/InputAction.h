@@ -14,18 +14,9 @@ enum InputState
 
 class InputAction
 {
-private:
-	InputState state = Inactive;
-	QTime timer;
-	int PressTimestamp;
-	int ReleaseTimestamp;
-	int timeHeld;
-	int updateTime;
-	InputAction* previousFrame;
-
 public:
 	InputAction();
-public:
+
 	~InputAction();
 
 	InputState getState();
@@ -34,4 +25,13 @@ public:
 	void Press();
 	void Release();
 	void Update();
+
+private:
+	InputState state = Inactive;
+	QTime timer;
+	int PressTimestamp;
+	int ReleaseTimestamp;
+	int timeHeld;
+	int updateTime;
+	InputAction* previousFrame;
 };

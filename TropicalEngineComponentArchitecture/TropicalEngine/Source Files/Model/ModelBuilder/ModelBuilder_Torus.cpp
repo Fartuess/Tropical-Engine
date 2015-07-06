@@ -1,9 +1,9 @@
-#include <gl\glew.h>
-#include <gtc\constants.hpp>
-#include <QtCore\qvector.h>
-#include <QtCore\qstring.h>
-#include "Model\Model.h"
-#include "Model\ModelBuilder.h"
+#include <gl/glew.h>
+#include <gtc/constants.hpp>
+#include <QtCore/qvector.h>
+#include <QtCore/qstring.h>
+#include "Model/Model.h"
+#include "Model/ModelBuilder.h"
 
 Model* ModelBuilder::CreateTorus(QString name, float radius, float segmentRadius, int subdivisionsAxis, int subdivisionsHeight)
 {

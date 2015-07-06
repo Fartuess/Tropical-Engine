@@ -1,33 +1,15 @@
 #pragma once
 #include <glm.hpp>
-#include "Component\Component.h"
+#include "Component/Component.h"
 
-class CameraComponent :
-	public Component
+class CameraComponent : public Component
 {
-private:
-	glm::vec3 target;
-	glm::vec3 up;
-	glm::mat4 cameraMatrix;
-	glm::mat4 projectionMatrix;
-
-	float fov;
-	float aspectRatio;
-	float zNear;
-	float zFar;
-
-	static CameraComponent templateObject;
-protected:
-	CameraComponent();
-
 public:
 	CameraComponent(Entity* owner, glm::vec3 targetOffset, glm::vec3 up, float fov, float aspectRatio, float zNear, float zFar);
 	~CameraComponent(void);
 
 	static CameraComponent InitializeType();
-protected:
-	void InitializeComponentType() override;
-public:
+	
 	glm::vec3 getTarget();
 	void setTarget(glm::vec3 targetOffset);
 	glm::vec3 getUp();
@@ -50,5 +32,23 @@ public:
 	//QString toXML() override;
 	QJsonObject toJSON() override;
 	IDeserializableFromJSON& fromJSON(QJsonObject JSON) override;
+
+protected:
+	CameraComponent();
+
+	void InitializeComponentType() override;
+
+private:
+	glm::vec3 target;
+	glm::vec3 up;
+	glm::mat4 cameraMatrix;
+	glm::mat4 projectionMatrix;
+
+	float fov;
+	float aspectRatio;
+	float zNear;
+	float zFar;
+
+	static CameraComponent templateObject;
 };
 

@@ -1,12 +1,12 @@
-#include <gl\glew.h>
+#include <gl/glew.h>
 #include <glm.hpp>
-#include <gtc\constants.hpp>
-#include <QtCore\qvector.h>
-#include <QtCore\qstring.h>
-#include "Model\Model.h"
-#include "Model\ModelBuilder.h"
+#include <gtc/constants.hpp>
+#include <QtCore/qvector.h>
+#include <QtCore/qstring.h>
+#include "Model/Model.h"
+#include "Model/ModelBuilder.h"
 
-#include <QtCore\qdebug.h>
+#include <QtCore/qdebug.h>
 
 Model* ModelBuilder::CreateCylinder(QString name, float radius, float height, int subdivisionsAxis, int subdivisionsHeight)
 {

@@ -1,6 +1,6 @@
 #pragma once
-#include <QtCore\qstring.h>
-#include <QtCore\qvector.h>
+#include <QtCore/qstring.h>
+#include <QtCore/qvector.h>
 #include <glm.hpp>
 
 class Model;

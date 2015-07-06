@@ -1,5 +1,5 @@
-#include <gtc\matrix_transform.hpp>
-#include "Scene\TransformComponent.h"
+#include <gtc/matrix_transform.hpp>
+#include "Scene/TransformComponent.h"
 #include "Scene/Entity.h"
 
 TransformComponent TransformComponent::templateObject = TransformComponent::InitializeType();

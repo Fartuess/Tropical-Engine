@@ -1,7 +1,7 @@
-#include <QtCore\qmap.h>
-#include <QtCore\qdebug.h>
+#include <QtCore/qmap.h>
+#include <QtCore/qdebug.h>
 
-#include "Component\Component.h"
+#include "Component/Component.h"
 #include "Scene/Entity.h"
 
 Component::Component()

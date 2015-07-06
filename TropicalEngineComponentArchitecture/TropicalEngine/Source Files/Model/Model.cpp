@@ -1,6 +1,6 @@
-#include <QtCore\qvector.h>
-#include "Model\Model.h"
-#include "Model\ModelManager.h"
+#include <QtCore/qvector.h>
+#include "Model/Model.h"
+#include "Model/ModelManager.h"
 
 #include "TropicalEngineApplication.h"
 

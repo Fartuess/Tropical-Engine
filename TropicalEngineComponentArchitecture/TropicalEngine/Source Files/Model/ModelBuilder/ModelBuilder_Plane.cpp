@@ -1,8 +1,8 @@
-#include <gl\glew.h>
-#include <QtCore\qvector.h>
-#include <QtCore\qstring.h>
-#include "Model\Model.h"
-#include "Model\ModelBuilder.h"
+#include <gl/glew.h>
+#include <QtCore/qvector.h>
+#include <QtCore/qstring.h>
+#include "Model/Model.h"
+#include "Model/ModelBuilder.h"
 
 Model* ModelBuilder::CreatePlane(QString name, float sizeX, float sizeY, int subdivisionsX, int subdivisionsY)
 {

@@ -1,14 +1,14 @@
-#include <gl\glew.h>
-#include <assimp\Importer.hpp>
-#include <assimp\scene.h>
-#include <assimp\postprocess.h>
-#include <QtCore\qvector.h>
-#include <QtCore\qstring.h>
-#include <QtCore\qbytearray.h>
-#include "Model\Model.h"
-#include "Model\ModelBuilder.h"
+#include <gl/glew.h>
+#include <assimp/Importer.hpp>
+#include <assimp/scene.h>
+#include <assimp/postprocess.h>
+#include <QtCore/qvector.h>
+#include <QtCore/qstring.h>
+#include <QtCore/qbytearray.h>
+#include "Model/Model.h"
+#include "Model/ModelBuilder.h"
 
-#include <QtCore\qdebug.h>
+#include <QtCore/qdebug.h>
 
 ModelBuilder::ModelBuilder(void)
 {

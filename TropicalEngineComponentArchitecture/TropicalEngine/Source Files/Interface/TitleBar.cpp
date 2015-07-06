@@ -1,13 +1,13 @@
-#include <QtWidgets\qpushbutton.h>
-#include <QtWidgets\QHBoxLayout>
-#include <QtWidgets\qlabel.h>
-#include <QtGui\qevent.h>
-#include <QtWidgets\qapplication.h>
-#include <QtWidgets\qdesktopwidget.h>
+#include <QtWidgets/qpushbutton.h>
+#include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/qlabel.h>
+#include <QtGui/qevent.h>
+#include <QtWidgets/qapplication.h>
+#include <QtWidgets/qdesktopwidget.h>
 
-#include <QtCore\qdebug.h>
+#include <QtCore/qdebug.h>
 
-#include "Interface\TitleBar.h"
+#include "Interface/TitleBar.h"
 
 
 TitleBar::TitleBar(QWidget* rootParent, QWidget* parent) : QWidget(parent)

@@ -1,10 +1,10 @@
-#include <gtc\matrix_transform.hpp>
+#include <gtc/matrix_transform.hpp>
 #include "Camera/CameraComponent.h"
 #include "Scene/Entity.h"
 #include "TropicalEngineApplication.h"
 #include "Scene/SceneManager.h"
 
-#include <QtCore\qdebug.h>
+#include <QtCore/qdebug.h>
 
 CameraComponent CameraComponent::templateObject = CameraComponent::InitializeType();
 
@@ -45,9 +45,10 @@ CameraComponent::~CameraComponent(void)
 	///TODO: Figure out how to separate it from engine core.
 	if (owner != nullptr)
 	{
-		if (TropicalEngineApplication::instance()->sceneManager->getCurrentCamera() == this)
+		SceneManager* sceneManager = TropicalEngineApplication::instance()->sceneManager;
+		if (sceneManager->getCurrentCamera() == this)
 		{
-			TropicalEngineApplication::instance()->sceneManager->setCurrentCamera(nullptr);
+			sceneManager->setCurrentCamera(nullptr);
 		}
 	}
 }

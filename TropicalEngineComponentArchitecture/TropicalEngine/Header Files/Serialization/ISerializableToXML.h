@@ -1,10 +1,8 @@
 #pragma once
-#include <QtCore\qstring.h>
+#include <QtCore/qstring.h>
 
 class ISerializableToXML
 {
-private:
-	static int indentLevel;
 public:
 	virtual QString toXML() = 0;
 
@@ -13,5 +11,8 @@ public:
 	static void decreaseIndent();
 	static int getIndentLevel();
 	static QString getIndent();
+
+private:
+	static int indentLevel;
 };
 

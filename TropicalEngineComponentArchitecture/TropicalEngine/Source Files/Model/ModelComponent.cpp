@@ -1,24 +1,24 @@
 #include <glm.hpp>
-#include <gtc\type_ptr.hpp>
-#include <gtc\matrix_transform.hpp>
-#include "Model\ModelComponent.h"
-#include "Model\ModelController.h"
-#include "Model\Model.h"
-#include "Shader\Shader.h"
-#include "Shader\Material.h"
-#include "Shader\ShaderManager.h"
+#include <gtc/type_ptr.hpp>
+#include <gtc/matrix_transform.hpp>
+#include "Model/ModelComponent.h"
+#include "Model/ModelController.h"
+#include "Model/Model.h"
+#include "Shader/Shader.h"
+#include "Shader/Material.h"
+#include "Shader/ShaderManager.h"
 #include "Scene/Entity.h"
-#include "Scene\TransformComponent.h"
-#include "Scene\SceneManager.h"
+#include "Scene/TransformComponent.h"
+#include "Scene/SceneManager.h"
 #include "Camera/CameraComponent.h"
 
-#include "Scene\SceneManager.h"
+#include "Scene/SceneManager.h"
 #include "Light/DirectionalLightComponent.h"
-#include "Light\PointLightComponent.h"
+#include "Light/PointLightComponent.h"
 
 #include "TropicalEngineApplication.h"
 
-#include <QtCore\qdebug.h>
+#include <QtCore/qdebug.h>
 
 ModelComponent ModelComponent::templateObject = ModelComponent::InitializeType();
 

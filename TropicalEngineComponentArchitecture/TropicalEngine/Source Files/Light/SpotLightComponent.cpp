@@ -1,4 +1,4 @@
-#include "Light\SpotLightComponent.h"
+#include "Light/SpotLightComponent.h"
 
 SpotLightComponent SpotLightComponent::templateObject = SpotLightComponent::InitializeType();
 

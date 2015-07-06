@@ -1,8 +1,8 @@
-#include "Package\Package.h"
+#include "Package/Package.h"
 #include "Scene/Entity.h"
-#include "Shader\Shader.h"
-#include "Texture\Texture.h"
-#include "Model\Model.h"
+#include "Shader/Shader.h"
+#include "Texture/Texture.h"
+#include "Model/Model.h"
 
 Package Package::templateObject = Package::InitializeType();
 

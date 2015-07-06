@@ -1,11 +1,11 @@
-#include <QtCore\qfile.h>
-#include <QtCore\qtextstream.h>
-#include <QtCore\qdebug.h>
-#include <QtCore\qregexp.h>
-#include <QtCore\qregularexpression.h>
-#include "Shader\ShaderManager.h"
-#include "Shader\Shader.h"
-#include "Light\PointLightComponent.h"
+#include <QtCore/qfile.h>
+#include <QtCore/qtextstream.h>
+#include <QtCore/qdebug.h>
+#include <QtCore/qregexp.h>
+#include <QtCore/qregularexpression.h>
+#include "Shader/ShaderManager.h"
+#include "Shader/Shader.h"
+#include "Light/PointLightComponent.h"
 
 #include "TropicalEngineApplication.h"
 
@@ -78,7 +78,8 @@ Shader::Shader(QMap<QString, GLuint> subshaders, QString name)
 	//subprograms = new QVector<GLuint>();
 	shaderProgram = glCreateProgram();
 
-    if (shaderProgram == 0) {
+    if (shaderProgram == 0)
+	{
         fprintf(stderr, "Error creating shader program\n");
         exit(1);
     }
@@ -93,7 +94,8 @@ Shader::Shader(QMap<QString, GLuint> subshaders, QString name)
 
     glLinkProgram(shaderProgram);
     glGetProgramiv(shaderProgram, GL_LINK_STATUS, &Success);
-	if (Success == 0) {
+	if (Success == 0)
+	{
 		glGetProgramInfoLog(shaderProgram, sizeof(ErrorLog), NULL, ErrorLog);
 		fprintf(stderr, "Error linking shader program: '%s'\n", ErrorLog);
 		QString error = *ErrorLog;
@@ -102,7 +104,8 @@ Shader::Shader(QMap<QString, GLuint> subshaders, QString name)
 
     glValidateProgram(shaderProgram);
     glGetProgramiv(shaderProgram, GL_VALIDATE_STATUS, &Success);
-    if (!Success) {
+    if (!Success)
+	{
         glGetProgramInfoLog(shaderProgram, sizeof(ErrorLog), NULL, ErrorLog);
         fprintf(stderr, "Invalid shader program: '%s'\n", ErrorLog);
         exit(1);
@@ -287,7 +290,8 @@ QString Shader::PreprocessShaderFile(QString shaderFile)
 	if (!f.open(QFile::ReadOnly | QFile::Text))
 	{
 		qDebug() << f.errorString();
-		return "";	//if it will go in here, everything will fuck up.
+		return "";	//if it will go in here, everything will go wrong.
+		/// TODO: Handle it
 	}
     QTextStream in(&f);
 	QString fileString = in.readAll();

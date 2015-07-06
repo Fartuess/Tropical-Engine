@@ -1,21 +1,22 @@
 #pragma once
-#include <QtWidgets\qwidget.h>
-#include <QtOpenGL\QGLWidget>
-#include <QtCore\qpoint.h>
+#include <QtWidgets/qwidget.h>
+#include <QtOpenGL/QGLWidget>
+#include <QtCore/qpoint.h>
 
 class OglDevTut03;
 
 class OpenGLWidget : public QGLWidget
 {
 	Q_OBJECT
-private:
-	QPoint* abstractMousePosition;
-	QPoint* screenCenter;
-	QPoint* mouseGrabPoint;
-	QCursor* previousCursor;
 public:
 	OpenGLWidget(void);
 	~OpenGLWidget(void);
+
+signals:
+	void initializeSignal();
+	void reshapeSignal(int width, int height);
+	void drawSignal();
+
 protected:
 	void initializeGL();
 	void resizeGL(int width, int height);
@@ -27,8 +28,9 @@ protected:
 	void mouseReleaseEvent(QMouseEvent* mouseEvent) override;
 	void mouseMoveEvent(QMouseEvent* mouseEvent) override;
 
-signals:
-	void initializeSignal();
-	void reshapeSignal(int width, int height);
-	void drawSignal();
+private:
+	QPoint* abstractMousePosition;
+	QPoint* screenCenter;
+	QPoint* mouseGrabPoint;
+	QCursor* previousCursor;
 };

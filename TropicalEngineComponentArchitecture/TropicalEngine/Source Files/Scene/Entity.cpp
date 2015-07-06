@@ -1,6 +1,6 @@
 #include "Scene/Entity.h"
 
-Entity::Entity(void):transform(this)
+Entity::Entity(void) : transform(this)
 {
 	parrent = nullptr;
 	///TODO: implement it.

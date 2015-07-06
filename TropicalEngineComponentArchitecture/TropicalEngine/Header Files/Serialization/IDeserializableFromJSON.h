@@ -1,7 +1,7 @@
 #pragma once
-#include <QtCore\qjsonobject.h>
+#include <QtCore/qjsonobject.h>
 
-#include "Utills\INamedType.h"
+#include "Utills/INamedType.h"
 
 class IDeserializableFromJSON : virtual public INamedType
 {

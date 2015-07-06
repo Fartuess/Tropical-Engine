@@ -1,9 +1,9 @@
-#include "Shader\Shader.h"
-#include "Shader\ShaderManager.h"
-#include "Shader\Material.h"
-#include "Shader\MaterialManager.h"
-#include "Model\ModelComponent.h"
-#include "Model\ModelController.h"
+#include "Shader/Shader.h"
+#include "Shader/ShaderManager.h"
+#include "Shader/Material.h"
+#include "Shader/MaterialManager.h"
+#include "Model/ModelComponent.h"
+#include "Model/ModelController.h"
 
 #include "TropicalEngineApplication.h"
 

@@ -1,5 +1,5 @@
 #pragma once
-#include <QtWidgets\qtreewidget.h>
+#include <QtWidgets/qtreewidget.h>
 
 class Component;
 
@@ -15,13 +15,13 @@ public:
 
 	void Reload(Component* component);
 
+	static void AddTemplateItem(PropertyItem* templateItem);
+	static PropertyItem* CloneTemplateItem(QString name, QString templateName);
+
 private:
 	static bool isTemplateItemsInitialized;	//guinea english to fit naming conventions :D
 	static QMap<QString, PropertyItem*> templateItems;
-public:
-	static void AddTemplateItem(PropertyItem* templateItem);
-	static PropertyItem* CloneTemplateItem(QString name, QString templateName);
-private:
+
 	static void InitializeTemplateItems();
 };
 

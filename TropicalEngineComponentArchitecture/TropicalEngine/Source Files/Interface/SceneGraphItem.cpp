@@ -1,5 +1,5 @@
-#include <QtCore\qdebug.h>
-#include "Interface\SceneGraphItem.h"
+#include <QtCore/qdebug.h>
+#include "Interface/SceneGraphItem.h"
 #include "Scene/Entity.h"
 
 SceneGraphItem::SceneGraphItem(QString name, Entity* entity)

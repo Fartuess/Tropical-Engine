@@ -1,6 +1,6 @@
 #pragma once
 #include <glm.hpp>
-#include "Component\Component.h"
+#include "Component/Component.h"
 
 #define MAX_POINT_LIGHT 2
 

@@ -1,12 +1,12 @@
-#include <gl\glew.h>
-#include <QtCore\qfile.h>
-#include "Texture\Texture.h"
-#include "Texture\TextureManager.h"
-#include "Shader\MaterialManager.h"
+#include <gl/glew.h>
+#include <QtCore/qfile.h>
+#include "Texture/Texture.h"
+#include "Texture/TextureManager.h"
+#include "Shader/MaterialManager.h"
 
 #include "TropicalEngineApplication.h"
 
-#include <QtCore\qdebug.h>
+#include <QtCore/qdebug.h>
 
 Texture::Texture(QString fileUrl)
 {

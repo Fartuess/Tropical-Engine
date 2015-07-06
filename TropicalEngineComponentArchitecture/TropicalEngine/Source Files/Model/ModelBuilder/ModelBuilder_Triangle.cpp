@@ -1,9 +1,9 @@
-#include <gl\glew.h>
+#include <gl/glew.h>
 #include <glm.hpp>
-#include <QtCore\qvector.h>
-#include <QtCore\qstring.h>
-#include "Model\Model.h"
-#include "Model\ModelBuilder.h"
+#include <QtCore/qvector.h>
+#include <QtCore/qstring.h>
+#include "Model/Model.h"
+#include "Model/ModelBuilder.h"
 
 Model* ModelBuilder::CreateTriangle(QString name)
 {

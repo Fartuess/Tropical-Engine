@@ -1,36 +1,36 @@
-#include <QtWidgets\qmenubar.h>
-#include <QtWidgets\qstatusbar.h>
-#include <QtWidgets\qlabel.h>
-#include <QtWidgets\QHBoxLayout>
-#include <QtWidgets\QVBoxLayout>
-#include <QtWidgets\qsplitter.h>
-#include <QtWidgets\qtreeview.h>
-#include <QtWidgets\qpushbutton.h>
+#include <QtWidgets/qmenubar.h>
+#include <QtWidgets/qstatusbar.h>
+#include <QtWidgets/qlabel.h>
+#include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QVBoxLayout>
+#include <QtWidgets/qsplitter.h>
+#include <QtWidgets/qtreeview.h>
+#include <QtWidgets/qpushbutton.h>
 //#include <QtWidgets\qtoolbox.h>
-#include <QtWidgets\qgroupbox.h>
-#include <QtWidgets\qspinbox.h>
-#include <QtCore\qthread.h>
-#include <QtWidgets\qfiledialog.h>
-#include <QtCore\qjsondocument.h>
+#include <QtWidgets/qgroupbox.h>
+#include <QtWidgets/qspinbox.h>
+#include <QtCore/qthread.h>
+#include <QtWidgets/qfiledialog.h>
+#include <QtCore/qjsondocument.h>
 
-#include "Interface\OpenGLWidget.h"
-#include "Interface\SceneGraphItem.h"
+#include "Interface/OpenGLWidget.h"
+#include "Interface/SceneGraphItem.h"
 
 #include "TropicalEngineApplication.h"
-#include "Interface\GuiStyleManager.h"
+#include "Interface/GuiStyleManager.h"
 
-#include "Interface\MainWindow.h"
-#include "Interface\TitleBar.h"
+#include "Interface/MainWindow.h"
+#include "Interface/TitleBar.h"
 
-#include "Scene\SceneManager.h"
-#include "Scene\Level.h"
+#include "Scene/SceneManager.h"
+#include "Scene/Level.h"
 
-#include "Model\ModelController.h"
+#include "Model/ModelController.h"
 
-#include "Camera\CameraComponent.h"
+#include "Camera/CameraComponent.h"
 
-#include <QtCore\qsettings.h>
-#include <QtCore\qdebug.h>
+#include <QtCore/qsettings.h>
+#include <QtCore/qdebug.h>
 
 MainWindow::MainWindow(QWidget* parrent, bool isFrameless): QMainWindow(parrent)
 	///TODO: Figure out which references to UI elements should be kept.

@@ -1,8 +1,8 @@
 #pragma once
-#include <GL\glew.h>
+#include <GL/glew.h>
 #include <glm.hpp>
-#include <QtCore\qstring.h>
-#include <QtCore\qvector.h>
+#include <QtCore/qstring.h>
+#include <QtCore/qvector.h>
 #include "Serialization/ISerializableToXML.h"
 #include "Serialization/ISerializableToJSON.h"
 

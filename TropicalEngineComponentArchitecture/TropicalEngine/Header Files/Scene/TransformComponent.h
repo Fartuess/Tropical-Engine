@@ -1,39 +1,17 @@
 #pragma once
 #include <glm.hpp>
-#include <gtc\quaternion.hpp>
-#include "Component\Component.h"
+#include <gtc/quaternion.hpp>
+#include "Component/Component.h"
 
-class TransformComponent :
-	public Component
+class TransformComponent : public Component
 {
-private:
-	glm::vec3 localPosition;
-	glm::quat localRotation;
-	glm::vec3 localScale;
-
-	glm::vec3 globalPosition;
-	glm::quat globalRotation;
-	glm::vec3 globalScale;
-
-	glm::mat4x4 transformMatrix;
-	glm::mat3 normalMatrix;
-
-	glm::vec3 front;
-	glm::vec3 up;
-	glm::vec3 right;
-
-	static TransformComponent templateObject;
-protected:
-	TransformComponent();
 public:
 	TransformComponent(Entity* owner);
 	TransformComponent(Entity* owner, glm::vec3 localPosition, glm::quat localRotation, glm::vec3 localScale);
 	~TransformComponent(void);
 
 	static TransformComponent InitializeType();
-protected:
-	void InitializeComponentType() override;
-public:
+
 	glm::vec3 getPosition(bool isGlobal = false);
 	glm::vec3 getLocalPosition();
 	glm::vec3 getGlobalPosition();
@@ -70,15 +48,36 @@ public:
 	glm::vec3 getUp();
 	glm::vec3 getRight();
 
-private:
-	void EvaluateGlobals();
-	void EvaluateInternal();
-public:
 	void Evaluate();
 
 	QString getTypeName() override;
 	//QString toXML() override;
 	QJsonObject toJSON() override;
 	IDeserializableFromJSON& fromJSON(QJsonObject JSON) override;
+
+protected:
+	TransformComponent();
+	void InitializeComponentType() override;
+
+private:
+	glm::vec3 localPosition;
+	glm::quat localRotation;
+	glm::vec3 localScale;
+
+	glm::vec3 globalPosition;
+	glm::quat globalRotation;
+	glm::vec3 globalScale;
+
+	glm::mat4x4 transformMatrix;
+	glm::mat3 normalMatrix;
+
+	glm::vec3 front;
+	glm::vec3 up;
+	glm::vec3 right;
+
+	static TransformComponent templateObject;
+
+	void EvaluateGlobals();
+	void EvaluateInternal();
 };
 

@@ -1,19 +1,19 @@
-#include <gl\glew.h>
+#include <gl/glew.h>
 #include <glm.hpp>
-#include <gtc\matrix_transform.hpp>
-#include <QtGui\qkeyevent>
-#include <QtGui\qmouseevent>
-#include <QtCore\qdebug.h>
+#include <gtc/matrix_transform.hpp>
+#include <QtGui/qkeyevent>
+#include <QtGui/qmouseevent>
+#include <QtCore/qdebug.h>
 #include "Scene/Entity.h"
 #include "Camera/CameraComponent.h"
-#include "Input\InputManager.h"
-#include "Scene\SceneManager.h"
-#include "TempHelpers\OglDevTut03.h"
-#include "Interface\OpenGLWidget.h"
+#include "Input/InputManager.h"
+#include "Scene/SceneManager.h"
+#include "TempHelpers/OglDevTut03.h"
+#include "Interface/OpenGLWidget.h"
 
-#include <QtWidgets\qapplication.h>
-#include <QtCore\qthread.h>
-#include <QtWidgets\qdesktopwidget.h>
+#include <QtWidgets/qapplication.h>
+#include <QtCore/qthread.h>
+#include <QtWidgets/qdesktopwidget.h>
 
 #include "TropicalEngineApplication.h"
 

@@ -1,21 +1,18 @@
 #pragma once
 #include <glm.hpp>
 
-#include <QtCore\qmap.h>
-#include <QtWidgets\qaction.h>
+#include <QtCore/qmap.h>
+#include <QtWidgets/qaction.h>
 
-#include "Camera\CameraComponent.h"
-#include "Input\InputAction.h"
+#include "Camera/CameraComponent.h"
+#include "Input/InputAction.h"
 
 class InputManager
 {
 public:
 	glm::vec2 lastMousePosition;
 	glm::vec2 mousePosition;
-private:
-	QMap<QString, InputAction> keyStates;
-	QMap<int, QString> bindings;
-public:
+
 	InputManager(void);
 	~InputManager(void);
 
@@ -24,4 +21,8 @@ public:
 	void Update();
 
 	int getTime(QString actionName, int queriedTime);
+
+private:
+	QMap<QString, InputAction> keyStates;
+	QMap<int, QString> bindings;
 };

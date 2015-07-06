@@ -1,5 +1,5 @@
 #pragma once
-#include <QtCore\qlist.h>
+#include <QtCore/qlist.h>
 
 class CameraComponent;
 class ModelComponent;

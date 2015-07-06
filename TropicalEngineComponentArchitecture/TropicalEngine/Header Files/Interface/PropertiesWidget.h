@@ -1,5 +1,5 @@
 #pragma once
-#include <QtWidgets\qtreewidget.h>
+#include <QtWidgets/qtreewidget.h>
 
 class PropertiesWidget : public QTreeWidget
 {

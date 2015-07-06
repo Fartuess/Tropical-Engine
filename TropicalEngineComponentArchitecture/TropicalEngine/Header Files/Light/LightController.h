@@ -1,6 +1,6 @@
 #pragma once
-#include "Light\LightComponent.h"
-#include <QtCore\qlist.h>
+#include "Light/LightComponent.h"
+#include <QtCore/qlist.h>
 
 class ModelComponent;
 

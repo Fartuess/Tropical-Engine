@@ -1,69 +1,38 @@
 #pragma once
-#include <QtWidgets\qapplication.h>
-#include <QtCore\qtime>
-#include <QtCore\qsettings.h>
-
-class ShaderManager;
-class MaterialManager;
-
-class TextureManager;
-
-class ModelManager;
-class ModelController;
-class ModelBuilder;
-
-class PackageManager;
-class SceneManager;
-class SceneController;
-
-class LightController;
-
-class InputManager;
-
-class CameraComponent;
-
-class OglDevTut03;
-
-class SceneGraphWidget;
-
-class GuiStyleManager;
+#include <QtWidgets/qapplication.h>
+#include <QtCore/qtime>
+#include <QtCore/qsettings.h>
 
 class TropicalEngineApplication : public QApplication
 {
 	Q_OBJECT
-private:
-	/*
-	 * Delta time.
-	 */
-	int deltaTime;
-	QTime deltaTimer;
 public:
 	/*
 	* Resource management
 	*/
-	ShaderManager* shaderManager;
-	MaterialManager* materialManager;
-	TextureManager* textureManager;
-	ModelManager* modelManager;
-	ModelBuilder* modelBuilder;
-	PackageManager* packageManager;
+	class ShaderManager* shaderManager;
+	class MaterialManager* materialManager;
+	class TextureManager* textureManager;
+	class ModelManager* modelManager;
+	class ModelBuilder* modelBuilder;
+	class PackageManager* packageManager;
 	/*
 	* Scene controlling
 	*/
-	SceneManager* sceneManager;
-	ModelController* modelController;
-	LightController* lightController;
+	class SceneManager* sceneManager;
+	class ModelController* modelController;
+	class LightController* lightController;
 	/*
 	* Input
 	*/
-	InputManager* inputManager;
+	class InputManager* inputManager;
 
-	OglDevTut03* renderer;	//temporarily
+	class OglDevTut03* renderer;	//temporarily
 	/*
 	* Gui
 	*/
-	GuiStyleManager* styleManager;
-	SceneGraphWidget* sceneGraph;
+	class GuiStyleManager* styleManager;
+	class SceneGraphWidget* sceneGraph;
 	/*
 	* Settings
 	*/
@@ -77,5 +46,11 @@ public:
 public slots:
 	void Initialize();
 	void Draw();
+private:
+	/*
+	* Delta time.
+	*/
+	int deltaTime;
+	QTime deltaTimer;
 };
 

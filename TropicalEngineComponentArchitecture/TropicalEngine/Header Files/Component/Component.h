@@ -13,46 +13,44 @@ class Component : public ISerializableToJSON, public IDeserializableFromJSON
 {
 public:
 	friend class Entity;
-protected:
-	Entity* owner;
 
-protected:
-	Component();
-public:
 	Component(Entity* owner);
 	~Component(void);
-protected:
-	virtual void InitializeComponentType() = 0;
-public:
+
 	Entity* getOwner();
 	void setOwner(Entity* owner);
-protected:
-	void Detach();
-private:
-	static QMap<QString, unsigned int> componentTypeMap;
-protected:
-	void AddComponentType(QString name);
-public:
+
 	//virtual QString getName() = 0;
 	static bool isComponentTypeUsed(QString name);
 	static unsigned int getComponentType(QString name);
-private:
-	static QMap<QString, QString> parrentComponentTypeMap;
-protected:
-	static QString getParrentType(QString componentTypeName);
-	void SetParrentComponentType(QString parrentTypeName);
-private:
-	static QMap<QString, unsigned int> parameterTypeMap;
-	static void AddParameterType(QString name);
-public:
+
 	static unsigned int getParameterType(QString name);
-private:
-	static QMap<QString, QMap<QString, QString>> parameters;	//maybe instead of last QString use unsigned int
-protected:
-	void AddParameter(QString name, QString type);
-public:
+
 	static QMap<QString, QString> getParameters(QString componentTypeName);	//if so change here as well
 
 	//QString getTypeName() = 0;
 	QJsonObject toJSON() override;
+
+protected:
+	Entity* owner;
+
+	Component();
+
+	virtual void InitializeComponentType() = 0;
+	void Detach();
+	void AddComponentType(QString name);
+
+	static QString getParrentType(QString componentTypeName);
+	void SetParrentComponentType(QString parrentTypeName);
+
+	void AddParameter(QString name, QString type);
+
+private:
+	static QMap<QString, unsigned int> componentTypeMap;
+	static QMap<QString, QString> parrentComponentTypeMap;
+
+	static QMap<QString, unsigned int> parameterTypeMap;
+	static void AddParameterType(QString name);
+
+	static QMap<QString, QMap<QString, QString>> parameters;	//maybe instead of last QString use unsigned int
 };

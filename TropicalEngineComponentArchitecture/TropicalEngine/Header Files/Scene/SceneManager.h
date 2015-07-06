@@ -1,32 +1,29 @@
 #pragma once
-#include <QtCore\qstring.h>
-#include <QtCore\qmap.h>
-
-class Level;
-class CameraComponent;
-class DirectionalLightComponent;
+#include <QtCore/qstring.h>
+#include <QtCore/qmap.h>
 
 class SceneManager
 {
-private:
-	QMap<QString, Level*> levels;
-	CameraComponent* currentCamera;
 public:
-	DirectionalLightComponent* mainLight;
+	class DirectionalLightComponent* mainLight;
 
 	SceneManager(void);
 	~SceneManager(void);
 
-	CameraComponent* getCurrentCamera();
-	void setCurrentCamera(CameraComponent* camera);
+	class CameraComponent* getCurrentCamera();
+	void setCurrentCamera(class CameraComponent* camera);
 
-	QMap<QString, Level*>& getLevels();
+	QMap<QString, class Level*>& getLevels();
 
 	void LoadLevel(QString fileUrl);
 	void LoadLevel(QString fileUrl, QString name);
-	void LoadLevel(Level* level, QString name);
+	void LoadLevel(class Level* level, QString name);
 	void UnloadLevel(QString name);
 	void Clear();
 
 	void EvaluateLevels();
+
+private:
+	QMap<QString, class Level*> levels;
+	CameraComponent* currentCamera;
 };

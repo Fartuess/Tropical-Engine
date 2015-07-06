@@ -1,7 +1,7 @@
 #pragma once
-#include "Shader\Material.h"
-#include <QtCore\qstring.h>
-#include <QtCore\qmap.h>
+#include "Shader/Material.h"
+#include <QtCore/qstring.h>
+#include <QtCore/qmap.h>
 
 class MaterialManager
 {
@@ -9,10 +9,7 @@ public:
 	friend class Texture;
 	friend class TextureManager;
 	friend class Material;
-private:
-	QMap<QString, Material*> materials;
 
-public:
 	MaterialManager(void);
 	~MaterialManager(void);
 
@@ -21,7 +18,10 @@ public:
 
 	void UseMaterial(QString name);
 	void UseMaterial(Material* material);
+
 private:
+	QMap<QString, Material*> materials;
+
 	void FlushMaterial(QString name, bool forced = false);
 };
 

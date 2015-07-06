@@ -1,24 +1,24 @@
 #include "TropicalEngineApplication.h"
 
-#include "Shader\ShaderManager.h"
-#include "Shader\MaterialManager.h"
+#include "Shader/ShaderManager.h"
+#include "Shader/MaterialManager.h"
 
-#include "Texture\TextureManager.h"
+#include "Texture/TextureManager.h"
 
-#include "Model\ModelManager.h"
-#include "Model\ModelController.h"
-#include "Model\ModelBuilder.h"
+#include "Model/ModelManager.h"
+#include "Model/ModelController.h"
+#include "Model/ModelBuilder.h"
 
-#include "Package\PackageManager.h"
-#include "Scene\SceneManager.h"
+#include "Package/PackageManager.h"
+#include "Scene/SceneManager.h"
 
-#include "Light\LightController.h"
+#include "Light/LightController.h"
 
-#include "Input\InputManager.h"
+#include "Input/InputManager.h"
 
-#include "TempHelpers\OglDevTut03.h"
+#include "TempHelpers/OglDevTut03.h"
 
-#include "Interface\SceneGraphWidget.h"
+#include "Interface/SceneGraphWidget.h"
 
 #include "Interface/GuiStyleManager.h"
 

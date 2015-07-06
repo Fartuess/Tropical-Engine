@@ -1,5 +1,5 @@
 #pragma once
-#include "Model\RenderComponent.h"
+#include "Model/RenderComponent.h"
 
 class Model;
 

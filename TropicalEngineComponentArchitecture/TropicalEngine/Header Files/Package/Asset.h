@@ -7,8 +7,6 @@
 
 class Asset : public ISerializableToJSON, public IDeserializableFromJSON
 {
-private:
-	static Asset templateObject;
 public:
 	QString name;
 	QString type;
@@ -22,5 +20,8 @@ public:
 	QString getTypeName() override;
 	QJsonObject toJSON() override;
 	IDeserializableFromJSON& fromJSON(QJsonObject JSON) override;
+
+private:
+	static Asset templateObject;
 };
 

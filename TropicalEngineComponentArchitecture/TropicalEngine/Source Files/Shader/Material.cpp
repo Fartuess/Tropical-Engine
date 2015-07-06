@@ -1,9 +1,9 @@
-#include "Shader\Shader.h"
-#include "Texture\TextureManager.h"
-#include "Shader\Material.h"
-#include "Shader\MaterialManager.h"
-#include "Model\ModelComponent.h"
-#include "Model\ModelController.h"
+#include "Shader/Shader.h"
+#include "Texture/TextureManager.h"
+#include "Shader/Material.h"
+#include "Shader/MaterialManager.h"
+#include "Model/ModelComponent.h"
+#include "Model/ModelController.h"
 
 #include "TropicalEngineApplication.h"
 
@@ -69,29 +69,29 @@ void Material::ActivateParameter(QString name, void* value)
 	GLuint parameterLocation = shader->getParameterLocation(name);
 	switch (shader->getParameterType(name))
 	{
-	case GL_FLOAT:
-		ActivateParameter(parameterLocation, (float*)(value));
-		break;
-	case GL_FLOAT_VEC2:
-		ActivateParameter(parameterLocation, (glm::vec2*)(value));
-		break;
-	case GL_FLOAT_VEC3:
-		ActivateParameter(parameterLocation, (glm::vec3*)(value));
-		break;
-	case GL_FLOAT_VEC4:
-		ActivateParameter(parameterLocation, (glm::vec4*)(value));
-		break;
-	case GL_FLOAT_MAT3:
-		ActivateParameter(parameterLocation, (glm::mat3*)(value));
-		break;
-	case GL_FLOAT_MAT4:
-		ActivateParameter(parameterLocation, (glm::mat4*)(value));
-		break;
-	case GL_SAMPLER_2D:
-		ActivateParameter(parameterLocation, (Texture*)(value));
-		break;
-	default:
-		break;
+		case GL_FLOAT:
+			ActivateParameter(parameterLocation, (float*)(value));
+			break;
+		case GL_FLOAT_VEC2:
+			ActivateParameter(parameterLocation, (glm::vec2*)(value));
+			break;
+		case GL_FLOAT_VEC3:
+			ActivateParameter(parameterLocation, (glm::vec3*)(value));
+			break;
+		case GL_FLOAT_VEC4:
+			ActivateParameter(parameterLocation, (glm::vec4*)(value));
+			break;
+		case GL_FLOAT_MAT3:
+			ActivateParameter(parameterLocation, (glm::mat3*)(value));
+			break;
+		case GL_FLOAT_MAT4:
+			ActivateParameter(parameterLocation, (glm::mat4*)(value));
+			break;
+		case GL_SAMPLER_2D:
+			ActivateParameter(parameterLocation, (Texture*)(value));
+			break;
+		default:
+			break;
 	}
 }
 

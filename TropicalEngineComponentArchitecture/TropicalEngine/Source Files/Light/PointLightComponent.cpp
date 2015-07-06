@@ -1,4 +1,4 @@
-#include "Light\PointLightComponent.h"
+#include "Light/PointLightComponent.h"
 
 PointLightComponent PointLightComponent::templateObject = PointLightComponent::InitializeType();
 

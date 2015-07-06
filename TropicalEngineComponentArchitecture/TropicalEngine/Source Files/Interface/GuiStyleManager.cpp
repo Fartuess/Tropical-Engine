@@ -1,8 +1,8 @@
-#include <QtCore\qfile.h>
-#include <QtCore\qtextstream.h>
-#include <QtWidgets\qwidget.h>
+#include <QtCore/qfile.h>
+#include <QtCore/qtextstream.h>
+#include <QtWidgets/qwidget.h>
 
-#include <QtCore\qdebug.h>
+#include <QtCore/qdebug.h>
 
 #include "Interface/GuiStyleManager.h"
 
