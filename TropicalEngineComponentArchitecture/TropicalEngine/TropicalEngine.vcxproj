@@ -1,17 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
-    <ProjectConfiguration Include="Debug|Win32">
-      <Configuration>Debug</Configuration>
-      <Platform>Win32</Platform>
-    </ProjectConfiguration>
     <ProjectConfiguration Include="Debug|x64">
       <Configuration>Debug</Configuration>
       <Platform>x64</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="Release|Win32">
-      <Configuration>Release</Configuration>
-      <Platform>Win32</Platform>
     </ProjectConfiguration>
     <ProjectConfiguration Include="Release|x64">
       <Configuration>Release</Configuration>
@@ -22,51 +14,39 @@
     <ClCompile Include="Source Files\Package\AssetManager.cpp" />
     <ClCompile Include="Source Files\Package\Asset.cpp" />
     <ClCompile Include="GeneratedFiles\Debug\moc_MainWindow.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_OglDevTut03.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_OpenGLWidget.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_PropertiesWidget.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_TitleBar.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_TropicalEngineApplication.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Release\moc_MainWindow.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Release\moc_OglDevTut03.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Release\moc_OpenGLWidget.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Release\moc_PropertiesWidget.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Release\moc_TitleBar.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Release\moc_TropicalEngineApplication.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source Files\Input\InputAction.cpp" />
@@ -122,26 +102,12 @@
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="Header Files\Camera\CameraComponent.h">
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Performing Custom Build Tools</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </Outputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </AdditionalInputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Performing Custom Build Tools</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </Outputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      </AdditionalInputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Performing Custom Build Tools</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </Outputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
       </AdditionalInputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </Command>
@@ -152,26 +118,12 @@
       </AdditionalInputs>
     </CustomBuild>
     <CustomBuild Include="Header Files\Component\Component.h">
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Performing Custom Build Tools</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </Outputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </AdditionalInputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Performing Custom Build Tools</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </Outputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      </AdditionalInputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Performing Custom Build Tools</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </Outputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
       </AdditionalInputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </Command>
@@ -182,26 +134,12 @@
       </AdditionalInputs>
     </CustomBuild>
     <CustomBuild Include="Header Files\Light\DirectionalLightComponent.h">
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Performing Custom Build Tools</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </Outputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </AdditionalInputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Performing Custom Build Tools</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </Outputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      </AdditionalInputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Performing Custom Build Tools</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </Outputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
       </AdditionalInputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </Command>
@@ -212,26 +150,12 @@
       </AdditionalInputs>
     </CustomBuild>
     <CustomBuild Include="Header Files\Scene\Entity.h">
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Performing Custom Build Tools</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </Outputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </AdditionalInputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Performing Custom Build Tools</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </Outputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      </AdditionalInputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Performing Custom Build Tools</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </Outputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
       </AdditionalInputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </Command>
@@ -242,26 +166,12 @@
       </AdditionalInputs>
     </CustomBuild>
     <CustomBuild Include="Header Files\Interface\GuiStyleManager.h">
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Performing Custom Build Tools</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </Outputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </AdditionalInputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Performing Custom Build Tools</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </Outputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      </AdditionalInputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Performing Custom Build Tools</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </Outputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
       </AdditionalInputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </Command>
@@ -272,26 +182,12 @@
       </AdditionalInputs>
     </CustomBuild>
     <CustomBuild Include="Header Files\Input\InputManager.h">
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Performing Custom Build Tools</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </Outputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </AdditionalInputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Performing Custom Build Tools</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </Outputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      </AdditionalInputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Performing Custom Build Tools</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </Outputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
       </AdditionalInputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </Command>
@@ -302,26 +198,12 @@
       </AdditionalInputs>
     </CustomBuild>
     <CustomBuild Include="Header Files\Serialization\ISerializableToJSON.h">
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Performing Custom Build Tools</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </Outputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </AdditionalInputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Performing Custom Build Tools</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </Outputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      </AdditionalInputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Performing Custom Build Tools</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </Outputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
       </AdditionalInputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </Command>
@@ -332,26 +214,12 @@
       </AdditionalInputs>
     </CustomBuild>
     <CustomBuild Include="Header Files\Serialization\ISerializableToXML.h">
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Performing Custom Build Tools</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </Outputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </AdditionalInputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Performing Custom Build Tools</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </Outputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      </AdditionalInputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Performing Custom Build Tools</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </Outputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
       </AdditionalInputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </Command>
@@ -362,26 +230,12 @@
       </AdditionalInputs>
     </CustomBuild>
     <CustomBuild Include="Header Files\Scene\Level.h">
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Performing Custom Build Tools</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </Outputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </AdditionalInputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Performing Custom Build Tools</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </Outputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      </AdditionalInputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Performing Custom Build Tools</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </Outputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
       </AdditionalInputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </Command>
@@ -392,26 +246,12 @@
       </AdditionalInputs>
     </CustomBuild>
     <CustomBuild Include="Header Files\Scene\LevelManager.h">
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Performing Custom Build Tools</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </Outputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </AdditionalInputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Performing Custom Build Tools</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </Outputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      </AdditionalInputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Performing Custom Build Tools</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </Outputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
       </AdditionalInputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </Command>
@@ -422,26 +262,12 @@
       </AdditionalInputs>
     </CustomBuild>
     <CustomBuild Include="Header Files\Light\LightComponent.h">
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Performing Custom Build Tools</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </Outputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </AdditionalInputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Performing Custom Build Tools</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </Outputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      </AdditionalInputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Performing Custom Build Tools</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </Outputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
       </AdditionalInputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </Command>
@@ -452,26 +278,12 @@
       </AdditionalInputs>
     </CustomBuild>
     <CustomBuild Include="Header Files\Light\LightController.h">
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Performing Custom Build Tools</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </Outputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </AdditionalInputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Performing Custom Build Tools</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </Outputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      </AdditionalInputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Performing Custom Build Tools</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </Outputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
       </AdditionalInputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </Command>
@@ -482,44 +294,22 @@
       </AdditionalInputs>
     </CustomBuild>
     <CustomBuild Include="Header Files\Interface\MainWindow.h">
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\bin\moc.exe;%(FullPath)</AdditionalInputs>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing MainWindow.h...</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DWIN64 -DQT_DLL -DQT_CORE_LIB -DQT_GUI_LIB -DQT_OPENGL_LIB -DQT_WIDGETS_LIB "-I." "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtCore" "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtGui" "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtOpenGL" "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtWidgets"</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Moc%27ing MainWindow.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">"E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DWIN64 -DQT_DLL -DQT_CORE_LIB -DQT_GUI_LIB -DQT_OPENGL_LIB -DQT_WIDGETS_LIB "-I." "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtCore" "-IE:\Dropbox\TropicalEngine\TropicalEngineComponentArchitecture\Middleware\glew\include" "-IE:\Dropbox\TropicalEngine\TropicalEngineComponentArchitecture\Middleware\glm" "-IE:\Dropbox\TropicalEngine\TropicalEngineComponentArchitecture\Middleware\assimp\include" "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtGui" "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtOpenGL" "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtWidgets"</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\bin\moc.exe;%(FullPath)</AdditionalInputs>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing MainWindow.h...</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DWIN64 -DQT_DLL -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DQT_OPENGL_LIB -DQT_WIDGETS_LIB "-I." "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtCore" "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtGui" "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtOpenGL" "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtWidgets"</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Moc%27ing MainWindow.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DWIN64 -DQT_DLL -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DQT_OPENGL_LIB -DQT_WIDGETS_LIB "-I." "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtCore" "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtGui" "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtOpenGL" "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtWidgets"</Command>
     </CustomBuild>
     <CustomBuild Include="Header Files\Shader\Material.h">
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Performing Custom Build Tools</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </Outputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </AdditionalInputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Performing Custom Build Tools</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </Outputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      </AdditionalInputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Performing Custom Build Tools</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </Outputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
       </AdditionalInputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </Command>
@@ -530,26 +320,12 @@
       </AdditionalInputs>
     </CustomBuild>
     <CustomBuild Include="Header Files\Shader\MaterialManager.h">
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Performing Custom Build Tools</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </Outputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </AdditionalInputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Performing Custom Build Tools</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </Outputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      </AdditionalInputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Performing Custom Build Tools</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </Outputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
       </AdditionalInputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </Command>
@@ -560,26 +336,12 @@
       </AdditionalInputs>
     </CustomBuild>
     <CustomBuild Include="Header Files\Utills\MathUtills.h">
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Performing Custom Build Tools</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </Outputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </AdditionalInputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Performing Custom Build Tools</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </Outputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      </AdditionalInputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Performing Custom Build Tools</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </Outputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
       </AdditionalInputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </Command>
@@ -590,26 +352,12 @@
       </AdditionalInputs>
     </CustomBuild>
     <CustomBuild Include="Header Files\Model\Model.h">
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Performing Custom Build Tools</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </Outputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </AdditionalInputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Performing Custom Build Tools</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </Outputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      </AdditionalInputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Performing Custom Build Tools</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </Outputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
       </AdditionalInputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </Command>
@@ -620,26 +368,12 @@
       </AdditionalInputs>
     </CustomBuild>
     <CustomBuild Include="Header Files\Model\ModelBuilder.h">
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Performing Custom Build Tools</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </Outputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </AdditionalInputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Performing Custom Build Tools</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </Outputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      </AdditionalInputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Performing Custom Build Tools</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </Outputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
       </AdditionalInputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </Command>
@@ -650,26 +384,12 @@
       </AdditionalInputs>
     </CustomBuild>
     <CustomBuild Include="Header Files\Model\ModelComponent.h">
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Performing Custom Build Tools</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </Outputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </AdditionalInputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Performing Custom Build Tools</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </Outputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      </AdditionalInputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Performing Custom Build Tools</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </Outputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
       </AdditionalInputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </Command>
@@ -680,26 +400,12 @@
       </AdditionalInputs>
     </CustomBuild>
     <CustomBuild Include="Header Files\Model\ModelController.h">
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Performing Custom Build Tools</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </Outputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </AdditionalInputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Performing Custom Build Tools</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </Outputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      </AdditionalInputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Performing Custom Build Tools</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </Outputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
       </AdditionalInputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </Command>
@@ -710,26 +416,12 @@
       </AdditionalInputs>
     </CustomBuild>
     <CustomBuild Include="Header Files\Model\ModelManager.h">
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Performing Custom Build Tools</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </Outputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </AdditionalInputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Performing Custom Build Tools</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </Outputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      </AdditionalInputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Performing Custom Build Tools</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </Outputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
       </AdditionalInputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </Command>
@@ -740,26 +432,12 @@
       </AdditionalInputs>
     </CustomBuild>
     <CustomBuild Include="Header Files\Package\Package.h">
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Performing Custom Build Tools</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </Outputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </AdditionalInputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Performing Custom Build Tools</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </Outputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      </AdditionalInputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Performing Custom Build Tools</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </Outputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
       </AdditionalInputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </Command>
@@ -770,26 +448,12 @@
       </AdditionalInputs>
     </CustomBuild>
     <CustomBuild Include="Header Files\Package\PackageManager.h">
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Performing Custom Build Tools</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </Outputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </AdditionalInputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Performing Custom Build Tools</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </Outputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      </AdditionalInputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Performing Custom Build Tools</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </Outputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
       </AdditionalInputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </Command>
@@ -800,26 +464,12 @@
       </AdditionalInputs>
     </CustomBuild>
     <CustomBuild Include="Header Files\Light\PointLightComponent.h">
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Performing Custom Build Tools</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </Outputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </AdditionalInputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Performing Custom Build Tools</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </Outputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      </AdditionalInputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Performing Custom Build Tools</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </Outputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
       </AdditionalInputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </Command>
@@ -830,26 +480,12 @@
       </AdditionalInputs>
     </CustomBuild>
     <CustomBuild Include="Header Files\Interface\PropertyItem.h">
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Performing Custom Build Tools</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </Outputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </AdditionalInputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Performing Custom Build Tools</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </Outputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      </AdditionalInputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Performing Custom Build Tools</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </Outputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
       </AdditionalInputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </Command>
@@ -860,26 +496,12 @@
       </AdditionalInputs>
     </CustomBuild>
     <CustomBuild Include="Header Files\Model\RenderComponent.h">
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Performing Custom Build Tools</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </Outputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </AdditionalInputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Performing Custom Build Tools</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </Outputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      </AdditionalInputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Performing Custom Build Tools</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </Outputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
       </AdditionalInputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </Command>
@@ -890,26 +512,12 @@
       </AdditionalInputs>
     </CustomBuild>
     <CustomBuild Include="Header Files\Interface\SceneGraphItem.h">
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Performing Custom Build Tools</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </Outputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </AdditionalInputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Performing Custom Build Tools</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </Outputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      </AdditionalInputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Performing Custom Build Tools</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </Outputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
       </AdditionalInputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </Command>
@@ -920,26 +528,12 @@
       </AdditionalInputs>
     </CustomBuild>
     <CustomBuild Include="Header Files\Interface\SceneGraphWidget.h">
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Performing Custom Build Tools</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </Outputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </AdditionalInputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Performing Custom Build Tools</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </Outputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      </AdditionalInputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Performing Custom Build Tools</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </Outputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
       </AdditionalInputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </Command>
@@ -950,26 +544,12 @@
       </AdditionalInputs>
     </CustomBuild>
     <CustomBuild Include="Header Files\Scene\SceneManager.h">
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Performing Custom Build Tools</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </Outputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </AdditionalInputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Performing Custom Build Tools</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </Outputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      </AdditionalInputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Performing Custom Build Tools</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </Outputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
       </AdditionalInputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </Command>
@@ -980,26 +560,12 @@
       </AdditionalInputs>
     </CustomBuild>
     <CustomBuild Include="Header Files\Shader\Shader.h">
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Performing Custom Build Tools</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </Outputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </AdditionalInputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Performing Custom Build Tools</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </Outputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      </AdditionalInputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Performing Custom Build Tools</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </Outputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
       </AdditionalInputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </Command>
@@ -1010,26 +576,12 @@
       </AdditionalInputs>
     </CustomBuild>
     <CustomBuild Include="Header Files\Shader\ShaderManager.h">
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Performing Custom Build Tools</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </Outputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </AdditionalInputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Performing Custom Build Tools</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </Outputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      </AdditionalInputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Performing Custom Build Tools</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </Outputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
       </AdditionalInputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </Command>
@@ -1040,26 +592,12 @@
       </AdditionalInputs>
     </CustomBuild>
     <CustomBuild Include="Header Files\Utills\Singleton.h">
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Performing Custom Build Tools</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </Outputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </AdditionalInputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Performing Custom Build Tools</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </Outputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      </AdditionalInputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Performing Custom Build Tools</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </Outputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
       </AdditionalInputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </Command>
@@ -1070,26 +608,12 @@
       </AdditionalInputs>
     </CustomBuild>
     <CustomBuild Include="Header Files\Light\SpotLightComponent.h">
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Performing Custom Build Tools</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </Outputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </AdditionalInputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Performing Custom Build Tools</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </Outputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      </AdditionalInputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Performing Custom Build Tools</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </Outputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
       </AdditionalInputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </Command>
@@ -1100,26 +624,12 @@
       </AdditionalInputs>
     </CustomBuild>
     <CustomBuild Include="Header Files\TempHelpers\TempPlayerComponent.h">
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Performing Custom Build Tools</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </Outputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </AdditionalInputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Performing Custom Build Tools</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </Outputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      </AdditionalInputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Performing Custom Build Tools</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </Outputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
       </AdditionalInputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </Command>
@@ -1130,26 +640,12 @@
       </AdditionalInputs>
     </CustomBuild>
     <CustomBuild Include="Header Files\Texture\Texture.h">
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Performing Custom Build Tools</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </Outputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </AdditionalInputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Performing Custom Build Tools</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </Outputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      </AdditionalInputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Performing Custom Build Tools</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </Outputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
       </AdditionalInputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </Command>
@@ -1160,26 +656,12 @@
       </AdditionalInputs>
     </CustomBuild>
     <CustomBuild Include="Header Files\Texture\TextureManager.h">
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Performing Custom Build Tools</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </Outputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </AdditionalInputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Performing Custom Build Tools</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </Outputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      </AdditionalInputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Performing Custom Build Tools</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </Outputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
       </AdditionalInputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </Command>
@@ -1190,26 +672,12 @@
       </AdditionalInputs>
     </CustomBuild>
     <CustomBuild Include="Header Files\Scene\TransformComponent.h">
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Performing Custom Build Tools</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </Outputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </AdditionalInputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Performing Custom Build Tools</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </Outputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      </AdditionalInputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Performing Custom Build Tools</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </Outputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
       </AdditionalInputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </Command>
@@ -1220,90 +688,50 @@
       </AdditionalInputs>
     </CustomBuild>
     <CustomBuild Include="Header Files\Interface\TitleBar.h">
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\bin\moc.exe;%(FullPath)</AdditionalInputs>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing TitleBar.h...</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DWIN64 -DQT_DLL -DQT_CORE_LIB -DQT_GUI_LIB -DQT_OPENGL_LIB -DQT_WIDGETS_LIB "-I." "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtCore" "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtGui" "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtOpenGL" "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtWidgets"</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Moc%27ing TitleBar.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">"E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DWIN64 -DQT_DLL -DQT_CORE_LIB -DQT_GUI_LIB -DQT_OPENGL_LIB -DQT_WIDGETS_LIB "-I." "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtCore" "-IE:\Dropbox\TropicalEngine\TropicalEngineComponentArchitecture\Middleware\glew\include" "-IE:\Dropbox\TropicalEngine\TropicalEngineComponentArchitecture\Middleware\glm" "-IE:\Dropbox\TropicalEngine\TropicalEngineComponentArchitecture\Middleware\assimp\include" "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtGui" "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtOpenGL" "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtWidgets"</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\bin\moc.exe;%(FullPath)</AdditionalInputs>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing TitleBar.h...</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DWIN64 -DQT_DLL -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DQT_OPENGL_LIB -DQT_WIDGETS_LIB "-I." "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtCore" "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtGui" "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtOpenGL" "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtWidgets"</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Moc%27ing TitleBar.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DWIN64 -DQT_DLL -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DQT_OPENGL_LIB -DQT_WIDGETS_LIB "-I." "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtCore" "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtGui" "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtOpenGL" "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtWidgets"</Command>
     </CustomBuild>
     <CustomBuild Include="Header Files\TropicalEngineApplication.h">
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\bin\moc.exe;%(FullPath)</AdditionalInputs>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing TropicalEngineApplication.h...</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DWIN64 -DQT_DLL -DQT_CORE_LIB -DQT_GUI_LIB -DQT_OPENGL_LIB -DQT_WIDGETS_LIB  "-I." "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtCore" "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtGui" "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtOpenGL" "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtWidgets"</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Moc%27ing TropicalEngineApplication.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">"E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DWIN64 -DQT_DLL -DQT_CORE_LIB -DQT_GUI_LIB -DQT_OPENGL_LIB -DQT_WIDGETS_LIB  "-I." "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtCore" "-IE:\Dropbox\TropicalEngine\TropicalEngineComponentArchitecture\Middleware\glew\include" "-IE:\Dropbox\TropicalEngine\TropicalEngineComponentArchitecture\Middleware\glm" "-IE:\Dropbox\TropicalEngine\TropicalEngineComponentArchitecture\Middleware\assimp\include" "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtGui" "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtOpenGL" "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtWidgets"</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\bin\moc.exe;%(FullPath)</AdditionalInputs>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing TropicalEngineApplication.h...</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DWIN64 -DQT_DLL -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DQT_OPENGL_LIB -DQT_WIDGETS_LIB  "-I." "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtCore" "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtGui" "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtOpenGL" "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtWidgets"</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Moc%27ing TropicalEngineApplication.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DWIN64 -DQT_DLL -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DQT_OPENGL_LIB -DQT_WIDGETS_LIB  "-I." "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtCore" "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtGui" "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtOpenGL" "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtWidgets"</Command>
     </CustomBuild>
     <CustomBuild Include="Header Files\Interface\PropertiesWidget.h">
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\bin\moc.exe;%(FullPath)</AdditionalInputs>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing PropertiesWidget.h...</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DWIN64 -DQT_DLL -DQT_CORE_LIB -DQT_GUI_LIB -DQT_OPENGL_LIB -DQT_WIDGETS_LIB  "-I." "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtCore" "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtGui" "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtOpenGL" "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtWidgets"</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Moc%27ing PropertiesWidget.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">"E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DWIN64 -DQT_DLL -DQT_CORE_LIB -DQT_GUI_LIB -DQT_OPENGL_LIB -DQT_WIDGETS_LIB  "-I." "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtCore" "-IE:\Dropbox\TropicalEngine\TropicalEngineComponentArchitecture\Middleware\glew\include" "-IE:\Dropbox\TropicalEngine\TropicalEngineComponentArchitecture\Middleware\glm" "-IE:\Dropbox\TropicalEngine\TropicalEngineComponentArchitecture\Middleware\assimp\include" "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtGui" "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtOpenGL" "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtWidgets"</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\bin\moc.exe;%(FullPath)</AdditionalInputs>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing PropertiesWidget.h...</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DWIN64 -DQT_DLL -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DQT_OPENGL_LIB -DQT_WIDGETS_LIB  "-I." "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtCore" "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtGui" "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtOpenGL" "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtWidgets"</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Moc%27ing PropertiesWidget.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DWIN64 -DQT_DLL -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DQT_OPENGL_LIB -DQT_WIDGETS_LIB  "-I." "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtCore" "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtGui" "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtOpenGL" "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtWidgets"</Command>
     </CustomBuild>
     <CustomBuild Include="Header Files\Interface\OpenGLWidget.h">
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\bin\moc.exe;%(FullPath)</AdditionalInputs>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing OpenGLWidget.h...</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DWIN64 -DQT_DLL -DQT_CORE_LIB -DQT_GUI_LIB -DQT_OPENGL_LIB -DQT_WIDGETS_LIB  "-I." "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtCore" "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtGui" "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtOpenGL" "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtWidgets"</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Moc%27ing OpenGLWidget.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">"E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DWIN64 -DQT_DLL -DQT_CORE_LIB -DQT_GUI_LIB -DQT_OPENGL_LIB -DQT_WIDGETS_LIB  "-I." "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtCore" "-IE:\Dropbox\TropicalEngine\TropicalEngineComponentArchitecture\Middleware\glew\include" "-IE:\Dropbox\TropicalEngine\TropicalEngineComponentArchitecture\Middleware\glm" "-IE:\Dropbox\TropicalEngine\TropicalEngineComponentArchitecture\Middleware\assimp\include" "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtGui" "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtOpenGL" "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtWidgets"</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\bin\moc.exe;%(FullPath)</AdditionalInputs>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing OpenGLWidget.h...</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DWIN64 -DQT_DLL -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DQT_OPENGL_LIB -DQT_WIDGETS_LIB  "-I." "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtCore" "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtGui" "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtOpenGL" "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtWidgets"</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Moc%27ing OpenGLWidget.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DWIN64 -DQT_DLL -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DQT_OPENGL_LIB -DQT_WIDGETS_LIB  "-I." "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtCore" "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtGui" "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtOpenGL" "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtWidgets"</Command>
     </CustomBuild>
     <CustomBuild Include="Header Files\TempHelpers\OglDevTut03.h">
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\bin\moc.exe;%(FullPath)</AdditionalInputs>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing OglDevTut03.h...</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DWIN64 -DQT_DLL -DQT_CORE_LIB -DQT_GUI_LIB -DQT_OPENGL_LIB -DQT_WIDGETS_LIB  "-I." "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtCore" "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtGui" "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtOpenGL" "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtWidgets"</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Moc%27ing OglDevTut03.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">"E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DWIN64 -DQT_DLL -DQT_CORE_LIB -DQT_GUI_LIB -DQT_OPENGL_LIB -DQT_WIDGETS_LIB  "-I." "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtCore" "-IE:\Dropbox\TropicalEngine\TropicalEngineComponentArchitecture\Middleware\glew\include" "-IE:\Dropbox\TropicalEngine\TropicalEngineComponentArchitecture\Middleware\glm" "-IE:\Dropbox\TropicalEngine\TropicalEngineComponentArchitecture\Middleware\assimp\include" "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtGui" "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtOpenGL" "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtWidgets"</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\bin\moc.exe;%(FullPath)</AdditionalInputs>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing OglDevTut03.h...</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DWIN64 -DQT_DLL -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DQT_OPENGL_LIB -DQT_WIDGETS_LIB  "-I." "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtCore" "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtGui" "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtOpenGL" "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtWidgets"</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Moc%27ing OglDevTut03.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
@@ -1313,26 +741,12 @@
   <ItemGroup>
     <CustomBuild Include="Resources\TropicalEngineEditorStyle.css">
       <DeploymentContent>true</DeploymentContent>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Performing Custom Build Tools</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </Outputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </AdditionalInputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Performing Custom Build Tools</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </Outputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      </AdditionalInputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Performing Custom Build Tools</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </Outputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
       </AdditionalInputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </Command>
@@ -1355,14 +769,6 @@
     <Keyword>Qt4VSv1.0</Keyword>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
-    <PlatformToolset>v120</PlatformToolset>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
-    <PlatformToolset>v120</PlatformToolset>
-  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <PlatformToolset>v120</PlatformToolset>
@@ -1374,12 +780,6 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
   </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
@@ -1390,37 +790,14 @@
   <PropertyGroup>
     <_ProjectFileVersion>12.0.30501.0</_ProjectFileVersion>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
-  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
     <IncludePath>$(SolutionDir)\Header Files;$(IncludePath)</IncludePath>
     <SourcePath>$(SolutionDir)\Source Files;$(SourcePath)</SourcePath>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
-  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
   </PropertyGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <ClCompile>
-      <PreprocessorDefinitions>UNICODE;WIN32;WIN64;QT_DLL;QT_CORE_LIB;QT_GUI_LIB;QT_OPENGL_LIB;QT_WIDGETS_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <Optimization>Disabled</Optimization>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <AdditionalIncludeDirectories>.;E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include;.\GeneratedFiles\$(ConfigurationName);E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtCore;E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtGui;E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtOpenGL;E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtWidgets;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-    </ClCompile>
-    <Link>
-      <SubSystem>Console</SubSystem>
-      <OutputFile>$(OutDir)\$(ProjectName).exe</OutputFile>
-      <AdditionalLibraryDirectories>E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\lib\qtmaind.lib;E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\lib\Qt5Cored.lib;E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\lib\Qt5Guid.lib;E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\lib\Qt5OpenGLd.lib;opengl32.lib;glu32.lib;E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\lib\Qt5Widgetsd.lib;%(AdditionalDependencies)</AdditionalDependencies>
-    </Link>
-  </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <PreprocessorDefinitions>UNICODE;WIN32;WIN64;QT_DLL;QT_CORE_LIB;QT_GUI_LIB;QT_OPENGL_LIB;QT_WIDGETS_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -1436,22 +813,6 @@
       <AdditionalLibraryDirectories>E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\lib;E:\Dropbox\TropicalEngine\TropicalEngineComponentArchitecture\Middleware\glew\lib\Release\x64;E:\Dropbox\TropicalEngine\TropicalEngineComponentArchitecture\Middleware\assimp\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\lib\qtmaind.lib;E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\lib\Qt5Cored.lib;E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\lib\Qt5Widgetsd.lib;E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\lib\Qt5Guid.lib;E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\lib\Qt5OpenGLd.lib;opengl32.lib;glew32.lib;assimp.lib;%(AdditionalDependencies)</AdditionalDependencies>
-    </Link>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <ClCompile>
-      <PreprocessorDefinitions>UNICODE;WIN32;WIN64;QT_DLL;QT_NO_DEBUG;NDEBUG;QT_CORE_LIB;QT_GUI_LIB;QT_OPENGL_LIB;QT_WIDGETS_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <DebugInformationFormat />
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <AdditionalIncludeDirectories>.;E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include;.\GeneratedFiles\$(ConfigurationName);E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtCore;E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtGui;E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtOpenGL;E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtWidgets;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-    </ClCompile>
-    <Link>
-      <SubSystem>Console</SubSystem>
-      <OutputFile>$(OutDir)\$(ProjectName).exe</OutputFile>
-      <AdditionalLibraryDirectories>E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <GenerateDebugInformation>false</GenerateDebugInformation>
-      <AdditionalDependencies>E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\lib\qtmain.lib;E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\lib\Qt5Core.lib;E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\lib\Qt5Gui.lib;E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\lib\Qt5OpenGL.lib;opengl32.lib;glu32.lib;E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\lib\Qt5Widgets.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
