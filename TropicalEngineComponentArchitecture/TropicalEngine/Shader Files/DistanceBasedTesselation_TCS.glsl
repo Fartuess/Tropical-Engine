@@ -4,6 +4,7 @@ layout (vertices = 3) out;
 
 uniform vec3 u_cameraPosition;
 uniform float mat_tesselationMultiplier = 32.0;
+uniform mat4 u_transformationMatrix;
 
 in vec4 v_vertex_v[];
 in vec3 v_normal_v[];
@@ -47,9 +48,9 @@ void main()
 	v_bitangent_tcs[gl_InvocationID] = v_bitangent_v[gl_InvocationID];
     v_texcoord_tcs[gl_InvocationID]   = v_texcoord_v[gl_InvocationID];
 
-	float EyeToVertexDistance0 = length(u_cameraPosition - v_vertex_v[0].xyz);                     
-    float EyeToVertexDistance1 = length(u_cameraPosition - v_vertex_v[1].xyz);                     
-    float EyeToVertexDistance2 = length(u_cameraPosition - v_vertex_v[2].xyz);  
+	float EyeToVertexDistance0 = length(u_cameraPosition - (u_transformationMatrix * v_vertex_v[0]).xyz);
+	float EyeToVertexDistance1 = length(u_cameraPosition - (u_transformationMatrix * v_vertex_v[1]).xyz);
+	float EyeToVertexDistance2 = length(u_cameraPosition - (u_transformationMatrix * v_vertex_v[2]).xyz);
 	float v0_v1 = length(v_vertex_v[0].xyz - v_vertex_v[1].xyz);
 	float v1_v2 = length(v_vertex_v[1].xyz - v_vertex_v[2].xyz);
 	float v2_v0 = length(v_vertex_v[2].xyz - v_vertex_v[0].xyz);

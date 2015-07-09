@@ -45,6 +45,7 @@ void OglDevTut03::InitializeLevel()
 	Material* phongBlinnParalaxMaterial = new Material(phongBlinnParalaxShader, nullptr, "Paralaxed Material");
 	Material* cookTorranceMaterial = new Material(cookTorranceShader, nullptr, "CookTorrance Material");
 	Material* straussMaterial = new Material(straussShader, nullptr, "Strauss Material");
+	Material* straussMaterialMetalic = new Material(straussShader, nullptr, "Strauss Material Metalic");
 	Material* wardIsoMaterial = new Material(wardIsoShader, nullptr, "Isotropic Ward Material");
 	Material* wardAnisoMaterial = new Material(wardAnisoShader, nullptr, "Anisotropic Ward Material");
 
@@ -72,7 +73,7 @@ void OglDevTut03::InitializeLevel()
 	phongBlinnMaterial->SetParameter("mat_diffuseColor", new glm::vec3(1.0f, 0.7f, 0.0f));
 	testMaterial->SetParameter("mat_diffuseTexture", testingTexture);
 	testMaterialNRM->SetParameter("mat_diffuseTexture", testingTexture);
-	testMaterialNRM->SetParameter("mat_normalTexture", tessNrmTex);
+	testMaterialNRM->SetParameter("mat_normalTexture", testingTextureNormal);
 	maskedMaterial->SetParameter("mat_diffuseTexture", testGearTexture);
 	maskedMaterial->SetParameter("mat_normalTexture", testGearTextureNormal);
 	phongBlinnParalaxMaterial->SetParameter("mat_diffuseTexture", tessDiffTex);
@@ -86,10 +87,12 @@ void OglDevTut03::InitializeLevel()
 	cookTorranceMaterial->SetParameter("mat_roughness", roughness);
 	float* refractiveIndex = new float(0.15f);
 	cookTorranceMaterial->SetParameter("mat_refractiveIndex", refractiveIndex);
-	straussMaterial->SetParameter("mat_albedo", new glm::vec3(1.0f, 0.7f, 0.0f));
+	straussMaterial->SetParameter("mat_albedo", new glm::vec3(0.0f, 1.0f, 0.0f));
 	straussMaterial->SetParameter("mat_roughness", new float(0.8f));	//actually its smoothness. Changed name to fit PBR naming conventions but didn't inverse it in shader yet.
-	straussMaterial->SetParameter("mat_metaliness", new float(0.0f));		//comment to make it metal
-	//straussMaterial->SetParameter("mat_metaliness", new float(1.0f));		//uncomment to make it metal
+	straussMaterial->SetParameter("mat_metaliness", new float(0.0f));
+	straussMaterialMetalic->SetParameter("mat_albedo", new glm::vec3(0.0f, 1.0f, 0.0f));
+	straussMaterialMetalic->SetParameter("mat_roughness", new float(0.8f));	//actually its smoothness. Changed name to fit PBR naming conventions but didn't inverse it in shader yet.
+	straussMaterialMetalic->SetParameter("mat_metaliness", new float(1.0f));
 	wardIsoMaterial->SetParameter("mat_diffuse", new glm::vec3(1.0f, 0.7f, 0.0f));
 	wardIsoMaterial->SetParameter("mat_roughness", new float(0.3f));
 	wardAnisoMaterial->SetParameter("mat_diffuse", new glm::vec3(1.0f, 0.7f, 0.0f));
@@ -121,7 +124,7 @@ void OglDevTut03::InitializeLevel()
 	distanceTessalationShader->drawingMode = GL_PATCHES;
 	Material* distanceTessalationMaterial = new Material(distanceTessalationShader, nullptr, "DistanceTessalationMat");
 	
-	distanceTessalationMaterial->SetParameter("mat_diffuseTexture", tgaTest);
+	distanceTessalationMaterial->SetParameter("mat_diffuseTexture", tessDiffTex);
 	distanceTessalationMaterial->SetParameter("mat_normalTexture", tessNrmTex);
 	distanceTessalationMaterial->SetParameter("mat_displacementTexture", tessDispTex);
 	distanceTessalationMaterial->SetParameter("mat_displacementScale", new float(0.1f));
@@ -144,7 +147,7 @@ void OglDevTut03::InitializeLevel()
 	
 	//qDebug() << QImageReader::supportedImageFormats();
 
-	Entity* planeObject = new Entity(glm::vec3(0.0f, 0.0f, 0.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
+	//Entity* planeObject = new Entity(glm::vec3(0.0f, 0.0f, 0.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
 
 	TropicalEngineApplication::instance()->modelBuilder->CreatePlane("Plane", 10.0f, 10.0f, 50, 50);
 	TropicalEngineApplication::instance()->modelBuilder->CreateBox("Box", glm::vec3(1.0f, 1.0f, 1.0f));
@@ -162,12 +165,73 @@ void OglDevTut03::InitializeLevel()
 	TropicalEngineApplication::instance()->modelBuilder->Load("VectorSphere", "./Assets/TestAssets/vectorDispSphere.obj");
 	TropicalEngineApplication::instance()->modelBuilder->Load("VectorCube", "./Assets/TestAssets/vectorCube_LP_DENSE_T.obj");
 
-	//planeObject->AttachComponent(new ModelComponent(planeObject, cookTorranceMaterial, TropicalEngineApplication::instance()->modelManager->getModel("Plane")));
-	ModelComponent* testModelComponent = new ModelComponent(planeObject, vectorTessalationMaterial, TropicalEngineApplication::instance()->modelManager->getModel("VectorCube"));
-	planeObject->AttachComponent(testModelComponent);
-	planeObject->name = QString("TestObject");
-	
-	level->root.AttachSubobject(planeObject);
+	//Entity* planeObject = new Entity(glm::vec3(0.0f, 0.0f, 0.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
+	////planeObject->AttachComponent(new ModelComponent(planeObject, cookTorranceMaterial, TropicalEngineApplication::instance()->modelManager->getModel("Plane")));
+	//ModelComponent* testModelComponent = new ModelComponent(planeObject, vectorTessalationMaterial, TropicalEngineApplication::instance()->modelManager->getModel("VectorCube"));
+	//planeObject->AttachComponent(testModelComponent);
+	//planeObject->name = QString("TestObject");
+
+	//level->root.AttachSubobject(planeObject);
+
+	Entity* phongExample = new Entity(glm::vec3(0.0f, 0.0f, 0.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
+	phongExample->AttachComponent(new ModelComponent(phongExample, phongMaterial, TropicalEngineApplication::instance()->modelManager->getModel("Sphere")));
+	phongExample->name = QString("Phong Example");
+	level->root.AttachSubobject(phongExample);
+
+	Entity* phongBlinnExample = new Entity(glm::vec3(4.0f, 0.0f, 0.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
+	phongBlinnExample->AttachComponent(new ModelComponent(phongBlinnExample, phongBlinnMaterial, TropicalEngineApplication::instance()->modelManager->getModel("Sphere")));
+	phongBlinnExample->name = QString("Blinn-Phong Example");
+	level->root.AttachSubobject(phongBlinnExample);
+
+	Entity* BumpMapExample = new Entity(glm::vec3(8.0f, 0.0f, 0.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
+	BumpMapExample->AttachComponent(new ModelComponent(BumpMapExample, testMaterialNRM, TropicalEngineApplication::instance()->modelManager->getModel("Sphere")));
+	BumpMapExample->name = QString("Bump mapping Example");
+	level->root.AttachSubobject(BumpMapExample);
+
+	Entity* MaskedExample = new Entity(glm::vec3(12.0f, 0.0f, 0.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
+	MaskedExample->AttachComponent(new ModelComponent(MaskedExample, maskedMaterial, TropicalEngineApplication::instance()->modelManager->getModel("Box")));
+	MaskedExample->name = QString("Masked blend mode Example");
+	level->root.AttachSubobject(MaskedExample);
+
+	Entity* ParralaxExample = new Entity(glm::vec3(16.0f, 0.0f, 0.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
+	ParralaxExample->AttachComponent(new ModelComponent(ParralaxExample, phongBlinnParalaxMaterial, TropicalEngineApplication::instance()->modelManager->getModel("Teapot")));
+	ParralaxExample->name = QString("Displacement Mapping Example");
+	level->root.AttachSubobject(ParralaxExample);
+
+	Entity* CookTorranceExample = new Entity(glm::vec3(20.0f, 0.0f, 0.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
+	CookTorranceExample->AttachComponent(new ModelComponent(CookTorranceExample, cookTorranceMaterial, TropicalEngineApplication::instance()->modelManager->getModel("Sphere")));
+	CookTorranceExample->name = QString("Cook-Torrance Example");
+	level->root.AttachSubobject(CookTorranceExample);
+
+	Entity* StraussExample = new Entity(glm::vec3(24.0f, 0.0f, 0.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
+	StraussExample->AttachComponent(new ModelComponent(StraussExample, straussMaterial, TropicalEngineApplication::instance()->modelManager->getModel("Sphere")));
+	StraussExample->name = QString("Strauss Example");
+	level->root.AttachSubobject(StraussExample);
+
+	Entity* StraussConductiveExample = new Entity(glm::vec3(28.0f, 0.0f, 0.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
+	StraussConductiveExample->AttachComponent(new ModelComponent(StraussConductiveExample, straussMaterialMetalic, TropicalEngineApplication::instance()->modelManager->getModel("Sphere")));
+	StraussConductiveExample->name = QString("Strauss Metalic Example");
+	level->root.AttachSubobject(StraussConductiveExample);
+
+	Entity* WardExample = new Entity(glm::vec3(32.0f, 0.0f, 0.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
+	WardExample->AttachComponent(new ModelComponent(WardExample, wardIsoMaterial, TropicalEngineApplication::instance()->modelManager->getModel("TestModel2")));
+	WardExample->name = QString("Ward Example");
+	level->root.AttachSubobject(WardExample);
+
+	Entity* WardAnisotropicExample = new Entity(glm::vec3(36.0f, 0.0f, 0.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
+	WardAnisotropicExample->AttachComponent(new ModelComponent(WardAnisotropicExample, wardAnisoMaterial, TropicalEngineApplication::instance()->modelManager->getModel("TestModel2")));
+	WardAnisotropicExample->name = QString("Ward Anisotropic Example");
+	level->root.AttachSubobject(WardAnisotropicExample);
+
+	Entity* DistanceTessellationExample = new Entity(glm::vec3(40.0f, 0.0f, 0.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
+	DistanceTessellationExample->AttachComponent(new ModelComponent(DistanceTessellationExample, distanceTessalationMaterial, TropicalEngineApplication::instance()->modelManager->getModel("BoxDense")));
+	DistanceTessellationExample->name = QString("Distance Tessellation Example");
+	level->root.AttachSubobject(DistanceTessellationExample);
+
+	Entity* VectorTessellationExample = new Entity(glm::vec3(44.0f, 0.0f, 0.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
+	VectorTessellationExample->AttachComponent(new ModelComponent(VectorTessellationExample, vectorTessalationMaterial, TropicalEngineApplication::instance()->modelManager->getModel("VectorCube")));
+	VectorTessellationExample->name = QString("Vector Displacement Tessellation Example");
+	level->root.AttachSubobject(VectorTessellationExample);
 	
 	Entity* mainCamera = new Entity(glm::vec3(0.0f, 0.0f, 5.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
 	CameraComponent* mainCameraComponent = new CameraComponent(mainCamera, glm::vec3(0.0f, 0.0f, -1.0f), glm::vec3(0.0f, 1.0f, 0.0f), 40.0f, 4.0f / 3.0f, 0.1f, 10000.0f);
@@ -184,7 +248,7 @@ void OglDevTut03::InitializeLevel()
 	Entity* pointLight = new Entity(glm::vec3(-5.0f, 5.0f, -5.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
 	PointLightComponent* pointLightComponent = new PointLightComponent(pointLight, glm::vec3(1.0f, 0.0f, 0.0f), 1.0f, 1000.0f, 0.4f);
 	pointLight->name = QString("Point Light");
-	testModelComponent->lightedBy.append(pointLightComponent);
+	//testModelComponent->lightedBy.append(pointLightComponent);
 	level->root.AttachSubobject(pointLight);
 	
 	TropicalEngineApplication::instance()->sceneManager->LoadLevel(level, "TestLevel");
