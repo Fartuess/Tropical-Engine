@@ -174,62 +174,74 @@ void OglDevTut03::InitializeLevel()
 	//level->root.AttachSubobject(planeObject);
 
 	Entity* phongExample = new Entity(glm::vec3(0.0f, 0.0f, 0.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
-	phongExample->AttachComponent(new ModelComponent(phongExample, phongMaterial, TropicalEngineApplication::instance()->modelManager->getModel("Sphere")));
+	ModelComponent* phongModelC = new ModelComponent(phongExample, phongMaterial, TropicalEngineApplication::instance()->modelManager->getModel("Sphere"));
+	phongExample->AttachComponent(phongModelC);
 	phongExample->name = QString("Phong Example");
 	level->root.AttachSubobject(phongExample);
 
 	Entity* phongBlinnExample = new Entity(glm::vec3(4.0f, 0.0f, 0.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
-	phongBlinnExample->AttachComponent(new ModelComponent(phongBlinnExample, phongBlinnMaterial, TropicalEngineApplication::instance()->modelManager->getModel("Sphere")));
+	ModelComponent* phongBlinnModelC = new ModelComponent(phongBlinnExample, phongBlinnMaterial, TropicalEngineApplication::instance()->modelManager->getModel("Sphere"));
+	phongBlinnExample->AttachComponent(phongBlinnModelC);
 	phongBlinnExample->name = QString("Blinn-Phong Example");
 	level->root.AttachSubobject(phongBlinnExample);
 
 	Entity* BumpMapExample = new Entity(glm::vec3(8.0f, 0.0f, 0.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
-	BumpMapExample->AttachComponent(new ModelComponent(BumpMapExample, testMaterialNRM, TropicalEngineApplication::instance()->modelManager->getModel("Sphere")));
+	ModelComponent* bumpMapModelC = new ModelComponent(BumpMapExample, testMaterialNRM, TropicalEngineApplication::instance()->modelManager->getModel("Sphere"));
+	BumpMapExample->AttachComponent(bumpMapModelC);
 	BumpMapExample->name = QString("Bump mapping Example");
 	level->root.AttachSubobject(BumpMapExample);
 
 	Entity* MaskedExample = new Entity(glm::vec3(12.0f, 0.0f, 0.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
-	MaskedExample->AttachComponent(new ModelComponent(MaskedExample, maskedMaterial, TropicalEngineApplication::instance()->modelManager->getModel("Box")));
+	ModelComponent* maskedModelC = new ModelComponent(MaskedExample, maskedMaterial, TropicalEngineApplication::instance()->modelManager->getModel("Box"));
+	MaskedExample->AttachComponent(maskedModelC);
 	MaskedExample->name = QString("Masked blend mode Example");
 	level->root.AttachSubobject(MaskedExample);
 
 	Entity* ParralaxExample = new Entity(glm::vec3(16.0f, 0.0f, 0.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
-	ParralaxExample->AttachComponent(new ModelComponent(ParralaxExample, phongBlinnParalaxMaterial, TropicalEngineApplication::instance()->modelManager->getModel("Teapot")));
+	ModelComponent* parralaxModelC = new ModelComponent(ParralaxExample, phongBlinnParalaxMaterial, TropicalEngineApplication::instance()->modelManager->getModel("Teapot"));
+	ParralaxExample->AttachComponent(parralaxModelC);
 	ParralaxExample->name = QString("Displacement Mapping Example");
 	level->root.AttachSubobject(ParralaxExample);
 
 	Entity* CookTorranceExample = new Entity(glm::vec3(20.0f, 0.0f, 0.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
-	CookTorranceExample->AttachComponent(new ModelComponent(CookTorranceExample, cookTorranceMaterial, TropicalEngineApplication::instance()->modelManager->getModel("Sphere")));
+	ModelComponent* cookTorranceModelC = new ModelComponent(CookTorranceExample, cookTorranceMaterial, TropicalEngineApplication::instance()->modelManager->getModel("Sphere"));
+	CookTorranceExample->AttachComponent(cookTorranceModelC);
 	CookTorranceExample->name = QString("Cook-Torrance Example");
 	level->root.AttachSubobject(CookTorranceExample);
 
 	Entity* StraussExample = new Entity(glm::vec3(24.0f, 0.0f, 0.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
-	StraussExample->AttachComponent(new ModelComponent(StraussExample, straussMaterial, TropicalEngineApplication::instance()->modelManager->getModel("Sphere")));
+	ModelComponent* straussModelC = new ModelComponent(StraussExample, straussMaterial, TropicalEngineApplication::instance()->modelManager->getModel("Sphere"));
+	StraussExample->AttachComponent(straussModelC);
 	StraussExample->name = QString("Strauss Example");
 	level->root.AttachSubobject(StraussExample);
 
 	Entity* StraussConductiveExample = new Entity(glm::vec3(28.0f, 0.0f, 0.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
-	StraussConductiveExample->AttachComponent(new ModelComponent(StraussConductiveExample, straussMaterialMetalic, TropicalEngineApplication::instance()->modelManager->getModel("Sphere")));
+	ModelComponent* straussConductiveModelC = new ModelComponent(StraussConductiveExample, straussMaterialMetalic, TropicalEngineApplication::instance()->modelManager->getModel("Sphere"));
+	StraussConductiveExample->AttachComponent(straussConductiveModelC);
 	StraussConductiveExample->name = QString("Strauss Metalic Example");
 	level->root.AttachSubobject(StraussConductiveExample);
 
 	Entity* WardExample = new Entity(glm::vec3(32.0f, 0.0f, 0.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
-	WardExample->AttachComponent(new ModelComponent(WardExample, wardIsoMaterial, TropicalEngineApplication::instance()->modelManager->getModel("TestModel2")));
+	ModelComponent* wardModelC = new ModelComponent(WardExample, wardIsoMaterial, TropicalEngineApplication::instance()->modelManager->getModel("TestModel2"));
+	WardExample->AttachComponent(wardModelC);
 	WardExample->name = QString("Ward Example");
 	level->root.AttachSubobject(WardExample);
 
 	Entity* WardAnisotropicExample = new Entity(glm::vec3(36.0f, 0.0f, 0.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
-	WardAnisotropicExample->AttachComponent(new ModelComponent(WardAnisotropicExample, wardAnisoMaterial, TropicalEngineApplication::instance()->modelManager->getModel("TestModel2")));
+	ModelComponent* wardAnisoModelC = new ModelComponent(WardAnisotropicExample, wardAnisoMaterial, TropicalEngineApplication::instance()->modelManager->getModel("TestModel2"));
+	WardAnisotropicExample->AttachComponent(wardAnisoModelC);
 	WardAnisotropicExample->name = QString("Ward Anisotropic Example");
 	level->root.AttachSubobject(WardAnisotropicExample);
 
 	Entity* DistanceTessellationExample = new Entity(glm::vec3(40.0f, 0.0f, 0.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
-	DistanceTessellationExample->AttachComponent(new ModelComponent(DistanceTessellationExample, distanceTessalationMaterial, TropicalEngineApplication::instance()->modelManager->getModel("BoxDense")));
+	ModelComponent* distanceTessModelC = new ModelComponent(DistanceTessellationExample, testTessalationMaterial, TropicalEngineApplication::instance()->modelManager->getModel("BoxDense"));
+	DistanceTessellationExample->AttachComponent(distanceTessModelC);
 	DistanceTessellationExample->name = QString("Distance Tessellation Example");
 	level->root.AttachSubobject(DistanceTessellationExample);
 
 	Entity* VectorTessellationExample = new Entity(glm::vec3(44.0f, 0.0f, 0.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
-	VectorTessellationExample->AttachComponent(new ModelComponent(VectorTessellationExample, vectorTessalationMaterial, TropicalEngineApplication::instance()->modelManager->getModel("VectorCube")));
+	ModelComponent* vectorTessModelC = new ModelComponent(VectorTessellationExample, vectorTessalationMaterial, TropicalEngineApplication::instance()->modelManager->getModel("VectorCube"));
+	VectorTessellationExample->AttachComponent(vectorTessModelC);
 	VectorTessellationExample->name = QString("Vector Displacement Tessellation Example");
 	level->root.AttachSubobject(VectorTessellationExample);
 	
@@ -245,11 +257,24 @@ void OglDevTut03::InitializeLevel()
 	lightModelTestingCamera->name = QString("Light Model Testing Camera");
 	level->root.AttachSubobject(lightModelTestingCamera);
 
-	Entity* pointLight = new Entity(glm::vec3(-5.0f, 5.0f, -5.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
-	PointLightComponent* pointLightComponent = new PointLightComponent(pointLight, glm::vec3(1.0f, 0.0f, 0.0f), 1.0f, 1000.0f, 0.4f);
+	Entity* pointLight = new Entity(glm::vec3(5.0f, 2.0f, -5.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
+	PointLightComponent* pointLightComponent = new PointLightComponent(pointLight, glm::vec3(1.0f, 0.2f, 1.0f), 0.5f, 100.0f, 0.4f);
 	pointLight->name = QString("Point Light");
-	//testModelComponent->lightedBy.append(pointLightComponent);
 	level->root.AttachSubobject(pointLight);
+
+	phongModelC->lightedBy.append(pointLightComponent);
+	phongBlinnModelC->lightedBy.append(pointLightComponent);
+	bumpMapModelC->lightedBy.append(pointLightComponent);
+	maskedModelC->lightedBy.append(pointLightComponent);
+	parralaxModelC->lightedBy.append(pointLightComponent);
+	cookTorranceModelC->lightedBy.append(pointLightComponent);
+	straussModelC->lightedBy.append(pointLightComponent);
+	straussConductiveModelC->lightedBy.append(pointLightComponent);
+	wardModelC->lightedBy.append(pointLightComponent);
+	wardAnisoModelC->lightedBy.append(pointLightComponent);
+	distanceTessModelC->lightedBy.append(pointLightComponent);
+	vectorTessModelC->lightedBy.append(pointLightComponent);
+
 	
 	TropicalEngineApplication::instance()->sceneManager->LoadLevel(level, "TestLevel");
 	TropicalEngineApplication::instance()->sceneManager->setCurrentCamera(mainCameraComponent);

@@ -804,7 +804,7 @@
       <Optimization>Disabled</Optimization>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <AdditionalIncludeDirectories>.;E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include;.\GeneratedFiles\$(ConfigurationName);E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtCore;E:\Dropbox\TropicalEngine\TropicalEngineComponentArchitecture\Middleware\glew\include;E:\Dropbox\TropicalEngine\TropicalEngineComponentArchitecture\Middleware\glm;E:\Dropbox\TropicalEngine\TropicalEngineComponentArchitecture\Middleware\assimp\include;E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtGui;E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtOpenGL;E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtWidgets;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;.\GeneratedFiles\$(ConfigurationName);$(SolutionDir)..\Middleware\glew\include;$(SolutionDir)..\Middleware\glm;$(SolutionDir)..\Middleware\assimp\include;$(SolutionDir)..\Middleware\Qt\include;$(SolutionDir)..\Middleware\Qt\include\QtCore;$(SolutionDir)..\Middleware\Qt\include\QtGui;$(SolutionDir)..\Middleware\Qt\include\QtOpenGL;$(SolutionDir)..\Middleware\Qt\include\QtWidgets;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
     </ClCompile>
     <Link>
