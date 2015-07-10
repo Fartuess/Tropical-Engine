@@ -810,9 +810,9 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <OutputFile>$(OutDir)\$(ProjectName).exe</OutputFile>
-      <AdditionalLibraryDirectories>E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\lib;E:\Dropbox\TropicalEngine\TropicalEngineComponentArchitecture\Middleware\glew\lib\Release\x64;E:\Dropbox\TropicalEngine\TropicalEngineComponentArchitecture\Middleware\assimp\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\Middleware\Qt\lib;$(SolutionDir)..\Middleware\glew\lib\Release\x64;$(SolutionDir)..\Middleware\assimp\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\lib\qtmaind.lib;E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\lib\Qt5Cored.lib;E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\lib\Qt5Widgetsd.lib;E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\lib\Qt5Guid.lib;E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\lib\Qt5OpenGLd.lib;opengl32.lib;glew32.lib;assimp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>qtmaind.lib;Qt5Cored.lib;Qt5Widgetsd.lib;Qt5Guid.lib;Qt5OpenGLd.lib;opengl32.lib;glew32.lib;assimp.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

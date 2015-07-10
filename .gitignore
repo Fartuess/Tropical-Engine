@@ -7,3 +7,6 @@
 TropicalEngineComponentArchitecture/TropicalEngine/x64/**/*.obj
 *.ilk
 *.sdf
+!*.lib
+!*.exe
+!*.dll
