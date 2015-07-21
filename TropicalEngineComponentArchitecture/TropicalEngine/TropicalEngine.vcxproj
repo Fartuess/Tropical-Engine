@@ -293,6 +293,7 @@
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </AdditionalInputs>
     </CustomBuild>
+	<!--
     <CustomBuild Include="Header Files\Interface\MainWindow.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Moc%27ing MainWindow.h...</Message>
@@ -303,6 +304,7 @@
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DWIN64 -DQT_DLL -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DQT_OPENGL_LIB -DQT_WIDGETS_LIB "-I." "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtCore" "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtGui" "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtOpenGL" "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtWidgets"</Command>
     </CustomBuild>
+	-->
     <CustomBuild Include="Header Files\Shader\Material.h">
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </Command>
@@ -687,6 +689,7 @@
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </AdditionalInputs>
     </CustomBuild>
+	<!--
     <CustomBuild Include="Header Files\Interface\TitleBar.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Moc%27ing TitleBar.h...</Message>
@@ -737,6 +740,7 @@
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DWIN64 -DQT_DLL -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DQT_OPENGL_LIB -DQT_WIDGETS_LIB  "-I." "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtCore" "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtGui" "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtOpenGL" "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtWidgets"</Command>
     </CustomBuild>
+	-->
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="Resources\TropicalEngineEditorStyle.css">
