@@ -11,6 +11,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source Files\Model\FbxModelImporter.cpp" />
+    <ClCompile Include="Source Files\Model\AssimpModelImporter.cpp" />
+    <ClCompile Include="Source Files\Model\AbstractModelImporter.cpp" />
     <ClCompile Include="Source Files\Package\AssetManager.cpp" />
     <ClCompile Include="Source Files\Package\Asset.cpp" />
     <ClCompile Include="GeneratedFiles\Debug\moc_MainWindow.cpp">
@@ -293,7 +296,7 @@
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </AdditionalInputs>
     </CustomBuild>
-	<!--
+    <!--
     <CustomBuild Include="Header Files\Interface\MainWindow.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Moc%27ing MainWindow.h...</Message>
@@ -689,7 +692,7 @@
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </AdditionalInputs>
     </CustomBuild>
-	<!--
+    <!--
     <CustomBuild Include="Header Files\Interface\TitleBar.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Moc%27ing TitleBar.h...</Message>
@@ -762,10 +765,14 @@
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Header Files\Model\FbxModelImporter.h" />
+    <ClInclude Include="Header Files\Model\AssimpModelImporter.h" />
+    <ClInclude Include="Header Files\Model\AbstractModelImporter.h" />
     <ClInclude Include="Header Files\Package\AssetManager.h" />
     <ClInclude Include="Header Files\Package\Asset.h" />
     <ClInclude Include="Header Files\Input\InputAction.h" />
     <ClInclude Include="Header Files\Serialization\IDeserializableFromJSON.h" />
+    <ClInclude Include="Header Files\TropicalEngineApplication.h" />
     <ClInclude Include="Header Files\Utills\INamedType.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -804,19 +811,19 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <PreprocessorDefinitions>UNICODE;WIN32;WIN64;QT_DLL;QT_CORE_LIB;QT_GUI_LIB;QT_OPENGL_LIB;QT_WIDGETS_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>UNICODE;WIN32;WIN64;QT_DLL;QT_CORE_LIB;QT_GUI_LIB;QT_OPENGL_LIB;QT_WIDGETS_LIB;FBXSDK_SHARED;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <Optimization>Disabled</Optimization>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <AdditionalIncludeDirectories>.;.\GeneratedFiles\$(ConfigurationName);$(SolutionDir)..\Middleware\glew\include;$(SolutionDir)..\Middleware\glm;$(SolutionDir)..\Middleware\assimp\include;$(SolutionDir)..\Middleware\Qt\include;$(SolutionDir)..\Middleware\Qt\include\QtCore;$(SolutionDir)..\Middleware\Qt\include\QtGui;$(SolutionDir)..\Middleware\Qt\include\QtOpenGL;$(SolutionDir)..\Middleware\Qt\include\QtWidgets;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;.\GeneratedFiles\$(ConfigurationName);$(SolutionDir)..\Middleware\glew\include;$(SolutionDir)..\Middleware\glm;$(SolutionDir)..\Middleware\assimp\include;$(SolutionDir)..\Middleware\Qt\include;$(SolutionDir)..\Middleware\Qt\include\QtCore;$(SolutionDir)..\Middleware\Qt\include\QtGui;$(SolutionDir)..\Middleware\Qt\include\QtOpenGL;$(SolutionDir)..\Middleware\Qt\include\QtWidgets;$(SolutionDir)..\Middleware\FBXSDK\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <OutputFile>$(OutDir)\$(ProjectName).exe</OutputFile>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\Middleware\Qt\lib;$(SolutionDir)..\Middleware\glew\lib\Release\x64;$(SolutionDir)..\Middleware\assimp\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\Middleware\Qt\lib;$(SolutionDir)..\Middleware\glew\lib\Release\x64;$(SolutionDir)..\Middleware\assimp\lib;$(SolutionDir)..\Middleware\FBXSDK\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>qtmaind.lib;Qt5Cored.lib;Qt5Widgetsd.lib;Qt5Guid.lib;Qt5OpenGLd.lib;opengl32.lib;glew32.lib;assimp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>qtmaind.lib;Qt5Cored.lib;Qt5Widgetsd.lib;Qt5Guid.lib;Qt5OpenGLd.lib;opengl32.lib;glew32.lib;assimp.lib;libfbxsdk.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

@@ -6,6 +6,7 @@
 #include "Model/ModelBuilder.h"
 #include "Model/ModelComponent.h"
 #include "Model/ModelManager.h"
+#include <Model/AssimpModelImporter.h>
 #include "Camera/CameraComponent.h"
 #include "Scene/Entity.h"
 #include "Light/DirectionalLightComponent.h"
@@ -148,6 +149,9 @@ void OglDevTut03::InitializeLevel()
 	//qDebug() << QImageReader::supportedImageFormats();
 
 	//Entity* planeObject = new Entity(glm::vec3(0.0f, 0.0f, 0.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
+
+	//initialization of assimp model importer
+	AssimpModelImporter::Instance();
 
 	TropicalEngineApplication::instance()->modelBuilder->CreatePlane("Plane", 10.0f, 10.0f, 50, 50);
 	TropicalEngineApplication::instance()->modelBuilder->CreateBox("Box", glm::vec3(1.0f, 1.0f, 1.0f));

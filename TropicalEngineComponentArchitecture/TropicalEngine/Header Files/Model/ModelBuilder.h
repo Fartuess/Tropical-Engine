@@ -1,7 +1,10 @@
 #pragma once
 #include <QtCore/qstring.h>
 #include <QtCore/qvector.h>
+#include <QtCore/qmap.h>
 #include <glm.hpp>
+
+#include <Model/AbstractModelImporter.h>
 
 class Model;
 class ModelManager;
@@ -14,9 +17,6 @@ public:
 	ModelBuilder(void);
 	~ModelBuilder(void);
 
-private:
-	Model* Load(QString fileUrl);
-public:
 	Model* Load(QString name, QString fileUrl);
 	void CalculateTangentsBitangents(QVector<glm::vec4>& vertices, QVector<glm::vec3>& normals, QVector<glm::vec2>& texcoords, QVector<glm::vec3>& out_tangents, QVector<glm::vec3>& out_bitangents);
 
@@ -29,5 +29,12 @@ public:
 	Model* CreateCone(QString name, float radius = 1.0f, float height = 2.0f, int subdivisionsAxis = 20, int subdivisionsHeight = 1);
 	Model* CreateSphere(QString name, float radius = 1.0f, int subdivisionsAxis = 20, int subdivisionsHeight = 20);
 	Model* CreateTorus(QString name, float radius = 1.0f, float segmentRadius = 0.4f, int subdivisionsAxis = 20, int subdivisionsHeight = 20);
+
+	static void AddImporter(AbstractModelImporter* importer);
+
+private:
+	static QMap<QString, AbstractModelImporter*> supportedExtensions;
+
+	Model* Load(QString fileUrl);
 };
 
