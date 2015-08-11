@@ -7,6 +7,7 @@
 #include "Model/ModelComponent.h"
 #include "Model/ModelManager.h"
 #include <Model/AssimpModelImporter.h>
+#include <Model/FbxModelImporter.h>
 #include "Camera/CameraComponent.h"
 #include "Scene/Entity.h"
 #include "Light/DirectionalLightComponent.h"
@@ -49,6 +50,7 @@ void OglDevTut03::InitializeLevel()
 	Material* straussMaterialMetalic = new Material(straussShader, nullptr, "Strauss Material Metalic");
 	Material* wardIsoMaterial = new Material(wardIsoShader, nullptr, "Isotropic Ward Material");
 	Material* wardAnisoMaterial = new Material(wardAnisoShader, nullptr, "Anisotropic Ward Material");
+	Material* chestMaterial = new Material(testShaderNRM, nullptr, "Steampunk Chest Material");
 
 	Texture* testingTexture = new Texture("./Assets/Core/DefaultTexture.png");
 	Texture* testingTextureNormal = new Texture("./Assets/Core/DefaultTexture_NRM.png");
@@ -69,6 +71,9 @@ void OglDevTut03::InitializeLevel()
 
 	Texture* tgaTest = new Texture("./Assets/TestAssets/dickbutt.tga");
 	Texture* tgaRleTest = new Texture("./Assets/TestAssets/dickbutt_RLE.tga");	//apparently Qt TGA importer doesn't read TGA compressed with RLE.
+
+	Texture* chestDiff = new Texture("./Assets/TestAssets/SteampunkChest_Diffuse.tga");
+	Texture* chestNRM = new Texture("./Assets/TestAssets/SteampunkChest_NRM.tga");
 
 	phongMaterial->SetParameter("mat_diffuseColor", new glm::vec3(1.0f, 0.7f, 0.0f));
 	phongBlinnMaterial->SetParameter("mat_diffuseColor", new glm::vec3(1.0f, 0.7f, 0.0f));
@@ -98,6 +103,8 @@ void OglDevTut03::InitializeLevel()
 	wardIsoMaterial->SetParameter("mat_roughness", new float(0.3f));
 	wardAnisoMaterial->SetParameter("mat_diffuse", new glm::vec3(1.0f, 0.7f, 0.0f));
 	wardAnisoMaterial->SetParameter("mat_anisoRoughness", new glm::vec2(0.5f, 0.1f));
+	chestMaterial->SetParameter("mat_diffuseTexture", chestDiff);
+	chestMaterial->SetParameter("mat_normalTexture", chestNRM);
 	
 	
 	QMap<QString, GLuint> tessalationSubshaders = QMap<QString, GLuint>();
@@ -152,6 +159,7 @@ void OglDevTut03::InitializeLevel()
 
 	//initialization of assimp model importer
 	AssimpModelImporter::Instance();
+	FbxModelImporter::Instance();
 
 	TropicalEngineApplication::instance()->modelBuilder->CreatePlane("Plane", 10.0f, 10.0f, 50, 50);
 	TropicalEngineApplication::instance()->modelBuilder->CreateBox("Box", glm::vec3(1.0f, 1.0f, 1.0f));
@@ -168,6 +176,9 @@ void OglDevTut03::InitializeLevel()
 	TropicalEngineApplication::instance()->modelBuilder->Load("MayaBox", "./Assets/TestAssets/MayaBox.obj");
 	TropicalEngineApplication::instance()->modelBuilder->Load("VectorSphere", "./Assets/TestAssets/vectorDispSphere.obj");
 	TropicalEngineApplication::instance()->modelBuilder->Load("VectorCube", "./Assets/TestAssets/vectorCube_LP_DENSE_T.obj");
+	TropicalEngineApplication::instance()->modelBuilder->Load("FbxTest", "./Assets/TestAssets/FBXtest.fbx");
+	TropicalEngineApplication::instance()->modelBuilder->Load("FbxTest2", "./Assets/TestAssets/FBXtestPrepared.fbx");
+	TropicalEngineApplication::instance()->modelBuilder->Load("FbxChest", "./Assets/TestAssets/SteamPunkChest_LP.fbx");
 
 	//Entity* planeObject = new Entity(glm::vec3(0.0f, 0.0f, 0.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
 	////planeObject->AttachComponent(new ModelComponent(planeObject, cookTorranceMaterial, TropicalEngineApplication::instance()->modelManager->getModel("Plane")));
@@ -248,6 +259,12 @@ void OglDevTut03::InitializeLevel()
 	VectorTessellationExample->AttachComponent(vectorTessModelC);
 	VectorTessellationExample->name = QString("Vector Displacement Tessellation Example");
 	level->root.AttachSubobject(VectorTessellationExample);
+
+	Entity* FbxExample = new Entity(glm::vec3(48.0f, 0.0f, 0.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(0.2f, 0.2f, 0.2f));
+	ModelComponent* FbxExampleModelC = new ModelComponent(FbxExample, chestMaterial, TropicalEngineApplication::instance()->modelManager->getModel("FbxChest"));
+	FbxExample->AttachComponent(FbxExampleModelC);
+	FbxExample->name = QString("FBX import Example");
+	level->root.AttachSubobject(FbxExample);
 	
 	Entity* mainCamera = new Entity(glm::vec3(0.0f, 0.0f, 5.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
 	CameraComponent* mainCameraComponent = new CameraComponent(mainCamera, glm::vec3(0.0f, 0.0f, -1.0f), glm::vec3(0.0f, 1.0f, 0.0f), 40.0f, 4.0f / 3.0f, 0.1f, 10000.0f);
@@ -266,6 +283,7 @@ void OglDevTut03::InitializeLevel()
 	pointLight->name = QString("Point Light");
 	level->root.AttachSubobject(pointLight);
 
+	//Temporary solution
 	phongModelC->lightedBy.append(pointLightComponent);
 	phongBlinnModelC->lightedBy.append(pointLightComponent);
 	bumpMapModelC->lightedBy.append(pointLightComponent);
@@ -278,6 +296,7 @@ void OglDevTut03::InitializeLevel()
 	wardAnisoModelC->lightedBy.append(pointLightComponent);
 	distanceTessModelC->lightedBy.append(pointLightComponent);
 	vectorTessModelC->lightedBy.append(pointLightComponent);
+	FbxExampleModelC->lightedBy.append(pointLightComponent);
 
 	
 	TropicalEngineApplication::instance()->sceneManager->LoadLevel(level, "TestLevel");

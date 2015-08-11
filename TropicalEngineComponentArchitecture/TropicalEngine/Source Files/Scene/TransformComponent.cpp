@@ -274,6 +274,8 @@ void TransformComponent::EvaluateGlobals()
 
 void TransformComponent::EvaluateInternal()
 {
+	///TODO: make sure transformations work correctly.
+
 	if (owner->getParrent() == nullptr)
 	{
 		transformMatrix = glm::translate(glm::rotate(glm::scale(glm::mat4(1.0f), localScale), glm::angle(localRotation), glm::axis(localRotation)), localPosition);

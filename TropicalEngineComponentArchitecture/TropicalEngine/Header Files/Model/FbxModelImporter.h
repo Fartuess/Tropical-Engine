@@ -20,5 +20,6 @@ public:
 private:
 	FbxManager* SdkManager;
 	FbxIOSettings* IOSettings;
+	FbxGeometryConverter* Converter;
 };
 
