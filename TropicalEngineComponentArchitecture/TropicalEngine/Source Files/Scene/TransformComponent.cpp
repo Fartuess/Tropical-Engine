@@ -278,8 +278,20 @@ void TransformComponent::EvaluateInternal()
 
 	if (owner->getParrent() == nullptr)
 	{
-		transformMatrix = glm::translate(glm::rotate(glm::scale(glm::mat4(1.0f), localScale), glm::angle(localRotation), glm::axis(localRotation)), localPosition);
-		normalMatrix = glm::mat3(glm::translate(glm::rotate(glm::transpose(glm::scale(glm::mat4(1.0f), localScale)), glm::angle(localRotation), glm::axis(localRotation)), localPosition));
+		//transformMatrix = glm::translate(glm::rotate(glm::scale(glm::mat4(1.0f), localScale), glm::angle(localRotation), glm::axis(localRotation)), localPosition);
+		//normalMatrix = glm::mat3(glm::translate(glm::rotate(glm::transpose(glm::scale(glm::mat4(1.0f), localScale)), glm::angle(localRotation), glm::axis(localRotation)), localPosition));
+
+		//transformMatrix = glm::scale(glm::rotate(glm::translate(glm::mat4(1.0f), localPosition), glm::angle(localRotation), glm::axis(localRotation)), localScale);
+		transformMatrix = glm::translate(glm::mat4(), localPosition)
+			* glm::rotate(glm::mat4(), glm::angle(localRotation), glm::axis(localRotation))
+			* glm::scale(glm::mat4(), localScale);
+		//normalMatrix = glm::mat3(glm::translate(glm::rotate(glm::transpose(glm::scale(glm::mat4(1.0f), localScale)), glm::angle(localRotation), glm::axis(localRotation)), localPosition));
+		normalMatrix = glm::mat3(
+			glm::translate(glm::mat4(), localPosition)
+			* glm::rotate(glm::mat4(), glm::angle(localRotation), glm::axis(localRotation))
+			* glm::transpose(glm::scale(glm::mat4(), localScale))
+			);
+
 
 		front = glm::vec3(glm::rotate(glm::mat4(1.0f), glm::angle(localRotation), glm::axis(localRotation)) * glm::vec4(0.0f, 0.0f, -1.0f, 1.0f));
 		up = glm::vec3(glm::rotate(glm::mat4(1.0f), glm::angle(localRotation), glm::axis(localRotation)) * glm::vec4(0.0f, 1.0f, 0.0f, 1.0f));
@@ -287,8 +299,21 @@ void TransformComponent::EvaluateInternal()
 	}
 	else
 	{
-		transformMatrix = owner->getParrent()->transform.getTransformMatrix() * glm::translate(glm::rotate(glm::scale(glm::mat4(1.0f), localScale), glm::angle(localRotation), glm::axis(localRotation)), localPosition);
-		normalMatrix = glm::mat3(glm::translate(glm::rotate(glm::transpose(glm::scale(glm::mat4(1.0f), localScale) * owner->getParrent()->transform.getTransformMatrix()), glm::angle(localRotation), glm::axis(localRotation)), localPosition));
+		//transformMatrix = owner->getParrent()->transform.getTransformMatrix() * glm::translate(glm::rotate(glm::scale(glm::mat4(1.0f), localScale), glm::angle(localRotation), glm::axis(localRotation)), localPosition);
+		//normalMatrix = glm::mat3(glm::translate(glm::rotate(glm::transpose(glm::scale(glm::mat4(1.0f), localScale) * owner->getParrent()->transform.getTransformMatrix()), glm::angle(localRotation), glm::axis(localRotation)), localPosition));
+
+		//transformMatrix = owner->getParrent()->transform.getTransformMatrix() * glm::scale(glm::rotate(glm::translate(glm::mat4(1.0f), localPosition), glm::angle(localRotation), glm::axis(localRotation)), localScale);
+		transformMatrix = owner->getParrent()->transform.getTransformMatrix() 
+			* glm::translate(glm::mat4(), localPosition)
+			* glm::rotate(glm::mat4(), glm::angle(localRotation), glm::axis(localRotation))
+			* glm::scale(glm::mat4(), localScale);
+		//normalMatrix = glm::mat3(glm::translate(glm::rotate(glm::transpose(glm::scale(glm::mat4(1.0f), localScale) * owner->getParrent()->transform.getTransformMatrix()), glm::angle(localRotation), glm::axis(localRotation)), localPosition));
+		normalMatrix = owner->getParrent()->transform.getNormalMatrix()
+			* glm::mat3(
+			glm::translate(glm::mat4(), localPosition)
+			* glm::rotate(glm::mat4(), glm::angle(localRotation), glm::axis(localRotation))
+			* glm::transpose(glm::scale(glm::mat4(), localScale))
+			);
 
 		front = glm::normalize(glm::vec3(owner->getParrent()->transform.getTransformMatrix() * glm::rotate(glm::mat4(1.0f), glm::angle(localRotation), glm::axis(localRotation)) * glm::vec4(0.0f, 0.0f, -1.0f, 1.0f)));
 		up = glm::normalize(glm::vec3(owner->getParrent()->transform.getTransformMatrix() * glm::rotate(glm::mat4(1.0f), glm::angle(localRotation), glm::axis(localRotation)) * glm::vec4(0.0f, 1.0f, 0.0f, 1.0f)));

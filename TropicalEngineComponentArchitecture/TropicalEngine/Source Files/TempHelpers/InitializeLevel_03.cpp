@@ -177,7 +177,9 @@ void OglDevTut03::InitializeLevel()
 	TropicalEngineApplication::instance()->modelBuilder->Load("VectorSphere", "./Assets/TestAssets/vectorDispSphere.obj");
 	TropicalEngineApplication::instance()->modelBuilder->Load("VectorCube", "./Assets/TestAssets/vectorCube_LP_DENSE_T.obj");
 	TropicalEngineApplication::instance()->modelBuilder->Load("FbxTest", "./Assets/TestAssets/FBXtest.fbx");
-	TropicalEngineApplication::instance()->modelBuilder->Load("FbxTest2", "./Assets/TestAssets/FBXtestPrepared.fbx");
+	TropicalEngineApplication::instance()->modelBuilder->Load("FbxTest2", "./Assets/TestAssets/FBXtest2.fbx");
+	TropicalEngineApplication::instance()->modelBuilder->Load("FbxTest3", "./Assets/TestAssets/FBXtestPrepared.fbx");
+	TropicalEngineApplication::instance()->modelBuilder->Load("FbxTest4", "./Assets/TestAssets/FBXHierarchyTest.fbx");
 	TropicalEngineApplication::instance()->modelBuilder->Load("FbxChest", "./Assets/TestAssets/SteamPunkChest_LP.fbx");
 
 	//Entity* planeObject = new Entity(glm::vec3(0.0f, 0.0f, 0.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
@@ -265,6 +267,18 @@ void OglDevTut03::InitializeLevel()
 	FbxExample->AttachComponent(FbxExampleModelC);
 	FbxExample->name = QString("FBX import Example");
 	level->root.AttachSubobject(FbxExample);
+
+	Entity* FbxExample2 = new Entity(glm::vec3(52.0f, 0.0f, 0.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
+	ModelComponent* FbxExample2ModelC = new ModelComponent(FbxExample2, phongMaterial, TropicalEngineApplication::instance()->modelManager->getModel("FbxTest2"));
+	FbxExample2->AttachComponent(FbxExample2ModelC);
+	FbxExample2->name = QString("FBX Example 2");
+	level->root.AttachSubobject(FbxExample2);
+
+	Entity* FbxExample3 = new Entity(glm::vec3(60.0f, 0.0f, 0.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
+	ModelComponent* FbxExample3ModelC = new ModelComponent(FbxExample3, phongMaterial, TropicalEngineApplication::instance()->modelManager->getModel("FbxTest4"));
+	FbxExample3->AttachComponent(FbxExample3ModelC);
+	FbxExample3->name = QString("FBX Hierarchy Example");
+	level->root.AttachSubobject(FbxExample3);
 	
 	Entity* mainCamera = new Entity(glm::vec3(0.0f, 0.0f, 5.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
 	CameraComponent* mainCameraComponent = new CameraComponent(mainCamera, glm::vec3(0.0f, 0.0f, -1.0f), glm::vec3(0.0f, 1.0f, 0.0f), 40.0f, 4.0f / 3.0f, 0.1f, 10000.0f);
