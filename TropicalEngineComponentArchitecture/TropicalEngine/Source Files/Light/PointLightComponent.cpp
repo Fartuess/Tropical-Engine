@@ -1,4 +1,4 @@
-#include "Light/PointLightComponent.h"
+#include <Light/PointLightComponent.h>
 
 PointLightComponent PointLightComponent::templateObject = PointLightComponent::InitializeType();
 
@@ -69,7 +69,6 @@ QString PointLightComponent::GETTYPENAME("PointLight Component");
 
 QJsonObject PointLightComponent::toJSON()
 {
-	///TODO: implement it.
 	QJsonObject JSON = LightComponent::toJSON();
 	JSON["radius"] = radius;
 	JSON["attenuation"] = attenuation;
@@ -77,8 +76,18 @@ QJsonObject PointLightComponent::toJSON()
 	return JSON;
 }
 
-IDeserializableFromJSON& PointLightComponent::fromJSON(QJsonObject JSON)
+IDeserializableFromJSON* PointLightComponent::fromJSON(QJsonObject JSON)
 {
 	///TODO: implement this.
-	return *(new PointLightComponent());
+	PointLightComponent* object = new PointLightComponent();
+
+	QJsonObject colorJSON = JSON["color"].toObject();
+	object->color = glm::vec3(colorJSON["r"].toDouble(), colorJSON["g"].toDouble(), colorJSON["b"].toDouble());
+	object->brightness = JSON["brightness"].toDouble();
+	object->castingShadows = JSON["casting shadows"].toBool();
+
+	object->radius = JSON["radius"].toDouble();
+	object->attenuation = JSON["attenuation"].toDouble();
+
+	return object;
 }

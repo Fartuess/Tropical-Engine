@@ -1,10 +1,11 @@
 #pragma once
 #include <GL/glew.h>
 #include <glm.hpp>
+
 #include <QtCore/qstring.h>
 #include <QtCore/qvector.h>
-#include "Serialization/ISerializableToXML.h"
-#include "Serialization/ISerializableToJSON.h"
+
+#include <Serialization/ISerializableJSON.h>
 
 class MeshEntry
 {
@@ -28,16 +29,12 @@ public:
 	void Finalize();
 };
 
-class Model : public ISerializableToXML, public ISerializableToJSON
+class Model : public ISerializableJSON
 {
-private:
-	QString name;
 public:
 	QString getName();
 	void setName(QString name);
-private:
-	QString fileUrl;
-public:
+
 	Model(QString name);
 	Model(QString name, QString fileUrl);
 	~Model(void);
@@ -46,7 +43,11 @@ public:
 	GLuint materialCount;
 
 	QString getTypeName() override;
-	QString toXML() override;
 	QJsonObject toJSON() override;
+	IDeserializableFromJSON* fromJSON(QJsonObject JSON) override;
+
+private:
+	QString name;
+	QString fileUrl;
 };
 

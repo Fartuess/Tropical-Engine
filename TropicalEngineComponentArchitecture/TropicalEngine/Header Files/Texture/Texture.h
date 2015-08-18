@@ -1,11 +1,12 @@
 #pragma once
-#include <QtCore/qstring.h>
 #include <GL/glew.h>
-#include <QtGui/qpixmap.h>
-#include "Serialization/ISerializableToXML.h"
-#include "Serialization/ISerializableToJSON.h"
 
-class Texture : public ISerializableToXML, public ISerializableToJSON
+#include <QtCore/qstring.h>
+#include <QtGui/qpixmap.h>
+
+#include <Serialization/ISerializableJSON.h>
+
+class Texture : public ISerializableJSON
 {
 public:
 	Texture(QString fileUrl);
@@ -21,8 +22,8 @@ public:
 	void ActivateTexture(GLuint location);
 
 	QString getTypeName() override;
-	QString toXML() override;
 	QJsonObject toJSON() override;
+	IDeserializableFromJSON* fromJSON(QJsonObject JSON) override;
 
 private:
 	QString fileUrl;	///TODO: Figure out how to implement changing paths.

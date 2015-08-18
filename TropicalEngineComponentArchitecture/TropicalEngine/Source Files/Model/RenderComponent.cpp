@@ -1,5 +1,5 @@
-#include "Model/RenderComponent.h"
-#include "Shader/Shader.h"
+#include <Model/RenderComponent.h>
+#include <Shader/Shader.h>
 
 RenderComponent::RenderComponent() {}
 

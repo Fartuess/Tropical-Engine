@@ -1,4 +1,4 @@
-#include "Scene/Level.h"
+#include <Scene/Level.h>
 
 Level::Level(glm::vec3 position, glm::quat rotation, glm::vec3 scale, QString name): internalPackage(name)
 {
@@ -17,24 +17,24 @@ Level::~Level(void)
 
 QString Level::GETTYPENAME("Level");
 
-QString Level::toXML()
-{
-	///TODO: finish implementing it.
-	QString XMLString = QString(getIndent() + "<Level name = \"" + name + "\">\n");
-	increaseIndent();
-	XMLString += internalPackage.toXML();
-	///TODO: Saved used packages to separated files.
-	/*
-	foreach(Package* package, usedPackages)
-	{
-		XMLString += package->toXML();
-	}*/
-	//XMLString += root.toXML();
-	decreaseIndent();
-	XMLString += QString(getIndent() + "</Level>\n");
-
-	return XMLString;
-}
+//QString Level::toXML()
+//{
+//	///TODO: finish implementing it.
+//	QString XMLString = QString(getIndent() + "<Level name = \"" + name + "\">\n");
+//	increaseIndent();
+//	XMLString += internalPackage.toXML();
+//	///TODO: Saved used packages to separated files.
+//	/*
+//	foreach(Package* package, usedPackages)
+//	{
+//		XMLString += package->toXML();
+//	}*/
+//	//XMLString += root.toXML();
+//	decreaseIndent();
+//	XMLString += QString(getIndent() + "</Level>\n");
+//
+//	return XMLString;
+//}
 
 QJsonObject Level::toJSON()
 {

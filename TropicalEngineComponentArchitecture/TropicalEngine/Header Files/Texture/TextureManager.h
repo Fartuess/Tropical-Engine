@@ -1,11 +1,12 @@
 #pragma once
-#include "Texture/Texture.h"
-#include "Utills/Singleton.h"
 #include <QtCore/qstring.h>
 #include <QtCore/qmap.h>
 
-class TextureManager// :
-	//public Singleton<TextureManager>
+#include <Utills/Singleton.h>
+
+#include "Texture.h"
+
+class TextureManager
 {
 public:
 	TextureManager(void);

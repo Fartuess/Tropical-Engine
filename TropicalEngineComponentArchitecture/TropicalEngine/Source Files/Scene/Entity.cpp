@@ -1,4 +1,4 @@
-#include "Scene/Entity.h"
+#include <Scene/Entity.h>
 
 Entity::Entity(void) : transform(this)
 {
@@ -6,13 +6,13 @@ Entity::Entity(void) : transform(this)
 	///TODO: implement it.
 }
 
-Entity::Entity(glm::vec3 position, glm::quat rotation, glm::vec3 scale):transform(this, position, rotation, scale)
+Entity::Entity(glm::vec3 position, glm::quat rotation, glm::vec3 scale) : transform(this, position, rotation, scale)
 {
 	parrent = nullptr;
 	///TODO: implement it.
 }
 
-Entity::Entity(TransformComponent transform):transform(transform)
+Entity::Entity(TransformComponent transform) : transform(transform)
 {
 	parrent = nullptr;
 	///TODO: implement it.

@@ -1,6 +1,7 @@
 #include <gtc/matrix_transform.hpp>
-#include "Scene/TransformComponent.h"
-#include "Scene/Entity.h"
+
+#include <Scene/TransformComponent.h>
+#include <Scene/Entity.h>
 
 TransformComponent TransformComponent::templateObject = TransformComponent::InitializeType();
 
@@ -372,8 +373,8 @@ QJsonObject TransformComponent::toJSON()
 	return JSON;
 }
 
-IDeserializableFromJSON& TransformComponent::fromJSON(QJsonObject JSON)
+IDeserializableFromJSON* TransformComponent::fromJSON(QJsonObject JSON)
 {
 	///TODO: implement this.
-	return *(new TransformComponent());
+	return new TransformComponent();
 }

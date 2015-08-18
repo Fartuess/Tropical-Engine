@@ -1,10 +1,9 @@
 #pragma once
-
 #include <fbxsdk.h>
 
-#include "Utills/Singleton.h"
+#include <Utills/Singleton.h>
 
-#include <Model/AbstractModelImporter.h>
+#include "AbstractModelImporter.h"
 
 class FbxModelImporter : public AbstractModelImporter, public Singleton<FbxModelImporter>
 {

@@ -1,7 +1,7 @@
 #pragma once
-
 #include <QtCore/qlist.h>
-#include "Model/Model.h"
+
+#include "Model.h"
 
 class AbstractModelImporter
 {

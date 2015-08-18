@@ -1,9 +1,10 @@
-#include "TropicalEngineApplication.h"
-#include "Scene/SceneManager.h"
+#include <Scene/Level.h>
+#include <Scene/SceneManager.h>
 
-#include "Interface/SceneGraphWidget.h"
-#include "Interface/SceneGraphItem.h"
-#include "Scene/Level.h"
+#include <Interface/SceneGraphWidget.h>
+#include <Interface/SceneGraphItem.h>
+
+#include "TropicalEngineApplication.h"
 
 
 SceneGraphWidget::SceneGraphWidget(void)

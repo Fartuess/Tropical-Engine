@@ -1,5 +1,4 @@
-#include "Input/InputAction.h"
-
+#include <Input/InputAction.h>
 
 InputAction::InputAction()
 {

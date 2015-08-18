@@ -1,5 +1,4 @@
 #pragma once
-
 #include <QtWidgets/qwidget.h>
 #include <QtCore/qpoint.h>
 
@@ -11,7 +10,6 @@ public:
 	~TitleBar();
 
 public slots:
-	//void setPreviousSize();
 	void toggleMaximize();
 
 protected:

@@ -4,7 +4,7 @@
 #include <QtCore/qmap.h>
 #include <glm.hpp>
 
-#include <Model/AbstractModelImporter.h>
+#include "AbstractModelImporter.h"
 
 class Model;
 class ModelManager;

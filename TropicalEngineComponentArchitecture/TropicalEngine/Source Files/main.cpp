@@ -4,7 +4,6 @@
 #include <gl/glew.h>
 #include <glm.hpp>
 
-#include "Interface/MainWindow.h"
 #include <QtWidgets/qapplication.h>
 #include <QtWidgets/qmenubar.h>
 #include <QtWidgets/qstatusbar.h>
@@ -18,9 +17,11 @@
 #include <QtWidgets/qspinbox.h>
 #include <QtCore/qthread.h>
 
-#include "Scene/Entity.h"
-#include "Scene/Level.h"
-#include "TempHelpers/OglDevTut03.h"
+#include <Interface/MainWindow.h>
+#include <Scene/Entity.h>
+#include <Scene/Level.h>
+#include <TempHelpers/OglDevTut03.h>
+
 #include "TropicalEngineApplication.h"
 
 Level* OglDevTut03::level;

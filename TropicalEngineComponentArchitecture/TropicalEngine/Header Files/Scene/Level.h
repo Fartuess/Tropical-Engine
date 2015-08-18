@@ -1,12 +1,14 @@
 #pragma once
-#include "Scene/TransformComponent.h"
-#include "Scene/Entity.h"
-#include "Package/Package.h"
 #include <QtCore/qstring.h>
-#include "Serialization/ISerializableToXML.h"
-#include "Serialization/ISerializableToJSON.h"
 
-class Level : public ISerializableToXML, public ISerializableToJSON
+#include <Serialization/ISerializableToJSON.h>
+
+#include <Package/Package.h>
+
+#include "TransformComponent.h"
+#include "Entity.h"
+
+class Level : public ISerializableToJSON
 {
 public:
 	QString name;
@@ -17,7 +19,6 @@ public:
 	~Level(void);
 
 	QString getTypeName() override;
-	QString toXML() override;
 	QJsonObject toJSON() override;
 
 private:

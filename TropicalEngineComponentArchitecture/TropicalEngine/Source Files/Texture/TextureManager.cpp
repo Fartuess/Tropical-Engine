@@ -1,10 +1,10 @@
-#include "Texture/TextureManager.h"
-#include "Shader/MaterialManager.h"
-
-#include "TropicalEngineApplication.h"
-
 #include <QtCore/qdebug.h>
 #include <QtGui/qimagereader.h>
+
+#include <Texture/TextureManager.h>
+#include <Shader/MaterialManager.h>
+
+#include "TropicalEngineApplication.h"
 
 TextureManager::TextureManager(void)
 {

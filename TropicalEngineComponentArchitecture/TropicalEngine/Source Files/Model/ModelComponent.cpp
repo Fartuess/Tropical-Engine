@@ -1,24 +1,25 @@
 #include <glm.hpp>
 #include <gtc/type_ptr.hpp>
 #include <gtc/matrix_transform.hpp>
-#include "Model/ModelComponent.h"
-#include "Model/ModelController.h"
-#include "Model/Model.h"
-#include "Shader/Shader.h"
-#include "Shader/Material.h"
-#include "Shader/ShaderManager.h"
-#include "Scene/Entity.h"
-#include "Scene/TransformComponent.h"
-#include "Scene/SceneManager.h"
-#include "Camera/CameraComponent.h"
-
-#include "Scene/SceneManager.h"
-#include "Light/DirectionalLightComponent.h"
-#include "Light/PointLightComponent.h"
-
-#include "TropicalEngineApplication.h"
 
 #include <QtCore/qdebug.h>
+
+#include <Model/ModelComponent.h>
+#include <Model/ModelController.h>
+#include <Model/ModelManager.h>
+#include <Model/Model.h>
+#include <Shader/Shader.h>
+#include <Shader/Material.h>
+#include <Shader/ShaderManager.h>
+#include <Shader/MaterialManager.h>
+#include <Scene/Entity.h>
+#include <Scene/TransformComponent.h>
+#include <Scene/SceneManager.h>
+#include <Camera/CameraComponent.h>
+#include <Light/DirectionalLightComponent.h>
+#include <Light/PointLightComponent.h>
+
+#include "TropicalEngineApplication.h"
 
 ModelComponent ModelComponent::templateObject = ModelComponent::InitializeType();
 
@@ -165,7 +166,6 @@ QString ModelComponent::GETTYPENAME("Model Component");
 
 QJsonObject ModelComponent::toJSON()
 {
-	///TODO: implement it.
 	QJsonObject JSON = Component::toJSON();
 	JSON["model"] = model->getName();
 	JSON["material"] = material->getName();
@@ -174,8 +174,14 @@ QJsonObject ModelComponent::toJSON()
 	return JSON;
 }
 
-IDeserializableFromJSON& ModelComponent::fromJSON(QJsonObject JSON)
+IDeserializableFromJSON* ModelComponent::fromJSON(QJsonObject JSON)
 {
-	///TODO: implement this.
-	return *(new ModelComponent());
+	///TODO: Finish implementing this.
+	ModelComponent* object = new ModelComponent();
+
+	object->model = TropicalEngineApplication::instance()->modelManager->getModel(JSON["model"].toString());
+	//object->material = TropicalEngineApplication::instance()->materialManager->
+	object->castingShadows = JSON["cast shadows"].toBool();
+
+	return object;
 }

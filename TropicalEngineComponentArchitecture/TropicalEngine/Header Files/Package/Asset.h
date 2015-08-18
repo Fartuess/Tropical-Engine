@@ -1,27 +1,29 @@
 #pragma once
-
 #include <QtCore/qstring.h>
 
-#include "Serialization/ISerializableToJSON.h"
-#include "Serialization/IDeserializableFromJSON.h"
+#include <Serialization/ISerializableJSON.h>
+#include <Serialization/IDeserializableFromJSON.h>
 
-class Asset : public ISerializableToJSON, public IDeserializableFromJSON
+class Asset : public ISerializableJSON
 {
 public:
 	QString name;
 	QString type;
 
-	IDeserializableFromJSON* asset;
+	///TODO: Figure out how to do it.
+	ISerializableJSON* asset;
 
-	Asset();
+	Asset(QString name, QString type, ISerializableJSON* asset);
+	//Asset(QString name, QString type, QJsonObject JSON);
 	~Asset();
-	static Asset InitializeType();
+	//static Asset InitializeType();
 
 	QString getTypeName() override;
 	QJsonObject toJSON() override;
-	IDeserializableFromJSON& fromJSON(QJsonObject JSON) override;
+	IDeserializableFromJSON* fromJSON(QJsonObject JSON) override;
 
 private:
-	static Asset templateObject;
+	Asset();
+//	static Asset templateObject;
 };
 

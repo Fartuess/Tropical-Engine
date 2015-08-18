@@ -1,11 +1,11 @@
 #pragma once
-
 #include <assimp/Importer.hpp>
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>
 
-#include "Utills/Singleton.h"
-#include "Model/AbstractModelImporter.h"
+#include <Utills/Singleton.h>
+
+#include "AbstractModelImporter.h"
 
 class AssimpModelImporter : public AbstractModelImporter, public Singleton<AssimpModelImporter>
 {

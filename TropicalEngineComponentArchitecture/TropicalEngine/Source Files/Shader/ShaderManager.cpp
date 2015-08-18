@@ -1,6 +1,7 @@
 #include <gl/glew.h>
-#include "Shader/Shader.h"
-#include "Shader/ShaderManager.h"
+
+#include <Shader/Shader.h>
+#include <Shader/ShaderManager.h>
 
 ShaderManager::ShaderManager(void)
 {

@@ -1,6 +1,7 @@
 #pragma once
 #include <glm.hpp>
-#include "Component/Component.h"
+
+#include <Component/Component.h>
 
 class CameraComponent : public Component
 {
@@ -29,9 +30,8 @@ public:
 	void CalculateMatrix();
 
 	QString getTypeName() override;
-	//QString toXML() override;
 	QJsonObject toJSON() override;
-	IDeserializableFromJSON& fromJSON(QJsonObject JSON) override;
+	IDeserializableFromJSON* fromJSON(QJsonObject JSON) override;
 
 protected:
 	CameraComponent();

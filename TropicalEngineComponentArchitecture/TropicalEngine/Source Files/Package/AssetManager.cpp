@@ -1,6 +1,6 @@
-#include "Package/AssetManager.h"
+#include <Package/AssetManager.h>
 
-QMap<QString, IDeserializableFromJSON*> AssetManager::assetTypes;
+QMap<QString, ISerializableJSON*> AssetManager::assetTypes;
 
 AssetManager::AssetManager()
 {
@@ -10,7 +10,7 @@ AssetManager::~AssetManager()
 {
 }
 
-void AssetManager::addAssetType(QString name, IDeserializableFromJSON* typeHandle)
+void AssetManager::addAssetType(QString name, ISerializableJSON* typeHandle)
 {
 	if (!assetTypes.contains(name))
 	{
@@ -18,7 +18,12 @@ void AssetManager::addAssetType(QString name, IDeserializableFromJSON* typeHandl
 	}
 }
 
-IDeserializableFromJSON* AssetManager::getTypeHandle(QString name)
+ISerializableJSON* AssetManager::getTypeHandle(QString name)
 {
 	return assetTypes[name];
+}
+
+ISerializableJSON& AssetManager::createAsset(QJsonObject JSON)
+{
+	return Asset("", "", nullptr);
 }

@@ -1,17 +1,19 @@
 #pragma once
 #include <gtc/quaternion.hpp>
+
 #include <QtCore/qlist.h>
 #include <QtCore/qstring.h>
-#include "Scene/TransformComponent.h"
-#include "Serialization/ISerializableToXML.h"
-#include "Serialization/ISerializableToJSON.h"
+
+#include <Serialization/ISerializableToJSON.h>
+
+#include "TransformComponent.h"
 
 class Entity : public ISerializableToJSON
 {
 private:
-	QList<Component*> components = QList<Component*>();
-public:
+	QList<Component*> components;	//Had to be on top to initialize before transform.
 
+public:
 	friend class Component;
 	friend class PropertiesWidget;
 
@@ -32,11 +34,9 @@ public:
 	void DeleteComponent(Component* component);	//is needed?
 
 	QString getTypeName() override;
-	//QString toXML() override;
 	QJsonObject toJSON() override;
 
 private:
-
 	Entity* parrent;
 
 	void DetachComponent(Component* component);

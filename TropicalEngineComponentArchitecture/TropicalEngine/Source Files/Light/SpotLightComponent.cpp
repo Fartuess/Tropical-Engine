@@ -1,4 +1,4 @@
-#include "Light/SpotLightComponent.h"
+#include <Light/SpotLightComponent.h>
 
 SpotLightComponent SpotLightComponent::templateObject = SpotLightComponent::InitializeType();
 
@@ -87,7 +87,6 @@ QString SpotLightComponent::GETTYPENAME("SpotLight Component");
 
 QJsonObject SpotLightComponent::toJSON()
 {
-	///TODO: implement it.
 	QJsonObject JSON = LightComponent::toJSON();
 	JSON["radius"] = radius;
 	JSON["attenuation"] = attenuation;
@@ -97,8 +96,20 @@ QJsonObject SpotLightComponent::toJSON()
 	return JSON;
 }
 
-IDeserializableFromJSON& SpotLightComponent::fromJSON(QJsonObject JSON)
+IDeserializableFromJSON* SpotLightComponent::fromJSON(QJsonObject JSON)
 {
-	///TODO: implement this.
-	return *(new SpotLightComponent());
+	SpotLightComponent* object = new SpotLightComponent();
+
+	QJsonObject colorJSON = JSON["color"].toObject();
+	object->color = glm::vec3(colorJSON["r"].toDouble(), colorJSON["g"].toDouble(), colorJSON["b"].toDouble());
+	object->brightness = JSON["brightness"].toDouble();
+	object->castingShadows = JSON["casting shadows"].toBool();
+
+	object->radius = JSON["radius"].toDouble();
+	object->attenuation = JSON["attenuation"].toDouble();
+
+	object->innerConeRadius = JSON["inner cone radius"].toDouble();
+	object->outerConeRadius = JSON["outer cone radius"].toDouble();
+
+	return object;
 }

@@ -1,5 +1,4 @@
-#include "Model/AbstractModelImporter.h"
-
+#include <Model/AbstractModelImporter.h>
 
 AbstractModelImporter::AbstractModelImporter()
 {

@@ -1,5 +1,5 @@
 #pragma once
-#include "Camera/CameraComponent.h"
+#include <Camera/CameraComponent.h>
 
 class TempPlayerComponent : public CameraComponent
 {
@@ -10,5 +10,5 @@ public:
 	void Update();
 
 	QString getTypeName() override;
-	IDeserializableFromJSON& fromJSON(QJsonObject JSON) override;
+	IDeserializableFromJSON* fromJSON(QJsonObject JSON) override;
 };

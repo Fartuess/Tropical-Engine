@@ -1,6 +1,7 @@
 #include <QtCore/qvector.h>
-#include "Model/Model.h"
-#include "Model/ModelManager.h"
+#include <Model/Model.h>
+#include <Model/ModelManager.h>
+#include <Model/ModelBuilder.h>
 
 #include "TropicalEngineApplication.h"
 
@@ -53,12 +54,12 @@ void MeshEntry::Finalize()
 
 QString Model::GETTYPENAME("Model");
 
-QString Model::toXML()
-{
-	///TODO: implement it.
-	//remember that there are two kinds of models - loaded from a file and generated
-	return QString();
-}
+//QString Model::toXML()
+//{
+//	///TODO: implement it.
+//	//remember that there are two kinds of models - loaded from a file and generated
+//	return QString();
+//}
 
 QJsonObject Model::toJSON()
 {
@@ -68,4 +69,12 @@ QJsonObject Model::toJSON()
 	JSON["url"] = fileUrl;
 
 	return JSON;
+}
+
+IDeserializableFromJSON* Model::fromJSON(QJsonObject JSON)
+{
+	QString name = JSON["name"].toString();
+	QString fileUrl = JSON["url"].toString();
+
+	return TropicalEngineApplication::instance()->modelBuilder->Load(name, fileUrl);
 }

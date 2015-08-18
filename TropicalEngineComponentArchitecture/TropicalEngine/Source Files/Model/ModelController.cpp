@@ -1,5 +1,5 @@
-#include "Model/ModelController.h"
-#include "Model/ModelComponent.h"
+#include <Model/ModelController.h>
+#include <Model/ModelComponent.h>
 
 ModelController::ModelController(void)
 {

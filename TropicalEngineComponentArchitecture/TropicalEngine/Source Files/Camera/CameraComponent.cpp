@@ -1,10 +1,13 @@
 #include <gtc/matrix_transform.hpp>
-#include "Camera/CameraComponent.h"
-#include "Scene/Entity.h"
-#include "TropicalEngineApplication.h"
-#include "Scene/SceneManager.h"
 
 #include <QtCore/qdebug.h>
+
+#include <Scene/Entity.h>
+#include <Scene/SceneManager.h>
+
+#include <TropicalEngineApplication.h>
+
+#include <Camera/CameraComponent.h>
 
 CameraComponent CameraComponent::templateObject = CameraComponent::InitializeType();
 
@@ -149,7 +152,6 @@ QString CameraComponent::GETTYPENAME("Camera Component");
 
 QJsonObject CameraComponent::toJSON()
 {
-	///TODO: implement it.
 	QJsonObject JSON = Component::toJSON();
 	QJsonObject targetObject = QJsonObject();
 	targetObject["x"] = target.x;
@@ -169,8 +171,22 @@ QJsonObject CameraComponent::toJSON()
 	return JSON;
 }
 
-IDeserializableFromJSON& CameraComponent::fromJSON(QJsonObject JSON)
+IDeserializableFromJSON* CameraComponent::fromJSON(QJsonObject JSON)
 {
-	///TODO: implement this.
-	return *(new CameraComponent());
+	CameraComponent* camera = new CameraComponent();
+
+	QJsonObject targetJSON = JSON["target"].toObject();
+	camera->setTarget(glm::vec3(targetJSON["x"].toDouble(), targetJSON["y"].toDouble(), targetJSON["z"].toDouble()));
+
+	QJsonObject upJSON = JSON["up"].toObject();
+	camera->setUp(glm::vec3(upJSON["x"].toDouble(), upJSON["y"].toDouble(), upJSON["z"].toDouble()));
+
+	camera->fov = JSON["fov"].toDouble();
+	camera->aspectRatio = JSON["aspect ratio"].toDouble();
+	camera->zNear = JSON["Z near"].toDouble();
+	camera->zFar = JSON["Z far"].toDouble();
+
+	camera->CalculateMatrix();
+
+	return camera;
 }

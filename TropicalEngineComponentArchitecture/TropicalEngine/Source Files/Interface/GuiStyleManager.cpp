@@ -4,7 +4,7 @@
 
 #include <QtCore/qdebug.h>
 
-#include "Interface/GuiStyleManager.h"
+#include <Interface/GuiStyleManager.h>
 
 
 GuiStyleManager::GuiStyleManager(void)

@@ -1,12 +1,15 @@
 #pragma once
 #include <GL/glew.h>
+
 #include <QtCore/qstring.h>
 #include <QtCore/qvector.h>
 #include <QtCore/qmap.h>
-#include "Shader/Material.h"
-#include "Serialization/ISerializableToXML.h"
 
-class Shader : public ISerializableToXML, public ISerializableToJSON
+#include <Serialization/ISerializableToJSON.h>
+
+#include "Material.h"
+
+class Shader : public ISerializableToJSON
 {
 public:
 	Material* defaultMaterial;
@@ -63,7 +66,6 @@ public:
 	void Use();
 
 	QString getTypeName() override;
-	QString toXML() override;
 	QJsonObject toJSON() override;
 
 private:

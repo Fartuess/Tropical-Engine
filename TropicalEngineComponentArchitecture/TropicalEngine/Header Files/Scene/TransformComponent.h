@@ -1,7 +1,8 @@
 #pragma once
 #include <glm.hpp>
 #include <gtc/quaternion.hpp>
-#include "Component/Component.h"
+
+#include <Component/Component.h>
 
 class TransformComponent : public Component
 {
@@ -51,9 +52,9 @@ public:
 	void Evaluate();
 
 	QString getTypeName() override;
-	//QString toXML() override;
+
 	QJsonObject toJSON() override;
-	IDeserializableFromJSON& fromJSON(QJsonObject JSON) override;
+	IDeserializableFromJSON* fromJSON(QJsonObject JSON) override;
 
 protected:
 	TransformComponent();

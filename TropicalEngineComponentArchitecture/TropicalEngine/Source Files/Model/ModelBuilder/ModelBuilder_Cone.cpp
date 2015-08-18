@@ -1,9 +1,11 @@
 #include <gl/glew.h>
 #include <gtc/constants.hpp>
+
 #include <QtCore/qvector.h>
 #include <QtCore/qstring.h>
-#include "Model/Model.h"
-#include "Model/ModelBuilder.h"
+
+#include <Model/Model.h>
+#include <Model/ModelBuilder.h>
 
 Model* ModelBuilder::CreateCone(QString name, float radius, float height, int subdivisionsAxis, int subdivisionsHeight)
 {

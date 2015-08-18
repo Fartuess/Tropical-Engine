@@ -1,8 +1,8 @@
-#include "Package/Package.h"
-#include "Scene/Entity.h"
-#include "Shader/Shader.h"
-#include "Texture/Texture.h"
-#include "Model/Model.h"
+#include <Package/Package.h>
+#include <Scene/Entity.h>
+#include <Shader/Shader.h>
+#include <Texture/Texture.h>
+#include <Model/Model.h>
 
 Package Package::templateObject = Package::InitializeType();
 
@@ -46,9 +46,10 @@ Package::~Package(void)	//??
 
 Package Package::InitializeType()
 {
-	Package& package = Package("TemplatePackage");
-	AssetManager::addAssetType("Package", &package);
-	return package;
+	///TODO: Figure out what to do with this.
+	Package* package = new Package("TemplatePackage");
+	//AssetManager::addAssetType("Package", package);
+	return *package;
 }
 
 QString Package::getName()
@@ -63,27 +64,48 @@ void Package::setName(QString name)	//??
 
 QString Package::GETTYPENAME("Package");
 
-QString Package::toXML()
-{
-	QString XMLString = QString(getIndent() + "<Package name = \"" + name + "\">\n");
-	increaseIndent();
-	for (Asset asset : assets)
-	{
-		//XMLString += asset.toXML();
-	}
-	decreaseIndent();
-	XMLString += QString(getIndent() + "</Package>\n");
-
-	return XMLString;
-}
+//QString Package::toXML()
+//{
+//	QString XMLString = QString(getIndent() + "<Package name = \"" + name + "\">\n");
+//	increaseIndent();
+//	for (Asset asset : assets)
+//	{
+//		//XMLString += asset.toXML();
+//	}
+//	decreaseIndent();
+//	XMLString += QString(getIndent() + "</Package>\n");
+//
+//	return XMLString;
+//}
 
 QJsonObject Package::toJSON()
 {
+	QJsonObject JSON;
+	JSON["name"] = name;
+	QJsonArray assetArray;
+
+	for (Asset* asset : assets)
+	{
+		assetArray.push_back(asset->toJSON());
+	}
+
+	JSON["assets"] = assetArray;
+
 	return QJsonObject();
 }
 
-IDeserializableFromJSON& Package::fromJSON(QJsonObject JSON)
+IDeserializableFromJSON* Package::fromJSON(QJsonObject JSON)
 {
-	///TODO: implement this.
-	return *(new Package("TEMPORARY!"));
+	Package* package = new Package(JSON["name"].toString());
+
+	for (QJsonValueRef assetRef : JSON["assets"].toArray())
+	{
+		QJsonObject assetJSON = assetRef.toObject();
+
+		Asset* asset = static_cast<Asset*>(AssetManager::getTypeHandle("Asset")->fromJSON(assetJSON));
+
+		package->assets[assetJSON["name"].toString()] = asset;
+	}
+
+	return package;
 }

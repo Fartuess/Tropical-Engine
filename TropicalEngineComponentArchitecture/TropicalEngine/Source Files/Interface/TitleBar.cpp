@@ -7,7 +7,7 @@
 
 #include <QtCore/qdebug.h>
 
-#include "Interface/TitleBar.h"
+#include <Interface/TitleBar.h>
 
 
 TitleBar::TitleBar(QWidget* rootParent, QWidget* parent) : QWidget(parent)

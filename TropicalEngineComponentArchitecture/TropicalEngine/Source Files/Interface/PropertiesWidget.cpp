@@ -1,13 +1,13 @@
-#include "Interface/PropertiesWidget.h"
-#include "Interface/PropertyItem.h"
-#include "Interface/SceneGraphWidget.h"
-#include "Interface/SceneGraphItem.h"
-#include "Scene/Entity.h"
+#include <Interface/PropertiesWidget.h>
+#include <Interface/PropertyItem.h>
+#include <Interface/SceneGraphWidget.h>
+#include <Interface/SceneGraphItem.h>
+#include <Scene/Entity.h>
 
 PropertiesWidget::PropertiesWidget(void)
 {
 	setColumnCount(2);
-	QStringList* headerLabels = new QStringList();;
+	QStringList* headerLabels = new QStringList();
 	*headerLabels << "Name" << "Value";
 	setHeaderLabels(*headerLabels);
 }

@@ -1,7 +1,7 @@
-#include "Scene/Entity.h"
-#include "Scene/Level.h"
-#include "Scene/SceneManager.h"
-#include "Camera/CameraComponent.h"
+#include <Scene/Entity.h>
+#include <Scene/Level.h>
+#include <Scene/SceneManager.h>
+#include <Camera/CameraComponent.h>
 
 SceneManager::SceneManager(void)
 {

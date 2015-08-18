@@ -1,5 +1,5 @@
-#include "Interface/PropertyItem.h"
-#include "Component/Component.h"
+#include <Interface/PropertyItem.h>
+#include <Component/Component.h>
 
 PropertyItem::PropertyItem(QString name)
 {

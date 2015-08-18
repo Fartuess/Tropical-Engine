@@ -765,6 +765,10 @@
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Header Files\Interface\MainWindow.h" />
+    <ClInclude Include="Header Files\Interface\OpenGLWidget.h" />
+    <ClInclude Include="Header Files\Interface\PropertiesWidget.h" />
+    <ClInclude Include="Header Files\Interface\TitleBar.h" />
     <ClInclude Include="Header Files\Model\FbxModelImporter.h" />
     <ClInclude Include="Header Files\Model\AssimpModelImporter.h" />
     <ClInclude Include="Header Files\Model\AbstractModelImporter.h" />
@@ -772,8 +776,10 @@
     <ClInclude Include="Header Files\Package\Asset.h" />
     <ClInclude Include="Header Files\Input\InputAction.h" />
     <ClInclude Include="Header Files\Serialization\IDeserializableFromJSON.h" />
+    <ClInclude Include="Header Files\TempHelpers\OglDevTut03.h" />
     <ClInclude Include="Header Files\TropicalEngineApplication.h" />
     <ClInclude Include="Header Files\Utills\INamedType.h" />
+    <ClInclude Include="Header Files\Serialization\ISerializableJSON.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{B12702AD-ABFB-343A-A199-8E24837244A3}</ProjectGuid>

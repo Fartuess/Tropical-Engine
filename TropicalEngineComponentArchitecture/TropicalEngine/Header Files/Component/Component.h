@@ -1,15 +1,13 @@
 #pragma once
 #include <QtCore/qmap.h>
 
-#include "Serialization/ISerializableToXML.h"
-#include "Serialization/ISerializableToJSON.h"
-#include "Serialization/IDeserializableFromJSON.h"
+#include <Serialization/ISerializableJSON.h>
 
-#include "Package/AssetManager.h"
+#include <Package/AssetManager.h>
 
 class Entity;
 
-class Component : public ISerializableToJSON, public IDeserializableFromJSON
+class Component : public ISerializableJSON
 {
 public:
 	friend class Entity;
@@ -20,7 +18,6 @@ public:
 	Entity* getOwner();
 	void setOwner(Entity* owner);
 
-	//virtual QString getName() = 0;
 	static bool isComponentTypeUsed(QString name);
 	static unsigned int getComponentType(QString name);
 
@@ -28,8 +25,8 @@ public:
 
 	static QMap<QString, QString> getParameters(QString componentTypeName);	//if so change here as well
 
-	//QString getTypeName() = 0;
 	QJsonObject toJSON() override;
+	IDeserializableFromJSON* fromJSON(QJsonObject JSON) override;
 
 protected:
 	Entity* owner;
@@ -53,4 +50,10 @@ private:
 	static void AddParameterType(QString name);
 
 	static QMap<QString, QMap<QString, QString>> parameters;	//maybe instead of last QString use unsigned int
+
+
+	/*******************************
+	 * TEMPORARY SOLUTION
+	 *******************************/
+	static QMap<QString, Component*> componentHandles;
 };

@@ -1,9 +1,9 @@
-#include "Shader/Shader.h"
-#include "Texture/TextureManager.h"
-#include "Shader/Material.h"
-#include "Shader/MaterialManager.h"
-#include "Model/ModelComponent.h"
-#include "Model/ModelController.h"
+#include <Shader/Shader.h>
+#include <Texture/TextureManager.h>
+#include <Shader/Material.h>
+#include <Shader/MaterialManager.h>
+#include <Model/ModelComponent.h>
+#include <Model/ModelController.h>
 
 #include "TropicalEngineApplication.h"
 
@@ -137,17 +137,17 @@ void Material::SetParameter(QString name, void* parameter)
 
 QString Material::GETTYPENAME("Material");
 
-QString Material::toXML()
-{
-	///TODO: implement it.
-	QString XMLString = QString(getIndent() + "<Material name = \"" + name + "\" shader = \"" + getShader()->getName() + "\">\n");
-	increaseIndent();
-	///TODO: save material parameters
-	decreaseIndent();
-	XMLString += QString(getIndent() + "</Material>\n");
-
-	return XMLString;
-}
+//QString Material::toXML()
+//{
+//	///TODO: implement it.
+//	QString XMLString = QString(getIndent() + "<Material name = \"" + name + "\" shader = \"" + getShader()->getName() + "\">\n");
+//	increaseIndent();
+//	///TODO: save material parameters
+//	decreaseIndent();
+//	XMLString += QString(getIndent() + "</Material>\n");
+//
+//	return XMLString;
+//}
 
 QJsonObject Material::toJSON()
 {

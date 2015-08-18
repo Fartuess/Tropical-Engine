@@ -1,5 +1,4 @@
 #pragma once
-
 #include <QtCore/qstring.h>
 
 class INamedType

@@ -4,8 +4,9 @@
 #include <QtCore/qmap.h>
 #include <QtWidgets/qaction.h>
 
-#include "Camera/CameraComponent.h"
-#include "Input/InputAction.h"
+#include <Camera/CameraComponent.h>
+
+#include "InputAction.h"
 
 class InputManager
 {

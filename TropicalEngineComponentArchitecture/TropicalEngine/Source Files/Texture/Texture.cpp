@@ -1,12 +1,13 @@
 #include <gl/glew.h>
+
 #include <QtCore/qfile.h>
-#include "Texture/Texture.h"
-#include "Texture/TextureManager.h"
-#include "Shader/MaterialManager.h"
+#include <QtCore/qdebug.h>
+
+#include <Texture/Texture.h>
+#include <Texture/TextureManager.h>
+#include <Shader/MaterialManager.h>
 
 #include "TropicalEngineApplication.h"
-
-#include <QtCore/qdebug.h>
 
 Texture::Texture(QString fileUrl)
 {
@@ -71,10 +72,10 @@ void Texture::ActivateTexture(GLuint location)
 
 QString Texture::GETTYPENAME("Texture");
 
-QString Texture::toXML()
-{
-	return QString(getIndent() + "<Texture filepath = \"" + fileUrl + "\"/>\n");
-}
+//QString Texture::toXML()
+//{
+//	return QString(getIndent() + "<Texture filepath = \"" + fileUrl + "\"/>\n");
+//}
 
 QJsonObject Texture::toJSON()
 {
@@ -83,4 +84,15 @@ QJsonObject Texture::toJSON()
 	JSON["url"] = fileUrl;
 
 	return JSON;
+}
+
+IDeserializableFromJSON* Texture::fromJSON(QJsonObject JSON)
+{
+	QString name = JSON["name"].toString();
+	QString fileUrl = JSON["url"].toString();
+
+	Texture* texture = new Texture(fileUrl);
+	texture->name = name;
+
+	return texture;
 }

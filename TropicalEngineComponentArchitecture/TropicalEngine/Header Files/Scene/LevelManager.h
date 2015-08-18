@@ -1,7 +1,8 @@
 #pragma once
-#include "Scene/Level.h"
 #include <QtCore/qstring.h>
 #include <QtCore/qmap.h>
+
+#include "Level.h"
 
 class LevelManager
 {

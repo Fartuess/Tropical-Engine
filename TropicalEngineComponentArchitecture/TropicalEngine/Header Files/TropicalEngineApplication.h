@@ -1,7 +1,7 @@
 #pragma once
-#include <QtWidgets/qapplication.h>
 #include <QtCore/qtime>
 #include <QtCore/qsettings.h>
+#include <QtWidgets/qapplication.h>
 
 class TropicalEngineApplication : public QApplication
 {

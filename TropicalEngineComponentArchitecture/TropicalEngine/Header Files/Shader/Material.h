@@ -1,10 +1,11 @@
 #pragma once
 #include <glm.hpp>
-#include <QtCore/qvector.h>
-#include "Serialization/ISerializableToXML.h"
-#include "Serialization/ISerializableToJSON.h"
 
-class Material : public ISerializableToXML, public ISerializableToJSON
+#include <QtCore/qvector.h>
+
+#include <Serialization/ISerializableToJSON.h>
+
+class Material : public ISerializableToJSON
 {
 public:
 	QString getName();
@@ -23,7 +24,6 @@ public:
 	void SetParameter(QString name, void* parameter);
 
 	QString getTypeName() override;
-	QString toXML() override;
 	QJsonObject toJSON() override;
 
 private:

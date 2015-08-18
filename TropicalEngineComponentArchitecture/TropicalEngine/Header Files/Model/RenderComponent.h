@@ -1,9 +1,9 @@
 #pragma once
 #include <QtCore/qlist.h>
-#include "Component/Component.h"
 
-class RenderComponent :
-	public Component
+#include <Component/Component.h>
+
+class RenderComponent : public Component
 {
 public:
 	class Material* material;

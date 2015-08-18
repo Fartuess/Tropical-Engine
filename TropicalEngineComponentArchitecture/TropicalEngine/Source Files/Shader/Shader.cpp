@@ -3,9 +3,9 @@
 #include <QtCore/qdebug.h>
 #include <QtCore/qregexp.h>
 #include <QtCore/qregularexpression.h>
-#include "Shader/ShaderManager.h"
-#include "Shader/Shader.h"
-#include "Light/PointLightComponent.h"
+#include <Shader/ShaderManager.h>
+#include <Shader/Shader.h>
+#include <Light/PointLightComponent.h>
 
 #include "TropicalEngineApplication.h"
 
@@ -365,19 +365,19 @@ void Shader::Use()
 
 QString Shader::GETTYPENAME("Shader");
 
-QString Shader::toXML()
-{
-	///TODO: implement it.
-	QString XMLString = QString(getIndent() + "<Shader name = \"" + name + "\">\n");
-	increaseIndent();
-	///TODO: save information about subshader filepaths
-	//foreach(subshader
-	XMLString += defaultMaterial->toXML();
-	decreaseIndent();
-	XMLString += QString(getIndent() + "</Shader>\n");
-
-	return XMLString;
-}
+//QString Shader::toXML()
+//{
+//	///TODO: implement it.
+//	QString XMLString = QString(getIndent() + "<Shader name = \"" + name + "\">\n");
+//	increaseIndent();
+//	///TODO: save information about subshader filepaths
+//	//foreach(subshader
+//	XMLString += defaultMaterial->toXML();
+//	decreaseIndent();
+//	XMLString += QString(getIndent() + "</Shader>\n");
+//
+//	return XMLString;
+//}
 
 QJsonObject Shader::toJSON()
 {

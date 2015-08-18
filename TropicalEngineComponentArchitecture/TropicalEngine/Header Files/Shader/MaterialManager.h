@@ -1,7 +1,8 @@
 #pragma once
-#include "Shader/Material.h"
 #include <QtCore/qstring.h>
 #include <QtCore/qmap.h>
+
+#include "Material.h"
 
 class MaterialManager
 {

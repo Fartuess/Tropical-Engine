@@ -1,8 +1,9 @@
 #include <QtCore/qmap.h>
 #include <QtCore/qdebug.h>
 
-#include "Component/Component.h"
-#include "Scene/Entity.h"
+#include <Scene/Entity.h>
+
+#include <Component/Component.h>
 
 Component::Component()
 {
@@ -140,4 +141,13 @@ QJsonObject Component::toJSON()
 	QJsonObject JSON = QJsonObject();
 	JSON["type"] = getTypeName();
 	return JSON;
+}
+
+QMap<QString, Component*> Component::componentHandles = QMap<QString, Component*>();
+
+IDeserializableFromJSON* Component::fromJSON(QJsonObject JSON)
+{
+	Component* component = static_cast<Component*>(componentHandles[JSON["type"].toString()]->fromJSON(JSON));
+
+	return component;
 }

@@ -1,25 +1,24 @@
-#include "Scene/Level.h"
-#include "Shader/Shader.h"
-#include "Shader/Material.h"
-#include "Texture/Texture.h"
-#include "Model/Model.h"
-#include "Model/ModelBuilder.h"
-#include "Model/ModelComponent.h"
-#include "Model/ModelManager.h"
+#include <QtCore/qdebug.h>
+#include <QtCore/qjsondocument.h>
+
+#include <Scene/Level.h>
+#include <Shader/Shader.h>
+#include <Shader/Material.h>
+#include <Texture/Texture.h>
+#include <Model/Model.h>
+#include <Model/ModelBuilder.h>
+#include <Model/ModelComponent.h>
+#include <Model/ModelManager.h>
 #include <Model/AssimpModelImporter.h>
 #include <Model/FbxModelImporter.h>
-#include "Camera/CameraComponent.h"
-#include "Scene/Entity.h"
-#include "Light/DirectionalLightComponent.h"
-#include "Light/PointLightComponent.h"
-#include "Scene/SceneManager.h"
-#include "TempHelpers/OglDevTut03.h"
+#include <Camera/CameraComponent.h>
+#include <Scene/Entity.h>
+#include <Light/DirectionalLightComponent.h>
+#include <Light/PointLightComponent.h>
+#include <Scene/SceneManager.h>
+#include <TempHelpers/OglDevTut03.h>
 
 #include "TropicalEngineApplication.h"
-
-#include<QtCore/qdebug.h>
-//#include <QtGui\qimagereader.h>
-#include <QtCore/qjsondocument.h>
 
 void OglDevTut03::InitializeLevel()
 {

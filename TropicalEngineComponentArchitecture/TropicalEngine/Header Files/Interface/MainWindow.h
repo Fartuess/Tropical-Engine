@@ -9,9 +9,10 @@
 #include <QtWidgets/qtreeview.h>
 #include <QtWidgets/qpushbutton.h>
 #include <QtWidgets/qgroupbox.h>
-#include "Interface/OpenGLWidget.h"
-#include "Interface/SceneGraphWidget.h"
-#include "Interface/PropertiesWidget.h"
+
+#include "OpenGLWidget.h"
+#include "SceneGraphWidget.h"
+#include "PropertiesWidget.h"
 
 class MainWindow : public QMainWindow
 {

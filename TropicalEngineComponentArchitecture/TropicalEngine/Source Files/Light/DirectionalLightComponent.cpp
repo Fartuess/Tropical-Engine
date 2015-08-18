@@ -1,4 +1,4 @@
-#include "Light/DirectionalLightComponent.h"
+#include <Light/DirectionalLightComponent.h>
 
 DirectionalLightComponent DirectionalLightComponent::templateObject = DirectionalLightComponent::InitializeType();
 
@@ -65,7 +65,6 @@ QString DirectionalLightComponent::GETTYPENAME("DirectionalLight Component");
 
 QJsonObject DirectionalLightComponent::toJSON()
 {
-	///TODO: implement it.
 	QJsonObject JSON = LightComponent::toJSON();
 	QJsonObject directionObject = QJsonObject();
 	directionObject["x"] = direction.x;
@@ -76,8 +75,17 @@ QJsonObject DirectionalLightComponent::toJSON()
 	return JSON;
 }
 
-IDeserializableFromJSON& DirectionalLightComponent::fromJSON(QJsonObject JSON)
+IDeserializableFromJSON* DirectionalLightComponent::fromJSON(QJsonObject JSON)
 {
-	///TODO: implement this.
-	return *(new DirectionalLightComponent());
+	DirectionalLightComponent* object = new DirectionalLightComponent();
+
+	QJsonObject colorJSON = JSON["color"].toObject();
+	object->color = glm::vec3(colorJSON["r"].toDouble(), colorJSON["g"].toDouble(), colorJSON["b"].toDouble());
+	object->brightness = JSON["brightness"].toDouble();
+	object->castingShadows = JSON["casting shadows"].toBool();
+
+	QJsonObject directionJSON = JSON["direction"].toObject();
+	object->direction = glm::vec3(directionJSON["x"].toDouble(), directionJSON["y"].toDouble(), directionJSON["z"].toDouble());
+
+	return object;
 }
