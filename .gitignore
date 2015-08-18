@@ -10,3 +10,4 @@ TropicalEngineComponentArchitecture/TropicalEngine/x64/**/*.obj
 !*.lib
 !*.exe
 !*.dll
+!TropicalEngineComponentArchitecture/TropicalEngine/Assets/**/*.obj

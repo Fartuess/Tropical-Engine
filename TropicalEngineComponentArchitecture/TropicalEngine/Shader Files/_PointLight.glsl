@@ -19,5 +19,5 @@ float calculatePointLightBrightness(PointLight light, vec3 fragmentPosition)
 	float lightDistance = distance(light.position, fragmentPosition);
 	float lightDistanceFactor = max(1.0 - (lightDistance / light.radius), 0.0);
 
-	return pow(lightDistanceFactor, light.attenuation) * light.brightness;
+	return max(pow(lightDistanceFactor, light.attenuation) * light.brightness, 0.0);
 }
