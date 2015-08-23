@@ -15,7 +15,7 @@ ShaderManager::~ShaderManager(void)
 	}
 }
 
-Shader* ShaderManager::getCurrentShader()
+Shader* const ShaderManager::getCurrentShader()
 {
 	return currentShader;
 }
@@ -23,6 +23,11 @@ Shader* ShaderManager::getCurrentShader()
 void ShaderManager::setCurrentShader(Shader* shader)
 {
 	currentShader = shader;
+}
+
+Shader* const ShaderManager::getShader(QString name)
+{
+	return shaders[name];
 }
 
 void ShaderManager::FlushShader(QString name)

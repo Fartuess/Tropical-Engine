@@ -1,5 +1,6 @@
 #pragma once
 #include <GL/glew.h>
+
 #include <QtCore/qstring.h>
 #include <QtCore/qmap.h>
 
@@ -23,8 +24,12 @@ public:
 	ShaderManager(void);
 	~ShaderManager(void);
 
-	Shader* getCurrentShader();
+	Shader* const getCurrentShader();
 	void setCurrentShader(Shader* shader);
+	Shader* const getShader(QString name);
+
+	Shader* operator[](QString name)      { return shaders[name]; };
+	const Shader* operator[](QString name) const { return shaders[name]; };
 
 	void Load(Shader* shader, QString name);
 	void Load(QString vertexShader, QString fragmentShader, QString name);

@@ -9,7 +9,7 @@
 class Texture : public ISerializableJSON
 {
 public:
-	Texture(QString fileUrl);
+	Texture(QString fileUrl, QString name = "");
 	~Texture(void);
 
 	static Texture nullTexture;

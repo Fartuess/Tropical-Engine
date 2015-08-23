@@ -3,9 +3,11 @@
 
 #include <QtCore/qvector.h>
 
-#include <Serialization/ISerializableToJSON.h>
+#include <Serialization/ISerializableJSON.h>
 
-class Material : public ISerializableToJSON
+#include "MaterialParameter.h"
+
+class Material : public ISerializableJSON
 {
 public:
 	QString getName();
@@ -18,18 +20,24 @@ public:
 	///TODO: figure out if it is easy to implement parameter get and getAll
 	//const QVector<QPair<QString, void*>>& getParameters();
 	void Use();
-
+	
 	void ActivateParameter(QString name, void* value);
 
 	void SetParameter(QString name, void* parameter);
 
+	MaterialParameter& operator[](QString name)      { return parameters[name]; };
+	const MaterialParameter& operator[](QString name) const { return parameters[name]; };
+
+	//void* operator[](QString name);
+
 	QString getTypeName() override;
 	QJsonObject toJSON() override;
+	IDeserializableFromJSON* fromJSON(QJsonObject JSON) override;
 
 private:
 	QString name;
 	class Shader* shader;
-	QMap<QString, void*> parameters;
+	QMap<QString, MaterialParameter> parameters;
 
 	void ActivateParameter(GLuint location, float* value);
 	void ActivateParameter(GLuint location, glm::vec2* value);

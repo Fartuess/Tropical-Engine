@@ -4,11 +4,11 @@
 #include <QtCore/qlist.h>
 #include <QtCore/qstring.h>
 
-#include <Serialization/ISerializableToJSON.h>
+#include <Serialization/ISerializableJSON.h>
 
 #include "TransformComponent.h"
 
-class Entity : public ISerializableToJSON
+class Entity : public ISerializableJSON
 {
 private:
 	QList<Component*> components;	//Had to be on top to initialize before transform.
@@ -16,8 +16,6 @@ private:
 public:
 	friend class Component;
 	friend class PropertiesWidget;
-
-	QList<Entity*> subobjects;
 
 	TransformComponent transform;
 	QString name;
@@ -30,14 +28,21 @@ public:
 	Entity* getParrent();
 	void AttachSubobject(Entity* subobject);
 	void AttachTo(Entity* parrent);
+	Entity& operator<<(Entity* child);
+	const QList<Entity*>& getSubobjects();
+
 	void AttachComponent(Component* component);
 	void DeleteComponent(Component* component);	//is needed?
+	Entity& operator<<(Component* component);
 
 	QString getTypeName() override;
 	QJsonObject toJSON() override;
+	IDeserializableFromJSON* fromJSON(QJsonObject JSON) override;
 
 private:
 	Entity* parrent;
+
+	QList<Entity*> subobjects;
 
 	void DetachComponent(Component* component);
 };

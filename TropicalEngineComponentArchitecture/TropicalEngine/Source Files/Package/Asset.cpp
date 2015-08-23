@@ -3,10 +3,10 @@
 
 //Asset Asset::templateObject = Asset::InitializeType();
 
-Asset::Asset(QString name, QString type, ISerializableJSON* asset)
+Asset::Asset(QString name, ISerializableJSON* asset)
 {
 	this->name = name;
-	this->type = type;
+	this->type = asset->getTypeName();
 	this->asset = asset;
 }
 

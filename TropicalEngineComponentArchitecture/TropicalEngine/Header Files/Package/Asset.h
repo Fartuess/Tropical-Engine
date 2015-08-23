@@ -2,7 +2,6 @@
 #include <QtCore/qstring.h>
 
 #include <Serialization/ISerializableJSON.h>
-#include <Serialization/IDeserializableFromJSON.h>
 
 class Asset : public ISerializableJSON
 {
@@ -13,7 +12,7 @@ public:
 	///TODO: Figure out how to do it.
 	ISerializableJSON* asset;
 
-	Asset(QString name, QString type, ISerializableJSON* asset);
+	Asset(QString name, ISerializableJSON* asset);
 	//Asset(QString name, QString type, QJsonObject JSON);
 	~Asset();
 	//static Asset InitializeType();

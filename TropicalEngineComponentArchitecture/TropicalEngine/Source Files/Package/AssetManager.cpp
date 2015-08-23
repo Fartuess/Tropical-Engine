@@ -25,5 +25,5 @@ ISerializableJSON* AssetManager::getTypeHandle(QString name)
 
 ISerializableJSON& AssetManager::createAsset(QJsonObject JSON)
 {
-	return Asset("", "", nullptr);
+	return *(new Asset("", nullptr));
 }

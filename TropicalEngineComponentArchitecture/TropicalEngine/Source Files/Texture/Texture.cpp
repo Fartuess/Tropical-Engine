@@ -9,9 +9,10 @@
 
 #include "TropicalEngineApplication.h"
 
-Texture::Texture(QString fileUrl)
+Texture::Texture(QString fileUrl, QString name)
 {
 	this->fileUrl = fileUrl;
+	this->name = name;
 	Load();	//maybe not always should be loaded into GPU when it is load
 }
 

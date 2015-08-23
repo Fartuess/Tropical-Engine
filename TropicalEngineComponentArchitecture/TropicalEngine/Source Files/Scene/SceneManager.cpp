@@ -74,6 +74,6 @@ void SceneManager::EvaluateLevels()
 {
 	for (Level* level : levels)
 	{
-		level->root.transform.Evaluate();
+		level->getRoot()->transform.Evaluate();
 	}
 }

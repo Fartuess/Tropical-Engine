@@ -14,8 +14,11 @@ public:
 	MaterialManager(void);
 	~MaterialManager(void);
 
+	Material* operator[](QString name)	{ return materials[name]; };
+	const Material* operator[](QString name) const	{ return materials[name]; };
+
 	///TODO: Rethink Load method.
-	void Load(Shader* shader, void* params, QString name);	//temporal declaration
+	void Load(class Shader* shader, void* params, QString name);	//temporal declaration
 
 	void UseMaterial(QString name);
 	void UseMaterial(Material* material);

@@ -39,6 +39,10 @@ void TextureManager::resetTextureIterator()
 	textureIterator = 0;
 }
 
+Texture* const TextureManager::getTexture(QString name)
+{
+	return textures[name];
+}
 
 void TextureManager::Load(QString name, QString fileUrl)
 {

@@ -1,4 +1,5 @@
 #include <Shader/Shader.h>
+#include <Shader/ShaderManager.h>
 #include <Texture/TextureManager.h>
 #include <Shader/Material.h>
 #include <Shader/MaterialManager.h>
@@ -57,7 +58,7 @@ void Material::Use()
 		//typedef QPair<QString, void*> parameterType;
 		for (QString parameter : parameters.keys())
 		{
-			ActivateParameter(parameter, parameters[parameter]);
+			ActivateParameter(parameter, *parameters[parameter]);
 		}
 	}
 }
@@ -135,6 +136,11 @@ void Material::SetParameter(QString name, void* parameter)
 	parameters[name] = parameter;
 }
 
+//void* Material::operator[](QString name)
+//{
+//	return parameters[name];
+//}
+
 QString Material::GETTYPENAME("Material");
 
 //QString Material::toXML()
@@ -166,19 +172,19 @@ QJsonObject Material::toJSON()
 		{
 			case GL_FLOAT:
 			{
-				valueJSON["x"] = *((float*)(parameters[materialParameter]));
+				valueJSON["x"] = *((float*)(*parameters[materialParameter]));
 				break;
 			}
 			case GL_FLOAT_VEC2:
 			{
-				glm::vec2* value = (glm::vec2*)(parameters[materialParameter]);
+				glm::vec2* value = (glm::vec2*)(*parameters[materialParameter]);
 				valueJSON["x"] = value->x;
 				valueJSON["y"] = value->y;
 				break;
 			}
 			case GL_FLOAT_VEC3:
 			{
-				glm::vec3* value = (glm::vec3*)(parameters[materialParameter]);
+				glm::vec3* value = (glm::vec3*)(*parameters[materialParameter]);
 				valueJSON["x"] = value->x;
 				valueJSON["y"] = value->y;
 				valueJSON["z"] = value->z;
@@ -186,7 +192,7 @@ QJsonObject Material::toJSON()
 			}
 			case GL_FLOAT_VEC4:
 			{
-				glm::vec4* value = (glm::vec4*)(parameters[materialParameter]);
+				glm::vec4* value = (glm::vec4*)(*parameters[materialParameter]);
 				valueJSON["x"] = value->x;
 				valueJSON["y"] = value->y;
 				valueJSON["z"] = value->z;
@@ -195,7 +201,7 @@ QJsonObject Material::toJSON()
 			}
 			case GL_FLOAT_MAT3:
 			{
-				glm::mat3* value = (glm::mat3*)(parameters[materialParameter]);
+				glm::mat3* value = (glm::mat3*)(*parameters[materialParameter]);
 				QJsonArray matrixJSON = QJsonArray();
 				QJsonArray x = QJsonArray();
 				QJsonObject x1 = QJsonObject();
@@ -235,7 +241,7 @@ QJsonObject Material::toJSON()
 			}
 			case GL_FLOAT_MAT4:
 			{
-				glm::mat4* value = (glm::mat4*)(parameters[materialParameter]);
+				glm::mat4* value = (glm::mat4*)(*parameters[materialParameter]);
 				QJsonArray matrixJSON = QJsonArray();
 				QJsonArray x = QJsonArray();
 				QJsonObject x1 = QJsonObject();
@@ -298,7 +304,7 @@ QJsonObject Material::toJSON()
 			}
 			case GL_SAMPLER_2D:
 			{
-				valueJSON["name"] = ((Texture*)(parameters[materialParameter]))->getName();
+				valueJSON["name"] = ((Texture*)(*parameters[materialParameter]))->getName();
 				break;
 			}
 			default:
@@ -312,4 +318,113 @@ QJsonObject Material::toJSON()
 	JSON["parameters"] = materialParametersJSON;
 
 	return JSON;
+}
+
+IDeserializableFromJSON* Material::fromJSON(QJsonObject JSON)
+{
+	QString name = JSON["name"].toString();
+	Shader* shader = TropicalEngineApplication::instance()->shaderManager->getShader(JSON["shader"].toString());
+	Material* object = new Material(shader, nullptr, name);
+
+	for (QJsonValueRef parameterJSON : JSON["parameters"].toArray())
+	{
+		QString parameterName = parameterJSON.toObject()["name"].toString();
+		switch (parameterJSON.toObject()["type"].toInt())
+		{
+			case GL_FLOAT:
+			{
+				float* value = new float(parameterJSON.toObject()["x"].toDouble());
+				object->SetParameter(parameterName, value);
+				break;
+			}
+			case GL_FLOAT_VEC2:
+			{
+				glm::vec2* value = new glm::vec2();
+				value->x = parameterJSON.toObject()["x"].toDouble();
+				value->y = parameterJSON.toObject()["y"].toDouble();
+				object->SetParameter(parameterName, value);
+				break;
+			}
+			case GL_FLOAT_VEC3:
+			{
+				glm::vec3* value = new glm::vec3();
+				value->x = parameterJSON.toObject()["x"].toDouble();
+				value->y = parameterJSON.toObject()["y"].toDouble();
+				value->z = parameterJSON.toObject()["z"].toDouble();
+				object->SetParameter(parameterName, value);
+				break;
+			}
+			case GL_FLOAT_VEC4:
+			{
+				glm::vec4* value = new glm::vec4();
+				value->x = parameterJSON.toObject()["x"].toDouble();
+				value->y = parameterJSON.toObject()["y"].toDouble();
+				value->z = parameterJSON.toObject()["z"].toDouble();
+				value->w = parameterJSON.toObject()["w"].toDouble();
+				object->SetParameter(parameterName, value);
+				break;
+			}
+			case GL_FLOAT_MAT3:
+			{
+				glm::mat3* value = new glm::mat3();
+
+				QStringList rowNames;
+				rowNames << "x" << "y" << "z";
+				int row = 0;
+				int column = 0;
+				for (QString rowName : rowNames)
+				{
+					QJsonArray rowJSON = parameterJSON.toObject()[rowName].toArray();
+					for (QJsonValueRef columnJSON : rowJSON)
+					{
+						(*value)[row][column] = columnJSON.toObject()["value"].toDouble();
+						column++;
+					}
+					column = 0;
+					row++;
+				}
+
+				object->SetParameter(parameterName, value);
+				break;
+			}
+			case GL_FLOAT_MAT4:
+			{
+				glm::mat3* value = new glm::mat3();
+
+				QStringList rowNames;
+				rowNames << "x" << "y" << "z" << "w";
+				int row = 0;
+				int column = 0;
+				for (QString rowName : rowNames)
+				{
+					QJsonArray rowJSON = parameterJSON.toObject()[rowName].toArray();
+					for (QJsonValueRef columnJSON : rowJSON)
+					{
+						(*value)[row][column] = columnJSON.toObject()["value"].toDouble();
+						column++;
+					}
+					column = 0;
+					row++;
+				}
+
+				object->SetParameter(parameterName, value);
+				break;
+			}
+			case GL_SAMPLER_2D:
+			{
+				Texture* value;
+
+				value = TropicalEngineApplication::instance()->textureManager->getTexture(parameterJSON.toObject()["name"].toString());
+
+				object->SetParameter(parameterName, value);
+				break;
+			}
+			default:
+			{
+				break;
+			}
+		}
+	}
+
+	return object;
 }

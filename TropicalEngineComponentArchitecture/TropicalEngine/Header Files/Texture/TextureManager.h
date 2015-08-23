@@ -16,6 +16,10 @@ public:
 	void incrementTextureIterator();
 	void resetTextureIterator();
 
+	Texture* const getTexture(QString name);
+	Texture* operator[](QString name)	{ return textures[name]; };
+	Texture* const operator[](QString name)	const	{ return textures[name]; };
+
 	void Load(QString name, QString fileUrl);
 private:
 	QMap<QString, Texture*> textures;

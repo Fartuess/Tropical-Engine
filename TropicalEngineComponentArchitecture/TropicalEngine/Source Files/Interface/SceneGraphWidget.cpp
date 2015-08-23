@@ -25,7 +25,7 @@ void SceneGraphWidget::Reload()
 	QMap<QString, Level*>& levels = TropicalEngineApplication::instance()->sceneManager->getLevels();
 	for (QString levelName : levels.keys())
 	{
-		SceneGraphItem* levelItem = new SceneGraphItem(levelName, &levels[levelName]->root);
+		SceneGraphItem* levelItem = new SceneGraphItem(levelName, levels[levelName]->getRoot());
 		addTopLevelItem(levelItem);
 		levelItem->Reload();
 	}

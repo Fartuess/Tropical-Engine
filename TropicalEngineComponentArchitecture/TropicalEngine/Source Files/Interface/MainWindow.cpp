@@ -169,7 +169,7 @@ void MainWindow::newLevel()
 	Entity* mainCamera = new Entity(glm::vec3(0.0f, 0.0f, 5.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
 	mainCamera->name = "Main Camera";
 	CameraComponent* mainCameraComponent = new CameraComponent(mainCamera, glm::vec3(0.0f, 0.0f, -1.0f), glm::vec3(0.0f, 1.0f, 0.0f), 40.0f, 4.0f / 3.0f, 0.1f, 10000.0f);
-	newLevel->root.AttachSubobject(mainCamera);
+	newLevel->getRoot()->AttachSubobject(mainCamera);
 	TropicalEngineApplication::instance()->sceneManager->LoadLevel(newLevel, "Untitled Level");
 
 	//temp

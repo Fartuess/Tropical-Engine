@@ -65,6 +65,17 @@ void Entity::AttachTo(Entity* parrent)
 	}
 }
 
+Entity& Entity::operator<<(Entity* child)
+{
+	AttachSubobject(child);
+	return *this;
+}
+
+const QList<Entity*>& Entity::getSubobjects()
+{
+	return subobjects;
+}
+
 void Entity::AttachComponent(Component* component)
 {
 	if (component != nullptr)
@@ -82,6 +93,12 @@ void Entity::DeleteComponent(Component* component)
 		components.removeOne(component);
 		delete component;
 	}
+}
+
+Entity& Entity::operator<<(Component* component)
+{
+	AttachComponent(component);
+	return *this;
 }
 
 void Entity::DetachComponent(Component* component)
@@ -134,4 +151,30 @@ QJsonObject Entity::toJSON()
 	JSON["subobjects"] = subobjectsArray;
 
 	return JSON;
+}
+
+IDeserializableFromJSON* Entity::fromJSON(QJsonObject JSON)
+{
+	Entity* object = new Entity();
+
+	for (QJsonValueRef componentRef : JSON["components"].toArray())
+	{
+		QJsonObject componentJSON = componentRef.toObject();
+
+		///TODO: create and attach component.
+		Component* component;
+
+		object->AttachComponent(component);
+	}
+
+	for (QJsonValueRef subobjectRef : JSON["subobjects"].toArray())
+	{
+		QJsonObject subobjectJSON = subobjectRef.toObject();
+
+		Entity* subobject = static_cast<Entity*>(fromJSON(subobjectJSON));
+
+		object->AttachSubobject(subobject);
+	}
+
+	return object;
 }

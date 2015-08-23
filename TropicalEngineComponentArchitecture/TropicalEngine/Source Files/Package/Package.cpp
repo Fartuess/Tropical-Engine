@@ -62,7 +62,24 @@ void Package::setName(QString name)	//??
 	this->name = name;
 }
 
+Asset* const Package::getAsset(QString name)
+{
+	return assets[name];
+}
+
+void Package::addAsset(Asset* asset)
+{
+	assets[asset->name] = asset;
+}
+
+Package& Package::operator<<(Asset* asset)
+{
+	addAsset(asset);
+	return *this;
+}
+
 QString Package::GETTYPENAME("Package");
+
 
 //QString Package::toXML()
 //{

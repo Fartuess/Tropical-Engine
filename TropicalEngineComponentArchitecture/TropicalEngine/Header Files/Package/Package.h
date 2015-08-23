@@ -3,12 +3,11 @@
 #include <QtCore/qpair.h>
 #include <QtCore/qmap.h>
 
-#include <Serialization/ISerializableToJSON.h>
-#include <Serialization/IDeserializableFromJSON.h>
+#include <Serialization/ISerializableJSON.h>
 
 #include "Asset.h"
 
-class Package : public ISerializableToJSON, public IDeserializableFromJSON
+class Package : public ISerializableJSON
 {
 public:
 	Package(QString name);
@@ -19,8 +18,11 @@ public:
 	QString getName();
 	void setName(QString name);
 
+	Asset* const getAsset(QString name);
+	void addAsset(Asset* asset);
+	Package& operator<<(Asset* asset);
+
 	QString getTypeName() override;
-	//QString toXML() override;
 	QJsonObject toJSON() override;
 	IDeserializableFromJSON* fromJSON(QJsonObject JSON) override;
 

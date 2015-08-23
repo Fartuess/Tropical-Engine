@@ -16,7 +16,7 @@ SceneGraphItem::~SceneGraphItem(void)
 
 void SceneGraphItem::Reload()
 {
-	for (Entity* subobject : entity->subobjects)
+	for (Entity* subobject : entity->getSubobjects())
 	{
 		SceneGraphItem* levelItem;
 		if (subobject->name != "")

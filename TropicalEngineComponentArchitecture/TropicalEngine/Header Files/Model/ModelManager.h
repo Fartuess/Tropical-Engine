@@ -15,6 +15,8 @@ public:
 	~ModelManager(void);
 
 	Model* getModel(QString name);
+	Model* operator[](QString name)      { return models[name]; };
+	const Model* operator[](QString name) const { return models[name]; };
 
 	void Load(QString fileUrl, QString name);
 	void Load(Model* model, QString name);

@@ -325,7 +325,7 @@ void TransformComponent::EvaluateInternal()
 void TransformComponent::Evaluate()
 {
 	EvaluateInternal();
-	for (Entity* childObject : getOwner()->subobjects)
+	for (Entity* childObject : getOwner()->getSubobjects())
 	{
 		childObject->transform.Evaluate();
 	}
