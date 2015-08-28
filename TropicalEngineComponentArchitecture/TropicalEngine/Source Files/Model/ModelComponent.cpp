@@ -74,16 +74,8 @@ void ModelComponent::Draw(CameraComponent* viewer)
 	glUniformMatrix4fv(usedShader->getModelMatrixLocation(), 1, GL_FALSE, glm::value_ptr(owner->transform.getTransformMatrix()));
 	glUniformMatrix3fv(usedShader->getNormalMatrixLocation(), 1, GL_FALSE, glm::value_ptr(owner->transform.getNormalMatrix()));
 	glUniform3fv(usedShader->getCameraPositionLocation(), 1, glm::value_ptr(viewer->getOwner()->transform.getLocalPosition()));	///TODO: Change to global position when it will work
-	//glUniform3fv(usedShader->getCameraPositionLocation(), 1, glm::value_ptr(viewer->getOwner()->transform.getGlobalPosition()));
-	//qDebug() << glm::length(viewer->getOwner()->transform.getLocalPosition());
-	//qDebug() << viewer->getOwner()->transform.getLocalPosition().x << " " << viewer->getOwner()->transform.getLocalPosition().y << " " << viewer->getOwner()->transform.getLocalPosition().z;
 	glUniformMatrix4fv(usedShader->getCameraMatrixLocation(), 1, GL_FALSE, glm::value_ptr(viewer->getCameraMatrix()));
 	glUniformMatrix4fv(usedShader->getProjectionMatrixLocation(), 1, GL_FALSE, glm::value_ptr(viewer->getProjectionMatrix()));
-	
-
-	//temp? Light code
-	//glm::quat helperQuat = viewer->getOwner()->transform.getLocalRotation();
-	//glm::vec3 lightDir = glm::vec3(glm::rotate(glm::mat4(1.0f), glm::angle(helperQuat), glm::axis(helperQuat)) * glm::vec4(TropicalEngineApplication::instance()->sceneManager->mainLight->getDirection(), 1.0f));
 
 	glUniform3fv(usedShader->dirLightVectorLocation, 1, glm::value_ptr(TropicalEngineApplication::instance()->sceneManager->mainLight->getDirection()));
 	glUniform3fv(usedShader->dirLightColorLocation, 1, glm::value_ptr(TropicalEngineApplication::instance()->sceneManager->mainLight->color));
@@ -95,7 +87,6 @@ void ModelComponent::Draw(CameraComponent* viewer)
 		for (int i = 0; i < glm::min(MAX_POINT_LIGHT, lightedBy.size()); i++)	///TODO: Assuming that it is lighted only by pointlights. Change it later to work properly
 		{
 			PointLightComponent* light = static_cast<PointLightComponent*>(lightedBy[i]);
-			//qDebug() << QString::number(light->getOwner()->transform.getLocalPosition().x) + QString::number(light->getOwner()->transform.getLocalPosition().y) + QString::number(light->getOwner()->transform.getLocalPosition().z);
 			glUniform3fv(usedShader->pointLightPositionLocations[i], 1, glm::value_ptr(light->getOwner()->transform.getLocalPosition()));
 			glUniform3fv(usedShader->pointLightColorLocations[i], 1, glm::value_ptr(light->color));
 			glUniform1f(usedShader->pointLightBrightnessLocations[i], light->brightness);
@@ -176,11 +167,10 @@ QJsonObject ModelComponent::toJSON()
 
 IDeserializableFromJSON* ModelComponent::fromJSON(QJsonObject JSON)
 {
-	///TODO: Finish implementing this.
 	ModelComponent* object = new ModelComponent();
 
 	object->model = TropicalEngineApplication::instance()->modelManager->getModel(JSON["model"].toString());
-	//object->material = TropicalEngineApplication::instance()->materialManager->
+	object->material = TropicalEngineApplication::instance()->materialManager->operator[JSON["material"].toString()];
 	object->castingShadows = JSON["cast shadows"].toBool();
 
 	return object;

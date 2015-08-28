@@ -31,8 +31,3 @@ RenderComponent::~RenderComponent(void)
 //{
 //	///TODO: implement it.
 //}
-//
-//void Draw(CameraComponent* viewer)
-//{
-//	///TODO: implement it.
-//}

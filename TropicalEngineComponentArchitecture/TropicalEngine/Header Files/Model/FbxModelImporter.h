@@ -11,10 +11,7 @@ public:
 	FbxModelImporter();
 	~FbxModelImporter();
 
-	/*
-	 * Requires splitted vertices on normals and uvs to work.
-	 */
-	virtual Model* Load(QString name, QString fileUrl) override;
+	Model* Load(QString name, QString fileUrl) override;
 
 private:
 	FbxManager* SdkManager;

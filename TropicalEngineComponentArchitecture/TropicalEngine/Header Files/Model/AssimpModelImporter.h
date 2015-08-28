@@ -13,7 +13,7 @@ public:
 	AssimpModelImporter();
 	~AssimpModelImporter();
 
-	virtual Model* Load(QString name, QString fileUrl) override;
+	Model* Load(QString name, QString fileUrl) override;
 
 private:
 	Assimp::Importer Importer;

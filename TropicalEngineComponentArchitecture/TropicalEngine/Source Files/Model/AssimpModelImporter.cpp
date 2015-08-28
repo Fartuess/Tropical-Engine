@@ -56,34 +56,8 @@ Model* AssimpModelImporter::Load(QString name, QString fileUrl)
 				bitangents.push_back(glm::vec3(pBitangent.x, pBitangent.y, pBitangent.z));
 				texCoords.push_back(glm::vec2(pTexCoord.x, pTexCoord.y));
 			}
-			glGenBuffers(1, &Mesh->vertexVBO);
-			glBindBuffer(GL_ARRAY_BUFFER, Mesh->vertexVBO);
 
-			glBufferData(GL_ARRAY_BUFFER,
-				sizeof(glm::vec4) * vertices.size()
-				+ sizeof(glm::vec3) * vertices.size()
-				+ sizeof(glm::vec3) * vertices.size()
-				+ sizeof(glm::vec3) * vertices.size()
-				+ sizeof(glm::vec2) * vertices.size(), 0, GL_STATIC_DRAW);
-
-			glBufferSubData(GL_ARRAY_BUFFER,
-				0,
-				sizeof(glm::vec4) * vertices.size(), vertices.data());
-			glBufferSubData(GL_ARRAY_BUFFER,
-				sizeof(glm::vec4) * vertices.size(),
-				sizeof(glm::vec3) * vertices.size(), normals.data());
-			glBufferSubData(GL_ARRAY_BUFFER,
-				sizeof(glm::vec4) * vertices.size() + sizeof(glm::vec3) * vertices.size(),
-				sizeof(glm::vec3) * vertices.size(), tangents.data());
-			glBufferSubData(GL_ARRAY_BUFFER,
-				sizeof(glm::vec4) * vertices.size() + sizeof(glm::vec3) * vertices.size() + sizeof(glm::vec3) * vertices.size(),
-				sizeof(glm::vec3) * vertices.size(), bitangents.data());
-			glBufferSubData(GL_ARRAY_BUFFER,
-				sizeof(glm::vec4) * vertices.size() + sizeof(glm::vec3) * vertices.size() + sizeof(glm::vec3) * vertices.size() + sizeof(glm::vec3) * vertices.size(),
-				sizeof(glm::vec2) * vertices.size(), texCoords.data());
-
-			glEnableVertexAttribArray(0);
-			glBindVertexArray(0);
+			Mesh->Finalize(vertices, normals, tangents, bitangents, texCoords);
 
 			model->meshes.append(*Mesh);
 		}

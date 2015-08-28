@@ -26,7 +26,14 @@ public:
 
 	//GLuint VBOs[2];
 
-	void Finalize();
+	///TODO: Make finalization supporting flexible sets of arrays.
+	void Finalize(	QVector<glm::vec4>& vertices,
+					QVector<glm::vec3>& normals,
+					QVector<glm::vec3>& tangents,
+					QVector<glm::vec3>& bitangents,
+					QVector<glm::vec2>& texCoords);
+private:
+	bool isFinalized = false;
 };
 
 class Model : public ISerializableJSON

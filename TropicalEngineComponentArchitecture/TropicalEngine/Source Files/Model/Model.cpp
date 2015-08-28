@@ -42,14 +42,46 @@ MeshEntry::~MeshEntry()
 	///TODO: implement it.
 }
 
-void MeshEntry::Finalize()
+void MeshEntry::Finalize(	QVector<glm::vec4>& vertices,
+							QVector<glm::vec3>& normals,
+							QVector<glm::vec3>& tangents,
+							QVector<glm::vec3>& bitangents,
+							QVector<glm::vec2>& texCoords)
 {
-	///TODO: implement it, so it's not required in every model builder?
-	//glGenBuffers(1, &vertexVBO);
-	//glBindBuffer(GL_ARRAY_BUFFER, vertexVBO);
-	//glBufferData(GL_ARRAY_BUFFER, sizeof(glm::vec4) * vertices->size() + sizeof(glm::vec3) * vertices->size(), 0, GL_STATIC_DRAW); 
-	//glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(glm::vec4) * vertices->size(), vertices->data());
-	//glBufferSubData(GL_ARRAY_BUFFER, sizeof(glm::vec4) * vertices->size(), sizeof(glm::vec3) * vertices->size(), normals->data());
+	if (!isFinalized)
+	{
+		glGenBuffers(1, &this->vertexVBO);
+		glBindBuffer(GL_ARRAY_BUFFER, this->vertexVBO);
+
+		glBufferData(GL_ARRAY_BUFFER,
+			sizeof(glm::vec4) * vertices.size()
+			+ sizeof(glm::vec3) * vertices.size()
+			+ sizeof(glm::vec3) * vertices.size()
+			+ sizeof(glm::vec3) * vertices.size()
+			+ sizeof(glm::vec2) * vertices.size(), 0, GL_STATIC_DRAW);
+
+		glBufferSubData(GL_ARRAY_BUFFER,
+			0,
+			sizeof(glm::vec4) * vertices.size(), vertices.data());
+		glBufferSubData(GL_ARRAY_BUFFER,
+			sizeof(glm::vec4) * vertices.size(),
+			sizeof(glm::vec3) * vertices.size(), normals.data());
+		glBufferSubData(GL_ARRAY_BUFFER,
+			sizeof(glm::vec4) * vertices.size() + sizeof(glm::vec3) * vertices.size(),
+			sizeof(glm::vec3) * vertices.size(), tangents.data());
+		glBufferSubData(GL_ARRAY_BUFFER,
+			sizeof(glm::vec4) * vertices.size() + sizeof(glm::vec3) * vertices.size() + sizeof(glm::vec3) * vertices.size(),
+			sizeof(glm::vec3) * vertices.size(), bitangents.data());
+		glBufferSubData(GL_ARRAY_BUFFER,
+			sizeof(glm::vec4) * vertices.size() + sizeof(glm::vec3) * vertices.size() + sizeof(glm::vec3) * vertices.size() + sizeof(glm::vec3) * vertices.size(),
+			sizeof(glm::vec2) * vertices.size(), texCoords.data());
+
+		glEnableVertexAttribArray(0);
+		glBindVertexArray(0);
+
+		isFinalized = true;
+	}
+
 }
 
 QString Model::GETTYPENAME("Model");

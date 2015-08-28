@@ -21,7 +21,6 @@ void ModelController::AddComponent(ModelComponent* component)
 
 void ModelController::DropComponent(ModelComponent* component)
 {
-	//modelComponents.removeOne(component);	//destructor does this.
 	delete component;
 }
 
