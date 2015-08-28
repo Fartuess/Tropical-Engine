@@ -12,6 +12,9 @@
 class Shader : public ISerializableToJSON
 {
 public:
+
+	friend class ShaderManager;
+
 	Material* defaultMaterial;
 
 	//temporarily public
@@ -34,7 +37,7 @@ public:
 
 	static Shader* nullShader;
 
-	Shader(QString vertexShader, QString fragmentShader, QString name);
+	Shader(QString vertexShader, QString fragmentShader, QString name, class ShaderManager* manager = nullptr);
 	Shader(QMap<QString, GLuint> subshaders, QString name);
 	~Shader(void);
 
@@ -68,9 +71,19 @@ public:
 	QString getTypeName() override;
 	QJsonObject toJSON() override;
 
-private:
+protected:
 	QString name;
 
+	QMap<QString, QPair<GLenum, GLuint>>* materialParameters;
+	Material* currentMaterial;
+
+	Shader(QString name, GLuint drawingMode = GL_TRIANGLES);
+
+	QString PreprocessShaderFile(QString shaderFile);
+	void AddShader(QString shaderFile, GLenum shaderType);
+	void FinalizeShader();
+
+private:
 	GLuint vertexLocation;
 	GLuint normalLocation;
 	GLuint tangentLocation;
@@ -82,10 +95,4 @@ private:
 	GLuint cameraPositionLocation;
 	GLuint cameraMatrixLocation;
 	GLuint projectionMatrixLocation;
-
-	QMap<QString, QPair<GLenum, GLuint>>* materialParameters;
-	Material* currentMaterial;
-
-	QString PreprocessShaderFile(QString shaderFile);
-	void AddShader(QString shaderFile, GLenum shaderType);
 };

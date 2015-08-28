@@ -44,9 +44,12 @@ Texture* const TextureManager::getTexture(QString name)
 	return textures[name];
 }
 
-void TextureManager::Load(QString name, QString fileUrl)
+Texture* TextureManager::Load(QString name, QString fileUrl)
 {
-	textures.insert(name, new Texture(fileUrl));
+	Texture* newTexture = new Texture(fileUrl);
+	textures.insert(name, newTexture);
+
+	return newTexture;
 }
 
 void TextureManager::FlushTexture(QString name, bool forced)

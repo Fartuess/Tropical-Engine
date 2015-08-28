@@ -5,128 +5,53 @@
 #include <QtCore/qregularexpression.h>
 #include <Shader/ShaderManager.h>
 #include <Shader/Shader.h>
+#include <Shader/ShaderException.h>
 #include <Light/PointLightComponent.h>
 
 #include "TropicalEngineApplication.h"
 
 Shader* Shader::nullShader = nullptr;
 
-Shader::Shader(QString vertexShader, QString fragmentShader, QString name)
+Shader::Shader(QString name, GLuint drawingMode)
 {
-	///TODO: implement it.
 	this->name = name;
 
-	drawingMode = GL_TRIANGLES;
+	this->drawingMode = drawingMode;
 
-	//subprograms = new QVector<GLuint>();
 	shaderProgram = glCreateProgram();
 
-    if (shaderProgram == 0) {
-        fprintf(stderr, "Error creating shader program\n");
-        exit(1);
-    }
-    
+	if (shaderProgram == NULL)
+	{
+		throw ShaderException("Error creating shader program", this);
+	}
+}
+
+Shader::Shader(QString vertexShader, QString fragmentShader, QString name, ShaderManager* manager) : Shader(name)
+{
 	AddShader(vertexShader, GL_VERTEX_SHADER);
 	AddShader(fragmentShader, GL_FRAGMENT_SHADER);
 
-	GLint Success = 0;
-    GLchar ErrorLog[1024] = { 0 };
+	FinalizeShader();
 
-    glLinkProgram(shaderProgram);
-    glGetProgramiv(shaderProgram, GL_LINK_STATUS, &Success);
-	if (Success == 0) {
-		glGetProgramInfoLog(shaderProgram, sizeof(ErrorLog), NULL, ErrorLog);
-		fprintf(stderr, "Error linking shader program: '%s'\n", ErrorLog);
-		QString error = *ErrorLog;
-        exit(1);
+	if (manager != nullptr)
+	{
+		manager->Load(this, name);
 	}
-
-    glValidateProgram(shaderProgram);
-    glGetProgramiv(shaderProgram, GL_VALIDATE_STATUS, &Success);
-    if (!Success) {
-        glGetProgramInfoLog(shaderProgram, sizeof(ErrorLog), NULL, ErrorLog);
-        fprintf(stderr, "Invalid shader program: '%s'\n", ErrorLog);
-        exit(1);
-    }
-
-	vertexLocation = glGetAttribLocation(this->shaderProgram, "a_vertex");
-	normalLocation = glGetAttribLocation(this->shaderProgram, "a_normal");
-	tangentLocation = glGetAttribLocation(this->shaderProgram, "a_tangent");
-	bitangentLocation = glGetAttribLocation(this->shaderProgram, "a_bitangent");
-	texcoordLocation = glGetAttribLocation(this->shaderProgram, "a_texcoord");
-
-	modelMatrixLocation = glGetUniformLocation(this->shaderProgram, "u_transformationMatrix");
-	normalMatrixLocation = glGetUniformLocation(this->shaderProgram, "u_normalMatrix");
-	cameraPositionLocation = glGetUniformLocation(this->shaderProgram, "u_cameraPosition");
-	cameraMatrixLocation = glGetUniformLocation(this->shaderProgram, "u_cameraMatrix");
-	projectionMatrixLocation = glGetUniformLocation(this->shaderProgram, "u_projectionMatrix");
-
-	setUpLightParameters();
-	setUpMaterialParameters();
-
-	defaultMaterial = new Material(this, nullptr, QString(name + "_mat"));
-	TropicalEngineApplication::instance()->shaderManager->Load(this, name);
+	else
+	{
+		TropicalEngineApplication::instance()->shaderManager->Load(this, name);
+	}
 }
 
-Shader::Shader(QMap<QString, GLuint> subshaders, QString name)
+Shader::Shader(QMap<QString, GLuint> subshaders, QString name) : Shader(name)
 {
-	///TODO: implement it.
-	this->name = name;
-
-	drawingMode = GL_TRIANGLES;
-
-	//subprograms = new QVector<GLuint>();
-	shaderProgram = glCreateProgram();
-
-    if (shaderProgram == 0)
-	{
-        fprintf(stderr, "Error creating shader program\n");
-        exit(1);
-    }
-
 	for (QString subshader : subshaders.keys())
 	{
 		AddShader(subshader, subshaders[subshader]);
 	}
 
-	GLint Success = 0;
-    GLchar ErrorLog[1024] = { 0 };
+	FinalizeShader();
 
-    glLinkProgram(shaderProgram);
-    glGetProgramiv(shaderProgram, GL_LINK_STATUS, &Success);
-	if (Success == 0)
-	{
-		glGetProgramInfoLog(shaderProgram, sizeof(ErrorLog), NULL, ErrorLog);
-		fprintf(stderr, "Error linking shader program: '%s'\n", ErrorLog);
-		QString error = *ErrorLog;
-        exit(1);
-	}
-
-    glValidateProgram(shaderProgram);
-    glGetProgramiv(shaderProgram, GL_VALIDATE_STATUS, &Success);
-    if (!Success)
-	{
-        glGetProgramInfoLog(shaderProgram, sizeof(ErrorLog), NULL, ErrorLog);
-        fprintf(stderr, "Invalid shader program: '%s'\n", ErrorLog);
-        exit(1);
-    }
-
-	vertexLocation = glGetAttribLocation(this->shaderProgram, "a_vertex");
-	normalLocation = glGetAttribLocation(this->shaderProgram, "a_normal");
-	tangentLocation = glGetAttribLocation(this->shaderProgram, "a_tangent");
-	bitangentLocation = glGetAttribLocation(this->shaderProgram, "a_bitangent");
-	texcoordLocation = glGetAttribLocation(this->shaderProgram, "a_texcoord");
-
-	modelMatrixLocation = glGetUniformLocation(this->shaderProgram, "u_transformationMatrix");
-	normalMatrixLocation = glGetUniformLocation(this->shaderProgram, "u_normalMatrix");
-	cameraMatrixLocation = glGetUniformLocation(this->shaderProgram, "u_cameraMatrix");
-	cameraPositionLocation = glGetUniformLocation(this->shaderProgram, "u_cameraPosition");
-	projectionMatrixLocation = glGetUniformLocation(this->shaderProgram, "u_projectionMatrix");
-
-	setUpLightParameters();
-	setUpMaterialParameters();
-
-	defaultMaterial = new Material(this, nullptr, QString(name + "_mat"));
 	TropicalEngineApplication::instance()->shaderManager->Load(this, name);
 }
 
@@ -156,41 +81,32 @@ void Shader::setUpLightParameters()
 void Shader::setUpMaterialParameters()
 {
 	materialParameters = new QMap<QString, QPair<GLenum, GLuint>>();
-	//for(int j = 0; j < subprograms->size(); j++)
-	//{
-		GLint uniformCount = -1;
-		GLenum glErr = glGetError();
-		GLenum t0 = glErr;
-		glGetProgramiv(shaderProgram, GL_ACTIVE_UNIFORMS, &uniformCount);
-		for (int i = 0; i < uniformCount; i++)
+
+	GLint uniformCount = -1;
+	GLenum glErr = glGetError();
+	GLenum t0 = glErr;
+	glGetProgramiv(shaderProgram, GL_ACTIVE_UNIFORMS, &uniformCount);
+	for (int i = 0; i < uniformCount; i++)
+	{
+		GLchar nameChar[128];
+		GLsizei nameLenght;
+		GLenum type;
+		GLint size;	//to prevent crash?
+		glGetActiveUniform(shaderProgram, i, 128, &nameLenght, &size, &type, nameChar);
+		QString nameString = QString(nameChar);
+
+		int test = glGetUniformLocation(this->shaderProgram, nameChar);
+
+		if (test == -1)
 		{
-			GLchar nameChar[128];
-			GLsizei nameLenght;
-			GLenum type;
-			GLint size;	//to prevent crash?
-			glGetActiveUniform(shaderProgram, i, 128, &nameLenght, &size, &type, nameChar);
-			QString nameString = QString(nameChar);
-
-			int test = glGetUniformLocation(this->shaderProgram, nameChar);
-
-			if (test == -1)
-			{
-				int lol = 5050;
-			}
-
- 			if (nameString.startsWith("mat_"))
-			{
-				//nameString.remove(0, 4);
-				
-				materialParameters->insert(nameString, QPair<GLenum, GLuint>(type, glGetUniformLocation(this->shaderProgram, nameChar)));	///TODO: figure out why +1 is needed.
-			}
+			int lol = 5050;
 		}
-	//}
-		//test
-		//foreach(QString paramname, materialParameters->keys())
-		//{
-		//	qDebug() << paramname << (*materialParameters)[paramname].first << (*materialParameters)[paramname].second;
-		//}
+
+ 		if (nameString.startsWith("mat_"))
+		{
+			materialParameters->insert(nameString, QPair<GLenum, GLuint>(type, glGetUniformLocation(this->shaderProgram, nameChar)));	///TODO: figure out why +1 is needed.
+		}
+	}
 }
 
 Shader::~Shader(void)
@@ -308,10 +224,8 @@ QString Shader::PreprocessShaderFile(QString shaderFile)
 
 	for (QString includeFilename : includeFilenames)
 	{
-		//qDebug() << includeFilename;
 		fileString.replace(QRegularExpression(QString("#include \"" + includeFilename + "\"")), PreprocessShaderFile(QString("./Shader Files/" + includeFilename)));
 	}
-	//qDebug() << fileString;
 	return fileString;
 }
 
@@ -319,18 +233,11 @@ void Shader::AddShader(QString shaderFile, GLenum shaderType)
 {
 	GLuint shaderObj = glCreateShader(shaderType);
 
-    if (shaderObj == 0) {
-        fprintf(stderr, "Error creating shader type %d\n", shaderType);
-        exit(0);
+    if (shaderObj == NULL)
+	{
+		throw ShaderException("Error creating shader type " + QString::number(shaderType), this);
     }
 
-	//QFile f(shaderFile);
-	//if (!f.open(QFile::ReadOnly | QFile::Text))
-	//{
-	//	qDebug() << f.errorString();
-	//	return;	//if it will go in here, everything will fuck up.
-	//}
-    //QTextStream in(&f);
 	QByteArray shaderArray =  PreprocessShaderFile(shaderFile).toLocal8Bit();
 	char* shaderText = new char[shaderArray.size() + 1];
 	strcpy_s(shaderText, shaderArray.size() + 1, shaderArray.data());
@@ -343,11 +250,12 @@ void Shader::AddShader(QString shaderFile, GLenum shaderType)
     glCompileShader(shaderObj);
     GLint success;
     glGetShaderiv(shaderObj, GL_COMPILE_STATUS, &success);
-    if (!success) {
+    if (!success)
+	{
         GLchar InfoLog[1024];
         glGetShaderInfoLog(shaderObj, 1024, NULL, InfoLog);
-        fprintf(stderr, "Error compiling shader type %d: '%s'\n", shaderType, InfoLog);
-        exit(1);
+		
+		throw ShaderException("Error compiling shader type " + QString::number(shaderType) + ": " + QString(InfoLog), this);
     }
 
 	glAttachShader(this->shaderProgram, shaderObj);
@@ -394,4 +302,43 @@ QJsonObject Shader::toJSON()
 	JSON["subshaders"] = subshadersJSON;
 
 	return JSON;
+}
+
+void Shader::FinalizeShader()
+{
+	GLint Success = 0;
+	GLchar ErrorLog[1024] = { 0 };
+
+	glLinkProgram(shaderProgram);
+	glGetProgramiv(shaderProgram, GL_LINK_STATUS, &Success);
+	if (!Success)
+	{
+		glGetProgramInfoLog(shaderProgram, sizeof(ErrorLog), NULL, ErrorLog);
+		throw ShaderException("Error linking shader program: " + QString(ErrorLog), this);
+	}
+
+	glValidateProgram(shaderProgram);
+	glGetProgramiv(shaderProgram, GL_VALIDATE_STATUS, &Success);
+	if (!Success)
+	{
+		glGetProgramInfoLog(shaderProgram, sizeof(ErrorLog), NULL, ErrorLog);
+		throw ShaderException("Invalid shader program: " + QString(ErrorLog), this);
+	}
+
+	vertexLocation = glGetAttribLocation(this->shaderProgram, "a_vertex");
+	normalLocation = glGetAttribLocation(this->shaderProgram, "a_normal");
+	tangentLocation = glGetAttribLocation(this->shaderProgram, "a_tangent");
+	bitangentLocation = glGetAttribLocation(this->shaderProgram, "a_bitangent");
+	texcoordLocation = glGetAttribLocation(this->shaderProgram, "a_texcoord");
+
+	modelMatrixLocation = glGetUniformLocation(this->shaderProgram, "u_transformationMatrix");
+	normalMatrixLocation = glGetUniformLocation(this->shaderProgram, "u_normalMatrix");
+	cameraPositionLocation = glGetUniformLocation(this->shaderProgram, "u_cameraPosition");
+	cameraMatrixLocation = glGetUniformLocation(this->shaderProgram, "u_cameraMatrix");
+	projectionMatrixLocation = glGetUniformLocation(this->shaderProgram, "u_projectionMatrix");
+
+	setUpLightParameters();
+	setUpMaterialParameters();
+
+	defaultMaterial = new Material(this, QString(name + "_mat"));
 }

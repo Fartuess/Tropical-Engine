@@ -11,6 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source Files\Shader\ShaderException.cpp" />
     <ClCompile Include="Source Files\Shader\MaterialParameter.cpp" />
     <ClCompile Include="Source Files\Model\FbxModelImporter.cpp" />
     <ClCompile Include="Source Files\Model\AssimpModelImporter.cpp" />
@@ -766,6 +767,7 @@
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Header Files\Utills\Exception.h" />
     <ClInclude Include="Header Files\Interface\MainWindow.h" />
     <ClInclude Include="Header Files\Interface\OpenGLWidget.h" />
     <ClInclude Include="Header Files\Interface\PropertiesWidget.h" />
@@ -782,6 +784,7 @@
     <ClInclude Include="Header Files\Utills\INamedType.h" />
     <ClInclude Include="Header Files\Serialization\ISerializableJSON.h" />
     <ClInclude Include="Header Files\Shader\MaterialParameter.h" />
+    <ClInclude Include="Header Files\Shader\ShaderException.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{B12702AD-ABFB-343A-A199-8E24837244A3}</ProjectGuid>

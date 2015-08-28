@@ -18,7 +18,7 @@ public:
 	const Material* operator[](QString name) const	{ return materials[name]; };
 
 	///TODO: Rethink Load method.
-	void Load(class Shader* shader, void* params, QString name);	//temporal declaration
+	Material* Load(class Shader* shader, QString name);	//temporal declaration
 
 	void UseMaterial(QString name);
 	void UseMaterial(Material* material);

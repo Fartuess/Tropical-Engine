@@ -40,9 +40,16 @@ void ShaderManager::Load(Shader* shader, QString name)
 	shaders.insert(name, shader);
 }
 
-void ShaderManager::Load(QString vertexShader, QString fragmentShader, QString name)
+Shader* ShaderManager::Load(QString name, QString vertexShader, QString fragmentShader)
 {
-	shaders.insert(name, new Shader(vertexShader, fragmentShader, name));
+	Shader* newShader = new Shader(name);
+	newShader->AddShader(vertexShader, GL_VERTEX_SHADER);
+	newShader->AddShader(fragmentShader, GL_FRAGMENT_SHADER);
+	newShader->FinalizeShader();
+
+	shaders.insert(name, newShader);
+
+	return newShader;
 }
 
 void ShaderManager::UseShader(QString name)

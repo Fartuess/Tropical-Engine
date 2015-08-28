@@ -28,145 +28,182 @@ void OglDevTut03::InitializeLevel()
 
 	TropicalEngineApplication* engine = TropicalEngineApplication::instance();
 	
+	/*********************************
+	 *
+	 * Creating empty level
+	 *
+	 *********************************/
+
 	level = new Level(glm::vec3(0.0f, 0.0f, 0.0f), glm::quat(0.0f, (glm::vec3(0.0f, 1.0f, 0.0f))), glm::vec3(1.0f, 1.0f, 1.0f));
 	level->name = "TestLevel";
 	
-	//Shader* simpleShader = new Shader("../Tropical Engine/PerspectiveSimple_VS.glsl", "../Tropical Engine/PerspectivePhong_PS.glsl", "PhongBlinnSimple");
-	//Material* simpleMaterial = new Material(simpleShader, nullptr, "Simple Material");
+	/*********************************
+	*
+	* Creating shaders
+	*
+	*********************************/
+
+	ShaderManager& shaderManager	=	*engine->shaderManager;
+
+										shaderManager.Load("Phong",					"./Shader Files/Perspective_NTBTc_VS.glsl", "./Shader Files/Phong_PS.glsl");
+										shaderManager.Load("BlinnPhong",			"./Shader Files/Perspective_NTBTc_VS.glsl", "./Shader Files/PhongBlinn_PS.glsl");
+	Shader* testShader				=	shaderManager.Load("TexturedPhong",			"./Shader Files/Perspective_NTBTc_VS.glsl", "./Shader Files/PhongBlinnSimple_PS.glsl");
+	Shader* testShaderNRM			=	shaderManager.Load("BumpedPhong",			"./Shader Files/Perspective_NTBTc_VS.glsl", "./Shader Files/PhongBlinnBump_PS.glsl");
+	Shader* maskedShader			=	shaderManager.Load("MaskedBumpedBlinnPhong","./Shader Files/Perspective_NTBTc_VS.glsl", "./Shader Files/PhongBlinnBumpMask_PS.glsl");
+	Shader* phongBlinnParalaxShader	=	shaderManager.Load("ParalaxedPhong",		"./Shader Files/Perspective_NTBTc_VS.glsl", "./Shader Files/PhongBlinnParalax_PS.glsl");
+	Shader* cookTorranceShader		=	shaderManager.Load("CookTorrance",			"./Shader Files/Perspective_NTBTc_VS.glsl", "./Shader Files/CookTorrance_PS.glsl");
+	Shader* straussShader			=	shaderManager.Load("Strauss",				"./Shader Files/Perspective_NTBTc_VS.glsl", "./Shader Files/StraussSimple2_PS.glsl");
+	Shader* wardIsoShader			=	shaderManager.Load("WardIso",				"./Shader Files/Perspective_NTBTc_VS.glsl", "./Shader Files/WardIsoSimple_PS.glsl");
+	Shader* wardAnisoShader			=	shaderManager.Load("WardAniso",				"./Shader Files/Perspective_NTBTc_VS.glsl", "./Shader Files/WardAnisoSimple_PS.glsl");
+
+	/*********************************
+	*
+	* Creating materials
+	*
+	*********************************/
+
+	MaterialManager& materialManager	=	*engine->materialManager;
+
+	Material* phongMaterial				=	new Material(shaderManager["Phong"],		"Phong Material");
+	Material* phongBlinnMaterial		=	new Material(shaderManager["BlinnPhong"],	"Blinn-Phong Material");
+	Material* testMaterial				=	new Material(testShader,					"Textured Material");
+	Material* testMaterialNRM			=	new Material(testShaderNRM,					"Bumped Material");
+	Material* maskedMaterial			=	new Material(maskedShader,					"Masked Material");
+	Material* phongBlinnParalaxMaterial =	new Material(phongBlinnParalaxShader,		"Paralaxed Material");
+	Material* cookTorranceMaterial		=	new Material(cookTorranceShader,			"CookTorrance Material");
+	Material* straussMaterial			=	new Material(straussShader,					"Strauss Material");
+	Material* straussMaterialMetalic	=	new Material(straussShader,					"Strauss Material Metalic");
+	Material* wardIsoMaterial			=	new Material(wardIsoShader,					"Isotropic Ward Material");
+	Material* wardAnisoMaterial			=	new Material(wardAnisoShader,				"Anisotropic Ward Material");
+	Material* chestMaterial				=	new Material(testShaderNRM,					"Steampunk Chest Material");
+
+	/*********************************
+	*
+	* Loading textures
+	*
+	*********************************/
+
+	TextureManager& textureManager	=	*engine->textureManager;
+
+										textureManager.Load("Default Texture Albedo",			"./Assets/Core/DefaultTexture.png");
+	Texture* testingTextureNormal	=	textureManager.Load("Default Texture Normals",			"./Assets/Core/DefaultTexture_NRM.png");
+
+	Texture* testGearTexture		=	textureManager.Load("Gears AO",							"./Assets/TestAssets/Gear_occlusion.tga");
+	Texture* testGearTextureNormal	=	textureManager.Load("Gears Normals",					"./Assets/TestAssets/Gear_normals.tga");
+
+	Texture* tessDiffTex			=	textureManager.Load("Stone Wall Albedo",				"./Assets/Core/wall_base.png");
+	Texture* tessNrmTex				=	textureManager.Load("Stone Wall Normals",				"./Assets/Core/wall_normals.png");
+	Texture* tessDispTex			=	textureManager.Load("Stone Wall Heights",				"./Assets/Core/wall_heights.png");
+
+	Texture* tessVecDispTex			=	textureManager.Load("Vector Displacement AO",			"./Assets/TestAssets/vectorCube_occlusion.tga");
+	Texture* tessVecDispTexNRM		=	textureManager.Load("Vector Displacment Normals",		"./Assets/TestAssets/vectorCube_normals.tga");
+	Texture* tessVecDispTexDISP_TS	=	textureManager.Load("Vector Displacement Directions",	"./Assets/TestAssets/vectorCube_2_directions.tga");
+
+	Texture* tgaTest				=	textureManager.Load("TGA Test",							"./Assets/TestAssets/dickbutt.tga");
+	Texture* tgaRleTest				=	textureManager.Load("TGA RLE Test",						"./Assets/TestAssets/dickbutt_RLE.tga");	//apparently Qt TGA importer doesn't read TGA compressed with RLE.
+
+	Texture* chestDiff				=	textureManager.Load("Steampunk Chest Albedo",			"./Assets/TestAssets/SteampunkChest_Diffuse.tga");
+	Texture* chestNRM				=	textureManager.Load("Steampunk Chest Normals",			"./Assets/TestAssets/SteampunkChest_NRM.tga");
+
+	/*********************************
+	*
+	* Setting parameters of materials
+	*
+	*********************************/
+
+	(*phongMaterial)["mat_diffuseColor"]							=	new glm::vec3(0.0f, 0.7f, 1.0f);
+
+	(*materialManager["Blinn-Phong Material"])["mat_diffuseColor"]	=	new glm::vec3(0.5f, 0.7f, 1.0f);
+
+	(*testMaterial)["mat_diffuseTexture"]							=	textureManager["Default Texture Albedo"];
+
+	(*testMaterialNRM)["mat_diffuseTexture"]						=	textureManager["Default Texture Albedo"];
+	(*testMaterialNRM)["mat_normalTexture"]							=	testingTextureNormal;
+
+	(*maskedMaterial)["mat_diffuseTexture"]							=	testGearTexture;
+	(*maskedMaterial)["mat_normalTexture"]							=	testGearTextureNormal;
+
+	(*phongBlinnParalaxMaterial)["mat_diffuseTexture"]				=	tessDiffTex;
+	(*phongBlinnParalaxMaterial)["mat_normalTexture"]				=	tessNrmTex;
+	(*phongBlinnParalaxMaterial)["mat_heightTexture"]				=	tessDispTex;
+	(*phongBlinnParalaxMaterial)["mat_bumpScale"]					=	 new float(0.1f);
+
+	(*cookTorranceMaterial)["mat_diffuseColor"]						=	new glm::vec3(1.0f, 0.7f, 0.0f);
+	(*cookTorranceMaterial)["mat_specularColor"]					=	new glm::vec3(1.0f, 1.0f, 1.0f);
+	(*cookTorranceMaterial)["mat_roughness"]						=	new float(0.5f);
+	(*cookTorranceMaterial)["mat_refractiveIndex"]					=	new float(0.15f);
+
+	(*straussMaterial)["mat_albedo"]								=	new glm::vec3(0.0f, 1.0f, 0.0f);
+	(*straussMaterial)["mat_roughness"]								=	new float(0.8f);	//actually its smoothness. Changed name to fit PBR naming conventions but didn't inverse it in shader yet.
+	(*straussMaterial)["mat_metaliness"]							=	new float(0.0f);
+
+	(*straussMaterialMetalic)["mat_albedo"]							=	new glm::vec3(0.0f, 1.0f, 0.0f);
+	(*straussMaterialMetalic)["mat_roughness"]						=	new float(0.8f);	//actually its smoothness. Changed name to fit PBR naming conventions but didn't inverse it in shader yet.
+	(*straussMaterialMetalic)["mat_metaliness"]						=	new float(1.0f);
+
+	(*wardIsoMaterial)["mat_diffuse"]								=	new glm::vec3(1.0f, 0.7f, 0.0f);
+	(*wardIsoMaterial)["mat_roughness"]								=	new float(0.3f);
+
+	(*wardAnisoMaterial)["mat_diffuse"]								=	new glm::vec3(1.0f, 0.7f, 0.0f);
+	(*wardAnisoMaterial)["mat_anisoRoughness"]						=	new glm::vec2(0.5f, 0.1f);
+
+	(*chestMaterial)["mat_diffuseTexture"]							=	chestDiff;
+	(*chestMaterial)["mat_normalTexture"]							=	chestNRM;
 	
-	new Shader("./Shader Files/Perspective_NTBTc_VS.glsl", "./Shader Files/Phong_PS.glsl", "Phong");
-	Shader* phongBlinnShader = new Shader("./Shader Files/Perspective_NTBTc_VS.glsl", "./Shader Files/PhongBlinn_PS.glsl", "BlinnPhong");
-	Shader* testShader = new Shader("./Shader Files/Perspective_NTBTc_VS.glsl", "./Shader Files/PhongBlinnSimple_PS.glsl", "TexturedPhong");
-	Shader* testShaderNRM = new Shader("./Shader Files/Perspective_NTBTc_VS.glsl", "./Shader Files/PhongBlinnBump_PS.glsl", "BumpedPhong");
-	Shader* maskedShader = new Shader("./Shader Files/Perspective_NTBTc_VS.glsl", "./Shader Files/PhongBlinnBumpMask_PS.glsl", "MaskedBumpedBlinnPhong");
-	Shader* phongBlinnParalaxShader = new Shader("./Shader Files/Perspective_NTBTc_VS.glsl", "./Shader Files/PhongBlinnParalax_PS.glsl", "ParalaxedPhong");
-	Shader* cookTorranceShader = new Shader("./Shader Files/Perspective_NTBTc_VS.glsl", "./Shader Files/CookTorrance_PS.glsl", "CookTorrance");
-	Shader* straussShader = new Shader("./Shader Files/Perspective_NTBTc_VS.glsl", "./Shader Files/StraussSimple2_PS.glsl", "Strauss");
-	Shader* wardIsoShader = new Shader("./Shader Files/Perspective_NTBTc_VS.glsl", "./Shader Files/WardIsoSimple_PS.glsl", "WardIso");
-	Shader* wardAnisoShader = new Shader("./Shader Files/Perspective_NTBTc_VS.glsl", "./Shader Files/WardAnisoSimple_PS.glsl", "WardAniso");
-	Material* phongMaterial = new Material((*engine->shaderManager)["Phong"], nullptr, "Phong Material");
-	Material* phongBlinnMaterial = new Material(phongBlinnShader, nullptr, "Blinn-Phong Material");
-	Material* testMaterial = new Material(testShader, nullptr, "Textured Material");
-	Material* testMaterialNRM = new Material(testShaderNRM, nullptr, "Bumped Material");
-	Material* maskedMaterial = new Material(maskedShader, nullptr, "Masked Material");
-	Material* phongBlinnParalaxMaterial = new Material(phongBlinnParalaxShader, nullptr, "Paralaxed Material");
-	Material* cookTorranceMaterial = new Material(cookTorranceShader, nullptr, "CookTorrance Material");
-	Material* straussMaterial = new Material(straussShader, nullptr, "Strauss Material");
-	Material* straussMaterialMetalic = new Material(straussShader, nullptr, "Strauss Material Metalic");
-	Material* wardIsoMaterial = new Material(wardIsoShader, nullptr, "Isotropic Ward Material");
-	Material* wardAnisoMaterial = new Material(wardAnisoShader, nullptr, "Anisotropic Ward Material");
-	Material* chestMaterial = new Material(testShaderNRM, nullptr, "Steampunk Chest Material");
-
-	//Texture* testingTexture = new Texture("./Assets/Core/DefaultTexture.png");
-	engine->textureManager->Load("Default Texture Albedo", "./Assets/Core/DefaultTexture.png");
-	Texture* testingTextureNormal = new Texture("./Assets/Core/DefaultTexture_NRM.png");
-
-	Texture* testGearTexture = new Texture("./Assets/TestAssets/Gear_occlusion.tga");
-	Texture* testGearTextureNormal = new Texture("./Assets/TestAssets/Gear_normals.tga");
-
-	Texture* tessDiffTex = new Texture("./Assets/Core/wall_base.png");
-	Texture* tessNrmTex = new Texture("./Assets/Core/wall_normals.png");
-	Texture* tessDispTex = new Texture("./Assets/Core/wall_heights.png");
-
-	//Texture* tessVecDispTex = new Texture("../Assets/TestAssets/vectorEar.png");
-
-	Texture* tessVecDispTex = new Texture("./Assets/TestAssets/vectorCube_occlusion.tga");
-	Texture* tessVecDispTexNRM = new Texture("./Assets/TestAssets/vectorCube_normals.tga");
-	Texture* tessVecDispTexDISP = new Texture("./Assets/TestAssets/vectorCube_directions.tga");
-	Texture* tessVecDispTexDISP_TS = new Texture("./Assets/TestAssets/vectorCube_2_directions.tga");
-
-	Texture* tgaTest = new Texture("./Assets/TestAssets/dickbutt.tga");
-	Texture* tgaRleTest = new Texture("./Assets/TestAssets/dickbutt_RLE.tga");	//apparently Qt TGA importer doesn't read TGA compressed with RLE.
-
-	Texture* chestDiff = new Texture("./Assets/TestAssets/SteampunkChest_Diffuse.tga");
-	Texture* chestNRM = new Texture("./Assets/TestAssets/SteampunkChest_NRM.tga");
-
-	//phongMaterial->SetParameter("mat_diffuseColor", new glm::vec3(1.0f, 0.7f, 0.0f));
-	(*phongMaterial)["mat_diffuseColor"] = new glm::vec3(0.0f, 0.7f, 1.0f);
-	//phongBlinnMaterial->SetParameter("mat_diffuseColor", new glm::vec3(1.0f, 0.7f, 0.0f));
-	(*(*engine->materialManager)["Blinn-Phong Material"])["mat_diffuseColor"] = new glm::vec3(0.5f, 0.7f, 1.0f);
-	(*testMaterial)["mat_diffuseTexture"] = (*engine->textureManager)["Default Texture Albedo"];
-
-	testMaterialNRM->SetParameter("mat_diffuseTexture", (*engine->textureManager)["Default Texture Albedo"]);
-	testMaterialNRM->SetParameter("mat_normalTexture", testingTextureNormal);
-	maskedMaterial->SetParameter("mat_diffuseTexture", testGearTexture);
-	maskedMaterial->SetParameter("mat_normalTexture", testGearTextureNormal);
-	phongBlinnParalaxMaterial->SetParameter("mat_diffuseTexture", tessDiffTex);
-	phongBlinnParalaxMaterial->SetParameter("mat_normalTexture", tessNrmTex);
-	phongBlinnParalaxMaterial->SetParameter("mat_heightTexture", tessDispTex);
-	float* bumpScale = new float(0.1f);
-	phongBlinnParalaxMaterial->SetParameter("mat_bumpScale", bumpScale);
-	cookTorranceMaterial->SetParameter("mat_diffuseColor", new glm::vec3(1.0f, 0.7f, 0.0f));
-	cookTorranceMaterial->SetParameter("mat_specularColor", new glm::vec3(1.0f, 1.0f, 1.0f));
-	float* roughness = new float(0.5f);
-	cookTorranceMaterial->SetParameter("mat_roughness", roughness);
-	float* refractiveIndex = new float(0.15f);
-	cookTorranceMaterial->SetParameter("mat_refractiveIndex", refractiveIndex);
-	straussMaterial->SetParameter("mat_albedo", new glm::vec3(0.0f, 1.0f, 0.0f));
-	straussMaterial->SetParameter("mat_roughness", new float(0.8f));	//actually its smoothness. Changed name to fit PBR naming conventions but didn't inverse it in shader yet.
-	straussMaterial->SetParameter("mat_metaliness", new float(0.0f));
-	straussMaterialMetalic->SetParameter("mat_albedo", new glm::vec3(0.0f, 1.0f, 0.0f));
-	straussMaterialMetalic->SetParameter("mat_roughness", new float(0.8f));	//actually its smoothness. Changed name to fit PBR naming conventions but didn't inverse it in shader yet.
-	straussMaterialMetalic->SetParameter("mat_metaliness", new float(1.0f));
-	wardIsoMaterial->SetParameter("mat_diffuse", new glm::vec3(1.0f, 0.7f, 0.0f));
-	wardIsoMaterial->SetParameter("mat_roughness", new float(0.3f));
-	wardAnisoMaterial->SetParameter("mat_diffuse", new glm::vec3(1.0f, 0.7f, 0.0f));
-	wardAnisoMaterial->SetParameter("mat_anisoRoughness", new glm::vec2(0.5f, 0.1f));
-	chestMaterial->SetParameter("mat_diffuseTexture", chestDiff);
-	chestMaterial->SetParameter("mat_normalTexture", chestNRM);
-	
+	/*********************************
+	*
+	* Setting up tessalated shaders
+	* and materials
+	*
+	*********************************/
 	
 	QMap<QString, GLuint> tessalationSubshaders = QMap<QString, GLuint>();
-	tessalationSubshaders["./Shader Files/Perspective_NTBTcTess_VS.glsl"] = GL_VERTEX_SHADER;
-	tessalationSubshaders["./Shader Files/SimpleTessalation_TCS.glsl"] = GL_TESS_CONTROL_SHADER;
-	tessalationSubshaders["./Shader Files/Displacement_TES.glsl"] = GL_TESS_EVALUATION_SHADER;
-	tessalationSubshaders["./Shader Files/PhongBlinnBump_PS.glsl"] = GL_FRAGMENT_SHADER;
+	tessalationSubshaders["./Shader Files/Perspective_NTBTcTess_VS.glsl"]				=	GL_VERTEX_SHADER;
+	tessalationSubshaders["./Shader Files/SimpleTessalation_TCS.glsl"]					=	GL_TESS_CONTROL_SHADER;
+	tessalationSubshaders["./Shader Files/Displacement_TES.glsl"]						=	GL_TESS_EVALUATION_SHADER;
+	tessalationSubshaders["./Shader Files/PhongBlinnBump_PS.glsl"]						=	GL_FRAGMENT_SHADER;
 	Shader* tessalationShader = new Shader(tessalationSubshaders, "TessalationTest");
 	tessalationShader->drawingMode = GL_PATCHES;
-	Material* testTessalationMaterial = new Material(tessalationShader, nullptr, "TessalationMat");
-	
-	//float tessDispScale = 1.0f;
-	testTessalationMaterial->SetParameter("mat_diffuseTexture", tessDiffTex);
-	testTessalationMaterial->SetParameter("mat_normalTexture", tessNrmTex);
-	testTessalationMaterial->SetParameter("mat_displacementTexture", tessDispTex);
-	testTessalationMaterial->SetParameter("mat_displacementScale", new float(0.1f));
-	
+	Material* testTessalationMaterial = new Material(tessalationShader, "TessalationMat");
+	(*testTessalationMaterial)["mat_diffuseTexture"]			=	tessDiffTex;
+	(*testTessalationMaterial)["mat_normalTexture"]				=	tessNrmTex;
+	(*testTessalationMaterial)["mat_displacementTexture"]		=	tessDispTex;
+	(*testTessalationMaterial)["mat_displacementScale"]			=	new float(0.1f);
+
 	QMap<QString, GLuint> distanceTessalationSubshaders = QMap<QString, GLuint>();
-	distanceTessalationSubshaders["./Shader Files/Perspective_NTBTcTess_VS.glsl"] = GL_VERTEX_SHADER;
-	distanceTessalationSubshaders["./Shader Files/DistanceBasedTesselation_TCS.glsl"] = GL_TESS_CONTROL_SHADER;
-	distanceTessalationSubshaders["./Shader Files/Displacement_TES.glsl"] = GL_TESS_EVALUATION_SHADER;
-	distanceTessalationSubshaders["./Shader Files/PhongBlinnBump_PS.glsl"] = GL_FRAGMENT_SHADER;
-	
+	distanceTessalationSubshaders["./Shader Files/Perspective_NTBTcTess_VS.glsl"]		=	GL_VERTEX_SHADER;
+	distanceTessalationSubshaders["./Shader Files/DistanceBasedTesselation_TCS.glsl"]	=	GL_TESS_CONTROL_SHADER;
+	distanceTessalationSubshaders["./Shader Files/Displacement_TES.glsl"]				=	GL_TESS_EVALUATION_SHADER;
+	distanceTessalationSubshaders["./Shader Files/PhongBlinnBump_PS.glsl"]				=	GL_FRAGMENT_SHADER;
 	Shader* distanceTessalationShader = new Shader(distanceTessalationSubshaders, "DistanceTessalationTest");
 	distanceTessalationShader->drawingMode = GL_PATCHES;
-	Material* distanceTessalationMaterial = new Material(distanceTessalationShader, nullptr, "DistanceTessalationMat");
-	
-	distanceTessalationMaterial->SetParameter("mat_diffuseTexture", tessDiffTex);
-	distanceTessalationMaterial->SetParameter("mat_normalTexture", tessNrmTex);
-	distanceTessalationMaterial->SetParameter("mat_displacementTexture", tessDispTex);
-	distanceTessalationMaterial->SetParameter("mat_displacementScale", new float(0.1f));
+	Material* distanceTessalationMaterial = new Material(distanceTessalationShader, "DistanceTessalationMat");
+	(*distanceTessalationMaterial)["mat_diffuseTexture"]		=	tessDiffTex;
+	(*distanceTessalationMaterial)["mat_normalTexture"]			=	tessNrmTex;
+	(*distanceTessalationMaterial)["mat_displacementTexture"]	=	tessDispTex;
+	(*distanceTessalationMaterial)["mat_displacementScale"]		=	new float(0.1f);
 	
 	QMap<QString, GLuint> vectorTessalationSubshaders = QMap<QString, GLuint>();
-	vectorTessalationSubshaders["./Shader Files/Perspective_NTBTcTess_VS.glsl"] = GL_VERTEX_SHADER;
-	vectorTessalationSubshaders["./Shader Files/DistanceBasedTesselation_TCS.glsl"] = GL_TESS_CONTROL_SHADER;
-	vectorTessalationSubshaders["./Shader Files/VectorDisplacement_TES.glsl"] = GL_TESS_EVALUATION_SHADER;
-	vectorTessalationSubshaders["./Shader Files/PhongBlinnBump_PS.glsl"] = GL_FRAGMENT_SHADER;
-	
+	vectorTessalationSubshaders["./Shader Files/Perspective_NTBTcTess_VS.glsl"]			=	GL_VERTEX_SHADER;
+	vectorTessalationSubshaders["./Shader Files/DistanceBasedTesselation_TCS.glsl"]		=	GL_TESS_CONTROL_SHADER;
+	vectorTessalationSubshaders["./Shader Files/VectorDisplacement_TES.glsl"]			=	GL_TESS_EVALUATION_SHADER;
+	vectorTessalationSubshaders["./Shader Files/PhongBlinnBump_PS.glsl"]				=	GL_FRAGMENT_SHADER;
 	Shader* vectorTessalationShader = new Shader(vectorTessalationSubshaders, "VectorTessalationTest");
 	vectorTessalationShader->drawingMode = GL_PATCHES;
-	Material* vectorTessalationMaterial = new Material(vectorTessalationShader, nullptr, "VectorTessalationMat");
+	Material* vectorTessalationMaterial = new Material(vectorTessalationShader, "VectorTessalationMat");
+	(*vectorTessalationMaterial)["mat_diffuseTexture"]			=	tessVecDispTex;
+	(*vectorTessalationMaterial)["mat_normalTexture"]			=	tessVecDispTexNRM;
+	(*vectorTessalationMaterial)["mat_displacementTexture"]		=	tessVecDispTexDISP_TS;
+	(*vectorTessalationMaterial)["mat_displacementScale"]		=	new float(0.5f);
+	(*vectorTessalationMaterial)["mat_tesselationMultiplier"]	=	new float(64.0f);
 	
-	vectorTessalationMaterial->SetParameter("mat_diffuseTexture", tessVecDispTex);
-	vectorTessalationMaterial->SetParameter("mat_normalTexture", tessVecDispTexNRM);
-	vectorTessalationMaterial->SetParameter("mat_displacementTexture", tessVecDispTexDISP_TS);
-	vectorTessalationMaterial->SetParameter("mat_displacementScale", new float(0.5f));
-	vectorTessalationMaterial->SetParameter("mat_tesselationMultiplier", new float(64.0f));
-	
-	//qDebug() << QImageReader::supportedImageFormats();
+	/*********************************
+	*
+	* Creating and loading models
+	*
+	*********************************/
 
-	//Entity* planeObject = new Entity(glm::vec3(0.0f, 0.0f, 0.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
-
-	//initialization of assimp model importer
+	//initialization of model importers
 	AssimpModelImporter::Instance();
 	FbxModelImporter::Instance();
 
@@ -178,29 +215,27 @@ void OglDevTut03::InitializeLevel()
 	engine->modelBuilder->CreateCone("Cone");
 	engine->modelBuilder->CreateSphere("Sphere", 1.0f, 40, 40);
 	engine->modelBuilder->CreateTorus("Torus");
-	engine->modelBuilder->Load("TestModel", "./Assets/TestAssets/TestModel.obj");
-	engine->modelBuilder->Load("TestModel2", "./Assets/TestAssets/TestModel2.obj");
-	engine->modelBuilder->Load("TestTesselation", "./Assets/TestAssets/TestTesselation.obj");
-	engine->modelBuilder->Load("Teapot", "./Assets/TestAssets/teapot.obj");
-	engine->modelBuilder->Load("MayaBox", "./Assets/TestAssets/MayaBox.obj");
-	engine->modelBuilder->Load("VectorSphere", "./Assets/TestAssets/vectorDispSphere.obj");
-	engine->modelBuilder->Load("VectorCube", "./Assets/TestAssets/vectorCube_LP_DENSE_T.obj");
-	engine->modelBuilder->Load("FbxTest", "./Assets/TestAssets/FBXtest.fbx");
-	engine->modelBuilder->Load("FbxTest2", "./Assets/TestAssets/FBXtest2.fbx");
-	engine->modelBuilder->Load("FbxTest3", "./Assets/TestAssets/FBXtestPrepared.fbx");
-	engine->modelBuilder->Load("FbxTest4", "./Assets/TestAssets/FBXHierarchyTest.fbx");
-	engine->modelBuilder->Load("FbxChest", "./Assets/TestAssets/SteamPunkChest_LP.fbx");
+	engine->modelBuilder->Load("TestModel",			"./Assets/TestAssets/TestModel.obj");
+	engine->modelBuilder->Load("TestModel2",		"./Assets/TestAssets/TestModel2.obj");
+	engine->modelBuilder->Load("TestTesselation",	"./Assets/TestAssets/TestTesselation.obj");
+	engine->modelBuilder->Load("Teapot",			"./Assets/TestAssets/teapot.obj");
+	engine->modelBuilder->Load("MayaBox",			"./Assets/TestAssets/MayaBox.obj");
+	engine->modelBuilder->Load("VectorSphere",		"./Assets/TestAssets/vectorDispSphere.obj");
+	engine->modelBuilder->Load("VectorCube",		"./Assets/TestAssets/vectorCube_LP_DENSE_T.obj");
+	engine->modelBuilder->Load("FbxTest",			"./Assets/TestAssets/FBXtest.fbx");
+	engine->modelBuilder->Load("FbxTest2",			"./Assets/TestAssets/FBXtest2.fbx");
+	engine->modelBuilder->Load("FbxTest3",			"./Assets/TestAssets/FBXtestPrepared.fbx");
+	engine->modelBuilder->Load("FbxTest4",			"./Assets/TestAssets/FBXHierarchyTest.fbx");
+	engine->modelBuilder->Load("FbxChest",			"./Assets/TestAssets/SteamPunkChest_LP.fbx");
 
-	//Entity* planeObject = new Entity(glm::vec3(0.0f, 0.0f, 0.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
-	////planeObject->AttachComponent(new ModelComponent(planeObject, cookTorranceMaterial, TropicalEngineApplication::instance()->modelManager->getModel("Plane")));
-	//ModelComponent* testModelComponent = new ModelComponent(planeObject, vectorTessalationMaterial, TropicalEngineApplication::instance()->modelManager->getModel("VectorCube"));
-	//planeObject->AttachComponent(testModelComponent);
-	//planeObject->name = QString("TestObject");
-
-	//level->root.AttachSubobject(planeObject);
+	/*********************************
+	*
+	* Creating scene objects
+	*
+	*********************************/
 
 	Entity* phongExample = new Entity(glm::vec3(0.0f, 0.0f, 0.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
-	ModelComponent* phongModelC = new ModelComponent(phongExample, (*engine->materialManager)["Phong Material"], (*engine->modelManager)["Sphere"]);
+	ModelComponent* phongModelC = new ModelComponent(phongExample, materialManager["Phong Material"], (*engine->modelManager)["Sphere"]);
 	phongExample->AttachComponent(phongModelC);
 	phongExample->name = QString("Phong Example");
 	level->getRoot()->AttachSubobject(phongExample);
@@ -212,79 +247,79 @@ void OglDevTut03::InitializeLevel()
 	level->getRoot()->AttachSubobject(phongBlinnExample);
 
 	Entity* BumpMapExample = new Entity(glm::vec3(8.0f, 0.0f, 0.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
-	ModelComponent* bumpMapModelC = new ModelComponent(BumpMapExample, testMaterialNRM, TropicalEngineApplication::instance()->modelManager->getModel("Sphere"));
+	ModelComponent* bumpMapModelC = new ModelComponent(BumpMapExample, testMaterialNRM, engine->modelManager->getModel("Sphere"));
 	BumpMapExample->AttachComponent(bumpMapModelC);
 	BumpMapExample->name = QString("Bump mapping Example");
 	level->getRoot()->AttachSubobject(BumpMapExample);
 
 	Entity* MaskedExample = new Entity(glm::vec3(12.0f, 0.0f, 0.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
-	ModelComponent* maskedModelC = new ModelComponent(MaskedExample, maskedMaterial, TropicalEngineApplication::instance()->modelManager->getModel("Box"));
+	ModelComponent* maskedModelC = new ModelComponent(MaskedExample, maskedMaterial, engine->modelManager->getModel("Box"));
 	MaskedExample->AttachComponent(maskedModelC);
 	MaskedExample->name = QString("Masked blend mode Example");
 	level->getRoot()->AttachSubobject(MaskedExample);
 
 	Entity* ParralaxExample = new Entity(glm::vec3(16.0f, 0.0f, 0.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
-	ModelComponent* parralaxModelC = new ModelComponent(ParralaxExample, phongBlinnParalaxMaterial, TropicalEngineApplication::instance()->modelManager->getModel("Teapot"));
+	ModelComponent* parralaxModelC = new ModelComponent(ParralaxExample, phongBlinnParalaxMaterial, engine->modelManager->getModel("Teapot"));
 	ParralaxExample->AttachComponent(parralaxModelC);
 	ParralaxExample->name = QString("Displacement Mapping Example");
 	level->getRoot()->AttachSubobject(ParralaxExample);
 
 	Entity* CookTorranceExample = new Entity(glm::vec3(20.0f, 0.0f, 0.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
-	ModelComponent* cookTorranceModelC = new ModelComponent(CookTorranceExample, cookTorranceMaterial, TropicalEngineApplication::instance()->modelManager->getModel("Sphere"));
+	ModelComponent* cookTorranceModelC = new ModelComponent(CookTorranceExample, cookTorranceMaterial, engine->modelManager->getModel("Sphere"));
 	CookTorranceExample->AttachComponent(cookTorranceModelC);
 	CookTorranceExample->name = QString("Cook-Torrance Example");
 	level->getRoot()->AttachSubobject(CookTorranceExample);
 
 	Entity* StraussExample = new Entity(glm::vec3(24.0f, 0.0f, 0.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
-	ModelComponent* straussModelC = new ModelComponent(StraussExample, straussMaterial, TropicalEngineApplication::instance()->modelManager->getModel("Sphere"));
+	ModelComponent* straussModelC = new ModelComponent(StraussExample, straussMaterial, engine->modelManager->getModel("Sphere"));
 	StraussExample->AttachComponent(straussModelC);
 	StraussExample->name = QString("Strauss Example");
 	level->getRoot()->AttachSubobject(StraussExample);
 
 	Entity* StraussConductiveExample = new Entity(glm::vec3(28.0f, 0.0f, 0.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
-	ModelComponent* straussConductiveModelC = new ModelComponent(StraussConductiveExample, straussMaterialMetalic, TropicalEngineApplication::instance()->modelManager->getModel("Sphere"));
+	ModelComponent* straussConductiveModelC = new ModelComponent(StraussConductiveExample, straussMaterialMetalic, engine->modelManager->getModel("Sphere"));
 	StraussConductiveExample->AttachComponent(straussConductiveModelC);
 	StraussConductiveExample->name = QString("Strauss Metalic Example");
 	level->getRoot()->AttachSubobject(StraussConductiveExample);
 
 	Entity* WardExample = new Entity(glm::vec3(32.0f, 0.0f, 0.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
-	ModelComponent* wardModelC = new ModelComponent(WardExample, wardIsoMaterial, TropicalEngineApplication::instance()->modelManager->getModel("TestModel2"));
+	ModelComponent* wardModelC = new ModelComponent(WardExample, wardIsoMaterial, engine->modelManager->getModel("TestModel2"));
 	WardExample->AttachComponent(wardModelC);
 	WardExample->name = QString("Ward Example");
 	level->getRoot()->AttachSubobject(WardExample);
 
 	Entity* WardAnisotropicExample = new Entity(glm::vec3(36.0f, 0.0f, 0.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
-	ModelComponent* wardAnisoModelC = new ModelComponent(WardAnisotropicExample, wardAnisoMaterial, TropicalEngineApplication::instance()->modelManager->getModel("TestModel2"));
+	ModelComponent* wardAnisoModelC = new ModelComponent(WardAnisotropicExample, wardAnisoMaterial, engine->modelManager->getModel("TestModel2"));
 	WardAnisotropicExample->AttachComponent(wardAnisoModelC);
 	WardAnisotropicExample->name = QString("Ward Anisotropic Example");
 	level->getRoot()->AttachSubobject(WardAnisotropicExample);
 
 	Entity* DistanceTessellationExample = new Entity(glm::vec3(40.0f, 0.0f, 0.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
-	ModelComponent* distanceTessModelC = new ModelComponent(DistanceTessellationExample, testTessalationMaterial, TropicalEngineApplication::instance()->modelManager->getModel("BoxDense"));
+	ModelComponent* distanceTessModelC = new ModelComponent(DistanceTessellationExample, testTessalationMaterial, engine->modelManager->getModel("BoxDense"));
 	DistanceTessellationExample->AttachComponent(distanceTessModelC);
 	DistanceTessellationExample->name = QString("Distance Tessellation Example");
 	level->getRoot()->AttachSubobject(DistanceTessellationExample);
 
 	Entity* VectorTessellationExample = new Entity(glm::vec3(44.0f, 0.0f, 0.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
-	ModelComponent* vectorTessModelC = new ModelComponent(VectorTessellationExample, vectorTessalationMaterial, TropicalEngineApplication::instance()->modelManager->getModel("VectorCube"));
+	ModelComponent* vectorTessModelC = new ModelComponent(VectorTessellationExample, vectorTessalationMaterial, engine->modelManager->getModel("VectorCube"));
 	VectorTessellationExample->AttachComponent(vectorTessModelC);
 	VectorTessellationExample->name = QString("Vector Displacement Tessellation Example");
 	level->getRoot()->AttachSubobject(VectorTessellationExample);
 
 	Entity* FbxExample = new Entity(glm::vec3(48.0f, 0.0f, 0.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(0.2f, 0.2f, 0.2f));
-	ModelComponent* FbxExampleModelC = new ModelComponent(FbxExample, chestMaterial, TropicalEngineApplication::instance()->modelManager->getModel("FbxChest"));
+	ModelComponent* FbxExampleModelC = new ModelComponent(FbxExample, chestMaterial, engine->modelManager->getModel("FbxChest"));
 	FbxExample->AttachComponent(FbxExampleModelC);
 	FbxExample->name = QString("FBX import Example");
 	level->getRoot()->AttachSubobject(FbxExample);
 
 	Entity* FbxExample2 = new Entity(glm::vec3(52.0f, 0.0f, 0.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
-	ModelComponent* FbxExample2ModelC = new ModelComponent(FbxExample2, phongMaterial, TropicalEngineApplication::instance()->modelManager->getModel("FbxTest2"));
+	ModelComponent* FbxExample2ModelC = new ModelComponent(FbxExample2, phongMaterial, engine->modelManager->getModel("FbxTest2"));
 	FbxExample2->AttachComponent(FbxExample2ModelC);
 	FbxExample2->name = QString("FBX Example 2");
 	level->getRoot()->AttachSubobject(FbxExample2);
 
 	Entity* FbxExample3 = new Entity(glm::vec3(60.0f, 0.0f, 0.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
-	ModelComponent* FbxExample3ModelC = new ModelComponent(FbxExample3, phongMaterial, TropicalEngineApplication::instance()->modelManager->getModel("FbxTest4"));
+	ModelComponent* FbxExample3ModelC = new ModelComponent(FbxExample3, phongMaterial, engine->modelManager->getModel("FbxTest4"));
 	FbxExample3->AttachComponent(FbxExample3ModelC);
 	FbxExample3->name = QString("FBX Hierarchy Example");
 	level->getRoot()->AttachSubobject(FbxExample3);
@@ -322,10 +357,9 @@ void OglDevTut03::InitializeLevel()
 	FbxExampleModelC->lightedBy.append(pointLightComponent);
 
 	
-	TropicalEngineApplication::instance()->sceneManager->LoadLevel(level, "TestLevel");
-	TropicalEngineApplication::instance()->sceneManager->setCurrentCamera(mainCameraComponent);
-	TropicalEngineApplication::instance()->sceneManager->mainLight = new DirectionalLightComponent(level->getRoot(), glm::vec3(1.0f, 1.0f, 0.9f), glm::vec3(0.5, 0.2, 1.0), 1.0f);
+	engine->sceneManager->LoadLevel(level, "TestLevel");
+	engine->sceneManager->setCurrentCamera(mainCameraComponent);
+	engine->sceneManager->mainLight = new DirectionalLightComponent(level->getRoot(), glm::vec3(1.0f, 1.0f, 0.9f), glm::vec3(0.5, 0.2, 1.0), 1.0f);
 
 	qDebug() << QJsonDocument(level->toJSON()).toJson();
-	
 }

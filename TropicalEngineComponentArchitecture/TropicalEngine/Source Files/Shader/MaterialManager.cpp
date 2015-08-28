@@ -16,9 +16,10 @@ MaterialManager::~MaterialManager(void)
 	///TODO: implement it.
 }
 
-void MaterialManager::Load(Shader* shader, void* params, QString name)	//temporal definition for temporal declaration
+Material* MaterialManager::Load(Shader* shader, QString name)	//temporal definition for temporal declaration
 {
-	new Material(shader, params, name);
+	Material* newMaterial = new Material(shader, name);
+	return newMaterial;
 }
 
 void MaterialManager::UseMaterial(QString name)

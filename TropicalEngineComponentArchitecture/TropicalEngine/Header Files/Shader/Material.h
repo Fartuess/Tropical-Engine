@@ -13,12 +13,11 @@ public:
 	QString getName();
 	void setName(QString name);
 
-	Material(class Shader* shader, void* params, QString name);	///TODO: Rethink constructor.
+	Material(class Shader* shader, QString name);
 	~Material(void);
 
 	class Shader* getShader();
-	///TODO: figure out if it is easy to implement parameter get and getAll
-	//const QVector<QPair<QString, void*>>& getParameters();
+
 	void Use();
 	
 	void ActivateParameter(QString name, void* value);
@@ -28,17 +27,16 @@ public:
 	MaterialParameter& operator[](QString name)      { return parameters[name]; };
 	const MaterialParameter& operator[](QString name) const { return parameters[name]; };
 
-	//void* operator[](QString name);
-
 	QString getTypeName() override;
 	QJsonObject toJSON() override;
 	IDeserializableFromJSON* fromJSON(QJsonObject JSON) override;
 
-private:
+protected:
 	QString name;
 	class Shader* shader;
 	QMap<QString, MaterialParameter> parameters;
 
+private:
 	void ActivateParameter(GLuint location, float* value);
 	void ActivateParameter(GLuint location, glm::vec2* value);
 	void ActivateParameter(GLuint location, glm::vec3* value);

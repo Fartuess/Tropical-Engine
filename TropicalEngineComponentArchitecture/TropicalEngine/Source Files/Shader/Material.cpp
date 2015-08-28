@@ -8,7 +8,7 @@
 
 #include "TropicalEngineApplication.h"
 
-Material::Material(Shader* shader, void* params, QString name):parameters()	//params is not needed
+Material::Material(Shader* shader, QString name) : parameters()
 {
 	this->name = name;
 	this->shader = shader;
@@ -44,18 +44,12 @@ Shader* Material::getShader()
 	return shader;
 }
 
-//const QVector<QPair<QString, void*>>& Material::getParameters()
-//{
-//	return parameters;
-//}
-
 void Material::Use()
 {
 	shader->Use();
 	TropicalEngineApplication::instance()->textureManager->resetTextureIterator();
 	if (shader->getCurrentMaterial() != this)
 	{
-		//typedef QPair<QString, void*> parameterType;
 		for (QString parameter : parameters.keys())
 		{
 			ActivateParameter(parameter, *parameters[parameter]);
@@ -135,11 +129,6 @@ void Material::SetParameter(QString name, void* parameter)
 {
 	parameters[name] = parameter;
 }
-
-//void* Material::operator[](QString name)
-//{
-//	return parameters[name];
-//}
 
 QString Material::GETTYPENAME("Material");
 
@@ -324,7 +313,7 @@ IDeserializableFromJSON* Material::fromJSON(QJsonObject JSON)
 {
 	QString name = JSON["name"].toString();
 	Shader* shader = TropicalEngineApplication::instance()->shaderManager->getShader(JSON["shader"].toString());
-	Material* object = new Material(shader, nullptr, name);
+	Material* object = new Material(shader, name);
 
 	for (QJsonValueRef parameterJSON : JSON["parameters"].toArray())
 	{
