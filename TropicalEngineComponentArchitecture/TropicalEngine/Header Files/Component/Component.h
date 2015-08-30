@@ -7,15 +7,39 @@
 
 class Entity;
 
+/**
+  * Abstract Component class.
+  */
 class Component : public ISerializableJSON
 {
 public:
 	friend class Entity;
 
+	/**
+	  * \brief Constructor of Component Class
+	  *
+	  * @param owner Entity object the component will be attached to.
+	  */
 	Component(Entity* owner);
+
+	/**
+	  * \brief Destructor of Component.
+	  */
 	~Component(void);
 
+	/**
+	  * \brief Gets pointer to Entity object the Component is attached to.
+	  *
+	  * @return Pointer to Entity object the Component is attached to
+	  */
 	Entity* getOwner();
+
+	/**
+	  * \brief Attaches Component to Entity object.
+	  *
+	  * Detaches Component from previous Entity and attaches to the new one.
+	  * @param owner Pointer to Entity object the Component will be attached to.
+	  */
 	void setOwner(Entity* owner);
 
 	static bool isComponentTypeUsed(QString name);
@@ -25,16 +49,41 @@ public:
 
 	static QMap<QString, QString> getParameters(QString componentTypeName);	//if so change here as well
 
+	/**
+	  * \brief Serializes Component to JSON object.
+	  *
+	  * @return Result of serialization.
+	  */
 	QJsonObject toJSON() override;
+
+	/**
+	  * /brief Deserializes Component from JSON object.
+	  *
+	  * @param JSON JSON object to deserialize from.
+	  * @return Component object.
+	  */
 	IDeserializableFromJSON* fromJSON(QJsonObject JSON) override;
 
 protected:
+	///TODO: Make it private?
+	/**
+	  * \brief Entity owning this Component.
+	  */
 	Entity* owner;
 
+	/**
+	  * /brief Simple Constructor used to create Component instance while serializing.
+	  */
 	Component();
 
-	virtual void InitializeComponentType() = 0;
+	/**
+	  * /brief Detaches Component from owning Entity object.
+	  *
+	  * Detaches Component from owning Entity object. Results in Component flying loosely unattached to anything.
+	  */
 	void Detach();
+
+	virtual void InitializeComponentType() = 0;
 	void AddComponentType(QString name);
 
 	static QString getParrentType(QString componentTypeName);

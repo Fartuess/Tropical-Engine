@@ -170,7 +170,7 @@ IDeserializableFromJSON* ModelComponent::fromJSON(QJsonObject JSON)
 	ModelComponent* object = new ModelComponent();
 
 	object->model = TropicalEngineApplication::instance()->modelManager->getModel(JSON["model"].toString());
-	object->material = TropicalEngineApplication::instance()->materialManager->operator[JSON["material"].toString()];
+	object->material = (*TropicalEngineApplication::instance()->materialManager)[JSON["material"].toString()];
 	object->castingShadows = JSON["cast shadows"].toBool();
 
 	return object;

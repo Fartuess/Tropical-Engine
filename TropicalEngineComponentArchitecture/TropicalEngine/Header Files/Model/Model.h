@@ -7,26 +7,65 @@
 
 #include <Serialization/ISerializableJSON.h>
 
+/**
+  * MeshEntry is a submesh data for a Model object.
+  */
 class MeshEntry
 {
 public:
+	/**
+	  * \brief Default constructor.
+	  */
     MeshEntry();
 
+	/**
+	  * Default destructor.
+	  */
     ~MeshEntry();
 
+	/**
+	  * \brief GPU address of vertices VBO.
+	  */
 	GLuint vertexVBO;
+
+	/**
+	  * \brief GPU address of normals VBO.
+	  */
 	GLuint normalVBO;
+
+	/**
+	  * \brief GPU address of tangents VBO.
+	  */
 	GLuint tangentVBO;
+
+	/**
+	  * \brief GPU address of bitangents VBO.
+	  */
 	GLuint bitangentVBO;
+
+	/**
+	  * \brief GPU address of texture coordinates VBO.
+	  */
 	GLuint texcoordVBO;
 
+	/**
+	  * \brief Number of vertices.
+	  */
 	GLuint NumVertex;
-    //GLuint NumIndices;
-    GLuint MaterialIndex;	//what for?
 
-	//GLuint VBOs[2];
+    GLuint MaterialIndex;
 
 	///TODO: Make finalization supporting flexible sets of arrays.
+	/**
+	  * \brief Finalizes creation of Mesh Entry.
+	  *
+	  * Sets everything on the GPU side.
+	  * @param vertices Vector of vertices of the mesh.
+	  * @param normals Vector of normals of the mesh.
+	  * @param tangents Vector of tangents of the mesh.
+	  * @param bitangents Vector of bitangents of the mesh.
+	  * @param texCoords Vector of texCoords of the mesh.
+	  */
 	void Finalize(	QVector<glm::vec4>& vertices,
 					QVector<glm::vec3>& normals,
 					QVector<glm::vec3>& tangents,
@@ -39,18 +78,69 @@ private:
 class Model : public ISerializableJSON
 {
 public:
+
+	/**
+	  * \brief Gets the name of the Model.
+	  *
+	  * @return Name of the Model.
+	  */
 	QString getName();
+
+	/**
+	  * \brief Sets the name of the Model.
+	  *
+	  * @param name Name to be set for Model.
+	  */
 	void setName(QString name);
 
+	/**
+	  * \brief Constructor for Model.
+	  *
+	  * @param name Name of the Model.
+	  */
 	Model(QString name);
+
+	/*
+	 * \brief Constructor for Model.
+	 *
+	 * @param name Name of the Model.
+	 * @param fileUrl Address of the file to load Model from.
+	 */
 	Model(QString name, QString fileUrl);
+
+	/**
+	 * \brief Destructor of the Model.
+	 */
 	~Model(void);
 
+	/**
+	  * \brief Submeshes of this Model.
+	  */
 	QVector<MeshEntry> meshes;
+
+
 	GLuint materialCount;
 
+	/**
+	  * \brief Returns name of the type.
+	  *
+	  * @return "Model"
+	  */
 	QString getTypeName() override;
+
+	/**
+	  * \brief Serializes Model to JSON object.
+	  *
+	  * @return Result of serialization.
+	  */
 	QJsonObject toJSON() override;
+
+	/**
+	  * \brief Deserializes Model from JSON object.
+	  *
+	  * @param JSON JSON object to deserialize from.
+	  * @return Model object.
+	  */
 	IDeserializableFromJSON* fromJSON(QJsonObject JSON) override;
 
 private:
