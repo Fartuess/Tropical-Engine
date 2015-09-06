@@ -7,6 +7,7 @@
 #include <Model/ModelController.h>
 #include <Model/ModelBuilder.h>
 
+#include <Package/AssetManager.h>
 #include <Package/PackageManager.h>
 #include <Scene/SceneManager.h>
 
@@ -33,6 +34,7 @@ TropicalEngineApplication::TropicalEngineApplication(int argc, char* argv[]) : Q
 	modelController = new ModelController();
 	modelBuilder = new ModelBuilder();
 
+	assetManager = new AssetManager();
 	packageManager = new PackageManager();
 	sceneManager = new SceneManager();
 

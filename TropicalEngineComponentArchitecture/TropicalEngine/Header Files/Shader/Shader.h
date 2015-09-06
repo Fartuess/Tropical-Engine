@@ -5,11 +5,11 @@
 #include <QtCore/qvector.h>
 #include <QtCore/qmap.h>
 
-#include <Serialization/ISerializableToJSON.h>
+#include <Serialization/ISerializableJSON.h>
 
 #include "Material.h"
 
-class Shader : public ISerializableToJSON
+class Shader : public ISerializableJSON
 {
 public:
 
@@ -70,6 +70,7 @@ public:
 
 	QString getTypeName() override;
 	QJsonObject toJSON() override;
+	IDeserializableFromJSON* fromJSON(QJsonObject JSON) override;
 
 protected:
 	QString name;

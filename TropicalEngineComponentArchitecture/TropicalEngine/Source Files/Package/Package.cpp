@@ -108,7 +108,7 @@ QJsonObject Package::toJSON()
 
 	JSON["assets"] = assetArray;
 
-	return QJsonObject();
+	return JSON;
 }
 
 IDeserializableFromJSON* Package::fromJSON(QJsonObject JSON)

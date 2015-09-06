@@ -13,7 +13,9 @@ Model::Model(QString name) : meshes()
 
 Model::Model(QString name, QString fileUrl) : meshes()
 {
-	///TODO: implement it.
+	this->name = name;
+	this->fileUrl = fileUrl;
+	TropicalEngineApplication::instance()->modelManager->Load(this, name);
 }
 
 Model::~Model(void)

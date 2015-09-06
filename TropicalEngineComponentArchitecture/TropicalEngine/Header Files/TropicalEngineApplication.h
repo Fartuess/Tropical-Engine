@@ -15,6 +15,7 @@ public:
 	class TextureManager* textureManager;
 	class ModelManager* modelManager;
 	class ModelBuilder* modelBuilder;
+	class AssetManager* assetManager;
 	class PackageManager* packageManager;
 	/*
 	* Scene controlling
@@ -22,6 +23,7 @@ public:
 	class SceneManager* sceneManager;
 	class ModelController* modelController;
 	class LightController* lightController;
+
 	/*
 	* Input
 	*/

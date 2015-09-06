@@ -2,23 +2,35 @@
 #include <QtCore/qjsondocument.h>
 
 #include <Scene/Level.h>
+
 #include <Shader/Shader.h>
 #include <Shader/ShaderManager.h>
 #include <Shader/Material.h>
 #include <Shader/MaterialManager.h>
+
 #include <Texture/Texture.h>
 #include <Texture/TextureManager.h>
+
 #include <Model/Model.h>
 #include <Model/ModelBuilder.h>
 #include <Model/ModelComponent.h>
 #include <Model/ModelManager.h>
 #include <Model/AssimpModelImporter.h>
 #include <Model/FbxModelImporter.h>
+
 #include <Camera/CameraComponent.h>
+
 #include <Scene/Entity.h>
+
 #include <Light/DirectionalLightComponent.h>
 #include <Light/PointLightComponent.h>
+
 #include <Scene/SceneManager.h>
+
+#include <Package/Asset.h>
+#include <Package/AssetManager.h>
+#include <Package/PackageManager.h>
+
 #include <TempHelpers/OglDevTut03.h>
 
 #include "TropicalEngineApplication.h"
@@ -37,6 +49,10 @@ void OglDevTut03::InitializeLevel()
 	level = new Level(glm::vec3(0.0f, 0.0f, 0.0f), glm::quat(0.0f, (glm::vec3(0.0f, 1.0f, 0.0f))), glm::vec3(1.0f, 1.0f, 1.0f));
 	level->name = "TestLevel";
 	
+	AssetManager& assetManager = *engine->assetManager;
+	PackageManager& packageManager = *engine->packageManager;
+	Asset* helperAsset;
+
 	/*********************************
 	*
 	* Creating shaders
@@ -55,6 +71,28 @@ void OglDevTut03::InitializeLevel()
 	Shader* straussShader			=	shaderManager.Load("Strauss",				"./Shader Files/Perspective_NTBTc_VS.glsl", "./Shader Files/StraussSimple2_PS.glsl");
 	Shader* wardIsoShader			=	shaderManager.Load("WardIso",				"./Shader Files/Perspective_NTBTc_VS.glsl", "./Shader Files/WardIsoSimple_PS.glsl");
 	Shader* wardAnisoShader			=	shaderManager.Load("WardAniso",				"./Shader Files/Perspective_NTBTc_VS.glsl", "./Shader Files/WardAnisoSimple_PS.glsl");
+
+	//Adding shaders to the internal package of the level.
+	helperAsset = new Asset("Phong Shader", shaderManager["Phong"]);
+	(*level->getInternalPackage()) << helperAsset;
+	helperAsset = new Asset("BlinnPhong Shader", shaderManager["BlinnPhong"]);
+	(*level->getInternalPackage()) << helperAsset;
+	helperAsset = new Asset("TexturedPhong Shader", shaderManager["TexturedPhong"]);
+	(*level->getInternalPackage()) << helperAsset;
+	helperAsset = new Asset("BumpedPhong Shader", shaderManager["BumpedPhong"]);
+	(*level->getInternalPackage()) << helperAsset;
+	helperAsset = new Asset("MaskedBumpedBlinnPhong Shader", shaderManager["MaskedBumpedBlinnPhong"]);
+	(*level->getInternalPackage()) << helperAsset;
+	helperAsset = new Asset("ParalaxedPhong Shader", shaderManager["ParalaxedPhong"]);
+	(*level->getInternalPackage()) << helperAsset;
+	helperAsset = new Asset("CookTorrance Shader", shaderManager["CookTorrance"]);
+	(*level->getInternalPackage()) << helperAsset;
+	helperAsset = new Asset("Strauss Shader", shaderManager["Strauss"]);
+	(*level->getInternalPackage()) << helperAsset;
+	helperAsset = new Asset("WardIso Shader", shaderManager["WardIso"]);
+	(*level->getInternalPackage()) << helperAsset;
+	helperAsset = new Asset("WardAniso Shader", shaderManager["WardAniso"]);
+	(*level->getInternalPackage()) << helperAsset;
 
 	/*********************************
 	*
@@ -105,6 +143,36 @@ void OglDevTut03::InitializeLevel()
 	Texture* chestDiff				=	textureManager.Load("Steampunk Chest Albedo",			"./Assets/TestAssets/SteampunkChest_Diffuse.tga");
 	Texture* chestNRM				=	textureManager.Load("Steampunk Chest Normals",			"./Assets/TestAssets/SteampunkChest_NRM.tga");
 
+	//Adding textures to the internal package of the level.
+	helperAsset = new Asset("Default Texture Albedo", textureManager["Default Texture Albedo"]);
+	(*level->getInternalPackage()) << helperAsset;
+	helperAsset = new Asset("Default Texture Normals", textureManager["Default Texture Normals"]);
+	(*level->getInternalPackage()) << helperAsset;
+	helperAsset = new Asset("Gears AO", textureManager["Gears AO"]);
+	(*level->getInternalPackage()) << helperAsset;
+	helperAsset = new Asset("Gears Normals", textureManager["Gears Normals"]);
+	(*level->getInternalPackage()) << helperAsset;
+	helperAsset = new Asset("Stone Wall Albedo", textureManager["Stone Wall Albedo"]);
+	(*level->getInternalPackage()) << helperAsset;
+	helperAsset = new Asset("Stone Wall Normals", textureManager["Stone Wall Normals"]);
+	(*level->getInternalPackage()) << helperAsset;
+	helperAsset = new Asset("Stone Wall Heights", textureManager["Stone Wall Heights"]);
+	(*level->getInternalPackage()) << helperAsset;
+	helperAsset = new Asset("Vector Displacement AO", textureManager["Vector Displacement AO"]);
+	(*level->getInternalPackage()) << helperAsset;
+	helperAsset = new Asset("Vector Displacment Normals", textureManager["Vector Displacment Normals"]);
+	(*level->getInternalPackage()) << helperAsset;
+	helperAsset = new Asset("Vector Displacement Directions", textureManager["Vector Displacement Directions"]);
+	(*level->getInternalPackage()) << helperAsset;
+	helperAsset = new Asset("TGA Test", textureManager["TGA Test"]);
+	(*level->getInternalPackage()) << helperAsset;
+	helperAsset = new Asset("TGA RLE Test", textureManager["TGA RLE Test"]);
+	(*level->getInternalPackage()) << helperAsset;
+	helperAsset = new Asset("Steampunk Chest Albedo", textureManager["Steampunk Chest Albedo"]);
+	(*level->getInternalPackage()) << helperAsset;
+	helperAsset = new Asset("Steampunk Chest Normals", textureManager["Steampunk Chest Normals"]);
+	(*level->getInternalPackage()) << helperAsset;
+
 	/*********************************
 	*
 	* Setting parameters of materials
@@ -149,6 +217,32 @@ void OglDevTut03::InitializeLevel()
 
 	(*chestMaterial)["mat_diffuseTexture"]							=	chestDiff;
 	(*chestMaterial)["mat_normalTexture"]							=	chestNRM;
+
+	//Adding materials to the internal package of the level.
+	helperAsset = new Asset("Phong Material", materialManager["Phong Material"]);
+	(*level->getInternalPackage()) << helperAsset;
+	helperAsset = new Asset("Blinn-Phong Material", materialManager["Blinn-Phong Material"]);
+	(*level->getInternalPackage()) << helperAsset;
+	helperAsset = new Asset("Textured Material", materialManager["Textured Material"]);
+	(*level->getInternalPackage()) << helperAsset;
+	helperAsset = new Asset("Bumped Material", materialManager["Bumped Material"]);
+	(*level->getInternalPackage()) << helperAsset;
+	helperAsset = new Asset("Masked Material", materialManager["Masked Material"]);
+	(*level->getInternalPackage()) << helperAsset;
+	helperAsset = new Asset("Paralaxed Material", materialManager["Paralaxed Material"]);
+	(*level->getInternalPackage()) << helperAsset;
+	helperAsset = new Asset("CookTorrance Material", materialManager["CookTorrance Material"]);
+	(*level->getInternalPackage()) << helperAsset;
+	helperAsset = new Asset("Strauss Material", materialManager["Strauss Material"]);
+	(*level->getInternalPackage()) << helperAsset;
+	helperAsset = new Asset("Strauss Material Metalic", materialManager["Strauss Material Metalic"]);
+	(*level->getInternalPackage()) << helperAsset;
+	helperAsset = new Asset("Isotropic Ward Material", materialManager["Isotropic Ward Material"]);
+	(*level->getInternalPackage()) << helperAsset;
+	helperAsset = new Asset("Anisotropic Ward Material", materialManager["Anisotropic Ward Material"]);
+	(*level->getInternalPackage()) << helperAsset;
+	helperAsset = new Asset("Steampunk Chest Material", materialManager["Steampunk Chest Material"]);
+	(*level->getInternalPackage()) << helperAsset;
 	
 	/*********************************
 	*
@@ -196,6 +290,22 @@ void OglDevTut03::InitializeLevel()
 	(*vectorTessalationMaterial)["mat_displacementTexture"]		=	tessVecDispTexDISP_TS;
 	(*vectorTessalationMaterial)["mat_displacementScale"]		=	new float(0.5f);
 	(*vectorTessalationMaterial)["mat_tesselationMultiplier"]	=	new float(64.0f);
+
+	//Adding tessalation shaders and materials to the internal package of the level.
+	helperAsset = new Asset("Tessalation Shader", shaderManager["TessalationTest"]);
+	(*level->getInternalPackage()) << helperAsset;
+	helperAsset = new Asset("Tessalation Material", materialManager["TessalationMat"]);
+	(*level->getInternalPackage()) << helperAsset;
+
+	helperAsset = new Asset("DistanceTessalation Shader", shaderManager["DistanceTessalationTest"]);
+	(*level->getInternalPackage()) << helperAsset;
+	helperAsset = new Asset("DistanceTessalation Material", materialManager["DistanceTessalationMat"]);
+	(*level->getInternalPackage()) << helperAsset;
+
+	helperAsset = new Asset("VectorTessalation Shader", shaderManager["VectorTessalationTest"]);
+	(*level->getInternalPackage()) << helperAsset;
+	helperAsset = new Asset("VectorTessalation Material", materialManager["VectorTessalationMat"]);
+	(*level->getInternalPackage()) << helperAsset;
 	
 	/*********************************
 	*
@@ -207,26 +317,55 @@ void OglDevTut03::InitializeLevel()
 	AssimpModelImporter::Instance();
 	FbxModelImporter::Instance();
 
-	engine->modelBuilder->CreatePlane("Plane", 10.0f, 10.0f, 50, 50);
-	engine->modelBuilder->CreateBox("Box", glm::vec3(1.0f, 1.0f, 1.0f));
-	engine->modelBuilder->CreateBox("BoxDense",glm::vec3(1.0f),glm::vec3(10,10,10));
-	engine->modelBuilder->CreateCylinder("Cylinder");
-	engine->modelBuilder->CreateCylinder("CylinderDense", 1.0f, 2.0f, 40, 10);
-	engine->modelBuilder->CreateCone("Cone");
-	engine->modelBuilder->CreateSphere("Sphere", 1.0f, 40, 40);
-	engine->modelBuilder->CreateTorus("Torus");
-	engine->modelBuilder->Load("TestModel",			"./Assets/TestAssets/TestModel.obj");
-	engine->modelBuilder->Load("TestModel2",		"./Assets/TestAssets/TestModel2.obj");
-	engine->modelBuilder->Load("TestTesselation",	"./Assets/TestAssets/TestTesselation.obj");
-	engine->modelBuilder->Load("Teapot",			"./Assets/TestAssets/teapot.obj");
-	engine->modelBuilder->Load("MayaBox",			"./Assets/TestAssets/MayaBox.obj");
-	engine->modelBuilder->Load("VectorSphere",		"./Assets/TestAssets/vectorDispSphere.obj");
-	engine->modelBuilder->Load("VectorCube",		"./Assets/TestAssets/vectorCube_LP_DENSE_T.obj");
-	engine->modelBuilder->Load("FbxTest",			"./Assets/TestAssets/FBXtest.fbx");
-	engine->modelBuilder->Load("FbxTest2",			"./Assets/TestAssets/FBXtest2.fbx");
-	engine->modelBuilder->Load("FbxTest3",			"./Assets/TestAssets/FBXtestPrepared.fbx");
-	engine->modelBuilder->Load("FbxTest4",			"./Assets/TestAssets/FBXHierarchyTest.fbx");
-	engine->modelBuilder->Load("FbxChest",			"./Assets/TestAssets/SteamPunkChest_LP.fbx");
+	ModelBuilder& modelBuilder = *engine->modelBuilder;
+	ModelManager& modelManager = *engine->modelManager;
+
+	modelBuilder.CreatePlane("Plane", 10.0f, 10.0f, 50, 50);
+	modelBuilder.CreateBox("Box", glm::vec3(1.0f, 1.0f, 1.0f));
+	modelBuilder.CreateBox("BoxDense",glm::vec3(1.0f),glm::vec3(10,10,10));
+	modelBuilder.CreateCylinder("Cylinder");
+	modelBuilder.CreateCylinder("CylinderDense", 1.0f, 2.0f, 40, 10);
+	modelBuilder.CreateCone("Cone");
+	modelBuilder.CreateSphere("Sphere", 1.0f, 40, 40);
+	modelBuilder.CreateTorus("Torus");
+	modelBuilder.Load("TestModel",			"./Assets/TestAssets/TestModel.obj");
+	modelBuilder.Load("TestModel2",			"./Assets/TestAssets/TestModel2.obj");
+	modelBuilder.Load("TestTesselation",	"./Assets/TestAssets/TestTesselation.obj");
+	modelBuilder.Load("Teapot",				"./Assets/TestAssets/teapot.obj");
+	modelBuilder.Load("MayaBox",			"./Assets/TestAssets/MayaBox.obj");
+	modelBuilder.Load("VectorSphere",		"./Assets/TestAssets/vectorDispSphere.obj");
+	modelBuilder.Load("VectorCube",			"./Assets/TestAssets/vectorCube_LP_DENSE_T.obj");
+	modelBuilder.Load("FbxTest",			"./Assets/TestAssets/FBXtest.fbx");
+	modelBuilder.Load("FbxTest2",			"./Assets/TestAssets/FBXtest2.fbx");
+	modelBuilder.Load("FbxTest3",			"./Assets/TestAssets/FBXtestPrepared.fbx");
+	modelBuilder.Load("FbxTest4",			"./Assets/TestAssets/FBXHierarchyTest.fbx");
+	modelBuilder.Load("FbxChest",			"./Assets/TestAssets/SteamPunkChest_LP.fbx");
+
+	//Adding imported model assets to the internal package of the level.
+	helperAsset = new Asset("TestModel Model", modelManager["TestModel"]);
+	(*level->getInternalPackage()) << helperAsset;
+	helperAsset = new Asset("TestModel2 Model", modelManager["TestModel2"]);
+	(*level->getInternalPackage()) << helperAsset;
+	helperAsset = new Asset("TestTesselation Model", modelManager["TestTesselation"]);
+	(*level->getInternalPackage()) << helperAsset;
+	helperAsset = new Asset("Teapot Model", modelManager["Teapot"]);
+	(*level->getInternalPackage()) << helperAsset;
+	helperAsset = new Asset("MayaBox Model", modelManager["MayaBox"]);
+	(*level->getInternalPackage()) << helperAsset;
+	helperAsset = new Asset("VectorSphere Model", modelManager["VectorSphere"]);
+	(*level->getInternalPackage()) << helperAsset;
+	helperAsset = new Asset("VectorCube Model", modelManager["VectorCube"]);
+	(*level->getInternalPackage()) << helperAsset;
+	helperAsset = new Asset("FbxTest Model", modelManager["FbxTest"]);
+	(*level->getInternalPackage()) << helperAsset;
+	helperAsset = new Asset("FbxTest2 Model", modelManager["FbxTest2"]);
+	(*level->getInternalPackage()) << helperAsset;
+	helperAsset = new Asset("FbxTest3 Model", modelManager["FbxTest3"]);
+	(*level->getInternalPackage()) << helperAsset;
+	helperAsset = new Asset("FbxTest4 Model", modelManager["FbxTest4"]);
+	(*level->getInternalPackage()) << helperAsset;
+	helperAsset = new Asset("FbxChest Model", modelManager["FbxChest"]);
+	(*level->getInternalPackage()) << helperAsset;
 
 	/*********************************
 	*

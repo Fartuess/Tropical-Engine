@@ -1,5 +1,908 @@
 {
     "internal package": {
+        "assets": [
+            {
+                "asset": {
+                    "name": "Anisotropic Ward Material",
+                    "parameters": [
+                        {
+                            "name": "mat_anisoRoughness",
+                            "type": "35664",
+                            "value": {
+                                "x": 0.5,
+                                "y": 0.10000000149011612
+                            }
+                        },
+                        {
+                            "name": "mat_diffuse",
+                            "type": "35665",
+                            "value": {
+                                "x": 1,
+                                "y": 0.69999998807907104,
+                                "z": 0
+                            }
+                        }
+                    ],
+                    "shader": "WardAniso"
+                },
+                "name": "Anisotropic Ward Material",
+                "typename": "Material"
+            },
+            {
+                "asset": {
+                    "name": "Blinn-Phong Material",
+                    "parameters": [
+                        {
+                            "name": "mat_diffuseColor",
+                            "type": "35665",
+                            "value": {
+                                "x": 0.5,
+                                "y": 0.69999998807907104,
+                                "z": 1
+                            }
+                        }
+                    ],
+                    "shader": "BlinnPhong"
+                },
+                "name": "Blinn-Phong Material",
+                "typename": "Material"
+            },
+            {
+                "asset": {
+                    "name": "BlinnPhong",
+                    "subshaders": [
+                        {
+                            "type": "5",
+                            "url": "./Shader Files/Perspective_NTBTc_VS.glsl"
+                        },
+                        {
+                            "type": "6",
+                            "url": "./Shader Files/PhongBlinn_PS.glsl"
+                        }
+                    ]
+                },
+                "name": "BlinnPhong Shader",
+                "typename": "Shader"
+            },
+            {
+                "asset": {
+                    "name": "Bumped Material",
+                    "parameters": [
+                        {
+                            "name": "mat_diffuseTexture",
+                            "type": "35678",
+                            "value": {
+                                "name": ""
+                            }
+                        },
+                        {
+                            "name": "mat_normalTexture",
+                            "type": "35678",
+                            "value": {
+                                "name": ""
+                            }
+                        }
+                    ],
+                    "shader": "BumpedPhong"
+                },
+                "name": "Bumped Material",
+                "typename": "Material"
+            },
+            {
+                "asset": {
+                    "name": "BumpedPhong",
+                    "subshaders": [
+                        {
+                            "type": "11",
+                            "url": "./Shader Files/Perspective_NTBTc_VS.glsl"
+                        },
+                        {
+                            "type": "12",
+                            "url": "./Shader Files/PhongBlinnBump_PS.glsl"
+                        }
+                    ]
+                },
+                "name": "BumpedPhong Shader",
+                "typename": "Shader"
+            },
+            {
+                "asset": {
+                    "name": "CookTorrance Material",
+                    "parameters": [
+                        {
+                            "name": "mat_diffuseColor",
+                            "type": "35665",
+                            "value": {
+                                "x": 1,
+                                "y": 0.69999998807907104,
+                                "z": 0
+                            }
+                        },
+                        {
+                            "name": "mat_refractiveIndex",
+                            "type": "5126",
+                            "value": {
+                                "x": 0.15000000596046448
+                            }
+                        },
+                        {
+                            "name": "mat_roughness",
+                            "type": "5126",
+                            "value": {
+                                "x": 0.5
+                            }
+                        },
+                        {
+                            "name": "mat_specularColor",
+                            "type": "35665",
+                            "value": {
+                                "x": 1,
+                                "y": 1,
+                                "z": 1
+                            }
+                        }
+                    ],
+                    "shader": "CookTorrance"
+                },
+                "name": "CookTorrance Material",
+                "typename": "Material"
+            },
+            {
+                "asset": {
+                    "name": "CookTorrance",
+                    "subshaders": [
+                        {
+                            "type": "21",
+                            "url": "./Shader Files/CookTorrance_PS.glsl"
+                        },
+                        {
+                            "type": "20",
+                            "url": "./Shader Files/Perspective_NTBTc_VS.glsl"
+                        }
+                    ]
+                },
+                "name": "CookTorrance Shader",
+                "typename": "Shader"
+            },
+            {
+                "asset": {
+                    "name": "",
+                    "url": "./Assets/Core/DefaultTexture.png"
+                },
+                "name": "Default Texture Albedo",
+                "typename": "Texture"
+            },
+            {
+                "asset": {
+                    "name": "",
+                    "url": "./Assets/Core/DefaultTexture_NRM.png"
+                },
+                "name": "Default Texture Normals",
+                "typename": "Texture"
+            },
+            {
+                "asset": {
+                    "name": "DistanceTessalationMat",
+                    "parameters": [
+                        {
+                            "name": "mat_diffuseTexture",
+                            "type": "35678",
+                            "value": {
+                                "name": ""
+                            }
+                        },
+                        {
+                            "name": "mat_displacementScale",
+                            "type": "5126",
+                            "value": {
+                                "x": 0.10000000149011612
+                            }
+                        },
+                        {
+                            "name": "mat_displacementTexture",
+                            "type": "35678",
+                            "value": {
+                                "name": ""
+                            }
+                        },
+                        {
+                            "name": "mat_normalTexture",
+                            "type": "35678",
+                            "value": {
+                                "name": ""
+                            }
+                        }
+                    ],
+                    "shader": "DistanceTessalationTest"
+                },
+                "name": "DistanceTessalation Material",
+                "typename": "Material"
+            },
+            {
+                "asset": {
+                    "name": "DistanceTessalationTest",
+                    "subshaders": [
+                        {
+                            "type": "37",
+                            "url": "./Shader Files/Displacement_TES.glsl"
+                        },
+                        {
+                            "type": "38",
+                            "url": "./Shader Files/DistanceBasedTesselation_TCS.glsl"
+                        },
+                        {
+                            "type": "39",
+                            "url": "./Shader Files/Perspective_NTBTcTess_VS.glsl"
+                        },
+                        {
+                            "type": "40",
+                            "url": "./Shader Files/PhongBlinnBump_PS.glsl"
+                        }
+                    ]
+                },
+                "name": "DistanceTessalation Shader",
+                "typename": "Shader"
+            },
+            {
+                "asset": {
+                    "name": "FbxChest",
+                    "url": "./Assets/TestAssets/SteamPunkChest_LP.fbx"
+                },
+                "name": "FbxChest Model",
+                "typename": "Model"
+            },
+            {
+                "asset": {
+                    "name": "FbxTest",
+                    "url": "./Assets/TestAssets/FBXtest.fbx"
+                },
+                "name": "FbxTest Model",
+                "typename": "Model"
+            },
+            {
+                "asset": {
+                    "name": "FbxTest2",
+                    "url": "./Assets/TestAssets/FBXtest2.fbx"
+                },
+                "name": "FbxTest2 Model",
+                "typename": "Model"
+            },
+            {
+                "asset": {
+                    "name": "FbxTest3",
+                    "url": "./Assets/TestAssets/FBXtestPrepared.fbx"
+                },
+                "name": "FbxTest3 Model",
+                "typename": "Model"
+            },
+            {
+                "asset": {
+                    "name": "FbxTest4",
+                    "url": "./Assets/TestAssets/FBXHierarchyTest.fbx"
+                },
+                "name": "FbxTest4 Model",
+                "typename": "Model"
+            },
+            {
+                "asset": {
+                    "name": "",
+                    "url": "./Assets/TestAssets/Gear_occlusion.tga"
+                },
+                "name": "Gears AO",
+                "typename": "Texture"
+            },
+            {
+                "asset": {
+                    "name": "",
+                    "url": "./Assets/TestAssets/Gear_normals.tga"
+                },
+                "name": "Gears Normals",
+                "typename": "Texture"
+            },
+            {
+                "asset": {
+                    "name": "Isotropic Ward Material",
+                    "parameters": [
+                        {
+                            "name": "mat_diffuse",
+                            "type": "35665",
+                            "value": {
+                                "x": 1,
+                                "y": 0.69999998807907104,
+                                "z": 0
+                            }
+                        },
+                        {
+                            "name": "mat_roughness",
+                            "type": "5126",
+                            "value": {
+                                "x": 0.30000001192092896
+                            }
+                        }
+                    ],
+                    "shader": "WardIso"
+                },
+                "name": "Isotropic Ward Material",
+                "typename": "Material"
+            },
+            {
+                "asset": {
+                    "name": "Masked Material",
+                    "parameters": [
+                        {
+                            "name": "mat_diffuseTexture",
+                            "type": "35678",
+                            "value": {
+                                "name": ""
+                            }
+                        },
+                        {
+                            "name": "mat_normalTexture",
+                            "type": "35678",
+                            "value": {
+                                "name": ""
+                            }
+                        }
+                    ],
+                    "shader": "MaskedBumpedBlinnPhong"
+                },
+                "name": "Masked Material",
+                "typename": "Material"
+            },
+            {
+                "asset": {
+                    "name": "MaskedBumpedBlinnPhong",
+                    "subshaders": [
+                        {
+                            "type": "14",
+                            "url": "./Shader Files/Perspective_NTBTc_VS.glsl"
+                        },
+                        {
+                            "type": "15",
+                            "url": "./Shader Files/PhongBlinnBumpMask_PS.glsl"
+                        }
+                    ]
+                },
+                "name": "MaskedBumpedBlinnPhong Shader",
+                "typename": "Shader"
+            },
+            {
+                "asset": {
+                    "name": "MayaBox",
+                    "url": "./Assets/TestAssets/MayaBox.obj"
+                },
+                "name": "MayaBox Model",
+                "typename": "Model"
+            },
+            {
+                "asset": {
+                    "name": "Paralaxed Material",
+                    "parameters": [
+                        {
+                            "name": "mat_bumpScale",
+                            "type": "5126",
+                            "value": {
+                                "x": 0.10000000149011612
+                            }
+                        },
+                        {
+                            "name": "mat_diffuseTexture",
+                            "type": "35678",
+                            "value": {
+                                "name": ""
+                            }
+                        },
+                        {
+                            "name": "mat_heightTexture",
+                            "type": "35678",
+                            "value": {
+                                "name": ""
+                            }
+                        },
+                        {
+                            "name": "mat_normalTexture",
+                            "type": "35678",
+                            "value": {
+                                "name": ""
+                            }
+                        }
+                    ],
+                    "shader": "ParalaxedPhong"
+                },
+                "name": "Paralaxed Material",
+                "typename": "Material"
+            },
+            {
+                "asset": {
+                    "name": "ParalaxedPhong",
+                    "subshaders": [
+                        {
+                            "type": "17",
+                            "url": "./Shader Files/Perspective_NTBTc_VS.glsl"
+                        },
+                        {
+                            "type": "18",
+                            "url": "./Shader Files/PhongBlinnParalax_PS.glsl"
+                        }
+                    ]
+                },
+                "name": "ParalaxedPhong Shader",
+                "typename": "Shader"
+            },
+            {
+                "asset": {
+                    "name": "Phong Material",
+                    "parameters": [
+                        {
+                            "name": "mat_diffuseColor",
+                            "type": "35665",
+                            "value": {
+                                "x": 0,
+                                "y": 0.69999998807907104,
+                                "z": 1
+                            }
+                        }
+                    ],
+                    "shader": "Phong"
+                },
+                "name": "Phong Material",
+                "typename": "Material"
+            },
+            {
+                "asset": {
+                    "name": "Phong",
+                    "subshaders": [
+                        {
+                            "type": "2",
+                            "url": "./Shader Files/Perspective_NTBTc_VS.glsl"
+                        },
+                        {
+                            "type": "3",
+                            "url": "./Shader Files/Phong_PS.glsl"
+                        }
+                    ]
+                },
+                "name": "Phong Shader",
+                "typename": "Shader"
+            },
+            {
+                "asset": {
+                    "name": "",
+                    "url": "./Assets/TestAssets/SteampunkChest_Diffuse.tga"
+                },
+                "name": "Steampunk Chest Albedo",
+                "typename": "Texture"
+            },
+            {
+                "asset": {
+                    "name": "Steampunk Chest Material",
+                    "parameters": [
+                        {
+                            "name": "mat_diffuseTexture",
+                            "type": "35678",
+                            "value": {
+                                "name": ""
+                            }
+                        },
+                        {
+                            "name": "mat_normalTexture",
+                            "type": "35678",
+                            "value": {
+                                "name": ""
+                            }
+                        }
+                    ],
+                    "shader": "BumpedPhong"
+                },
+                "name": "Steampunk Chest Material",
+                "typename": "Material"
+            },
+            {
+                "asset": {
+                    "name": "",
+                    "url": "./Assets/TestAssets/SteampunkChest_NRM.tga"
+                },
+                "name": "Steampunk Chest Normals",
+                "typename": "Texture"
+            },
+            {
+                "asset": {
+                    "name": "",
+                    "url": "./Assets/Core/wall_base.png"
+                },
+                "name": "Stone Wall Albedo",
+                "typename": "Texture"
+            },
+            {
+                "asset": {
+                    "name": "",
+                    "url": "./Assets/Core/wall_heights.png"
+                },
+                "name": "Stone Wall Heights",
+                "typename": "Texture"
+            },
+            {
+                "asset": {
+                    "name": "",
+                    "url": "./Assets/Core/wall_normals.png"
+                },
+                "name": "Stone Wall Normals",
+                "typename": "Texture"
+            },
+            {
+                "asset": {
+                    "name": "Strauss Material",
+                    "parameters": [
+                        {
+                            "name": "mat_albedo",
+                            "type": "35665",
+                            "value": {
+                                "x": 0,
+                                "y": 1,
+                                "z": 0
+                            }
+                        },
+                        {
+                            "name": "mat_metaliness",
+                            "type": "5126",
+                            "value": {
+                                "x": 0
+                            }
+                        },
+                        {
+                            "name": "mat_roughness",
+                            "type": "5126",
+                            "value": {
+                                "x": 0.80000001192092896
+                            }
+                        }
+                    ],
+                    "shader": "Strauss"
+                },
+                "name": "Strauss Material",
+                "typename": "Material"
+            },
+            {
+                "asset": {
+                    "name": "Strauss Material Metalic",
+                    "parameters": [
+                        {
+                            "name": "mat_albedo",
+                            "type": "35665",
+                            "value": {
+                                "x": 0,
+                                "y": 1,
+                                "z": 0
+                            }
+                        },
+                        {
+                            "name": "mat_metaliness",
+                            "type": "5126",
+                            "value": {
+                                "x": 1
+                            }
+                        },
+                        {
+                            "name": "mat_roughness",
+                            "type": "5126",
+                            "value": {
+                                "x": 0.80000001192092896
+                            }
+                        }
+                    ],
+                    "shader": "Strauss"
+                },
+                "name": "Strauss Material Metalic",
+                "typename": "Material"
+            },
+            {
+                "asset": {
+                    "name": "Strauss",
+                    "subshaders": [
+                        {
+                            "type": "23",
+                            "url": "./Shader Files/Perspective_NTBTc_VS.glsl"
+                        },
+                        {
+                            "type": "24",
+                            "url": "./Shader Files/StraussSimple2_PS.glsl"
+                        }
+                    ]
+                },
+                "name": "Strauss Shader",
+                "typename": "Shader"
+            },
+            {
+                "asset": {
+                    "name": "",
+                    "url": "./Assets/TestAssets/dickbutt_RLE.tga"
+                },
+                "name": "TGA RLE Test",
+                "typename": "Texture"
+            },
+            {
+                "asset": {
+                    "name": "",
+                    "url": "./Assets/TestAssets/dickbutt.tga"
+                },
+                "name": "TGA Test",
+                "typename": "Texture"
+            },
+            {
+                "asset": {
+                    "name": "Teapot",
+                    "url": "./Assets/TestAssets/teapot.obj"
+                },
+                "name": "Teapot Model",
+                "typename": "Model"
+            },
+            {
+                "asset": {
+                    "name": "TessalationMat",
+                    "parameters": [
+                        {
+                            "name": "mat_diffuseTexture",
+                            "type": "35678",
+                            "value": {
+                                "name": ""
+                            }
+                        },
+                        {
+                            "name": "mat_displacementScale",
+                            "type": "5126",
+                            "value": {
+                                "x": 0.10000000149011612
+                            }
+                        },
+                        {
+                            "name": "mat_displacementTexture",
+                            "type": "35678",
+                            "value": {
+                                "name": ""
+                            }
+                        },
+                        {
+                            "name": "mat_normalTexture",
+                            "type": "35678",
+                            "value": {
+                                "name": ""
+                            }
+                        }
+                    ],
+                    "shader": "TessalationTest"
+                },
+                "name": "Tessalation Material",
+                "typename": "Material"
+            },
+            {
+                "asset": {
+                    "name": "TessalationTest",
+                    "subshaders": [
+                        {
+                            "type": "32",
+                            "url": "./Shader Files/Displacement_TES.glsl"
+                        },
+                        {
+                            "type": "33",
+                            "url": "./Shader Files/Perspective_NTBTcTess_VS.glsl"
+                        },
+                        {
+                            "type": "34",
+                            "url": "./Shader Files/PhongBlinnBump_PS.glsl"
+                        },
+                        {
+                            "type": "35",
+                            "url": "./Shader Files/SimpleTessalation_TCS.glsl"
+                        }
+                    ]
+                },
+                "name": "Tessalation Shader",
+                "typename": "Shader"
+            },
+            {
+                "asset": {
+                    "name": "TestModel",
+                    "url": "./Assets/TestAssets/TestModel.obj"
+                },
+                "name": "TestModel Model",
+                "typename": "Model"
+            },
+            {
+                "asset": {
+                    "name": "TestModel2",
+                    "url": "./Assets/TestAssets/TestModel2.obj"
+                },
+                "name": "TestModel2 Model",
+                "typename": "Model"
+            },
+            {
+                "asset": {
+                    "name": "TestTesselation",
+                    "url": "./Assets/TestAssets/TestTesselation.obj"
+                },
+                "name": "TestTesselation Model",
+                "typename": "Model"
+            },
+            {
+                "asset": {
+                    "name": "Textured Material",
+                    "parameters": [
+                        {
+                            "name": "mat_diffuseTexture",
+                            "type": "35678",
+                            "value": {
+                                "name": ""
+                            }
+                        }
+                    ],
+                    "shader": "TexturedPhong"
+                },
+                "name": "Textured Material",
+                "typename": "Material"
+            },
+            {
+                "asset": {
+                    "name": "TexturedPhong",
+                    "subshaders": [
+                        {
+                            "type": "8",
+                            "url": "./Shader Files/Perspective_NTBTc_VS.glsl"
+                        },
+                        {
+                            "type": "9",
+                            "url": "./Shader Files/PhongBlinnSimple_PS.glsl"
+                        }
+                    ]
+                },
+                "name": "TexturedPhong Shader",
+                "typename": "Shader"
+            },
+            {
+                "asset": {
+                    "name": "",
+                    "url": "./Assets/TestAssets/vectorCube_occlusion.tga"
+                },
+                "name": "Vector Displacement AO",
+                "typename": "Texture"
+            },
+            {
+                "asset": {
+                    "name": "",
+                    "url": "./Assets/TestAssets/vectorCube_2_directions.tga"
+                },
+                "name": "Vector Displacement Directions",
+                "typename": "Texture"
+            },
+            {
+                "asset": {
+                    "name": "",
+                    "url": "./Assets/TestAssets/vectorCube_normals.tga"
+                },
+                "name": "Vector Displacment Normals",
+                "typename": "Texture"
+            },
+            {
+                "asset": {
+                    "name": "VectorCube",
+                    "url": "./Assets/TestAssets/vectorCube_LP_DENSE_T.obj"
+                },
+                "name": "VectorCube Model",
+                "typename": "Model"
+            },
+            {
+                "asset": {
+                    "name": "VectorSphere",
+                    "url": "./Assets/TestAssets/vectorDispSphere.obj"
+                },
+                "name": "VectorSphere Model",
+                "typename": "Model"
+            },
+            {
+                "asset": {
+                    "name": "VectorTessalationMat",
+                    "parameters": [
+                        {
+                            "name": "mat_diffuseTexture",
+                            "type": "35678",
+                            "value": {
+                                "name": ""
+                            }
+                        },
+                        {
+                            "name": "mat_displacementScale",
+                            "type": "5126",
+                            "value": {
+                                "x": 0.5
+                            }
+                        },
+                        {
+                            "name": "mat_displacementTexture",
+                            "type": "35678",
+                            "value": {
+                                "name": ""
+                            }
+                        },
+                        {
+                            "name": "mat_normalTexture",
+                            "type": "35678",
+                            "value": {
+                                "name": ""
+                            }
+                        },
+                        {
+                            "name": "mat_tesselationMultiplier",
+                            "type": "5126",
+                            "value": {
+                                "x": 64
+                            }
+                        }
+                    ],
+                    "shader": "VectorTessalationTest"
+                },
+                "name": "VectorTessalation Material",
+                "typename": "Material"
+            },
+            {
+                "asset": {
+                    "name": "VectorTessalationTest",
+                    "subshaders": [
+                        {
+                            "type": "42",
+                            "url": "./Shader Files/DistanceBasedTesselation_TCS.glsl"
+                        },
+                        {
+                            "type": "43",
+                            "url": "./Shader Files/Perspective_NTBTcTess_VS.glsl"
+                        },
+                        {
+                            "type": "44",
+                            "url": "./Shader Files/PhongBlinnBump_PS.glsl"
+                        },
+                        {
+                            "type": "45",
+                            "url": "./Shader Files/VectorDisplacement_TES.glsl"
+                        }
+                    ]
+                },
+                "name": "VectorTessalation Shader",
+                "typename": "Shader"
+            },
+            {
+                "asset": {
+                    "name": "WardAniso",
+                    "subshaders": [
+                        {
+                            "type": "29",
+                            "url": "./Shader Files/Perspective_NTBTc_VS.glsl"
+                        },
+                        {
+                            "type": "30",
+                            "url": "./Shader Files/WardAnisoSimple_PS.glsl"
+                        }
+                    ]
+                },
+                "name": "WardAniso Shader",
+                "typename": "Shader"
+            },
+            {
+                "asset": {
+                    "name": "WardIso",
+                    "subshaders": [
+                        {
+                            "type": "26",
+                            "url": "./Shader Files/Perspective_NTBTc_VS.glsl"
+                        },
+                        {
+                            "type": "27",
+                            "url": "./Shader Files/WardIsoSimple_PS.glsl"
+                        }
+                    ]
+                },
+                "name": "WardIso Shader",
+                "typename": "Shader"
+            }
+        ],
+        "name": ""
     },
     "name": "TestLevel",
     "root entity": {
@@ -541,16 +1444,16 @@
                 "components": [
                     {
                         "position": {
-                            "x": 6.2613153457641602,
-                            "y": 0.24388033151626587,
-                            "z": 7.9236836433410645
+                            "x": 0,
+                            "y": 0,
+                            "z": 5
                         },
                         "rotation": {
-                            "angle": 112.38410186767578,
+                            "angle": 180,
                             "axis": {
-                                "x": -0.024359621107578278,
-                                "y": -0.99904245138168335,
-                                "z": -0.036342203617095947
+                                "x": 0,
+                                "y": 1,
+                                "z": 0
                             }
                         },
                         "scale": {
@@ -563,7 +1466,7 @@
                     {
                         "Z far": 10000,
                         "Z near": 0.10000000149011612,
-                        "aspect ratio": 1.1123228073120117,
+                        "aspect ratio": 0.93719005584716797,
                         "fov": 40,
                         "target": {
                             "x": 0,

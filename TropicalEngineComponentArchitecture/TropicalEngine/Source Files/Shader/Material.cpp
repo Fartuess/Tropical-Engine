@@ -153,6 +153,10 @@ QJsonObject Material::toJSON()
 	QJsonArray materialParametersJSON = QJsonArray();
 	for (QString materialParameter : parameters.keys())
 	{
+		if ((*parameters[materialParameter]) == NULL)
+		{
+			continue;
+		}
 		QJsonObject materialParameterJSON = QJsonObject();
 		materialParameterJSON["name"] = materialParameter;
 		materialParameterJSON["type"] = QString::number(shader->getParameterType(materialParameter));

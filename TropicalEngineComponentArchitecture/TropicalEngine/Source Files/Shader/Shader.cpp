@@ -304,6 +304,12 @@ QJsonObject Shader::toJSON()
 	return JSON;
 }
 
+IDeserializableFromJSON* Shader::fromJSON(QJsonObject JSON)
+{
+	///TODO: Implement it!
+	return new Shader(*nullShader);
+}
+
 void Shader::FinalizeShader()
 {
 	GLint Success = 0;

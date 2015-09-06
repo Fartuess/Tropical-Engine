@@ -17,7 +17,7 @@ AssimpModelImporter::~AssimpModelImporter()
 
 Model* AssimpModelImporter::Load(QString name, QString fileUrl)
 {
-	Model* model = new Model(name);
+	Model* model = new Model(name, fileUrl);
 	const aiScene* pScene = Importer.ReadFile(fileUrl.toLocal8Bit().data(), aiProcess_Triangulate | aiProcess_CalcTangentSpace);
 
 	if (pScene != NULL)

@@ -26,7 +26,7 @@ Model* FbxModelImporter::Load(QString name, QString fileUrl)
 
 	/// TODO: Clean memory!
 
-	Model* model = new Model(name);
+	Model* model = new Model(name, fileUrl);
 
 	FbxImporter* Importer = FbxImporter::Create(SdkManager, "");
 
