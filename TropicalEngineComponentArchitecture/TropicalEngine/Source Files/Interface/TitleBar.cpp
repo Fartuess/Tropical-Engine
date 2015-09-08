@@ -72,8 +72,9 @@ void TitleBar::mouseReleaseEvent(QMouseEvent* e)
 		else
 		{
 			///TODO: Sided window should not go under start bar.
-			QRect screenRect = QApplication::desktop()->screenGeometry();
-			if (e->globalX() == screenRect.left())
+			QRect fullScreenRect = QApplication::desktop()->geometry();
+			QRect screenRect = QApplication::desktop()->availableGeometry();
+			if (e->globalX() == fullScreenRect.left())
 			{
 				if (!isSided)
 				{
@@ -83,14 +84,14 @@ void TitleBar::mouseReleaseEvent(QMouseEvent* e)
 				rootParent->move(screenRect.topLeft());
 				isSided = true;
 			}
-			if (e->globalX() == screenRect.right())
+			if (e->globalX() == fullScreenRect.right())
 			{
 				if (!isSided)
 				{
 					previousSize = rootParent->size();
 				}
 				rootParent->resize(screenRect.width() / 2, screenRect.height());
-				rootParent->move(QPoint(screenRect.center().x(), 0));
+				rootParent->move(QPoint(screenRect.center().x(), screenRect.top()));
 				isSided = true;
 			}
 		}
