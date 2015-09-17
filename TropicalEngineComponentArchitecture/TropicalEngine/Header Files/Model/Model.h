@@ -79,6 +79,8 @@ class Model : public ISerializableJSON
 {
 public:
 
+	QString type;
+
 	/**
 	  * \brief Gets the name of the Model.
 	  *
@@ -142,7 +144,8 @@ public:
 	  * @return Model object.
 	  */
 	IDeserializableFromJSON* fromJSON(QJsonObject JSON) override;
-
+protected:
+	//QMap<QString, QPair<typename, void*>> parameters;
 private:
 	QString name;
 	QString fileUrl;

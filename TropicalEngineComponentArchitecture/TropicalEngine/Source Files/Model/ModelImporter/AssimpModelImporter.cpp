@@ -1,7 +1,7 @@
 #include <QtCore/qdebug.h>
 
 #include <Model/ModelBuilder.h>
-#include <Model/AssimpModelImporter.h>
+#include <Model/ModelImporter/AssimpModelImporter.h>
 
 AssimpModelImporter::AssimpModelImporter()
 {

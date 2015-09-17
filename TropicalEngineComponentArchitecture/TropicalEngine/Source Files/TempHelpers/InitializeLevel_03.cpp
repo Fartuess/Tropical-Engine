@@ -15,8 +15,15 @@
 #include <Model/ModelBuilder.h>
 #include <Model/ModelComponent.h>
 #include <Model/ModelManager.h>
-#include <Model/AssimpModelImporter.h>
-#include <Model/FbxModelImporter.h>
+#include <Model/ModelImporter/AssimpModelImporter.h>
+#include <Model/ModelImporter/FbxModelImporter.h>
+#include <Model/ModelBuilder/TriangleModelBuilder.h>
+#include <Model/ModelBuilder/PlaneModelBuilder.h>
+#include <Model/ModelBuilder/BoxModelBuilder.h>
+#include <Model/ModelBuilder/CylinderModelBuilder.h>
+#include <Model/ModelBuilder/ConeModelBuilder.h>
+#include <Model/ModelBuilder/SphereModelBuilder.h>
+#include <Model/ModelBuilder/TorusModelBuilder.h>
 
 #include <Camera/CameraComponent.h>
 
@@ -320,14 +327,61 @@ void OglDevTut03::InitializeLevel()
 	ModelBuilder& modelBuilder = *engine->modelBuilder;
 	ModelManager& modelManager = *engine->modelManager;
 
-	modelBuilder.CreatePlane("Plane", 10.0f, 10.0f, 50, 50);
-	modelBuilder.CreateBox("Box", glm::vec3(1.0f, 1.0f, 1.0f));
-	modelBuilder.CreateBox("BoxDense",glm::vec3(1.0f),glm::vec3(10,10,10));
-	modelBuilder.CreateCylinder("Cylinder");
-	modelBuilder.CreateCylinder("CylinderDense", 1.0f, 2.0f, 40, 10);
-	modelBuilder.CreateCone("Cone");
-	modelBuilder.CreateSphere("Sphere", 1.0f, 40, 40);
-	modelBuilder.CreateTorus("Torus");
+	AbstractModelBuilder* triangleBuilder = static_cast<TriangleModelBuilder*>(modelBuilder.getModelBuilder("Triangle"));
+	triangleBuilder->setParameter("name", new QString("Triangle"));
+	triangleBuilder->Build();
+
+	PlaneModelBuilder planeBuilder = PlaneModelBuilder();
+	planeBuilder.setParameter("name", new QString("Plane"));
+	planeBuilder.setParameter("size X", new float(10.0f));
+	planeBuilder.setParameter("size Y", new float(10.0f));
+	planeBuilder.setParameter("subdivisions X", new int(50));
+	planeBuilder.setParameter("subdivisions Y", new int(50));
+	planeBuilder.Build();
+
+	BoxModelBuilder boxBuilder = BoxModelBuilder();
+	boxBuilder.setParameter("name", new QString("Box"));
+	boxBuilder.Build();
+
+	BoxModelBuilder boxDenseBuilder = BoxModelBuilder();
+	boxDenseBuilder.setParameter("name", new QString("BoxDense"));
+	boxDenseBuilder.setParameter("subdivisions X", new uint(10));
+	boxDenseBuilder.setParameter("subdivisions Y", new uint(10));
+	boxDenseBuilder.setParameter("subdivisions Z", new uint(10));
+	boxDenseBuilder.Build();
+
+	CylinderModelBuilder cylinderBuilder = CylinderModelBuilder();
+	cylinderBuilder.setParameter("name", new QString("Cylinder"));
+	cylinderBuilder.Build();
+	
+	CylinderModelBuilder cylinderDenseBuilder = CylinderModelBuilder();
+	cylinderDenseBuilder.setParameter("name", new QString("CylinderDense"));
+	cylinderDenseBuilder.setParameter("subdivisions axis", new uint(40));
+	cylinderDenseBuilder.setParameter("subdivisions height", new uint(10));
+	cylinderDenseBuilder.Build();
+
+	ConeModelBuilder coneBuilder = ConeModelBuilder();
+	coneBuilder.setParameter("name", new QString("Cone"));
+	coneBuilder.Build();
+
+	SphereModelBuilder sphereBuilder = SphereModelBuilder();
+	sphereBuilder.setParameter("name", new QString("Sphere"));
+	sphereBuilder.setParameter("subdivisions axis", new uint(40));
+	sphereBuilder.setParameter("subdivisions height", new uint(40));
+	sphereBuilder.Build();
+
+	TorusModelBuilder torusBuilder = TorusModelBuilder();
+	torusBuilder.setParameter("name", new QString("Torus"));
+	torusBuilder.Build();
+
+	//modelBuilder.CreatePlane("Plane", 10.0f, 10.0f, 50, 50);
+	//modelBuilder.CreateBox("Box", glm::vec3(1.0f, 1.0f, 1.0f));
+	//modelBuilder.CreateBox("BoxDense",glm::vec3(1.0f),glm::vec3(10,10,10));
+	//modelBuilder.CreateCylinder("Cylinder");
+	//modelBuilder.CreateCylinder("CylinderDense", 1.0f, 2.0f, 40, 10);
+	//modelBuilder.CreateCone("Cone");
+	//modelBuilder.CreateSphere("Sphere", 1.0f, 40, 40);
+	//modelBuilder.CreateTorus("Torus");
 	modelBuilder.Load("TestModel",			"./Assets/TestAssets/TestModel.obj");
 	modelBuilder.Load("TestModel2",			"./Assets/TestAssets/TestModel2.obj");
 	modelBuilder.Load("TestTesselation",	"./Assets/TestAssets/TestTesselation.obj");
@@ -374,7 +428,7 @@ void OglDevTut03::InitializeLevel()
 	*********************************/
 
 	Entity* phongExample = new Entity(glm::vec3(0.0f, 0.0f, 0.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
-	ModelComponent* phongModelC = new ModelComponent(phongExample, materialManager["Phong Material"], (*engine->modelManager)["Sphere"]);
+	ModelComponent* phongModelC = new ModelComponent(phongExample, materialManager["Phong Material"], (*engine->modelManager)["Torus"]);
 	phongExample->AttachComponent(phongModelC);
 	phongExample->name = QString("Phong Example");
 	level->getRoot()->AttachSubobject(phongExample);

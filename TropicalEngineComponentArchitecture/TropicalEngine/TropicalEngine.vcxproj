@@ -11,11 +11,16 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source Files\Model\ModelBuilder\ConeModelBuilder.cpp" />
+    <ClCompile Include="Source Files\Model\ModelBuilder\CylinderModelBuilder.cpp" />
+    <ClCompile Include="Source Files\Model\ModelBuilder\BoxModelBuilder.cpp" />
+    <ClCompile Include="Source Files\Model\ModelBuilder\PlaneModelBuilder.cpp" />
+    <ClCompile Include="Source Files\Model\ModelBuilder\AbstractModelBuilder.cpp" />
     <ClCompile Include="Source Files\Shader\ShaderException.cpp" />
     <ClCompile Include="Source Files\Shader\MaterialParameter.cpp" />
-    <ClCompile Include="Source Files\Model\FbxModelImporter.cpp" />
-    <ClCompile Include="Source Files\Model\AssimpModelImporter.cpp" />
-    <ClCompile Include="Source Files\Model\AbstractModelImporter.cpp" />
+    <ClCompile Include="Source Files\Model\ModelImporter\FbxModelImporter.cpp" />
+    <ClCompile Include="Source Files\Model\ModelImporter\AssimpModelImporter.cpp" />
+    <ClCompile Include="Source Files\Model\ModelImporter\AbstractModelImporter.cpp" />
     <ClCompile Include="Source Files\Package\AssetManager.cpp" />
     <ClCompile Include="Source Files\Package\Asset.cpp" />
     <ClCompile Include="GeneratedFiles\Debug\moc_MainWindow.cpp">
@@ -74,13 +79,6 @@
     <ClCompile Include="Source Files\Utills\MathUtills.cpp" />
     <ClCompile Include="Source Files\Model\Model.cpp" />
     <ClCompile Include="Source Files\Model\ModelBuilder.cpp" />
-    <ClCompile Include="Source Files\Model\ModelBuilder\ModelBuilder_Box.cpp" />
-    <ClCompile Include="Source Files\Model\ModelBuilder\ModelBuilder_Cone.cpp" />
-    <ClCompile Include="Source Files\Model\ModelBuilder\ModelBuilder_Cylinder.cpp" />
-    <ClCompile Include="Source Files\Model\ModelBuilder\ModelBuilder_Plane.cpp" />
-    <ClCompile Include="Source Files\Model\ModelBuilder\ModelBuilder_Sphere.cpp" />
-    <ClCompile Include="Source Files\Model\ModelBuilder\ModelBuilder_Torus.cpp" />
-    <ClCompile Include="Source Files\Model\ModelBuilder\ModelBuilder_Triangle.cpp" />
     <ClCompile Include="Source Files\Model\ModelComponent.cpp" />
     <ClCompile Include="Source Files\Model\ModelController.cpp" />
     <ClCompile Include="Source Files\Model\ModelManager.cpp" />
@@ -104,6 +102,9 @@
     <ClCompile Include="Source Files\Scene\TransformComponent.cpp" />
     <ClCompile Include="Source Files\TropicalEngineApplication.cpp" />
     <ClCompile Include="Source Files\Interface\TitleBar.cpp" />
+    <ClCompile Include="Source Files\Model\ModelBuilder\TriangleModelBuilder.cpp" />
+    <ClCompile Include="Source Files\Model\ModelBuilder\SphereModelBuilder.cpp" />
+    <ClCompile Include="Source Files\Model\ModelBuilder\TorusModelBuilder.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="Header Files\Camera\CameraComponent.h">
@@ -767,14 +768,18 @@
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Header Files\Model\ModelBuilder\ConeModelBuilder.h" />
+    <ClInclude Include="Header Files\Model\ModelBuilder\CylinderModelBuilder.h" />
+    <ClInclude Include="Header Files\Model\ModelBuilder\BoxModelBuilder.h" />
+    <ClInclude Include="Header Files\Model\ModelBuilder\AbstractModelBuilder.h" />
     <ClInclude Include="Header Files\Utills\Exception.h" />
     <ClInclude Include="Header Files\Interface\MainWindow.h" />
     <ClInclude Include="Header Files\Interface\OpenGLWidget.h" />
     <ClInclude Include="Header Files\Interface\PropertiesWidget.h" />
     <ClInclude Include="Header Files\Interface\TitleBar.h" />
-    <ClInclude Include="Header Files\Model\FbxModelImporter.h" />
-    <ClInclude Include="Header Files\Model\AssimpModelImporter.h" />
-    <ClInclude Include="Header Files\Model\AbstractModelImporter.h" />
+    <ClInclude Include="Header Files\Model\ModelImporter\FbxModelImporter.h" />
+    <ClInclude Include="Header Files\Model\ModelImporter\AssimpModelImporter.h" />
+    <ClInclude Include="Header Files\Model\ModelImporter\AbstractModelImporter.h" />
     <ClInclude Include="Header Files\Package\AssetManager.h" />
     <ClInclude Include="Header Files\Package\Asset.h" />
     <ClInclude Include="Header Files\Input\InputAction.h" />
@@ -785,6 +790,10 @@
     <ClInclude Include="Header Files\Serialization\ISerializableJSON.h" />
     <ClInclude Include="Header Files\Shader\MaterialParameter.h" />
     <ClInclude Include="Header Files\Shader\ShaderException.h" />
+    <ClInclude Include="Header Files\Model\ModelBuilder\TriangleModelBuilder.h" />
+    <ClInclude Include="Header Files\Model\ModelBuilder\PlaneModelBuilder.h" />
+    <ClInclude Include="Header Files\Model\ModelBuilder\SphereModelBuilder.h" />
+    <ClInclude Include="Header Files\Model\ModelBuilder\TorusModelBuilder.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{B12702AD-ABFB-343A-A199-8E24837244A3}</ProjectGuid>

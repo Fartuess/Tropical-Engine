@@ -1,7 +1,7 @@
 #include <QtCore/qdebug.h>
 
 #include <Model/ModelBuilder.h>
-#include <Model/FbxModelImporter.h>
+#include <Model/ModelImporter/FbxModelImporter.h>
 
 
 FbxModelImporter::FbxModelImporter()

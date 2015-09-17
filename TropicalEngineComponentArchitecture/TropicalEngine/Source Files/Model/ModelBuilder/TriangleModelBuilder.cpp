@@ -1,14 +1,23 @@
-#include <gl/glew.h>
-#include <glm.hpp>
-
 #include <QtCore/qvector.h>
-#include <QtCore/qstring.h>
 
 #include <Model/Model.h>
-#include <Model/ModelBuilder.h>
+#include <Model/ModelBuilder/TriangleModelBuilder.h>
 
-Model* ModelBuilder::CreateTriangle(QString name)
+TriangleModelBuilder::TriangleModelBuilder()
 {
+	modelType = "Triangle";
+}
+
+
+TriangleModelBuilder::~TriangleModelBuilder()
+{
+}
+
+Model* TriangleModelBuilder::Build()
+{
+
+	QString name = *(static_cast<QString*>(parameters["name"]));
+
 	MeshEntry* Mesh = new MeshEntry();
 
 	Mesh->NumVertex = 3;
@@ -21,9 +30,9 @@ Model* ModelBuilder::CreateTriangle(QString name)
 
 	vertices.reserve(Mesh->NumVertex);
 	normals.reserve(Mesh->NumVertex);
-    tangents.reserve(Mesh->NumVertex);
+	tangents.reserve(Mesh->NumVertex);
 	bitangents.reserve(Mesh->NumVertex);
-    texCoords.reserve(Mesh->NumVertex);
+	texCoords.reserve(Mesh->NumVertex);
 
 	{
 		vertices.push_back(glm::vec4(0.0f, 0.0f, 0.0f, 1.0f));
@@ -46,7 +55,7 @@ Model* ModelBuilder::CreateTriangle(QString name)
 	}
 
 	Mesh->Finalize(vertices, normals, tangents, bitangents, texCoords);
-	
+
 	Model* model = new Model(name);
 	model->meshes.push_back(*Mesh);
 	return model;

@@ -1,4 +1,4 @@
-#include <Model/AbstractModelImporter.h>
+#include <Model/ModelImporter/AbstractModelImporter.h>
 
 QList<QString> AbstractModelImporter::getSupportedExtensions()
 {

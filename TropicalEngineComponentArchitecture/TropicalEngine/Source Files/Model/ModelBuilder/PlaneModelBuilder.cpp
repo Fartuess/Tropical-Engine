@@ -1,13 +1,43 @@
-#include <gl/glew.h>
-
-#include <QtCore/qvector.h>
-#include <QtCore/qstring.h>
+#include <glm.hpp>
 
 #include <Model/Model.h>
-#include <Model/ModelBuilder.h>
+#include <Model/ModelBuilder/PlaneModelBuilder.h>
 
-Model* ModelBuilder::CreatePlane(QString name, float sizeX, float sizeY, int subdivisionsX, int subdivisionsY)
+PlaneModelBuilder::PlaneModelBuilder()
 {
+	modelType = "Plane";
+
+	parameters["size X"] = new float(1.0f);
+	parameters["size Y"] = new float(1.0f);
+
+	parameters["subdivisions X"] = new uint(1);
+	parameters["subdivisions Y"] = new uint(1);
+}
+
+
+PlaneModelBuilder::~PlaneModelBuilder()
+{
+}
+
+void PlaneModelBuilder::resetParameters()
+{
+	AbstractModelBuilder::resetParameters();
+
+	*((float*)(parameters["size X"])) = 1.0f;
+	*((float*)(parameters["size Y"])) = 1.0f;
+
+	*((uint*)(parameters["subdivisions X"])) = 1;
+	*((uint*)(parameters["subdivisions Y"])) = 1;
+}
+
+Model* PlaneModelBuilder::Build()
+{
+	QString& name = *((QString*)(parameters["name"]));
+	float& sizeX = *((float*)(parameters["size X"]));
+	float& sizeY = *((float*)(parameters["size Y"]));
+	uint& subdivisionsX = *((uint*)(parameters["subdivisions X"]));
+	uint& subdivisionsY = *((uint*)(parameters["subdivisions Y"]));
+
 	MeshEntry* Mesh = new MeshEntry();
 
 	Mesh->NumVertex = subdivisionsX * subdivisionsY * 6;
@@ -20,9 +50,9 @@ Model* ModelBuilder::CreatePlane(QString name, float sizeX, float sizeY, int sub
 
 	vertices.reserve(Mesh->NumVertex);
 	normals.reserve(Mesh->NumVertex);
-    tangents.reserve(Mesh->NumVertex);
+	tangents.reserve(Mesh->NumVertex);
 	bitangents.reserve(Mesh->NumVertex);
-    texCoords.reserve(Mesh->NumVertex);
+	texCoords.reserve(Mesh->NumVertex);
 
 	for (int j = 0; j < subdivisionsY; j++)
 	{
@@ -33,7 +63,7 @@ Model* ModelBuilder::CreatePlane(QString name, float sizeX, float sizeY, int sub
 				0.0f,
 				-0.5f * sizeY + (j * sizeY / subdivisionsY),
 				1.0f
-			));
+				));
 			normals.push_back(glm::vec3(0.0f, 1.0f, 0.0f));
 			tangents.push_back(glm::vec3(1.0f, 0.0f, 0.0f));
 			bitangents.push_back(glm::vec3(0.0f, 0.0f, -1.0f));
@@ -44,7 +74,7 @@ Model* ModelBuilder::CreatePlane(QString name, float sizeX, float sizeY, int sub
 				0.0f,
 				-0.5f * sizeY + ((j + 1) * sizeY / subdivisionsY),
 				1.0f
-			));
+				));
 			normals.push_back(glm::vec3(0.0f, 1.0f, 0.0f));
 			tangents.push_back(glm::vec3(1.0f, 0.0f, 0.0f));
 			bitangents.push_back(glm::vec3(0.0f, 0.0f, -1.0f));
@@ -55,7 +85,7 @@ Model* ModelBuilder::CreatePlane(QString name, float sizeX, float sizeY, int sub
 				0.0f,
 				-0.5f * sizeY + (j * sizeY / subdivisionsY),
 				1.0f
-			));
+				));
 			normals.push_back(glm::vec3(0.0f, 1.0f, 0.0f));
 			tangents.push_back(glm::vec3(1.0f, 0.0f, 0.0f));
 			bitangents.push_back(glm::vec3(0.0f, 0.0f, -1.0f));
@@ -66,7 +96,7 @@ Model* ModelBuilder::CreatePlane(QString name, float sizeX, float sizeY, int sub
 				0.0f,
 				-0.5f * sizeY + (j * sizeY / subdivisionsY),
 				1.0f
-			));
+				));
 			normals.push_back(glm::vec3(0.0f, 1.0f, 0.0f));
 			tangents.push_back(glm::vec3(1.0f, 0.0f, 0.0f));
 			bitangents.push_back(glm::vec3(0.0f, 0.0f, -1.0f));
@@ -77,7 +107,7 @@ Model* ModelBuilder::CreatePlane(QString name, float sizeX, float sizeY, int sub
 				0.0f,
 				-0.5f * sizeY + ((j + 1) * sizeY / subdivisionsY),
 				1.0f
-			));
+				));
 			normals.push_back(glm::vec3(0.0f, 1.0f, 0.0f));
 			tangents.push_back(glm::vec3(1.0f, 0.0f, 0.0f));
 			bitangents.push_back(glm::vec3(0.0f, 0.0f, -1.0f));
@@ -88,7 +118,7 @@ Model* ModelBuilder::CreatePlane(QString name, float sizeX, float sizeY, int sub
 				0.0f,
 				-0.5f * sizeY + ((j + 1) * sizeY / subdivisionsY),
 				1.0f
-			));
+				));
 			normals.push_back(glm::vec3(0.0f, 1.0f, 0.0f));
 			tangents.push_back(glm::vec3(1.0f, 0.0f, 0.0f));
 			bitangents.push_back(glm::vec3(0.0f, 0.0f, -1.0f));

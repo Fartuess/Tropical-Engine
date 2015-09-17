@@ -15,6 +15,7 @@ Model::Model(QString name, QString fileUrl) : meshes()
 {
 	this->name = name;
 	this->fileUrl = fileUrl;
+	this->type = "imported";
 	TropicalEngineApplication::instance()->modelManager->Load(this, name);
 }
 

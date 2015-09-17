@@ -71,7 +71,6 @@ void TitleBar::mouseReleaseEvent(QMouseEvent* e)
 		}
 		else
 		{
-			///TODO: Sided window should not go under start bar.
 			QRect fullScreenRect = QApplication::desktop()->geometry();
 			QRect screenRect = QApplication::desktop()->availableGeometry();
 			if (e->globalX() == fullScreenRect.left())

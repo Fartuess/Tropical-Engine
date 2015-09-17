@@ -11,14 +11,29 @@
 
 #include <Model/Model.h>
 #include <Model/ModelBuilder.h>
-#include <Model/AssimpModelImporter.h>
-#include <Model/FbxModelImporter.h>
+#include <Model/ModelImporter/AssimpModelImporter.h>
+#include <Model/ModelImporter/FbxModelImporter.h>
+#include <Model/ModelBuilder/TriangleModelBuilder.h>
+#include <Model/ModelBuilder/PlaneModelBuilder.h>
+#include <Model/ModelBuilder/BoxModelBuilder.h>
+#include <Model/ModelBuilder/CylinderModelBuilder.h>
+#include <Model/ModelBuilder/ConeModelBuilder.h>
+#include <Model/ModelBuilder/SphereModelBuilder.h>
+#include <Model/ModelBuilder/TorusModelBuilder.h>
 
 QMap<QString, AbstractModelImporter*> ModelBuilder::supportedExtensions = QMap<QString, AbstractModelImporter*>();
+QMap<QString, AbstractModelBuilder*> ModelBuilder::supportedShapes = QMap<QString, AbstractModelBuilder*>();
 
 ModelBuilder::ModelBuilder(void)
 {
 	///TODO: implement it?
+	AddModelBuilder(new TriangleModelBuilder());
+	AddModelBuilder(new PlaneModelBuilder());
+	AddModelBuilder(new BoxModelBuilder());
+	AddModelBuilder(new CylinderModelBuilder());
+	AddModelBuilder(new ConeModelBuilder());
+	AddModelBuilder(new SphereModelBuilder());
+	AddModelBuilder(new TorusModelBuilder());
 }
 
 
@@ -99,6 +114,16 @@ void ModelBuilder::CalculateTangentsBitangents(QVector<glm::vec4>& vertices, QVe
 	}
 }
 
+AbstractModelBuilder* ModelBuilder::getModelBuilder(QString name)
+{
+	return supportedShapes[name];
+}
+
+void ModelBuilder::AddModelBuilder(AbstractModelBuilder* modelBuilder)
+{
+	supportedShapes[modelBuilder->getModelType()] = modelBuilder;
+}
+
 void ModelBuilder::AddImporter(AbstractModelImporter* importer)
 {
 	for (QString extensionName : importer->getSupportedExtensions())
@@ -106,3 +131,4 @@ void ModelBuilder::AddImporter(AbstractModelImporter* importer)
 		supportedExtensions[extensionName] = importer;
 	}
 }
+
