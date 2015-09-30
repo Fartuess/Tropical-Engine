@@ -11,3 +11,4 @@ TropicalEngineComponentArchitecture/TropicalEngine/x64/**/*.obj
 !*.exe
 !*.dll
 !TropicalEngineComponentArchitecture/TropicalEngine/Assets/**/*.obj
+*.psd

@@ -29,6 +29,11 @@
 TropicalEngineApplication::TropicalEngineApplication(int argc, char* argv[]) : QApplication(argc, argv)
 {
 	QDir::setCurrent(QCoreApplication::applicationDirPath() + "/../..");
+	setWindowIcon(QIcon("./Resource Files/TropicalEngine.png"));
+
+	splashImage = new QPixmap("./Resource Files/SplashScreen.png");
+	splashScreen = new QSplashScreen(*splashImage);
+	splashScreen->show();
 
 	shaderManager = new ShaderManager();
 	materialManager = new MaterialManager();
@@ -70,6 +75,7 @@ void TropicalEngineApplication::Initialize()
 	deltaTimer.start();
 	renderer->InitializeLevel();
 	sceneGraph->Reload();
+	splashScreen->close();
 }
 
 void TropicalEngineApplication::Draw()

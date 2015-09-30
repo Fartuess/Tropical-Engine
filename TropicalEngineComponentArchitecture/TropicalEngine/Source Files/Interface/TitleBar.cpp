@@ -18,6 +18,11 @@ TitleBar::TitleBar(QWidget* rootParent, QWidget* parent) : QWidget(parent)
 	QSizePolicy* expandVertically = new QSizePolicy(QSizePolicy::Minimum, QSizePolicy::Maximum);
 	setSizePolicy(*expandVertically);
 
+	QLabel* icon = new QLabel();
+	icon->setFixedSize(24, 24);
+	QPixmap iconimage = QPixmap("./Resource Files/TropicalEngine24x24.png");
+	icon->setPixmap(iconimage);
+	
 	QLabel* Title = new QLabel("Tropical Engine");
 	Title->setObjectName("Title");
 	QPushButton* minimize = new QPushButton("-");
@@ -25,6 +30,7 @@ TitleBar::TitleBar(QWidget* rootParent, QWidget* parent) : QWidget(parent)
 	QPushButton* close = new QPushButton("X");
 	maximize->setCheckable(true);
 
+	TitleBarLayout->addWidget(icon);
 	TitleBarLayout->addWidget(Title);
 	TitleBarLayout->addStretch();
 	TitleBarLayout->addWidget(minimize);

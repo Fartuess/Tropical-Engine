@@ -44,6 +44,7 @@
 
 void OglDevTut03::InitializeLevel()
 {
+	//level = new Level();
 
 	TropicalEngineApplication* engine = TropicalEngineApplication::instance();
 	

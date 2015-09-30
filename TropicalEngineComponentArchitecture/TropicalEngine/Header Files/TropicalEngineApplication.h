@@ -2,6 +2,8 @@
 #include <QtCore/qtime>
 #include <QtCore/qsettings.h>
 #include <QtWidgets/qapplication.h>
+#include <QtWidgets/qsplashscreen.h>
+#include <QtGui/qpixmap.h>
 
 class TropicalEngineApplication : public QApplication
 {
@@ -54,5 +56,8 @@ private:
 	*/
 	int deltaTime;
 	QTime deltaTimer;
+
+	QPixmap* splashImage;
+	QSplashScreen* splashScreen;
 };
 

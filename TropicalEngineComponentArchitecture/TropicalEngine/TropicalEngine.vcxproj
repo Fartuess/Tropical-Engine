@@ -794,6 +794,13 @@
     <ClInclude Include="Header Files\Model\ModelBuilder\PlaneModelBuilder.h" />
     <ClInclude Include="Header Files\Model\ModelBuilder\SphereModelBuilder.h" />
     <ClInclude Include="Header Files\Model\ModelBuilder\TorusModelBuilder.h" />
+    <ClInclude Include="resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Resource Files\TropicalEngine.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="TropicalEngine.rc" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{B12702AD-ABFB-343A-A199-8E24837244A3}</ProjectGuid>
