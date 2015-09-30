@@ -33,4 +33,6 @@ private:
 	QPoint* screenCenter;
 	QPoint* mouseGrabPoint;
 	QCursor* previousCursor;
+
+	int isMousePressed = 0;
 };

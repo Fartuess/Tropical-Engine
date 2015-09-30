@@ -111,17 +111,25 @@ void OpenGLWidget::keyReleaseEvent(QKeyEvent* keyEvent)
 
 void OpenGLWidget::mousePressEvent(QMouseEvent* mouseEvent)
 {
-	*mouseGrabPoint = mouseEvent->globalPos();
-	previousCursor = new QCursor(cursor());
-	this->setCursor(Qt::BlankCursor);
+	if (!isMousePressed)
+	{
+		*mouseGrabPoint = mouseEvent->globalPos();
+		previousCursor = new QCursor(cursor());
+		this->setCursor(Qt::BlankCursor);
+		QCursor::setPos(*screenCenter);
+	}
+	isMousePressed++;
 }
 
 void OpenGLWidget::mouseReleaseEvent(QMouseEvent* mouseEvent)
 {
-	///TODO: Fix crash when clicking RMB after already having mouse grabbed.
-	QCursor::setPos(*mouseGrabPoint);
-	this->setCursor(*previousCursor);
-	delete previousCursor;
+	if (isMousePressed == 1)
+	{
+		QCursor::setPos(*mouseGrabPoint);
+		this->setCursor(*previousCursor);
+		delete previousCursor;
+	}
+	isMousePressed--;
 }
 
 void OpenGLWidget::mouseMoveEvent(QMouseEvent* mouseEvent)
