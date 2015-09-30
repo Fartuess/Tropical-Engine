@@ -1,8 +1,8 @@
 /* Everything */
 
 /* License information */
-#define QT_PRODUCT_LICENSEE "Open Source"
-#define QT_PRODUCT_LICENSE "OpenSource"
+#define QT_PRODUCT_LICENSEE "Builder Qt"
+#define QT_PRODUCT_LICENSE "Enterprise"
 
 
 // Compiler sub-arch support
@@ -25,12 +25,6 @@
 # undef QT_NO_CUPS
 #elif !defined(QT_NO_CUPS)
 # define QT_NO_CUPS
-#endif
-
-#if defined(QT_NO_DBUS) && defined(QT_DBUS)
-# undef QT_NO_DBUS
-#elif !defined(QT_NO_DBUS)
-# define QT_NO_DBUS
 #endif
 
 #if defined(QT_NO_EVDEV) && defined(QT_EVDEV)
@@ -109,6 +103,18 @@
 # undef QT_NO_STYLE_WINDOWSMOBILE
 #elif !defined(QT_NO_STYLE_WINDOWSMOBILE)
 # define QT_NO_STYLE_WINDOWSMOBILE
+#endif
+
+#if defined(QT_NO_TSLIB) && defined(QT_TSLIB)
+# undef QT_NO_TSLIB
+#elif !defined(QT_NO_TSLIB)
+# define QT_NO_TSLIB
+#endif
+
+#if defined(QT_OPENGL_DYNAMIC) && defined(QT_NO_OPENGL_DYNAMIC)
+# undef QT_OPENGL_DYNAMIC
+#elif !defined(QT_OPENGL_DYNAMIC)
+# define QT_OPENGL_DYNAMIC
 #endif
 
 #if defined(QT_POINTER_SIZE) && defined(QT_NO_POINTER_SIZE)

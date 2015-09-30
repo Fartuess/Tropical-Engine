@@ -1,3 +1,6 @@
+#include <QtCore\qdir.h>
+#include <QtCore\qdebug.h>
+
 #include <Shader/ShaderManager.h>
 #include <Shader/MaterialManager.h>
 
@@ -25,6 +28,8 @@
 
 TropicalEngineApplication::TropicalEngineApplication(int argc, char* argv[]) : QApplication(argc, argv)
 {
+	QDir::setCurrent(QCoreApplication::applicationDirPath() + "/../..");
+
 	shaderManager = new ShaderManager();
 	materialManager = new MaterialManager();
 

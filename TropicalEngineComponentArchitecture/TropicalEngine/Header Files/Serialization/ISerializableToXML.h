@@ -1,6 +1,7 @@
 #pragma once
 #include <QtCore/qstring.h>
 
+///TODO: Figure out if this class should be removed.
 class ISerializableToXML
 {
 public:

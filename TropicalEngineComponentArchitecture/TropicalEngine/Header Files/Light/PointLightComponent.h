@@ -62,7 +62,7 @@ public:
 	  * \brief Deserializes PointLightComponent from JSON object.
 	  *
 	  * @param JSON JSON object to deserialize from.
-	  * @return DirectionalLightComponent object.
+	  * @return PointLightComponent object.
 	  */
 	IDeserializableFromJSON* fromJSON(QJsonObject JSON) override;
 

@@ -8,6 +8,9 @@
 
 #include "TransformComponent.h"
 
+/**
+  * Basic scene object with transform node. Functionality is extended by attaching components.
+  */
 class Entity : public ISerializableJSON
 {
 private:

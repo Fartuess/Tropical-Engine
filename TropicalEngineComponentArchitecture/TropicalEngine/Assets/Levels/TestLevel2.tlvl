@@ -971,7 +971,7 @@
                     {
                         "cast shadows": false,
                         "material": "Phong Material",
-                        "model": "Sphere",
+                        "model": "Torus",
                         "type": "Model Component"
                     }
                 ],
@@ -1466,7 +1466,7 @@
                     {
                         "Z far": 10000,
                         "Z near": 0.10000000149011612,
-                        "aspect ratio": 0.93719005584716797,
+                        "aspect ratio": 0.79559117555618286,
                         "fov": 40,
                         "target": {
                             "x": 0,

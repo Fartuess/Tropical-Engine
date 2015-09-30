@@ -67,6 +67,16 @@ void SpotLightComponent::setOuterConeRadius(float outerConeRadius)
 		DrawShadows();
 }
 
+float SpotLightComponent::getInnerConeRadius()
+{
+	return innerConeRadius;
+}
+
+void SpotLightComponent::setInnerConeRadius(float innerConeRadius)
+{
+	this->innerConeRadius = innerConeRadius;
+}
+
 void SpotLightComponent::Evaluate()
 {
 	///TODO: implement it.

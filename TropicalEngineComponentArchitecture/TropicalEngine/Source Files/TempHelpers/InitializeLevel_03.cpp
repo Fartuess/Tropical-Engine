@@ -554,5 +554,5 @@ void OglDevTut03::InitializeLevel()
 	engine->sceneManager->setCurrentCamera(mainCameraComponent);
 	engine->sceneManager->mainLight = new DirectionalLightComponent(level->getRoot(), glm::vec3(1.0f, 1.0f, 0.9f), glm::vec3(0.5, 0.2, 1.0), 1.0f);
 
-	qDebug() << QJsonDocument(level->toJSON()).toJson();
+	//qDebug() << QJsonDocument(level->toJSON()).toJson();
 }
