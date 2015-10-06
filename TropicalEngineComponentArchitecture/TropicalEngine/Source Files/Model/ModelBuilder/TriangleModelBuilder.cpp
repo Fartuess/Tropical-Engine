@@ -16,7 +16,7 @@ TriangleModelBuilder::~TriangleModelBuilder()
 Model* TriangleModelBuilder::Build()
 {
 
-	QString name = *(static_cast<QString*>(parameters["name"]));
+	QString name = parameters["name"].value<QString>();
 
 	MeshEntry* Mesh = new MeshEntry();
 

@@ -7,11 +7,11 @@ PlaneModelBuilder::PlaneModelBuilder()
 {
 	modelType = "Plane";
 
-	parameters["size X"] = new float(1.0f);
-	parameters["size Y"] = new float(1.0f);
+	parameters["size X"] = 1.0f;
+	parameters["size Y"] = 1.0f;
 
-	parameters["subdivisions X"] = new uint(1);
-	parameters["subdivisions Y"] = new uint(1);
+	parameters["subdivisions X"] = 1;
+	parameters["subdivisions Y"] = 1;
 }
 
 
@@ -23,20 +23,20 @@ void PlaneModelBuilder::resetParameters()
 {
 	AbstractModelBuilder::resetParameters();
 
-	*((float*)(parameters["size X"])) = 1.0f;
-	*((float*)(parameters["size Y"])) = 1.0f;
+	parameters["size X"] = 1.0f;
+	parameters["size Y"] = 1.0f;
 
-	*((uint*)(parameters["subdivisions X"])) = 1;
-	*((uint*)(parameters["subdivisions Y"])) = 1;
+	parameters["subdivisions X"] = 1;
+	parameters["subdivisions Y"] = 1;
 }
 
 Model* PlaneModelBuilder::Build()
 {
-	QString& name = *((QString*)(parameters["name"]));
-	float& sizeX = *((float*)(parameters["size X"]));
-	float& sizeY = *((float*)(parameters["size Y"]));
-	uint& subdivisionsX = *((uint*)(parameters["subdivisions X"]));
-	uint& subdivisionsY = *((uint*)(parameters["subdivisions Y"]));
+	QString& name = parameters["name"].value<QString>();
+	float sizeX = parameters["size X"].value<float>();
+	float sizeY = parameters["size Y"].value<float>();
+	uint subdivisionsX = parameters["subdivisions X"].value<uint>();
+	uint subdivisionsY = parameters["subdivisions Y"].value<uint>();
 
 	MeshEntry* Mesh = new MeshEntry();
 

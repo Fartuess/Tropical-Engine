@@ -4,6 +4,7 @@
 
 #include <QtCore/qstring.h>
 #include <QtCore/qvector.h>
+#include <QtCore/qvariant.h>
 
 #include <Serialization/ISerializableJSON.h>
 
@@ -79,7 +80,12 @@ class Model : public ISerializableJSON
 {
 public:
 
+	/**
+	  * \brief Name of the type of model.
+	  */
 	QString type;
+
+	QVariantMap parameters;
 
 	/**
 	  * \brief Gets the name of the Model.

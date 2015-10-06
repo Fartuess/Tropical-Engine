@@ -7,13 +7,13 @@ BoxModelBuilder::BoxModelBuilder()
 {
 	modelType = "Box";
 
-	parameters["size X"] = new float(1.0f);
-	parameters["size Y"] = new float(1.0f);
-	parameters["size Z"] = new float(1.0f);
+	parameters["size X"] = 1.0f;
+	parameters["size Y"] = 1.0f;
+	parameters["size Z"] = 1.0f;
 
-	parameters["subdivisions X"] = new uint(1);
-	parameters["subdivisions Y"] = new uint(1);
-	parameters["subdivisions Z"] = new uint(1);
+	parameters["subdivisions X"] = 1;
+	parameters["subdivisions Y"] = 1;
+	parameters["subdivisions Z"] = 1;
 }
 
 
@@ -25,24 +25,24 @@ void BoxModelBuilder::resetParameters()
 {
 	AbstractModelBuilder::resetParameters();
 
-	*((float*)(parameters["size X"])) = 1.0f;
-	*((float*)(parameters["size Y"])) = 1.0f;
-	*((float*)(parameters["size Z"])) = 1.0f;
+	parameters["size X"] = 1.0f;
+	parameters["size Y"] = 1.0f;
+	parameters["size Z"] = 1.0f;
 
-	*((uint*)(parameters["subdivisions X"])) = 1;
-	*((uint*)(parameters["subdivisions Y"])) = 1;
-	*((uint*)(parameters["subdivisions Z"])) = 1;
+	parameters["subdivisions X"] = 1;
+	parameters["subdivisions Y"] = 1;
+	parameters["subdivisions Z"] = 1;
 }
 
 Model* BoxModelBuilder::Build()
 {
-	QString& name = *((QString*)(parameters["name"]));
-	float& sizeX = *((float*)(parameters["size X"]));
-	float& sizeY = *((float*)(parameters["size Y"]));
-	float& sizeZ = *((float*)(parameters["size Z"]));
-	uint& subdivisionsX = *((uint*)(parameters["subdivisions X"]));
-	uint& subdivisionsY = *((uint*)(parameters["subdivisions Y"]));
-	uint& subdivisionsZ = *((uint*)(parameters["subdivisions Z"]));
+	QString& name = parameters["name"].value<QString>();
+	float sizeX = parameters["size X"].value<float>();
+	float sizeY = parameters["size Y"].value<float>();
+	float sizeZ = parameters["size Z"].value<float>();
+	uint subdivisionsX = parameters["subdivisions X"].value<uint>();
+	uint subdivisionsY = parameters["subdivisions Y"].value<uint>();
+	uint subdivisionsZ = parameters["subdivisions Z"].value<uint>();
 
 	MeshEntry* Mesh = new MeshEntry();
 

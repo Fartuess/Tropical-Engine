@@ -329,50 +329,50 @@ void OglDevTut03::InitializeLevel()
 	ModelManager& modelManager = *engine->modelManager;
 
 	AbstractModelBuilder* triangleBuilder = static_cast<TriangleModelBuilder*>(modelBuilder.getModelBuilder("Triangle"));
-	triangleBuilder->setParameter("name", new QString("Triangle"));
+	triangleBuilder->setParameter("name", QString("Triangle"));
 	triangleBuilder->Build();
 
 	PlaneModelBuilder planeBuilder = PlaneModelBuilder();
-	planeBuilder.setParameter("name", new QString("Plane"));
-	planeBuilder.setParameter("size X", new float(10.0f));
-	planeBuilder.setParameter("size Y", new float(10.0f));
-	planeBuilder.setParameter("subdivisions X", new int(50));
-	planeBuilder.setParameter("subdivisions Y", new int(50));
+	planeBuilder.setParameter("name", QString("Plane"));
+	planeBuilder.setParameter("size X", float(10.0f));
+	planeBuilder.setParameter("size Y", float(10.0f));
+	planeBuilder.setParameter("subdivisions X", int(50));
+	planeBuilder.setParameter("subdivisions Y", int(50));
 	planeBuilder.Build();
 
 	BoxModelBuilder boxBuilder = BoxModelBuilder();
-	boxBuilder.setParameter("name", new QString("Box"));
+	boxBuilder.setParameter("name", QString("Box"));
 	boxBuilder.Build();
 
 	BoxModelBuilder boxDenseBuilder = BoxModelBuilder();
-	boxDenseBuilder.setParameter("name", new QString("BoxDense"));
-	boxDenseBuilder.setParameter("subdivisions X", new uint(10));
-	boxDenseBuilder.setParameter("subdivisions Y", new uint(10));
-	boxDenseBuilder.setParameter("subdivisions Z", new uint(10));
+	boxDenseBuilder.setParameter("name", QString("BoxDense"));
+	boxDenseBuilder.setParameter("subdivisions X", uint(10));
+	boxDenseBuilder.setParameter("subdivisions Y", uint(10));
+	boxDenseBuilder.setParameter("subdivisions Z", uint(10));
 	boxDenseBuilder.Build();
 
 	CylinderModelBuilder cylinderBuilder = CylinderModelBuilder();
-	cylinderBuilder.setParameter("name", new QString("Cylinder"));
+	cylinderBuilder.setParameter("name", QString("Cylinder"));
 	cylinderBuilder.Build();
 	
 	CylinderModelBuilder cylinderDenseBuilder = CylinderModelBuilder();
-	cylinderDenseBuilder.setParameter("name", new QString("CylinderDense"));
-	cylinderDenseBuilder.setParameter("subdivisions axis", new uint(40));
-	cylinderDenseBuilder.setParameter("subdivisions height", new uint(10));
+	cylinderDenseBuilder.setParameter("name", QString("CylinderDense"));
+	cylinderDenseBuilder.setParameter("subdivisions axis", uint(40));
+	cylinderDenseBuilder.setParameter("subdivisions height", uint(10));
 	cylinderDenseBuilder.Build();
 
 	ConeModelBuilder coneBuilder = ConeModelBuilder();
-	coneBuilder.setParameter("name", new QString("Cone"));
+	coneBuilder.setParameter("name", QString("Cone"));
 	coneBuilder.Build();
 
 	SphereModelBuilder sphereBuilder = SphereModelBuilder();
-	sphereBuilder.setParameter("name", new QString("Sphere"));
-	sphereBuilder.setParameter("subdivisions axis", new uint(40));
-	sphereBuilder.setParameter("subdivisions height", new uint(40));
+	sphereBuilder.setParameter("name", QString("Sphere"));
+	sphereBuilder.setParameter("subdivisions axis", uint(40));
+	sphereBuilder.setParameter("subdivisions height", uint(40));
 	sphereBuilder.Build();
 
 	TorusModelBuilder torusBuilder = TorusModelBuilder();
-	torusBuilder.setParameter("name", new QString("Torus"));
+	torusBuilder.setParameter("name", QString("Torus"));
 	torusBuilder.Build();
 
 	//modelBuilder.CreatePlane("Plane", 10.0f, 10.0f, 50, 50);

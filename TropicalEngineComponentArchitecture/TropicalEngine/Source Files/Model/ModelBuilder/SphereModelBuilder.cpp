@@ -8,10 +8,10 @@ SphereModelBuilder::SphereModelBuilder()
 {
 	modelType = "Sphere";
 
-	parameters["radius"] = new float(1.0f);
+	parameters["radius"] = 1.0f;
 
-	parameters["subdivisions axis"] = new uint(20);
-	parameters["subdivisions height"] = new uint(20);
+	parameters["subdivisions axis"] = 20;
+	parameters["subdivisions height"] = 20;
 }
 
 
@@ -23,18 +23,18 @@ void SphereModelBuilder::resetParameters()
 {
 	AbstractModelBuilder::resetParameters();
 
-	*((float*)(parameters["radius"])) = 1.0f;
+	parameters["radius"] = 1.0f;
 
-	*((uint*)(parameters["subdivisions axis"])) = 20;
-	*((uint*)(parameters["subdivisions height"])) = 20;
+	parameters["subdivisions axis"] = 20;
+	parameters["subdivisions height"] = 20;
 }
 
 Model* SphereModelBuilder::Build()
 {
-	QString& name = *((QString*)(parameters["name"]));
-	float& radius = *((float*)(parameters["radius"]));
-	int subdivisionsAxis = *((uint*)(parameters["subdivisions axis"]));
-	int subdivisionsHeight = *((uint*)(parameters["subdivisions height"]));
+	QString& name = parameters["name"].value<QString>();
+	float radius = parameters["radius"].value<float>();
+	int subdivisionsAxis = parameters["subdivisions axis"].value<uint>();
+	int subdivisionsHeight = parameters["subdivisions height"].value<uint>();
 
 	MeshEntry* Mesh = new MeshEntry();
 

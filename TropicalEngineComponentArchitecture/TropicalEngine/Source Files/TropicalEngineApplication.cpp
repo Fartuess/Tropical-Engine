@@ -24,10 +24,14 @@
 
 #include <Interface/GuiStyleManager.h>
 
+#include <Utills/MathUtills.h>
+
 #include "TropicalEngineApplication.h"
 
 TropicalEngineApplication::TropicalEngineApplication(int argc, char* argv[]) : QApplication(argc, argv)
 {
+	//math::registerGLMtypes();
+
 	QDir::setCurrent(QCoreApplication::applicationDirPath() + "/../..");
 	setWindowIcon(QIcon("./Resource Files/TropicalEngine.png"));
 

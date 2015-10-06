@@ -1,6 +1,7 @@
 #pragma once
 #include <QtCore/qstring.h>
 #include <QtCore/qmap.h>
+#include <QtCore/qvariant.h>
 
 /**
   * Abstract class for procedural model generation.
@@ -16,7 +17,7 @@ protected:
 	/**
 	  * Parameters used for model generation.
 	  */
-	QMap<QString, void*> parameters;
+	QVariantMap parameters;
 public:
 
 	/**
@@ -42,7 +43,7 @@ public:
 	  * @param name Name of parameter to change.
 	  * @param value New value for parameter.
 	  */
-	void setParameter(QString name, void* value);
+	void setParameter(QString name, QVariant value);
 
 	/**
 	  * \brief Creates model using set parameters.

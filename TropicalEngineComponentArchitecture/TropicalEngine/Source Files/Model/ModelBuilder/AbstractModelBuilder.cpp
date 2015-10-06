@@ -8,7 +8,7 @@ AbstractModelBuilder::AbstractModelBuilder()
 {
 	modelType = "Unknown Generated";
 
-	parameters["name"] = (void*)(new QString(""));
+	parameters["name"] = QString("");
 }
 
 
@@ -21,7 +21,7 @@ QString AbstractModelBuilder::getModelType()
 	return modelType;
 }
 
-void AbstractModelBuilder::setParameter(QString name, void* value)
+void AbstractModelBuilder::setParameter(QString name, QVariant value)
 {
 	if (parameters.contains(name))
 	{
@@ -35,5 +35,5 @@ void AbstractModelBuilder::setParameter(QString name, void* value)
 
 void AbstractModelBuilder::resetParameters()
 {
-	parameters["name"] = (void*)(new QString(""));
+	parameters["name"] = QString("");
 }
