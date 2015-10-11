@@ -95,9 +95,9 @@ void ModelComponent::Draw(CameraComponent* viewer)
 		}
 	}
 	
-	for (MeshEntry meshEntry : model->meshes)
+	for (MeshEntry* meshEntry : model->meshes)
 	{
-		glBindBuffer(GL_ARRAY_BUFFER, meshEntry.vertexVBO);
+		glBindBuffer(GL_ARRAY_BUFFER, meshEntry->vertexVBO);
 		glEnableVertexAttribArray(usedShader->getVertexLocation());
 		glEnableVertexAttribArray(usedShader->getNormalLocation());
 		glEnableVertexAttribArray(usedShader->getTangentLocation());
@@ -107,27 +107,27 @@ void ModelComponent::Draw(CameraComponent* viewer)
 		glVertexAttribPointer(usedShader->getVertexLocation(), 4, GL_FLOAT, GL_FALSE, 0,
 			0);
 		glVertexAttribPointer(usedShader->getNormalLocation(), 3, GL_FLOAT, GL_FALSE, 0,
-			(void*)(sizeof(glm::vec4) * meshEntry.NumVertex));
+			(void*)(sizeof(glm::vec4) * meshEntry->NumVertex));
 		glVertexAttribPointer(usedShader->getTangentLocation(), 3, GL_FLOAT, GL_FALSE, 0,
 			(void*)((
 			sizeof(glm::vec4)
 			+ sizeof(glm::vec3))
-			* meshEntry.NumVertex));
+			* meshEntry->NumVertex));
 		glVertexAttribPointer(usedShader->getBitangentLocation(), 3, GL_FLOAT, GL_FALSE, 0,
 			(void*)((
 			sizeof(glm::vec4)
 			+ 2 * sizeof(glm::vec3))
-			* meshEntry.NumVertex));
+			* meshEntry->NumVertex));
 		glVertexAttribPointer(usedShader->getTexcoordLocation(), 2, GL_FLOAT, GL_FALSE, 0,
 			(void*)((
 			sizeof(glm::vec4)
 			+ 3 * sizeof(glm::vec3))
-			* meshEntry.NumVertex));
+			* meshEntry->NumVertex));
 		
 		//glPolygonMode(GL_FRONT, GL_LINE);
 		//glPolygonMode(GL_BACK, GL_LINE);
 		//glDrawArrays(GL_PATCHES, 0, meshEntry.NumVertex);
-		glDrawArrays(usedShader->drawingMode, 0, meshEntry.NumVertex);
+		glDrawArrays(usedShader->drawingMode, 0, meshEntry->NumVertex);
 		//glDrawArrays(GL_TRIANGLES, 0, meshEntry.NumVertex);
 	
 		glDisableVertexAttribArray(usedShader->getVertexLocation());

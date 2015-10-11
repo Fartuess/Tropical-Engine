@@ -21,7 +21,7 @@ public:
 	  * @param innerConeRadius Inner cone of light.
 	  * @param isCastingShadows Decides if this light should cast shadows.
 	  */
-	SpotLightComponent(Entity* owner, glm::vec3 color, float brightness = 1.0f, float radius = 100.0f, float attenuation = 3.0f,
+	SpotLightComponent(Entity* owner, glm::vec3 color = glm::vec3(1.0f, 1.0f, 1.0f), float brightness = 1.0f, float radius = 100.0f, float attenuation = 3.0f,
 		float outerConeRadius = 45.0f, float innerConeRadius = 0.0f, bool isCastingShadows = false);
 
 	/**

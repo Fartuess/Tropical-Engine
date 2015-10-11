@@ -7,19 +7,6 @@ TransformComponent TransformComponent::templateObject = TransformComponent::Init
 
 TransformComponent::TransformComponent() {}
 
-TransformComponent::TransformComponent(Entity* owner):Component(owner)
-{
-	localPosition = glm::vec3(0.0f, 0.0f, 0.0f);
-	localRotation = glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f));
-	localScale = glm::vec3(1.0f, 1.0f, 1.0f);
-	EvaluateGlobals();
-
-	//temp?
-	//Evaluate();
-
-	InitializeComponentType();
-}
-
 TransformComponent::TransformComponent(Entity* owner, glm::vec3 localPosition, glm::quat localRotation, glm::vec3 localScale):Component(owner)
 {
 	this->localPosition = localPosition;

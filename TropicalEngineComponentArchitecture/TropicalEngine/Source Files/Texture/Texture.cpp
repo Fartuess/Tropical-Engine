@@ -18,11 +18,13 @@ Texture::Texture(QString fileUrl, QString name)
 
 Texture::~Texture(void)
 {
-	for (Material* material : TropicalEngineApplication::instance()->materialManager->materials)
-	{
-		///TODO: set texture parameters equal to this to value typical for
-		//unneccessary if caled from TextureManager
-	}
+	//for (Material* material : TropicalEngineApplication::instance()->materialManager->materials)
+	//{
+	//	///TODO: set texture parameters equal to this to value typical for
+	//	//unneccessary if caled from TextureManager
+	//}
+
+	glDeleteTextures(1, &textureLocation);
 }
 
 QString Texture::getName()
@@ -92,8 +94,7 @@ IDeserializableFromJSON* Texture::fromJSON(QJsonObject JSON)
 	QString name = JSON["name"].toString();
 	QString fileUrl = JSON["url"].toString();
 
-	Texture* texture = new Texture(fileUrl);
-	texture->name = name;
+	Texture* texture = new Texture(fileUrl, name);
 
 	return texture;
 }

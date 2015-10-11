@@ -46,7 +46,7 @@ Texture* const TextureManager::getTexture(QString name)
 
 Texture* TextureManager::Load(QString name, QString fileUrl)
 {
-	Texture* newTexture = new Texture(fileUrl);
+	Texture* newTexture = new Texture(fileUrl, name);
 	textures.insert(name, newTexture);
 
 	return newTexture;

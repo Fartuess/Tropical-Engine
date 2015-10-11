@@ -248,6 +248,6 @@ Model* TorusModelBuilder::Build()
 	Mesh->Finalize(vertices, normals, tangents, bitangents, texCoords);
 
 	Model* model = new Model(name);
-	model->meshes.push_back(*Mesh);
+	model->meshes.push_back(Mesh);
 	return model;
 }

@@ -209,6 +209,6 @@ Model* CylinderModelBuilder::Build()
 	Mesh->Finalize(vertices, normals, tangents, bitangents, texCoords);
 
 	Model* model = new Model(name);
-	model->meshes.append(*Mesh);
+	model->meshes.append(Mesh);
 	return model;
 }

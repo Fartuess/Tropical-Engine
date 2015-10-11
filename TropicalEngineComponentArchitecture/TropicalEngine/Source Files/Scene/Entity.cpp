@@ -1,11 +1,5 @@
 #include <Scene/Entity.h>
 
-Entity::Entity(void) : transform(this)
-{
-	parrent = nullptr;
-	///TODO: implement it.
-}
-
 Entity::Entity(glm::vec3 position, glm::quat rotation, glm::vec3 scale) : transform(this, position, rotation, scale)
 {
 	parrent = nullptr;

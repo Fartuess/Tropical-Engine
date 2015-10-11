@@ -155,7 +155,7 @@ Model* FbxModelImporter::Load(QString name, QString fileUrl)
 
 			Mesh->Finalize(vertices, normals, tangents, bitangents, texCoords);
 
-			model->meshes.append(*Mesh);
+			model->meshes.append(Mesh);
 		}
 
 		/// TODO: Figure out why it crashes.

@@ -14,7 +14,7 @@ public:
 	* @param brightness Brightness of the light.
 	* @param isCastingShadows Decides if this light should cast shadows.
 	*/
-	DirectionalLightComponent(Entity* owner, glm::vec3 color, glm::vec3 direction, float brightness = 1.0f, bool isCastingShadows = false);
+	DirectionalLightComponent(Entity* owner, glm::vec3 color = glm::vec3(1.0f, 1.0f, 1.0f), glm::vec3 direction = glm::vec3(0.0f, 0.0f, -1.0f), float brightness = 1.0f, bool isCastingShadows = false);
 	
 	/**
 	  * \brief Destructor for DirectionalLightComponent.

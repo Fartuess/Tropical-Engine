@@ -3,7 +3,7 @@
 
 #include <Scene/Level.h>
 
-Level::Level(glm::vec3 position, glm::quat rotation, glm::vec3 scale, QString name) : root(new Entity()), internalPackage(new Package(name))
+Level::Level(QString name, glm::vec3 position, glm::quat rotation, glm::vec3 scale) : root(new Entity()), internalPackage(new Package(name))
 {
 	///TODO: implement it.
 }
@@ -11,11 +11,6 @@ Level::Level(glm::vec3 position, glm::quat rotation, glm::vec3 scale, QString na
 Level::Level(TransformComponent transform, QString name) : root(new Entity()), internalPackage(new Package(name))
 {
 	///TODO: implement it.
-}
-
-Level::Level(QString name) : root(new Entity()), internalPackage(new Package(name))
-{
-	this->name = name;
 }
 
 Level::~Level(void)

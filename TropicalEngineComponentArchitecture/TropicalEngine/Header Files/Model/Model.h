@@ -124,7 +124,7 @@ public:
 	/**
 	  * \brief Submeshes of this Model.
 	  */
-	QVector<MeshEntry> meshes;
+	QVector<MeshEntry*> meshes;
 
 
 	GLuint materialCount;

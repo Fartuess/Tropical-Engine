@@ -18,7 +18,7 @@ public:
 	  * @param fileUrl path to file texture will be loaded from.
 	  * @param name Name to be set for Texture.
 	  */
-	Texture(QString fileUrl, QString name = "");
+	Texture(QString fileUrl, QString name);
 
 	/**
 	  * \brief Default destructor.

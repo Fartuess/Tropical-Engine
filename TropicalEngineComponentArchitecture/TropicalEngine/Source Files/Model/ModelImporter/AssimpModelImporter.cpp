@@ -59,7 +59,7 @@ Model* AssimpModelImporter::Load(QString name, QString fileUrl)
 
 			Mesh->Finalize(vertices, normals, tangents, bitangents, texCoords);
 
-			model->meshes.append(*Mesh);
+			model->meshes.append(Mesh);
 		}
 		Importer.FreeScene();
 	}

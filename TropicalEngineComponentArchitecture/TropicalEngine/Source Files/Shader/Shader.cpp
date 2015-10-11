@@ -111,7 +111,14 @@ void Shader::setUpMaterialParameters()
 
 Shader::~Shader(void)
 {
-	///TODO: implement it.
+	for (GLuint subprogram : subprograms)
+	{
+		glDetachShader(shaderProgram, subprogram);
+		glDeleteShader(subprogram);
+	}
+	glDeleteProgram(shaderProgram);
+
+	///TODO: Delete Materials using this Shader?
 }
 
 QString Shader::getName()

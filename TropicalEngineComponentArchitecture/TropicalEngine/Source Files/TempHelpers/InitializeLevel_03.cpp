@@ -54,8 +54,7 @@ void OglDevTut03::InitializeLevel()
 	 *
 	 *********************************/
 
-	level = new Level(glm::vec3(0.0f, 0.0f, 0.0f), glm::quat(0.0f, (glm::vec3(0.0f, 1.0f, 0.0f))), glm::vec3(1.0f, 1.0f, 1.0f));
-	level->name = "TestLevel";
+	level = new Level("TestLevel");
 	
 	AssetManager& assetManager = *engine->assetManager;
 	PackageManager& packageManager = *engine->packageManager;

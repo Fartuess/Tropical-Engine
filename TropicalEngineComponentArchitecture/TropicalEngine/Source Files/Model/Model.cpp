@@ -22,6 +22,11 @@ Model::Model(QString name, QString fileUrl) : meshes()
 Model::~Model(void)
 {
 	///TODO: implement it.
+
+	while (meshes.isEmpty() == false)
+	{
+		delete meshes.takeLast();
+	}
 }
 
 QString Model::getName()
@@ -42,7 +47,7 @@ MeshEntry::MeshEntry()
 
 MeshEntry::~MeshEntry()
 {
-	///TODO: implement it.
+	glDeleteBuffers(1, &this->vertexVBO);
 }
 
 void MeshEntry::Finalize(	QVector<glm::vec4>& vertices,

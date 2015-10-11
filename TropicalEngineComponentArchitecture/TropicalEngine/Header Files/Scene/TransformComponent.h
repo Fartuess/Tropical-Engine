@@ -7,8 +7,7 @@
 class TransformComponent : public Component
 {
 public:
-	TransformComponent(Entity* owner);
-	TransformComponent(Entity* owner, glm::vec3 localPosition, glm::quat localRotation, glm::vec3 localScale);
+	TransformComponent(Entity* owner, glm::vec3 localPosition = glm::vec3(0.0f), glm::quat localRotation = glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3 localScale = glm::vec3(1.0f));
 	~TransformComponent(void);
 
 	static TransformComponent InitializeType();

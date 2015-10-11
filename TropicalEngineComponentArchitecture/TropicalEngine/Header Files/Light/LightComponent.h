@@ -30,7 +30,7 @@ public:
 	  * @param brightness Brightness of the light.
 	  * @param isCastingShadows Decides if this light should cast shadows.
 	  */
-	LightComponent(Entity* owner, glm::vec3 color, float brightness = 1.0f, bool isCastingShadows = false);
+	LightComponent(Entity* owner, glm::vec3 color = glm::vec3(1.0f, 1.0f, 1.0f), float brightness = 1.0f, bool isCastingShadows = false);
 
 	/**
 	  * \brief Destructor for LightComponent.

@@ -13,7 +13,7 @@ class Level : public ISerializableJSON
 public:
 	QString name;
 
-	Level(glm::vec3 position, glm::quat rotation, glm::vec3 scale, QString name = nullptr);
+	Level(QString name, glm::vec3 position = glm::vec3(0.0f), glm::quat rotation = glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3 scale = glm::vec3(1.0f));
 	Level(TransformComponent transform, QString name = nullptr);
 	~Level(void);
 
@@ -33,6 +33,4 @@ private:
 
 	Package* internalPackage;
 	QMap<QString, Package*> usedPackages;
-
-	Level(QString name);
 };

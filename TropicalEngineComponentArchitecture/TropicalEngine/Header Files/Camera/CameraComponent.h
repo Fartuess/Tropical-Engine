@@ -20,7 +20,7 @@ public:
 	  * @param zNear Near clipping plane distance.
 	  * @param zFar Far clipping plane distance.
 	  */
-	CameraComponent(Entity* owner, glm::vec3 targetOffset, glm::vec3 up, float fov, float aspectRatio, float zNear, float zFar);
+	CameraComponent(Entity* owner, glm::vec3 targetOffset = glm::vec3(0.0f, 0.0f, -1.0f), glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f), float fov = 40.0f, float aspectRatio = 4.0f / 3.0f, float zNear = 0.01f, float zFar = 10000.0f);
 
 	/**
 	  * \brief Default destructor
