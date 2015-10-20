@@ -25,6 +25,7 @@
 #include <Interface/GuiStyleManager.h>
 
 #include <Utills/MathUtills.h>
+#include <Utills/UpdateManager.h>
 
 #include "TropicalEngineApplication.h"
 
@@ -53,6 +54,8 @@ TropicalEngineApplication::TropicalEngineApplication(int argc, char* argv[]) : Q
 	sceneManager = new SceneManager();
 
 	lightController = new LightController();
+
+	updateManager = new UpdateManager();
 
 	inputManager = new InputManager();
 
@@ -88,12 +91,13 @@ void TropicalEngineApplication::Draw()
 
 	glPatchParameteri(GL_PATCH_VERTICES, 3);
 
-	deltaTime = deltaTimer.restart();
+	
+	updateManager->UpdateAll();
 	inputManager->Update();
+	deltaTime = deltaTimer.restart();
 	
 	sceneManager->getCurrentCamera()->CalculateMatrix();
 
 	sceneManager->EvaluateLevels();	///TODO: Evaluate only changed
 	modelController->DrawAll(sceneManager->getCurrentCamera());
-	
 }

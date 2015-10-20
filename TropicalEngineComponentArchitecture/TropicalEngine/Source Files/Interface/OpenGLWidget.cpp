@@ -52,7 +52,8 @@ void OpenGLWidget::resizeGL(int width, int height)
 	if(TropicalEngineApplication::instance()->sceneManager->getCurrentCamera() != nullptr)
 		TropicalEngineApplication::instance()->sceneManager->getCurrentCamera()->setAspectRatio((GLfloat)width / (GLfloat)height);
 	glViewport(0, 0, width, height);
-	emit reshapeSignal(width, height);
+	//emit reshapeSignal(width, height);
+	//this->update();
 }
 
 void OpenGLWidget::paintGL()
@@ -66,41 +67,6 @@ void OpenGLWidget::paintGL()
 
 void OpenGLWidget::keyPressEvent(QKeyEvent* keyEvent)
 {
-	glm::vec3 front = TropicalEngineApplication::instance()->sceneManager->getCurrentCamera()->getOwner()->transform.getFront();
-	glm::vec3 right = TropicalEngineApplication::instance()->sceneManager->getCurrentCamera()->getOwner()->transform.getRight();
-	switch ( keyEvent->key() )
-	{
-		case Qt::Key_W:
-			//qDebug("W pressed");
-			//TropicalEngineApplication::instance()->inputManager->pressedKeys.W = true;
-			TropicalEngineApplication::instance()->sceneManager->getCurrentCamera()->getOwner()->transform.LocalTranslate(front * (0.1f));
-			break;
-		case Qt::Key_S:
-			//qDebug("S pressed");
-			//TropicalEngineApplication::instance()->inputManager->pressedKeys.S = true;
-			TropicalEngineApplication::instance()->sceneManager->getCurrentCamera()->getOwner()->transform.LocalTranslate(front * (-0.1f));
-			break;
-		case Qt::Key_A:
-			//qDebug("A pressed");
-			//TropicalEngineApplication::instance()->inputManager->pressedKeys.A = true;
-			TropicalEngineApplication::instance()->sceneManager->getCurrentCamera()->getOwner()->transform.LocalTranslate(right * (-0.1f));
-			break;
-		case Qt::Key_D:
-			//qDebug("D pressed");
-			//TropicalEngineApplication::instance()->inputManager->pressedKeys.D = true;
-			TropicalEngineApplication::instance()->sceneManager->getCurrentCamera()->getOwner()->transform.LocalTranslate(right * (0.1f));
-			break;
-		case Qt::Key_Space:
-			//qDebug("Space pressed");
-			//TropicalEngineApplication::instance()->inputManager->pressedKeys.D = true;
-			TropicalEngineApplication::instance()->sceneManager->getCurrentCamera()->getOwner()->transform.LocalTranslate(glm::vec3(0.0f, 0.1f, 0.0f));
-			break;
-		case Qt::Key_C:
-			//qDebug("C pressed");
-			//TropicalEngineApplication::instance()->inputManager->pressedKeys.D = true;
-			TropicalEngineApplication::instance()->sceneManager->getCurrentCamera()->getOwner()->transform.LocalTranslate(glm::vec3(0.0f, -0.1f, 0.0f));
-			break;
-	}
 	TropicalEngineApplication::instance()->inputManager->PressKey(keyEvent->key());
 }
 

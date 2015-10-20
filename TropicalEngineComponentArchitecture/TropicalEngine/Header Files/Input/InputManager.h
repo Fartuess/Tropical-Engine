@@ -21,9 +21,14 @@ public:
 	void ReleaseKey(int key);
 	void Update();
 
+	void AddAction(QString actionName);
+	void AddAction(QString actionName, int key);
+	void BindAction(QString actionName, int key);
+
+	InputState getState(QString actionName);
 	int getTime(QString actionName, int queriedTime);
 
 private:
-	QMap<QString, InputAction> keyStates;
+	QMap<QString, InputAction*> keyStates;
 	QMap<int, QString> bindings;
 };

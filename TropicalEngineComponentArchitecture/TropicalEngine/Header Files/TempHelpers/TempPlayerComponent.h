@@ -1,14 +1,23 @@
 #pragma once
-#include <Camera/CameraComponent.h>
+#include <Component/Component.h>
 
-class TempPlayerComponent : public CameraComponent
+#include <Utills/IUpdateable.h>
+
+class TempPlayerComponent : public Component, public IUpdateable
 {
 public:
-	TempPlayerComponent(Entity* owner, glm::vec3 targetOffset, glm::vec3 up, float fov, float aspectRatio, float zNear, float zFar);
+	TempPlayerComponent(Entity* owner);
 	~TempPlayerComponent(void);
 
-	void Update();
+	void OnUpdate(int deltaTime) override;
 
 	QString getTypeName() override;
 	IDeserializableFromJSON* fromJSON(QJsonObject JSON) override;
+
+protected:
+	TempPlayerComponent();
+
+	void InitializeComponentType() override;
+private:
+	static TempPlayerComponent InitializeType();
 };

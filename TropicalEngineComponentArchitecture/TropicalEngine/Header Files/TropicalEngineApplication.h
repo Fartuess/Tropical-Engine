@@ -25,6 +25,10 @@ public:
 	class SceneManager* sceneManager;
 	class ModelController* modelController;
 	class LightController* lightController;
+	/*
+	 * Updatings
+	 */
+	class UpdateManager* updateManager;
 
 	/*
 	* Input

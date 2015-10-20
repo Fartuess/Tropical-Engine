@@ -1,3 +1,5 @@
+#include <QtCore/qdebug.h>
+
 #include <Input/InputManager.h>
 
 InputManager::InputManager(void)
@@ -9,13 +11,18 @@ InputManager::InputManager(void)
 InputManager::~InputManager(void)
 {
 	///TODO: implement it.
+
+	while (keyStates.isEmpty() == false)
+	{
+		delete keyStates.take(keyStates.lastKey());
+	}
 }
 
 void InputManager::PressKey(int key)
 {
 	if (keyStates.contains(bindings[key]))
 	{
-		keyStates[bindings[key]].Press();
+		keyStates[bindings[key]]->Press();
 	}
 }
 
@@ -23,16 +30,47 @@ void InputManager::ReleaseKey(int key)
 {
 	if (keyStates.contains(bindings[key]))
 	{
-		keyStates[bindings[key]].Press();
+		keyStates[bindings[key]]->Release();
 	}
 }
 
 void InputManager::Update()
 {
 	lastMousePosition = mousePosition;
-	for (InputAction inputAction : keyStates)
+	for (InputAction* inputAction : keyStates)
 	{
-		inputAction.Update();
+		inputAction->Update();
+	}
+}
+
+void InputManager::AddAction(QString actionName)
+{
+	if (!keyStates.contains(actionName))
+	{
+		keyStates[actionName] = new InputAction();
+	}
+}
+
+void InputManager::AddAction(QString actionName, int key)
+{
+	AddAction(actionName);
+	BindAction(actionName, key);
+}
+
+void InputManager::BindAction(QString actionName, int key)
+{
+	bindings[key] = actionName;
+}
+
+InputState InputManager::getState(QString actionName)
+{
+	if (keyStates.contains(actionName))
+	{
+		return keyStates[actionName]->getState();
+	}
+	else
+	{
+		return InputState::Inactive;
 	}
 }
 
@@ -40,7 +78,7 @@ int InputManager::getTime(QString actionName, int queriedTime)
 {
 	if (keyStates.contains(actionName))
 	{
-		return keyStates[actionName].getTime(queriedTime);
+		return keyStates[actionName]->getTime(queriedTime);
 	}
 	else
 	{

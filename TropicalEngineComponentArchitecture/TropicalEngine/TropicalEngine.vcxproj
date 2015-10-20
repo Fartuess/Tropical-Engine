@@ -11,6 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source Files\Utills\IUpdateable.cpp" />
     <ClCompile Include="Source Files\Model\ModelBuilder\ConeModelBuilder.cpp" />
     <ClCompile Include="Source Files\Model\ModelBuilder\CylinderModelBuilder.cpp" />
     <ClCompile Include="Source Files\Model\ModelBuilder\BoxModelBuilder.cpp" />
@@ -96,7 +97,7 @@
     <ClCompile Include="Source Files\Shader\Shader.cpp" />
     <ClCompile Include="Source Files\Shader\ShaderManager.cpp" />
     <ClCompile Include="Source Files\Light\SpotLightComponent.cpp" />
-    <ClCompile Include="Source Files\Input\TempPlayerComponent.cpp" />
+    <ClCompile Include="Source Files\TempHelpers\TempPlayerComponent.cpp" />
     <ClCompile Include="Source Files\Texture\Texture.cpp" />
     <ClCompile Include="Source Files\Texture\TextureManager.cpp" />
     <ClCompile Include="Source Files\Scene\TransformComponent.cpp" />
@@ -105,6 +106,7 @@
     <ClCompile Include="Source Files\Model\ModelBuilder\TriangleModelBuilder.cpp" />
     <ClCompile Include="Source Files\Model\ModelBuilder\SphereModelBuilder.cpp" />
     <ClCompile Include="Source Files\Model\ModelBuilder\TorusModelBuilder.cpp" />
+    <ClCompile Include="Source Files\Utills\UpdateManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="Header Files\Camera\CameraComponent.h">
@@ -794,7 +796,9 @@
     <ClInclude Include="Header Files\Model\ModelBuilder\PlaneModelBuilder.h" />
     <ClInclude Include="Header Files\Model\ModelBuilder\SphereModelBuilder.h" />
     <ClInclude Include="Header Files\Model\ModelBuilder\TorusModelBuilder.h" />
+    <ClInclude Include="Header Files\Utills\IUpdateable.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="Header Files\Utills\UpdateManager.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resource Files\TropicalEngine.ico" />

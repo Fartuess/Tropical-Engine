@@ -29,6 +29,11 @@ int InputAction::getTime(int scriptTime)
 	{
 		updateTime = timer.elapsed();
 	}
+
+	//Division by zero safety check
+	if (ReleaseTimestamp == 0)
+		ReleaseTimestamp = 1;
+
 	int time;
 	switch (state)
 	{
@@ -121,6 +126,7 @@ void InputAction::Release()
 void InputAction::Update()
 {
 	updateTime = timer.elapsed();
+	timer.restart();
 	if (previousFrame != nullptr)
 	{
 		delete previousFrame;
@@ -131,7 +137,6 @@ void InputAction::Update()
 	ReleaseTimestamp = 0;
 	timeHeld = 0;
 	updateTime = 0;
-	timer.restart();
 	
 	switch (state)
 	{
