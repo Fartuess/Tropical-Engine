@@ -20,7 +20,7 @@ public:
 
 private:
 	static bool isTemplateItemsInitialized;	//guinea english to fit naming conventions :D
-	static QMap<QString, PropertyItem*> templateItems;
+	static QHash<QString, PropertyItem*> templateItems;
 
 	static void InitializeTemplateItems();
 };

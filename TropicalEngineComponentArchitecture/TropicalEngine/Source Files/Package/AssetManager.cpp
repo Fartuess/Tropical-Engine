@@ -1,6 +1,6 @@
 #include <Package/AssetManager.h>
 
-QMap<QString, ISerializableJSON*> AssetManager::assetTypes;
+QHash<QString, ISerializableJSON*> AssetManager::assetTypes;
 
 AssetManager::AssetManager()
 {

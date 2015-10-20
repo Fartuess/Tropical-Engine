@@ -21,8 +21,8 @@
 #include <Model/ModelBuilder/SphereModelBuilder.h>
 #include <Model/ModelBuilder/TorusModelBuilder.h>
 
-QMap<QString, AbstractModelImporter*> ModelBuilder::supportedExtensions = QMap<QString, AbstractModelImporter*>();
-QMap<QString, AbstractModelBuilder*> ModelBuilder::supportedShapes = QMap<QString, AbstractModelBuilder*>();
+QHash<QString, AbstractModelImporter*> ModelBuilder::supportedExtensions = QHash<QString, AbstractModelImporter*>();
+QHash<QString, AbstractModelBuilder*> ModelBuilder::supportedShapes = QHash<QString, AbstractModelBuilder*>();
 
 ModelBuilder::ModelBuilder(void)
 {

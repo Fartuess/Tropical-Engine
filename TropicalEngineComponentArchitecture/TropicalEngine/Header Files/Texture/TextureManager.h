@@ -1,6 +1,6 @@
 #pragma once
 #include <QtCore/qstring.h>
-#include <QtCore/qmap.h>
+#include <QtCore/qhash.h>
 
 #include <Utills/Singleton.h>
 
@@ -58,7 +58,7 @@ public:
 	  */
 	Texture* Load(QString name, QString fileUrl);
 private:
-	QMap<QString, Texture*> textures;
+	QHash<QString, Texture*> textures;
 	int textureIterator;	//for iterating over GL_TEXTUREs
 
 	void FlushTexture(QString name, bool forced = false);

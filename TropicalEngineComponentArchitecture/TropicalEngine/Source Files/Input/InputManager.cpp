@@ -14,7 +14,7 @@ InputManager::~InputManager(void)
 
 	while (keyStates.isEmpty() == false)
 	{
-		delete keyStates.take(keyStates.lastKey());
+		delete keyStates.take(keyStates.end().key());
 	}
 }
 

@@ -1,5 +1,5 @@
 #pragma once
-#include <QtCore/qmap.h>
+#include <QtCore/qhash.h>
 
 #include <Serialization/ISerializableJSON.h>
 
@@ -47,7 +47,7 @@ public:
 
 	static unsigned int getParameterType(QString name);
 
-	static QMap<QString, QString> getParameters(QString componentTypeName);	//if so change here as well
+	static QHash<QString, QString> getParameters(QString componentTypeName);	//if so change here as well
 
 	/**
 	  * \brief Serializes Component to JSON object.
@@ -92,17 +92,17 @@ protected:
 	void AddParameter(QString name, QString type);
 
 private:
-	static QMap<QString, unsigned int> componentTypeMap;
-	static QMap<QString, QString> parrentComponentTypeMap;
+	static QHash<QString, unsigned int> componentTypeMap;
+	static QHash<QString, QString> parrentComponentTypeMap;
 
-	static QMap<QString, unsigned int> parameterTypeMap;
+	static QHash<QString, unsigned int> parameterTypeMap;
 	static void AddParameterType(QString name);
 
-	static QMap<QString, QMap<QString, QString>> parameters;	//maybe instead of last QString use unsigned int
+	static QHash<QString, QHash<QString, QString>> parameters;	//maybe instead of last QString use unsigned int
 
 
 	/*******************************
 	 * TEMPORARY SOLUTION
 	 *******************************/
-	static QMap<QString, Component*> componentHandles;
+	static QHash<QString, Component*> componentHandles;
 };

@@ -1,7 +1,7 @@
 #pragma once
 #include <QtCore/qpair.h>
 #include <QtCore/qstring.h>
-#include <QtCore/qmap.h>
+#include <QtCore/qhash.h>
 
 /**
   * Class for managing packages.
@@ -59,6 +59,6 @@ public:
 private:
 	typedef QPair<class Package*, int> PackageUsage;	//package and number of levels referencing to it
 
-	QMap<QString, PackageUsage> packages;
+	QHash<QString, PackageUsage> packages;
 };
 

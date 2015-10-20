@@ -1,7 +1,7 @@
 #pragma once
 #include <QtCore/qstring.h>
 #include <QtCore/qvector.h>
-#include <QtCore/qmap.h>
+#include <QtCore/qhash.h>
 #include <glm.hpp>
 
 #include "ModelImporter/AbstractModelImporter.h"
@@ -165,8 +165,8 @@ public:
 	static void AddImporter(AbstractModelImporter* importer);
 
 private:
-	static QMap<QString, AbstractModelImporter*> supportedExtensions;
-	static QMap<QString, AbstractModelBuilder*> supportedShapes;
+	static QHash<QString, AbstractModelImporter*> supportedExtensions;
+	static QHash<QString, AbstractModelBuilder*> supportedShapes;
 
 	Model* Load(QString fileUrl);
 };

@@ -1,6 +1,6 @@
 #pragma once
 #include <QtCore/qstring.h>
-#include <QtCore/qmap.h>
+#include <QtCore/qhash.h>
 #include <QtCore/qvariant.h>
 
 /**
@@ -17,7 +17,7 @@ protected:
 	/**
 	  * Parameters used for model generation.
 	  */
-	QVariantMap parameters;
+	QVariantHash parameters;
 public:
 
 	/**

@@ -1,5 +1,5 @@
 #pragma once
-#include <QtCore/qmap.h>
+#include <QtCore/qhash.h>
 #include <QtCore/qstring.h>
 
 #include "Asset.h"
@@ -45,6 +45,6 @@ public:
 	static ISerializableJSON& createAsset(QJsonObject JSON);
 
 private:
-	static QMap<QString, ISerializableJSON*> assetTypes;
+	static QHash<QString, ISerializableJSON*> assetTypes;
 };
 

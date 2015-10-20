@@ -1,6 +1,6 @@
 #pragma once
 #include <QtCore/qstring.h>
-#include <QtCore/qmap.h>
+#include <QtCore/qhash.h>
 
 #include "Material.h"
 
@@ -24,7 +24,7 @@ public:
 	void UseMaterial(Material* material);
 
 private:
-	QMap<QString, Material*> materials;
+	QHash<QString, Material*> materials;
 
 	void FlushMaterial(QString name, bool forced = false);
 };

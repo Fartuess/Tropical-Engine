@@ -32,5 +32,5 @@ private:
 	Entity* root;
 
 	Package* internalPackage;
-	QMap<QString, Package*> usedPackages;
+	QHash<QString, Package*> usedPackages;
 };

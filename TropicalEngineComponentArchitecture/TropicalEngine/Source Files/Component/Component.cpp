@@ -1,4 +1,4 @@
-#include <QtCore/qmap.h>
+#include <QtCore/qhash.h>
 #include <QtCore/qdebug.h>
 
 #include <Scene/Entity.h>
@@ -63,7 +63,7 @@ void Component::Detach()
 	this->owner = nullptr;
 }
 
-QMap<QString, unsigned int> Component::componentTypeMap = QMap<QString, unsigned int>();
+QHash<QString, unsigned int> Component::componentTypeMap = QHash<QString, unsigned int>();
 
 void Component::AddComponentType(QString name)
 {
@@ -80,7 +80,7 @@ unsigned int Component::getComponentType(QString name)
 	return componentTypeMap[name];
 }
 
-QMap<QString, QString> Component::parrentComponentTypeMap = QMap<QString, QString>();
+QHash<QString, QString> Component::parrentComponentTypeMap = QHash<QString, QString>();
 
 QString Component::getParrentType(QString componentTypeName)
 {
@@ -99,7 +99,7 @@ void Component::SetParrentComponentType(QString parrentTypeName)
 	parrentComponentTypeMap[getTypeName()] = parrentTypeName;
 }
 
-QMap<QString, unsigned int> Component::parameterTypeMap = QMap<QString, unsigned int>();
+QHash<QString, unsigned int> Component::parameterTypeMap = QHash<QString, unsigned int>();
 
 void Component::AddParameterType(QString typeName)
 {
@@ -111,26 +111,26 @@ unsigned int Component::getParameterType(QString typeName)
 	return parameterTypeMap[typeName];
 }
 
-QMap<QString, QMap<QString, QString>> Component::parameters = QMap<QString, QMap<QString, QString>>();
+QHash<QString, QHash<QString, QString>> Component::parameters = QHash<QString, QHash<QString, QString>>();
 
 void Component::AddParameter(QString name, QString typeName)
 {
 	if(!parameterTypeMap.contains(typeName))
 		AddParameterType(typeName);
 	if (!parameters.contains(getTypeName()))
-		parameters[getTypeName()] = QMap<QString, QString>();
+		parameters[getTypeName()] = QHash<QString, QString>();
 	parameters[getTypeName()].insert(name, typeName);
 }
 
-QMap<QString, QString> Component::getParameters(QString componentTypeName)
+QHash<QString, QString> Component::getParameters(QString componentTypeName)
 {
 	if(parameters.contains(componentTypeName))
 	{
-		return QMap<QString, QString>(parameters[componentTypeName]).unite(Component::getParameters(getParrentType(componentTypeName)));
+		return QHash<QString, QString>(parameters[componentTypeName]).unite(Component::getParameters(getParrentType(componentTypeName)));
 	}
 	else
 	{
-		return QMap<QString, QString>();
+		return QHash<QString, QString>();
 	}
 }
 
@@ -143,7 +143,7 @@ QJsonObject Component::toJSON()
 	return JSON;
 }
 
-QMap<QString, Component*> Component::componentHandles = QMap<QString, Component*>();
+QHash<QString, Component*> Component::componentHandles = QHash<QString, Component*>();
 
 IDeserializableFromJSON* Component::fromJSON(QJsonObject JSON)
 {

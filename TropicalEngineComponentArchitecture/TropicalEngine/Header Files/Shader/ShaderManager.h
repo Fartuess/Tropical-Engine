@@ -2,7 +2,7 @@
 #include <GL/glew.h>
 
 #include <QtCore/qstring.h>
-#include <QtCore/qmap.h>
+#include <QtCore/qhash.h>
 
 class Shader;
 
@@ -40,7 +40,7 @@ public:
 	void UseShader(Shader* shader);
 
 protected:
-	QMap<QString, Shader*> shaders;
+	QHash<QString, Shader*> shaders;
 	Shader* currentShader;	//shader currently enabled on GPU
 
 	void Load(Shader* shader, QString name);

@@ -1,7 +1,7 @@
 #pragma once
 #include <glm.hpp>
 
-#include <QtCore/qmap.h>
+#include <QtCore/qhash.h>
 #include <QtWidgets/qaction.h>
 
 #include <Camera/CameraComponent.h>
@@ -29,6 +29,6 @@ public:
 	int getTime(QString actionName, int queriedTime);
 
 private:
-	QMap<QString, InputAction*> keyStates;
-	QMap<int, QString> bindings;
+	QHash<QString, InputAction*> keyStates;
+	QHash<int, QString> bindings;
 };

@@ -1,6 +1,6 @@
 #pragma once
 #include <QtCore/qstring.h>
-#include <QtCore/qmap.h>
+#include <QtCore/qhash.h>
 
 class Model;
 class ModelBuilder;
@@ -67,7 +67,7 @@ public:
 	void Load(Model* model, QString name);
 
 private:
-	QMap<QString, Model*> models;
+	QHash<QString, Model*> models;
 
 	void FlushModel(QString name, bool forced = false);
 };
