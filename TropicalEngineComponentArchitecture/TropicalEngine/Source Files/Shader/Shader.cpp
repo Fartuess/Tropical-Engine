@@ -278,8 +278,6 @@ void Shader::Use()
 	}
 }
 
-QString Shader::GETTYPENAME("Shader");
-
 //QString Shader::toXML()
 //{
 //	///TODO: implement it.

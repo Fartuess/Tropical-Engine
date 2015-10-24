@@ -107,6 +107,7 @@
     <ClCompile Include="Source Files\Model\ModelBuilder\SphereModelBuilder.cpp" />
     <ClCompile Include="Source Files\Model\ModelBuilder\TorusModelBuilder.cpp" />
     <ClCompile Include="Source Files\Utills\UpdateManager.cpp" />
+    <ClCompile Include="Source Files\TempHelpers\TempMovingComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="Header Files\Camera\CameraComponent.h">
@@ -799,6 +800,7 @@
     <ClInclude Include="Header Files\Utills\IUpdateable.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Header Files\Utills\UpdateManager.h" />
+    <ClInclude Include="Header Files\TempHelpers\TempMovingComponent.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resource Files\TropicalEngine.ico" />

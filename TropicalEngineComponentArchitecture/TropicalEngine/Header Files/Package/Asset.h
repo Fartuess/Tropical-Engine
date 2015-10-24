@@ -9,6 +9,7 @@
 class Asset : public ISerializableJSON
 {
 public:
+	TYPENAME("Asset")
 
 	/**
 	  * \brief Name of the asset.
@@ -39,8 +40,6 @@ public:
 	  */
 	~Asset();
 	//static Asset InitializeType();
-
-	QString getTypeName() override;
 
 	/**
 	  * \brief Serializes Asset to JSON object.

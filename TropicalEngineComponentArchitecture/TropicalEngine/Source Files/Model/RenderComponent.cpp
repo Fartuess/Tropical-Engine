@@ -21,8 +21,6 @@ void RenderComponent::InitializeComponentType()
 	}
 }
 
-QString RenderComponent::GETTYPENAME("Render Component");
-
 RenderComponent::~RenderComponent(void)
 {
 }

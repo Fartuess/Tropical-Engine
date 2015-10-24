@@ -4,6 +4,7 @@
 class DirectionalLightComponent : public LightComponent
 {
 public:
+	TYPENAME("DirectionalLight Component")
 
 	/**
 	* \brief Constructor of DirectionalLightComponent.
@@ -39,8 +40,6 @@ public:
 
 	void Evaluate();
 	void DrawShadows();
-
-	QString getTypeName() override;
 
 	/**
 	  * \brief Serializes Component to JSON object.

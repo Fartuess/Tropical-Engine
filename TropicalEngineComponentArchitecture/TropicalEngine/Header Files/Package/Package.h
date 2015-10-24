@@ -13,6 +13,8 @@
 class Package : public ISerializableJSON
 {
 public:
+	TYPENAME("Package")
+
 	/**
 	  * \brief Constructor for Package class.
 	  *
@@ -65,8 +67,6 @@ public:
 	  * @param asset Asset to be added.
 	  */
 	Package& operator<<(Asset* asset);
-
-	QString getTypeName() override;
 
 	/**
 	  * \brief Serializes Package to JSON object.

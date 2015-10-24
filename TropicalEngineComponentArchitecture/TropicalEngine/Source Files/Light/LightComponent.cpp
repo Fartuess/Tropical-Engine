@@ -56,8 +56,6 @@ void LightComponent::DrawShadows()
 	///TODO: implement it.
 }
 
-QString LightComponent::GETTYPENAME("Light Component");
-
 //QString LightComponent::toXML()
 //{
 //	///TODO: implement it.

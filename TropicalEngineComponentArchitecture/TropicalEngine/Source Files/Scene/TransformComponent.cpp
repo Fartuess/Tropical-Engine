@@ -318,8 +318,6 @@ void TransformComponent::Evaluate()
 	}
 }
 
-QString TransformComponent::GETTYPENAME("Transform Component");
-
 //QString TransformComponent::toXML()
 //{
 //	QString XMLString = QString(getIndent() + "<TransformComponent>\n");

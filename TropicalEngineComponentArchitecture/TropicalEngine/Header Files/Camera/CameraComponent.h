@@ -9,6 +9,7 @@
 class CameraComponent : public Component
 {
 public:
+	TYPENAME("Camera Component")
 	/**
 	  * \brief Camera component costructor.
 	  *
@@ -136,13 +137,6 @@ public:
 	  * Mostly for internal use in engine part of code.
 	  */
 	void CalculateMatrix();
-
-	/**
-	  * \brief Returns name of the type.
-	  *
-	  * @return "Camera Component"
-	  */
-	QString getTypeName() override;
 
 	/**
 	  * \brief Serializes CameraComponent to JSON object.

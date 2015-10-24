@@ -87,8 +87,6 @@ void SpotLightComponent::DrawShadows()
 	///TODO: implement it.
 }
 
-QString SpotLightComponent::GETTYPENAME("SpotLight Component");
-
 //QString SpotLightComponent::toXML()
 //{
 //	///TODO: implement it.

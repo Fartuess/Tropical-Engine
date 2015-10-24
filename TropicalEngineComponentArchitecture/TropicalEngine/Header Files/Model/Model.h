@@ -79,6 +79,7 @@ private:
 class Model : public ISerializableJSON
 {
 public:
+	TYPENAME("Model")
 
 	/**
 	  * \brief Name of the type of model.
@@ -128,13 +129,6 @@ public:
 
 
 	GLuint materialCount;
-
-	/**
-	  * \brief Returns name of the type.
-	  *
-	  * @return "Model"
-	  */
-	QString getTypeName() override;
 
 	/**
 	  * \brief Serializes Model to JSON object.

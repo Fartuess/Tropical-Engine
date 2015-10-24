@@ -25,8 +25,6 @@ Asset::~Asset()
 //	return asset;
 //}
 
-QString Asset::GETTYPENAME("Asset");
-
 QJsonObject Asset::toJSON()
 {
 	///TODO: Make cheating unnecessary.

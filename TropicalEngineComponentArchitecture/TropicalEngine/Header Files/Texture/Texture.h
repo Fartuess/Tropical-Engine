@@ -12,6 +12,8 @@
 class Texture : public ISerializableJSON
 {
 public:
+	TYPENAME("Texture")
+
 	/**
 	  * \brief Constructor for Texture class.
 	  *
@@ -55,8 +57,6 @@ public:
 	  * @param location I DON'T REMEMBER EXACTLY. IT IS MAINLY FOR TEXTUREMANAGER.
 	  */
 	void ActivateTexture(GLuint location);
-
-	QString getTypeName() override;
 
 	/**
 	  * \brief Serializes Texture to JSON object.

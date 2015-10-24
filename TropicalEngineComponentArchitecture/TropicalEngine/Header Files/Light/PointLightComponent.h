@@ -5,6 +5,8 @@
 class PointLightComponent : public LightComponent
 {
 public:
+	TYPENAME("PointLight Component")
+
 	/**
 	  * \brief Attenuation exponent of the light.
 	  */
@@ -48,8 +50,6 @@ public:
 
 	void Evaluate();
 	void DrawShadows();
-
-	QString getTypeName() override;
 
 	/**
 	  * \brief Serializes PointLightComponent to JSON object.

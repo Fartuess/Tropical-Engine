@@ -6,12 +6,13 @@
 class TempPlayerComponent : public Component, public IUpdateable
 {
 public:
+	TYPENAME("TempPlayer Component")
+
 	TempPlayerComponent(Entity* owner);
 	~TempPlayerComponent(void);
 
 	void OnUpdate(int deltaTime) override;
 
-	QString getTypeName() override;
 	IDeserializableFromJSON* fromJSON(QJsonObject JSON) override;
 
 protected:

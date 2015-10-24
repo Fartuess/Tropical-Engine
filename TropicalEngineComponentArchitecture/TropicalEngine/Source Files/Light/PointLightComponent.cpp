@@ -59,8 +59,6 @@ void PointLightComponent::DrawShadows()
 	///TODO: implement it.
 }
 
-QString PointLightComponent::GETTYPENAME("PointLight Component");
-
 //QString PointLightComponent::toXML()
 //{
 //	///TODO: implement it.

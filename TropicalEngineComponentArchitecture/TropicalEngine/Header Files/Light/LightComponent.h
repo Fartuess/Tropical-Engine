@@ -9,6 +9,7 @@
 class LightComponent : public Component
 {
 public:
+	TYPENAME("Light Component")
 
 	/**
 	  * \brief Color of the light.
@@ -53,8 +54,6 @@ public:
 
 	void Evaluate();
 	void DrawShadows();
-
-	QString getTypeName() override;
 
 	/**
 	  * \brief Serializes LightComponent to JSON object.

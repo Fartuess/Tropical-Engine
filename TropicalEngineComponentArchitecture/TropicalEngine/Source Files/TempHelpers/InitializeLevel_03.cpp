@@ -40,13 +40,12 @@
 
 #include <TempHelpers/OglDevTut03.h>
 #include <TempHelpers/TempPlayerComponent.h>
+#include <TempHelpers/TempMovingComponent.h>
 
 #include "TropicalEngineApplication.h"
 
 void OglDevTut03::InitializeLevel()
 {
-	//level = new Level();
-
 	TropicalEngineApplication* engine = TropicalEngineApplication::instance();
 	
 	/*********************************
@@ -375,14 +374,6 @@ void OglDevTut03::InitializeLevel()
 	torusBuilder.setParameter("name", QString("Torus"));
 	torusBuilder.Build();
 
-	//modelBuilder.CreatePlane("Plane", 10.0f, 10.0f, 50, 50);
-	//modelBuilder.CreateBox("Box", glm::vec3(1.0f, 1.0f, 1.0f));
-	//modelBuilder.CreateBox("BoxDense",glm::vec3(1.0f),glm::vec3(10,10,10));
-	//modelBuilder.CreateCylinder("Cylinder");
-	//modelBuilder.CreateCylinder("CylinderDense", 1.0f, 2.0f, 40, 10);
-	//modelBuilder.CreateCone("Cone");
-	//modelBuilder.CreateSphere("Sphere", 1.0f, 40, 40);
-	//modelBuilder.CreateTorus("Torus");
 	modelBuilder.Load("TestModel",			"./Assets/TestAssets/TestModel.obj");
 	modelBuilder.Load("TestModel2",			"./Assets/TestAssets/TestModel2.obj");
 	modelBuilder.Load("TestTesselation",	"./Assets/TestAssets/TestTesselation.obj");
@@ -428,113 +419,96 @@ void OglDevTut03::InitializeLevel()
 	*
 	*********************************/
 
-	Entity* phongExample = new Entity(glm::vec3(0.0f, 0.0f, 0.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
+	Entity* phongExample = new Entity(glm::vec3(0.0f, 0.0f, 0.0f), glm::quat(), glm::vec3(1.0f, 1.0f, 1.0f));
 	ModelComponent* phongModelC = new ModelComponent(phongExample, materialManager["Phong Material"], (*engine->modelManager)["Torus"]);
-	phongExample->AttachComponent(phongModelC);
 	phongExample->name = QString("Phong Example");
 	level->getRoot()->AttachSubobject(phongExample);
 
-	Entity* phongBlinnExample = new Entity(glm::vec3(4.0f, 0.0f, 0.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
+	Entity* phongBlinnExample = new Entity(glm::vec3(4.0f, 0.0f, 0.0f), glm::quat(), glm::vec3(1.0f, 1.0f, 1.0f));
 	ModelComponent* phongBlinnModelC = new ModelComponent(phongBlinnExample, phongBlinnMaterial, engine->modelManager->getModel("Sphere"));
-	phongBlinnExample->AttachComponent(phongBlinnModelC);
 	phongBlinnExample->name = QString("Blinn-Phong Example");
 	level->getRoot()->AttachSubobject(phongBlinnExample);
 
-	Entity* BumpMapExample = new Entity(glm::vec3(8.0f, 0.0f, 0.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
+	Entity* BumpMapExample = new Entity(glm::vec3(8.0f, 0.0f, 0.0f), glm::quat(), glm::vec3(1.0f, 1.0f, 1.0f));
 	ModelComponent* bumpMapModelC = new ModelComponent(BumpMapExample, testMaterialNRM, engine->modelManager->getModel("Sphere"));
-	BumpMapExample->AttachComponent(bumpMapModelC);
 	BumpMapExample->name = QString("Bump mapping Example");
 	level->getRoot()->AttachSubobject(BumpMapExample);
 
-	Entity* MaskedExample = new Entity(glm::vec3(12.0f, 0.0f, 0.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
+	Entity* MaskedExample = new Entity(glm::vec3(12.0f, 0.0f, 0.0f), glm::quat(), glm::vec3(1.0f, 1.0f, 1.0f));
 	ModelComponent* maskedModelC = new ModelComponent(MaskedExample, maskedMaterial, engine->modelManager->getModel("Box"));
-	MaskedExample->AttachComponent(maskedModelC);
 	MaskedExample->name = QString("Masked blend mode Example");
 	level->getRoot()->AttachSubobject(MaskedExample);
 
-	Entity* ParralaxExample = new Entity(glm::vec3(16.0f, 0.0f, 0.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
+	Entity* ParralaxExample = new Entity(glm::vec3(16.0f, 0.0f, 0.0f), glm::quat(), glm::vec3(1.0f, 1.0f, 1.0f));
 	ModelComponent* parralaxModelC = new ModelComponent(ParralaxExample, phongBlinnParalaxMaterial, engine->modelManager->getModel("Teapot"));
-	ParralaxExample->AttachComponent(parralaxModelC);
 	ParralaxExample->name = QString("Displacement Mapping Example");
 	level->getRoot()->AttachSubobject(ParralaxExample);
 
-	Entity* CookTorranceExample = new Entity(glm::vec3(20.0f, 0.0f, 0.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
+	Entity* CookTorranceExample = new Entity(glm::vec3(20.0f, 0.0f, 0.0f), glm::quat(), glm::vec3(1.0f, 1.0f, 1.0f));
 	ModelComponent* cookTorranceModelC = new ModelComponent(CookTorranceExample, cookTorranceMaterial, engine->modelManager->getModel("Sphere"));
-	CookTorranceExample->AttachComponent(cookTorranceModelC);
 	CookTorranceExample->name = QString("Cook-Torrance Example");
 	level->getRoot()->AttachSubobject(CookTorranceExample);
 
-	Entity* StraussExample = new Entity(glm::vec3(24.0f, 0.0f, 0.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
+	Entity* StraussExample = new Entity(glm::vec3(24.0f, 0.0f, 0.0f), glm::quat(), glm::vec3(1.0f, 1.0f, 1.0f));
 	ModelComponent* straussModelC = new ModelComponent(StraussExample, straussMaterial, engine->modelManager->getModel("Sphere"));
-	StraussExample->AttachComponent(straussModelC);
 	StraussExample->name = QString("Strauss Example");
 	level->getRoot()->AttachSubobject(StraussExample);
 
-	Entity* StraussConductiveExample = new Entity(glm::vec3(28.0f, 0.0f, 0.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
+	Entity* StraussConductiveExample = new Entity(glm::vec3(28.0f, 0.0f, 0.0f), glm::quat(), glm::vec3(1.0f, 1.0f, 1.0f));
 	ModelComponent* straussConductiveModelC = new ModelComponent(StraussConductiveExample, straussMaterialMetalic, engine->modelManager->getModel("Sphere"));
-	StraussConductiveExample->AttachComponent(straussConductiveModelC);
 	StraussConductiveExample->name = QString("Strauss Metalic Example");
 	level->getRoot()->AttachSubobject(StraussConductiveExample);
 
 	Entity* WardExample = new Entity(glm::vec3(32.0f, 0.0f, 0.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
 	ModelComponent* wardModelC = new ModelComponent(WardExample, wardIsoMaterial, engine->modelManager->getModel("TestModel2"));
-	WardExample->AttachComponent(wardModelC);
 	WardExample->name = QString("Ward Example");
 	level->getRoot()->AttachSubobject(WardExample);
 
 	Entity* WardAnisotropicExample = new Entity(glm::vec3(36.0f, 0.0f, 0.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
 	ModelComponent* wardAnisoModelC = new ModelComponent(WardAnisotropicExample, wardAnisoMaterial, engine->modelManager->getModel("TestModel2"));
-	WardAnisotropicExample->AttachComponent(wardAnisoModelC);
 	WardAnisotropicExample->name = QString("Ward Anisotropic Example");
 	level->getRoot()->AttachSubobject(WardAnisotropicExample);
 
 	Entity* DistanceTessellationExample = new Entity(glm::vec3(40.0f, 0.0f, 0.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
 	ModelComponent* distanceTessModelC = new ModelComponent(DistanceTessellationExample, testTessalationMaterial, engine->modelManager->getModel("BoxDense"));
-	DistanceTessellationExample->AttachComponent(distanceTessModelC);
 	DistanceTessellationExample->name = QString("Distance Tessellation Example");
 	level->getRoot()->AttachSubobject(DistanceTessellationExample);
 
 	Entity* VectorTessellationExample = new Entity(glm::vec3(44.0f, 0.0f, 0.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
 	ModelComponent* vectorTessModelC = new ModelComponent(VectorTessellationExample, vectorTessalationMaterial, engine->modelManager->getModel("VectorCube"));
-	VectorTessellationExample->AttachComponent(vectorTessModelC);
 	VectorTessellationExample->name = QString("Vector Displacement Tessellation Example");
 	level->getRoot()->AttachSubobject(VectorTessellationExample);
 
 	Entity* FbxExample = new Entity(glm::vec3(48.0f, 0.0f, 0.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(0.2f, 0.2f, 0.2f));
 	ModelComponent* FbxExampleModelC = new ModelComponent(FbxExample, chestMaterial, engine->modelManager->getModel("FbxChest"));
-	FbxExample->AttachComponent(FbxExampleModelC);
 	FbxExample->name = QString("FBX import Example");
 	level->getRoot()->AttachSubobject(FbxExample);
 
 	Entity* FbxExample2 = new Entity(glm::vec3(52.0f, 0.0f, 0.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
 	ModelComponent* FbxExample2ModelC = new ModelComponent(FbxExample2, phongMaterial, engine->modelManager->getModel("FbxTest2"));
-	FbxExample2->AttachComponent(FbxExample2ModelC);
 	FbxExample2->name = QString("FBX Example 2");
 	level->getRoot()->AttachSubobject(FbxExample2);
 
 	Entity* FbxExample3 = new Entity(glm::vec3(60.0f, 0.0f, 0.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
 	ModelComponent* FbxExample3ModelC = new ModelComponent(FbxExample3, phongMaterial, engine->modelManager->getModel("FbxTest4"));
-	FbxExample3->AttachComponent(FbxExample3ModelC);
 	FbxExample3->name = QString("FBX Hierarchy Example");
 	level->getRoot()->AttachSubobject(FbxExample3);
 	
 	Entity* mainCamera = new Entity(glm::vec3(0.0f, 0.0f, 5.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
 	CameraComponent* mainCameraComponent = new CameraComponent(mainCamera, glm::vec3(0.0f, 0.0f, -1.0f), glm::vec3(0.0f, 1.0f, 0.0f), 40.0f, 4.0f / 3.0f, 0.1f, 10000.0f);
-	mainCamera->AttachComponent(mainCameraComponent);
 	mainCamera->name = QString("Main Camera");
 	TempPlayerComponent* cameraController = new TempPlayerComponent(mainCamera);
-	mainCamera->AttachComponent(cameraController);
 	level->getRoot()->AttachSubobject(mainCamera);
 
 	Entity* lightModelTestingCamera = new Entity(glm::vec3(5.0f, 5.0f, 5.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
-	//CameraComponent* lightModelTestingCameraComponent = new CameraComponent(mainCamera, glm::vec3(0.0f, 0.0f, -1.0f), glm::vec3(0.0f, 1.0f, 0.0f), 40.0f, 4.0f / 3.0f, 0.1f, 10000.0f);
-	CameraComponent* lightModelTestingCameraComponent = new CameraComponent(mainCamera, glm::vec3(0.0f, 0.0f, -1.0f), glm::vec3(0.0f, 1.0f, 0.0f), 40.0f, 4.0f / 3.0f, 0.1f, 10000.0f);
-	lightModelTestingCamera->AttachComponent(lightModelTestingCameraComponent);
+	CameraComponent* lightModelTestingCameraComponent = new CameraComponent(lightModelTestingCamera, glm::vec3(0.0f, 0.0f, -1.0f), glm::vec3(0.0f, 1.0f, 0.0f), 40.0f, 4.0f / 3.0f, 0.1f, 10000.0f);
 	lightModelTestingCamera->name = QString("Light Model Testing Camera");
 	level->getRoot()->AttachSubobject(lightModelTestingCamera);
 
-	Entity* pointLight = new Entity(glm::vec3(5.0f, 2.0f, -5.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
-	PointLightComponent* pointLightComponent = new PointLightComponent(pointLight, glm::vec3(1.0f, 0.2f, 1.0f), 0.5f, 100.0f, 0.4f);
+	Entity* pointLight = new Entity(glm::vec3(5.0f, 2.0f, -5.0f), glm::quat(), glm::vec3(0.4f, 0.4f, 0.4f));
+	PointLightComponent* pointLightComponent = new PointLightComponent(pointLight, glm::vec3(1.0f, 0.2f, 1.0f), 0.5f, 15.0f, 1.0f);
+	TempMovingComponent* pointLightMoveComponent = new TempMovingComponent(pointLight, glm::vec3(60.0f, 0.2f, 3.0f), glm::vec3(0.0f, 0.2f, 3.0f), 15.0f);
+	ModelComponent* pointLightMarker = new ModelComponent(pointLight, phongMaterial, engine->modelManager->getModel("Sphere"));
 	pointLight->name = QString("Point Light");
 	level->getRoot()->AttachSubobject(pointLight);
 

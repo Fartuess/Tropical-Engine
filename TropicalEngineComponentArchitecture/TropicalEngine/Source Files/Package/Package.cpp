@@ -78,8 +78,6 @@ Package& Package::operator<<(Asset* asset)
 	return *this;
 }
 
-QString Package::GETTYPENAME("Package");
-
 
 //QString Package::toXML()
 //{

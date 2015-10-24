@@ -17,6 +17,8 @@ private:
 	QList<Component*> components;	//Had to be on top to initialize before transform.
 
 public:
+	TYPENAME("Entity")
+
 	friend class Component;
 	friend class PropertiesWidget;
 
@@ -37,7 +39,6 @@ public:
 	void DeleteComponent(Component* component);	//is needed?
 	Entity& operator<<(Component* component);
 
-	QString getTypeName() override;
 	QJsonObject toJSON() override;
 	IDeserializableFromJSON* fromJSON(QJsonObject JSON) override;
 

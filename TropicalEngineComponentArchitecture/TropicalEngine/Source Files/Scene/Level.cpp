@@ -41,8 +41,6 @@ Level& Level::operator<<(Entity* object)
 	return *this;
 }
 
-QString Level::GETTYPENAME("Level");
-
 //QString Level::toXML()
 //{
 //	///TODO: finish implementing it.

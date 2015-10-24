@@ -87,7 +87,7 @@ void ModelComponent::Draw(CameraComponent* viewer)
 		for (int i = 0; i < glm::min(MAX_POINT_LIGHT, lightedBy.size()); i++)	///TODO: Assuming that it is lighted only by pointlights. Change it later to work properly
 		{
 			PointLightComponent* light = static_cast<PointLightComponent*>(lightedBy[i]);
-			glUniform3fv(usedShader->pointLightPositionLocations[i], 1, glm::value_ptr(light->getOwner()->transform.getLocalPosition()));
+			glUniform3fv(usedShader->pointLightPositionLocations[i], 1, glm::value_ptr(-light->getOwner()->transform.getLocalPosition()));	///TODO: Figure out why negation is required.
 			glUniform3fv(usedShader->pointLightColorLocations[i], 1, glm::value_ptr(light->color));
 			glUniform1f(usedShader->pointLightBrightnessLocations[i], light->brightness);
 			glUniform1f(usedShader->pointLightRadiusLocations[i], light->getRadius());
@@ -147,8 +147,6 @@ void ModelComponent::isCastingShadows(bool isCastingShadows)
 {
 	castingShadows = isCastingShadows;
 }
-
-QString ModelComponent::GETTYPENAME("Model Component");
 
 //QString ModelComponent::toXML()
 //{

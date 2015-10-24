@@ -92,8 +92,6 @@ void MeshEntry::Finalize(	QVector<glm::vec4>& vertices,
 
 }
 
-QString Model::GETTYPENAME("Model");
-
 //QString Model::toXML()
 //{
 //	///TODO: implement it.

@@ -9,6 +9,7 @@ class Model;
 class ModelComponent : public RenderComponent
 {
 public:
+	TYPENAME("Model Component")
 
 	/**
 	  * \brief Model used for this component.
@@ -54,13 +55,6 @@ public:
 	  * @param isCastingShadows If this model should cast shadows.
 	  */
 	void isCastingShadows(bool isCastingShadows);
-
-	/**
-	  * \brief Returns name of the type.
-	  *
-	  * @return "Model Component"
-	  */
-	QString getTypeName() override;
 
 	/**
 	  * \brief Serializes ModelComponent to JSON object.

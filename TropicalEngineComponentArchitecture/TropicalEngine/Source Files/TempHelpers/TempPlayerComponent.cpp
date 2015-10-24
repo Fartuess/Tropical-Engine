@@ -55,8 +55,6 @@ void TempPlayerComponent::OnUpdate(int DeltaTime)
 	ownerTransform.LocalTranslate(-up * (speed * (float)inputManager->getTime("Move Down", DeltaTime)));
 }
 
-QString TempPlayerComponent::GETTYPENAME("TempPlayerComponent");
-
 IDeserializableFromJSON* TempPlayerComponent::fromJSON(QJsonObject JSON)
 {
 	///TODO: implement this.

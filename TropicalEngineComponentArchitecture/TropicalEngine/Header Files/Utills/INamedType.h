@@ -20,8 +20,8 @@ public:
   *
   * @param name Name of type.
   */
-#define GETTYPENAME(name)\
-	getTypeName()\
+#define TYPENAME(name)\
+	inline QString getTypeName() override\
 	{\
 		return name;\
 	}

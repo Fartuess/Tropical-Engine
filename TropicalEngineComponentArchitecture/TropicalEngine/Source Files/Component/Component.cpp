@@ -134,8 +134,6 @@ QHash<QString, QString> Component::getParameters(QString componentTypeName)
 	}
 }
 
-//QString Component::GETTYPENAME("Component");
-
 QJsonObject Component::toJSON()
 {
 	QJsonObject JSON = QJsonObject();

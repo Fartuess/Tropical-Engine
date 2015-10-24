@@ -23,6 +23,8 @@ out vec3 v_bitangent;
 out vec2 v_texcoord;
 out vec3 v_eye;
 
+out vec3 v_globalPosition;
+
 vec2 interpolate2D(vec2 v0, vec2 v1, vec2 v2)
 {
     return vec2(gl_TessCoord.x) * v0 + vec2(gl_TessCoord.y) * v1 + vec2(gl_TessCoord.z) * v2;
@@ -41,12 +43,13 @@ void main()
 	v_bitangent = u_normalMatrix * interpolate3D(v_bitangent_tcs[0], v_bitangent_tcs[1], v_bitangent_tcs[2]);
 	v_texcoord = interpolate2D(v_texcoord_tcs[0], v_texcoord_tcs[1], v_texcoord_tcs[2]);
 
-    vec4 helper = u_transformationMatrix * vec4(interpolate3D(v_vertex_tcs[0].xyz, v_vertex_tcs[1].xyz, v_vertex_tcs[2].xyz), 1.0);
-
 	float displacementAmount = texture(mat_displacementTexture, v_texcoord).x;
-    vec4 displacement = vec4(v_normal * displacementAmount * mat_displacementScale, 0.0);
+	vec4 displacement = vec4(v_normal * displacementAmount * mat_displacementScale, 0.0);
 
-	v_eye = -vec3((helper + displacement)) + u_cameraPosition;
+    vec4 helper = u_transformationMatrix * ( vec4(interpolate3D(v_vertex_tcs[0].xyz, v_vertex_tcs[1].xyz, v_vertex_tcs[2].xyz), 1.0) + displacement);
 
-    gl_Position = u_projectionMatrix * u_cameraMatrix * (helper + displacement);	///TODO: actually displacement should be added in model space not in globalspace
+	v_eye = -vec3((helper)) + u_cameraPosition;
+	v_globalPosition = helper.xyz;
+
+    gl_Position = u_projectionMatrix * u_cameraMatrix * (helper);
 }

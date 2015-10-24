@@ -10,6 +10,8 @@
 class Material : public ISerializableJSON
 {
 public:
+	TYPENAME("Material")
+
 	QString getName();
 	void setName(QString name);
 
@@ -27,7 +29,6 @@ public:
 	MaterialParameter& operator[](QString name)      { return parameters[name]; };
 	const MaterialParameter& operator[](QString name) const { return parameters[name]; };
 
-	QString getTypeName() override;
 	QJsonObject toJSON() override;
 	IDeserializableFromJSON* fromJSON(QJsonObject JSON) override;
 

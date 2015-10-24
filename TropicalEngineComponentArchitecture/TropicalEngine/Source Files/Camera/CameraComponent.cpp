@@ -142,8 +142,6 @@ void CameraComponent::CalculateMatrix()
 	projectionMatrix = glm::perspective(fov, aspectRatio, zNear, zFar);
 }
 
-QString CameraComponent::GETTYPENAME("Camera Component");
-
 //QString CameraComponent::toXML()
 //{
 //	///TODO: implement it.

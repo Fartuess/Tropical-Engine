@@ -104,8 +104,6 @@ void Entity::DetachComponent(Component* component)
 	}
 }
 
-QString Entity::GETTYPENAME("Entity");
-
 //QString Entity::toXML()
 //{
 //	QString XMLString = QString(getIndent() + "<Entity name =\"" + name + "\">\n");

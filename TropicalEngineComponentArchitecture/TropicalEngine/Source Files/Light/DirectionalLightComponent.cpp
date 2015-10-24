@@ -55,8 +55,6 @@ void DirectionalLightComponent::DrawShadows()
 	///TODO: implement it.
 }
 
-QString DirectionalLightComponent::GETTYPENAME("DirectionalLight Component");
-
 //QString DirectionalLightComponent::toXML()
 //{
 //	///TODO: implement it.

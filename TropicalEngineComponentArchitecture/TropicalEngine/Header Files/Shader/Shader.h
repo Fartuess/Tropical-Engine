@@ -12,6 +12,7 @@
 class Shader : public ISerializableJSON
 {
 public:
+	TYPENAME("Shader")
 
 	friend class ShaderManager;
 
@@ -68,7 +69,6 @@ public:
 
 	void Use();
 
-	QString getTypeName() override;
 	QJsonObject toJSON() override;
 	IDeserializableFromJSON* fromJSON(QJsonObject JSON) override;
 

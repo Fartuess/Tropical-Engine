@@ -9,6 +9,7 @@
 class RenderComponent : public Component
 {
 public:
+	TYPENAME("Render Component")
 
 	/**
 	  * \brief Material used by this Component.
@@ -40,13 +41,6 @@ public:
 	  * @param Draws from perspective of this camera.
 	  */
 	virtual void Draw(class CameraComponent* viewer) = 0;
-
-	/**
-	  * \brief Returns name of the type.
-	  *
-	  * @return "Render Component"
-	  */
-	QString getTypeName() override;
 
 protected:
 	/**

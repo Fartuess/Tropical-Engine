@@ -73,8 +73,6 @@ void Texture::ActivateTexture(GLuint location)
 	TropicalEngineApplication::instance()->textureManager->incrementTextureIterator();
 }
 
-QString Texture::GETTYPENAME("Texture");
-
 //QString Texture::toXML()
 //{
 //	return QString(getIndent() + "<Texture filepath = \"" + fileUrl + "\"/>\n");
