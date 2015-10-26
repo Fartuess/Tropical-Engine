@@ -1,5 +1,6 @@
 #version 330
 #include "_PointLight.glsl"
+#include "_SpotLight.glsl"
 
 uniform vec3 u_lightVector;
 uniform vec3 u_lightColor;
@@ -46,12 +47,19 @@ void main()
 	calculatePhong(lightVector, u_lightColor, u_lightBrightness, normal, eye, mat_specularExponent, diffuse, specular);
 
 	float brightness;
-	for(int i = 0; i < u_pointLights.length(); i++)
+	for (int i = 0; i < u_pointLights.length(); i++)
 	{
 		lightVector = calculatePointLightVector(u_pointLights[i], v_globalPosition);
 		brightness = calculatePointLightBrightness(u_pointLights[i], v_globalPosition);
 
 		calculatePhong(lightVector, u_pointLights[i].color, brightness, normal, eye, mat_specularExponent, diffuse, specular);
+	}
+	for (int i = 0; i < u_spotLights.length(); i++)
+	{
+		lightVector = calculateSpotLightVector(u_spotLights[i], v_globalPosition);
+		brightness = calculateSpotLightBrightness(u_spotLights[i], v_globalPosition, lightVector);
+
+		calculatePhong(lightVector, u_spotLights[i].color, brightness, normal, eye, mat_specularExponent, diffuse, specular);
 	}
 
 	diffuse *= mat_diffuseColor;

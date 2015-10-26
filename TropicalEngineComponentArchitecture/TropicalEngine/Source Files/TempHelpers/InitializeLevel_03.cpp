@@ -31,6 +31,7 @@
 
 #include <Light/DirectionalLightComponent.h>
 #include <Light/PointLightComponent.h>
+#include <Light/SpotLightComponent.h>
 
 #include <Scene/SceneManager.h>
 
@@ -506,11 +507,23 @@ void OglDevTut03::InitializeLevel()
 	level->getRoot()->AttachSubobject(lightModelTestingCamera);
 
 	Entity* pointLight = new Entity(glm::vec3(5.0f, 2.0f, -5.0f), glm::quat(), glm::vec3(0.4f, 0.4f, 0.4f));
-	PointLightComponent* pointLightComponent = new PointLightComponent(pointLight, glm::vec3(1.0f, 0.2f, 1.0f), 0.5f, 15.0f, 1.0f);
-	TempMovingComponent* pointLightMoveComponent = new TempMovingComponent(pointLight, glm::vec3(60.0f, 0.2f, 3.0f), glm::vec3(0.0f, 0.2f, 3.0f), 15.0f);
+	PointLightComponent* pointLightComponent = new PointLightComponent(pointLight, glm::vec3(1.0f, 0.2f, 1.0f), 0.8f, 18.0f, 1.0f);
+	TempMovingComponent* pointLightMoveComponent = new TempMovingComponent(pointLight, glm::vec3(60.0f, -0.2f, 3.0f), glm::vec3(0.0f, -0.2f, 3.0f), 15.0f);
 	ModelComponent* pointLightMarker = new ModelComponent(pointLight, phongMaterial, engine->modelManager->getModel("Sphere"));
 	pointLight->name = QString("Point Light");
 	level->getRoot()->AttachSubobject(pointLight);
+
+	Entity* spotLight = new Entity(glm::vec3(5.0f, 2.0f, -5.0f), glm::quat(), glm::vec3(0.4f, 0.4f, 0.4f));
+	SpotLightComponent* spotLightComponent = new SpotLightComponent(spotLight, glm::vec3(1.0f, 0.2f, 0.1f), 1.5f, 25.0f);
+	TempMovingComponent* spotLightMoveComponent = new TempMovingComponent(spotLight, glm::vec3(60.0f, 2.2f, 0.0f), glm::vec3(0.0f, 2.2f, 0.0f), 20.0f);
+	ModelComponent* spotLightMarker = new ModelComponent(spotLight, phongMaterial, engine->modelManager->getModel("Cone"));
+	spotLight->name = QString("Spot Light");
+	level->getRoot()->AttachSubobject(spotLight);
+
+	Entity* ground = new Entity(glm::vec3(30.0f, - 10.0f, 0.0f), glm::quat(), glm::vec3(15.0f));
+	ModelComponent* groundModel = new ModelComponent(ground, phongBlinnMaterial, engine->modelManager->getModel("Plane"));
+	ground->name = QString("Ground");
+	level->getRoot()->AttachSubobject(ground);
 
 	//Temporary solution
 	phongModelC->lightedBy.append(pointLightComponent);
@@ -527,10 +540,24 @@ void OglDevTut03::InitializeLevel()
 	vectorTessModelC->lightedBy.append(pointLightComponent);
 	FbxExampleModelC->lightedBy.append(pointLightComponent);
 
+	phongModelC->lightedBy.append(spotLightComponent);
+	phongBlinnModelC->lightedBy.append(spotLightComponent);
+	bumpMapModelC->lightedBy.append(spotLightComponent);
+	maskedModelC->lightedBy.append(spotLightComponent);
+	parralaxModelC->lightedBy.append(spotLightComponent);
+	cookTorranceModelC->lightedBy.append(spotLightComponent);
+	straussModelC->lightedBy.append(spotLightComponent);
+	straussConductiveModelC->lightedBy.append(spotLightComponent);
+	wardModelC->lightedBy.append(spotLightComponent);
+	wardAnisoModelC->lightedBy.append(spotLightComponent);
+	distanceTessModelC->lightedBy.append(spotLightComponent);
+	vectorTessModelC->lightedBy.append(spotLightComponent);
+	FbxExampleModelC->lightedBy.append(spotLightComponent);
+
 	
 	engine->sceneManager->LoadLevel(level, "TestLevel");
 	engine->sceneManager->setCurrentCamera(mainCameraComponent);
-	engine->sceneManager->mainLight = new DirectionalLightComponent(level->getRoot(), glm::vec3(1.0f, 1.0f, 0.9f), glm::vec3(0.5, 0.2, 1.0), 1.0f);
+	engine->sceneManager->mainLight = new DirectionalLightComponent(level->getRoot(), glm::vec3(1.0f, 1.0f, 0.9f), glm::vec3(0.5, 0.6, 1.0), 1.0f);
 
 	//qDebug() << QJsonDocument(level->toJSON()).toJson();
 }

@@ -10,15 +10,15 @@ struct SpotLight
 	float attenuation;
 	float outerAngle;
 	float innerAngle;
-}
+};
 uniform SpotLight u_spotLights[MAX_SPOT__LIGHTS];
 
-vec3 calculatSpotLightVector(SpotLight light, vec3 fragmentPosition)
+vec3 calculateSpotLightVector(SpotLight light, vec3 fragmentPosition)
 {
 	return normalize(light.position - fragmentPosition);
 }
 
-float calculateBrightness(SpotLight light, vec3 fragmentPosition, vec3 lightVector)
+float calculateSpotLightBrightness(SpotLight light, vec3 fragmentPosition, vec3 lightVector)
 {
 	float LdotLp = dot(light.direction, lightVector);
 	if(LdotLp > cos(light.outerAngle / 90.0 * M_PI))
@@ -29,6 +29,7 @@ float calculateBrightness(SpotLight light, vec3 fragmentPosition, vec3 lightVect
 		float brightness = pow(lightDistanceFactor, light.attenuation) * light.brightness;
 		///TODO: Add inner angle support
 		brightness *= max((LdotLp * (180.0 / light.outerAngle)), 0.0);
+		return brightness;
 	}
 	else
 	{

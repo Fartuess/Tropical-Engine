@@ -67,7 +67,6 @@ void Shader::setUpLightParameters()
 	pointLightBrightnessLocations = QVector<GLuint>();
 	pointLightRadiusLocations = QVector<GLuint>();
 	pointLightAttenuationLocations = QVector<GLuint>();
-
 	for (int i = 0; i < MAX_POINT_LIGHT; i++)
 	{
 		pointLightPositionLocations.append(glGetUniformLocation(this->shaderProgram, QString("u_pointLights[" + QString::number(i) + "].position").toLocal8Bit().data()));
@@ -75,6 +74,26 @@ void Shader::setUpLightParameters()
 		pointLightBrightnessLocations.append(glGetUniformLocation(this->shaderProgram, QString("u_pointLights[" + QString::number(i) + "].brightness").toLocal8Bit().data()));
 		pointLightRadiusLocations.append(glGetUniformLocation(this->shaderProgram, QString("u_pointLights[" + QString::number(i) + "].radius").toLocal8Bit().data()));
 		pointLightAttenuationLocations.append(glGetUniformLocation(this->shaderProgram, QString("u_pointLights[" + QString::number(i) + "].attenuation").toLocal8Bit().data()));
+	}
+
+	spotLightPositionLocations = QVector<GLuint>();
+	spotLightDirectionLocations = QVector<GLuint>();
+	spotLightColorLocations = QVector<GLuint>();
+	spotLightBrightnessLocations = QVector<GLuint>();
+	spotLightRadiusLocations = QVector<GLuint>();
+	spotLightAttenuationLocations = QVector<GLuint>();
+	spotLightOuterAngleLocations = QVector<GLuint>();
+	spotLightInnerAngleLoactions = QVector<GLuint>();
+	for (int i = 0; i < MAX_SPOT_LIGHT; i++)
+	{
+		spotLightPositionLocations.append(glGetUniformLocation(this->shaderProgram, QString("u_spotLights[" + QString::number(i) + "].position").toLocal8Bit().data()));
+		spotLightDirectionLocations.append(glGetUniformLocation(this->shaderProgram, QString("u_spotLights[" + QString::number(i) + "].direction").toLocal8Bit().data()));
+		spotLightColorLocations.append(glGetUniformLocation(this->shaderProgram, QString("u_spotLights[" + QString::number(i) + "].color").toLocal8Bit().data()));
+		spotLightBrightnessLocations.append(glGetUniformLocation(this->shaderProgram, QString("u_spotLights[" + QString::number(i) + "].brightness").toLocal8Bit().data()));
+		spotLightRadiusLocations.append(glGetUniformLocation(this->shaderProgram, QString("u_spotLights[" + QString::number(i) + "].radius").toLocal8Bit().data()));
+		spotLightAttenuationLocations.append(glGetUniformLocation(this->shaderProgram, QString("u_spotLights[" + QString::number(i) + "].attenuation").toLocal8Bit().data()));
+		spotLightOuterAngleLocations.append(glGetUniformLocation(this->shaderProgram, QString("u_spotLights[" + QString::number(i) + "].outerAngle").toLocal8Bit().data()));
+		spotLightInnerAngleLoactions.append(glGetUniformLocation(this->shaderProgram, QString("u_spotLights[" + QString::number(i) + "].innerAngle").toLocal8Bit().data()));
 	}
 }
 
@@ -221,11 +240,13 @@ QString Shader::PreprocessShaderFile(QString shaderFile)
 
 	QRegularExpression includeRegexp = QRegularExpression("#include \"([A-Za-z_.]+)\"");
 
+	QRegularExpressionMatchIterator matches = includeRegexp.globalMatch(fileString);
 	QStringList includeFilenames = QStringList();
-	QRegularExpressionMatch match = includeRegexp.match(fileString);
+	//QStringList includeFilenames =match.capturedTexts();
 
-	if (match.hasMatch())
+	while (matches.hasNext())
 	{
+		QRegularExpressionMatch match = matches.next();
 		includeFilenames.append(match.captured(1));
 	}
 

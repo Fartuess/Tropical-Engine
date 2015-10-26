@@ -22,6 +22,7 @@ public:
 	GLuint shaderProgram;
 	QMap<QString, GLuint> subprograms;	///TODO: Value is shader type from now. Not it's address in GPU?
 
+	/// TODO: Make light locations more organised.
 	//temporarily public
 	GLuint dirLightVectorLocation;
 	GLuint dirLightColorLocation;
@@ -33,6 +34,15 @@ public:
 	QVector<GLuint> pointLightBrightnessLocations;
 	QVector<GLuint> pointLightRadiusLocations;
 	QVector<GLuint> pointLightAttenuationLocations;
+
+	QVector<GLuint> spotLightPositionLocations;
+	QVector<GLuint> spotLightDirectionLocations;
+	QVector<GLuint> spotLightColorLocations;
+	QVector<GLuint> spotLightBrightnessLocations;
+	QVector<GLuint> spotLightRadiusLocations;
+	QVector<GLuint> spotLightAttenuationLocations;
+	QVector<GLuint> spotLightOuterAngleLocations;
+	QVector<GLuint> spotLightInnerAngleLoactions;
 
 	GLuint drawingMode;
 

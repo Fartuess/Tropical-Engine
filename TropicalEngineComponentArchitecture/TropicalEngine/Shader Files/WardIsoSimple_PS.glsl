@@ -1,6 +1,7 @@
 #version 330
 #define M_PI 3.1415926535897932384626433832795
 #include "_PointLight.glsl"
+#include "_SpotLight.glsl"
 
 uniform vec3 u_lightVector;
 uniform vec3 u_lightColor;
@@ -85,6 +86,13 @@ void main()
 		brightness = calculatePointLightBrightness(u_pointLights[i], v_globalPosition);
 
 		calculateWardIsotropic(lightVector, u_pointLights[i].color, brightness, normal, eye, mat_roughness, diffuse, specular);
+	}
+	for (int i = 0; i < u_spotLights.length(); i++)
+	{
+		lightVector = calculateSpotLightVector(u_spotLights[i], v_globalPosition);
+		brightness = calculateSpotLightBrightness(u_spotLights[i], v_globalPosition, lightVector);
+
+		calculateWardIsotropic(lightVector, u_spotLights[i].color, brightness, normal, eye, mat_roughness, diffuse, specular);
 	}
 
 	diffuse *= mat_diffuse;

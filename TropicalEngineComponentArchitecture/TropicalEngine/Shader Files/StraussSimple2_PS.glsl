@@ -1,5 +1,6 @@
 #version 330
 #include "_PointLight.glsl"
+#include "_SpotLight.glsl"
 
 uniform vec3 u_lightVector;
 uniform vec3 u_lightColor;
@@ -94,6 +95,13 @@ void main()
 		brightness = calculatePointLightBrightness(u_pointLights[i], v_globalPosition);
 
 		calculateStrauss(lightVector, u_pointLights[i].color, brightness, normal, eye, mat_albedo, mat_roughness, mat_metaliness, color);
+	}
+	for (int i = 0; i < u_spotLights.length(); i++)
+	{
+		lightVector = calculateSpotLightVector(u_spotLights[i], v_globalPosition);
+		brightness = calculateSpotLightBrightness(u_spotLights[i], v_globalPosition, lightVector);
+
+		calculateStrauss(lightVector, u_spotLights[i].color, brightness, normal, eye, mat_albedo, mat_roughness, mat_metaliness, color);
 	}
 
 	FragColor = vec4(ambient + color, 1.0);

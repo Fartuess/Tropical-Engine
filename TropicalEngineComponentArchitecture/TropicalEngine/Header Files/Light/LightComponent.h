@@ -4,6 +4,7 @@
 #include <Component/Component.h>
 
 #define MAX_POINT_LIGHT 2
+#define MAX_SPOT_LIGHT 2
 
 ///TODO: Should it be an abstract class?
 class LightComponent : public Component

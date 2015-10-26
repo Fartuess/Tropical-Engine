@@ -18,6 +18,7 @@
 #include <Camera/CameraComponent.h>
 #include <Light/DirectionalLightComponent.h>
 #include <Light/PointLightComponent.h>
+#include <Light/SpotLightComponent.h>
 
 #include "TropicalEngineApplication.h"
 
@@ -82,9 +83,11 @@ void ModelComponent::Draw(CameraComponent* viewer)
 	glUniform1f(usedShader->dirLightBrightnessLocation, TropicalEngineApplication::instance()->sceneManager->mainLight->brightness);
 	glUniform1f(usedShader->dirLightAmbientLocation, 0.2f);
 
-	if (usedShader->pointLightPositionLocations.size() > 0)
+	for (int i = 0; i < glm::min(usedShader->pointLightPositionLocations.size() + usedShader->spotLightPositionLocations.size(), lightedBy.size()); i++)
 	{
-		for (int i = 0; i < glm::min(MAX_POINT_LIGHT, lightedBy.size()); i++)	///TODO: Assuming that it is lighted only by pointlights. Change it later to work properly
+		QString lightType = lightedBy[i]->getTypeName();
+
+		if (lightType == "PointLight Component")
 		{
 			PointLightComponent* light = static_cast<PointLightComponent*>(lightedBy[i]);
 			glUniform3fv(usedShader->pointLightPositionLocations[i], 1, glm::value_ptr(-light->getOwner()->transform.getLocalPosition()));	///TODO: Figure out why negation is required.
@@ -92,6 +95,18 @@ void ModelComponent::Draw(CameraComponent* viewer)
 			glUniform1f(usedShader->pointLightBrightnessLocations[i], light->brightness);
 			glUniform1f(usedShader->pointLightRadiusLocations[i], light->getRadius());
 			glUniform1f(usedShader->pointLightAttenuationLocations[i], light->attenuation);
+		}
+		if (lightType == "SpotLight Component")
+		{
+			SpotLightComponent* light = static_cast<SpotLightComponent*>(lightedBy[i]);
+			glUniform3fv(usedShader->spotLightPositionLocations[i], 1, glm::value_ptr(light->getOwner()->transform.getLocalPosition() * glm::vec3(-1.0, 1.0, -1.0)));
+			glUniform3fv(usedShader->spotLightDirectionLocations[i], 1, glm::value_ptr(light->getOwner()->transform.getUp()));	//temp
+			glUniform3fv(usedShader->spotLightColorLocations[i], 1, glm::value_ptr(light->color));
+			glUniform1f(usedShader->spotLightBrightnessLocations[i], light->brightness);
+			glUniform1f(usedShader->spotLightRadiusLocations[i], light->getRadius());
+			glUniform1f(usedShader->spotLightAttenuationLocations[i], light->attenuation);
+			glUniform1f(usedShader->spotLightOuterAngleLocations[i], light->getOuterConeRadius());
+			glUniform1f(usedShader->spotLightInnerAngleLoactions[i], light->getInnerConeRadius());
 		}
 	}
 	
