@@ -72,8 +72,10 @@ public:
 	  * @return Texture object.
 	  */
 	IDeserializableFromJSON* fromJSON(QJsonObject JSON) override;
+protected:
+	Texture(QString name);
 
-private:
+	virtual void Create();
 	QString fileUrl;	///TODO: Figure out how to implement changing paths.
 	QString name;
 	//GLenum textureTarget;	//what for?

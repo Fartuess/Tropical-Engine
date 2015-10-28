@@ -9,10 +9,14 @@
 
 #include "TropicalEngineApplication.h"
 
-Texture::Texture(QString fileUrl, QString name)
+Texture::Texture(QString name)
+{
+	this->name = name;
+}
+
+Texture::Texture(QString fileUrl, QString name) : Texture(name)
 {
 	this->fileUrl = fileUrl;
-	this->name = name;
 	Load();	//maybe not always should be loaded into GPU when it is load
 }
 
@@ -23,8 +27,10 @@ Texture::~Texture(void)
 	//	///TODO: set texture parameters equal to this to value typical for
 	//	//unneccessary if caled from TextureManager
 	//}
-
-	glDeleteTextures(1, &textureLocation);
+	if (textureLocation != 0)
+	{
+		glDeleteTextures(1, &textureLocation);
+	}
 }
 
 QString Texture::getName()
@@ -52,16 +58,21 @@ void Texture::Load()
 
 	textureData = textureData.convertToFormat(QImage::Format_RGBA8888);
 
-	//glActiveTexture(GL_TEXTURE0 + TropicalEngineApplication::instance()->textureManager->getTextureIterator());
+	Create();
 
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, textureData.width(), textureData.height(), 0, GL_RGBA, GL_UNSIGNED_BYTE, textureData.bits());
+	glGenerateMipmap(GL_TEXTURE_2D);
+}
+
+void Texture::Create()
+{
 	glGenTextures(1, &textureLocation);
-    glBindTexture(GL_TEXTURE_2D, textureLocation);
+	glBindTexture(GL_TEXTURE_2D, textureLocation);
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, textureData.width(), textureData.height(), 0, GL_RGBA, GL_UNSIGNED_BYTE, textureData.bits());
-	glGenerateMipmap(GL_TEXTURE_2D);
+	
 }
 
 void Texture::ActivateTexture(GLuint location)

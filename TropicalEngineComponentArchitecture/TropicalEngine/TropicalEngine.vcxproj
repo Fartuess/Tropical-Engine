@@ -11,6 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source Files\Texture\RenderTexture.cpp" />
     <ClCompile Include="Source Files\Utills\IUpdateable.cpp" />
     <ClCompile Include="Source Files\Model\ModelBuilder\ConeModelBuilder.cpp" />
     <ClCompile Include="Source Files\Model\ModelBuilder\CylinderModelBuilder.cpp" />
@@ -798,6 +799,7 @@
     <ClInclude Include="Header Files\Model\ModelBuilder\SphereModelBuilder.h" />
     <ClInclude Include="Header Files\Model\ModelBuilder\TorusModelBuilder.h" />
     <ClInclude Include="Header Files\Utills\IUpdateable.h" />
+    <ClInclude Include="Header Files\Texture\RenderTexture.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Header Files\Utills\UpdateManager.h" />
     <ClInclude Include="Header Files\TempHelpers\TempMovingComponent.h" />
