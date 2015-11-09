@@ -92,8 +92,8 @@ public:
 	  */
 	void setInnerConeRadius(float innerConeRadius);
 
-	void Evaluate();
-	void DrawShadows();
+	virtual void Evaluate() override;
+	virtual void DrawShadows() override;
 
 	/**
 	  * \brief Serializes SpotLightComponent to JSON object.
@@ -123,6 +123,8 @@ private:
 	float radius;
 	float outerConeRadius;
 	float innerConeRadius;
+
+	class RenderTexture* shadowmap = nullptr;
 
 	static SpotLightComponent templateObject;
 };

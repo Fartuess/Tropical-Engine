@@ -38,8 +38,8 @@ public:
 	  */
 	void setDirection(glm::vec3 direction);
 
-	void Evaluate();
-	void DrawShadows();
+	virtual void Evaluate() override;
+	virtual void DrawShadows() override;
 
 	/**
 	  * \brief Serializes Component to JSON object.

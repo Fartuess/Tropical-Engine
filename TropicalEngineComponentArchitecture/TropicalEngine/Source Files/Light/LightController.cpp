@@ -35,3 +35,11 @@ void LightController::EvaluateAll()
 		light->Evaluate();
 	}
 }
+
+void LightController::EvaluateShadowsAll()
+{
+	for (LightComponent* light : lightShadows)
+	{
+		
+	}
+}

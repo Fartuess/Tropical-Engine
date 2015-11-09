@@ -1,5 +1,9 @@
 #include <Light/SpotLightComponent.h>
 
+#include <Scene/Entity.h>
+
+#include <Texture/RenderTexture.h>
+
 SpotLightComponent SpotLightComponent::templateObject = SpotLightComponent::InitializeType();
 
 SpotLightComponent::SpotLightComponent() {}
@@ -84,7 +88,12 @@ void SpotLightComponent::Evaluate()
 
 void SpotLightComponent::DrawShadows()
 {
+	if (shadowmap == nullptr)
+	{
+		shadowmap = new RenderTexture(owner->name + "_SpotLight_Shadowmap", 1024, 1024);
+	}
 	///TODO: implement it.
+
 }
 
 //QString SpotLightComponent::toXML()

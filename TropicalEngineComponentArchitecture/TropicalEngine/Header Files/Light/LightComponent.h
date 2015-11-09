@@ -53,8 +53,8 @@ public:
 	  */
 	void isCastingShadows(bool isCastingShadows);
 
-	void Evaluate();
-	void DrawShadows();
+	virtual void Evaluate();
+	virtual void DrawShadows() {};
 
 	/**
 	  * \brief Serializes LightComponent to JSON object.

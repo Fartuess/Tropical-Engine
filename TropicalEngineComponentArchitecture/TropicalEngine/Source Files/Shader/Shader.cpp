@@ -282,6 +282,9 @@ void Shader::AddShader(QString shaderFile, GLenum shaderType)
 	{
         GLchar InfoLog[1024];
         glGetShaderInfoLog(shaderObj, 1024, NULL, InfoLog);
+
+		/// TODO: Figure out if shader object should be deleted here or leave it for catching code.
+		glDeleteShader(shaderObj);
 		
 		throw ShaderException("Error compiling shader type " + QString::number(shaderType) + ": " + QString(InfoLog), this);
     }

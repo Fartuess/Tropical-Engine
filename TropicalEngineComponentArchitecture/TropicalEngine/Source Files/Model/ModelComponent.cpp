@@ -144,9 +144,7 @@ void ModelComponent::Draw(CameraComponent* viewer)
 		
 		//glPolygonMode(GL_FRONT, GL_LINE);
 		//glPolygonMode(GL_BACK, GL_LINE);
-		//glDrawArrays(GL_PATCHES, 0, meshEntry.NumVertex);
 		glDrawArrays(usedShader->drawingMode, 0, meshEntry->NumVertex);
-		//glDrawArrays(GL_TRIANGLES, 0, meshEntry.NumVertex);
 	
 		glDisableVertexAttribArray(usedShader->getVertexLocation());
 		glDisableVertexAttribArray(usedShader->getNormalLocation());

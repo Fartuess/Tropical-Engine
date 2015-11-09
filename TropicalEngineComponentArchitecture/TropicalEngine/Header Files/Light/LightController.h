@@ -17,10 +17,11 @@ public:
 	QList<ModelComponent*> getShadowcasters();
 
 	void EvaluateAll();
-	//void EvaluateShadowsAll();
+	void EvaluateShadowsAll();
 
 private:
 	QList<LightComponent*> lights;
+	QList<LightComponent*> lightShadows;
 	QList<ModelComponent*> shadowcasters;
 
 	void DropComponent(LightComponent* component);

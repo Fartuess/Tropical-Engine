@@ -11,6 +11,19 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Shader Files\Blending\BlendMasked.glsl">
+      <FileType>CppCode</FileType>
+    </None>
+    <None Include="Shader Files\Core\Channel.glsl" />
+    <None Include="Shader Files\Core\ShaderCore_Header.glsl" />
+    <None Include="Shader Files\LightingModels\BlinnPhongLightingModel.glsl" />
+    <None Include="Shader Files\LightingModels\LambertLightingModel.glsl" />
+    <None Include="Shader Files\LightingModels\PhongLightingModel.glsl">
+      <FileType>CppCode</FileType>
+    </None>
+    <None Include="Shader Files\LightingModels\CookTorranceLightingModel.glsl">
+      <FileType>CppCode</FileType>
+    </None>
     <ClCompile Include="Source Files\Texture\RenderTexture.cpp" />
     <ClCompile Include="Source Files\Utills\IUpdateable.cpp" />
     <ClCompile Include="Source Files\Model\ModelBuilder\ConeModelBuilder.cpp" />
@@ -109,6 +122,17 @@
     <ClCompile Include="Source Files\Model\ModelBuilder\TorusModelBuilder.cpp" />
     <ClCompile Include="Source Files\Utills\UpdateManager.cpp" />
     <ClCompile Include="Source Files\TempHelpers\TempMovingComponent.cpp" />
+    <None Include="Shader Files\LightingModels\StraussLightingModel.glsl" />
+    <None Include="Shader Files\LightingModels\UnlitLightingModel.glsl" />
+    <None Include="Shader Files\LightingModels\WardAnisotropicLightModel.glsl" />
+    <None Include="Shader Files\LightingModels\WardIsotropicLightModel.glsl" />
+    <None Include="Shader Files\Lighting\PointLight.glsl" />
+    <None Include="Shader Files\Lighting\SpotLight.glsl" />
+    <None Include="Shader Files\SurfaceShaders\BumpTextured.glsl" />
+    <None Include="Shader Files\SurfaceShaders\SimpleColor.glsl" />
+    <None Include="Shader Files\SurfaceShaders\Textured.glsl" />
+    <None Include="Shader Files\Utills\BumpMapping.glsl" />
+    <None Include="Shader Files\Utills\SteepParallaxMapping.glsl" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="Header Files\Camera\CameraComponent.h">
@@ -809,6 +833,11 @@
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="TropicalEngine.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Shader Files\Blending\BlendOpaque.glsl" />
+    <None Include="Shader Files\Core\ShaderCore.glsl" />
+    <None Include="Shader Files\Lighting\Lighting.glsl" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{B12702AD-ABFB-343A-A199-8E24837244A3}</ProjectGuid>

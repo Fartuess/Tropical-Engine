@@ -13,7 +13,10 @@ LightComponent::LightComponent(Entity* owner, glm::vec3 color, float brightness,
 	TropicalEngineApplication::instance()->lightController->lights.append(this);
 	Evaluate();
 	if (castingShadows)
-		DrawShadows();
+	{
+		TropicalEngineApplication::instance()->lightController->lightShadows.append(this);
+		//DrawShadows();
+	}
 
 	InitializeComponentType();
 }
@@ -32,6 +35,10 @@ LightComponent::~LightComponent(void)
 	if (owner != nullptr)
 	{
 		TropicalEngineApplication::instance()->lightController->lights.removeOne(this);
+		if (castingShadows)
+		{
+			TropicalEngineApplication::instance()->lightController->lightShadows.removeAll(this);
+		}
 	}
 }
 
@@ -42,8 +49,19 @@ bool LightComponent::isCastingShadows()
 
 void LightComponent::isCastingShadows(bool isCastingShadows)
 {
-	castingShadows = true;
-	DrawShadows();
+	if (castingShadows != isCastingShadows)
+	{
+		if (isCastingShadows == true)
+		{
+			TropicalEngineApplication::instance()->lightController->lightShadows.append(this);
+		}
+		else
+		{
+			TropicalEngineApplication::instance()->lightController->lightShadows.removeAll(this);
+		}
+		castingShadows = isCastingShadows;
+	}
+	//DrawShadows();
 }
 
 void LightComponent::Evaluate()
@@ -51,10 +69,10 @@ void LightComponent::Evaluate()
 	///TODO: implement it.
 }
 
-void LightComponent::DrawShadows()
-{
-	///TODO: implement it.
-}
+//void LightComponent::DrawShadows()
+//{
+//	///TODO: implement it.
+//}
 
 //QString LightComponent::toXML()
 //{

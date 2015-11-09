@@ -48,8 +48,8 @@ public:
 	  */
 	void setRadius(float radius);
 
-	void Evaluate();
-	void DrawShadows();
+	virtual void Evaluate() override;
+	virtual void DrawShadows() override;
 
 	/**
 	  * \brief Serializes PointLightComponent to JSON object.
