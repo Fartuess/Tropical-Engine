@@ -1,0 +1,6 @@
+#ifndef _UNLITLIGHTINGMODEL
+#define _UNLITLIGHTINGMODEL
+
+#define UNLIT
+
+#endif

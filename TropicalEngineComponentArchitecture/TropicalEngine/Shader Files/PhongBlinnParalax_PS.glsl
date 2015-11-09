@@ -31,7 +31,7 @@ void main()
     float height = 1.0;
 
     // Number of height divisions
-    float numSteps = 45;	//originally 5
+    float numSteps = 15;	//originally 5
 
     /** Texture coordinate marched forward to intersection point */
     vec2 offsetCoord = v_texcoord;
@@ -41,7 +41,7 @@ void main()
 
     // Increase steps at oblique angles
     // Note: tsE.z = N dot V
-    numSteps = mix(numSteps*2, numSteps, tsE.z);
+    numSteps = mix(numSteps*4, numSteps, tsE.z * tsE.z);	
 
     // We have to negate tsE because we're walking away from the eye.
     //vec2 delta = vec2(-_tsE.x, _tsE.y) * bumpScale / (_tsE.z * numSteps);
@@ -58,11 +58,28 @@ void main()
         // delta = 1.0 / (25.6 * numSteps) * vec2(-tsE.x, tsE.y);
         // step = tsE.z * bumpScale * (25.6 * numSteps) / (length(tsE.xy) * 400);
 
+
     while (NB < height) {
         height -= step;
         offsetCoord += delta;
         NB = texture2D(mat_heightTexture, offsetCoord).r;
     }
+
+	//Adds at most 11 additional steps
+	float smallStep = -step / 10.0;
+	while (NB > height)
+	{
+		height -= smallStep;
+		offsetCoord += delta * (smallStep / step);
+		NB = texture2D(mat_heightTexture, offsetCoord).r;
+	}
+	if (NB < height)
+	{
+		smallStep = step / 30.0;
+		height -= smallStep;
+		offsetCoord += delta * (smallStep / step);
+		NB = texture2D(mat_heightTexture, offsetCoord).r;
+	}
 
     height = NB;
 
