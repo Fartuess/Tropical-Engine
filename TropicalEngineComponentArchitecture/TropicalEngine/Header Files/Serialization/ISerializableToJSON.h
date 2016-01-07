@@ -4,16 +4,21 @@
 
 #include <Utills/INamedType.h>
 
-/**
-  * Interface for Serialization objects to JSON.
-  */
-class ISerializableToJSON : virtual public INamedType
+namespace TropicalEngine
 {
-public:
+
 	/**
-	  * \brief Serializes object into JSON.
-	  *
-	  * @return Result of serialization.
+	  * Interface for Serialization objects to JSON.
 	  */
-	virtual QJsonObject toJSON() = 0;
-};
+	class ISerializableToJSON : virtual public INamedType
+	{
+	public:
+		/**
+		  * \brief Serializes object into JSON.
+		  *
+		  * @return Result of serialization.
+		  */
+		virtual QJsonObject toJSON() = 0;
+	};
+
+}

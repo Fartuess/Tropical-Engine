@@ -3,7 +3,7 @@
 
 void blend()
 {
-	FragColor = vec4(color, 1.0);
+	FragColor = vec4(g_color, 1.0);
 }
 
 #endif

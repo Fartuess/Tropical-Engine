@@ -1,6 +1,11 @@
 #include <Model/ModelImporter/AbstractModelImporter.h>
 
-QList<QString> AbstractModelImporter::getSupportedExtensions()
+namespace TropicalEngine
 {
-	return supportedExtensions;
+
+	QList<QString> AbstractModelImporter::getSupportedExtensions()
+	{
+		return supportedExtensions;
+	}
+
 }

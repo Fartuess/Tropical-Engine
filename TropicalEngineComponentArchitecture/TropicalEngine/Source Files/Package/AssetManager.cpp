@@ -1,29 +1,34 @@
 #include <Package/AssetManager.h>
 
-QHash<QString, ISerializableJSON*> AssetManager::assetTypes;
-
-AssetManager::AssetManager()
+namespace TropicalEngine
 {
-}
 
-AssetManager::~AssetManager()
-{
-}
+	QHash<QString, ISerializableJSON*> AssetManager::assetTypes;
 
-void AssetManager::addAssetType(QString name, ISerializableJSON* typeHandle)
-{
-	if (!assetTypes.contains(name))
+	AssetManager::AssetManager()
 	{
-		assetTypes[name] = typeHandle;
 	}
-}
 
-ISerializableJSON* AssetManager::getTypeHandle(QString name)
-{
-	return assetTypes[name];
-}
+	AssetManager::~AssetManager()
+	{
+	}
 
-ISerializableJSON& AssetManager::createAsset(QJsonObject JSON)
-{
-	return *(new Asset("", nullptr));
+	void AssetManager::addAssetType(QString name, ISerializableJSON* typeHandle)
+	{
+		if (!assetTypes.contains(name))
+		{
+			assetTypes[name] = typeHandle;
+		}
+	}
+
+	ISerializableJSON* AssetManager::getTypeHandle(QString name)
+	{
+		return assetTypes[name];
+	}
+
+	ISerializableJSON& AssetManager::createAsset(QJsonObject JSON)
+	{
+		return *(new Asset("", nullptr));
+	}
+
 }

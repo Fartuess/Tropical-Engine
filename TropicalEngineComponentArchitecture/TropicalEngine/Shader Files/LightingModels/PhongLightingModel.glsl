@@ -25,8 +25,8 @@ void calculatePhong(in vec3 lightVector, in vec3 lightColor, in float lightBrigh
 		vec3 reflection = reflect(-lightVector, normal);
 		float eDotR = max(dot(eye, reflection), 0.0);
 
-		diffuseIntensity += lightColor * brightness *  nDotL;
-		specularIntensity += lightColor * brightness * pow(eDotR, specularExponent);
+		diffuseIntensity += lightColor * lightBrightness *  nDotL;
+		specularIntensity += lightColor * lightBrightness * pow(eDotR, specularExponent);
 	}
 }
 

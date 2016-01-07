@@ -1,8 +1,6 @@
 #ifndef _SHADERCORE
 #define _SHADERCORE
 
-#include "Core/ShaderCore_Header.glsl"
-
 /**
   * \brief Shader Core. It requires LightingModel module, BlendMode module and SurfaceShader module to create final shader.
   */
@@ -32,7 +30,6 @@ void main()
 	calculateLighting();
 	finalizeLightingModel();
 #endif
-
 	//If surface shader uses emissive then adds it to the result.
 #ifdef EMISSIVEINPUT
 	g_color += g_emissiveInput;
@@ -40,9 +37,6 @@ void main()
 
 	//Final blending happens here as it requires having final color calculated.
 	blend();
-
-	//Returning final color.
-	return FragColor;
 }
 
 #endif

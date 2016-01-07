@@ -1,45 +1,50 @@
 #include <Light/LightController.h>
 
-LightController::LightController(void)
+namespace TropicalEngine
 {
-	///TODO: implement it.
-}
 
-LightController::~LightController(void)
-{
-	for (LightComponent* lightComponent : lights)
+	LightController::LightController(void)
 	{
-		delete lightComponent;
+		///TODO: implement it.
 	}
-}
 
-QList<LightComponent*> LightController::getLights()
-{
-	return lights;
-}
-
-QList<ModelComponent*> LightController::getShadowcasters()
-{
-	return shadowcasters;
-}
-
-void LightController::DropComponent(LightComponent* component)
-{
-	delete component;
-}
-
-void LightController::EvaluateAll()
-{
-	for (LightComponent* light : lights)
+	LightController::~LightController(void)
 	{
-		light->Evaluate();
+		for (LightComponent* lightComponent : lights)
+		{
+			delete lightComponent;
+		}
 	}
-}
 
-void LightController::EvaluateShadowsAll()
-{
-	for (LightComponent* light : lightShadows)
+	QList<LightComponent*> LightController::getLights()
 	{
-		
+		return lights;
 	}
+
+	QList<ModelComponent*> LightController::getShadowcasters()
+	{
+		return shadowcasters;
+	}
+
+	void LightController::DropComponent(LightComponent* component)
+	{
+		delete component;
+	}
+
+	void LightController::EvaluateAll()
+	{
+		for (LightComponent* light : lights)
+		{
+			light->Evaluate();
+		}
+	}
+
+	void LightController::EvaluateShadowsAll()
+	{
+		for (LightComponent* light : lightShadows)
+		{
+
+		}
+	}
+
 }

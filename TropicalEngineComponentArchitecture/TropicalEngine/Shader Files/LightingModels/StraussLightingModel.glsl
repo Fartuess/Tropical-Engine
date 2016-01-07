@@ -52,9 +52,10 @@ float microfacetShadow(float x)
 	return ((1 / pow(x - kg, 2)) - ((1 / pow(kg, 2)))) / ((1 / pow(1 - kg, 2)) - (1 / pow(kg, 2)));
 }
 
-void calculateStrauss(in vec3 lightVector, in vec3 lightColor, in float brightness, in vec3 normal, in vec3 eye, vec3 albedo, float roughness, float metalness, inout vec3 ambientIntensity, inout vec3 diffuseIntensity, inout vec3 specularIntensity)
+void calculateStrauss(in vec3 lightVector, in vec3 lightColor, in float brightness, in vec3 normal, in vec3 eye, vec3 albedo, float roughness, float metalness,
+	inout vec3 ambientIntensity, inout vec3 diffuseIntensity, inout vec3 specularIntensity)
 {
-	void calculateConst()
+	calculateConst();
 
 	vec3 h = reflect(lightVector, normal);
 
@@ -93,7 +94,7 @@ void calculateStrauss(in vec3 lightVector, in vec3 lightColor, in float brightne
 */
 void calculateLightingModel(in vec3 lightVector, in vec3 lightColor, in float lightBrightness)
 {
-	calculateStrauss(lightVector, lightColor, lightBrightness, g_normal, g_eye, g_albedoInput, g_roughnessInput, g_metalnessInput, g_ambientChannel, g_, g_diffuseChannel, g_specularChannel);
+	calculateStrauss(lightVector, lightColor, lightBrightness, g_normal, g_eye, g_albedoInput, g_roughnessInput, g_metalnessInput, g_ambientChannel, g_diffuseChannel, g_specularChannel);
 }
 
 /**
@@ -104,7 +105,7 @@ void finalizeLightingModel()
 #ifdef AMBIENTCHANNEL
 
 	//Overrides default ambient lighting.
-	void calculateConst()
+	calculateConst();
 	g_ambientChannel = (d * Rd * g_albedoInput) * u_lightAmbientColor * u_lightAmbient;
 
 	g_color += g_ambientChannel;

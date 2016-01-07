@@ -1,12 +1,16 @@
 #pragma once
 #include <QtWidgets/qtreewidget.h>
 
-class SceneGraphWidget : public QTreeWidget
+namespace TropicalEngine
 {
-public:
-	SceneGraphWidget(void);
-	~SceneGraphWidget(void);
 
-	void Reload();
-};
+	class SceneGraphWidget : public QTreeWidget
+	{
+	public:
+		SceneGraphWidget(void);
+		~SceneGraphWidget(void);
 
+		void Reload();
+	};
+
+}

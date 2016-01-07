@@ -1,29 +1,33 @@
 #pragma once
 #include "AbstractModelBuilder.h"
 
-/**
-  * Class for generating triangle models.
-  */
-class TriangleModelBuilder : public AbstractModelBuilder
+namespace TropicalEngine
 {
-public:
 
 	/**
-	  * \brief Default constructor.
+	  * Class for generating triangle models.
 	  */
-	TriangleModelBuilder();
+	class TriangleModelBuilder : public AbstractModelBuilder
+	{
+	public:
 
-	/**
-	  * \brief Default destructor.
-	  */
-	~TriangleModelBuilder();
+		/**
+		  * \brief Default constructor.
+		  */
+		TriangleModelBuilder();
 
-	/**
-	  * \brief Creates model using set parameters.
-	  *
-	  * Creates model using set parameters and adds it to model manager.
-	  * @return Generated model.
-	  */
-	class Model* Build() override;
-};
+		/**
+		  * \brief Default destructor.
+		  */
+		~TriangleModelBuilder();
 
+		/**
+		  * \brief Creates model using set parameters.
+		  *
+		  * Creates model using set parameters and adds it to model manager.
+		  * @return Generated model.
+		  */
+		class Model* Build() override;
+	};
+
+}

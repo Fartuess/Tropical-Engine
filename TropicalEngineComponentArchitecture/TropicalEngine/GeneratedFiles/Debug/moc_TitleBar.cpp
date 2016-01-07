@@ -18,27 +18,28 @@
 #endif
 
 QT_BEGIN_MOC_NAMESPACE
-struct qt_meta_stringdata_TitleBar_t {
+struct qt_meta_stringdata_TropicalEngine__TitleBar_t {
     QByteArrayData data[3];
-    char stringdata[25];
+    char stringdata[41];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
-    qptrdiff(offsetof(qt_meta_stringdata_TitleBar_t, stringdata) + ofs \
+    qptrdiff(offsetof(qt_meta_stringdata_TropicalEngine__TitleBar_t, stringdata) + ofs \
         - idx * sizeof(QByteArrayData)) \
     )
-static const qt_meta_stringdata_TitleBar_t qt_meta_stringdata_TitleBar = {
+static const qt_meta_stringdata_TropicalEngine__TitleBar_t qt_meta_stringdata_TropicalEngine__TitleBar = {
     {
-QT_MOC_LITERAL(0, 0, 8), // "TitleBar"
-QT_MOC_LITERAL(1, 9, 14), // "toggleMaximize"
-QT_MOC_LITERAL(2, 24, 0) // ""
+QT_MOC_LITERAL(0, 0, 24), // "TropicalEngine::TitleBar"
+QT_MOC_LITERAL(1, 25, 14), // "toggleMaximize"
+QT_MOC_LITERAL(2, 40, 0) // ""
 
     },
-    "TitleBar\0toggleMaximize\0"
+    "TropicalEngine::TitleBar\0toggleMaximize\0"
+    ""
 };
 #undef QT_MOC_LITERAL
 
-static const uint qt_meta_data_TitleBar[] = {
+static const uint qt_meta_data_TropicalEngine__TitleBar[] = {
 
  // content:
        7,       // revision
@@ -60,7 +61,7 @@ static const uint qt_meta_data_TitleBar[] = {
        0        // eod
 };
 
-void TitleBar::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
+void TropicalEngine::TitleBar::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
         TitleBar *_t = static_cast<TitleBar *>(_o);
@@ -72,26 +73,26 @@ void TitleBar::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, vo
     Q_UNUSED(_a);
 }
 
-const QMetaObject TitleBar::staticMetaObject = {
-    { &QWidget::staticMetaObject, qt_meta_stringdata_TitleBar.data,
-      qt_meta_data_TitleBar,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
+const QMetaObject TropicalEngine::TitleBar::staticMetaObject = {
+    { &QWidget::staticMetaObject, qt_meta_stringdata_TropicalEngine__TitleBar.data,
+      qt_meta_data_TropicalEngine__TitleBar,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
 };
 
 
-const QMetaObject *TitleBar::metaObject() const
+const QMetaObject *TropicalEngine::TitleBar::metaObject() const
 {
     return QObject::d_ptr->metaObject ? QObject::d_ptr->dynamicMetaObject() : &staticMetaObject;
 }
 
-void *TitleBar::qt_metacast(const char *_clname)
+void *TropicalEngine::TitleBar::qt_metacast(const char *_clname)
 {
     if (!_clname) return Q_NULLPTR;
-    if (!strcmp(_clname, qt_meta_stringdata_TitleBar.stringdata))
+    if (!strcmp(_clname, qt_meta_stringdata_TropicalEngine__TitleBar.stringdata))
         return static_cast<void*>(const_cast< TitleBar*>(this));
     return QWidget::qt_metacast(_clname);
 }
 
-int TitleBar::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
+int TropicalEngine::TitleBar::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 {
     _id = QWidget::qt_metacall(_c, _id, _a);
     if (_id < 0)

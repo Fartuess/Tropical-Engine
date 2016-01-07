@@ -12,6 +12,11 @@ vec3 g_specularInput = vec3(0.5, 0.5, 0.5);
 #define ROUGHNESSINPUT
 float g_roughnessInput = 0.5;
 
+#define DIFFUSECHANNEL
+vec3 g_diffuseChannel;
+#define SPECULARCHANNEL
+vec3 g_specularChannel;
+
 //private
 void calculateWardIsotropic(in vec3 lightVector, in vec3 lightColor, in float brightness, in vec3 normal, in vec3 eye, float roughness, inout vec3 diffuseIntensity, inout vec3 specularIntensity)
 {

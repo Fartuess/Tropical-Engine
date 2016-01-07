@@ -1,83 +1,87 @@
 #pragma once
 #include "RenderComponent.h"
 
-class Model;
-
-/**
-  * Component for rendering models.
-  */
-class ModelComponent : public RenderComponent
+namespace TropicalEngine
 {
-public:
-	TYPENAME("Model Component")
+
+	class Model;
 
 	/**
-	  * \brief Model used for this component.
+	  * Component for rendering models.
 	  */
-	Model* model;
+	class ModelComponent : public RenderComponent
+	{
+	public:
+		TYPENAME("Model Component")
 
-	/**
-	  * \brief Constructor of ModelComponent.
-	  *
-	  * @param owner Entity object to which ModelComponent will be attached to.
-	  * @param material Material to be set for this component.
-	  * @param model Model to be drawn with this component.
-	  * @param castingShadows Decides if this model should cast shadows.
-	  */
-	ModelComponent(Entity* owner, Material* material, Model* model, bool castingShadows = false);
+			/**
+			  * \brief Model used for this component.
+			  */
+			  Model* model;
 
-	/**
-	  * \brief Default destructor
-	  */
-	~ModelComponent(void);
+		/**
+		  * \brief Constructor of ModelComponent.
+		  *
+		  * @param owner Entity object to which ModelComponent will be attached to.
+		  * @param material Material to be set for this component.
+		  * @param model Model to be drawn with this component.
+		  * @param castingShadows Decides if this model should cast shadows.
+		  */
+		ModelComponent(Entity* owner, Material* material, Model* model, bool castingShadows = false);
 
-	static ModelComponent InitializeType();
+		/**
+		  * \brief Default destructor
+		  */
+		~ModelComponent(void);
 
-	void Evaluate() override;
+		static ModelComponent InitializeType();
 
-	/**
-	* \brief Draws the Component.
-	*
-	* @param Draws from perspective of this camera.
-	*/
-	void Draw(CameraComponent* viewer) override;
+		void Evaluate() override;
 
-	/**
-	  * \brief Gets information if this model is casting shadows.
-	  *
-	  * @return Information if this model is casting shadows.
-	  */
-	bool isCastingShadows();
+		/**
+		* \brief Draws the Component.
+		*
+		* @param Draws from perspective of this camera.
+		*/
+		void Draw(CameraComponent* viewer) override;
 
-	/**
-	  * \brief Sets if this model should cast shadows.
-	  *
-	  * @param isCastingShadows If this model should cast shadows.
-	  */
-	void isCastingShadows(bool isCastingShadows);
+		/**
+		  * \brief Gets information if this model is casting shadows.
+		  *
+		  * @return Information if this model is casting shadows.
+		  */
+		bool isCastingShadows();
 
-	/**
-	  * \brief Serializes ModelComponent to JSON object.
-	  *
-	  * @return Result of serialization.
-	  */
-	QJsonObject toJSON() override;
+		/**
+		  * \brief Sets if this model should cast shadows.
+		  *
+		  * @param isCastingShadows If this model should cast shadows.
+		  */
+		void isCastingShadows(bool isCastingShadows);
 
-	/**
-	  * \brief Deserializes ModelComponent from JSON object.
-	  *
-	  * @param JSON JSON object to deserialize from.
-	  * @return ModelComponent object.
-	  */
-	IDeserializableFromJSON* fromJSON(QJsonObject JSON) override;
+		/**
+		  * \brief Serializes ModelComponent to JSON object.
+		  *
+		  * @return Result of serialization.
+		  */
+		QJsonObject toJSON() override;
 
-protected:
-	ModelComponent();
-	void InitializeComponentType() override;
+		/**
+		  * \brief Deserializes ModelComponent from JSON object.
+		  *
+		  * @param JSON JSON object to deserialize from.
+		  * @return ModelComponent object.
+		  */
+		IDeserializableFromJSON* fromJSON(QJsonObject JSON) override;
 
-private:
-	bool castingShadows;
+	protected:
+		ModelComponent();
+		void InitializeComponentType() override;
 
-	static ModelComponent templateObject;
-};
+	private:
+		bool castingShadows;
 
+		static ModelComponent templateObject;
+	};
+
+}

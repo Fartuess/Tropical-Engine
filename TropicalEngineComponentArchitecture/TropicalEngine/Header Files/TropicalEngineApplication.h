@@ -5,63 +5,67 @@
 #include <QtWidgets/qsplashscreen.h>
 #include <QtGui/qpixmap.h>
 
-class TropicalEngineApplication : public QApplication
+namespace TropicalEngine
 {
-	Q_OBJECT
-public:
-	/*
-	* Resource management
-	*/
-	class ShaderManager* shaderManager;
-	class MaterialManager* materialManager;
-	class TextureManager* textureManager;
-	class ModelManager* modelManager;
-	class ModelBuilder* modelBuilder;
-	class AssetManager* assetManager;
-	class PackageManager* packageManager;
-	/*
-	* Scene controlling
-	*/
-	class SceneManager* sceneManager;
-	class ModelController* modelController;
-	class LightController* lightController;
-	/*
-	 * Updatings
-	 */
-	class UpdateManager* updateManager;
 
-	/*
-	* Input
-	*/
-	class InputManager* inputManager;
+	class TropicalEngineApplication : public QApplication
+	{
+		Q_OBJECT
+	public:
+		/*
+		* Resource management
+		*/
+		class ShaderManager* shaderManager;
+		class MaterialManager* materialManager;
+		class TextureManager* textureManager;
+		class ModelManager* modelManager;
+		class ModelBuilder* modelBuilder;
+		class AssetManager* assetManager;
+		class PackageManager* packageManager;
+		/*
+		* Scene controlling
+		*/
+		class SceneManager* sceneManager;
+		class ModelController* modelController;
+		class LightController* lightController;
+		/*
+		 * Updatings
+		 */
+		class UpdateManager* updateManager;
 
-	class OglDevTut03* renderer;	//temporarily
-	/*
-	* Gui
-	*/
-	class GuiStyleManager* styleManager;
-	class SceneGraphWidget* sceneGraph;
-	/*
-	* Settings
-	*/
-	QSettings* EngineSettings;
-	QSettings* EditorSettings;
+		/*
+		* Input
+		*/
+		class InputManager* inputManager;
 
-	TropicalEngineApplication(int argc, char* argv[]);
-	~TropicalEngineApplication(void);
+		class OglDevTut03* renderer;	//temporarily
+		/*
+		* Gui
+		*/
+		class GuiStyleManager* styleManager;
+		class SceneGraphWidget* sceneGraph;
+		/*
+		* Settings
+		*/
+		QSettings* EngineSettings;
+		QSettings* EditorSettings;
 
-	static TropicalEngineApplication* instance();
-public slots:
-	void Initialize();
-	void Draw();
-private:
-	/*
-	* Delta time.
-	*/
-	int deltaTime;
-	QTime deltaTimer;
+		TropicalEngineApplication(int argc, char* argv[]);
+		~TropicalEngineApplication(void);
 
-	QPixmap* splashImage;
-	QSplashScreen* splashScreen;
-};
+		static TropicalEngineApplication* instance();
+		public slots:
+		void Initialize();
+		void Draw();
+	private:
+		/*
+		* Delta time.
+		*/
+		int deltaTime;
+		QTime deltaTimer;
 
+		QPixmap* splashImage;
+		QSplashScreen* splashScreen;
+	};
+
+}

@@ -4,19 +4,23 @@
 
 #include "Level.h"
 
-class LevelManager
+namespace TropicalEngine
 {
-public:
-	friend class Level;
 
-	LevelManager(void);
-	~LevelManager(void);
+	class LevelManager
+	{
+	public:
+		friend class Level;
 
-	void LoadLevel(QString fileUrl, QString name);
+		LevelManager(void);
+		~LevelManager(void);
 
-private:
-	QHash<QString, Level> levels;
+		void LoadLevel(QString fileUrl, QString name);
 
-	void FlushLevel(QString name);
-};
+	private:
+		QHash<QString, Level> levels;
 
+		void FlushLevel(QString name);
+	};
+
+}

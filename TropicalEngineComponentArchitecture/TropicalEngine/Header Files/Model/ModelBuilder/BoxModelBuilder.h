@@ -1,34 +1,38 @@
 #pragma once
 #include "AbstractModelBuilder.h"
 
-/**
- * Class for generating box models.
- */
-class BoxModelBuilder : public AbstractModelBuilder
+namespace TropicalEngine
 {
-public:
 
 	/**
-	  * \brief Default constructor.
-	  */
-	BoxModelBuilder();
+	 * Class for generating box models.
+	 */
+	class BoxModelBuilder : public AbstractModelBuilder
+	{
+	public:
 
-	/**
-	  * \brief Default destructor.
-	  */
-	~BoxModelBuilder();
+		/**
+		  * \brief Default constructor.
+		  */
+		BoxModelBuilder();
 
-	/**
-	  * \brief Resets values of parameters.
-	  */
-	void resetParameters() override;
+		/**
+		  * \brief Default destructor.
+		  */
+		~BoxModelBuilder();
 
-	/**
-	  * \brief Creates model using set parameters.
-	  *
-	  * Creates model using set parameters and adds it to model manager.
-	  * @return Generated model.
-	  */
-	class Model* Build() override;
-};
+		/**
+		  * \brief Resets values of parameters.
+		  */
+		void resetParameters() override;
 
+		/**
+		  * \brief Creates model using set parameters.
+		  *
+		  * Creates model using set parameters and adds it to model manager.
+		  * @return Generated model.
+		  */
+		class Model* Build() override;
+	};
+
+}

@@ -3,62 +3,66 @@
 #include <QtCore/qstring.h>
 #include <QtCore/qhash.h>
 
-/**
-  * Class for managing packages.
-  */
-class PackageManager
+namespace TropicalEngine
 {
-public:
-	/**
-	  * \brief Default constructor.
-	  */
-	PackageManager(void);
-	/**
-	  * \brief Default destructor.
-	  */
-	~PackageManager(void);
 
 	/**
-	  * \brief Loads Package from file path.
-	  *
-	  * @param fileUrl path to Package file.
+	  * Class for managing packages.
 	  */
-	void LoadPackage(QString fileUrl);
+	class PackageManager
+	{
+	public:
+		/**
+		  * \brief Default constructor.
+		  */
+		PackageManager(void);
+		/**
+		  * \brief Default destructor.
+		  */
+		~PackageManager(void);
 
-	/**
-	  * \brief Loads package from JSON.
-	  *
-	  * @param JSON JSON object for Package deserialization.
-	  * @return Tells if Package is new.
-	  */
-	bool LoadPackage(QJsonObject JSON);
+		/**
+		  * \brief Loads Package from file path.
+		  *
+		  * @param fileUrl path to Package file.
+		  */
+		void LoadPackage(QString fileUrl);
 
-	/**
-	  * \brief Unloads the Package forcefully.
-	  *
-	  * @param name Name of the Package to unload.
-	  */
-	void FlushPackage(QString name);
+		/**
+		  * \brief Loads package from JSON.
+		  *
+		  * @param JSON JSON object for Package deserialization.
+		  * @return Tells if Package is new.
+		  */
+		bool LoadPackage(QJsonObject JSON);
 
-	/**
-	  * \brief Checks if Package with given name is loaded.
-	  *
-	  * @param name Name of the Package to look for.
-	  * @return is Package loaded.
-	  */
-	bool isPackageLoaded(QString name);
+		/**
+		  * \brief Unloads the Package forcefully.
+		  *
+		  * @param name Name of the Package to unload.
+		  */
+		void FlushPackage(QString name);
 
-	/**
-	  * \brief Gets package with given name.
-	  *
-	  * @param name Name of the Package to look for.
-	  * @return Found Package
-	  */
-	class Package* const getPackage(QString name);
+		/**
+		  * \brief Checks if Package with given name is loaded.
+		  *
+		  * @param name Name of the Package to look for.
+		  * @return is Package loaded.
+		  */
+		bool isPackageLoaded(QString name);
 
-private:
-	typedef QPair<class Package*, int> PackageUsage;	//package and number of levels referencing to it
+		/**
+		  * \brief Gets package with given name.
+		  *
+		  * @param name Name of the Package to look for.
+		  * @return Found Package
+		  */
+		class Package* const getPackage(QString name);
 
-	QHash<QString, PackageUsage> packages;
-};
+	private:
+		typedef QPair<class Package*, int> PackageUsage;	//package and number of levels referencing to it
 
+		QHash<QString, PackageUsage> packages;
+	};
+
+}

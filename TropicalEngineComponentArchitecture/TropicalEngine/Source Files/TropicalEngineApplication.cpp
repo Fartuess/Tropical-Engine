@@ -29,75 +29,80 @@
 
 #include "TropicalEngineApplication.h"
 
-TropicalEngineApplication::TropicalEngineApplication(int argc, char* argv[]) : QApplication(argc, argv)
+namespace TropicalEngine
 {
-	//math::registerGLMtypes();
 
-	QDir::setCurrent(QCoreApplication::applicationDirPath() + "/../..");
-	setWindowIcon(QIcon("./Resource Files/TropicalEngine.png"));
+	TropicalEngineApplication::TropicalEngineApplication(int argc, char* argv[]) : QApplication(argc, argv)
+	{
+		//math::registerGLMtypes();
 
-	splashImage = new QPixmap("./Resource Files/SplashScreen.png");
-	splashScreen = new QSplashScreen(*splashImage);
-	splashScreen->show();
+		QDir::setCurrent(QCoreApplication::applicationDirPath() + "/../..");
+		setWindowIcon(QIcon("./Resource Files/TropicalEngine.png"));
 
-	shaderManager = new ShaderManager();
-	materialManager = new MaterialManager();
+		splashImage = new QPixmap("./Resource Files/SplashScreen.png");
+		splashScreen = new QSplashScreen(*splashImage);
+		splashScreen->show();
 
-	textureManager = new TextureManager();
+		shaderManager = new ShaderManager();
+		materialManager = new MaterialManager();
 
-	modelManager = new ModelManager();
-	modelController = new ModelController();
-	modelBuilder = new ModelBuilder();
+		textureManager = new TextureManager();
 
-	assetManager = new AssetManager();
-	packageManager = new PackageManager();
-	sceneManager = new SceneManager();
+		modelManager = new ModelManager();
+		modelController = new ModelController();
+		modelBuilder = new ModelBuilder();
 
-	lightController = new LightController();
+		assetManager = new AssetManager();
+		packageManager = new PackageManager();
+		sceneManager = new SceneManager();
 
-	updateManager = new UpdateManager();
+		lightController = new LightController();
 
-	inputManager = new InputManager();
+		updateManager = new UpdateManager();
 
-	renderer = new OglDevTut03();
+		inputManager = new InputManager();
 
-	styleManager = new GuiStyleManager();
-	styleManager->ChangeStyle(*this, "./Resource Files/TropicalEngineEditorStyle.css");
+		renderer = new OglDevTut03();
 
-	EngineSettings = new QSettings("./Resource Files/EngineSettings.ini", QSettings::IniFormat);
-	EditorSettings = new QSettings("./Resource Files/EditorSettings.ini", QSettings::IniFormat);
-}
+		styleManager = new GuiStyleManager();
+		styleManager->ChangeStyle(*this, "./Resource Files/TropicalEngineEditorStyle.css");
 
-TropicalEngineApplication::~TropicalEngineApplication(void)
-{
-}
+		EngineSettings = new QSettings("./Resource Files/EngineSettings.ini", QSettings::IniFormat);
+		EditorSettings = new QSettings("./Resource Files/EditorSettings.ini", QSettings::IniFormat);
+	}
 
-TropicalEngineApplication* TropicalEngineApplication::instance()
-{
-	return (TropicalEngineApplication*)(QApplication::instance());
-}
+	TropicalEngineApplication::~TropicalEngineApplication(void)
+	{
+	}
 
-void TropicalEngineApplication::Initialize()
-{
-	deltaTimer.start();
-	renderer->InitializeLevel();
-	sceneGraph->Reload();
-	splashScreen->close();
-}
+	TropicalEngineApplication* TropicalEngineApplication::instance()
+	{
+		return (TropicalEngineApplication*)(QApplication::instance());
+	}
 
-void TropicalEngineApplication::Draw()
-{
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	void TropicalEngineApplication::Initialize()
+	{
+		deltaTimer.start();
+		renderer->InitializeLevel();
+		sceneGraph->Reload();
+		splashScreen->close();
+	}
 
-	glPatchParameteri(GL_PATCH_VERTICES, 3);
+	void TropicalEngineApplication::Draw()
+	{
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	
-	updateManager->UpdateAll();
-	inputManager->Update();
-	deltaTime = deltaTimer.restart();
-	
-	sceneManager->getCurrentCamera()->CalculateMatrix();
+		glPatchParameteri(GL_PATCH_VERTICES, 3);
 
-	sceneManager->EvaluateLevels();	///TODO: Evaluate only changed
-	modelController->DrawAll(sceneManager->getCurrentCamera());
+
+		updateManager->UpdateAll();
+		inputManager->Update();
+		deltaTime = deltaTimer.restart();
+
+		sceneManager->getCurrentCamera()->CalculateMatrix();
+
+		sceneManager->EvaluateLevels();	///TODO: Evaluate only changed
+		modelController->DrawAll(sceneManager->getCurrentCamera());
+	}
+
 }

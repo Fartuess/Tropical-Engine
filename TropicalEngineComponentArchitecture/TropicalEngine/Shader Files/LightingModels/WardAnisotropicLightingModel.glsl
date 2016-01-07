@@ -12,7 +12,12 @@ vec3 g_diffuseInput = vec3(0.5, 0.5, 0.5);
 vec3 g_specularInput = vec3(0.5, 0.5, 0.5);
 
 #define ANISOROUGHNESSINPUT
-float g_anisoRoughnessInput = vec2(0.5);
+vec2 g_anisoRoughnessInput = vec2(0.5);
+
+#define DIFFUSECHANNEL
+vec3 g_diffuseChannel;
+#define SPECULARCHANNEL
+vec3 g_specularChannel;
 
 //private
 void calculateWardAnisotropic(in vec3 lightVector, in vec3 lightColor, in float brightness, in vec3 normal, in vec3 tangent, in vec3 bitangent, in vec3 eye, in vec2 anisoRoughness, inout vec3 diffuseIntensity, inout vec3 specularIntensity)
@@ -54,7 +59,7 @@ void calculateWardAnisotropic(in vec3 lightVector, in vec3 lightColor, in float 
 */
 void calculateLightingModel(in vec3 lightVector, in vec3 lightColor, in float lightBrightness)
 {
-	calculateWardIsotropic(lightVector, lightColor, lightBrightness, g_normal, g_tangent, g_bitangent, g_eye, g_anisoRoughnessInput, g_diffuseChannel, g_specularChannel);
+	calculateWardAnisotropic(lightVector, lightColor, lightBrightness, g_normal, g_tangent, g_bitangent, g_eye, g_anisoRoughnessInput, g_diffuseChannel, g_specularChannel);
 }
 
 /**

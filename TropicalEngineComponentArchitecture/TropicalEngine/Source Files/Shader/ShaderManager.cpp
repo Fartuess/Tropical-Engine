@@ -3,61 +3,65 @@
 #include <Shader/Shader.h>
 #include <Shader/ShaderManager.h>
 
-ShaderManager::ShaderManager(void)
+namespace TropicalEngine
 {
-}
 
-ShaderManager::~ShaderManager(void)
-{
-	for (Shader* shader : shaders)
+	ShaderManager::ShaderManager(void)
 	{
-		delete shader;
 	}
-}
 
-Shader* const ShaderManager::getCurrentShader()
-{
-	return currentShader;
-}
+	ShaderManager::~ShaderManager(void)
+	{
+		for (Shader* shader : shaders)
+		{
+			delete shader;
+		}
+	}
 
-void ShaderManager::setCurrentShader(Shader* shader)
-{
-	currentShader = shader;
-}
+	Shader* const ShaderManager::getCurrentShader()
+	{
+		return currentShader;
+	}
 
-Shader* const ShaderManager::getShader(QString name)
-{
-	return shaders[name];
-}
+	void ShaderManager::setCurrentShader(Shader* shader)
+	{
+		currentShader = shader;
+	}
 
-void ShaderManager::FlushShader(QString name)
-{
-	///TODO: implement it.
-}
+	Shader* const ShaderManager::getShader(QString name)
+	{
+		return shaders[name];
+	}
 
-void ShaderManager::Load(Shader* shader, QString name)
-{
-	shaders.insert(name, shader);
-}
+	void ShaderManager::FlushShader(QString name)
+	{
+		///TODO: implement it.
+	}
 
-Shader* ShaderManager::Load(QString name, QString vertexShader, QString fragmentShader)
-{
-	Shader* newShader = new Shader(name);
-	newShader->AddShader(vertexShader, GL_VERTEX_SHADER);
-	newShader->AddShader(fragmentShader, GL_FRAGMENT_SHADER);
-	newShader->FinalizeShader();
+	void ShaderManager::Load(Shader* shader, QString name)
+	{
+		shaders.insert(name, shader);
+	}
 
-	shaders.insert(name, newShader);
+	Shader* ShaderManager::Load(QString name, QString vertexShader, QString fragmentShader)
+	{
+		Shader* newShader = new Shader(name);
+		newShader->AddShader(vertexShader, GL_VERTEX_SHADER);
+		newShader->AddShader(fragmentShader, GL_FRAGMENT_SHADER);
+		newShader->FinalizeShader();
 
-	return newShader;
-}
+		shaders.insert(name, newShader);
 
-void ShaderManager::UseShader(QString name)
-{
-	shaders[name]->Use();
-}
+		return newShader;
+	}
 
-void ShaderManager::UseShader(Shader* shader)
-{
-	shader->Use();
+	void ShaderManager::UseShader(QString name)
+	{
+		shaders[name]->Use();
+	}
+
+	void ShaderManager::UseShader(Shader* shader)
+	{
+		shader->Use();
+	}
 }

@@ -11,19 +11,22 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Shader Files\Blending\BlendMasked.glsl">
-      <FileType>CppCode</FileType>
-    </None>
+    <None Include="Shader Files\Blending\BlendMasked.glsl" />
     <None Include="Shader Files\Core\Channel.glsl" />
     <None Include="Shader Files\Core\ShaderCore_Header.glsl" />
     <None Include="Shader Files\LightingModels\BlinnPhongLightingModel.glsl" />
     <None Include="Shader Files\LightingModels\LambertLightingModel.glsl" />
-    <None Include="Shader Files\LightingModels\PhongLightingModel.glsl">
-      <FileType>CppCode</FileType>
-    </None>
-    <None Include="Shader Files\LightingModels\CookTorranceLightingModel.glsl">
-      <FileType>CppCode</FileType>
-    </None>
+    <None Include="Shader Files\LightingModels\PhongLightingModel.glsl" />
+    <None Include="Shader Files\LightingModels\CookTorranceLightingModel.glsl" />
+    <ClCompile Include="GeneratedFiles\Debug\moc_MainWindow.cpp" />
+    <ClCompile Include="GeneratedFiles\Debug\moc_OglDevTut03.cpp" />
+    <ClCompile Include="GeneratedFiles\Debug\moc_OpenGLWidget.cpp" />
+    <ClCompile Include="GeneratedFiles\Debug\moc_PropertiesWidget.cpp" />
+    <ClCompile Include="GeneratedFiles\Debug\moc_TitleBar.cpp" />
+    <ClCompile Include="GeneratedFiles\Debug\moc_TropicalEngineApplication.cpp" />
+    <ClCompile Include="Source Files\Shader\ShaderTechnique.cpp" />
+    <ClCompile Include="Source Files\Shader\ShaderBuilder\CommonMeshShaderBuilder.cpp" />
+    <ClCompile Include="Source Files\Shader\ShaderBuilder\AbstractShaderBuilder.cpp" />
     <ClCompile Include="Source Files\Texture\RenderTexture.cpp" />
     <ClCompile Include="Source Files\Utills\IUpdateable.cpp" />
     <ClCompile Include="Source Files\Model\ModelBuilder\ConeModelBuilder.cpp" />
@@ -38,24 +41,6 @@
     <ClCompile Include="Source Files\Model\ModelImporter\AbstractModelImporter.cpp" />
     <ClCompile Include="Source Files\Package\AssetManager.cpp" />
     <ClCompile Include="Source Files\Package\Asset.cpp" />
-    <ClCompile Include="GeneratedFiles\Debug\moc_MainWindow.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_OglDevTut03.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_OpenGLWidget.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_PropertiesWidget.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_TitleBar.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_TropicalEngineApplication.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-    </ClCompile>
     <ClCompile Include="GeneratedFiles\Release\moc_MainWindow.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
@@ -124,14 +109,22 @@
     <ClCompile Include="Source Files\TempHelpers\TempMovingComponent.cpp" />
     <None Include="Shader Files\LightingModels\StraussLightingModel.glsl" />
     <None Include="Shader Files\LightingModels\UnlitLightingModel.glsl" />
-    <None Include="Shader Files\LightingModels\WardAnisotropicLightModel.glsl" />
-    <None Include="Shader Files\LightingModels\WardIsotropicLightModel.glsl" />
+    <None Include="Shader Files\LightingModels\WardAnisotropicLightingModel.glsl" />
+    <None Include="Shader Files\LightingModels\WardIsotropicLightingModel.glsl" />
     <None Include="Shader Files\Lighting\PointLight.glsl" />
     <None Include="Shader Files\Lighting\SpotLight.glsl" />
+    <None Include="Shader Files\Mesh\DefaultMesh.glsl" />
+    <None Include="Shader Files\Mesh\ObjectSpaceMesh.glsl" />
+    <None Include="Shader Files\Mesh\Tessellation\Control\DistanceBasedTessellation.glsl" />
+    <None Include="Shader Files\Mesh\Tessellation\Control\SimpleTessellation.glsl" />
+    <None Include="Shader Files\Mesh\Tessellation\Evaluation\TessellationDisplacement.glsl" />
+    <None Include="Shader Files\Mesh\Tessellation\Evaluation\TessellationVectorDisplacement.glsl" />
+    <None Include="Shader Files\Shadowmap\ShadowmapCore.glsl" />
     <None Include="Shader Files\SurfaceShaders\BumpTextured.glsl" />
     <None Include="Shader Files\SurfaceShaders\SimpleColor.glsl" />
     <None Include="Shader Files\SurfaceShaders\Textured.glsl" />
     <None Include="Shader Files\Utills\BumpMapping.glsl" />
+    <None Include="Shader Files\Utills\Interpolation.glsl" />
     <None Include="Shader Files\Utills\SteepParallaxMapping.glsl" />
   </ItemGroup>
   <ItemGroup>
@@ -327,7 +320,6 @@
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </AdditionalInputs>
     </CustomBuild>
-    <!--
     <CustomBuild Include="Header Files\Interface\MainWindow.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Moc%27ing MainWindow.h...</Message>
@@ -338,7 +330,6 @@
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DWIN64 -DQT_DLL -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DQT_OPENGL_LIB -DQT_WIDGETS_LIB "-I." "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtCore" "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtGui" "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtOpenGL" "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtWidgets"</Command>
     </CustomBuild>
-	-->
     <CustomBuild Include="Header Files\Shader\Material.h">
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </Command>
@@ -723,7 +714,6 @@
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </AdditionalInputs>
     </CustomBuild>
-    <!--
     <CustomBuild Include="Header Files\Interface\TitleBar.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Moc%27ing TitleBar.h...</Message>
@@ -774,7 +764,6 @@
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"E:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DWIN64 -DQT_DLL -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DQT_OPENGL_LIB -DQT_WIDGETS_LIB  "-I." "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtCore" "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtGui" "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtOpenGL" "-IE:\Programy\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtWidgets"</Command>
     </CustomBuild>
-	-->
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="Resources\TropicalEngineEditorStyle.css">
@@ -796,15 +785,19 @@
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Header Files\Shader\ShaderBuilder\CommonMeshShaderBuilder.h" />
+    <ClInclude Include="Header Files\Shader\ShaderBuilder\AbstractShaderBuilder.h" />
     <ClInclude Include="Header Files\Model\ModelBuilder\ConeModelBuilder.h" />
     <ClInclude Include="Header Files\Model\ModelBuilder\CylinderModelBuilder.h" />
     <ClInclude Include="Header Files\Model\ModelBuilder\BoxModelBuilder.h" />
     <ClInclude Include="Header Files\Model\ModelBuilder\AbstractModelBuilder.h" />
     <ClInclude Include="Header Files\Utills\Exception.h" />
+    <!--
     <ClInclude Include="Header Files\Interface\MainWindow.h" />
     <ClInclude Include="Header Files\Interface\OpenGLWidget.h" />
     <ClInclude Include="Header Files\Interface\PropertiesWidget.h" />
     <ClInclude Include="Header Files\Interface\TitleBar.h" />
+    -->
     <ClInclude Include="Header Files\Model\ModelImporter\FbxModelImporter.h" />
     <ClInclude Include="Header Files\Model\ModelImporter\AssimpModelImporter.h" />
     <ClInclude Include="Header Files\Model\ModelImporter\AbstractModelImporter.h" />
@@ -812,8 +805,10 @@
     <ClInclude Include="Header Files\Package\Asset.h" />
     <ClInclude Include="Header Files\Input\InputAction.h" />
     <ClInclude Include="Header Files\Serialization\IDeserializableFromJSON.h" />
+    <!--
     <ClInclude Include="Header Files\TempHelpers\OglDevTut03.h" />
     <ClInclude Include="Header Files\TropicalEngineApplication.h" />
+    -->
     <ClInclude Include="Header Files\Utills\INamedType.h" />
     <ClInclude Include="Header Files\Serialization\ISerializableJSON.h" />
     <ClInclude Include="Header Files\Shader\MaterialParameter.h" />
@@ -827,6 +822,7 @@
     <ClInclude Include="resource.h" />
     <ClInclude Include="Header Files\Utills\UpdateManager.h" />
     <ClInclude Include="Header Files\TempHelpers\TempMovingComponent.h" />
+    <ClInclude Include="Header Files\Shader\ShaderTechnique.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resource Files\TropicalEngine.ico" />

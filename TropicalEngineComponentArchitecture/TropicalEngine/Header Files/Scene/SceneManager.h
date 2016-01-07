@@ -2,28 +2,33 @@
 #include <QtCore/qstring.h>
 #include <QtCore/qmap.h>
 
-class SceneManager
+namespace TropicalEngine
 {
-public:
-	class DirectionalLightComponent* mainLight;
 
-	SceneManager(void);
-	~SceneManager(void);
+	class SceneManager
+	{
+	public:
+		class DirectionalLightComponent* mainLight;
 
-	class CameraComponent* getCurrentCamera();
-	void setCurrentCamera(class CameraComponent* camera);
+		SceneManager(void);
+		~SceneManager(void);
 
-	QMap<QString, class Level*>& getLevels();
+		class CameraComponent* getCurrentCamera();
+		void setCurrentCamera(class CameraComponent* camera);
 
-	void LoadLevel(QString fileUrl);
-	void LoadLevel(QString fileUrl, QString name);
-	void LoadLevel(class Level* level, QString name);
-	void UnloadLevel(QString name);
-	void Clear();
+		QMap<QString, class Level*>& getLevels();
 
-	void EvaluateLevels();
+		void LoadLevel(QString fileUrl);
+		void LoadLevel(QString fileUrl, QString name);
+		void LoadLevel(class Level* level, QString name);
+		void UnloadLevel(QString name);
+		void Clear();
 
-private:
-	QMap<QString, class Level*> levels;
-	CameraComponent* currentCamera;
-};
+		void EvaluateLevels();
+
+	private:
+		QMap<QString, class Level*> levels;
+		CameraComponent* currentCamera;
+	};
+
+}

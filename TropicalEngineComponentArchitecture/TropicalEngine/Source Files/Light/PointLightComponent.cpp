@@ -1,91 +1,96 @@
 #include <Light/PointLightComponent.h>
 
-PointLightComponent PointLightComponent::templateObject = PointLightComponent::InitializeType();
-
-PointLightComponent::PointLightComponent() {}
-
-PointLightComponent::PointLightComponent(Entity* owner, glm::vec3 color, float brightness, float radius, float attenuation, bool isCastingShadows) :
-	LightComponent(owner, color, brightness, isCastingShadows)
+namespace TropicalEngine
 {
-	this->radius = radius;
-	this->attenuation = attenuation;
 
-	InitializeComponentType();
-}
+	PointLightComponent PointLightComponent::templateObject = PointLightComponent::InitializeType();
 
-PointLightComponent::~PointLightComponent(void)
-{
-	///TODO: implement it.
-}
+	PointLightComponent::PointLightComponent() {}
 
-PointLightComponent PointLightComponent::InitializeType()
-{
-	PointLightComponent& pointLightComponent = *(new PointLightComponent());
-	AssetManager::addAssetType("Point Light Component", &pointLightComponent);
-	return pointLightComponent;
-}
-
-void PointLightComponent::InitializeComponentType()
-{
-	if (!isComponentTypeUsed(getTypeName()))
+	PointLightComponent::PointLightComponent(Entity* owner, glm::vec3 color, float brightness, float radius, float attenuation, bool isCastingShadows) :
+		LightComponent(owner, color, brightness, isCastingShadows)
 	{
-		SetParrentComponentType("Light Component");
+		this->radius = radius;
+		this->attenuation = attenuation;
 
-		AddParameter("Radius", "Float");
-		AddParameter("Attenuation", "Float");
+		InitializeComponentType();
 	}
-}
 
-float PointLightComponent::getRadius()
-{
-	return radius;
-}
+	PointLightComponent::~PointLightComponent(void)
+	{
+		///TODO: implement it.
+	}
 
-void PointLightComponent::setRadius(float radius)
-{
-	this->radius = radius;
-	Evaluate();
-	if (castingShadows)
-		DrawShadows();
-}
+	PointLightComponent PointLightComponent::InitializeType()
+	{
+		PointLightComponent& pointLightComponent = *(new PointLightComponent());
+		AssetManager::addAssetType("Point Light Component", &pointLightComponent);
+		return pointLightComponent;
+	}
 
-void PointLightComponent::Evaluate()
-{
-	///TODO: implement it.
-}
+	void PointLightComponent::InitializeComponentType()
+	{
+		if (!isComponentTypeUsed(getTypeName()))
+		{
+			SetParrentComponentType("Light Component");
 
-void PointLightComponent::DrawShadows()
-{
-	///TODO: implement it.
-}
+			AddParameter("Radius", "Float");
+			AddParameter("Attenuation", "Float");
+		}
+	}
 
-//QString PointLightComponent::toXML()
-//{
-//	///TODO: implement it.
-//	return QString(getIndent() + "<PointLightComponent/>\n");
-//}
+	float PointLightComponent::getRadius()
+	{
+		return radius;
+	}
 
-QJsonObject PointLightComponent::toJSON()
-{
-	QJsonObject JSON = LightComponent::toJSON();
-	JSON["radius"] = radius;
-	JSON["attenuation"] = attenuation;
+	void PointLightComponent::setRadius(float radius)
+	{
+		this->radius = radius;
+		Evaluate();
+		if (castingShadows)
+			DrawShadows();
+	}
 
-	return JSON;
-}
+	void PointLightComponent::Evaluate()
+	{
+		///TODO: implement it.
+	}
 
-IDeserializableFromJSON* PointLightComponent::fromJSON(QJsonObject JSON)
-{
-	///TODO: implement this.
-	PointLightComponent* object = new PointLightComponent();
+	void PointLightComponent::DrawShadows()
+	{
+		///TODO: implement it.
+	}
 
-	QJsonObject colorJSON = JSON["color"].toObject();
-	object->color = glm::vec3(colorJSON["r"].toDouble(), colorJSON["g"].toDouble(), colorJSON["b"].toDouble());
-	object->brightness = JSON["brightness"].toDouble();
-	object->castingShadows = JSON["casting shadows"].toBool();
+	//QString PointLightComponent::toXML()
+	//{
+	//	///TODO: implement it.
+	//	return QString(getIndent() + "<PointLightComponent/>\n");
+	//}
 
-	object->radius = JSON["radius"].toDouble();
-	object->attenuation = JSON["attenuation"].toDouble();
+	QJsonObject PointLightComponent::toJSON()
+	{
+		QJsonObject JSON = LightComponent::toJSON();
+		JSON["radius"] = radius;
+		JSON["attenuation"] = attenuation;
 
-	return object;
+		return JSON;
+	}
+
+	IDeserializableFromJSON* PointLightComponent::fromJSON(QJsonObject JSON)
+	{
+		///TODO: implement this.
+		PointLightComponent* object = new PointLightComponent();
+
+		QJsonObject colorJSON = JSON["color"].toObject();
+		object->color = glm::vec3(colorJSON["r"].toDouble(), colorJSON["g"].toDouble(), colorJSON["b"].toDouble());
+		object->brightness = JSON["brightness"].toDouble();
+		object->castingShadows = JSON["casting shadows"].toBool();
+
+		object->radius = JSON["radius"].toDouble();
+		object->attenuation = JSON["attenuation"].toDouble();
+
+		return object;
+	}
+
 }

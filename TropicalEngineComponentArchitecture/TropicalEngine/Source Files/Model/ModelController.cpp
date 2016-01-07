@@ -1,33 +1,38 @@
 #include <Model/ModelController.h>
 #include <Model/ModelComponent.h>
 
-ModelController::ModelController(void)
+namespace TropicalEngine
 {
-	///TODO: implement it.
-}
 
-ModelController::~ModelController(void)
-{
-	for (ModelComponent* modelComponent : modelComponents)
+	ModelController::ModelController(void)
 	{
-		delete modelComponent;
+		///TODO: implement it.
 	}
-}
 
-void ModelController::AddComponent(ModelComponent* component)
-{
-	modelComponents.append(component);
-}
-
-void ModelController::DropComponent(ModelComponent* component)
-{
-	delete component;
-}
-
-void ModelController::DrawAll(CameraComponent* viewer)
-{
-	for (ModelComponent* modelComponent : modelComponents)
+	ModelController::~ModelController(void)
 	{
-		modelComponent->Draw(viewer);
+		for (ModelComponent* modelComponent : modelComponents)
+		{
+			delete modelComponent;
+		}
 	}
+
+	void ModelController::AddComponent(ModelComponent* component)
+	{
+		modelComponents.append(component);
+	}
+
+	void ModelController::DropComponent(ModelComponent* component)
+	{
+		delete component;
+	}
+
+	void ModelController::DrawAll(CameraComponent* viewer)
+	{
+		for (ModelComponent* modelComponent : modelComponents)
+		{
+			modelComponent->Draw(viewer);
+		}
+	}
+
 }

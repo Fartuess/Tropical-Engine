@@ -18,32 +18,33 @@
 #endif
 
 QT_BEGIN_MOC_NAMESPACE
-struct qt_meta_stringdata_OpenGLWidget_t {
+struct qt_meta_stringdata_TropicalEngine__OpenGLWidget_t {
     QByteArrayData data[7];
-    char stringdata[69];
+    char stringdata[85];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
-    qptrdiff(offsetof(qt_meta_stringdata_OpenGLWidget_t, stringdata) + ofs \
+    qptrdiff(offsetof(qt_meta_stringdata_TropicalEngine__OpenGLWidget_t, stringdata) + ofs \
         - idx * sizeof(QByteArrayData)) \
     )
-static const qt_meta_stringdata_OpenGLWidget_t qt_meta_stringdata_OpenGLWidget = {
+static const qt_meta_stringdata_TropicalEngine__OpenGLWidget_t qt_meta_stringdata_TropicalEngine__OpenGLWidget = {
     {
-QT_MOC_LITERAL(0, 0, 12), // "OpenGLWidget"
-QT_MOC_LITERAL(1, 13, 16), // "initializeSignal"
-QT_MOC_LITERAL(2, 30, 0), // ""
-QT_MOC_LITERAL(3, 31, 13), // "reshapeSignal"
-QT_MOC_LITERAL(4, 45, 5), // "width"
-QT_MOC_LITERAL(5, 51, 6), // "height"
-QT_MOC_LITERAL(6, 58, 10) // "drawSignal"
+QT_MOC_LITERAL(0, 0, 28), // "TropicalEngine::OpenGLWidget"
+QT_MOC_LITERAL(1, 29, 16), // "initializeSignal"
+QT_MOC_LITERAL(2, 46, 0), // ""
+QT_MOC_LITERAL(3, 47, 13), // "reshapeSignal"
+QT_MOC_LITERAL(4, 61, 5), // "width"
+QT_MOC_LITERAL(5, 67, 6), // "height"
+QT_MOC_LITERAL(6, 74, 10) // "drawSignal"
 
     },
-    "OpenGLWidget\0initializeSignal\0\0"
-    "reshapeSignal\0width\0height\0drawSignal"
+    "TropicalEngine::OpenGLWidget\0"
+    "initializeSignal\0\0reshapeSignal\0width\0"
+    "height\0drawSignal"
 };
 #undef QT_MOC_LITERAL
 
-static const uint qt_meta_data_OpenGLWidget[] = {
+static const uint qt_meta_data_TropicalEngine__OpenGLWidget[] = {
 
  // content:
        7,       // revision
@@ -69,7 +70,7 @@ static const uint qt_meta_data_OpenGLWidget[] = {
        0        // eod
 };
 
-void OpenGLWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
+void TropicalEngine::OpenGLWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
         OpenGLWidget *_t = static_cast<OpenGLWidget *>(_o);
@@ -103,26 +104,26 @@ void OpenGLWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id
     }
 }
 
-const QMetaObject OpenGLWidget::staticMetaObject = {
-    { &QGLWidget::staticMetaObject, qt_meta_stringdata_OpenGLWidget.data,
-      qt_meta_data_OpenGLWidget,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
+const QMetaObject TropicalEngine::OpenGLWidget::staticMetaObject = {
+    { &QGLWidget::staticMetaObject, qt_meta_stringdata_TropicalEngine__OpenGLWidget.data,
+      qt_meta_data_TropicalEngine__OpenGLWidget,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
 };
 
 
-const QMetaObject *OpenGLWidget::metaObject() const
+const QMetaObject *TropicalEngine::OpenGLWidget::metaObject() const
 {
     return QObject::d_ptr->metaObject ? QObject::d_ptr->dynamicMetaObject() : &staticMetaObject;
 }
 
-void *OpenGLWidget::qt_metacast(const char *_clname)
+void *TropicalEngine::OpenGLWidget::qt_metacast(const char *_clname)
 {
     if (!_clname) return Q_NULLPTR;
-    if (!strcmp(_clname, qt_meta_stringdata_OpenGLWidget.stringdata))
+    if (!strcmp(_clname, qt_meta_stringdata_TropicalEngine__OpenGLWidget.stringdata))
         return static_cast<void*>(const_cast< OpenGLWidget*>(this));
     return QGLWidget::qt_metacast(_clname);
 }
 
-int OpenGLWidget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
+int TropicalEngine::OpenGLWidget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 {
     _id = QGLWidget::qt_metacall(_c, _id, _a);
     if (_id < 0)
@@ -140,20 +141,20 @@ int OpenGLWidget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 }
 
 // SIGNAL 0
-void OpenGLWidget::initializeSignal()
+void TropicalEngine::OpenGLWidget::initializeSignal()
 {
     QMetaObject::activate(this, &staticMetaObject, 0, Q_NULLPTR);
 }
 
 // SIGNAL 1
-void OpenGLWidget::reshapeSignal(int _t1, int _t2)
+void TropicalEngine::OpenGLWidget::reshapeSignal(int _t1, int _t2)
 {
     void *_a[] = { Q_NULLPTR, const_cast<void*>(reinterpret_cast<const void*>(&_t1)), const_cast<void*>(reinterpret_cast<const void*>(&_t2)) };
     QMetaObject::activate(this, &staticMetaObject, 1, _a);
 }
 
 // SIGNAL 2
-void OpenGLWidget::drawSignal()
+void TropicalEngine::OpenGLWidget::drawSignal()
 {
     QMetaObject::activate(this, &staticMetaObject, 2, Q_NULLPTR);
 }

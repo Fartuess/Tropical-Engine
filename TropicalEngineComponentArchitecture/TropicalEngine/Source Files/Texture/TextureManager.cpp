@@ -6,66 +6,71 @@
 
 #include "TropicalEngineApplication.h"
 
-TextureManager::TextureManager(void)
+namespace TropicalEngine
 {
-	textureIterator = 0;
 
-	//foreach(QByteArray it, QImageReader::supportedImageFormats())
-	//{
-	//	qDebug() << QString(it);
-	//}
-}
-
-TextureManager::~TextureManager(void)
-{
-	for (Material* material : TropicalEngineApplication::instance()->materialManager->materials)
+	TextureManager::TextureManager(void)
 	{
-		///TODO: set all textures to null texture;
+		textureIterator = 0;
+
+		//foreach(QByteArray it, QImageReader::supportedImageFormats())
+		//{
+		//	qDebug() << QString(it);
+		//}
 	}
-}
 
-int TextureManager::getTextureIterator()
-{
-	return textureIterator;
-}
-
-void TextureManager::incrementTextureIterator()
-{
-	textureIterator++;
-}
-
-void TextureManager::resetTextureIterator()
-{
-	textureIterator = 0;
-}
-
-Texture* const TextureManager::getTexture(QString name)
-{
-	return textures[name];
-}
-
-Texture* TextureManager::Load(QString name, QString fileUrl)
-{
-	Texture* newTexture = new Texture(fileUrl, name);
-	textures.insert(name, newTexture);
-
-	return newTexture;
-}
-
-void TextureManager::FlushTexture(QString name, bool forced)
-{
-	if (!textures.contains(name))
-		return;
-	if (forced)
-	{
-		delete TextureManager::textures[name];
-	}
-	else
+	TextureManager::~TextureManager(void)
 	{
 		for (Material* material : TropicalEngineApplication::instance()->materialManager->materials)
 		{
-			///TODO: if material uses texture isUsed return;
+			///TODO: set all textures to null texture;
 		}
-		delete TextureManager::textures[name];
 	}
+
+	int TextureManager::getTextureIterator()
+	{
+		return textureIterator;
+	}
+
+	void TextureManager::incrementTextureIterator()
+	{
+		textureIterator++;
+	}
+
+	void TextureManager::resetTextureIterator()
+	{
+		textureIterator = 0;
+	}
+
+	Texture* const TextureManager::getTexture(QString name)
+	{
+		return textures[name];
+	}
+
+	Texture* TextureManager::Load(QString name, QString fileUrl)
+	{
+		Texture* newTexture = new Texture(fileUrl, name);
+		textures.insert(name, newTexture);
+
+		return newTexture;
+	}
+
+	void TextureManager::FlushTexture(QString name, bool forced)
+	{
+		if (!textures.contains(name))
+			return;
+		if (forced)
+		{
+			delete TextureManager::textures[name];
+		}
+		else
+		{
+			for (Material* material : TropicalEngineApplication::instance()->materialManager->materials)
+			{
+				///TODO: if material uses texture isUsed return;
+			}
+			delete TextureManager::textures[name];
+		}
+	}
+
 }

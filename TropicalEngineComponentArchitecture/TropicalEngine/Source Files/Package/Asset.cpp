@@ -1,52 +1,57 @@
 #include <Package/Asset.h>
 #include <Package/AssetManager.h>
 
-//Asset Asset::templateObject = Asset::InitializeType();
-
-Asset::Asset(QString name, ISerializableJSON* asset)
+namespace TropicalEngine
 {
-	this->name = name;
-	this->type = asset->getTypeName();
-	this->asset = asset;
-}
 
-//Asset::Asset(QString name, QString type, QJsonObject JSON)
-//{
-//}
+	//Asset Asset::templateObject = Asset::InitializeType();
 
-Asset::~Asset()
-{
-}
+	Asset::Asset(QString name, ISerializableJSON* asset)
+	{
+		this->name = name;
+		this->type = asset->getTypeName();
+		this->asset = asset;
+	}
 
-//Asset Asset::InitializeType()
-//{
-//	Asset& asset = Asset();
-//	AssetManager::addAssetType("Asset", &asset);
-//	return asset;
-//}
+	//Asset::Asset(QString name, QString type, QJsonObject JSON)
+	//{
+	//}
 
-QJsonObject Asset::toJSON()
-{
-	///TODO: Make cheating unnecessary.
-	QJsonObject JSON = QJsonObject();
-	JSON["name"] = name;
-	JSON["typename"] = asset->getTypeName();
-	JSON["asset"] = asset->toJSON();
-	return JSON;
-}
+	Asset::~Asset()
+	{
+	}
 
-IDeserializableFromJSON* Asset::fromJSON(QJsonObject JSON)
-{
-	Asset* asset = new Asset();
-	asset->name = JSON["name"].toString();
-	asset->type = JSON["typeName"].toString();
-	//Assuming that all Assets can be serialized back again.
-	asset->asset = static_cast<ISerializableJSON*>(AssetManager::getTypeHandle(asset->type)->fromJSON(JSON["asset"].toObject()));
+	//Asset Asset::InitializeType()
+	//{
+	//	Asset& asset = Asset();
+	//	AssetManager::addAssetType("Asset", &asset);
+	//	return asset;
+	//}
 
-	return asset;
-}
+	QJsonObject Asset::toJSON()
+	{
+		///TODO: Make cheating unnecessary.
+		QJsonObject JSON = QJsonObject();
+		JSON["name"] = name;
+		JSON["typename"] = asset->getTypeName();
+		JSON["asset"] = asset->toJSON();
+		return JSON;
+	}
 
-Asset::Asset()
-{
+	IDeserializableFromJSON* Asset::fromJSON(QJsonObject JSON)
+	{
+		Asset* asset = new Asset();
+		asset->name = JSON["name"].toString();
+		asset->type = JSON["typeName"].toString();
+		//Assuming that all Assets can be serialized back again.
+		asset->asset = static_cast<ISerializableJSON*>(AssetManager::getTypeHandle(asset->type)->fromJSON(JSON["asset"].toObject()));
+
+		return asset;
+	}
+
+	Asset::Asset()
+	{
+
+	}
 
 }

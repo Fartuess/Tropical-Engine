@@ -7,43 +7,47 @@
 
 #include "MaterialParameter.h"
 
-class Material : public ISerializableJSON
+namespace TropicalEngine
 {
-public:
-	TYPENAME("Material")
 
-	QString getName();
-	void setName(QString name);
+	class Material : public ISerializableJSON
+	{
+	public:
+		TYPENAME("Material")
 
-	Material(class Shader* shader, QString name);
-	~Material(void);
+			QString getName();
+		void setName(QString name);
 
-	class Shader* getShader();
+		Material(class Shader* shader, QString name);
+		~Material(void);
 
-	void Use();
-	
-	void ActivateParameter(QString name, void* value);
+		class Shader* getShader();
 
-	void SetParameter(QString name, void* parameter);
+		void Use();
 
-	MaterialParameter& operator[](QString name)      { return parameters[name]; };
-	const MaterialParameter& operator[](QString name) const { return parameters[name]; };
+		void ActivateParameter(QString name, void* value);
 
-	QJsonObject toJSON() override;
-	IDeserializableFromJSON* fromJSON(QJsonObject JSON) override;
+		void SetParameter(QString name, void* parameter);
 
-protected:
-	QString name;
-	class Shader* shader;
-	QMap<QString, MaterialParameter> parameters;
+		MaterialParameter& operator[](QString name)      { return parameters[name]; };
+		const MaterialParameter& operator[](QString name) const { return parameters[name]; };
 
-private:
-	void ActivateParameter(GLuint location, float* value);
-	void ActivateParameter(GLuint location, glm::vec2* value);
-	void ActivateParameter(GLuint location, glm::vec3* value);
-	void ActivateParameter(GLuint location, glm::vec4* value);
-	void ActivateParameter(GLuint location, glm::mat3* value);
-	void ActivateParameter(GLuint location, glm::mat4* value);
-	void ActivateParameter(GLuint location, class Texture* value);
-};
+		QJsonObject toJSON() override;
+		IDeserializableFromJSON* fromJSON(QJsonObject JSON) override;
 
+	protected:
+		QString name;
+		class Shader* shader;
+		QMap<QString, MaterialParameter> parameters;
+
+	private:
+		void ActivateParameter(GLuint location, float* value);
+		void ActivateParameter(GLuint location, glm::vec2* value);
+		void ActivateParameter(GLuint location, glm::vec3* value);
+		void ActivateParameter(GLuint location, glm::vec4* value);
+		void ActivateParameter(GLuint location, glm::mat3* value);
+		void ActivateParameter(GLuint location, glm::mat4* value);
+		void ActivateParameter(GLuint location, class Texture* value);
+	};
+
+}

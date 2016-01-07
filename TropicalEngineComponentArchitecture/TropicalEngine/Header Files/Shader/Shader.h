@@ -9,101 +9,112 @@
 
 #include "Material.h"
 
-class Shader : public ISerializableJSON
+namespace TropicalEngine
 {
-public:
-	TYPENAME("Shader")
 
-	friend class ShaderManager;
+	class Shader : public ISerializableJSON
+	{
+	public:
+		TYPENAME("Shader")
 
-	Material* defaultMaterial;
+			friend class ShaderManager;
 
-	//temporarily public
-	GLuint shaderProgram;
-	QMap<QString, GLuint> subprograms;	///TODO: Value is shader type from now. Not it's address in GPU?
+		Material* defaultMaterial;
 
-	/// TODO: Make light locations more organised.
-	//temporarily public
-	GLuint dirLightVectorLocation;
-	GLuint dirLightColorLocation;
-	GLuint dirLightBrightnessLocation;
-	GLuint dirLightAmbientLocation;
+		//temporarily public
+		GLuint shaderProgram;
+		QMap<QString, GLuint> subprograms;	///TODO: Value is shader type from now. Not it's address in GPU?
 
-	QVector<GLuint> pointLightPositionLocations;
-	QVector<GLuint> pointLightColorLocations;
-	QVector<GLuint> pointLightBrightnessLocations;
-	QVector<GLuint> pointLightRadiusLocations;
-	QVector<GLuint> pointLightAttenuationLocations;
+		/// TODO: Make light locations more organised.
+		//temporarily public
+		GLuint dirLightVectorLocation;
+		GLuint dirLightColorLocation;
+		GLuint dirLightBrightnessLocation;
+		GLuint dirLightAmbientLocation;
 
-	QVector<GLuint> spotLightPositionLocations;
-	QVector<GLuint> spotLightDirectionLocations;
-	QVector<GLuint> spotLightColorLocations;
-	QVector<GLuint> spotLightBrightnessLocations;
-	QVector<GLuint> spotLightRadiusLocations;
-	QVector<GLuint> spotLightAttenuationLocations;
-	QVector<GLuint> spotLightOuterAngleLocations;
-	QVector<GLuint> spotLightInnerAngleLoactions;
+		QVector<GLuint> pointLightPositionLocations;
+		QVector<GLuint> pointLightColorLocations;
+		QVector<GLuint> pointLightBrightnessLocations;
+		QVector<GLuint> pointLightRadiusLocations;
+		QVector<GLuint> pointLightAttenuationLocations;
 
-	GLuint drawingMode;
+		QVector<GLuint> spotLightPositionLocations;
+		QVector<GLuint> spotLightDirectionLocations;
+		QVector<GLuint> spotLightColorLocations;
+		QVector<GLuint> spotLightBrightnessLocations;
+		QVector<GLuint> spotLightRadiusLocations;
+		QVector<GLuint> spotLightAttenuationLocations;
+		QVector<GLuint> spotLightOuterAngleLocations;
+		QVector<GLuint> spotLightInnerAngleLoactions;
 
-	static Shader* nullShader;
+		GLuint drawingMode;
 
-	Shader(QString vertexShader, QString fragmentShader, QString name, class ShaderManager* manager = nullptr);
-	Shader(QMap<QString, GLuint> subshaders, QString name);
-	~Shader(void);
+		static Shader* nullShader;
 
-	void setUpLightParameters();
-	void setUpMaterialParameters();
+		Shader(QString vertexShader, QString fragmentShader, QString name, class ShaderManager* manager = nullptr);
+		Shader(QMap<QString, GLuint> subshaders, QString name);
+		~Shader(void);
 
-	QString getName();
-	void setName(QString name);
+		static Shader* createShaderFromSources(QString vertexSource, QString tcsSource, QString tesSource, QString fragmentSource, QString name);
 
-	GLuint getShaderProgram();
-	GLuint getVertexLocation();
-	GLuint getNormalLocation();
-	GLuint getTangentLocation();
-	GLuint getBitangentLocation();
-	GLuint getTexcoordLocation();
+		static QString PreprocessShaderFile(QString shaderFile);
 
-	GLuint getModelMatrixLocation();
-	GLuint getNormalMatrixLocation();
-	GLuint getCameraPositionLocation();
-	GLuint getCameraMatrixLocation();
-	GLuint getProjectionMatrixLocation();
+		void setUpLightParameters();
+		void setUpMaterialParameters();
 
-	GLenum getParameterType(QString name);
-	GLuint getParameterLocation(QString name);
-	const QMap<QString, QPair<GLenum, GLuint>>& getMaterialParameters();
+		QString getName();
+		void setName(QString name);
 
-	Material* getCurrentMaterial();
+		GLuint getShaderProgram();
+		GLuint getVertexLocation();
+		GLuint getNormalLocation();
+		GLuint getTangentLocation();
+		GLuint getBitangentLocation();
+		GLuint getTexcoordLocation();
 
-	void Use();
+		GLuint getModelMatrixLocation();
+		GLuint getNormalMatrixLocation();
+		GLuint getCameraPositionLocation();
+		GLuint getCameraMatrixLocation();
+		GLuint getProjectionMatrixLocation();
 
-	QJsonObject toJSON() override;
-	IDeserializableFromJSON* fromJSON(QJsonObject JSON) override;
+		GLenum getParameterType(QString name);
+		GLuint getParameterLocation(QString name);
+		const QMap<QString, QPair<GLenum, GLuint>>& getMaterialParameters();
 
-protected:
-	QString name;
+		Material* getCurrentMaterial();
 
-	QMap<QString, QPair<GLenum, GLuint>>* materialParameters;
-	Material* currentMaterial;
+		void Use();
 
-	Shader(QString name, GLuint drawingMode = GL_TRIANGLES);
+		QJsonObject toJSON() override;
+		IDeserializableFromJSON* fromJSON(QJsonObject JSON) override;
 
-	QString PreprocessShaderFile(QString shaderFile);
-	void AddShader(QString shaderFile, GLenum shaderType);
-	void FinalizeShader();
+	protected:
+		QString name;
 
-private:
-	GLuint vertexLocation;
-	GLuint normalLocation;
-	GLuint tangentLocation;
-	GLuint bitangentLocation;
-	GLuint texcoordLocation;
+		QMap<QString, QPair<GLenum, GLuint>>* materialParameters;
+		Material* currentMaterial;
 
-	GLuint modelMatrixLocation;
-	GLuint normalMatrixLocation;
-	GLuint cameraPositionLocation;
-	GLuint cameraMatrixLocation;
-	GLuint projectionMatrixLocation;
-};
+		Shader(QString name, GLuint drawingMode = GL_TRIANGLES);
+
+		//temporary define made so program won't break apart.
+#define AddShader(shaderFile, shaderType) AddShaderFile(shaderFile, shaderType)
+		void AddShaderFile(QString shaderFile, GLenum shaderType);
+		void AddShaderSource(QString shaderSource, GLenum shaderType);
+		void FinalizeShader();
+
+	private:
+		GLuint vertexLocation;
+		GLuint normalLocation;
+		GLuint tangentLocation;
+		GLuint bitangentLocation;
+		GLuint texcoordLocation;
+
+		GLuint modelMatrixLocation;
+		GLuint normalMatrixLocation;
+		GLuint cameraPositionLocation;
+		GLuint cameraMatrixLocation;
+		GLuint projectionMatrixLocation;
+	};
+
+}

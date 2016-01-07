@@ -6,27 +6,31 @@
 
 #include "TropicalEngineApplication.h"
 
-
-SceneGraphWidget::SceneGraphWidget(void)
+namespace TropicalEngine
 {
-	setColumnCount(1);
-	//setHeaderLabel("Scene Graph");
-	setHeaderHidden(true);
-}
 
-
-SceneGraphWidget::~SceneGraphWidget(void)
-{
-}
-
-void SceneGraphWidget::Reload()
-{
-	clear();
-	QMap<QString, Level*>& levels = TropicalEngineApplication::instance()->sceneManager->getLevels();
-	for (QString levelName : levels.keys())
+	SceneGraphWidget::SceneGraphWidget(void)
 	{
-		SceneGraphItem* levelItem = new SceneGraphItem(levelName, levels[levelName]->getRoot());
-		addTopLevelItem(levelItem);
-		levelItem->Reload();
+		setColumnCount(1);
+		//setHeaderLabel("Scene Graph");
+		setHeaderHidden(true);
 	}
+
+
+	SceneGraphWidget::~SceneGraphWidget(void)
+	{
+	}
+
+	void SceneGraphWidget::Reload()
+	{
+		clear();
+		QMap<QString, Level*>& levels = TropicalEngineApplication::instance()->sceneManager->getLevels();
+		for (QString levelName : levels.keys())
+		{
+			SceneGraphItem* levelItem = new SceneGraphItem(levelName, levels[levelName]->getRoot());
+			addTopLevelItem(levelItem);
+			levelItem->Reload();
+		}
+	}
+
 }

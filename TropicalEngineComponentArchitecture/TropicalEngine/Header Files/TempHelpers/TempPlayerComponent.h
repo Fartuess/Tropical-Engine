@@ -3,22 +3,27 @@
 
 #include <Utills/IUpdateable.h>
 
-class TempPlayerComponent : public Component, public IUpdateable
+namespace TropicalEngine
 {
-public:
-	TYPENAME("TempPlayer Component")
 
-	TempPlayerComponent(Entity* owner);
-	~TempPlayerComponent(void);
+	class TempPlayerComponent : public Component, public IUpdateable
+	{
+	public:
+		TYPENAME("TempPlayer Component")
 
-	void OnUpdate(int deltaTime) override;
+			TempPlayerComponent(Entity* owner);
+		~TempPlayerComponent(void);
 
-	IDeserializableFromJSON* fromJSON(QJsonObject JSON) override;
+		void OnUpdate(int deltaTime) override;
 
-protected:
-	TempPlayerComponent();
+		IDeserializableFromJSON* fromJSON(QJsonObject JSON) override;
 
-	void InitializeComponentType() override;
-private:
-	static TempPlayerComponent InitializeType();
-};
+	protected:
+		TempPlayerComponent();
+
+		void InitializeComponentType() override;
+	private:
+		static TempPlayerComponent InitializeType();
+	};
+
+}

@@ -5,104 +5,109 @@
 
 #include <Package/AssetManager.h>
 
-class Entity;
-
-/**
-  * Abstract Component class.
-  */
-class Component : public ISerializableJSON
+namespace TropicalEngine
 {
-public:
-	friend class Entity;
+
+	class Entity;
 
 	/**
-	  * \brief Constructor of Component Class
-	  *
-	  * @param owner Entity object the component will be attached to.
+	  * Abstract Component class.
 	  */
-	Component(Entity* owner);
+	class Component : public ISerializableJSON
+	{
+	public:
+		friend class Entity;
 
-	/**
-	  * \brief Destructor of Component.
-	  */
-	~Component(void);
+		/**
+		  * \brief Constructor of Component Class
+		  *
+		  * @param owner Entity object the component will be attached to.
+		  */
+		Component(Entity* owner);
 
-	/**
-	  * \brief Gets pointer to Entity object the Component is attached to.
-	  *
-	  * @return Pointer to Entity object the Component is attached to
-	  */
-	Entity* getOwner();
+		/**
+		  * \brief Destructor of Component.
+		  */
+		~Component(void);
 
-	/**
-	  * \brief Attaches Component to Entity object.
-	  *
-	  * Detaches Component from previous Entity and attaches to the new one.
-	  * @param owner Pointer to Entity object the Component will be attached to.
-	  */
-	void setOwner(Entity* owner);
+		/**
+		  * \brief Gets pointer to Entity object the Component is attached to.
+		  *
+		  * @return Pointer to Entity object the Component is attached to
+		  */
+		Entity* getOwner();
 
-	static bool isComponentTypeUsed(QString name);
-	static unsigned int getComponentType(QString name);
+		/**
+		  * \brief Attaches Component to Entity object.
+		  *
+		  * Detaches Component from previous Entity and attaches to the new one.
+		  * @param owner Pointer to Entity object the Component will be attached to.
+		  */
+		void setOwner(Entity* owner);
 
-	static unsigned int getParameterType(QString name);
+		static bool isComponentTypeUsed(QString name);
+		static unsigned int getComponentType(QString name);
 
-	static QHash<QString, QString> getParameters(QString componentTypeName);	//if so change here as well
+		static unsigned int getParameterType(QString name);
 
-	/**
-	  * \brief Serializes Component to JSON object.
-	  *
-	  * @return Result of serialization.
-	  */
-	QJsonObject toJSON() override;
+		static QHash<QString, QString> getParameters(QString componentTypeName);	//if so change here as well
 
-	/**
-	  * /brief Deserializes Component from JSON object.
-	  *
-	  * @param JSON JSON object to deserialize from.
-	  * @return Component object.
-	  */
-	IDeserializableFromJSON* fromJSON(QJsonObject JSON) override;
+		/**
+		  * \brief Serializes Component to JSON object.
+		  *
+		  * @return Result of serialization.
+		  */
+		QJsonObject toJSON() override;
 
-protected:
-	///TODO: Make it private?
-	/**
-	  * \brief Entity owning this Component.
-	  */
-	Entity* owner;
+		/**
+		  * /brief Deserializes Component from JSON object.
+		  *
+		  * @param JSON JSON object to deserialize from.
+		  * @return Component object.
+		  */
+		IDeserializableFromJSON* fromJSON(QJsonObject JSON) override;
 
-	/**
-	  * /brief Simple Constructor used to create Component instance while serializing.
-	  */
-	Component();
+	protected:
+		///TODO: Make it private?
+		/**
+		  * \brief Entity owning this Component.
+		  */
+		Entity* owner;
 
-	/**
-	  * /brief Detaches Component from owning Entity object.
-	  *
-	  * Detaches Component from owning Entity object. Results in Component flying loosely unattached to anything.
-	  */
-	void Detach();
+		/**
+		  * /brief Simple Constructor used to create Component instance while serializing.
+		  */
+		Component();
 
-	virtual void InitializeComponentType() = 0;
-	void AddComponentType(QString name);
+		/**
+		  * /brief Detaches Component from owning Entity object.
+		  *
+		  * Detaches Component from owning Entity object. Results in Component flying loosely unattached to anything.
+		  */
+		void Detach();
 
-	static QString getParrentType(QString componentTypeName);
-	void SetParrentComponentType(QString parrentTypeName);
+		virtual void InitializeComponentType() = 0;
+		void AddComponentType(QString name);
 
-	void AddParameter(QString name, QString type);
+		static QString getParrentType(QString componentTypeName);
+		void SetParrentComponentType(QString parrentTypeName);
 
-private:
-	static QHash<QString, unsigned int> componentTypeMap;
-	static QHash<QString, QString> parrentComponentTypeMap;
+		void AddParameter(QString name, QString type);
 
-	static QHash<QString, unsigned int> parameterTypeMap;
-	static void AddParameterType(QString name);
+	private:
+		static QHash<QString, unsigned int> componentTypeMap;
+		static QHash<QString, QString> parrentComponentTypeMap;
 
-	static QHash<QString, QHash<QString, QString>> parameters;	//maybe instead of last QString use unsigned int
+		static QHash<QString, unsigned int> parameterTypeMap;
+		static void AddParameterType(QString name);
+
+		static QHash<QString, QHash<QString, QString>> parameters;	//maybe instead of last QString use unsigned int
 
 
-	/*******************************
-	 * TEMPORARY SOLUTION
-	 *******************************/
-	static QHash<QString, Component*> componentHandles;
-};
+		/*******************************
+		 * TEMPORARY SOLUTION
+		 *******************************/
+		static QHash<QString, Component*> componentHandles;
+	};
+
+}

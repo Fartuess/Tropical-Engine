@@ -7,13 +7,17 @@
 uniform float u_lightAmbient;
 uniform vec3 u_lightAmbientColor = vec3(1.0, 1.0, 1.0);
 
-struct DirectionalLight
-{
-	vec3 direction;
-	vec3 color;
-	float brightness;
-};
-uniform u_directionalLight;
+//struct DirectionalLight
+//{
+//	vec3 direction;
+//	vec3 color;
+//	float brightness;
+//};
+//uniform DirectionalLight u_directionalLight;
+
+uniform vec3 u_lightVector;
+uniform vec3 u_lightColor;
+uniform float u_lightBrightness;
 
 #ifndef AMBIENTCHANNEL
 #define AMBIENTCHANNEL
@@ -31,11 +35,11 @@ void calculateAmbientLighting()
 // private
 void calculateDirecationalLighting()
 {
-	vec3 lightVector = normalize(u_directionalLight.direction);
+	vec3 lightVector = normalize(u_lightVector);
 #ifdef TBNNORMALS
 	lightVector = normalize(TBN * lightVector);
 #endif
-	calculateLightingModel(lightVector, u_directionalLight.color, u_directionalLight.brightness);
+	calculateLightingModel(lightVector, u_lightColor, u_lightBrightness);
 }
 
 // private

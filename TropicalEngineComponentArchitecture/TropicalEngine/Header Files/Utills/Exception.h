@@ -3,38 +3,42 @@
 #include <QtCore/qstring.h>
 #include <QtCore/qdebug.h>
 
-/**
-  * Base template class for exceptions.
-  */
-template <class T> class Exception
+namespace TropicalEngine
 {
-public:
-	/**
-	  * \brief Object which thrown the exception.
-	  */
-	T* throwingObject;
 
 	/**
-	  * \brief Error message.
+	  * Base template class for exceptions.
 	  */
-	QString message;
-
-	/**
-	  * \brief Constructor for Exception class.
-	  *
-	  * @param message Error Message.
-	  * @param throwingObject Object throwing exception.
-	  */
-	Exception(QString message, T* throwingObject)
+	template <class T> class Exception
 	{
-		this->throwingObject = throwingObject;
-		this->message = message;
-		qDebug() << message;	//Are all exceptions should be written by default or choosen on catching?
-	}
+	public:
+		/**
+		  * \brief Object which thrown the exception.
+		  */
+		T* throwingObject;
 
-	/**
-	  * \brief Deefault destructor.
-	  */
-	~Exception() {}
-};
+		/**
+		  * \brief Error message.
+		  */
+		QString message;
 
+		/**
+		  * \brief Constructor for Exception class.
+		  *
+		  * @param message Error Message.
+		  * @param throwingObject Object throwing exception.
+		  */
+		Exception(QString message, T* throwingObject)
+		{
+			this->throwingObject = throwingObject;
+			this->message = message;
+			qDebug() << message;	//Are all exceptions should be written by default or choosen on catching?
+		}
+
+		/**
+		  * \brief Deefault destructor.
+		  */
+		~Exception() {}
+	};
+
+}

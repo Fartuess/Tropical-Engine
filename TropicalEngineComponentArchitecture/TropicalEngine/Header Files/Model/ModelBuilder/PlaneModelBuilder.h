@@ -1,34 +1,38 @@
 #pragma once
 #include "AbstractModelBuilder.h"
 
-/**
-  * Class for generating plane models.
-  */
-class PlaneModelBuilder : public AbstractModelBuilder
+namespace TropicalEngine
 {
-public:
 
 	/**
-	  * \brief Default constructor.
+	  * Class for generating plane models.
 	  */
-	PlaneModelBuilder();
+	class PlaneModelBuilder : public AbstractModelBuilder
+	{
+	public:
 
-	/**
-	  * \brief Default destructor.
-	  */
-	~PlaneModelBuilder();
+		/**
+		  * \brief Default constructor.
+		  */
+		PlaneModelBuilder();
 
-	/**
-	  * \brief Resets values of parameters.
-	  */
-	void resetParameters() override;
+		/**
+		  * \brief Default destructor.
+		  */
+		~PlaneModelBuilder();
 
-	/**
-	  * \brief Creates model using set parameters.
-	  *
-	  * Creates model using set parameters and adds it to model manager.
-	  * @return Generated model.
-	  */
-	class Model* Build() override;
-};
+		/**
+		  * \brief Resets values of parameters.
+		  */
+		void resetParameters() override;
 
+		/**
+		  * \brief Creates model using set parameters.
+		  *
+		  * Creates model using set parameters and adds it to model manager.
+		  * @return Generated model.
+		  */
+		class Model* Build() override;
+	};
+
+}

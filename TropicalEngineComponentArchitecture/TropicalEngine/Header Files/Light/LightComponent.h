@@ -6,74 +6,79 @@
 #define MAX_POINT_LIGHT 2
 #define MAX_SPOT_LIGHT 2
 
-///TODO: Should it be an abstract class?
-class LightComponent : public Component
+namespace TropicalEngine
 {
-public:
-	TYPENAME("Light Component")
 
-	/**
-	  * \brief Color of the light.
-	  *
-	  * Color of the light in RGB format in [0.0 ; 1.0] space.
-	  */
-	glm::vec3 color;
+	///TODO: Should it be an abstract class?
+	class LightComponent : public Component
+	{
+	public:
+		TYPENAME("Light Component")
 
-	/**
-	  * \brief Brightness of the light.
-	  */
-	float brightness;
+			/**
+			  * \brief Color of the light.
+			  *
+			  * Color of the light in RGB format in [0.0 ; 1.0] space.
+			  */
+			  glm::vec3 color;
 
-	/**
-	  * \brief Constructor of LightComponent.
-	  *
-	  * @param owner Entity object the light will be attached to.
-	  * @param color Color of the light.
-	  * @param brightness Brightness of the light.
-	  * @param isCastingShadows Decides if this light should cast shadows.
-	  */
-	LightComponent(Entity* owner, glm::vec3 color = glm::vec3(1.0f, 1.0f, 1.0f), float brightness = 1.0f, bool isCastingShadows = false);
+		/**
+		  * \brief Brightness of the light.
+		  */
+		float brightness;
 
-	/**
-	  * \brief Destructor for LightComponent.
-	  */
-	~LightComponent(void);
+		/**
+		  * \brief Constructor of LightComponent.
+		  *
+		  * @param owner Entity object the light will be attached to.
+		  * @param color Color of the light.
+		  * @param brightness Brightness of the light.
+		  * @param isCastingShadows Decides if this light should cast shadows.
+		  */
+		LightComponent(Entity* owner, glm::vec3 color = glm::vec3(1.0f, 1.0f, 1.0f), float brightness = 1.0f, bool isCastingShadows = false);
 
-	/**
-	  * \brief Gets information if this light is casting shadows.
-	  *
-	  * @return Information if this light is casting shadows.
-	  */
-	bool isCastingShadows();
+		/**
+		  * \brief Destructor for LightComponent.
+		  */
+		~LightComponent(void);
 
-	/**
-	  * \brief Sets information if this light should cast shadows.
-	  *
-	  * @param isCastingShadows Information if this light should cast shadows.
-	  */
-	void isCastingShadows(bool isCastingShadows);
+		/**
+		  * \brief Gets information if this light is casting shadows.
+		  *
+		  * @return Information if this light is casting shadows.
+		  */
+		bool isCastingShadows();
 
-	virtual void Evaluate();
-	virtual void DrawShadows() {};
+		/**
+		  * \brief Sets information if this light should cast shadows.
+		  *
+		  * @param isCastingShadows Information if this light should cast shadows.
+		  */
+		void isCastingShadows(bool isCastingShadows);
 
-	/**
-	  * \brief Serializes LightComponent to JSON object.
-	  *
-	  * @return Result of serialization.
-	  */
-	QJsonObject toJSON() override;
+		virtual void Evaluate();
+		virtual void DrawShadows() {};
 
-protected:
+		/**
+		  * \brief Serializes LightComponent to JSON object.
+		  *
+		  * @return Result of serialization.
+		  */
+		QJsonObject toJSON() override;
 
-	/**
-	  * \brief Is this light casting shadows.
-	  */
-	bool castingShadows;
+	protected:
 
-	/**
-	  * \brief Simple Constructor used to create Component instance while serializing.
-	  */
-	LightComponent();
+		/**
+		  * \brief Is this light casting shadows.
+		  */
+		bool castingShadows;
 
-	void InitializeComponentType() override;
-};
+		/**
+		  * \brief Simple Constructor used to create Component instance while serializing.
+		  */
+		LightComponent();
+
+		void InitializeComponentType() override;
+	};
+
+}

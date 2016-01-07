@@ -2,81 +2,85 @@
 
 #include "LightComponent.h"
 
-class PointLightComponent : public LightComponent
+namespace TropicalEngine
 {
-public:
-	TYPENAME("PointLight Component")
 
-	/**
-	  * \brief Attenuation exponent of the light.
-	  */
-	float attenuation;
+	class PointLightComponent : public LightComponent
+	{
+	public:
+		TYPENAME("PointLight Component")
 
-	/**
-	  * \brief Constructor of PointLightComponent.
-	  *
-	  * @param owner Entity object the light will be attached to.
-	  * @param color Color of the light.
-	  * @param brightness Brightness of the light.
-	  * @param radius Radius of the light.
-	  * @param attenuation Attenuation exponent of the light.
-	  * @param isCastingShadows Decides if this light should cast shadows.
-	  */
-	PointLightComponent(Entity* owner, glm::vec3 color = glm::vec3(1.0f, 1.0f, 1.0f), float brightness = 1.0f, float radius = 100.0f, float attenuation = 3.0f, bool isCastingShadows = false);
-	
-	/**
-	  * \brief Destructor of PointLightComponent.
-	  */
-	~PointLightComponent(void);
+			/**
+			  * \brief Attenuation exponent of the light.
+			  */
+			  float attenuation;
 
-	/**
-	  * \brief Initialized type in global typemap.
-	  */
-	static PointLightComponent InitializeType();
+		/**
+		  * \brief Constructor of PointLightComponent.
+		  *
+		  * @param owner Entity object the light will be attached to.
+		  * @param color Color of the light.
+		  * @param brightness Brightness of the light.
+		  * @param radius Radius of the light.
+		  * @param attenuation Attenuation exponent of the light.
+		  * @param isCastingShadows Decides if this light should cast shadows.
+		  */
+		PointLightComponent(Entity* owner, glm::vec3 color = glm::vec3(1.0f, 1.0f, 1.0f), float brightness = 1.0f, float radius = 100.0f, float attenuation = 3.0f, bool isCastingShadows = false);
 
-	/**
-	  * \brief Gets radius of the light.
-	  *
-	  * @return Radius of the light.
-	  */
-	float getRadius();
+		/**
+		  * \brief Destructor of PointLightComponent.
+		  */
+		~PointLightComponent(void);
 
-	/**
-	  * \brief Sets radius of the light.
-	  *
-	  * @param radius Radius to be set for light.
-	  */
-	void setRadius(float radius);
+		/**
+		  * \brief Initialized type in global typemap.
+		  */
+		static PointLightComponent InitializeType();
 
-	virtual void Evaluate() override;
-	virtual void DrawShadows() override;
+		/**
+		  * \brief Gets radius of the light.
+		  *
+		  * @return Radius of the light.
+		  */
+		float getRadius();
 
-	/**
-	  * \brief Serializes PointLightComponent to JSON object.
-	  *
-	  * @return Result of serialization.
-	  */
-	QJsonObject toJSON() override;
+		/**
+		  * \brief Sets radius of the light.
+		  *
+		  * @param radius Radius to be set for light.
+		  */
+		void setRadius(float radius);
 
-	/**
-	  * \brief Deserializes PointLightComponent from JSON object.
-	  *
-	  * @param JSON JSON object to deserialize from.
-	  * @return PointLightComponent object.
-	  */
-	IDeserializableFromJSON* fromJSON(QJsonObject JSON) override;
+		virtual void Evaluate() override;
+		virtual void DrawShadows() override;
 
-protected:
-	/**
-	  * \brief Simple Constructor used to create PointLightComponent instance while serializing.
-	  */
-	PointLightComponent();
+		/**
+		  * \brief Serializes PointLightComponent to JSON object.
+		  *
+		  * @return Result of serialization.
+		  */
+		QJsonObject toJSON() override;
 
-	void InitializeComponentType() override;
+		/**
+		  * \brief Deserializes PointLightComponent from JSON object.
+		  *
+		  * @param JSON JSON object to deserialize from.
+		  * @return PointLightComponent object.
+		  */
+		IDeserializableFromJSON* fromJSON(QJsonObject JSON) override;
 
-private:
-	float radius;
+	protected:
+		/**
+		  * \brief Simple Constructor used to create PointLightComponent instance while serializing.
+		  */
+		PointLightComponent();
 
-	static PointLightComponent templateObject;
-};
+		void InitializeComponentType() override;
 
+	private:
+		float radius;
+
+		static PointLightComponent templateObject;
+	};
+
+}

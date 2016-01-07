@@ -18,28 +18,29 @@
 #endif
 
 QT_BEGIN_MOC_NAMESPACE
-struct qt_meta_stringdata_OglDevTut03_t {
+struct qt_meta_stringdata_TropicalEngine__OglDevTut03_t {
     QByteArrayData data[4];
-    char stringdata[29];
+    char stringdata[45];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
-    qptrdiff(offsetof(qt_meta_stringdata_OglDevTut03_t, stringdata) + ofs \
+    qptrdiff(offsetof(qt_meta_stringdata_TropicalEngine__OglDevTut03_t, stringdata) + ofs \
         - idx * sizeof(QByteArrayData)) \
     )
-static const qt_meta_stringdata_OglDevTut03_t qt_meta_stringdata_OglDevTut03 = {
+static const qt_meta_stringdata_TropicalEngine__OglDevTut03_t qt_meta_stringdata_TropicalEngine__OglDevTut03 = {
     {
-QT_MOC_LITERAL(0, 0, 11), // "OglDevTut03"
-QT_MOC_LITERAL(1, 12, 10), // "Initialize"
-QT_MOC_LITERAL(2, 23, 0), // ""
-QT_MOC_LITERAL(3, 24, 4) // "Draw"
+QT_MOC_LITERAL(0, 0, 27), // "TropicalEngine::OglDevTut03"
+QT_MOC_LITERAL(1, 28, 10), // "Initialize"
+QT_MOC_LITERAL(2, 39, 0), // ""
+QT_MOC_LITERAL(3, 40, 4) // "Draw"
 
     },
-    "OglDevTut03\0Initialize\0\0Draw"
+    "TropicalEngine::OglDevTut03\0Initialize\0"
+    "\0Draw"
 };
 #undef QT_MOC_LITERAL
 
-static const uint qt_meta_data_OglDevTut03[] = {
+static const uint qt_meta_data_TropicalEngine__OglDevTut03[] = {
 
  // content:
        7,       // revision
@@ -63,7 +64,7 @@ static const uint qt_meta_data_OglDevTut03[] = {
        0        // eod
 };
 
-void OglDevTut03::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
+void TropicalEngine::OglDevTut03::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
         OglDevTut03 *_t = static_cast<OglDevTut03 *>(_o);
@@ -76,26 +77,26 @@ void OglDevTut03::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
     Q_UNUSED(_a);
 }
 
-const QMetaObject OglDevTut03::staticMetaObject = {
-    { &QObject::staticMetaObject, qt_meta_stringdata_OglDevTut03.data,
-      qt_meta_data_OglDevTut03,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
+const QMetaObject TropicalEngine::OglDevTut03::staticMetaObject = {
+    { &QObject::staticMetaObject, qt_meta_stringdata_TropicalEngine__OglDevTut03.data,
+      qt_meta_data_TropicalEngine__OglDevTut03,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
 };
 
 
-const QMetaObject *OglDevTut03::metaObject() const
+const QMetaObject *TropicalEngine::OglDevTut03::metaObject() const
 {
     return QObject::d_ptr->metaObject ? QObject::d_ptr->dynamicMetaObject() : &staticMetaObject;
 }
 
-void *OglDevTut03::qt_metacast(const char *_clname)
+void *TropicalEngine::OglDevTut03::qt_metacast(const char *_clname)
 {
     if (!_clname) return Q_NULLPTR;
-    if (!strcmp(_clname, qt_meta_stringdata_OglDevTut03.stringdata))
+    if (!strcmp(_clname, qt_meta_stringdata_TropicalEngine__OglDevTut03.stringdata))
         return static_cast<void*>(const_cast< OglDevTut03*>(this));
     return QObject::qt_metacast(_clname);
 }
 
-int OglDevTut03::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
+int TropicalEngine::OglDevTut03::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 {
     _id = QObject::qt_metacall(_c, _id, _a);
     if (_id < 0)

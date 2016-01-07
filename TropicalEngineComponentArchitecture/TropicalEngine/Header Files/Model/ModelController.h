@@ -1,47 +1,51 @@
 #pragma once
 #include <QtCore/qlist.h>
 
-class CameraComponent;
-class ModelComponent;
-
-/**
-  * Class for managing model instances in the scene.
-  */
-class ModelController
+namespace TropicalEngine
 {
-public:
-	friend class ModelComponent;
-	friend class Material;
-	friend class MaterialManager;
+
+	class CameraComponent;
+	class ModelComponent;
 
 	/**
-	  * \brief Constructor for ModelController.
+	  * Class for managing model instances in the scene.
 	  */
-	ModelController(void);
+	class ModelController
+	{
+	public:
+		friend class ModelComponent;
+		friend class Material;
+		friend class MaterialManager;
 
-	/**
-	  * \brief Destructor for ModelController.
-	  */
-	~ModelController(void);
+		/**
+		  * \brief Constructor for ModelController.
+		  */
+		ModelController(void);
 
-	/**
-	  * \brief Adds model component to the ModelController.
-	  *
-	  * @param component ModelComponent to be added to the controller.
-	  */
-	void AddComponent(ModelComponent* component);
+		/**
+		  * \brief Destructor for ModelController.
+		  */
+		~ModelController(void);
 
-	/**
-	  * \brief Draws all model instances in ModelController.
-	  *
-	  * Draws all models from certain perspective.
-	  * @param viewer Camera to write models for.
-	  */
-	void DrawAll(CameraComponent* viewer);
+		/**
+		  * \brief Adds model component to the ModelController.
+		  *
+		  * @param component ModelComponent to be added to the controller.
+		  */
+		void AddComponent(ModelComponent* component);
 
-private:
-	QList<ModelComponent*> modelComponents;
+		/**
+		  * \brief Draws all model instances in ModelController.
+		  *
+		  * Draws all models from certain perspective.
+		  * @param viewer Camera to write models for.
+		  */
+		void DrawAll(CameraComponent* viewer);
 
-	void DropComponent(ModelComponent* component);
-};
+	private:
+		QList<ModelComponent*> modelComponents;
 
+		void DropComponent(ModelComponent* component);
+	};
+
+}

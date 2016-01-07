@@ -21,13 +21,13 @@ out vec4 FragColor;
 float fresnel(float x)
 {
 	float kf = 1.12;
-	return ((1 / pow(x - kf, 2)) - ((1 / pow(kf, 2)))) / ((1 / pow(1 - kf, 2)) - (1 / pow(kf, 2)));
+	return ((1.0 / pow(x - kf, 2.0)) - ((1.0 / pow(kf, 2.0)))) / ((1.0 / pow(1.0 - kf, 2.0)) - (1.0 / pow(kf, 2.0)));
 }
 
 float microfacetShadow(float x)
 {
 	float kg = 1.01;
-	return ((1 / pow(x - kg, 2)) - ((1 / pow(kg, 2)))) / ((1 / pow(1 - kg, 2)) - (1 / pow(kg, 2)));
+	return ((1.0 / pow(x - kg, 2.0)) - ((1.0 / pow(kg, 2.0)))) / ((1.0 / pow(1.0 - kg, 2.0)) - (1.0 / pow(kg, 2.0)));
 }
 
 void calculateStrauss(in vec3 lightVector, in vec3 lightColor, in float brightness, in vec3 normal, in vec3 eye, vec3 albedo, float roughness, float metalness, inout vec3 color)
@@ -62,14 +62,16 @@ void calculateStrauss(in vec3 lightVector, in vec3 lightColor, in float brightne
 		float reflect = min( 1.0, r + j * ( r + k ) );
  
 		vec3 vec3_1f = vec3( 1.0, 1.0, 1.0 );
-		vec3 Cs = vec3_1f + metalness * (1.0 - fNdotL) * (albedo - vec3_1f);
+		//vec3 Cs = vec3_1f + metalness * (1.0 - abs(fNdotL)) * 1.0;// (albedo - vec3_1f);
+		vec3 Cs = vec3_1f + metalness * /*NdotL/*(1.0 - NdotL)*/  (albedo - vec3_1f);
+		//vec3 Cs = vec3_1f + metalness * (albedo - vec3_1f);
  
 		// Evaluate the specular term
 		vec3 specular = Cs * reflect;
 		specular *= pow( -HdotV, 3.0 / (1.0 - roughness) );
  
 		color  += (max( vec3(0.0), diffuse ) + max( vec3(0.0), specular )) * lightColor * brightness;
-		//color += max( vec3(0.0), specular ) * lightColor * u_lightBrightness;
+		//color -= max( vec3(0.0), specular ) * lightColor * u_lightBrightness;
 	}
 }
 

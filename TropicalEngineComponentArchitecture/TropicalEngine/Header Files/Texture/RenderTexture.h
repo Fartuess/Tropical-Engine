@@ -1,21 +1,26 @@
 #pragma once
 #include "Texture.h"
 
-class RenderTexture : public Texture
+namespace TropicalEngine
 {
-public:
-	TYPENAME("RenderTexture")
 
-	RenderTexture(QString name, int width, int height);
-	~RenderTexture();
+	class RenderTexture : public Texture
+	{
+	public:
+		TYPENAME("RenderTexture")
 
-	void BindFramebuffer();
-	static void BindDefaultFramebuffer();
-protected:
-	int width;
-	int height;
+			RenderTexture(QString name, int width, int height);
+		~RenderTexture();
 
-	virtual void Create() override;
-private:
-	GLuint framebufferLocation;
-};
+		void BindFramebuffer();
+		static void BindDefaultFramebuffer();
+	protected:
+		int width;
+		int height;
+
+		virtual void Create() override;
+	private:
+		GLuint framebufferLocation;
+	};
+
+}

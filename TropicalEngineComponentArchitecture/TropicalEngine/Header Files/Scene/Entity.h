@@ -8,44 +8,49 @@
 
 #include "TransformComponent.h"
 
-/**
-  * Basic scene object with transform node. Functionality is extended by attaching components.
-  */
-class Entity : public ISerializableJSON
+namespace TropicalEngine
 {
-private:
-	QList<Component*> components;	//Had to be on top to initialize before transform.
 
-public:
-	TYPENAME("Entity")
+	/**
+	  * Basic scene object with transform node. Functionality is extended by attaching components.
+	  */
+	class Entity : public ISerializableJSON
+	{
+	private:
+		QList<Component*> components;	//Had to be on top to initialize before transform.
 
-	friend class Component;
-	friend class PropertiesWidget;
+	public:
+		TYPENAME("Entity")
 
-	TransformComponent transform;
-	QString name;
+			friend class Component;
+		friend class PropertiesWidget;
 
-	Entity(glm::vec3 position = glm::vec3(0.0f), glm::quat rotation = glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3 scale = glm::vec3(1.0f));
-	Entity(TransformComponent transform);
-	~Entity(void);
+		TransformComponent transform;
+		QString name;
 
-	Entity* getParrent();
-	void AttachSubobject(Entity* subobject);
-	void AttachTo(Entity* parrent);
-	Entity& operator<<(Entity* child);
-	const QList<Entity*>& getSubobjects();
+		Entity(glm::vec3 position = glm::vec3(0.0f), glm::quat rotation = glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3 scale = glm::vec3(1.0f));
+		Entity(TransformComponent transform);
+		~Entity(void);
 
-	void AttachComponent(Component* component);
-	void DeleteComponent(Component* component);	//is needed?
-	Entity& operator<<(Component* component);
+		Entity* getParrent();
+		void AttachSubobject(Entity* subobject);
+		void AttachTo(Entity* parrent);
+		Entity& operator<<(Entity* child);
+		const QList<Entity*>& getSubobjects();
 
-	QJsonObject toJSON() override;
-	IDeserializableFromJSON* fromJSON(QJsonObject JSON) override;
+		void AttachComponent(Component* component);
+		void DeleteComponent(Component* component);	//is needed?
+		Entity& operator<<(Component* component);
 
-private:
-	Entity* parrent;
+		QJsonObject toJSON() override;
+		IDeserializableFromJSON* fromJSON(QJsonObject JSON) override;
 
-	QList<Entity*> subobjects;
+	private:
+		Entity* parrent;
 
-	void DetachComponent(Component* component);
-};
+		QList<Entity*> subobjects;
+
+		void DetachComponent(Component* component);
+	};
+
+}

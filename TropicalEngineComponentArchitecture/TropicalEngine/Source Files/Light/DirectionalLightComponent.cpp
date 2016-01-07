@@ -1,89 +1,93 @@
 #include <Light/DirectionalLightComponent.h>
 
-DirectionalLightComponent DirectionalLightComponent::templateObject = DirectionalLightComponent::InitializeType();
-
-DirectionalLightComponent::DirectionalLightComponent() {}
-
-DirectionalLightComponent::DirectionalLightComponent(Entity* owner, glm::vec3 color, glm::vec3 direction, float brightness, bool isCastingShadows):LightComponent(owner, color, brightness, isCastingShadows)
+namespace TropicalEngine
 {
-	this->direction = direction;
 
-	InitializeComponentType();
-}
+	DirectionalLightComponent DirectionalLightComponent::templateObject = DirectionalLightComponent::InitializeType();
 
-DirectionalLightComponent::~DirectionalLightComponent(void)
-{
-	///TODO: implement it.
-}
+	DirectionalLightComponent::DirectionalLightComponent() {}
 
-DirectionalLightComponent DirectionalLightComponent::InitializeType()
-{
-	DirectionalLightComponent& directionalLightComponent = *(new DirectionalLightComponent());
-	AssetManager::addAssetType("Directional Light Component", &directionalLightComponent);
-	return directionalLightComponent;
-}
-
-void DirectionalLightComponent::InitializeComponentType()
-{
-	if (!isComponentTypeUsed(getTypeName()))
+	DirectionalLightComponent::DirectionalLightComponent(Entity* owner, glm::vec3 color, glm::vec3 direction, float brightness, bool isCastingShadows) :LightComponent(owner, color, brightness, isCastingShadows)
 	{
-		SetParrentComponentType("Light Component");
+		this->direction = direction;
 
-		AddParameter("Direction", "Vec3");
+		InitializeComponentType();
 	}
-}
 
-glm::vec3 DirectionalLightComponent::getDirection()
-{
-	return direction;
-}
+	DirectionalLightComponent::~DirectionalLightComponent(void)
+	{
+		///TODO: implement it.
+	}
 
-void DirectionalLightComponent::setDirection(glm::vec3 direction)
-{
-	this->direction = direction;
-	if (castingShadows)
-		DrawShadows();
-}
+	DirectionalLightComponent DirectionalLightComponent::InitializeType()
+	{
+		DirectionalLightComponent& directionalLightComponent = *(new DirectionalLightComponent());
+		AssetManager::addAssetType("Directional Light Component", &directionalLightComponent);
+		return directionalLightComponent;
+	}
 
-void DirectionalLightComponent::Evaluate()
-{
-	///TODO: implement it.
-}
+	void DirectionalLightComponent::InitializeComponentType()
+	{
+		if (!isComponentTypeUsed(getTypeName()))
+		{
+			SetParrentComponentType("Light Component");
 
-void DirectionalLightComponent::DrawShadows()
-{
-	///TODO: implement it.
-}
+			AddParameter("Direction", "Vec3");
+		}
+	}
 
-//QString DirectionalLightComponent::toXML()
-//{
-//	///TODO: implement it.
-//	return QString(getIndent() + "<DirectionalLightComponent/>\n");
-//}
+	glm::vec3 DirectionalLightComponent::getDirection()
+	{
+		return direction;
+	}
 
-QJsonObject DirectionalLightComponent::toJSON()
-{
-	QJsonObject JSON = LightComponent::toJSON();
-	QJsonObject directionObject = QJsonObject();
-	directionObject["x"] = direction.x;
-	directionObject["y"] = direction.y;
-	directionObject["z"] = direction.z;
-	JSON["direction"] = directionObject;
+	void DirectionalLightComponent::setDirection(glm::vec3 direction)
+	{
+		this->direction = direction;
+		if (castingShadows)
+			DrawShadows();
+	}
 
-	return JSON;
-}
+	void DirectionalLightComponent::Evaluate()
+	{
+		///TODO: implement it.
+	}
 
-IDeserializableFromJSON* DirectionalLightComponent::fromJSON(QJsonObject JSON)
-{
-	DirectionalLightComponent* object = new DirectionalLightComponent();
+	void DirectionalLightComponent::DrawShadows()
+	{
+		///TODO: implement it.
+	}
 
-	QJsonObject colorJSON = JSON["color"].toObject();
-	object->color = glm::vec3(colorJSON["r"].toDouble(), colorJSON["g"].toDouble(), colorJSON["b"].toDouble());
-	object->brightness = JSON["brightness"].toDouble();
-	object->castingShadows = JSON["casting shadows"].toBool();
+	//QString DirectionalLightComponent::toXML()
+	//{
+	//	///TODO: implement it.
+	//	return QString(getIndent() + "<DirectionalLightComponent/>\n");
+	//}
 
-	QJsonObject directionJSON = JSON["direction"].toObject();
-	object->direction = glm::vec3(directionJSON["x"].toDouble(), directionJSON["y"].toDouble(), directionJSON["z"].toDouble());
+	QJsonObject DirectionalLightComponent::toJSON()
+	{
+		QJsonObject JSON = LightComponent::toJSON();
+		QJsonObject directionObject = QJsonObject();
+		directionObject["x"] = direction.x;
+		directionObject["y"] = direction.y;
+		directionObject["z"] = direction.z;
+		JSON["direction"] = directionObject;
 
-	return object;
+		return JSON;
+	}
+
+	IDeserializableFromJSON* DirectionalLightComponent::fromJSON(QJsonObject JSON)
+	{
+		DirectionalLightComponent* object = new DirectionalLightComponent();
+
+		QJsonObject colorJSON = JSON["color"].toObject();
+		object->color = glm::vec3(colorJSON["r"].toDouble(), colorJSON["g"].toDouble(), colorJSON["b"].toDouble());
+		object->brightness = JSON["brightness"].toDouble();
+		object->castingShadows = JSON["casting shadows"].toBool();
+
+		QJsonObject directionJSON = JSON["direction"].toObject();
+		object->direction = glm::vec3(directionJSON["x"].toDouble(), directionJSON["y"].toDouble(), directionJSON["z"].toDouble());
+
+		return object;
+	}
 }

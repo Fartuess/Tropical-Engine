@@ -14,40 +14,44 @@
 #include "SceneGraphWidget.h"
 #include "PropertiesWidget.h"
 
-class MainWindow : public QMainWindow
+namespace TropicalEngine
 {
-	Q_OBJECT
-public:
-	QWidget* titleBar;
-	QHBoxLayout* TitleBarLayout;
 
-	QMenuBar* mainMenu;
-	QStatusBar* statusBar;
-	QMenu* fileMenu;
-	QMenu* assetsMenu;
-	QMenu* miscelanousMenu;
-	QWidget* superWidget;
-	QWidget* mainWidget;
-	QVBoxLayout* superLayout;
-	QHBoxLayout* mainLayout;
-	OpenGLWidget* openGLWindow;
+	class MainWindow : public QMainWindow
+	{
+		Q_OBJECT
+	public:
+		QWidget* titleBar;
+		QHBoxLayout* TitleBarLayout;
 
-	QMenuBar* mainMenuBar;	//is it needed?
-	QVBoxLayout* leftPanelLayout;
-	QVBoxLayout* rightPanelLayout;
+		QMenuBar* mainMenu;
+		QStatusBar* statusBar;
+		QMenu* fileMenu;
+		QMenu* assetsMenu;
+		QMenu* miscelanousMenu;
+		QWidget* superWidget;
+		QWidget* mainWidget;
+		QVBoxLayout* superLayout;
+		QHBoxLayout* mainLayout;
+		OpenGLWidget* openGLWindow;
 
-	SceneGraphWidget* sceneGraph;
-	PropertiesWidget* propertiesWidget;
+		QMenuBar* mainMenuBar;	//is it needed?
+		QVBoxLayout* leftPanelLayout;
+		QVBoxLayout* rightPanelLayout;
 
-	MainWindow(QWidget* parrent = 0, bool isFrameless = false);
-	~MainWindow(void);
+		SceneGraphWidget* sceneGraph;
+		PropertiesWidget* propertiesWidget;
 
-public slots:
-	void newLevel();
-	void saveLevel();
-	void saveLevelAs();
+		MainWindow(QWidget* parrent = 0, bool isFrameless = false);
+		~MainWindow(void);
 
-private:
-	QSizePolicy* expandVertically;
-};
+		public slots:
+		void newLevel();
+		void saveLevel();
+		void saveLevelAs();
 
+	private:
+		QSizePolicy* expandVertically;
+	};
+
+}

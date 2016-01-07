@@ -1,22 +1,27 @@
 #include <Utills/UpdateManager.h>
 #include <Utills/IUpdateable.h>
 
-UpdateManager::UpdateManager()
+namespace TropicalEngine
 {
 
-}
-
-
-UpdateManager::~UpdateManager()
-{
-}
-
-void UpdateManager::UpdateAll()
-{
-	int deltaTime = time.elapsed();
-	time.restart();
-	for (IUpdateable* object : objects)
+	UpdateManager::UpdateManager()
 	{
-		object->OnUpdate(deltaTime);
+
 	}
+
+
+	UpdateManager::~UpdateManager()
+	{
+	}
+
+	void UpdateManager::UpdateAll()
+	{
+		int deltaTime = time.elapsed();
+		time.restart();
+		for (IUpdateable* object : objects)
+		{
+			object->OnUpdate(deltaTime);
+		}
+	}
+
 }

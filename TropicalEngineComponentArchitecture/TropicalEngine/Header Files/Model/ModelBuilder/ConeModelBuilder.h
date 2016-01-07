@@ -1,34 +1,38 @@
 #pragma once
 #include "AbstractModelBuilder.h"
 
-/**
-  * Class for generating cone models.
-  */
-class ConeModelBuilder : public AbstractModelBuilder
+namespace TropicalEngine
 {
-public:
 
 	/**
-	  * \brief Default constructor.
+	  * Class for generating cone models.
 	  */
-	ConeModelBuilder();
+	class ConeModelBuilder : public AbstractModelBuilder
+	{
+	public:
 
-	/**
-	  * \brief Default destructor.
-	  */
-	~ConeModelBuilder();
+		/**
+		  * \brief Default constructor.
+		  */
+		ConeModelBuilder();
 
-	/**
-	  * \brief Resets values of parameters.
-	  */
-	void resetParameters() override;
+		/**
+		  * \brief Default destructor.
+		  */
+		~ConeModelBuilder();
 
-	/**
-	  * \brief Creates model using set parameters.
-	  *
-	  * Creates model using set parameters and adds it to model manager.
-	  * @return Generated model.
-	  */
-	class Model* Build() override;
-};
+		/**
+		  * \brief Resets values of parameters.
+		  */
+		void resetParameters() override;
 
+		/**
+		  * \brief Creates model using set parameters.
+		  *
+		  * Creates model using set parameters and adds it to model manager.
+		  * @return Generated model.
+		  */
+		class Model* Build() override;
+	};
+
+}

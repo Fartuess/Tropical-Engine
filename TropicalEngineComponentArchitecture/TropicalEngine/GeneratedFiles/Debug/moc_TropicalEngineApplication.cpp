@@ -18,29 +18,29 @@
 #endif
 
 QT_BEGIN_MOC_NAMESPACE
-struct qt_meta_stringdata_TropicalEngineApplication_t {
+struct qt_meta_stringdata_TropicalEngine__TropicalEngineApplication_t {
     QByteArrayData data[4];
-    char stringdata[43];
+    char stringdata[59];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
-    qptrdiff(offsetof(qt_meta_stringdata_TropicalEngineApplication_t, stringdata) + ofs \
+    qptrdiff(offsetof(qt_meta_stringdata_TropicalEngine__TropicalEngineApplication_t, stringdata) + ofs \
         - idx * sizeof(QByteArrayData)) \
     )
-static const qt_meta_stringdata_TropicalEngineApplication_t qt_meta_stringdata_TropicalEngineApplication = {
+static const qt_meta_stringdata_TropicalEngine__TropicalEngineApplication_t qt_meta_stringdata_TropicalEngine__TropicalEngineApplication = {
     {
-QT_MOC_LITERAL(0, 0, 25), // "TropicalEngineApplication"
-QT_MOC_LITERAL(1, 26, 10), // "Initialize"
-QT_MOC_LITERAL(2, 37, 0), // ""
-QT_MOC_LITERAL(3, 38, 4) // "Draw"
+QT_MOC_LITERAL(0, 0, 41), // "TropicalEngine::TropicalEngin..."
+QT_MOC_LITERAL(1, 42, 10), // "Initialize"
+QT_MOC_LITERAL(2, 53, 0), // ""
+QT_MOC_LITERAL(3, 54, 4) // "Draw"
 
     },
-    "TropicalEngineApplication\0Initialize\0"
-    "\0Draw"
+    "TropicalEngine::TropicalEngineApplication\0"
+    "Initialize\0\0Draw"
 };
 #undef QT_MOC_LITERAL
 
-static const uint qt_meta_data_TropicalEngineApplication[] = {
+static const uint qt_meta_data_TropicalEngine__TropicalEngineApplication[] = {
 
  // content:
        7,       // revision
@@ -64,7 +64,7 @@ static const uint qt_meta_data_TropicalEngineApplication[] = {
        0        // eod
 };
 
-void TropicalEngineApplication::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
+void TropicalEngine::TropicalEngineApplication::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
         TropicalEngineApplication *_t = static_cast<TropicalEngineApplication *>(_o);
@@ -77,26 +77,26 @@ void TropicalEngineApplication::qt_static_metacall(QObject *_o, QMetaObject::Cal
     Q_UNUSED(_a);
 }
 
-const QMetaObject TropicalEngineApplication::staticMetaObject = {
-    { &QApplication::staticMetaObject, qt_meta_stringdata_TropicalEngineApplication.data,
-      qt_meta_data_TropicalEngineApplication,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
+const QMetaObject TropicalEngine::TropicalEngineApplication::staticMetaObject = {
+    { &QApplication::staticMetaObject, qt_meta_stringdata_TropicalEngine__TropicalEngineApplication.data,
+      qt_meta_data_TropicalEngine__TropicalEngineApplication,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
 };
 
 
-const QMetaObject *TropicalEngineApplication::metaObject() const
+const QMetaObject *TropicalEngine::TropicalEngineApplication::metaObject() const
 {
     return QObject::d_ptr->metaObject ? QObject::d_ptr->dynamicMetaObject() : &staticMetaObject;
 }
 
-void *TropicalEngineApplication::qt_metacast(const char *_clname)
+void *TropicalEngine::TropicalEngineApplication::qt_metacast(const char *_clname)
 {
     if (!_clname) return Q_NULLPTR;
-    if (!strcmp(_clname, qt_meta_stringdata_TropicalEngineApplication.stringdata))
+    if (!strcmp(_clname, qt_meta_stringdata_TropicalEngine__TropicalEngineApplication.stringdata))
         return static_cast<void*>(const_cast< TropicalEngineApplication*>(this));
     return QApplication::qt_metacast(_clname);
 }
 
-int TropicalEngineApplication::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
+int TropicalEngine::TropicalEngineApplication::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 {
     _id = QApplication::qt_metacall(_c, _id, _a);
     if (_id < 0)

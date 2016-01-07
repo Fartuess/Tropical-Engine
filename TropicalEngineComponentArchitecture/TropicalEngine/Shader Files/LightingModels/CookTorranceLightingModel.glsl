@@ -21,7 +21,7 @@ vec3 g_diffuseChannel;
 vec3 g_specularChannel;
 
 //private
-void calculateCookTorrance(in vec3 lightVector, in vec3 lightColor, in float brightness, in vec3 normal, in vec3 eye, float roughness, inout vec3 diffuseIntensity, inout vec3 specularIntensity)
+void calculateCookTorrance(in vec3 lightVector, in vec3 lightColor, in float brightness, in vec3 normal, in vec3 eye, float roughness, float refractiveIndex, inout vec3 diffuseIntensity, inout vec3 specularIntensity)
 {
 	float nDotL = max(dot(lightVector, normal), 0.0);
 	if (nDotL > 0.0)
@@ -33,7 +33,7 @@ void calculateCookTorrance(in vec3 lightVector, in vec3 lightColor, in float bri
 		float beckmanDistribution = exp(-pow(tan(alphaDegree), 2) / pow(roughness, 2)) / (M_PI * pow(roughness, 2) * pow(cos(alphaDegree), 4));
 
 		//schlick's approximation of fresnel
-		float R = pow((1 - mat_refractiveIndex) / (1 + mat_refractiveIndex), 2);
+		float R = pow((1 - refractiveIndex) / (1 + refractiveIndex), 2);
 		float eDotH = max(dot(eye, H), 0);
 		float fresnel = R + (1 - R) * pow(cos(eDotH), 5);
 
@@ -51,7 +51,7 @@ void calculateCookTorrance(in vec3 lightVector, in vec3 lightColor, in float bri
 */
 void calculateLightingModel(in vec3 lightVector, in vec3 lightColor, in float lightBrightness)
 {
-	calculateCookTorrance(lightVector, lightColor, lightBrightness, g_normal, g_eye, g_roughnessInput, g_diffuseChannel, g_specularChannel);
+	calculateCookTorrance(lightVector, lightColor, lightBrightness, g_normal, g_eye, g_roughnessInput, g_refractiveIndexInput, g_diffuseChannel, g_specularChannel);
 }
 
 /**

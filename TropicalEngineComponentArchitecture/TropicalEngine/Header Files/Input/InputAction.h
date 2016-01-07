@@ -1,36 +1,41 @@
 #pragma once
 #include <QtCore/qtime>
 
-enum InputState
+namespace TropicalEngine
 {
-	Pressed,
-	Active,
-	Released,
-	Inactive,
-	MixedPressed,
-	MixedReleased
-};
 
-class InputAction
-{
-public:
-	InputAction();
+	enum InputState
+	{
+		Pressed,
+		Active,
+		Released,
+		Inactive,
+		MixedPressed,
+		MixedReleased
+	};
 
-	~InputAction();
+	class InputAction
+	{
+	public:
+		InputAction();
 
-	InputState getState();
-	int getTime(int scriptTime);
+		~InputAction();
 
-	void Press();
-	void Release();
-	void Update();
+		InputState getState();
+		int getTime(int scriptTime);
 
-private:
-	InputState state = Inactive;
-	QTime timer;
-	int PressTimestamp;
-	int ReleaseTimestamp;
-	int timeHeld;
-	int updateTime;
-	InputAction* previousFrame;
-};
+		void Press();
+		void Release();
+		void Update();
+
+	private:
+		InputState state = Inactive;
+		QTime timer;
+		int PressTimestamp;
+		int ReleaseTimestamp;
+		int timeHeld;
+		int updateTime;
+		InputAction* previousFrame;
+	};
+
+}

@@ -2,19 +2,23 @@
 #include <QtCore/qmap.h>
 #include <QtCore/qtime>
 
-class UpdateManager
+namespace TropicalEngine
 {
-public:
-	friend class IUpdateable;
 
-	UpdateManager();
-	~UpdateManager();
+	class UpdateManager
+	{
+	public:
+		friend class IUpdateable;
 
-	void UpdateAll();
-	void Update(class IUpdateable* object);	//it makes mess with delta times
+		UpdateManager();
+		~UpdateManager();
 
-private:
-	QMultiMap<int, IUpdateable*> objects;
-	QTime time;
-};
+		void UpdateAll();
+		void Update(class IUpdateable* object);	//it makes mess with delta times
 
+	private:
+		QMultiMap<int, IUpdateable*> objects;
+		QTime time;
+	};
+
+}

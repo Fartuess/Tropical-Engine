@@ -8,62 +8,65 @@
 
 #include "TropicalEngineApplication.h"
 
-Material::Material(Shader* shader, QString name) : parameters()
+namespace TropicalEngine
 {
-	this->name = name;
-	this->shader = shader;
-	for (QString parameterName : this->shader->getMaterialParameters().keys())
+
+	Material::Material(Shader* shader, QString name) : parameters()
 	{
-		parameters[parameterName] =  nullptr;
-	}
-	TropicalEngineApplication::instance()->materialManager->materials.insert(name, this);
-}
-
-Material::~Material(void)
-{
-	for (ModelComponent* modelComponent : TropicalEngineApplication::instance()->modelController->modelComponents)
-	{
-		if (modelComponent->material == this)
-			modelComponent->material = this->getShader()->defaultMaterial;
-	}
-}
-
-QString Material::getName()
-{
-	return name;
-}
-
-void Material::setName(QString name)
-{
-	///TODO: implement changing keynames in Material Managers.
-	this->name = name;
-}
-
-Shader* Material::getShader()
-{
-	return shader;
-}
-
-void Material::Use()
-{
-	shader->Use();
-	TropicalEngineApplication::instance()->textureManager->resetTextureIterator();
-	if (shader->getCurrentMaterial() != this)
-	{
-		for (QString parameter : parameters.keys())
+		this->name = name;
+		this->shader = shader;
+		for (QString parameterName : this->shader->getMaterialParameters().keys())
 		{
-			ActivateParameter(parameter, *parameters[parameter]);
+			parameters[parameterName] = nullptr;
+		}
+		TropicalEngineApplication::instance()->materialManager->materials.insert(name, this);
+	}
+
+	Material::~Material(void)
+	{
+		for (ModelComponent* modelComponent : TropicalEngineApplication::instance()->modelController->modelComponents)
+		{
+			if (modelComponent->material == this)
+				modelComponent->material = this->getShader()->defaultMaterial;
 		}
 	}
-}
 
-void Material::ActivateParameter(QString name, void* value)
-{
-	if (value == nullptr) return;
-
-	GLuint parameterLocation = shader->getParameterLocation(name);
-	switch (shader->getParameterType(name))
+	QString Material::getName()
 	{
+		return name;
+	}
+
+	void Material::setName(QString name)
+	{
+		///TODO: implement changing keynames in Material Managers.
+		this->name = name;
+	}
+
+	Shader* Material::getShader()
+	{
+		return shader;
+	}
+
+	void Material::Use()
+	{
+		shader->Use();
+		TropicalEngineApplication::instance()->textureManager->resetTextureIterator();
+		if (shader->getCurrentMaterial() != this)
+		{
+			for (QString parameter : parameters.keys())
+			{
+				ActivateParameter(parameter, *parameters[parameter]);
+			}
+		}
+	}
+
+	void Material::ActivateParameter(QString name, void* value)
+	{
+		if (value == nullptr) return;
+
+		GLuint parameterLocation = shader->getParameterLocation(name);
+		switch (shader->getParameterType(name))
+		{
 		case GL_FLOAT:
 			ActivateParameter(parameterLocation, (float*)(value));
 			break;
@@ -87,80 +90,80 @@ void Material::ActivateParameter(QString name, void* value)
 			break;
 		default:
 			break;
-	}
-}
-
-void Material::ActivateParameter(GLuint location, float* value)
-{
-	glUniform1f(location, *value);
-}
-
-void Material::ActivateParameter(GLuint location, glm::vec2* value)
-{
-	glUniform2f(location, value->x, value->y);
-}
-
-void Material::ActivateParameter(GLuint location, glm::vec3* value)
-{
-	glUniform3f(location, value->x, value->y, value->z);
-}
-
-void Material::ActivateParameter(GLuint location, glm::vec4* value)
-{
-	glUniform4f(location, value->x, value->y, value->z, value->w);
-}
-
-void Material::ActivateParameter(GLuint location, glm::mat3* value)
-{
-	glUniformMatrix3fv(location, 1, false, (GLfloat*)value);
-}
-
-void Material::ActivateParameter(GLuint location, glm::mat4* value)
-{
-	glUniformMatrix4fv(location, 1, false, (GLfloat*)value);
-}
-
-void Material::ActivateParameter(GLuint location, Texture* value)
-{
-	value->ActivateTexture(location);
-}
-
-void Material::SetParameter(QString name, void* parameter)
-{
-	parameters[name] = parameter;
-}
-
-//QString Material::toXML()
-//{
-//	///TODO: implement it.
-//	QString XMLString = QString(getIndent() + "<Material name = \"" + name + "\" shader = \"" + getShader()->getName() + "\">\n");
-//	increaseIndent();
-//	///TODO: save material parameters
-//	decreaseIndent();
-//	XMLString += QString(getIndent() + "</Material>\n");
-//
-//	return XMLString;
-//}
-
-QJsonObject Material::toJSON()
-{
-	QJsonObject JSON = QJsonObject();
-	JSON["name"] = name;
-	JSON["shader"] = shader->getName();
-
-	QJsonArray materialParametersJSON = QJsonArray();
-	for (QString materialParameter : parameters.keys())
-	{
-		if ((*parameters[materialParameter]) == NULL)
-		{
-			continue;
 		}
-		QJsonObject materialParameterJSON = QJsonObject();
-		materialParameterJSON["name"] = materialParameter;
-		materialParameterJSON["type"] = QString::number(shader->getParameterType(materialParameter));
-		QJsonObject valueJSON = QJsonObject();
-		switch (shader->getParameterType(materialParameter))
+	}
+
+	void Material::ActivateParameter(GLuint location, float* value)
+	{
+		glUniform1f(location, *value);
+	}
+
+	void Material::ActivateParameter(GLuint location, glm::vec2* value)
+	{
+		glUniform2f(location, value->x, value->y);
+	}
+
+	void Material::ActivateParameter(GLuint location, glm::vec3* value)
+	{
+		glUniform3f(location, value->x, value->y, value->z);
+	}
+
+	void Material::ActivateParameter(GLuint location, glm::vec4* value)
+	{
+		glUniform4f(location, value->x, value->y, value->z, value->w);
+	}
+
+	void Material::ActivateParameter(GLuint location, glm::mat3* value)
+	{
+		glUniformMatrix3fv(location, 1, false, (GLfloat*)value);
+	}
+
+	void Material::ActivateParameter(GLuint location, glm::mat4* value)
+	{
+		glUniformMatrix4fv(location, 1, false, (GLfloat*)value);
+	}
+
+	void Material::ActivateParameter(GLuint location, Texture* value)
+	{
+		value->ActivateTexture(location);
+	}
+
+	void Material::SetParameter(QString name, void* parameter)
+	{
+		parameters[name] = parameter;
+	}
+
+	//QString Material::toXML()
+	//{
+	//	///TODO: implement it.
+	//	QString XMLString = QString(getIndent() + "<Material name = \"" + name + "\" shader = \"" + getShader()->getName() + "\">\n");
+	//	increaseIndent();
+	//	///TODO: save material parameters
+	//	decreaseIndent();
+	//	XMLString += QString(getIndent() + "</Material>\n");
+	//
+	//	return XMLString;
+	//}
+
+	QJsonObject Material::toJSON()
+	{
+		QJsonObject JSON = QJsonObject();
+		JSON["name"] = name;
+		JSON["shader"] = shader->getName();
+
+		QJsonArray materialParametersJSON = QJsonArray();
+		for (QString materialParameter : parameters.keys())
 		{
+			if ((*parameters[materialParameter]) == NULL)
+			{
+				continue;
+			}
+			QJsonObject materialParameterJSON = QJsonObject();
+			materialParameterJSON["name"] = materialParameter;
+			materialParameterJSON["type"] = QString::number(shader->getParameterType(materialParameter));
+			QJsonObject valueJSON = QJsonObject();
+			switch (shader->getParameterType(materialParameter))
+			{
 			case GL_FLOAT:
 			{
 				valueJSON["x"] = *((float*)(*parameters[materialParameter]));
@@ -302,26 +305,26 @@ QJsonObject Material::toJSON()
 			{
 				break;
 			}
+			}
+			materialParameterJSON["value"] = valueJSON;
+			materialParametersJSON.push_back(materialParameterJSON);
 		}
-		materialParameterJSON["value"] = valueJSON;
-		materialParametersJSON.push_back(materialParameterJSON);
+		JSON["parameters"] = materialParametersJSON;
+
+		return JSON;
 	}
-	JSON["parameters"] = materialParametersJSON;
 
-	return JSON;
-}
-
-IDeserializableFromJSON* Material::fromJSON(QJsonObject JSON)
-{
-	QString name = JSON["name"].toString();
-	Shader* shader = TropicalEngineApplication::instance()->shaderManager->getShader(JSON["shader"].toString());
-	Material* object = new Material(shader, name);
-
-	for (QJsonValueRef parameterJSON : JSON["parameters"].toArray())
+	IDeserializableFromJSON* Material::fromJSON(QJsonObject JSON)
 	{
-		QString parameterName = parameterJSON.toObject()["name"].toString();
-		switch (parameterJSON.toObject()["type"].toInt())
+		QString name = JSON["name"].toString();
+		Shader* shader = TropicalEngineApplication::instance()->shaderManager->getShader(JSON["shader"].toString());
+		Material* object = new Material(shader, name);
+
+		for (QJsonValueRef parameterJSON : JSON["parameters"].toArray())
 		{
+			QString parameterName = parameterJSON.toObject()["name"].toString();
+			switch (parameterJSON.toObject()["type"].toInt())
+			{
 			case GL_FLOAT:
 			{
 				float* value = new float(parameterJSON.toObject()["x"].toDouble());
@@ -414,8 +417,9 @@ IDeserializableFromJSON* Material::fromJSON(QJsonObject JSON)
 			{
 				break;
 			}
+			}
 		}
-	}
 
-	return object;
+		return object;
+	}
 }

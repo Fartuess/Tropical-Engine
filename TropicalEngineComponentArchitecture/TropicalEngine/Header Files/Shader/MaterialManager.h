@@ -4,28 +4,32 @@
 
 #include "Material.h"
 
-class MaterialManager
+namespace TropicalEngine
 {
-public:
-	friend class Texture;
-	friend class TextureManager;
-	friend class Material;
 
-	MaterialManager(void);
-	~MaterialManager(void);
+	class MaterialManager
+	{
+	public:
+		friend class Texture;
+		friend class TextureManager;
+		friend class Material;
 
-	Material* operator[](QString name)	{ return materials[name]; };
-	const Material* operator[](QString name) const	{ return materials[name]; };
+		MaterialManager(void);
+		~MaterialManager(void);
 
-	///TODO: Rethink Load method.
-	Material* Load(class Shader* shader, QString name);	//temporal declaration
+		Material* operator[](QString name)	{ return materials[name]; };
+		const Material* operator[](QString name) const	{ return materials[name]; };
 
-	void UseMaterial(QString name);
-	void UseMaterial(Material* material);
+		///TODO: Rethink Load method.
+		Material* Load(class Shader* shader, QString name);	//temporal declaration
 
-private:
-	QHash<QString, Material*> materials;
+		void UseMaterial(QString name);
+		void UseMaterial(Material* material);
 
-	void FlushMaterial(QString name, bool forced = false);
-};
+	private:
+		QHash<QString, Material*> materials;
 
+		void FlushMaterial(QString name, bool forced = false);
+	};
+
+}

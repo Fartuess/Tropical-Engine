@@ -1,33 +1,38 @@
 #include <Serialization/ISerializableToXML.h>
 
-int ISerializableToXML::indentLevel;
-
-void ISerializableToXML::resetIndent()
+namespace TropicalEngine
 {
-	indentLevel = 0;
-}
 
-void ISerializableToXML::increaseIndent()
-{
-	indentLevel++;
-}
+	int ISerializableToXML::indentLevel;
 
-void ISerializableToXML::decreaseIndent()
-{
-	indentLevel--;
-}
-
-int ISerializableToXML::getIndentLevel()
-{
-	return indentLevel;
-}
-
-QString ISerializableToXML::getIndent()
-{
-	QString indent = "";
-	for (int i = 0; i < indentLevel; i++)
+	void ISerializableToXML::resetIndent()
 	{
-		indent += "\t";
+		indentLevel = 0;
 	}
-	return indent;
+
+	void ISerializableToXML::increaseIndent()
+	{
+		indentLevel++;
+	}
+
+	void ISerializableToXML::decreaseIndent()
+	{
+		indentLevel--;
+	}
+
+	int ISerializableToXML::getIndentLevel()
+	{
+		return indentLevel;
+	}
+
+	QString ISerializableToXML::getIndent()
+	{
+		QString indent = "";
+		for (int i = 0; i < indentLevel; i++)
+		{
+			indent += "\t";
+		}
+		return indent;
+	}
+
 }

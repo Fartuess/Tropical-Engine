@@ -7,86 +7,90 @@
 
 #include "Asset.h"
 
-/**
-  * Package class used as containers for assets.
-  */
-class Package : public ISerializableJSON
+namespace TropicalEngine
 {
-public:
-	TYPENAME("Package")
 
 	/**
-	  * \brief Constructor for Package class.
-	  *
-	  * @param name Name for new Package.
+	  * Package class used as containers for assets.
 	  */
-	Package(QString name);
+	class Package : public ISerializableJSON
+	{
+	public:
+		TYPENAME("Package")
 
-	/**
-	  * \brief Default destructor.
-	  */
-	~Package(void);
+			/**
+			  * \brief Constructor for Package class.
+			  *
+			  * @param name Name for new Package.
+			  */
+			  Package(QString name);
 
-	/**
-	  * \brief Initialized type in global typemap.
-	  */
-	static Package InitializeType();
+		/**
+		  * \brief Default destructor.
+		  */
+		~Package(void);
 
-	/**
-	  * \brief Gets name of the Package.
-	  *
-	  * @return Name of the Package.
-	  */
-	QString getName();
+		/**
+		  * \brief Initialized type in global typemap.
+		  */
+		static Package InitializeType();
 
-	/**
-	  * \brief Sets name of the Package.
-	  *
-	  * @param name Name to be set.
-	  */
-	void setName(QString name);
+		/**
+		  * \brief Gets name of the Package.
+		  *
+		  * @return Name of the Package.
+		  */
+		QString getName();
 
-	/**
-	  * \brief Gets asset with name.
-	  *
-	  * @param name Name of asset to search.
-	  * @return Found asset.
-	  */
-	Asset* const getAsset(QString name);
+		/**
+		  * \brief Sets name of the Package.
+		  *
+		  * @param name Name to be set.
+		  */
+		void setName(QString name);
 
-	/**
-	  * \brief Adds asset to the package.
-	  *
-	  * @param asset Asset to be added.
-	  */
-	void addAsset(Asset* asset);
+		/**
+		  * \brief Gets asset with name.
+		  *
+		  * @param name Name of asset to search.
+		  * @return Found asset.
+		  */
+		Asset* const getAsset(QString name);
 
-	/**
-	  * \brief Adds asset to the package.
-	  *
-	  * @param asset Asset to be added.
-	  */
-	Package& operator<<(Asset* asset);
+		/**
+		  * \brief Adds asset to the package.
+		  *
+		  * @param asset Asset to be added.
+		  */
+		void addAsset(Asset* asset);
 
-	/**
-	  * \brief Serializes Package to JSON object.
-	  *
-	  * @return Result of serialization.
-	  */
-	QJsonObject toJSON() override;
+		/**
+		  * \brief Adds asset to the package.
+		  *
+		  * @param asset Asset to be added.
+		  */
+		Package& operator<<(Asset* asset);
 
-	/**
-	  * \brief Deserializes Package from JSON object.
-	  *
-	  * @param JSON JSON object to deserialize from.
-	  * @return Package object.
-	  */
-	IDeserializableFromJSON* fromJSON(QJsonObject JSON) override;
+		/**
+		  * \brief Serializes Package to JSON object.
+		  *
+		  * @return Result of serialization.
+		  */
+		QJsonObject toJSON() override;
 
-private:
-	QMap<QString, Asset*> assets;
-	QString name;
+		/**
+		  * \brief Deserializes Package from JSON object.
+		  *
+		  * @param JSON JSON object to deserialize from.
+		  * @return Package object.
+		  */
+		IDeserializableFromJSON* fromJSON(QJsonObject JSON) override;
 
-	static Package templateObject;
-};
+	private:
+		QMap<QString, Asset*> assets;
+		QString name;
 
+		static Package templateObject;
+	};
+
+}

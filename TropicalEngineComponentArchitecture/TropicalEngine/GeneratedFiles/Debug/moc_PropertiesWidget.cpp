@@ -18,27 +18,28 @@
 #endif
 
 QT_BEGIN_MOC_NAMESPACE
-struct qt_meta_stringdata_PropertiesWidget_t {
+struct qt_meta_stringdata_TropicalEngine__PropertiesWidget_t {
     QByteArrayData data[3];
-    char stringdata[25];
+    char stringdata[41];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
-    qptrdiff(offsetof(qt_meta_stringdata_PropertiesWidget_t, stringdata) + ofs \
+    qptrdiff(offsetof(qt_meta_stringdata_TropicalEngine__PropertiesWidget_t, stringdata) + ofs \
         - idx * sizeof(QByteArrayData)) \
     )
-static const qt_meta_stringdata_PropertiesWidget_t qt_meta_stringdata_PropertiesWidget = {
+static const qt_meta_stringdata_TropicalEngine__PropertiesWidget_t qt_meta_stringdata_TropicalEngine__PropertiesWidget = {
     {
-QT_MOC_LITERAL(0, 0, 16), // "PropertiesWidget"
-QT_MOC_LITERAL(1, 17, 6), // "Reload"
-QT_MOC_LITERAL(2, 24, 0) // ""
+QT_MOC_LITERAL(0, 0, 32), // "TropicalEngine::PropertiesWidget"
+QT_MOC_LITERAL(1, 33, 6), // "Reload"
+QT_MOC_LITERAL(2, 40, 0) // ""
 
     },
-    "PropertiesWidget\0Reload\0"
+    "TropicalEngine::PropertiesWidget\0"
+    "Reload\0"
 };
 #undef QT_MOC_LITERAL
 
-static const uint qt_meta_data_PropertiesWidget[] = {
+static const uint qt_meta_data_TropicalEngine__PropertiesWidget[] = {
 
  // content:
        7,       // revision
@@ -60,7 +61,7 @@ static const uint qt_meta_data_PropertiesWidget[] = {
        0        // eod
 };
 
-void PropertiesWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
+void TropicalEngine::PropertiesWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
         PropertiesWidget *_t = static_cast<PropertiesWidget *>(_o);
@@ -72,26 +73,26 @@ void PropertiesWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int
     Q_UNUSED(_a);
 }
 
-const QMetaObject PropertiesWidget::staticMetaObject = {
-    { &QTreeWidget::staticMetaObject, qt_meta_stringdata_PropertiesWidget.data,
-      qt_meta_data_PropertiesWidget,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
+const QMetaObject TropicalEngine::PropertiesWidget::staticMetaObject = {
+    { &QTreeWidget::staticMetaObject, qt_meta_stringdata_TropicalEngine__PropertiesWidget.data,
+      qt_meta_data_TropicalEngine__PropertiesWidget,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
 };
 
 
-const QMetaObject *PropertiesWidget::metaObject() const
+const QMetaObject *TropicalEngine::PropertiesWidget::metaObject() const
 {
     return QObject::d_ptr->metaObject ? QObject::d_ptr->dynamicMetaObject() : &staticMetaObject;
 }
 
-void *PropertiesWidget::qt_metacast(const char *_clname)
+void *TropicalEngine::PropertiesWidget::qt_metacast(const char *_clname)
 {
     if (!_clname) return Q_NULLPTR;
-    if (!strcmp(_clname, qt_meta_stringdata_PropertiesWidget.stringdata))
+    if (!strcmp(_clname, qt_meta_stringdata_TropicalEngine__PropertiesWidget.stringdata))
         return static_cast<void*>(const_cast< PropertiesWidget*>(this));
     return QTreeWidget::qt_metacast(_clname);
 }
 
-int PropertiesWidget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
+int TropicalEngine::PropertiesWidget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 {
     _id = QTreeWidget::qt_metacall(_c, _id, _a);
     if (_id < 0)

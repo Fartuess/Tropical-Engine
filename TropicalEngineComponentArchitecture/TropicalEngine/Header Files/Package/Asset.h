@@ -3,61 +3,65 @@
 
 #include <Serialization/ISerializableJSON.h>
 
-/**
-  * Asset class.
-  */
-class Asset : public ISerializableJSON
+namespace TropicalEngine
 {
-public:
-	TYPENAME("Asset")
 
 	/**
-	  * \brief Name of the asset.
+	  * Asset class.
 	  */
-	QString name;
+	class Asset : public ISerializableJSON
+	{
+	public:
+		TYPENAME("Asset")
 
-	/**
-	  * \brief Name of type of this asset.
-	  */
-	QString type;
+			/**
+			  * \brief Name of the asset.
+			  */
+			  QString name;
 
-	/**
-	  * \brief Resource of this asset.
-	  */
-	ISerializableJSON* asset;
+		/**
+		  * \brief Name of type of this asset.
+		  */
+		QString type;
 
-	/**
-	  * \brief Constructor of Asset.
-	  *
-	  * @param name Name of new Asset.
-	  * @param asset Resource to be stored in Asset.
-	  */
-	Asset(QString name, ISerializableJSON* asset);
-	//Asset(QString name, QString type, QJsonObject JSON);
+		/**
+		  * \brief Resource of this asset.
+		  */
+		ISerializableJSON* asset;
 
-	/**
-	  * \brief Default destructor.
-	  */
-	~Asset();
-	//static Asset InitializeType();
+		/**
+		  * \brief Constructor of Asset.
+		  *
+		  * @param name Name of new Asset.
+		  * @param asset Resource to be stored in Asset.
+		  */
+		Asset(QString name, ISerializableJSON* asset);
+		//Asset(QString name, QString type, QJsonObject JSON);
 
-	/**
-	  * \brief Serializes Asset to JSON object.
-	  *
-	  * @return Result of serialization.
-	  */
-	QJsonObject toJSON() override;
+		/**
+		  * \brief Default destructor.
+		  */
+		~Asset();
+		//static Asset InitializeType();
 
-	/**
-	  * \brief Deserializes Asset from JSON object.
-	  *
-	  * @param JSON JSON object to deserialize from.
-	  * @return Asset object.
-	  */
-	IDeserializableFromJSON* fromJSON(QJsonObject JSON) override;
+		/**
+		  * \brief Serializes Asset to JSON object.
+		  *
+		  * @return Result of serialization.
+		  */
+		QJsonObject toJSON() override;
 
-private:
-	Asset();
-//	static Asset templateObject;
-};
+		/**
+		  * \brief Deserializes Asset from JSON object.
+		  *
+		  * @param JSON JSON object to deserialize from.
+		  * @return Asset object.
+		  */
+		IDeserializableFromJSON* fromJSON(QJsonObject JSON) override;
 
+	private:
+		Asset();
+		//	static Asset templateObject;
+	};
+
+}

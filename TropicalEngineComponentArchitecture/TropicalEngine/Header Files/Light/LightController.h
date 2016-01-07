@@ -3,27 +3,31 @@
 
 #include "LightComponent.h"
 
-class ModelComponent;
-
-class LightController
+namespace TropicalEngine
 {
-public:
-	friend class LightComponent;
 
-	LightController(void);
-	~LightController(void);
+	class ModelComponent;
 
-	QList<LightComponent*> getLights();	//should it return static reference?
-	QList<ModelComponent*> getShadowcasters();
+	class LightController
+	{
+	public:
+		friend class LightComponent;
 
-	void EvaluateAll();
-	void EvaluateShadowsAll();
+		LightController(void);
+		~LightController(void);
 
-private:
-	QList<LightComponent*> lights;
-	QList<LightComponent*> lightShadows;
-	QList<ModelComponent*> shadowcasters;
+		QList<LightComponent*> getLights();	//should it return static reference?
+		QList<ModelComponent*> getShadowcasters();
 
-	void DropComponent(LightComponent* component);
-};
+		void EvaluateAll();
+		void EvaluateShadowsAll();
 
+	private:
+		QList<LightComponent*> lights;
+		QList<LightComponent*> lightShadows;
+		QList<ModelComponent*> shadowcasters;
+
+		void DropComponent(LightComponent* component);
+	};
+
+}

@@ -13,7 +13,7 @@ void calculateLambert(in vec3 lightVector, in vec3 lightColor, in float lightBri
 	float nDotL = max(dot(lightVector, normal), 0.0);
 	if (nDotL > 0.0)
 	{
-		diffuseIntensity += lightColor * brightness *  nDotL;
+		diffuseIntensity += lightColor * lightBrightness *  nDotL;
 	}
 }
 

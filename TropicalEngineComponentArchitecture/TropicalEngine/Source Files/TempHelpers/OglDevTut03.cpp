@@ -15,19 +15,24 @@
 
 #include "TropicalEngineApplication.h"
 
-void OglDevTut03::Initialize()
+namespace TropicalEngine
 {
-	InitializeLevel();
-	deltaTimer.start();
-}
 
-void OglDevTut03::Draw()
-{
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	deltaTime = deltaTimer.restart();
-	TropicalEngineApplication::instance()->inputManager->Update();
-	TropicalEngineApplication::instance()->sceneManager->getCurrentCamera()->CalculateMatrix();
+	void OglDevTut03::Initialize()
+	{
+		InitializeLevel();
+		deltaTimer.start();
+	}
 
-	TropicalEngineApplication::instance()->sceneManager->EvaluateLevels();	///TODO: Evaluate only changed
-	TropicalEngineApplication::instance()->modelController->DrawAll(TropicalEngineApplication::instance()->sceneManager->getCurrentCamera());
+	void OglDevTut03::Draw()
+	{
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		deltaTime = deltaTimer.restart();
+		TropicalEngineApplication::instance()->inputManager->Update();
+		TropicalEngineApplication::instance()->sceneManager->getCurrentCamera()->CalculateMatrix();
+
+		TropicalEngineApplication::instance()->sceneManager->EvaluateLevels();	///TODO: Evaluate only changed
+		TropicalEngineApplication::instance()->modelController->DrawAll(TropicalEngineApplication::instance()->sceneManager->getCurrentCamera());
+	}
+
 }

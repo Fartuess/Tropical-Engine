@@ -1,34 +1,38 @@
 #pragma once
 #include "AbstractModelBuilder.h"
 
-/**
-  * Class for generating torus models.
-  */
-class TorusModelBuilder : public AbstractModelBuilder
+namespace TropicalEngine
 {
-public:
 
 	/**
-	  * \brief Default constructor.
+	  * Class for generating torus models.
 	  */
-	TorusModelBuilder();
+	class TorusModelBuilder : public AbstractModelBuilder
+	{
+	public:
 
-	/**
-	  * \brief Default destructor.
-	  */
-	~TorusModelBuilder();
+		/**
+		  * \brief Default constructor.
+		  */
+		TorusModelBuilder();
 
-	/**
-	  * \brief Resets values of parameters.
-	  */
-	void resetParameters() override;
+		/**
+		  * \brief Default destructor.
+		  */
+		~TorusModelBuilder();
 
-	/**
-	  * \brief Creates model using set parameters.
-	  *
-	  * Creates model using set parameters and adds it to model manager.
-	  * @return Generated model.
-	  */
-	class Model* Build() override;
-};
+		/**
+		  * \brief Resets values of parameters.
+		  */
+		void resetParameters() override;
 
+		/**
+		  * \brief Creates model using set parameters.
+		  *
+		  * Creates model using set parameters and adds it to model manager.
+		  * @return Generated model.
+		  */
+		class Model* Build() override;
+	};
+
+}

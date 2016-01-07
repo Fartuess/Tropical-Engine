@@ -8,27 +8,32 @@
 
 #include "InputAction.h"
 
-class InputManager
+namespace TropicalEngine
 {
-public:
-	glm::vec2 lastMousePosition;
-	glm::vec2 mousePosition;
 
-	InputManager(void);
-	~InputManager(void);
+	class InputManager
+	{
+	public:
+		glm::vec2 lastMousePosition;
+		glm::vec2 mousePosition;
 
-	void PressKey(int key);
-	void ReleaseKey(int key);
-	void Update();
+		InputManager(void);
+		~InputManager(void);
 
-	void AddAction(QString actionName);
-	void AddAction(QString actionName, int key);
-	void BindAction(QString actionName, int key);
+		void PressKey(int key);
+		void ReleaseKey(int key);
+		void Update();
 
-	InputState getState(QString actionName);
-	int getTime(QString actionName, int queriedTime);
+		void AddAction(QString actionName);
+		void AddAction(QString actionName, int key);
+		void BindAction(QString actionName, int key);
 
-private:
-	QHash<QString, InputAction*> keyStates;
-	QHash<int, QString> bindings;
-};
+		InputState getState(QString actionName);
+		int getTime(QString actionName, int queriedTime);
+
+	private:
+		QHash<QString, InputAction*> keyStates;
+		QHash<int, QString> bindings;
+	};
+
+}

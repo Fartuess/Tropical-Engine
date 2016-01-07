@@ -1,42 +1,45 @@
 #include <Input/InputAction.h>
 
-InputAction::InputAction()
+namespace TropicalEngine
 {
-	previousFrame = nullptr;
-	PressTimestamp = 0;
-	ReleaseTimestamp = 0;
-	timeHeld = 0;
-	updateTime = 0;
-	previousFrame = new InputAction(*this);
-}
 
-InputAction::~InputAction()
-{
-	if (previousFrame != nullptr)
+	InputAction::InputAction()
 	{
-		delete previousFrame;
-	}
-}
-
-InputState InputAction::getState()
-{
-	return state;
-}
-
-int InputAction::getTime(int scriptTime)
-{
-	if (previousFrame != nullptr)
-	{
-		updateTime = timer.elapsed();
+		previousFrame = nullptr;
+		PressTimestamp = 0;
+		ReleaseTimestamp = 0;
+		timeHeld = 0;
+		updateTime = 0;
+		previousFrame = new InputAction(*this);
 	}
 
-	//Division by zero safety check
-	if (ReleaseTimestamp == 0)
-		ReleaseTimestamp = 1;
-
-	int time;
-	switch (state)
+	InputAction::~InputAction()
 	{
+		if (previousFrame != nullptr)
+		{
+			delete previousFrame;
+		}
+	}
+
+	InputState InputAction::getState()
+	{
+		return state;
+	}
+
+	int InputAction::getTime(int scriptTime)
+	{
+		if (previousFrame != nullptr)
+		{
+			updateTime = timer.elapsed();
+		}
+
+		//Division by zero safety check
+		if (ReleaseTimestamp == 0)
+			ReleaseTimestamp = 1;
+
+		int time;
+		switch (state)
+		{
 		case Pressed:
 			time = qMin(updateTime - PressTimestamp, qMin(scriptTime, updateTime));
 			break;
@@ -71,18 +74,18 @@ int InputAction::getTime(int scriptTime)
 			break;
 		default:
 			break;
+		}
+		if (scriptTime - updateTime > 0 && previousFrame != nullptr)
+		{
+			time += previousFrame->getTime(scriptTime - updateTime);
+		}
+		return time;
 	}
-	if (scriptTime - updateTime > 0 && previousFrame != nullptr)
-	{
-		time += previousFrame->getTime(scriptTime - updateTime);
-	}
-	return time;
-}
 
-void InputAction::Press()
-{
-	switch (state)
+	void InputAction::Press()
 	{
+		switch (state)
+		{
 		case Released:
 			state = MixedPressed;
 			PressTimestamp = timer.elapsed();
@@ -97,13 +100,13 @@ void InputAction::Press()
 			break;
 		default:
 			break;
+		}
 	}
-}
 
-void InputAction::Release()
-{
-	switch (state)
+	void InputAction::Release()
 	{
+		switch (state)
+		{
 		case Pressed:
 			state = MixedReleased;
 			ReleaseTimestamp = timer.elapsed();
@@ -120,26 +123,26 @@ void InputAction::Release()
 			break;
 		default:
 			break;
+		}
 	}
-}
 
-void InputAction::Update()
-{
-	updateTime = timer.elapsed();
-	timer.restart();
-	if (previousFrame != nullptr)
+	void InputAction::Update()
 	{
-		delete previousFrame;
-	}
-	previousFrame = new InputAction(*this);
-	previousFrame->previousFrame = nullptr;
-	PressTimestamp = 0;
-	ReleaseTimestamp = 0;
-	timeHeld = 0;
-	updateTime = 0;
-	
-	switch (state)
-	{
+		updateTime = timer.elapsed();
+		timer.restart();
+		if (previousFrame != nullptr)
+		{
+			delete previousFrame;
+		}
+		previousFrame = new InputAction(*this);
+		previousFrame->previousFrame = nullptr;
+		PressTimestamp = 0;
+		ReleaseTimestamp = 0;
+		timeHeld = 0;
+		updateTime = 0;
+
+		switch (state)
+		{
 		case Pressed:
 			state = Active;
 			break;
@@ -154,5 +157,7 @@ void InputAction::Update()
 			break;
 		default:
 			break;
+		}
 	}
+
 }

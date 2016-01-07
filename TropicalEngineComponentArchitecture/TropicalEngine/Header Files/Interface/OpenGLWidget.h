@@ -3,36 +3,41 @@
 #include <QtOpenGL/QGLWidget>
 #include <QtCore/qpoint.h>
 
-class OglDevTut03;
-
-class OpenGLWidget : public QGLWidget
+namespace TropicalEngine
 {
-	Q_OBJECT
-public:
-	OpenGLWidget(void);
-	~OpenGLWidget(void);
 
-signals:
-	void initializeSignal();
-	void reshapeSignal(int width, int height);
-	void drawSignal();
+	class OglDevTut03;
 
-protected:
-	void initializeGL();
-	void resizeGL(int width, int height);
-	void paintGL();
+	class OpenGLWidget : public QGLWidget
+	{
+		Q_OBJECT
+	public:
+		OpenGLWidget(void);
+		~OpenGLWidget(void);
 
-	void keyPressEvent(QKeyEvent* keyEvent) override;
-	void keyReleaseEvent(QKeyEvent* keyEvent) override;
-	void mousePressEvent(QMouseEvent* mouseEvent) override;
-	void mouseReleaseEvent(QMouseEvent* mouseEvent) override;
-	void mouseMoveEvent(QMouseEvent* mouseEvent) override;
+	signals:
+		void initializeSignal();
+		void reshapeSignal(int width, int height);
+		void drawSignal();
 
-private:
-	QPoint* abstractMousePosition;
-	QPoint* screenCenter;
-	QPoint* mouseGrabPoint;
-	QCursor* previousCursor;
+	protected:
+		void initializeGL();
+		void resizeGL(int width, int height);
+		void paintGL();
 
-	int isMousePressed = 0;
-};
+		void keyPressEvent(QKeyEvent* keyEvent) override;
+		void keyReleaseEvent(QKeyEvent* keyEvent) override;
+		void mousePressEvent(QMouseEvent* mouseEvent) override;
+		void mouseReleaseEvent(QMouseEvent* mouseEvent) override;
+		void mouseMoveEvent(QMouseEvent* mouseEvent) override;
+
+	private:
+		QPoint* abstractMousePosition;
+		QPoint* screenCenter;
+		QPoint* mouseGrabPoint;
+		QCursor* previousCursor;
+
+		int isMousePressed = 0;
+	};
+
+}

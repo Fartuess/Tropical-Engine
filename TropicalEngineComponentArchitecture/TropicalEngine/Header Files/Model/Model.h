@@ -8,146 +8,150 @@
 
 #include <Serialization/ISerializableJSON.h>
 
-/**
-  * MeshEntry is a submesh data for a Model object.
-  */
-class MeshEntry
+namespace TropicalEngine
 {
-public:
+
 	/**
-	  * \brief Default constructor.
+	  * MeshEntry is a submesh data for a Model object.
 	  */
-    MeshEntry();
+	class MeshEntry
+	{
+	public:
+		/**
+		  * \brief Default constructor.
+		  */
+		MeshEntry();
 
-	/**
-	  * Default destructor.
-	  */
-    ~MeshEntry();
+		/**
+		  * Default destructor.
+		  */
+		~MeshEntry();
 
-	/**
-	  * \brief GPU address of vertices VBO.
-	  */
-	GLuint vertexVBO;
+		/**
+		  * \brief GPU address of vertices VBO.
+		  */
+		GLuint vertexVBO;
 
-	/**
-	  * \brief GPU address of normals VBO.
-	  */
-	GLuint normalVBO;
+		/**
+		  * \brief GPU address of normals VBO.
+		  */
+		GLuint normalVBO;
 
-	/**
-	  * \brief GPU address of tangents VBO.
-	  */
-	GLuint tangentVBO;
+		/**
+		  * \brief GPU address of tangents VBO.
+		  */
+		GLuint tangentVBO;
 
-	/**
-	  * \brief GPU address of bitangents VBO.
-	  */
-	GLuint bitangentVBO;
+		/**
+		  * \brief GPU address of bitangents VBO.
+		  */
+		GLuint bitangentVBO;
 
-	/**
-	  * \brief GPU address of texture coordinates VBO.
-	  */
-	GLuint texcoordVBO;
+		/**
+		  * \brief GPU address of texture coordinates VBO.
+		  */
+		GLuint texcoordVBO;
 
-	/**
-	  * \brief Number of vertices.
-	  */
-	GLuint NumVertex;
+		/**
+		  * \brief Number of vertices.
+		  */
+		GLuint NumVertex;
 
-    GLuint MaterialIndex;
+		GLuint MaterialIndex;
 
-	///TODO: Make finalization supporting flexible sets of arrays.
-	/**
-	  * \brief Finalizes creation of Mesh Entry.
-	  *
-	  * Sets everything on the GPU side.
-	  * @param vertices Vector of vertices of the mesh.
-	  * @param normals Vector of normals of the mesh.
-	  * @param tangents Vector of tangents of the mesh.
-	  * @param bitangents Vector of bitangents of the mesh.
-	  * @param texCoords Vector of texCoords of the mesh.
-	  */
-	void Finalize(	QVector<glm::vec4>& vertices,
-					QVector<glm::vec3>& normals,
-					QVector<glm::vec3>& tangents,
-					QVector<glm::vec3>& bitangents,
-					QVector<glm::vec2>& texCoords);
-private:
-	bool isFinalized = false;
-};
+		///TODO: Make finalization supporting flexible sets of arrays.
+		/**
+		  * \brief Finalizes creation of Mesh Entry.
+		  *
+		  * Sets everything on the GPU side.
+		  * @param vertices Vector of vertices of the mesh.
+		  * @param normals Vector of normals of the mesh.
+		  * @param tangents Vector of tangents of the mesh.
+		  * @param bitangents Vector of bitangents of the mesh.
+		  * @param texCoords Vector of texCoords of the mesh.
+		  */
+		void Finalize(QVector<glm::vec4>& vertices,
+			QVector<glm::vec3>& normals,
+			QVector<glm::vec3>& tangents,
+			QVector<glm::vec3>& bitangents,
+			QVector<glm::vec2>& texCoords);
+	private:
+		bool isFinalized = false;
+	};
 
-class Model : public ISerializableJSON
-{
-public:
-	TYPENAME("Model")
+	class Model : public ISerializableJSON
+	{
+	public:
+		TYPENAME("Model")
 
-	/**
-	  * \brief Name of the type of model.
-	  */
-	QString type;
+			/**
+			  * \brief Name of the type of model.
+			  */
+			  QString type;
 
-	QVariantMap parameters;
+		QVariantMap parameters;
 
-	/**
-	  * \brief Gets the name of the Model.
-	  *
-	  * @return Name of the Model.
-	  */
-	QString getName();
+		/**
+		  * \brief Gets the name of the Model.
+		  *
+		  * @return Name of the Model.
+		  */
+		QString getName();
 
-	/**
-	  * \brief Sets the name of the Model.
-	  *
-	  * @param name Name to be set for Model.
-	  */
-	void setName(QString name);
+		/**
+		  * \brief Sets the name of the Model.
+		  *
+		  * @param name Name to be set for Model.
+		  */
+		void setName(QString name);
 
-	/**
-	  * \brief Constructor for Model.
-	  *
-	  * @param name Name of the Model.
-	  */
-	Model(QString name);
+		/**
+		  * \brief Constructor for Model.
+		  *
+		  * @param name Name of the Model.
+		  */
+		Model(QString name);
 
-	/*
-	 * \brief Constructor for Model.
-	 *
-	 * @param name Name of the Model.
-	 * @param fileUrl Address of the file to load Model from.
-	 */
-	Model(QString name, QString fileUrl);
+		/*
+		 * \brief Constructor for Model.
+		 *
+		 * @param name Name of the Model.
+		 * @param fileUrl Address of the file to load Model from.
+		 */
+		Model(QString name, QString fileUrl);
 
-	/**
-	 * \brief Destructor of the Model.
-	 */
-	~Model(void);
+		/**
+		 * \brief Destructor of the Model.
+		 */
+		~Model(void);
 
-	/**
-	  * \brief Submeshes of this Model.
-	  */
-	QVector<MeshEntry*> meshes;
+		/**
+		  * \brief Submeshes of this Model.
+		  */
+		QVector<MeshEntry*> meshes;
 
 
-	GLuint materialCount;
+		GLuint materialCount;
 
-	/**
-	  * \brief Serializes Model to JSON object.
-	  *
-	  * @return Result of serialization.
-	  */
-	QJsonObject toJSON() override;
+		/**
+		  * \brief Serializes Model to JSON object.
+		  *
+		  * @return Result of serialization.
+		  */
+		QJsonObject toJSON() override;
 
-	/**
-	  * \brief Deserializes Model from JSON object.
-	  *
-	  * @param JSON JSON object to deserialize from.
-	  * @return Model object.
-	  */
-	IDeserializableFromJSON* fromJSON(QJsonObject JSON) override;
-protected:
-	//QMap<QString, QPair<typename, void*>> parameters;
-private:
-	QString name;
-	QString fileUrl;
-};
+		/**
+		  * \brief Deserializes Model from JSON object.
+		  *
+		  * @param JSON JSON object to deserialize from.
+		  * @return Model object.
+		  */
+		IDeserializableFromJSON* fromJSON(QJsonObject JSON) override;
+	protected:
+		//QMap<QString, QPair<typename, void*>> parameters;
+	private:
+		QString name;
+		QString fileUrl;
+	};
 
+}

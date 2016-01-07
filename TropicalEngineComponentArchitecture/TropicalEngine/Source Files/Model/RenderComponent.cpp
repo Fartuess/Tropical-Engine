@@ -1,31 +1,36 @@
 #include <Model/RenderComponent.h>
 #include <Shader/Shader.h>
 
-RenderComponent::RenderComponent() {}
-
-RenderComponent::RenderComponent(Entity* owner, Material* material):Component(owner)
+namespace TropicalEngine
 {
-	if (material != nullptr)
-		this->material = material;
-	else
-		this->material = Shader::nullShader->defaultMaterial;
-	lightedBy = QList<LightComponent*>();
-	InitializeComponentType();
-}
 
-void RenderComponent::InitializeComponentType()
-{
-	if (!isComponentTypeUsed(getTypeName()))
+	RenderComponent::RenderComponent() {}
+
+	RenderComponent::RenderComponent(Entity* owner, Material* material) :Component(owner)
 	{
-		AddParameter("Material", "String");
+		if (material != nullptr)
+			this->material = material;
+		else
+			this->material = Shader::nullShader->defaultMaterial;
+		lightedBy = QList<LightComponent*>();
+		InitializeComponentType();
 	}
-}
 
-RenderComponent::~RenderComponent(void)
-{
-}
+	void RenderComponent::InitializeComponentType()
+	{
+		if (!isComponentTypeUsed(getTypeName()))
+		{
+			AddParameter("Material", "String");
+		}
+	}
 
-//void Evaluate()
-//{
-//	///TODO: implement it.
-//}
+	RenderComponent::~RenderComponent(void)
+	{
+	}
+
+	//void Evaluate()
+	//{
+	//	///TODO: implement it.
+	//}
+
+}

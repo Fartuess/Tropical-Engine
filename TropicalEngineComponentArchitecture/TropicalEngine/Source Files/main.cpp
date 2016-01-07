@@ -10,12 +10,14 @@
 
 #include "TropicalEngineApplication.h"
 
-Level* OglDevTut03::level;
+using namespace TropicalEngine;
 
-int main(int argc, char* argv[])
-{
-	TropicalEngineApplication tropicalEngine(argc, argv);
-	MainWindow mainWindow(0, true);
+	Level* OglDevTut03::level;
 
-	return tropicalEngine.exec();
-}
+	int main(int argc, char* argv[])
+	{
+		TropicalEngineApplication tropicalEngine(argc, argv);
+		MainWindow mainWindow(0, true);
+
+		return tropicalEngine.exec();
+	}

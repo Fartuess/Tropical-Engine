@@ -7,53 +7,58 @@
 
 #include "TropicalEngineApplication.h"
 
-MaterialManager::MaterialManager(void)
+namespace TropicalEngine
 {
-}
 
-MaterialManager::~MaterialManager(void)
-{
-	///TODO: implement it.
-}
-
-Material* MaterialManager::Load(Shader* shader, QString name)	//temporal definition for temporal declaration
-{
-	Material* newMaterial = new Material(shader, name);
-	return newMaterial;
-}
-
-void MaterialManager::UseMaterial(QString name)
-{
-	materials[name]->Use();
-}
-
-void MaterialManager::UseMaterial(Material* material)
-{
-	material->Use();
-}
-
-void MaterialManager::FlushMaterial(QString name, bool forced)
-{
-	///TODO: implement it.
-	if (!materials.contains(name))
-		return;
-	Material* material = materials[name];
-	if (forced)
+	MaterialManager::MaterialManager(void)
 	{
-		for (ModelComponent* modelComponent : TropicalEngineApplication::instance()->modelController->modelComponents)
-		{
-			if (modelComponent->material == material)
-				modelComponent->material = material->getShader()->defaultMaterial;
-		}
-		delete material;
 	}
-	else
+
+	MaterialManager::~MaterialManager(void)
 	{
-		for (ModelComponent* modelComponent : TropicalEngineApplication::instance()->modelController->modelComponents)
-		{
-			if (modelComponent->material == material)
-				return;
-		}
-		delete material;
+		///TODO: implement it.
 	}
+
+	Material* MaterialManager::Load(Shader* shader, QString name)	//temporal definition for temporal declaration
+	{
+		Material* newMaterial = new Material(shader, name);
+		return newMaterial;
+	}
+
+	void MaterialManager::UseMaterial(QString name)
+	{
+		materials[name]->Use();
+	}
+
+	void MaterialManager::UseMaterial(Material* material)
+	{
+		material->Use();
+	}
+
+	void MaterialManager::FlushMaterial(QString name, bool forced)
+	{
+		///TODO: implement it.
+		if (!materials.contains(name))
+			return;
+		Material* material = materials[name];
+		if (forced)
+		{
+			for (ModelComponent* modelComponent : TropicalEngineApplication::instance()->modelController->modelComponents)
+			{
+				if (modelComponent->material == material)
+					modelComponent->material = material->getShader()->defaultMaterial;
+			}
+			delete material;
+		}
+		else
+		{
+			for (ModelComponent* modelComponent : TropicalEngineApplication::instance()->modelController->modelComponents)
+			{
+				if (modelComponent->material == material)
+					return;
+			}
+			delete material;
+		}
+	}
+
 }

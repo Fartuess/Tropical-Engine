@@ -1,15 +1,19 @@
 #pragma once
 
-///TODO: figure out if additional level of abstraction is usefull
-class MaterialParameter
+namespace TropicalEngine
 {
-public:
-	void* data;
 
-	MaterialParameter();
-	~MaterialParameter();
+	///TODO: figure out if additional level of abstraction is usefull
+	class MaterialParameter
+	{
+	public:
+		void* data;
 
-	MaterialParameter& operator=(void* data);
-	void* operator*();
-};
+		MaterialParameter();
+		~MaterialParameter();
 
+		MaterialParameter& operator=(void* data);
+		void* operator*();
+	};
+
+}
