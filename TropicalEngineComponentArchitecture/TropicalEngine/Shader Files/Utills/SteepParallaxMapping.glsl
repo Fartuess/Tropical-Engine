@@ -4,13 +4,13 @@
 #define TEXTURECOORDINATES
 #define TANGENTSPACE
 
-void steepParallaxMap(in sampler2D heightMap)
+void steepParallaxMap(in sampler2D heightMap, float bumpScale)
 {
 	TBN = transpose(mat3(v_tangent, v_bitangent, v_normal));
 
 	float height = 1.0;
 
-	float numSteps = 15;	///TODO: Make this value non hardcoded or mor adaptive.
+	float numSteps = 15;	///TODO: Make this value non hardcoded or more adaptive.
 
 	vec2 offsetCoord = g_texcoord;
 	float NB = texture2D(heightMap, offsetCoord).r;
@@ -20,12 +20,12 @@ void steepParallaxMap(in sampler2D heightMap)
 	numSteps = mix(numSteps * 4, numSteps, tsE.z * tsE.z);
 
 	float step = 1.0 / numSteps;
-	vec2 delta = vec2(-tsE.x, tsE.y) * mat_bumpScale / (tsE.z * numSteps);
+	vec2 delta = vec2(-tsE.x, tsE.y) * bumpScale / (tsE.z * numSteps);
 
 	while (NB < height) {
 		height -= step;
 		offsetCoord += delta;
-		NB = texture2D(mat_heightTexture, offsetCoord).r;
+		NB = texture2D(heightMap, offsetCoord).r;
 	}
 
 	float smallStep = -step / 10.0;
@@ -33,14 +33,14 @@ void steepParallaxMap(in sampler2D heightMap)
 	{
 		height -= smallStep;
 		offsetCoord += delta * (smallStep / step);
-		NB = texture2D(mat_heightTexture, offsetCoord).r;
+		NB = texture2D(heightMap, offsetCoord).r;
 	}
 	if (NB < height)
 	{
 		smallStep = step / 30.0;
 		height -= smallStep;
 		offsetCoord += delta * (smallStep / step);
-		NB = texture2D(mat_heightTexture, offsetCoord).r;
+		NB = texture2D(heightMap, offsetCoord).r;
 	}
 
 	g_texcoord = offsetCoord;

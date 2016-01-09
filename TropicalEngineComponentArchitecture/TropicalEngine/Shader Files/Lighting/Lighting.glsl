@@ -33,22 +33,18 @@ void calculateAmbientLighting()
 }
 
 // private
-void calculateDirecationalLighting()
+void calculateDirectionalLighting()
 {
-	//vec3 lightVector = normalize(u_lightVector);
-//#ifdef TBNNORMALS
 	vec3 lightVector = normalize(TBN * u_lightVector);
-//#endif
+
 	calculateLightingModel(lightVector, u_lightColor, u_lightBrightness);
 }
 
 // private
 void calculatePointLighting(PointLight light)
 {
-	//vec3 lightVector = calculatePointLightVector(light, v_globalPosition);
-//#ifdef TBNNORMALS
-	vec3 lightVector = normalize(TBN * u_lightVector);
-//#endif
+
+	vec3 lightVector = normalize(TBN * calculatePointLightVector(light, v_globalPosition));
 	float brightness = calculatePointLightBrightness(light, v_globalPosition);
 
 	calculateLightingModel(lightVector, light.color, brightness);
@@ -57,10 +53,7 @@ void calculatePointLighting(PointLight light)
 // private
 void calculateSpotLighting(SpotLight light)
 {
-	//vec3 lightVector = calculateSpotLightVector(light, v_globalPosition);
-//#ifdef TBNNORMALS
-	vec3 lightVector = normalize(TBN * u_lightVector);
-//#endif
+	vec3 lightVector = normalize(TBN * calculateSpotLightVector(light, v_globalPosition));
 	float brightness = calculateSpotLightBrightness(light, v_globalPosition, lightVector);
 
 	calculateLightingModel(lightVector, light.color, brightness);
@@ -72,7 +65,7 @@ void calculateSpotLighting(SpotLight light)
 void calculateLighting()
 {
 	calculateAmbientLighting();
-	calculateDirecationalLighting();
+	calculateDirectionalLighting();
 	for (int i = 0; i < u_pointLights.length(); i++)
 	{
 		calculatePointLighting(u_pointLights[i]);

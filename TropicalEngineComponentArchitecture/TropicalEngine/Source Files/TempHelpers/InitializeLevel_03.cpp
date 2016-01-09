@@ -74,8 +74,6 @@ namespace TropicalEngine
 
 		ShaderManager& shaderManager = *engine->shaderManager;
 
-		Shader* phongBlinnParalaxShader = shaderManager.Load("ParalaxedPhong", "./Shader Files/Perspective_NTBTc_VS.glsl", "./Shader Files/PhongBlinnParalax_PS.glsl");
-
 		ShaderTechnique* lambertTechnique = new ShaderTechnique("Lambert", &CommonMeshShaderBuilder::Instance());
 		lambertTechnique->setInput("Lighting Model", "./Shader Files/LightingModels/LambertLightingModel.glsl");
 		
@@ -102,13 +100,17 @@ namespace TropicalEngine
 		texturedLambertTechnique->setInput("Surface Shader", "./Shader Files/SurfaceShaders/Textured.glsl");
 
 		ShaderTechnique* bumpmappedPhongTechnique = new ShaderTechnique("PhongBumpmapped", &CommonMeshShaderBuilder::Instance());
-		bumpmappedPhongTechnique->setInput("Lighting Model", "./Shader Files/LightingModels/PhongLightingModel.glsl");
+		bumpmappedPhongTechnique->setInput("Lighting Model", "./Shader Files/LightingModels/BlinnPhongLightingModel.glsl");
 		bumpmappedPhongTechnique->setInput("Surface Shader", "./Shader Files/SurfaceShaders/BumpTextured.glsl");
 
 		ShaderTechnique* maskedBumpmappedBlinnPhongTechnique = new ShaderTechnique("BlinnBumpmappedMasked", &CommonMeshShaderBuilder::Instance());
 		maskedBumpmappedBlinnPhongTechnique->setInput("Lighting Model", "./Shader Files/LightingModels/BlinnPhongLightingModel.glsl");
 		maskedBumpmappedBlinnPhongTechnique->setInput("Surface Shader", "./Shader Files/SurfaceShaders/BumpTextured.glsl");
 		maskedBumpmappedBlinnPhongTechnique->setInput("Blend Mode", "./Shader Files/Blending/BlendMasked.glsl");
+
+		ShaderTechnique* parallaxedBlinnPhongTechnique = new ShaderTechnique("BlinnParallaxed", &CommonMeshShaderBuilder::Instance());
+		parallaxedBlinnPhongTechnique->setInput("Lighting Model", "./Shader Files/LightingModels/PhongLightingModel.glsl");
+		parallaxedBlinnPhongTechnique->setInput("Surface Shader", "./Shader Files/SurfaceShaders/ParallaxMapped.glsl");
 
 		ShaderTechnique* staticTessellationTechnique = new ShaderTechnique("StaticTessallation", &CommonMeshShaderBuilder::Instance());
 		staticTessellationTechnique->setInput("Lighting Model", "./Shader Files/LightingModels/BlinnPhongLightingModel.glsl");
@@ -176,7 +178,7 @@ namespace TropicalEngine
 		Material* bumpedMaterial				= new Material(shaderManager.getShaderTechnique("PhongBumpmapped"), "Bumped Material");
 		Material* maskedMaterial				= new Material(shaderManager.getShaderTechnique("BlinnBumpmappedMasked"), "Masked Material");
 
-		Material* phongBlinnParalaxMaterial		= new Material(phongBlinnParalaxShader, "Paralaxed Material");
+		Material* phongBlinnParalaxMaterial		= new Material(shaderManager.getShaderTechnique("BlinnParallaxed"), "Paralaxed Material");
 
 		Material* staticTessellationMaterial	= new Material(shaderManager.getShaderTechnique("StaticTessallation"), "Tessallated Material");
 		Material* distanceTessellationMaterial	= new Material(shaderManager.getShaderTechnique("DistanceTessallation"), "Distance Tessallated Material");
@@ -281,10 +283,13 @@ namespace TropicalEngine
 		(*maskedMaterial)["mat_color"] = testGearTexture;
 		(*maskedMaterial)["mat_normal"] = testGearTextureNormal;
 
+		(*phongBlinnParalaxMaterial)["mat_color"] = tessDiffTex;
+		(*phongBlinnParalaxMaterial)["mat_normal"] = tessNrmTex;
+		(*phongBlinnParalaxMaterial)["mat_bumpScale"] = new float(0.1f);
+		(*phongBlinnParalaxMaterial)["mat_height"] = tessDispTex;
 		(*phongBlinnParalaxMaterial)["mat_diffuseTexture"] = tessDiffTex;
 		(*phongBlinnParalaxMaterial)["mat_normalTexture"] = tessNrmTex;
 		(*phongBlinnParalaxMaterial)["mat_heightTexture"] = tessDispTex;
-		(*phongBlinnParalaxMaterial)["mat_bumpScale"] = new float(0.1f);
 
 		(*staticTessellationMaterial)["mat_color"] = tessDiffTex;
 		(*staticTessellationMaterial)["mat_normal"] = tessNrmTex;
@@ -556,6 +561,8 @@ namespace TropicalEngine
 		distanceTessModelC->lightedBy.append(pointLightComponent);
 		vectorTessModelC->lightedBy.append(pointLightComponent);
 		FbxExampleModelC->lightedBy.append(pointLightComponent);
+		FbxExample2ModelC->lightedBy.append(pointLightComponent);
+		FbxExample3ModelC->lightedBy.append(pointLightComponent);
 
 		phongModelC->lightedBy.append(spotLightComponent);
 		phongBlinnModelC->lightedBy.append(spotLightComponent);
@@ -570,6 +577,8 @@ namespace TropicalEngine
 		distanceTessModelC->lightedBy.append(spotLightComponent);
 		vectorTessModelC->lightedBy.append(spotLightComponent);
 		FbxExampleModelC->lightedBy.append(spotLightComponent);
+		FbxExample2ModelC->lightedBy.append(spotLightComponent);
+		FbxExample3ModelC->lightedBy.append(spotLightComponent);
 
 
 		engine->sceneManager->LoadLevel(level, "TestLevel");

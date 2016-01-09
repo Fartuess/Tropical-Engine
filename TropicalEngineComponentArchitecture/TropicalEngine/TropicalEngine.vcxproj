@@ -121,6 +121,7 @@
     <None Include="Shader Files\Mesh\Tessellation\Evaluation\TessellationVectorDisplacement.glsl" />
     <None Include="Shader Files\Shadowmap\ShadowmapCore.glsl" />
     <None Include="Shader Files\SurfaceShaders\BumpTextured.glsl" />
+    <None Include="Shader Files\SurfaceShaders\ParallaxMapped.glsl" />
     <None Include="Shader Files\SurfaceShaders\SimpleColor.glsl" />
     <None Include="Shader Files\SurfaceShaders\Textured.glsl" />
     <None Include="Shader Files\Utills\BumpMapping.glsl" />

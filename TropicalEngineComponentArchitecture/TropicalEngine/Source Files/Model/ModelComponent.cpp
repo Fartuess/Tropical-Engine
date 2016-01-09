@@ -91,7 +91,7 @@ namespace TropicalEngine
 		{
 			QString lightType = lightedBy[i]->getTypeName();
 
-			if (lightType == "PointLight Component")
+			if (lightType == "PointLightComponent")
 			{
 				PointLightComponent* light = static_cast<PointLightComponent*>(lightedBy[i]);
 				TransformComponent& lightTransform = light->getOwner()->transform;
@@ -101,7 +101,7 @@ namespace TropicalEngine
 				glUniform1f(usedShader->pointLightRadiusLocations[i], light->getRadius());
 				glUniform1f(usedShader->pointLightAttenuationLocations[i], light->attenuation);
 			}
-			if (lightType == "SpotLight Component")
+			if (lightType == "SpotLightComponent")
 			{
 				SpotLightComponent* light = static_cast<SpotLightComponent*>(lightedBy[i]);
 				TransformComponent& lightTransform = light->getOwner()->transform;
