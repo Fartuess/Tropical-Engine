@@ -1,10 +1,15 @@
 #include <Shader/Shader.h>
 #include <Shader/ShaderManager.h>
-#include <Texture/TextureManager.h>
 #include <Shader/Material.h>
 #include <Shader/MaterialManager.h>
+#include <Shader/ShaderTechnique.h>
+
+#include <Texture/TextureManager.h>
+
 #include <Model/ModelComponent.h>
 #include <Model/ModelController.h>
+
+#include <Utills/Exception.h>
 
 #include "TropicalEngineApplication.h"
 
@@ -14,7 +19,20 @@ namespace TropicalEngine
 	Material::Material(Shader* shader, QString name) : parameters()
 	{
 		this->name = name;
+		this->shaderTechnique = nullptr;
 		this->shader = shader;
+		for (QString parameterName : this->shader->getMaterialParameters().keys())
+		{
+			parameters[parameterName] = nullptr;
+		}
+		TropicalEngineApplication::instance()->materialManager->materials.insert(name, this);
+	}
+
+	Material::Material(ShaderTechnique* shaderTechnique, QString name)
+	{
+		this->name = name;
+
+		this->shader = shaderTechnique->getShader();
 		for (QString parameterName : this->shader->getMaterialParameters().keys())
 		{
 			parameters[parameterName] = nullptr;
@@ -31,10 +49,10 @@ namespace TropicalEngine
 		}
 	}
 
-	QString Material::getName()
-	{
-		return name;
-	}
+	//QString Material::getName()
+	//{
+	//	return name;
+	//}
 
 	void Material::setName(QString name)
 	{
@@ -42,10 +60,10 @@ namespace TropicalEngine
 		this->name = name;
 	}
 
-	Shader* Material::getShader()
-	{
-		return shader;
-	}
+	//Shader* Material::getShader()
+	//{
+	//	return shader;
+	//}
 
 	void Material::Use()
 	{
@@ -149,7 +167,14 @@ namespace TropicalEngine
 	{
 		QJsonObject JSON = QJsonObject();
 		JSON["name"] = name;
-		JSON["shader"] = shader->getName();
+		if (shader != nullptr)
+		{
+			JSON["shader"] = shader->getName();
+		}
+		if (shaderTechnique != nullptr)
+		{
+			JSON["shader technique"] = shaderTechnique->getName();
+		}
 
 		QJsonArray materialParametersJSON = QJsonArray();
 		for (QString materialParameter : parameters.keys())
@@ -317,8 +342,23 @@ namespace TropicalEngine
 	IDeserializableFromJSON* Material::fromJSON(QJsonObject JSON)
 	{
 		QString name = JSON["name"].toString();
-		Shader* shader = TropicalEngineApplication::instance()->shaderManager->getShader(JSON["shader"].toString());
-		Material* object = new Material(shader, name);
+
+		Material* object;
+
+		if (JSON.contains("shader technique"))
+		{
+			ShaderTechnique* shaderTechnique = TropicalEngineApplication::instance()->shaderManager->getShaderTechnique(JSON["shader technique"].toString());
+			object = new Material(shaderTechnique, name);
+		}
+		else if (JSON.contains("shader"))
+		{
+			Shader* shader = TropicalEngineApplication::instance()->shaderManager->getShader(JSON["shader"].toString());
+			object = new Material(shader, name);
+		}
+		else
+		{
+			throw Exception<Material>("Material could not be created from JSON.", this);
+		}
 
 		for (QJsonValueRef parameterJSON : JSON["parameters"].toArray())
 		{

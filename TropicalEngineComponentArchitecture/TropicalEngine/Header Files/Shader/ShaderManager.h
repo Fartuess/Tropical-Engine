@@ -33,17 +33,20 @@ namespace TropicalEngine
 		Shader* const getCurrentShader();
 		void setCurrentShader(Shader* shader);
 		Shader* const getShader(QString name);
+		class ShaderTechnique* getShaderTechnique(QString name);
 
 		Shader* operator[](QString name)      { return shaders[name]; };
 		const Shader* operator[](QString name) const { return shaders[name]; };
 
 		Shader* Load(QString name, QString vertexShader, QString fragmentShader);
 		void Load(Shader* shader, QString name);
+		void Load(class ShaderTechnique* shader, QString name);
 
 		void UseShader(QString name);
 		void UseShader(Shader* shader);
 
 	protected:
+		QHash<QString, class ShaderTechnique*> shaderTechniques;
 		QHash<QString, Shader*> shaders;
 		Shader* currentShader;	//shader currently enabled on GPU
 

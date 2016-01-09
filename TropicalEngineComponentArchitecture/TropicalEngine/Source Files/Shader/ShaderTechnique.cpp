@@ -4,6 +4,8 @@
 
 #include <Shader/ShaderTechnique.h>
 
+#include <Utills/Exception.h>
+
 #include <TropicalEngineApplication.h>
 
 namespace TropicalEngine
@@ -16,8 +18,30 @@ namespace TropicalEngine
 		this->shaderBuilder = shaderBuilder;
 
 		this->isManaged = managed;
+
+		inputs = shaderBuilder->inputs;
+
+		if (isManaged)
+		{
+			TropicalEngineApplication::instance()->shaderManager->Load(this, name);
+		}
 	}
 
+	ShaderTechnique::ShaderTechnique(QString name, class Shader* shader, QString shaderPass, bool managed)
+	{
+		this->name = name;
+
+		this->shaderBuilder = nullptr;
+
+		this->isManaged = managed;
+
+		shaderPasses[shaderPass] = shader;
+
+		if (isManaged)
+		{
+			TropicalEngineApplication::instance()->shaderManager->Load(this, name);
+		}
+	}
 
 	ShaderTechnique::~ShaderTechnique()
 	{
@@ -25,7 +49,10 @@ namespace TropicalEngine
 
 	void ShaderTechnique::setInput(QString name, QString path)
 	{
-		shaderBuilder->setInput(name, path);
+		if (inputs.contains(name))
+		{
+			inputs[name] = path;
+		}
 	}
 
 	//void ShaderTechnique::addShaderPass(QString name, class Shader* shader)
@@ -49,7 +76,22 @@ namespace TropicalEngine
 
 	class Shader* ShaderTechnique::generateShader(QString shaderPass)
 	{
-		shaderPasses[shaderPass] = shaderBuilder->createShader(name, shaderPass);
+		if (shaderBuilder == nullptr)
+		{
+			throw Exception<ShaderTechnique>("Can't generate shader without any builder.", this);
+		}
+
+		try
+		{
+			QMap<QString, QString> previousShaderBuilderInputs = shaderBuilder->inputs;
+			shaderBuilder->inputs = inputs;
+			shaderPasses[shaderPass] = shaderBuilder->createShader(name, shaderPass);
+			shaderBuilder->inputs = previousShaderBuilderInputs;
+		}
+		catch (Exception<AbstractShaderBuilder> builderException)
+		{
+			throw Exception<ShaderTechnique>("This shader technique doesn't support this shader pass.", this);
+		}
 
 		if (isManaged)
 		{
@@ -57,6 +99,21 @@ namespace TropicalEngine
 		}
 
 		return shaderPasses[shaderPass];
+	}
+
+	QJsonObject ShaderTechnique::toJSON()
+	{
+		/// TODO: Implement it!
+		QJsonObject JSON = QJsonObject();
+		
+
+		return JSON;
+	}
+
+	IDeserializableFromJSON* ShaderTechnique::fromJSON(QJsonObject JSON)
+	{
+		///TODO: Implement it!
+		return nullptr;	// new ShaderTechnique();
 	}
 
 	//class Shader* generateShaders()

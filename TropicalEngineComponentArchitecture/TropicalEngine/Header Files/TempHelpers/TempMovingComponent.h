@@ -12,9 +12,9 @@ namespace TropicalEngine
 		public IUpdateable
 	{
 	public:
-		TYPENAME("Temp Moving Component")
+		TYPENAME(TempMovingComponent)
 
-			TempMovingComponent(Entity* owner, glm::vec3 startPos, glm::vec3 endPos, float timespan);
+		TempMovingComponent(Entity* owner, glm::vec3 startPos, glm::vec3 endPos, float timespan);
 		~TempMovingComponent();
 
 		virtual void OnUpdate(int deltaTime) override;

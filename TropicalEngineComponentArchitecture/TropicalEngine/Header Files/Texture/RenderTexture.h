@@ -7,9 +7,9 @@ namespace TropicalEngine
 	class RenderTexture : public Texture
 	{
 	public:
-		TYPENAME("RenderTexture")
+		TYPENAME(RenderTexture)
 
-			RenderTexture(QString name, int width, int height);
+		RenderTexture(QString name, int width, int height);
 		~RenderTexture();
 
 		void BindFramebuffer();

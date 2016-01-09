@@ -12,19 +12,20 @@ namespace TropicalEngine
 	class CameraComponent : public Component
 	{
 	public:
-		TYPENAME("Camera Component")
-			/**
-			  * \brief Camera component costructor.
-			  *
-			  * @param owner Entity object to which CameraComponent will be attached to.
-			  * @param targetOffset defines direction where camera is looking at.
-			  * @param up vector defining camera roll.
-			  * @param fov field of view of the camera.
-			  * @param aspectRatio width to height ratio of the camera.
-			  * @param zNear Near clipping plane distance.
-			  * @param zFar Far clipping plane distance.
-			  */
-			  CameraComponent(Entity* owner, glm::vec3 targetOffset = glm::vec3(0.0f, 0.0f, -1.0f), glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f), float fov = 40.0f, float aspectRatio = 4.0f / 3.0f, float zNear = 0.01f, float zFar = 10000.0f);
+		TYPENAME(CameraComponent)
+
+		/**
+		  * \brief Camera component costructor.
+		  *
+		  * @param owner Entity object to which CameraComponent will be attached to.
+		  * @param targetOffset defines direction where camera is looking at.
+		  * @param up vector defining camera roll.
+		  * @param fov field of view of the camera.
+		  * @param aspectRatio width to height ratio of the camera.
+		  * @param zNear Near clipping plane distance.
+		  * @param zFar Far clipping plane distance.
+		  */
+		CameraComponent(Entity* owner, glm::vec3 targetOffset = glm::vec3(0.0f, 0.0f, -1.0f), glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f), float fov = 40.0f, float aspectRatio = 4.0f / 3.0f, float zNear = 0.01f, float zFar = 10000.0f);
 
 		/**
 		  * \brief Default destructor

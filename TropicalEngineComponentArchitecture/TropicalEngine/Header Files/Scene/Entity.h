@@ -20,9 +20,9 @@ namespace TropicalEngine
 		QList<Component*> components;	//Had to be on top to initialize before transform.
 
 	public:
-		TYPENAME("Entity")
+		TYPENAME(Entity)
 
-			friend class Component;
+		friend class Component;
 		friend class PropertiesWidget;
 
 		TransformComponent transform;

@@ -1,0 +1,1685 @@
+{
+    "internal package": {
+        "assets": [
+            {
+                "asset": {
+                    "name": "Anisotropic Ward Material",
+                    "parameters": [
+                        {
+                            "name": "mat_anisoRoughness",
+                            "type": "35664",
+                            "value": {
+                                "x": 0.5,
+                                "y": 0.10000000149011612
+                            }
+                        },
+                        {
+                            "name": "mat_diffuse",
+                            "type": "35665",
+                            "value": {
+                                "x": 1,
+                                "y": 0.69999998807907104,
+                                "z": 0
+                            }
+                        }
+                    ],
+                    "shader": "WardAniso"
+                },
+                "name": "Anisotropic Ward Material",
+                "typename": "Material"
+            },
+            {
+                "asset": {
+                    "name": "Blinn-Phong Material",
+                    "parameters": [
+                        {
+                            "name": "mat_diffuseColor",
+                            "type": "35665",
+                            "value": {
+                                "x": 0.5,
+                                "y": 0.69999998807907104,
+                                "z": 1
+                            }
+                        }
+                    ],
+                    "shader": "BlinnPhong"
+                },
+                "name": "Blinn-Phong Material",
+                "typename": "Material"
+            },
+            {
+                "asset": {
+                    "name": "BlinnPhong",
+                    "subshaders": [
+                        {
+                            "type": "6",
+                            "url": "BlinnPhong_0"
+                        },
+                        {
+                            "type": "5",
+                            "url": "BlinnPhong_1"
+                        }
+                    ]
+                },
+                "name": "BlinnPhong Shader",
+                "typename": "Shader"
+            },
+            {
+                "asset": {
+                    "name": "Bumped Material",
+                    "parameters": [
+                        {
+                            "name": "mat_diffuseTexture",
+                            "type": "35678",
+                            "value": {
+                                "name": "Default Texture Albedo"
+                            }
+                        },
+                        {
+                            "name": "mat_normalTexture",
+                            "type": "35678",
+                            "value": {
+                                "name": "Default Texture Normals"
+                            }
+                        }
+                    ],
+                    "shader": "BumpedPhong"
+                },
+                "name": "Bumped Material",
+                "typename": "Material"
+            },
+            {
+                "asset": {
+                    "name": "BumpedPhong",
+                    "subshaders": [
+                        {
+                            "type": "12",
+                            "url": "BumpedPhong_0"
+                        },
+                        {
+                            "type": "11",
+                            "url": "BumpedPhong_1"
+                        }
+                    ]
+                },
+                "name": "BumpedPhong Shader",
+                "typename": "Shader"
+            },
+            {
+                "asset": {
+                    "name": "CookTorrance Material",
+                    "parameters": [
+                        {
+                            "name": "mat_diffuseColor",
+                            "type": "35665",
+                            "value": {
+                                "x": 1,
+                                "y": 0.69999998807907104,
+                                "z": 0
+                            }
+                        },
+                        {
+                            "name": "mat_refractiveIndex",
+                            "type": "5126",
+                            "value": {
+                                "x": 0.15000000596046448
+                            }
+                        },
+                        {
+                            "name": "mat_roughness",
+                            "type": "5126",
+                            "value": {
+                                "x": 0.5
+                            }
+                        },
+                        {
+                            "name": "mat_specularColor",
+                            "type": "35665",
+                            "value": {
+                                "x": 1,
+                                "y": 1,
+                                "z": 1
+                            }
+                        }
+                    ],
+                    "shader": "CookTorrance"
+                },
+                "name": "CookTorrance Material",
+                "typename": "Material"
+            },
+            {
+                "asset": {
+                    "name": "CookTorrance",
+                    "subshaders": [
+                        {
+                            "type": "21",
+                            "url": "CookTorrance_0"
+                        },
+                        {
+                            "type": "20",
+                            "url": "CookTorrance_1"
+                        }
+                    ]
+                },
+                "name": "CookTorrance Shader",
+                "typename": "Shader"
+            },
+            {
+                "asset": {
+                    "name": "Default Texture Albedo",
+                    "url": "./Assets/Core/DefaultTexture.png"
+                },
+                "name": "Default Texture Albedo",
+                "typename": "Texture"
+            },
+            {
+                "asset": {
+                    "name": "Default Texture Normals",
+                    "url": "./Assets/Core/DefaultTexture_NRM.png"
+                },
+                "name": "Default Texture Normals",
+                "typename": "Texture"
+            },
+            {
+                "asset": {
+                    "name": "DistanceTessalationMat",
+                    "parameters": [
+                        {
+                            "name": "mat_diffuseTexture",
+                            "type": "35678",
+                            "value": {
+                                "name": "Stone Wall Albedo"
+                            }
+                        },
+                        {
+                            "name": "mat_displacementScale",
+                            "type": "5126",
+                            "value": {
+                                "x": 0.10000000149011612
+                            }
+                        },
+                        {
+                            "name": "mat_displacementTexture",
+                            "type": "35678",
+                            "value": {
+                                "name": "Stone Wall Heights"
+                            }
+                        },
+                        {
+                            "name": "mat_normalTexture",
+                            "type": "35678",
+                            "value": {
+                                "name": "Stone Wall Normals"
+                            }
+                        }
+                    ],
+                    "shader": "DistanceTessalationTest"
+                },
+                "name": "DistanceTessalation Material",
+                "typename": "Material"
+            },
+            {
+                "asset": {
+                    "name": "DistanceTessalationTest",
+                    "subshaders": [
+                        {
+                            "type": "43",
+                            "url": "DistanceTessalationTest_0"
+                        },
+                        {
+                            "type": "42",
+                            "url": "DistanceTessalationTest_1"
+                        },
+                        {
+                            "type": "40",
+                            "url": "DistanceTessalationTest_?"
+                        },
+                        {
+                            "type": "41",
+                            "url": "DistanceTessalationTest_ˆ"
+                        }
+                    ]
+                },
+                "name": "DistanceTessalation Shader",
+                "typename": "Shader"
+            },
+            {
+                "asset": {
+                    "name": "FbxChest",
+                    "url": "./Assets/TestAssets/SteamPunkChest_LP.fbx"
+                },
+                "name": "FbxChest Model",
+                "typename": "Model"
+            },
+            {
+                "asset": {
+                    "name": "FbxTest",
+                    "url": "./Assets/TestAssets/FBXtest.fbx"
+                },
+                "name": "FbxTest Model",
+                "typename": "Model"
+            },
+            {
+                "asset": {
+                    "name": "FbxTest2",
+                    "url": "./Assets/TestAssets/FBXtest2.fbx"
+                },
+                "name": "FbxTest2 Model",
+                "typename": "Model"
+            },
+            {
+                "asset": {
+                    "name": "FbxTest3",
+                    "url": "./Assets/TestAssets/FBXtestPrepared.fbx"
+                },
+                "name": "FbxTest3 Model",
+                "typename": "Model"
+            },
+            {
+                "asset": {
+                    "name": "FbxTest4",
+                    "url": "./Assets/TestAssets/FBXHierarchyTest.fbx"
+                },
+                "name": "FbxTest4 Model",
+                "typename": "Model"
+            },
+            {
+                "asset": {
+                    "name": "Gears AO",
+                    "url": "./Assets/TestAssets/Gear_occlusion.tga"
+                },
+                "name": "Gears AO",
+                "typename": "Texture"
+            },
+            {
+                "asset": {
+                    "name": "Gears Normals",
+                    "url": "./Assets/TestAssets/Gear_normals.tga"
+                },
+                "name": "Gears Normals",
+                "typename": "Texture"
+            },
+            {
+                "asset": {
+                    "name": "Isotropic Ward Material",
+                    "parameters": [
+                        {
+                            "name": "mat_diffuse",
+                            "type": "35665",
+                            "value": {
+                                "x": 1,
+                                "y": 0.69999998807907104,
+                                "z": 0
+                            }
+                        },
+                        {
+                            "name": "mat_roughness",
+                            "type": "5126",
+                            "value": {
+                                "x": 0.30000001192092896
+                            }
+                        }
+                    ],
+                    "shader": "WardIso"
+                },
+                "name": "Isotropic Ward Material",
+                "typename": "Material"
+            },
+            {
+                "asset": {
+                    "name": "Masked Material",
+                    "parameters": [
+                        {
+                            "name": "mat_diffuseTexture",
+                            "type": "35678",
+                            "value": {
+                                "name": "Gears AO"
+                            }
+                        },
+                        {
+                            "name": "mat_normalTexture",
+                            "type": "35678",
+                            "value": {
+                                "name": "Gears Normals"
+                            }
+                        }
+                    ],
+                    "shader": "MaskedBumpedBlinnPhong"
+                },
+                "name": "Masked Material",
+                "typename": "Material"
+            },
+            {
+                "asset": {
+                    "name": "MaskedBumpedBlinnPhong",
+                    "subshaders": [
+                        {
+                            "type": "15",
+                            "url": "MaskedBumpedBlinnPhong_0"
+                        },
+                        {
+                            "type": "14",
+                            "url": "MaskedBumpedBlinnPhong_1"
+                        }
+                    ]
+                },
+                "name": "MaskedBumpedBlinnPhong Shader",
+                "typename": "Shader"
+            },
+            {
+                "asset": {
+                    "name": "MayaBox",
+                    "url": "./Assets/TestAssets/MayaBox.obj"
+                },
+                "name": "MayaBox Model",
+                "typename": "Model"
+            },
+            {
+                "asset": {
+                    "name": "Paralaxed Material",
+                    "parameters": [
+                        {
+                            "name": "mat_bumpScale",
+                            "type": "5126",
+                            "value": {
+                                "x": 0.10000000149011612
+                            }
+                        },
+                        {
+                            "name": "mat_diffuseTexture",
+                            "type": "35678",
+                            "value": {
+                                "name": "Stone Wall Albedo"
+                            }
+                        },
+                        {
+                            "name": "mat_heightTexture",
+                            "type": "35678",
+                            "value": {
+                                "name": "Stone Wall Heights"
+                            }
+                        },
+                        {
+                            "name": "mat_normalTexture",
+                            "type": "35678",
+                            "value": {
+                                "name": "Stone Wall Normals"
+                            }
+                        }
+                    ],
+                    "shader": "ParalaxedPhong"
+                },
+                "name": "Paralaxed Material",
+                "typename": "Material"
+            },
+            {
+                "asset": {
+                    "name": "ParalaxedPhong",
+                    "subshaders": [
+                        {
+                            "type": "18",
+                            "url": "ParalaxedPhong_0"
+                        },
+                        {
+                            "type": "17",
+                            "url": "ParalaxedPhong_1"
+                        }
+                    ]
+                },
+                "name": "ParalaxedPhong Shader",
+                "typename": "Shader"
+            },
+            {
+                "asset": {
+                    "name": "Phong Material",
+                    "parameters": [
+                        {
+                            "name": "mat_color",
+                            "type": "35665",
+                            "value": {
+                                "x": 0,
+                                "y": 1,
+                                "z": 0.69999998807907104
+                            }
+                        },
+                        {
+                            "name": "mat_diffuseColor",
+                            "type": "0",
+                            "value": {
+                            }
+                        },
+                        {
+                            "name": "mat_emissive",
+                            "type": "35665",
+                            "value": {
+                                "x": 0.10000000149011612,
+                                "y": 0,
+                                "z": 0
+                            }
+                        }
+                    ],
+                    "shader": "Lambert_color"
+                },
+                "name": "Phong Material",
+                "typename": "Material"
+            },
+            {
+                "asset": {
+                    "name": "Phong",
+                    "subshaders": [
+                        {
+                            "type": "3",
+                            "url": "Phong_0"
+                        },
+                        {
+                            "type": "2",
+                            "url": "Phong_1"
+                        }
+                    ]
+                },
+                "name": "Phong Shader",
+                "typename": "Shader"
+            },
+            {
+                "asset": {
+                    "name": "Steampunk Chest Albedo",
+                    "url": "./Assets/TestAssets/SteampunkChest_Diffuse.tga"
+                },
+                "name": "Steampunk Chest Albedo",
+                "typename": "Texture"
+            },
+            {
+                "asset": {
+                    "name": "Steampunk Chest Material",
+                    "parameters": [
+                        {
+                            "name": "mat_diffuseTexture",
+                            "type": "35678",
+                            "value": {
+                                "name": "Steampunk Chest Albedo"
+                            }
+                        },
+                        {
+                            "name": "mat_normalTexture",
+                            "type": "35678",
+                            "value": {
+                                "name": "Steampunk Chest Normals"
+                            }
+                        }
+                    ],
+                    "shader": "BumpedPhong"
+                },
+                "name": "Steampunk Chest Material",
+                "typename": "Material"
+            },
+            {
+                "asset": {
+                    "name": "Steampunk Chest Normals",
+                    "url": "./Assets/TestAssets/SteampunkChest_NRM.tga"
+                },
+                "name": "Steampunk Chest Normals",
+                "typename": "Texture"
+            },
+            {
+                "asset": {
+                    "name": "Stone Wall Albedo",
+                    "url": "./Assets/Core/wall_base.png"
+                },
+                "name": "Stone Wall Albedo",
+                "typename": "Texture"
+            },
+            {
+                "asset": {
+                    "name": "Stone Wall Heights",
+                    "url": "./Assets/Core/wall_heights.png"
+                },
+                "name": "Stone Wall Heights",
+                "typename": "Texture"
+            },
+            {
+                "asset": {
+                    "name": "Stone Wall Normals",
+                    "url": "./Assets/Core/wall_normals.png"
+                },
+                "name": "Stone Wall Normals",
+                "typename": "Texture"
+            },
+            {
+                "asset": {
+                    "name": "Strauss Material",
+                    "parameters": [
+                        {
+                            "name": "mat_albedo",
+                            "type": "35665",
+                            "value": {
+                                "x": 0,
+                                "y": 1,
+                                "z": 0
+                            }
+                        },
+                        {
+                            "name": "mat_metaliness",
+                            "type": "5126",
+                            "value": {
+                                "x": 0
+                            }
+                        },
+                        {
+                            "name": "mat_roughness",
+                            "type": "5126",
+                            "value": {
+                                "x": 0.80000001192092896
+                            }
+                        }
+                    ],
+                    "shader": "Strauss"
+                },
+                "name": "Strauss Material",
+                "typename": "Material"
+            },
+            {
+                "asset": {
+                    "name": "Strauss Material Metalic",
+                    "parameters": [
+                        {
+                            "name": "mat_albedo",
+                            "type": "35665",
+                            "value": {
+                                "x": 0,
+                                "y": 1,
+                                "z": 0
+                            }
+                        },
+                        {
+                            "name": "mat_metaliness",
+                            "type": "5126",
+                            "value": {
+                                "x": 1
+                            }
+                        },
+                        {
+                            "name": "mat_roughness",
+                            "type": "5126",
+                            "value": {
+                                "x": 0.80000001192092896
+                            }
+                        }
+                    ],
+                    "shader": "Strauss"
+                },
+                "name": "Strauss Material Metalic",
+                "typename": "Material"
+            },
+            {
+                "asset": {
+                    "name": "Strauss",
+                    "subshaders": [
+                        {
+                            "type": "24",
+                            "url": "Strauss_0"
+                        },
+                        {
+                            "type": "23",
+                            "url": "Strauss_1"
+                        }
+                    ]
+                },
+                "name": "Strauss Shader",
+                "typename": "Shader"
+            },
+            {
+                "asset": {
+                    "name": "TGA RLE Test",
+                    "url": "./Assets/TestAssets/dickbutt_RLE.tga"
+                },
+                "name": "TGA RLE Test",
+                "typename": "Texture"
+            },
+            {
+                "asset": {
+                    "name": "TGA Test",
+                    "url": "./Assets/TestAssets/dickbutt.tga"
+                },
+                "name": "TGA Test",
+                "typename": "Texture"
+            },
+            {
+                "asset": {
+                    "name": "Teapot",
+                    "url": "./Assets/TestAssets/teapot.obj"
+                },
+                "name": "Teapot Model",
+                "typename": "Model"
+            },
+            {
+                "asset": {
+                    "name": "TessalationMat",
+                    "parameters": [
+                        {
+                            "name": "mat_diffuseTexture",
+                            "type": "35678",
+                            "value": {
+                                "name": "Stone Wall Albedo"
+                            }
+                        },
+                        {
+                            "name": "mat_displacementScale",
+                            "type": "5126",
+                            "value": {
+                                "x": 0.10000000149011612
+                            }
+                        },
+                        {
+                            "name": "mat_displacementTexture",
+                            "type": "35678",
+                            "value": {
+                                "name": "Stone Wall Heights"
+                            }
+                        },
+                        {
+                            "name": "mat_normalTexture",
+                            "type": "35678",
+                            "value": {
+                                "name": "Stone Wall Normals"
+                            }
+                        }
+                    ],
+                    "shader": "TessalationTest"
+                },
+                "name": "Tessalation Material",
+                "typename": "Material"
+            },
+            {
+                "asset": {
+                    "name": "TessalationTest",
+                    "subshaders": [
+                        {
+                            "type": "37",
+                            "url": "TessalationTest_0"
+                        },
+                        {
+                            "type": "36",
+                            "url": "TessalationTest_1"
+                        },
+                        {
+                            "type": "35",
+                            "url": "TessalationTest_?"
+                        },
+                        {
+                            "type": "38",
+                            "url": "TessalationTest_ˆ"
+                        }
+                    ]
+                },
+                "name": "Tessalation Shader",
+                "typename": "Shader"
+            },
+            {
+                "asset": {
+                    "name": "TestModel",
+                    "url": "./Assets/TestAssets/TestModel.obj"
+                },
+                "name": "TestModel Model",
+                "typename": "Model"
+            },
+            {
+                "asset": {
+                    "name": "TestModel2",
+                    "url": "./Assets/TestAssets/TestModel2.obj"
+                },
+                "name": "TestModel2 Model",
+                "typename": "Model"
+            },
+            {
+                "asset": {
+                    "name": "TestTesselation",
+                    "url": "./Assets/TestAssets/TestTesselation.obj"
+                },
+                "name": "TestTesselation Model",
+                "typename": "Model"
+            },
+            {
+                "asset": {
+                    "name": "Textured Material",
+                    "parameters": [
+                        {
+                            "name": "mat_diffuseTexture",
+                            "type": "35678",
+                            "value": {
+                                "name": "Default Texture Albedo"
+                            }
+                        }
+                    ],
+                    "shader": "TexturedPhong"
+                },
+                "name": "Textured Material",
+                "typename": "Material"
+            },
+            {
+                "asset": {
+                    "name": "TexturedPhong",
+                    "subshaders": [
+                        {
+                            "type": "9",
+                            "url": "TexturedPhong_0"
+                        },
+                        {
+                            "type": "8",
+                            "url": "TexturedPhong_1"
+                        }
+                    ]
+                },
+                "name": "TexturedPhong Shader",
+                "typename": "Shader"
+            },
+            {
+                "asset": {
+                    "name": "Vector Displacement AO",
+                    "url": "./Assets/TestAssets/vectorCube_occlusion.tga"
+                },
+                "name": "Vector Displacement AO",
+                "typename": "Texture"
+            },
+            {
+                "asset": {
+                    "name": "Vector Displacement Directions",
+                    "url": "./Assets/TestAssets/vectorCube_2_directions.tga"
+                },
+                "name": "Vector Displacement Directions",
+                "typename": "Texture"
+            },
+            {
+                "asset": {
+                    "name": "Vector Displacment Normals",
+                    "url": "./Assets/TestAssets/vectorCube_normals.tga"
+                },
+                "name": "Vector Displacment Normals",
+                "typename": "Texture"
+            },
+            {
+                "asset": {
+                    "name": "VectorCube",
+                    "url": "./Assets/TestAssets/vectorCube_LP_DENSE_T.obj"
+                },
+                "name": "VectorCube Model",
+                "typename": "Model"
+            },
+            {
+                "asset": {
+                    "name": "VectorSphere",
+                    "url": "./Assets/TestAssets/vectorDispSphere.obj"
+                },
+                "name": "VectorSphere Model",
+                "typename": "Model"
+            },
+            {
+                "asset": {
+                    "name": "VectorTessalationMat",
+                    "parameters": [
+                        {
+                            "name": "mat_diffuseTexture",
+                            "type": "35678",
+                            "value": {
+                                "name": "Vector Displacement AO"
+                            }
+                        },
+                        {
+                            "name": "mat_displacementScale",
+                            "type": "5126",
+                            "value": {
+                                "x": 0.5
+                            }
+                        },
+                        {
+                            "name": "mat_displacementTexture",
+                            "type": "35678",
+                            "value": {
+                                "name": "Vector Displacement Directions"
+                            }
+                        },
+                        {
+                            "name": "mat_normalTexture",
+                            "type": "35678",
+                            "value": {
+                                "name": "Vector Displacment Normals"
+                            }
+                        },
+                        {
+                            "name": "mat_tesselationMultiplier",
+                            "type": "5126",
+                            "value": {
+                                "x": 64
+                            }
+                        }
+                    ],
+                    "shader": "VectorTessalationTest"
+                },
+                "name": "VectorTessalation Material",
+                "typename": "Material"
+            },
+            {
+                "asset": {
+                    "name": "VectorTessalationTest",
+                    "subshaders": [
+                        {
+                            "type": "47",
+                            "url": "VectorTessalationTest_0"
+                        },
+                        {
+                            "type": "46",
+                            "url": "VectorTessalationTest_1"
+                        },
+                        {
+                            "type": "48",
+                            "url": "VectorTessalationTest_?"
+                        },
+                        {
+                            "type": "45",
+                            "url": "VectorTessalationTest_ˆ"
+                        }
+                    ]
+                },
+                "name": "VectorTessalation Shader",
+                "typename": "Shader"
+            },
+            {
+                "asset": {
+                    "name": "WardAniso",
+                    "subshaders": [
+                        {
+                            "type": "30",
+                            "url": "WardAniso_0"
+                        },
+                        {
+                            "type": "29",
+                            "url": "WardAniso_1"
+                        }
+                    ]
+                },
+                "name": "WardAniso Shader",
+                "typename": "Shader"
+            },
+            {
+                "asset": {
+                    "name": "WardIso",
+                    "subshaders": [
+                        {
+                            "type": "27",
+                            "url": "WardIso_0"
+                        },
+                        {
+                            "type": "26",
+                            "url": "WardIso_1"
+                        }
+                    ]
+                },
+                "name": "WardIso Shader",
+                "typename": "Shader"
+            }
+        ],
+        "name": "TestLevel"
+    },
+    "name": "",
+    "root entity": {
+        "components": [
+            {
+                "position": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                },
+                "rotation": {
+                    "angle": 180,
+                    "axis": {
+                        "x": 0,
+                        "y": 1,
+                        "z": 0
+                    }
+                },
+                "scale": {
+                    "x": 1,
+                    "y": 1,
+                    "z": 1
+                },
+                "type": "TransformComponent"
+            },
+            {
+                "brightness": 1,
+                "casting shadows": false,
+                "color": {
+                    "b": 0.89999997615814209,
+                    "g": 1,
+                    "r": 1
+                },
+                "direction": {
+                    "x": 0.5,
+                    "y": 0.60000002384185791,
+                    "z": 1
+                },
+                "type": "DirectionalLightComponent"
+            }
+        ],
+        "subobjects": [
+            {
+                "components": [
+                    {
+                        "position": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 0
+                        },
+                        "rotation": {
+                            "angle": 0,
+                            "axis": {
+                                "x": 0,
+                                "y": 0,
+                                "z": 1
+                            }
+                        },
+                        "scale": {
+                            "x": 1,
+                            "y": 1,
+                            "z": 1
+                        },
+                        "type": "TransformComponent"
+                    },
+                    {
+                        "cast shadows": false,
+                        "material": "Phong Material",
+                        "model": "Torus",
+                        "type": "ModelComponent"
+                    }
+                ],
+                "subobjects": [
+                ]
+            },
+            {
+                "components": [
+                    {
+                        "position": {
+                            "x": 4,
+                            "y": 0,
+                            "z": 0
+                        },
+                        "rotation": {
+                            "angle": 0,
+                            "axis": {
+                                "x": 0,
+                                "y": 0,
+                                "z": 1
+                            }
+                        },
+                        "scale": {
+                            "x": 1,
+                            "y": 1,
+                            "z": 1
+                        },
+                        "type": "TransformComponent"
+                    },
+                    {
+                        "cast shadows": false,
+                        "material": "Blinn-Phong Material",
+                        "model": "Sphere",
+                        "type": "ModelComponent"
+                    }
+                ],
+                "subobjects": [
+                ]
+            },
+            {
+                "components": [
+                    {
+                        "position": {
+                            "x": 8,
+                            "y": 0,
+                            "z": 0
+                        },
+                        "rotation": {
+                            "angle": 0,
+                            "axis": {
+                                "x": 0,
+                                "y": 0,
+                                "z": 1
+                            }
+                        },
+                        "scale": {
+                            "x": 1,
+                            "y": 1,
+                            "z": 1
+                        },
+                        "type": "TransformComponent"
+                    },
+                    {
+                        "cast shadows": false,
+                        "material": "Bumped Material",
+                        "model": "Sphere",
+                        "type": "ModelComponent"
+                    }
+                ],
+                "subobjects": [
+                ]
+            },
+            {
+                "components": [
+                    {
+                        "position": {
+                            "x": 12,
+                            "y": 0,
+                            "z": 0
+                        },
+                        "rotation": {
+                            "angle": 0,
+                            "axis": {
+                                "x": 0,
+                                "y": 0,
+                                "z": 1
+                            }
+                        },
+                        "scale": {
+                            "x": 1,
+                            "y": 1,
+                            "z": 1
+                        },
+                        "type": "TransformComponent"
+                    },
+                    {
+                        "cast shadows": false,
+                        "material": "Masked Material",
+                        "model": "Box",
+                        "type": "ModelComponent"
+                    }
+                ],
+                "subobjects": [
+                ]
+            },
+            {
+                "components": [
+                    {
+                        "position": {
+                            "x": 16,
+                            "y": 0,
+                            "z": 0
+                        },
+                        "rotation": {
+                            "angle": 0,
+                            "axis": {
+                                "x": 0,
+                                "y": 0,
+                                "z": 1
+                            }
+                        },
+                        "scale": {
+                            "x": 1,
+                            "y": 1,
+                            "z": 1
+                        },
+                        "type": "TransformComponent"
+                    },
+                    {
+                        "cast shadows": false,
+                        "material": "Paralaxed Material",
+                        "model": "Teapot",
+                        "type": "ModelComponent"
+                    }
+                ],
+                "subobjects": [
+                ]
+            },
+            {
+                "components": [
+                    {
+                        "position": {
+                            "x": 20,
+                            "y": 0,
+                            "z": 0
+                        },
+                        "rotation": {
+                            "angle": 0,
+                            "axis": {
+                                "x": 0,
+                                "y": 0,
+                                "z": 1
+                            }
+                        },
+                        "scale": {
+                            "x": 1,
+                            "y": 1,
+                            "z": 1
+                        },
+                        "type": "TransformComponent"
+                    },
+                    {
+                        "cast shadows": false,
+                        "material": "CookTorrance Material",
+                        "model": "Sphere",
+                        "type": "ModelComponent"
+                    }
+                ],
+                "subobjects": [
+                ]
+            },
+            {
+                "components": [
+                    {
+                        "position": {
+                            "x": 24,
+                            "y": 0,
+                            "z": 0
+                        },
+                        "rotation": {
+                            "angle": 0,
+                            "axis": {
+                                "x": 0,
+                                "y": 0,
+                                "z": 1
+                            }
+                        },
+                        "scale": {
+                            "x": 1,
+                            "y": 1,
+                            "z": 1
+                        },
+                        "type": "TransformComponent"
+                    },
+                    {
+                        "cast shadows": false,
+                        "material": "Strauss Material",
+                        "model": "Sphere",
+                        "type": "ModelComponent"
+                    }
+                ],
+                "subobjects": [
+                ]
+            },
+            {
+                "components": [
+                    {
+                        "position": {
+                            "x": 28,
+                            "y": 0,
+                            "z": 0
+                        },
+                        "rotation": {
+                            "angle": 0,
+                            "axis": {
+                                "x": 0,
+                                "y": 0,
+                                "z": 1
+                            }
+                        },
+                        "scale": {
+                            "x": 1,
+                            "y": 1,
+                            "z": 1
+                        },
+                        "type": "TransformComponent"
+                    },
+                    {
+                        "cast shadows": false,
+                        "material": "Strauss Material Metalic",
+                        "model": "Sphere",
+                        "type": "ModelComponent"
+                    }
+                ],
+                "subobjects": [
+                ]
+            },
+            {
+                "components": [
+                    {
+                        "position": {
+                            "x": 32,
+                            "y": 0,
+                            "z": 0
+                        },
+                        "rotation": {
+                            "angle": 180,
+                            "axis": {
+                                "x": 0,
+                                "y": 1,
+                                "z": 0
+                            }
+                        },
+                        "scale": {
+                            "x": 1,
+                            "y": 1,
+                            "z": 1
+                        },
+                        "type": "TransformComponent"
+                    },
+                    {
+                        "cast shadows": false,
+                        "material": "Isotropic Ward Material",
+                        "model": "TestModel2",
+                        "type": "ModelComponent"
+                    }
+                ],
+                "subobjects": [
+                ]
+            },
+            {
+                "components": [
+                    {
+                        "position": {
+                            "x": 36,
+                            "y": 0,
+                            "z": 0
+                        },
+                        "rotation": {
+                            "angle": 180,
+                            "axis": {
+                                "x": 0,
+                                "y": 1,
+                                "z": 0
+                            }
+                        },
+                        "scale": {
+                            "x": 1,
+                            "y": 1,
+                            "z": 1
+                        },
+                        "type": "TransformComponent"
+                    },
+                    {
+                        "cast shadows": false,
+                        "material": "Anisotropic Ward Material",
+                        "model": "TestModel2",
+                        "type": "ModelComponent"
+                    }
+                ],
+                "subobjects": [
+                ]
+            },
+            {
+                "components": [
+                    {
+                        "position": {
+                            "x": 40,
+                            "y": 0,
+                            "z": 0
+                        },
+                        "rotation": {
+                            "angle": 180,
+                            "axis": {
+                                "x": 0,
+                                "y": 1,
+                                "z": 0
+                            }
+                        },
+                        "scale": {
+                            "x": 1,
+                            "y": 1,
+                            "z": 1
+                        },
+                        "type": "TransformComponent"
+                    },
+                    {
+                        "cast shadows": false,
+                        "material": "TessalationMat",
+                        "model": "BoxDense",
+                        "type": "ModelComponent"
+                    }
+                ],
+                "subobjects": [
+                ]
+            },
+            {
+                "components": [
+                    {
+                        "position": {
+                            "x": 44,
+                            "y": 0,
+                            "z": 0
+                        },
+                        "rotation": {
+                            "angle": 180,
+                            "axis": {
+                                "x": 0,
+                                "y": 1,
+                                "z": 0
+                            }
+                        },
+                        "scale": {
+                            "x": 1,
+                            "y": 1,
+                            "z": 1
+                        },
+                        "type": "TransformComponent"
+                    },
+                    {
+                        "cast shadows": false,
+                        "material": "VectorTessalationMat",
+                        "model": "VectorCube",
+                        "type": "ModelComponent"
+                    }
+                ],
+                "subobjects": [
+                ]
+            },
+            {
+                "components": [
+                    {
+                        "position": {
+                            "x": 48,
+                            "y": 0,
+                            "z": 0
+                        },
+                        "rotation": {
+                            "angle": 180,
+                            "axis": {
+                                "x": 0,
+                                "y": 1,
+                                "z": 0
+                            }
+                        },
+                        "scale": {
+                            "x": 0.20000000298023224,
+                            "y": 0.20000000298023224,
+                            "z": 0.20000000298023224
+                        },
+                        "type": "TransformComponent"
+                    },
+                    {
+                        "cast shadows": false,
+                        "material": "Steampunk Chest Material",
+                        "model": "FbxChest",
+                        "type": "ModelComponent"
+                    }
+                ],
+                "subobjects": [
+                ]
+            },
+            {
+                "components": [
+                    {
+                        "position": {
+                            "x": 52,
+                            "y": 0,
+                            "z": 0
+                        },
+                        "rotation": {
+                            "angle": 180,
+                            "axis": {
+                                "x": 0,
+                                "y": 1,
+                                "z": 0
+                            }
+                        },
+                        "scale": {
+                            "x": 1,
+                            "y": 1,
+                            "z": 1
+                        },
+                        "type": "TransformComponent"
+                    },
+                    {
+                        "cast shadows": false,
+                        "material": "Phong Material",
+                        "model": "FbxTest2",
+                        "type": "ModelComponent"
+                    }
+                ],
+                "subobjects": [
+                ]
+            },
+            {
+                "components": [
+                    {
+                        "position": {
+                            "x": 60,
+                            "y": 0,
+                            "z": 0
+                        },
+                        "rotation": {
+                            "angle": 180,
+                            "axis": {
+                                "x": 0,
+                                "y": 1,
+                                "z": 0
+                            }
+                        },
+                        "scale": {
+                            "x": 1,
+                            "y": 1,
+                            "z": 1
+                        },
+                        "type": "TransformComponent"
+                    },
+                    {
+                        "cast shadows": false,
+                        "material": "Phong Material",
+                        "model": "FbxTest4",
+                        "type": "ModelComponent"
+                    }
+                ],
+                "subobjects": [
+                ]
+            },
+            {
+                "components": [
+                    {
+                        "position": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 5
+                        },
+                        "rotation": {
+                            "angle": 180,
+                            "axis": {
+                                "x": 0,
+                                "y": 1,
+                                "z": 0
+                            }
+                        },
+                        "scale": {
+                            "x": 1,
+                            "y": 1,
+                            "z": 1
+                        },
+                        "type": "TransformComponent"
+                    },
+                    {
+                        "Z far": 10000,
+                        "Z near": 0.10000000149011612,
+                        "aspect ratio": 0.79559117555618286,
+                        "fov": 40,
+                        "target": {
+                            "x": 0,
+                            "y": 0,
+                            "z": -1
+                        },
+                        "type": "CameraComponent",
+                        "up": {
+                            "x": 0,
+                            "y": 1,
+                            "z": 0
+                        }
+                    },
+                    {
+                        "type": "TempPlayerComponent"
+                    }
+                ],
+                "subobjects": [
+                ]
+            },
+            {
+                "components": [
+                    {
+                        "position": {
+                            "x": 5,
+                            "y": 5,
+                            "z": 5
+                        },
+                        "rotation": {
+                            "angle": 180,
+                            "axis": {
+                                "x": 0,
+                                "y": 1,
+                                "z": 0
+                            }
+                        },
+                        "scale": {
+                            "x": 1,
+                            "y": 1,
+                            "z": 1
+                        },
+                        "type": "TransformComponent"
+                    },
+                    {
+                        "Z far": 10000,
+                        "Z near": 0.10000000149011612,
+                        "aspect ratio": 1.3333333730697632,
+                        "fov": 40,
+                        "target": {
+                            "x": 0,
+                            "y": 0,
+                            "z": -1
+                        },
+                        "type": "CameraComponent",
+                        "up": {
+                            "x": 0,
+                            "y": 1,
+                            "z": 0
+                        }
+                    }
+                ],
+                "subobjects": [
+                ]
+            },
+            {
+                "components": [
+                    {
+                        "position": {
+                            "x": 0.21732711791992188,
+                            "y": -0.20000000298023224,
+                            "z": 3
+                        },
+                        "rotation": {
+                            "angle": 0,
+                            "axis": {
+                                "x": 0,
+                                "y": 0,
+                                "z": 1
+                            }
+                        },
+                        "scale": {
+                            "x": 0.40000000596046448,
+                            "y": 0.40000000596046448,
+                            "z": 0.40000000596046448
+                        },
+                        "type": "TransformComponent"
+                    },
+                    {
+                        "attenuation": 1,
+                        "brightness": 0.80000001192092896,
+                        "casting shadows": false,
+                        "color": {
+                            "b": 1,
+                            "g": 0.20000000298023224,
+                            "r": 1
+                        },
+                        "radius": 18,
+                        "type": "PointLightComponent"
+                    },
+                    {
+                        "type": "TempMovingComponent"
+                    },
+                    {
+                        "cast shadows": false,
+                        "material": "Phong Material",
+                        "model": "Sphere",
+                        "type": "ModelComponent"
+                    }
+                ],
+                "subobjects": [
+                ]
+            },
+            {
+                "components": [
+                    {
+                        "position": {
+                            "x": 59.877689361572266,
+                            "y": 2.2000000476837158,
+                            "z": 0
+                        },
+                        "rotation": {
+                            "angle": 0,
+                            "axis": {
+                                "x": 0,
+                                "y": 0,
+                                "z": 1
+                            }
+                        },
+                        "scale": {
+                            "x": 0.40000000596046448,
+                            "y": 0.40000000596046448,
+                            "z": 0.40000000596046448
+                        },
+                        "type": "TransformComponent"
+                    },
+                    {
+                        "attenuation": 3,
+                        "brightness": 1.5,
+                        "casting shadows": false,
+                        "color": {
+                            "b": 0.10000000149011612,
+                            "g": 0.20000000298023224,
+                            "r": 1
+                        },
+                        "inner cone radius": 0,
+                        "outer cone radius": 45,
+                        "radius": 25,
+                        "type": "SpotLightComponent"
+                    },
+                    {
+                        "type": "TempMovingComponent"
+                    },
+                    {
+                        "cast shadows": false,
+                        "material": "Phong Material",
+                        "model": "Cone",
+                        "type": "ModelComponent"
+                    }
+                ],
+                "subobjects": [
+                ]
+            },
+            {
+                "components": [
+                    {
+                        "position": {
+                            "x": 30,
+                            "y": -10,
+                            "z": 0
+                        },
+                        "rotation": {
+                            "angle": 0,
+                            "axis": {
+                                "x": 0,
+                                "y": 0,
+                                "z": 1
+                            }
+                        },
+                        "scale": {
+                            "x": 15,
+                            "y": 15,
+                            "z": 15
+                        },
+                        "type": "TransformComponent"
+                    },
+                    {
+                        "cast shadows": false,
+                        "material": "Blinn-Phong Material",
+                        "model": "Plane",
+                        "type": "ModelComponent"
+                    }
+                ],
+                "subobjects": [
+                ]
+            }
+        ]
+    },
+    "url": "PLACEHOLDER",
+    "used packages": [
+    ]
+}

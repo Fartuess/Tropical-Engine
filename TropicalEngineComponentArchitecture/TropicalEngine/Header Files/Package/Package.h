@@ -16,14 +16,14 @@ namespace TropicalEngine
 	class Package : public ISerializableJSON
 	{
 	public:
-		TYPENAME("Package")
+		TYPENAME(Package)
 
-			/**
-			  * \brief Constructor for Package class.
-			  *
-			  * @param name Name for new Package.
-			  */
-			  Package(QString name);
+		/**
+		  * \brief Constructor for Package class.
+		  *
+		  * @param name Name for new Package.
+		  */
+		Package(QString name);
 
 		/**
 		  * \brief Default destructor.

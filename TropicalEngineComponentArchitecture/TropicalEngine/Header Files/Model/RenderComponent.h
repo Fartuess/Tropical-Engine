@@ -12,11 +12,11 @@ namespace TropicalEngine
 	class RenderComponent : public Component
 	{
 	public:
-		TYPENAME("Render Component")
+		TYPENAME(RenderComponent)
 
-			/**
-			  * \brief Material used by this Component.
-			  */
+		/**
+		  * \brief Material used by this Component.
+		  */
 		class Material* material;
 
 

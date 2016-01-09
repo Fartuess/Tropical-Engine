@@ -1,7 +1,7 @@
+#version 330
+
 #ifndef _OBJECTSPACEMESH
 #define _OBJECTSPACEMESH
-
-#version 410
 
 in vec4 a_vertex;
 in vec3 a_normal;

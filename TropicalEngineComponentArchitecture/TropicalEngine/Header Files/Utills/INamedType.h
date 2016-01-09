@@ -26,7 +26,7 @@ namespace TropicalEngine
 #define TYPENAME(name)\
 	inline QString getTypeName() override\
 		{\
-		return name;\
+		return #name;\
 		}
 
 }

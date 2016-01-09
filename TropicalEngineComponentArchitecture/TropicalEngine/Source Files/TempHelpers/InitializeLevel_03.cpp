@@ -74,48 +74,86 @@ namespace TropicalEngine
 
 		ShaderManager& shaderManager = *engine->shaderManager;
 
-		shaderManager.Load("Phong", "./Shader Files/Perspective_NTBTc_VS.glsl", "./Shader Files/Phong_PS.glsl");
-		shaderManager.Load("BlinnPhong", "./Shader Files/Perspective_NTBTc_VS.glsl", "./Shader Files/PhongBlinn_PS.glsl");
-		Shader* testShader = shaderManager.Load("TexturedPhong", "./Shader Files/Perspective_NTBTc_VS.glsl", "./Shader Files/PhongBlinnSimple_PS.glsl");
-		Shader* testShaderNRM = shaderManager.Load("BumpedPhong", "./Shader Files/Perspective_NTBTc_VS.glsl", "./Shader Files/PhongBlinnBump_PS.glsl");
-		Shader* maskedShader = shaderManager.Load("MaskedBumpedBlinnPhong", "./Shader Files/Perspective_NTBTc_VS.glsl", "./Shader Files/PhongBlinnBumpMask_PS.glsl");
 		Shader* phongBlinnParalaxShader = shaderManager.Load("ParalaxedPhong", "./Shader Files/Perspective_NTBTc_VS.glsl", "./Shader Files/PhongBlinnParalax_PS.glsl");
-		Shader* cookTorranceShader = shaderManager.Load("CookTorrance", "./Shader Files/Perspective_NTBTc_VS.glsl", "./Shader Files/CookTorrance_PS.glsl");
-		Shader* straussShader = shaderManager.Load("Strauss", "./Shader Files/Perspective_NTBTc_VS.glsl", "./Shader Files/StraussSimple2_PS.glsl");
-		Shader* wardIsoShader = shaderManager.Load("WardIso", "./Shader Files/Perspective_NTBTc_VS.glsl", "./Shader Files/WardIsoSimple_PS.glsl");
-		Shader* wardAnisoShader = shaderManager.Load("WardAniso", "./Shader Files/Perspective_NTBTc_VS.glsl", "./Shader Files/WardAnisoSimple_PS.glsl");
-
-		//Shaderbuilder
 
 		ShaderTechnique* lambertTechnique = new ShaderTechnique("Lambert", &CommonMeshShaderBuilder::Instance());
-		lambertTechnique->setInput("Lighting Model", "./Shader Files/LightingModels/PhongLightingModel.glsl");
-		Shader* lambertShader = lambertTechnique->generateShader();
+		lambertTechnique->setInput("Lighting Model", "./Shader Files/LightingModels/LambertLightingModel.glsl");
+		
+		ShaderTechnique* phongTechnique = new ShaderTechnique("Phong", &CommonMeshShaderBuilder::Instance());
+		phongTechnique->setInput("Lighting Model", "./Shader Files/LightingModels/PhongLightingModel.glsl");
 
-		//CommonMeshShaderBuilder::Instance().setInput("Lighting Model", "./Shader Files/LightingModels/PhongLightingModel.glsl");
-		//Shader* lambertShader = CommonMeshShaderBuilder::Instance().createShader("Lambert");
+		ShaderTechnique* blinnPhongTechnique = new ShaderTechnique("BlinnPhong", &CommonMeshShaderBuilder::Instance());
+		blinnPhongTechnique->setInput("Lighting Model", "./Shader Files/LightingModels/BlinnPhongLightingModel.glsl");
+
+		ShaderTechnique* cookTorranceTechnique = new ShaderTechnique("CookTorrance", &CommonMeshShaderBuilder::Instance());
+		cookTorranceTechnique->setInput("Lighting Model", "./Shader Files/LightingModels/CookTorranceLightingModel.glsl");
+
+		ShaderTechnique* straussTechnique = new ShaderTechnique("Strauss", &CommonMeshShaderBuilder::Instance());
+		straussTechnique->setInput("Lighting Model", "./Shader Files/LightingModels/StraussLightingModel.glsl");
+
+		ShaderTechnique* wardIsoTechnique = new ShaderTechnique("WardIso", &CommonMeshShaderBuilder::Instance());
+		wardIsoTechnique->setInput("Lighting Model", "./Shader Files/LightingModels/WardIsotropicLightingModel.glsl");
+
+		ShaderTechnique* wardAnisoTechnique = new ShaderTechnique("WardAniso", &CommonMeshShaderBuilder::Instance());
+		wardAnisoTechnique->setInput("Lighting Model", "./Shader Files/LightingModels/WardAnisotropicLightingModel.glsl");
+
+		ShaderTechnique* texturedLambertTechnique = new ShaderTechnique("LambertTextured", &CommonMeshShaderBuilder::Instance());
+		texturedLambertTechnique->setInput("Lighting Model", "./Shader Files/LightingModels/LambertLightingModel.glsl");
+		texturedLambertTechnique->setInput("Surface Shader", "./Shader Files/SurfaceShaders/Textured.glsl");
+
+		ShaderTechnique* bumpmappedPhongTechnique = new ShaderTechnique("PhongBumpmapped", &CommonMeshShaderBuilder::Instance());
+		bumpmappedPhongTechnique->setInput("Lighting Model", "./Shader Files/LightingModels/PhongLightingModel.glsl");
+		bumpmappedPhongTechnique->setInput("Surface Shader", "./Shader Files/SurfaceShaders/BumpTextured.glsl");
+
+		ShaderTechnique* maskedBumpmappedBlinnPhongTechnique = new ShaderTechnique("BlinnBumpmappedMasked", &CommonMeshShaderBuilder::Instance());
+		maskedBumpmappedBlinnPhongTechnique->setInput("Lighting Model", "./Shader Files/LightingModels/BlinnPhongLightingModel.glsl");
+		maskedBumpmappedBlinnPhongTechnique->setInput("Surface Shader", "./Shader Files/SurfaceShaders/BumpTextured.glsl");
+		maskedBumpmappedBlinnPhongTechnique->setInput("Blend Mode", "./Shader Files/Blending/BlendMasked.glsl");
+
+		ShaderTechnique* staticTessellationTechnique = new ShaderTechnique("StaticTessallation", &CommonMeshShaderBuilder::Instance());
+		staticTessellationTechnique->setInput("Lighting Model", "./Shader Files/LightingModels/BlinnPhongLightingModel.glsl");
+		staticTessellationTechnique->setInput("Surface Shader", "./Shader Files/SurfaceShaders/BumpTextured.glsl");
+		staticTessellationTechnique->setInput("Vertex Shader", "./Shader Files/Mesh/ObjectSpaceMesh.glsl");
+		staticTessellationTechnique->setInput("TCS Shader", "./Shader Files/Mesh/Tessellation/Control/SimpleTessellation.glsl");
+		staticTessellationTechnique->setInput("TES Shader", "./Shader Files/Mesh/Tessellation/Evaluation/TessellationDisplacement.glsl");
+
+		ShaderTechnique* distanceTessellationTechnique = new ShaderTechnique("DistanceTessallation", &CommonMeshShaderBuilder::Instance());
+		distanceTessellationTechnique->setInput("Lighting Model", "./Shader Files/LightingModels/BlinnPhongLightingModel.glsl");
+		distanceTessellationTechnique->setInput("Surface Shader", "./Shader Files/SurfaceShaders/BumpTextured.glsl");
+		distanceTessellationTechnique->setInput("Vertex Shader", "./Shader Files/Mesh/ObjectSpaceMesh.glsl");
+		distanceTessellationTechnique->setInput("TCS Shader", "./Shader Files/Mesh/Tessellation/Control/DistanceBasedTessellation.glsl");
+		distanceTessellationTechnique->setInput("TES Shader", "./Shader Files/Mesh/Tessellation/Evaluation/TessellationDisplacement.glsl");
+
+		ShaderTechnique* vectorTessellationTechnique = new ShaderTechnique("VectorTessallation", &CommonMeshShaderBuilder::Instance());
+		vectorTessellationTechnique->setInput("Lighting Model", "./Shader Files/LightingModels/BlinnPhongLightingModel.glsl");
+		vectorTessellationTechnique->setInput("Surface Shader", "./Shader Files/SurfaceShaders/BumpTextured.glsl");
+		vectorTessellationTechnique->setInput("Vertex Shader", "./Shader Files/Mesh/ObjectSpaceMesh.glsl");
+		vectorTessellationTechnique->setInput("TCS Shader", "./Shader Files/Mesh/Tessellation/Control/DistanceBasedTessellation.glsl");
+		vectorTessellationTechnique->setInput("TES Shader", "./Shader Files/Mesh/Tessellation/Evaluation/TessellationVectorDisplacement.glsl");
 
 
 		//Adding shaders to the internal package of the level.
-		helperAsset = new Asset("Phong Shader", shaderManager["Phong"]);
-		(*level->getInternalPackage()) << helperAsset;
-		helperAsset = new Asset("BlinnPhong Shader", shaderManager["BlinnPhong"]);
-		(*level->getInternalPackage()) << helperAsset;
-		helperAsset = new Asset("TexturedPhong Shader", shaderManager["TexturedPhong"]);
-		(*level->getInternalPackage()) << helperAsset;
-		helperAsset = new Asset("BumpedPhong Shader", shaderManager["BumpedPhong"]);
-		(*level->getInternalPackage()) << helperAsset;
-		helperAsset = new Asset("MaskedBumpedBlinnPhong Shader", shaderManager["MaskedBumpedBlinnPhong"]);
-		(*level->getInternalPackage()) << helperAsset;
-		helperAsset = new Asset("ParalaxedPhong Shader", shaderManager["ParalaxedPhong"]);
-		(*level->getInternalPackage()) << helperAsset;
-		helperAsset = new Asset("CookTorrance Shader", shaderManager["CookTorrance"]);
-		(*level->getInternalPackage()) << helperAsset;
-		helperAsset = new Asset("Strauss Shader", shaderManager["Strauss"]);
-		(*level->getInternalPackage()) << helperAsset;
-		helperAsset = new Asset("WardIso Shader", shaderManager["WardIso"]);
-		(*level->getInternalPackage()) << helperAsset;
-		helperAsset = new Asset("WardAniso Shader", shaderManager["WardAniso"]);
-		(*level->getInternalPackage()) << helperAsset;
+		//helperAsset = new Asset("Phong Shader", shaderManager["Phong"]);
+		//(*level->getInternalPackage()) << helperAsset;
+		//helperAsset = new Asset("BlinnPhong Shader", shaderManager["BlinnPhong"]);
+		//(*level->getInternalPackage()) << helperAsset;
+		//helperAsset = new Asset("TexturedPhong Shader", shaderManager["TexturedPhong"]);
+		//(*level->getInternalPackage()) << helperAsset;
+		//helperAsset = new Asset("BumpedPhong Shader", shaderManager["BumpedPhong"]);
+		//(*level->getInternalPackage()) << helperAsset;
+		//helperAsset = new Asset("MaskedBumpedBlinnPhong Shader", shaderManager["MaskedBumpedBlinnPhong"]);
+		//(*level->getInternalPackage()) << helperAsset;
+		//helperAsset = new Asset("ParalaxedPhong Shader", shaderManager["ParalaxedPhong"]);
+		//(*level->getInternalPackage()) << helperAsset;
+		//helperAsset = new Asset("CookTorrance Shader", shaderManager["CookTorrance"]);
+		//(*level->getInternalPackage()) << helperAsset;
+		//helperAsset = new Asset("Strauss Shader", shaderManager["Strauss"]);
+		//(*level->getInternalPackage()) << helperAsset;
+		//helperAsset = new Asset("WardIso Shader", shaderManager["WardIso"]);
+		//(*level->getInternalPackage()) << helperAsset;
+		//helperAsset = new Asset("WardAniso Shader", shaderManager["WardAniso"]);
+		//(*level->getInternalPackage()) << helperAsset;
+		/// TODO: tessallation shaders missing
 
 		/*********************************
 		*
@@ -125,21 +163,26 @@ namespace TropicalEngine
 
 		MaterialManager& materialManager = *engine->materialManager;
 
-		//Material* phongMaterial = new Material(lambertShader, "Phong Material");
-		Material* phongMaterial = new Material(shaderManager["Lambert_color"], "Phong Material");
+		Material* lambertMaterial				= new Material(shaderManager.getShaderTechnique("Lambert"), "Lambert Material");
+		Material* phongMaterial					= new Material(shaderManager.getShaderTechnique("Phong"), "Phong Material");
+		Material* phongBlinnMaterial			= new Material(shaderManager.getShaderTechnique("BlinnPhong"), "Blinn-Phong Material");
+		Material* cookTorranceMaterial			= new Material(shaderManager.getShaderTechnique("CookTorrance"), "CookTorrance Material");
+		Material* straussMaterial				= new Material(shaderManager.getShaderTechnique("Strauss"), "Strauss Material");
+		Material* straussMaterialMetalic		= new Material(shaderManager.getShaderTechnique("Strauss"), "Strauss Material Metalic");
+		Material* wardIsoMaterial				= new Material(shaderManager.getShaderTechnique("WardIso"), "Isotropic Ward Material");
+		Material* wardAnisoMaterial				= new Material(shaderManager.getShaderTechnique("WardAniso"), "Anisotropic Ward Material");
 
-		//Material* phongMaterial				=	new Material(shaderManager["Phong"],		"Phong Material");
-		Material* phongBlinnMaterial = new Material(shaderManager["BlinnPhong"], "Blinn-Phong Material");
-		Material* testMaterial = new Material(testShader, "Textured Material");
-		Material* testMaterialNRM = new Material(testShaderNRM, "Bumped Material");
-		Material* maskedMaterial = new Material(maskedShader, "Masked Material");
-		Material* phongBlinnParalaxMaterial = new Material(phongBlinnParalaxShader, "Paralaxed Material");
-		Material* cookTorranceMaterial = new Material(cookTorranceShader, "CookTorrance Material");
-		Material* straussMaterial = new Material(straussShader, "Strauss Material");
-		Material* straussMaterialMetalic = new Material(straussShader, "Strauss Material Metalic");
-		Material* wardIsoMaterial = new Material(wardIsoShader, "Isotropic Ward Material");
-		Material* wardAnisoMaterial = new Material(wardAnisoShader, "Anisotropic Ward Material");
-		Material* chestMaterial = new Material(testShaderNRM, "Steampunk Chest Material");
+		Material* texturedMaterial				= new Material(shaderManager.getShaderTechnique("LambertTextured"), "Textured Material");
+		Material* bumpedMaterial				= new Material(shaderManager.getShaderTechnique("PhongBumpmapped"), "Bumped Material");
+		Material* maskedMaterial				= new Material(shaderManager.getShaderTechnique("BlinnBumpmappedMasked"), "Masked Material");
+
+		Material* phongBlinnParalaxMaterial		= new Material(phongBlinnParalaxShader, "Paralaxed Material");
+
+		Material* staticTessellationMaterial	= new Material(shaderManager.getShaderTechnique("StaticTessallation"), "Tessallated Material");
+		Material* distanceTessellationMaterial	= new Material(shaderManager.getShaderTechnique("DistanceTessallation"), "Distance Tessallated Material");
+		Material* vectorTessellationMaterial	= new Material(shaderManager.getShaderTechnique("VectorTessallation"), "Vector Tessallated Material");
+		
+		Material* chestMaterial					= new Material(shaderManager.getShaderTechnique("PhongBumpmapped"), "Steampunk Chest Material");
 
 		/*********************************
 		*
@@ -149,25 +192,25 @@ namespace TropicalEngine
 
 		TextureManager& textureManager = *engine->textureManager;
 
-		textureManager.Load("Default Texture Albedo", "./Assets/Core/DefaultTexture.png");
-		Texture* testingTextureNormal = textureManager.Load("Default Texture Normals", "./Assets/Core/DefaultTexture_NRM.png");
+											  textureManager.Load("Default Texture Albedo", "./Assets/Core/DefaultTexture.png");
+		Texture* testingTextureNormal		= textureManager.Load("Default Texture Normals", "./Assets/Core/DefaultTexture_NRM.png");
 
-		Texture* testGearTexture = textureManager.Load("Gears AO", "./Assets/TestAssets/Gear_occlusion.tga");
-		Texture* testGearTextureNormal = textureManager.Load("Gears Normals", "./Assets/TestAssets/Gear_normals.tga");
+		Texture* testGearTexture			= textureManager.Load("Gears AO", "./Assets/TestAssets/Gear_occlusion.tga");
+		Texture* testGearTextureNormal		= textureManager.Load("Gears Normals", "./Assets/TestAssets/Gear_normals.tga");
 
-		Texture* tessDiffTex = textureManager.Load("Stone Wall Albedo", "./Assets/Core/wall_base.png");
-		Texture* tessNrmTex = textureManager.Load("Stone Wall Normals", "./Assets/Core/wall_normals.png");
-		Texture* tessDispTex = textureManager.Load("Stone Wall Heights", "./Assets/Core/wall_heights.png");
+		Texture* tessDiffTex				= textureManager.Load("Stone Wall Albedo", "./Assets/Core/wall_base.png");
+		Texture* tessNrmTex					= textureManager.Load("Stone Wall Normals", "./Assets/Core/wall_normals.png");
+		Texture* tessDispTex				= textureManager.Load("Stone Wall Heights", "./Assets/Core/wall_heights.png");
 
-		Texture* tessVecDispTex = textureManager.Load("Vector Displacement AO", "./Assets/TestAssets/vectorCube_occlusion.tga");
-		Texture* tessVecDispTexNRM = textureManager.Load("Vector Displacment Normals", "./Assets/TestAssets/vectorCube_normals.tga");
-		Texture* tessVecDispTexDISP_TS = textureManager.Load("Vector Displacement Directions", "./Assets/TestAssets/vectorCube_2_directions.tga");
+		Texture* tessVecDispTex				= textureManager.Load("Vector Displacement AO", "./Assets/TestAssets/vectorCube_occlusion.tga");
+		Texture* tessVecDispTexNRM			= textureManager.Load("Vector Displacment Normals", "./Assets/TestAssets/vectorCube_normals.tga");
+		Texture* tessVecDispTexDISP_TS		= textureManager.Load("Vector Displacement Directions", "./Assets/TestAssets/vectorCube_2_directions.tga");
 
-		Texture* tgaTest = textureManager.Load("TGA Test", "./Assets/TestAssets/dickbutt.tga");
-		Texture* tgaRleTest = textureManager.Load("TGA RLE Test", "./Assets/TestAssets/dickbutt_RLE.tga");	//apparently Qt TGA importer doesn't read TGA compressed with RLE.
+		Texture* tgaTest					= textureManager.Load("TGA Test", "./Assets/TestAssets/dickbutt.tga");
+		Texture* tgaRleTest					= textureManager.Load("TGA RLE Test", "./Assets/TestAssets/dickbutt_RLE.tga");	//apparently Qt TGA importer doesn't read TGA compressed with RLE.
 
-		Texture* chestDiff = textureManager.Load("Steampunk Chest Albedo", "./Assets/TestAssets/SteampunkChest_Diffuse.tga");
-		Texture* chestNRM = textureManager.Load("Steampunk Chest Normals", "./Assets/TestAssets/SteampunkChest_NRM.tga");
+		Texture* chestDiff					= textureManager.Load("Steampunk Chest Albedo", "./Assets/TestAssets/SteampunkChest_Diffuse.tga");
+		Texture* chestNRM					= textureManager.Load("Steampunk Chest Normals", "./Assets/TestAssets/SteampunkChest_NRM.tga");
 
 		//Adding textures to the internal package of the level.
 		helperAsset = new Asset("Default Texture Albedo", textureManager["Default Texture Albedo"]);
@@ -205,46 +248,63 @@ namespace TropicalEngine
 		*
 		*********************************/
 
-		(*phongMaterial)["mat_diffuseColor"] = new glm::vec3(0.0f, 0.7f, 1.0f);
-		(*phongMaterial)["mat_color"] = new glm::vec3(0.0f, 1.0f, 0.7f);
-		(*phongMaterial)["mat_emissive"] = new glm::vec3(0.1f, 0.0f, 0.0f);
+		(*lambertMaterial)["mat_color"]					= new glm::vec3(0.0f, 1.0f, 0.7f);
 
-		(*materialManager["Blinn-Phong Material"])["mat_diffuseColor"] = new glm::vec3(0.5f, 0.7f, 1.0f);
+		(*phongMaterial)["mat_color"]					= new glm::vec3(0.0f, 0.7f, 1.0f);
 
-		(*testMaterial)["mat_diffuseTexture"] = textureManager["Default Texture Albedo"];
+		(*materialManager["Blinn-Phong Material"])["mat_color"] = new glm::vec3(0.5f, 0.7f, 1.0f);
 
-		(*testMaterialNRM)["mat_diffuseTexture"] = textureManager["Default Texture Albedo"];
-		(*testMaterialNRM)["mat_normalTexture"] = testingTextureNormal;
+		(*cookTorranceMaterial)["mat_color"]			= new glm::vec3(1.0f, 0.7f, 0.0f);
+		(*cookTorranceMaterial)["mat_specular"]			= new glm::vec3(1.0f, 1.0f, 1.0f);
+		(*cookTorranceMaterial)["mat_roughness"]		= new float(0.5f);
+		(*cookTorranceMaterial)["mat_refractiveIndex"]	= new float(0.15f);
 
-		(*maskedMaterial)["mat_diffuseTexture"] = testGearTexture;
-		(*maskedMaterial)["mat_normalTexture"] = testGearTextureNormal;
+		(*straussMaterial)["mat_color"]					= new glm::vec3(0.1f, 1.0f, 0.1f);
+		(*straussMaterial)["mat_roughness"]				= new float(0.8f);	//actually its smoothness. Changed name to fit PBR naming conventions but didn't inverse it in shader yet.
+		(*straussMaterial)["mat_metalness"]				= new float(0.0f);
+
+		(*straussMaterialMetalic)["mat_color"]			= new glm::vec3(0.1f, 1.0f, 0.1f);
+		(*straussMaterialMetalic)["mat_roughness"]		= new float(0.8f);	//actually its smoothness. Changed name to fit PBR naming conventions but didn't inverse it in shader yet.
+		(*straussMaterialMetalic)["mat_metalness"]		= new float(1.0f);
+
+		(*wardIsoMaterial)["mat_color"]					= new glm::vec3(1.0f, 0.7f, 0.0f);
+		(*wardIsoMaterial)["mat_roughness"]				= new float(0.3f);
+
+		(*wardAnisoMaterial)["mat_color"]				= new glm::vec3(1.0f, 0.7f, 0.0f);
+		(*wardAnisoMaterial)["mat_roughness"]			= new glm::vec2(0.5f, 0.1f);
+
+		(*texturedMaterial)["mat_color"] = textureManager["Default Texture Albedo"];
+
+		(*bumpedMaterial)["mat_color"] = textureManager["Default Texture Albedo"];
+		(*bumpedMaterial)["mat_normal"] = testingTextureNormal;
+
+		(*maskedMaterial)["mat_color"] = testGearTexture;
+		(*maskedMaterial)["mat_normal"] = testGearTextureNormal;
 
 		(*phongBlinnParalaxMaterial)["mat_diffuseTexture"] = tessDiffTex;
 		(*phongBlinnParalaxMaterial)["mat_normalTexture"] = tessNrmTex;
 		(*phongBlinnParalaxMaterial)["mat_heightTexture"] = tessDispTex;
 		(*phongBlinnParalaxMaterial)["mat_bumpScale"] = new float(0.1f);
 
-		(*cookTorranceMaterial)["mat_diffuseColor"] = new glm::vec3(1.0f, 0.7f, 0.0f);
-		(*cookTorranceMaterial)["mat_specularColor"] = new glm::vec3(1.0f, 1.0f, 1.0f);
-		(*cookTorranceMaterial)["mat_roughness"] = new float(0.5f);
-		(*cookTorranceMaterial)["mat_refractiveIndex"] = new float(0.15f);
+		(*staticTessellationMaterial)["mat_color"] = tessDiffTex;
+		(*staticTessellationMaterial)["mat_normal"] = tessNrmTex;
+		(*staticTessellationMaterial)["mat_displacementTexture"] = tessDispTex;
+		(*staticTessellationMaterial)["mat_displacementScale"] = new float(0.1f);
 
-		(*straussMaterial)["mat_albedo"] = new glm::vec3(0.0f, 1.0f, 0.0f);
-		(*straussMaterial)["mat_roughness"] = new float(0.8f);	//actually its smoothness. Changed name to fit PBR naming conventions but didn't inverse it in shader yet.
-		(*straussMaterial)["mat_metaliness"] = new float(0.0f);
+		(*distanceTessellationMaterial)["mat_color"] = tessDiffTex;
+		(*distanceTessellationMaterial)["mat_normal"] = tessNrmTex;
+		(*distanceTessellationMaterial)["mat_displacementTexture"] = tessDispTex;
+		(*distanceTessellationMaterial)["mat_displacementScale"] = new float(0.1f);
+		(*distanceTessellationMaterial)["mat_tesselationMultiplier"] = new float(48.0f);
 
-		(*straussMaterialMetalic)["mat_albedo"] = new glm::vec3(0.0f, 1.0f, 0.0f);
-		(*straussMaterialMetalic)["mat_roughness"] = new float(0.8f);	//actually its smoothness. Changed name to fit PBR naming conventions but didn't inverse it in shader yet.
-		(*straussMaterialMetalic)["mat_metaliness"] = new float(1.0f);
+		(*vectorTessellationMaterial)["mat_color"] = tessVecDispTex;
+		(*vectorTessellationMaterial)["mat_normal"] = tessVecDispTexNRM;
+		(*vectorTessellationMaterial)["mat_displacementTexture"] = tessVecDispTexDISP_TS;
+		(*vectorTessellationMaterial)["mat_displacementScale"] = new float(0.4f);
+		(*vectorTessellationMaterial)["mat_tesselationMultiplier"] = new float(64.0f);
 
-		(*wardIsoMaterial)["mat_diffuse"] = new glm::vec3(1.0f, 0.7f, 0.0f);
-		(*wardIsoMaterial)["mat_roughness"] = new float(0.3f);
-
-		(*wardAnisoMaterial)["mat_diffuse"] = new glm::vec3(1.0f, 0.7f, 0.0f);
-		(*wardAnisoMaterial)["mat_anisoRoughness"] = new glm::vec2(0.5f, 0.1f);
-
-		(*chestMaterial)["mat_diffuseTexture"] = chestDiff;
-		(*chestMaterial)["mat_normalTexture"] = chestNRM;
+		(*chestMaterial)["mat_color"]			= chestDiff;
+		(*chestMaterial)["mat_normal"]			= chestNRM;
 
 		//Adding materials to the internal package of the level.
 		helperAsset = new Asset("Phong Material", materialManager["Phong Material"]);
@@ -270,69 +330,6 @@ namespace TropicalEngine
 		helperAsset = new Asset("Anisotropic Ward Material", materialManager["Anisotropic Ward Material"]);
 		(*level->getInternalPackage()) << helperAsset;
 		helperAsset = new Asset("Steampunk Chest Material", materialManager["Steampunk Chest Material"]);
-		(*level->getInternalPackage()) << helperAsset;
-
-		/*********************************
-		*
-		* Setting up tessalated shaders
-		* and materials
-		*
-		*********************************/
-
-		QMap<QString, GLuint> tessalationSubshaders = QMap<QString, GLuint>();
-		tessalationSubshaders["./Shader Files/Perspective_NTBTcTess_VS.glsl"] = GL_VERTEX_SHADER;
-		tessalationSubshaders["./Shader Files/SimpleTessalation_TCS.glsl"] = GL_TESS_CONTROL_SHADER;
-		tessalationSubshaders["./Shader Files/Displacement_TES.glsl"] = GL_TESS_EVALUATION_SHADER;
-		tessalationSubshaders["./Shader Files/PhongBlinnBump_PS.glsl"] = GL_FRAGMENT_SHADER;
-		Shader* tessalationShader = new Shader(tessalationSubshaders, "TessalationTest");
-		tessalationShader->drawingMode = GL_PATCHES;
-		Material* testTessalationMaterial = new Material(tessalationShader, "TessalationMat");
-		(*testTessalationMaterial)["mat_diffuseTexture"] = tessDiffTex;
-		(*testTessalationMaterial)["mat_normalTexture"] = tessNrmTex;
-		(*testTessalationMaterial)["mat_displacementTexture"] = tessDispTex;
-		(*testTessalationMaterial)["mat_displacementScale"] = new float(0.1f);
-
-		QMap<QString, GLuint> distanceTessalationSubshaders = QMap<QString, GLuint>();
-		distanceTessalationSubshaders["./Shader Files/Perspective_NTBTcTess_VS.glsl"] = GL_VERTEX_SHADER;
-		distanceTessalationSubshaders["./Shader Files/DistanceBasedTesselation_TCS.glsl"] = GL_TESS_CONTROL_SHADER;
-		distanceTessalationSubshaders["./Shader Files/Displacement_TES.glsl"] = GL_TESS_EVALUATION_SHADER;
-		distanceTessalationSubshaders["./Shader Files/PhongBlinnBump_PS.glsl"] = GL_FRAGMENT_SHADER;
-		Shader* distanceTessalationShader = new Shader(distanceTessalationSubshaders, "DistanceTessalationTest");
-		distanceTessalationShader->drawingMode = GL_PATCHES;
-		Material* distanceTessalationMaterial = new Material(distanceTessalationShader, "DistanceTessalationMat");
-		(*distanceTessalationMaterial)["mat_diffuseTexture"] = tessDiffTex;
-		(*distanceTessalationMaterial)["mat_normalTexture"] = tessNrmTex;
-		(*distanceTessalationMaterial)["mat_displacementTexture"] = tessDispTex;
-		(*distanceTessalationMaterial)["mat_displacementScale"] = new float(0.1f);
-
-		QMap<QString, GLuint> vectorTessalationSubshaders = QMap<QString, GLuint>();
-		vectorTessalationSubshaders["./Shader Files/Perspective_NTBTcTess_VS.glsl"] = GL_VERTEX_SHADER;
-		vectorTessalationSubshaders["./Shader Files/DistanceBasedTesselation_TCS.glsl"] = GL_TESS_CONTROL_SHADER;
-		vectorTessalationSubshaders["./Shader Files/VectorDisplacement_TES.glsl"] = GL_TESS_EVALUATION_SHADER;
-		vectorTessalationSubshaders["./Shader Files/PhongBlinnBump_PS.glsl"] = GL_FRAGMENT_SHADER;
-		Shader* vectorTessalationShader = new Shader(vectorTessalationSubshaders, "VectorTessalationTest");
-		vectorTessalationShader->drawingMode = GL_PATCHES;
-		Material* vectorTessalationMaterial = new Material(vectorTessalationShader, "VectorTessalationMat");
-		(*vectorTessalationMaterial)["mat_diffuseTexture"] = tessVecDispTex;
-		(*vectorTessalationMaterial)["mat_normalTexture"] = tessVecDispTexNRM;
-		(*vectorTessalationMaterial)["mat_displacementTexture"] = tessVecDispTexDISP_TS;
-		(*vectorTessalationMaterial)["mat_displacementScale"] = new float(0.5f);
-		(*vectorTessalationMaterial)["mat_tesselationMultiplier"] = new float(64.0f);
-
-		//Adding tessalation shaders and materials to the internal package of the level.
-		helperAsset = new Asset("Tessalation Shader", shaderManager["TessalationTest"]);
-		(*level->getInternalPackage()) << helperAsset;
-		helperAsset = new Asset("Tessalation Material", materialManager["TessalationMat"]);
-		(*level->getInternalPackage()) << helperAsset;
-
-		helperAsset = new Asset("DistanceTessalation Shader", shaderManager["DistanceTessalationTest"]);
-		(*level->getInternalPackage()) << helperAsset;
-		helperAsset = new Asset("DistanceTessalation Material", materialManager["DistanceTessalationMat"]);
-		(*level->getInternalPackage()) << helperAsset;
-
-		helperAsset = new Asset("VectorTessalation Shader", shaderManager["VectorTessalationTest"]);
-		(*level->getInternalPackage()) << helperAsset;
-		helperAsset = new Asset("VectorTessalation Material", materialManager["VectorTessalationMat"]);
 		(*level->getInternalPackage()) << helperAsset;
 
 		/*********************************
@@ -441,7 +438,7 @@ namespace TropicalEngine
 		*********************************/
 
 		Entity* phongExample = new Entity(glm::vec3(0.0f, 0.0f, 0.0f), glm::quat(), glm::vec3(1.0f, 1.0f, 1.0f));
-		ModelComponent* phongModelC = new ModelComponent(phongExample, materialManager["Phong Material"], (*engine->modelManager)["Torus"]);
+		ModelComponent* phongModelC = new ModelComponent(phongExample, lambertMaterial, (*engine->modelManager)["Torus"]);
 		phongExample->name = QString("Phong Example");
 		level->getRoot()->AttachSubobject(phongExample);
 
@@ -451,7 +448,7 @@ namespace TropicalEngine
 		level->getRoot()->AttachSubobject(phongBlinnExample);
 
 		Entity* BumpMapExample = new Entity(glm::vec3(8.0f, 0.0f, 0.0f), glm::quat(), glm::vec3(1.0f, 1.0f, 1.0f));
-		ModelComponent* bumpMapModelC = new ModelComponent(BumpMapExample, testMaterialNRM, engine->modelManager->getModel("Sphere"));
+		ModelComponent* bumpMapModelC = new ModelComponent(BumpMapExample, bumpedMaterial, engine->modelManager->getModel("TestModel2"));
 		BumpMapExample->name = QString("Bump mapping Example");
 		level->getRoot()->AttachSubobject(BumpMapExample);
 
@@ -491,12 +488,12 @@ namespace TropicalEngine
 		level->getRoot()->AttachSubobject(WardAnisotropicExample);
 
 		Entity* DistanceTessellationExample = new Entity(glm::vec3(40.0f, 0.0f, 0.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
-		ModelComponent* distanceTessModelC = new ModelComponent(DistanceTessellationExample, testTessalationMaterial, engine->modelManager->getModel("BoxDense"));
+		ModelComponent* distanceTessModelC = new ModelComponent(DistanceTessellationExample, distanceTessellationMaterial, engine->modelManager->getModel("BoxDense"));
 		DistanceTessellationExample->name = QString("Distance Tessellation Example");
 		level->getRoot()->AttachSubobject(DistanceTessellationExample);
 
 		Entity* VectorTessellationExample = new Entity(glm::vec3(44.0f, 0.0f, 0.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
-		ModelComponent* vectorTessModelC = new ModelComponent(VectorTessellationExample, vectorTessalationMaterial, engine->modelManager->getModel("VectorCube"));
+		ModelComponent* vectorTessModelC = new ModelComponent(VectorTessellationExample, vectorTessellationMaterial, engine->modelManager->getModel("VectorCube"));
 		VectorTessellationExample->name = QString("Vector Displacement Tessellation Example");
 		level->getRoot()->AttachSubobject(VectorTessellationExample);
 

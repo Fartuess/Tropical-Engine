@@ -15,15 +15,15 @@ namespace TropicalEngine
 	class Texture : public ISerializableJSON
 	{
 	public:
-		TYPENAME("Texture")
+		TYPENAME(Texture)
 
-			/**
-			  * \brief Constructor for Texture class.
-			  *
-			  * @param fileUrl path to file texture will be loaded from.
-			  * @param name Name to be set for Texture.
-			  */
-			  Texture(QString fileUrl, QString name);
+		/**
+		  * \brief Constructor for Texture class.
+		  *
+		  * @param fileUrl path to file texture will be loaded from.
+		  * @param name Name to be set for Texture.
+		  */
+		Texture(QString fileUrl, QString name);
 
 		/**
 		  * \brief Default destructor.

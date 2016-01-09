@@ -15,9 +15,9 @@ namespace TropicalEngine
 	class Shader : public ISerializableJSON
 	{
 	public:
-		TYPENAME("Shader")
+		TYPENAME(Shader)
 
-			friend class ShaderManager;
+		friend class ShaderManager;
 
 		Material* defaultMaterial;
 

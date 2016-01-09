@@ -20,9 +20,9 @@ void main()
 #endif
 
 	//Blending for masked happens earlier as discarding prevents from uneccesary computation.
-#ifdef BLENDMASKED
-	blend();
-#endif
+//#ifdef BLENDMASKED
+//	blend();
+//#endif
 	processSurface();
 
 	//Calculate lighting only for Lit lighting models.

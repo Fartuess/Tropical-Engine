@@ -7,18 +7,18 @@ namespace TropicalEngine
 	class DirectionalLightComponent : public LightComponent
 	{
 	public:
-		TYPENAME("DirectionalLight Component")
+		TYPENAME(DirectionalLightComponent)
 
-			/**
-			* \brief Constructor of DirectionalLightComponent.
-			*
-			* @param owner Entity object the light will be attached to.
-			* @param color Color of the light.
-			* @param direction Direction vector defining angle of the light.
-			* @param brightness Brightness of the light.
-			* @param isCastingShadows Decides if this light should cast shadows.
-			*/
-			DirectionalLightComponent(Entity* owner, glm::vec3 color = glm::vec3(1.0f, 1.0f, 1.0f), glm::vec3 direction = glm::vec3(0.0f, 0.0f, -1.0f), float brightness = 1.0f, bool isCastingShadows = false);
+		/**
+		  * \brief Constructor of DirectionalLightComponent.
+		  *
+		  * @param owner Entity object the light will be attached to.
+		  * @param color Color of the light.
+		  * @param direction Direction vector defining angle of the light.
+		  * @param brightness Brightness of the light.
+		  * @param isCastingShadows Decides if this light should cast shadows.
+		  */
+		DirectionalLightComponent(Entity* owner, glm::vec3 color = glm::vec3(1.0f, 1.0f, 1.0f), glm::vec3 direction = glm::vec3(0.0f, 0.0f, -1.0f), float brightness = 1.0f, bool isCastingShadows = false);
 
 		/**
 		  * \brief Destructor for DirectionalLightComponent.

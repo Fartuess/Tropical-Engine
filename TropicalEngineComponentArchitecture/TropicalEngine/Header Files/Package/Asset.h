@@ -12,12 +12,12 @@ namespace TropicalEngine
 	class Asset : public ISerializableJSON
 	{
 	public:
-		TYPENAME("Asset")
+		TYPENAME(Asset)
 
-			/**
-			  * \brief Name of the asset.
-			  */
-			  QString name;
+		/**
+		  * \brief Name of the asset.
+		  */
+		QString name;
 
 		/**
 		  * \brief Name of type of this asset.

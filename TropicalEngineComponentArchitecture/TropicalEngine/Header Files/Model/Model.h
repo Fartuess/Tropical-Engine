@@ -82,12 +82,12 @@ namespace TropicalEngine
 	class Model : public ISerializableJSON
 	{
 	public:
-		TYPENAME("Model")
+		TYPENAME(Model)
 
-			/**
-			  * \brief Name of the type of model.
-			  */
-			  QString type;
+		/**
+		  * \brief Name of the type of model.
+		  */
+		QString type;
 
 		QVariantMap parameters;
 

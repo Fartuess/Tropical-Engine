@@ -13,15 +13,17 @@ namespace TropicalEngine
 	class Material : public ISerializableJSON
 	{
 	public:
-		TYPENAME("Material")
+		TYPENAME(Material)
 
-			QString getName();
+		QString getName()	{ return name; }
 		void setName(QString name);
 
 		Material(class Shader* shader, QString name);
+		Material(class ShaderTechnique* shaderTechnique, QString name);
 		~Material(void);
 
-		class Shader* getShader();
+		class Shader* getShader()	{ return shader; }
+		class ShaderTechnique* getShaderTechnique()	{ return shaderTechnique; }
 
 		void Use();
 
@@ -30,7 +32,7 @@ namespace TropicalEngine
 		void SetParameter(QString name, void* parameter);
 
 		MaterialParameter& operator[](QString name)      { return parameters[name]; };
-		const MaterialParameter& operator[](QString name) const { return parameters[name]; };
+		const MaterialParameter operator[](QString name) const { return parameters[name]; };
 
 		QJsonObject toJSON() override;
 		IDeserializableFromJSON* fromJSON(QJsonObject JSON) override;
@@ -38,6 +40,7 @@ namespace TropicalEngine
 	protected:
 		QString name;
 		class Shader* shader;
+		class ShaderTechnique* shaderTechnique;
 		QMap<QString, MaterialParameter> parameters;
 
 	private:

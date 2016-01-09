@@ -1,7 +1,7 @@
+#version 410
+
 #ifndef _SIMPLETESSELLATION
 #define _SIMPLETESSELLATION
-
-#version 410
 
 layout(vertices = 3) out;
 

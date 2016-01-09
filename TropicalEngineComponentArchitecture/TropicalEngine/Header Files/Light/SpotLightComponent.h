@@ -7,12 +7,12 @@ namespace TropicalEngine
 	class SpotLightComponent : public LightComponent
 	{
 	public:
-		TYPENAME("SpotLight Component")
+		TYPENAME(SpotLightComponent)
 
-			/**
-			  * \brief Attenuation exponent of the light.
-			  */
-			  float attenuation;
+		/**
+		  * \brief Attenuation exponent of the light.
+		  */
+		float attenuation;
 
 		/**
 		  * \brief Constructor of PointLightComponent.

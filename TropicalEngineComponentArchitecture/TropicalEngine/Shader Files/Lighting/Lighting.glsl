@@ -35,20 +35,20 @@ void calculateAmbientLighting()
 // private
 void calculateDirecationalLighting()
 {
-	vec3 lightVector = normalize(u_lightVector);
-#ifdef TBNNORMALS
-	lightVector = normalize(TBN * lightVector);
-#endif
+	//vec3 lightVector = normalize(u_lightVector);
+//#ifdef TBNNORMALS
+	vec3 lightVector = normalize(TBN * u_lightVector);
+//#endif
 	calculateLightingModel(lightVector, u_lightColor, u_lightBrightness);
 }
 
 // private
 void calculatePointLighting(PointLight light)
 {
-	vec3 lightVector = calculatePointLightVector(light, v_globalPosition);
-#ifdef TBNNORMALS
-	lightVector = normalize(TBN * lightVector);
-#endif
+	//vec3 lightVector = calculatePointLightVector(light, v_globalPosition);
+//#ifdef TBNNORMALS
+	vec3 lightVector = normalize(TBN * u_lightVector);
+//#endif
 	float brightness = calculatePointLightBrightness(light, v_globalPosition);
 
 	calculateLightingModel(lightVector, light.color, brightness);
@@ -57,10 +57,10 @@ void calculatePointLighting(PointLight light)
 // private
 void calculateSpotLighting(SpotLight light)
 {
-	vec3 lightVector = calculateSpotLightVector(light, v_globalPosition);
-#ifdef TBNNORMALS
-	lightVector = normalize(TBN * lightVector);
-#endif
+	//vec3 lightVector = calculateSpotLightVector(light, v_globalPosition);
+//#ifdef TBNNORMALS
+	vec3 lightVector = normalize(TBN * u_lightVector);
+//#endif
 	float brightness = calculateSpotLightBrightness(light, v_globalPosition, lightVector);
 
 	calculateLightingModel(lightVector, light.color, brightness);

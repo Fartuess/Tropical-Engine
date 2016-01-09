@@ -12,12 +12,12 @@ namespace TropicalEngine
 	class ModelComponent : public RenderComponent
 	{
 	public:
-		TYPENAME("Model Component")
+		TYPENAME(ModelComponent)
 
-			/**
-			  * \brief Model used for this component.
-			  */
-			  Model* model;
+		/**
+		  * \brief Model used for this component.
+		  */
+		Model* model;
 
 		/**
 		  * \brief Constructor of ModelComponent.

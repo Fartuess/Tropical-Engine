@@ -9,9 +9,9 @@ namespace TropicalEngine
 	class TempPlayerComponent : public Component, public IUpdateable
 	{
 	public:
-		TYPENAME("TempPlayer Component")
+		TYPENAME(TempPlayerComponent)
 
-			TempPlayerComponent(Entity* owner);
+		TempPlayerComponent(Entity* owner);
 		~TempPlayerComponent(void);
 
 		void OnUpdate(int deltaTime) override;

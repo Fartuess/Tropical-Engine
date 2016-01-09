@@ -1,9 +1,9 @@
+#version 410
+
 #ifndef _TESSELLATIONDISPLACEMENT
 #define _TESSELLATIONDISPLACEMENT
 
 #include "Utills/Interpolation.glsl"
-
-#version 410
 
 layout(triangles, fractional_odd_spacing, ccw) in;
 

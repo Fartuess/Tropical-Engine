@@ -4,6 +4,8 @@
 
 #include <Shader/ShaderBuilder/CommonMeshShaderBuilder.h>
 
+#include <Utills/Exception.h>
+
 namespace TropicalEngine
 {
 
@@ -58,9 +60,9 @@ namespace TropicalEngine
 			fragmentSource += "\n";
 			fragmentSource += Shader::PreprocessShaderFile(inputs["Lighting Model"]);
 			fragmentSource += "\n";
-			fragmentSource += Shader::PreprocessShaderFile(inputs["Surface Shader"]);
-			fragmentSource += "\n";
 			fragmentSource += Shader::PreprocessShaderFile(inputs["Blend Mode"]);
+			fragmentSource += "\n";
+			fragmentSource += Shader::PreprocessShaderFile(inputs["Surface Shader"]);
 			fragmentSource += "\n";
 			fragmentSource += Shader::PreprocessShaderFile("./Shader Files/Core/ShaderCore.glsl");
 
@@ -83,6 +85,11 @@ namespace TropicalEngine
 
 			shader = Shader::createShaderFromSources(vertexSource, tessalationControlSource, tessalationEvaluationSource, fragmentSource, shaderName + "_shadowmap");
 			/// TODO: if same shader already exist use that one instead.
+		}
+		else
+		{
+			/// TODO: This should be handled automatically without programmer having to do it in every builder.
+			throw Exception<AbstractShaderBuilder>("This generator doesn't support this shader pass.", this);
 		}
 
 		//resetInputs();

@@ -1,6 +1,7 @@
 #include <gl/glew.h>
 
 #include <Shader/Shader.h>
+#include <Shader/ShaderTechnique.h>
 #include <Shader/ShaderManager.h>
 
 namespace TropicalEngine
@@ -33,6 +34,11 @@ namespace TropicalEngine
 		return shaders[name];
 	}
 
+	ShaderTechnique* ShaderManager::getShaderTechnique(QString name)
+	{
+		return shaderTechniques[name];
+	}
+
 	void ShaderManager::FlushShader(QString name)
 	{
 		///TODO: implement it.
@@ -40,7 +46,7 @@ namespace TropicalEngine
 
 	void ShaderManager::Load(Shader* shader, QString name)
 	{
-		shaders.insert(name, shader);
+		shaders[name] = shader;
 	}
 
 	Shader* ShaderManager::Load(QString name, QString vertexShader, QString fragmentShader)
@@ -50,9 +56,14 @@ namespace TropicalEngine
 		newShader->AddShader(fragmentShader, GL_FRAGMENT_SHADER);
 		newShader->FinalizeShader();
 
-		shaders.insert(name, newShader);
+		shaders[name] = newShader;
 
 		return newShader;
+	}
+
+	void ShaderManager::Load(class ShaderTechnique* shader, QString name)
+	{
+		shaderTechniques[name] = shader;
 	}
 
 	void ShaderManager::UseShader(QString name)

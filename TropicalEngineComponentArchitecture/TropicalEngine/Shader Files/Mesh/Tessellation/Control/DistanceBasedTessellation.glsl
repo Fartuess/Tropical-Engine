@@ -1,7 +1,7 @@
+#version 410 core
+
 #ifndef _DISTANCEBASEDTESSELLATION
 #define _DISTANCEBASEDTESSELLATION
-
-#version 410 core
 
 layout(vertices = 3) out;
 

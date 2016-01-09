@@ -13,14 +13,14 @@ namespace TropicalEngine
 	class LightComponent : public Component
 	{
 	public:
-		TYPENAME("Light Component")
+		TYPENAME(LightComponent)
 
-			/**
-			  * \brief Color of the light.
-			  *
-			  * Color of the light in RGB format in [0.0 ; 1.0] space.
-			  */
-			  glm::vec3 color;
+		/**
+		  * \brief Color of the light.
+		  *
+		  * Color of the light in RGB format in [0.0 ; 1.0] space.
+		  */
+		glm::vec3 color;
 
 		/**
 		  * \brief Brightness of the light.
