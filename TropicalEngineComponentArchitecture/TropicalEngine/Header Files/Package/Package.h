@@ -1,7 +1,7 @@
 #pragma once
 #include <QtCore/qstring.h>
 #include <QtCore/qpair.h>
-#include <QtCore/qmap.h>
+#include <QtCore/qhash.h>
 
 #include <Serialization/ISerializableJSON.h>
 
@@ -87,7 +87,7 @@ namespace TropicalEngine
 		IDeserializableFromJSON* fromJSON(QJsonObject JSON) override;
 
 	private:
-		QMap<QString, Asset*> assets;
+		QHash<QString, Asset*> assets;
 		QString name;
 
 		static Package templateObject;

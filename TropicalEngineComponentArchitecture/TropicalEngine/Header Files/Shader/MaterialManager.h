@@ -27,7 +27,7 @@ namespace TropicalEngine
 		void UseMaterial(Material* material);
 
 	private:
-		QHash<QString, Material*> materials;
+		QHash<QString, Material*> materials;	/// TODO: Figure out if QHash or QMap. In some border cases materials might be created every frame.
 
 		void FlushMaterial(QString name, bool forced = false);
 	};

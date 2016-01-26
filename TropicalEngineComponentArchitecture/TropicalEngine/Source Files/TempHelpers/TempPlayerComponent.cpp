@@ -6,7 +6,7 @@
 
 #include <Scene/TransformComponent.h>
 #include <Scene/Entity.h>
-#include <Scene/SceneManager.h>
+#include <Scene/Scene.h>
 
 #include "TropicalEngineApplication.h"
 

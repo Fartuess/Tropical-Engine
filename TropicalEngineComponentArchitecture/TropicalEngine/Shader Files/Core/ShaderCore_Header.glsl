@@ -17,6 +17,6 @@ vec3 g_eye;
 
 mat3 TBN = mat3(1.0);
 
-out vec4 FragColor;
+layout(location = 0) out vec4 FragColor;
 
 #endif

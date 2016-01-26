@@ -9,6 +9,7 @@ namespace TropicalEngine
 	Level::Level(QString name, glm::vec3 position, glm::quat rotation, glm::vec3 scale) : root(new Entity()), internalPackage(new Package(name))
 	{
 		///TODO: implement it.
+		root->level = this;
 	}
 
 	Level::Level(TransformComponent transform, QString name) : root(new Entity()), internalPackage(new Package(name))

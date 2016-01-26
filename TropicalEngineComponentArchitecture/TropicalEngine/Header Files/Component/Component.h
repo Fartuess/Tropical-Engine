@@ -35,7 +35,7 @@ namespace TropicalEngine
 		  *
 		  * @return Pointer to Entity object the Component is attached to
 		  */
-		Entity* getOwner();
+		Entity* getOwner()	{ return owner; }
 
 		/**
 		  * \brief Attaches Component to Entity object.
@@ -44,6 +44,9 @@ namespace TropicalEngine
 		  * @param owner Pointer to Entity object the Component will be attached to.
 		  */
 		void setOwner(Entity* owner);
+
+		class Level* getLevel();
+		virtual void levelChanged()	{}
 
 		static bool isComponentTypeUsed(QString name);
 		static unsigned int getComponentType(QString name);

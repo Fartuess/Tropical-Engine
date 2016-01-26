@@ -1,4 +1,4 @@
-#include <iostream>
+//#include <iostream>
 
 #include <Shader/Shader.h>
 
@@ -52,7 +52,7 @@ namespace TropicalEngine
 
 			//fragmentSource += Shader::PreprocessShaderFile("./Shader Files/Phong_PS.glsl");
 
-			fragmentSource += "#version 330 core";
+			fragmentSource += "#version 330";
 			fragmentSource += "\n";
 			fragmentSource += Shader::PreprocessShaderFile("./Shader Files/Core/ShaderCore_Header.glsl");
 			fragmentSource += "\n";
@@ -66,7 +66,7 @@ namespace TropicalEngine
 			fragmentSource += "\n";
 			fragmentSource += Shader::PreprocessShaderFile("./Shader Files/Core/ShaderCore.glsl");
 
-			std::cout << fragmentSource.toStdString();
+			//std::cout << fragmentSource.toStdString();
 
 			shader = Shader::createShaderFromSources(vertexSource, tessalationControlSource, tessalationEvaluationSource, fragmentSource, shaderName + "_color");
 		}

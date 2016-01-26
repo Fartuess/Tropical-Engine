@@ -24,10 +24,8 @@
 #include <Interface/MainWindow.h>
 #include <Interface/TitleBar.h>
 
-#include <Scene/SceneManager.h>
+#include <Scene/Scene.h>
 #include <Scene/Level.h>
-
-#include <Model/ModelController.h>
 
 #include <Camera/CameraComponent.h>
 
@@ -92,7 +90,7 @@ namespace TropicalEngine
 
 		mainMenuBar = new QMenuBar();
 		QSplitter* mainLayoutSplitter = new QSplitter();
-		openGLWindow = new OpenGLWidget();
+		openGLWindow = new OpenGLWidget(TropicalEngineApplication::instance()->tempScene);
 		openGLWindow->grabKeyboard();
 		//openGLWindow->grabMouse();
 		QFrame* leftPanel = new QFrame();
@@ -118,7 +116,7 @@ namespace TropicalEngine
 		sceneGraphLabel->setText("Scene Graph");
 		//sceneGraphLabel->setPixmap(QPixmap("../Assets/Core/DefaultTexturePNG.png"));
 		//sceneGraphLabel->show();
-		sceneGraph = new SceneGraphWidget();
+		sceneGraph = new SceneGraphWidget(TropicalEngineApplication::instance()->tempScene);
 		TropicalEngineApplication::instance()->sceneGraph = sceneGraph;
 
 		connect(sceneGraph, SIGNAL(itemSelectionChanged()), propertiesWidget, SLOT(Reload()));
@@ -167,16 +165,15 @@ namespace TropicalEngine
 
 	void MainWindow::newLevel()
 	{
-		TropicalEngineApplication::instance()->sceneManager->Clear();
+		openGLWindow->getScene()->Clear();
 		Level* newLevel = new Level("Untitled Level");
 		Entity* mainCamera = new Entity(glm::vec3(0.0f, 0.0f, 5.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
 		mainCamera->name = "Main Camera";
 		CameraComponent* mainCameraComponent = new CameraComponent(mainCamera, glm::vec3(0.0f, 0.0f, -1.0f), glm::vec3(0.0f, 1.0f, 0.0f), 40.0f, 4.0f / 3.0f, 0.1f, 10000.0f);
 		newLevel->getRoot()->AttachSubobject(mainCamera);
-		TropicalEngineApplication::instance()->sceneManager->LoadLevel(newLevel, "Untitled Level");
+		openGLWindow->getScene()->LoadLevel(newLevel, "Untitled Level");
 
 		//temp
-		TropicalEngineApplication::instance()->modelController = new ModelController();
 		sceneGraph->Reload();
 	}
 
@@ -202,7 +199,14 @@ namespace TropicalEngine
 		}
 		QTextStream out(&file);
 		///TODO: figure out which level to save
-		out << QJsonDocument(TropicalEngineApplication::instance()->sceneManager->getLevels().first()->toJSON()).toJson();
+		//out << QJsonDocument(TropicalEngineApplication::instance()->sceneManager->getLevels().first()->toJSON()).toJson();
+		//temp
+
+		for (Level* level : openGLWindow->getScene()->getLevels())
+		{
+			out << QJsonDocument(level->toJSON()).toJson();
+		}
+
 		file.close();
 	}
 

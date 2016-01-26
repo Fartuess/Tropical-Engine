@@ -5,16 +5,16 @@
 #include <QtCore/qdebug.h>
 
 #include <Model/ModelComponent.h>
-#include <Model/ModelController.h>
 #include <Model/ModelManager.h>
 #include <Model/Model.h>
 #include <Shader/Shader.h>
+#include <Shader/ShaderTechnique.h>
 #include <Shader/Material.h>
 #include <Shader/ShaderManager.h>
 #include <Shader/MaterialManager.h>
 #include <Scene/Entity.h>
 #include <Scene/TransformComponent.h>
-#include <Scene/SceneManager.h>
+#include <Scene/Scene.h>
 #include <Camera/CameraComponent.h>
 #include <Light/DirectionalLightComponent.h>
 #include <Light/PointLightComponent.h>
@@ -29,21 +29,20 @@ namespace TropicalEngine
 
 	ModelComponent::ModelComponent() {}
 
-	ModelComponent::ModelComponent(Entity* owner, Material* material, Model* model, bool castingShadows) :RenderComponent(owner, material)
+	ModelComponent::ModelComponent(Entity* owner, Material* material, Model* model, bool castingShadows) : RenderComponent(owner, material)
 	{
 		this->model = model;
 		this->castingShadows = castingShadows;
-		TropicalEngineApplication::instance()->modelController->AddComponent(this);
 
 		InitializeComponentType();
 	}
 
 	ModelComponent::~ModelComponent(void)
 	{
-		if (owner != nullptr)
-		{
-			TropicalEngineApplication::instance()->modelController->modelComponents.removeOne(this);
-		}
+		//if (owner != nullptr)
+		//{
+		//	TropicalEngineApplication::instance()->modelController->modelComponents.removeOne(this);
+		//}
 	}
 
 	ModelComponent ModelComponent::InitializeType()
@@ -51,6 +50,11 @@ namespace TropicalEngine
 		ModelComponent& modelComponent = *(new ModelComponent());
 		AssetManager::addAssetType("Model Component", &modelComponent);
 		return modelComponent;
+	}
+
+	QSet<QString> ModelComponent::getShaderPasses()
+	{
+		return material->getShaderTechnique()->getShaderPasses().keys().toSet();
 	}
 
 	void ModelComponent::InitializeComponentType()
@@ -68,11 +72,20 @@ namespace TropicalEngine
 		///TODO: implement it.
 	}
 
-	void ModelComponent::Draw(CameraComponent* viewer)
+	void ModelComponent::Draw(CameraComponent* viewer, QString shaderPass)
 	{
 		material->Use();
 
-		Shader* usedShader = material->getShader();
+		Shader* usedShader;
+
+		if (material->getShaderTechnique() == nullptr)
+		{
+			usedShader = material->getShader();
+		}
+		else
+		{
+			usedShader = material->getShaderTechnique()->getShader(shaderPass);
+		}
 
 		/// TODO: Move Uniform binding into specific classes?
 
@@ -82,16 +95,19 @@ namespace TropicalEngine
 		glUniformMatrix4fv(usedShader->getCameraMatrixLocation(), 1, GL_FALSE, glm::value_ptr(viewer->getCameraMatrix()));
 		glUniformMatrix4fv(usedShader->getProjectionMatrixLocation(), 1, GL_FALSE, glm::value_ptr(viewer->getProjectionMatrix()));
 
-		glUniform3fv(usedShader->dirLightVectorLocation, 1, glm::value_ptr(TropicalEngineApplication::instance()->sceneManager->mainLight->getDirection()));
-		glUniform3fv(usedShader->dirLightColorLocation, 1, glm::value_ptr(TropicalEngineApplication::instance()->sceneManager->mainLight->color));
-		glUniform1f(usedShader->dirLightBrightnessLocation, TropicalEngineApplication::instance()->sceneManager->mainLight->brightness);
-		glUniform1f(usedShader->dirLightAmbientLocation, 0.2f);
-
 		for (int i = 0; i < glm::min(usedShader->pointLightPositionLocations.size() + usedShader->spotLightPositionLocations.size(), lightedBy.size()); i++)
 		{
 			QString lightType = lightedBy[i]->getTypeName();
 
-			if (lightType == "PointLightComponent")
+			if (lightType == "DirectionalLightComponent")
+			{
+				DirectionalLightComponent* directionalLight = static_cast<DirectionalLightComponent*>(lightedBy[i]);
+				glUniform3fv(usedShader->dirLightVectorLocation, 1, glm::value_ptr(directionalLight->getDirection()));
+				glUniform3fv(usedShader->dirLightColorLocation, 1, glm::value_ptr(directionalLight->color));
+				glUniform1f(usedShader->dirLightBrightnessLocation, directionalLight->brightness);
+				glUniform1f(usedShader->dirLightAmbientLocation, 0.2f);
+			}
+			else if (lightType == "PointLightComponent")
 			{
 				PointLightComponent* light = static_cast<PointLightComponent*>(lightedBy[i]);
 				TransformComponent& lightTransform = light->getOwner()->transform;
@@ -101,7 +117,7 @@ namespace TropicalEngine
 				glUniform1f(usedShader->pointLightRadiusLocations[i], light->getRadius());
 				glUniform1f(usedShader->pointLightAttenuationLocations[i], light->attenuation);
 			}
-			if (lightType == "SpotLightComponent")
+			else if (lightType == "SpotLightComponent")
 			{
 				SpotLightComponent* light = static_cast<SpotLightComponent*>(lightedBy[i]);
 				TransformComponent& lightTransform = light->getOwner()->transform;

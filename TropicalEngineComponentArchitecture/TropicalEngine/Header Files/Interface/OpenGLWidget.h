@@ -13,7 +13,11 @@ namespace TropicalEngine
 		Q_OBJECT
 	public:
 		OpenGLWidget(void);
+		OpenGLWidget(class Scene* scene);
 		~OpenGLWidget(void);
+
+		class Scene* getScene()	{ return drawnScene; }
+		void setScene(class Scene* scene)	{ drawnScene = scene; }
 
 	signals:
 		void initializeSignal();
@@ -38,6 +42,11 @@ namespace TropicalEngine
 		QCursor* previousCursor;
 
 		int isMousePressed = 0;
+
+		class Scene* drawnScene = nullptr;
+
+		/// TODO: Remove testing code.
+		class RenderTexture* widgetFramebuffer;
 	};
 
 }

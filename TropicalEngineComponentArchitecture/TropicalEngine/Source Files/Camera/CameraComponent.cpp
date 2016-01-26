@@ -3,7 +3,7 @@
 #include <QtCore/qdebug.h>
 
 #include <Scene/Entity.h>
-#include <Scene/SceneManager.h>
+#include <Scene/Scene.h>
 
 #include <TropicalEngineApplication.h>
 
@@ -51,11 +51,12 @@ namespace TropicalEngine
 		///TODO: Figure out how to separate it from engine core.
 		if (owner != nullptr)
 		{
-			SceneManager* sceneManager = TropicalEngineApplication::instance()->sceneManager;
-			if (sceneManager->getCurrentCamera() == this)
-			{
-				sceneManager->setCurrentCamera(nullptr);
-			}
+			/// TODO: Handle case when destroying camera which is current camera in some scene.
+			//Scene* sceneManager = TropicalEngineApplication::instance()->sceneManager;
+			//if (sceneManager->getCurrentCamera() == this)
+			//{
+			//	sceneManager->setCurrentCamera(nullptr);
+			//}
 		}
 	}
 

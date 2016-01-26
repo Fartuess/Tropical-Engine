@@ -9,6 +9,8 @@ namespace TropicalEngine
 	{
 		this->width = width;
 		this->height = height;
+
+		Create();
 	}
 
 	RenderTexture::~RenderTexture()
@@ -22,6 +24,12 @@ namespace TropicalEngine
 	void RenderTexture::BindFramebuffer()
 	{
 		glBindFramebuffer(GL_DRAW_FRAMEBUFFER, framebufferLocation);
+		//glDrawBuffer(GL_COLOR_ATTACHMENT0);
+		//glReadBuffer(GL_COLOR_ATTACHMENT0);
+		//glBindFramebuffer(GL_READ_FRAMEBUFFER, framebufferLocation);
+		//glDrawBuffer(framebufferLocation);
+		//glReadBuffer(framebufferLocation);
+		glViewport(0, 0, width, height);
 	}
 
 	void RenderTexture::BindDefaultFramebuffer()
@@ -31,24 +39,26 @@ namespace TropicalEngine
 
 	void RenderTexture::Create()
 	{
-		glGenFramebuffers(1, &framebufferLocation);
-
+		//glViewport(0, 0, width, height);
 		glGenTextures(1, &textureLocation);
 		glBindTexture(GL_TEXTURE_2D, textureLocation);
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT, width, height, 0, GL_DEPTH_COMPONENT, GL_FLOAT, NULL);
+		
 		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, NULL);
 
-		glBindFramebuffer(GL_FRAMEBUFFER, framebufferLocation);
-		glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, textureLocation, 0);
+		glGenFramebuffers(1, &framebufferLocation);
 
-		glDrawBuffer(GL_NONE);
-		glReadBuffer(GL_NONE);
+		glBindFramebuffer(GL_DRAW_FRAMEBUFFER, framebufferLocation);
+		glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, textureLocation, 0);
 
-		GLenum status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
-
+		glDrawBuffer(GL_COLOR_ATTACHMENT0);
+		glReadBuffer(GL_COLOR_ATTACHMENT0);
+		
+		GLenum status = glCheckFramebufferStatus(GL_DRAW_FRAMEBUFFER);
+		
 		if (status != GL_FRAMEBUFFER_COMPLETE)
 		{
 			throw Exception<RenderTexture>("Framebuffer error: " + QString::number(status), this);

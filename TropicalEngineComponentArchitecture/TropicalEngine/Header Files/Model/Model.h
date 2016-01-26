@@ -4,6 +4,7 @@
 
 #include <QtCore/qstring.h>
 #include <QtCore/qvector.h>
+#include <QtCore/qlist.h>
 #include <QtCore/qvariant.h>
 
 #include <Serialization/ISerializableJSON.h>
@@ -128,7 +129,7 @@ namespace TropicalEngine
 		/**
 		  * \brief Submeshes of this Model.
 		  */
-		QVector<MeshEntry*> meshes;
+		QList<MeshEntry*> meshes;
 
 
 		GLuint materialCount;

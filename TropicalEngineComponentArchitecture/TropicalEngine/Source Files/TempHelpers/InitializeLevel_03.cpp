@@ -35,11 +35,13 @@
 #include <Light/PointLightComponent.h>
 #include <Light/SpotLightComponent.h>
 
-#include <Scene/SceneManager.h>
+#include <Scene/Scene.h>
 
 #include <Package/Asset.h>
 #include <Package/AssetManager.h>
 #include <Package/PackageManager.h>
+
+#include <Utills/Directions.h>
 
 #include <TempHelpers/OglDevTut03.h>
 #include <TempHelpers/TempPlayerComponent.h>
@@ -50,7 +52,7 @@
 namespace TropicalEngine
 {
 
-	void OglDevTut03::InitializeLevel()
+	void OglDevTut03::InitializeLevel(Scene* scene)
 	{
 		TropicalEngineApplication* engine = TropicalEngineApplication::instance();
 
@@ -287,9 +289,6 @@ namespace TropicalEngine
 		(*phongBlinnParalaxMaterial)["mat_normal"] = tessNrmTex;
 		(*phongBlinnParalaxMaterial)["mat_bumpScale"] = new float(0.1f);
 		(*phongBlinnParalaxMaterial)["mat_height"] = tessDispTex;
-		(*phongBlinnParalaxMaterial)["mat_diffuseTexture"] = tessDiffTex;
-		(*phongBlinnParalaxMaterial)["mat_normalTexture"] = tessNrmTex;
-		(*phongBlinnParalaxMaterial)["mat_heightTexture"] = tessDispTex;
 
 		(*staticTessellationMaterial)["mat_color"] = tessDiffTex;
 		(*staticTessellationMaterial)["mat_normal"] = tessNrmTex;
@@ -436,6 +435,28 @@ namespace TropicalEngine
 		helperAsset = new Asset("FbxChest Model", modelManager["FbxChest"]);
 		(*level->getInternalPackage()) << helperAsset;
 
+
+
+		ShaderTechnique* screenTechnique = new ShaderTechnique("Screen", &CommonMeshShaderBuilder::Instance());
+		screenTechnique->setInput("Vertex Shader", "./Shader Files/Mesh/ObjectSpaceMesh.glsl");
+		screenTechnique->setInput("Lighting Model", "./Shader Files/LightingModels/PhongLightingModel.glsl");
+
+		Material* screenMaterial = new Material(shaderManager.getShaderTechnique("Screen"), "Screen Material");
+
+		PlaneModelBuilder screenBuilder = PlaneModelBuilder();
+		screenBuilder.setParameter("name", QString("Screen"));
+		screenBuilder.setParameter("size X", 2.0f);
+		screenBuilder.setParameter("size Y", 2.0f);
+		screenBuilder.setParameter("inversed", true);
+		screenBuilder.setParameter("plane", PlaneDirections::XY);
+		screenBuilder.Build();
+
+		Entity* screenEntity = new Entity(glm::vec3(0.0f, 0.0f, 0.0f), glm::quat(), glm::vec3(1.0f, 1.0f, 1.0f));
+		//ModelComponent* screenEntityModelC = new ModelComponent(screenEntity, screenMaterial, (*engine->modelManager)["Screen"]);
+		screenEntity->name = QString("Screen Entity");
+		level->getRoot()->AttachSubobject(screenEntity);
+
+
 		/*********************************
 		*
 		* Creating scene objects
@@ -543,11 +564,12 @@ namespace TropicalEngine
 		level->getRoot()->AttachSubobject(spotLight);
 
 		Entity* ground = new Entity(glm::vec3(30.0f, -10.0f, 0.0f), glm::quat(), glm::vec3(15.0f));
-		ModelComponent* groundModel = new ModelComponent(ground, phongBlinnMaterial, engine->modelManager->getModel("Plane"));
+		ModelComponent* groundModel = new ModelComponent(ground, phongBlinnParalaxMaterial, engine->modelManager->getModel("Plane"));
 		ground->name = QString("Ground");
 		level->getRoot()->AttachSubobject(ground);
 
 		//Temporary solution
+
 		phongModelC->lightedBy.append(pointLightComponent);
 		phongBlinnModelC->lightedBy.append(pointLightComponent);
 		bumpMapModelC->lightedBy.append(pointLightComponent);
@@ -580,10 +602,25 @@ namespace TropicalEngine
 		FbxExample2ModelC->lightedBy.append(spotLightComponent);
 		FbxExample3ModelC->lightedBy.append(spotLightComponent);
 
+		scene->LoadLevel(level, "TestLevel");
+		scene->setCurrentCamera(mainCameraComponent);
+		scene->mainLight = new DirectionalLightComponent(level->getRoot(), glm::vec3(1.0f, 1.0f, 0.9f), glm::vec3(0.5, 0.6, 1.0), 1.0f);
 
-		engine->sceneManager->LoadLevel(level, "TestLevel");
-		engine->sceneManager->setCurrentCamera(mainCameraComponent);
-		engine->sceneManager->mainLight = new DirectionalLightComponent(level->getRoot(), glm::vec3(1.0f, 1.0f, 0.9f), glm::vec3(0.5, 0.6, 1.0), 1.0f);
+		phongModelC->lightedBy.append(scene->mainLight);
+		phongBlinnModelC->lightedBy.append(scene->mainLight);
+		bumpMapModelC->lightedBy.append(scene->mainLight);
+		maskedModelC->lightedBy.append(scene->mainLight);
+		parralaxModelC->lightedBy.append(scene->mainLight);
+		cookTorranceModelC->lightedBy.append(scene->mainLight);
+		straussModelC->lightedBy.append(scene->mainLight);
+		straussConductiveModelC->lightedBy.append(scene->mainLight);
+		wardModelC->lightedBy.append(scene->mainLight);
+		wardAnisoModelC->lightedBy.append(scene->mainLight);
+		distanceTessModelC->lightedBy.append(scene->mainLight);
+		vectorTessModelC->lightedBy.append(scene->mainLight);
+		FbxExampleModelC->lightedBy.append(scene->mainLight);
+		FbxExample2ModelC->lightedBy.append(scene->mainLight);
+		FbxExample3ModelC->lightedBy.append(scene->mainLight);
 
 		//qDebug() << QJsonDocument(level->toJSON()).toJson();
 	}

@@ -1,5 +1,5 @@
-#include <QtCore\qdir.h>
-#include <QtCore\qdebug.h>
+#include <QtCore/qdir.h>
+#include <QtCore/qdebug.h>
 
 #include <Shader/ShaderManager.h>
 #include <Shader/MaterialManager.h>
@@ -7,12 +7,15 @@
 #include <Texture/TextureManager.h>
 
 #include <Model/ModelManager.h>
-#include <Model/ModelController.h>
 #include <Model/ModelBuilder.h>
 
 #include <Package/AssetManager.h>
 #include <Package/PackageManager.h>
+
+#include <Scene/Scene.h>
 #include <Scene/SceneManager.h>
+
+#include <Rendering/RenderingManager.h>
 
 #include <Light/LightController.h>
 
@@ -21,7 +24,6 @@
 #include <TempHelpers/OglDevTut03.h>
 
 #include <Interface/SceneGraphWidget.h>
-
 #include <Interface/GuiStyleManager.h>
 
 #include <Utills/MathUtills.h>
@@ -49,12 +51,13 @@ namespace TropicalEngine
 		textureManager = new TextureManager();
 
 		modelManager = new ModelManager();
-		modelController = new ModelController();
 		modelBuilder = new ModelBuilder();
 
 		assetManager = new AssetManager();
 		packageManager = new PackageManager();
 		sceneManager = new SceneManager();
+		tempScene = new Scene();
+		renderingManager = new RenderingManager();
 
 		lightController = new LightController();
 
@@ -83,7 +86,7 @@ namespace TropicalEngine
 	void TropicalEngineApplication::Initialize()
 	{
 		deltaTimer.start();
-		renderer->InitializeLevel();
+		renderer->InitializeLevel(tempScene);
 		sceneGraph->Reload();
 		splashScreen->close();
 	}
@@ -99,10 +102,10 @@ namespace TropicalEngine
 		inputManager->Update();
 		deltaTime = deltaTimer.restart();
 
-		sceneManager->getCurrentCamera()->CalculateMatrix();
+		tempScene->getCurrentCamera()->CalculateMatrix();
 
-		sceneManager->EvaluateLevels();	///TODO: Evaluate only changed
-		modelController->DrawAll(sceneManager->getCurrentCamera());
+		tempScene->EvaluateLevels();	///TODO: Evaluate only changed
+		renderingManager->DrawAll(tempScene);
 	}
 
 }

@@ -7,7 +7,6 @@
 #include <Texture/TextureManager.h>
 
 #include <Model/ModelComponent.h>
-#include <Model/ModelController.h>
 
 #include <Utills/Exception.h>
 
@@ -32,6 +31,7 @@ namespace TropicalEngine
 	{
 		this->name = name;
 
+		this->shaderTechnique = shaderTechnique;
 		this->shader = shaderTechnique->getShader();
 		for (QString parameterName : this->shader->getMaterialParameters().keys())
 		{
@@ -42,11 +42,12 @@ namespace TropicalEngine
 
 	Material::~Material(void)
 	{
-		for (ModelComponent* modelComponent : TropicalEngineApplication::instance()->modelController->modelComponents)
-		{
-			if (modelComponent->material == this)
-				modelComponent->material = this->getShader()->defaultMaterial;
-		}
+		/// TODO: implement it.
+		//for (ModelComponent* modelComponent : TropicalEngineApplication::instance()->modelController->modelComponents)
+		//{
+		//	if (modelComponent->material == this)
+		//		modelComponent->material = this->getShader()->defaultMaterial;
+		//}
 	}
 
 	//QString Material::getName()

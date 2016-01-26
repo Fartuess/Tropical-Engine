@@ -24,6 +24,7 @@ namespace TropicalEngine
 		class Shader* getShader(QString shaderPass = "Default");
 		class Shader* generateShader(QString shaderPass = "Default");
 		//class Shader* generateShaders();
+		QMap<QString, class Shader*> getShaderPasses()	{ return this->shaderPasses; }
 
 		QJsonObject toJSON() override;
 		IDeserializableFromJSON* fromJSON(QJsonObject JSON) override;

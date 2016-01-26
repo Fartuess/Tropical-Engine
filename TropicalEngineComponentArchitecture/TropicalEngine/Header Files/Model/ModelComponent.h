@@ -1,5 +1,5 @@
 #pragma once
-#include "RenderComponent.h"
+#include <Rendering\RenderComponent.h>
 
 namespace TropicalEngine
 {
@@ -36,6 +36,8 @@ namespace TropicalEngine
 
 		static ModelComponent InitializeType();
 
+		virtual QSet<QString> getShaderPasses() override;
+
 		void Evaluate() override;
 
 		/**
@@ -43,7 +45,7 @@ namespace TropicalEngine
 		*
 		* @param Draws from perspective of this camera.
 		*/
-		void Draw(CameraComponent* viewer) override;
+		void Draw(CameraComponent* viewer, QString shaderPass = "Default") override;
 
 		/**
 		  * \brief Gets information if this model is casting shadows.

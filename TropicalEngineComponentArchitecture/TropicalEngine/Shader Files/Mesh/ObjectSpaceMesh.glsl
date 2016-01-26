@@ -22,6 +22,8 @@ void main()
 	v_bitangent_v = a_bitangent;
 	v_texcoord_v = a_texcoord;
 	v_vertex_v = a_vertex;
+
+	gl_Position = a_vertex;
 }
 
 #endif

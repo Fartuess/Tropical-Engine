@@ -25,20 +25,21 @@ namespace TropicalEngine
 		/*
 		* Scene controlling
 		*/
+		class Scene* tempScene;
 		class SceneManager* sceneManager;
-		class ModelController* modelController;
 		class LightController* lightController;
 		/*
 		 * Updatings
 		 */
 		class UpdateManager* updateManager;
+		class RenderingManager* renderingManager;
+		class OglDevTut03* renderer;	//temporarily
 
 		/*
 		* Input
 		*/
 		class InputManager* inputManager;
 
-		class OglDevTut03* renderer;	//temporarily
 		/*
 		* Gui
 		*/

@@ -50,6 +50,7 @@ namespace TropicalEngine
 		{
 			subobjects.append(subobject);
 			subobject->parrent = this;
+			subobject->setLevel(level);
 		}
 	}
 
@@ -59,6 +60,7 @@ namespace TropicalEngine
 		{
 			this->parrent = parrent;
 			parrent->subobjects.append(this);
+			setLevel(parrent->level);
 		}
 	}
 
@@ -157,9 +159,9 @@ namespace TropicalEngine
 			QJsonObject componentJSON = componentRef.toObject();
 
 			///TODO: create and attach component.
-			Component* component;
-
-			object->AttachComponent(component);
+			//Component* component;
+			//
+			//object->AttachComponent(component);
 		}
 
 		for (QJsonValueRef subobjectRef : JSON["subobjects"].toArray())
@@ -174,4 +176,19 @@ namespace TropicalEngine
 		return object;
 	}
 
+	void Entity::setLevel(Level* level)
+	{
+		if (this->level != level)
+		{
+			this->level = level;
+			for (Component* component : components)
+			{
+				component->levelChanged();
+			}
+			for (Entity* subobject : subobjects)
+			{
+				subobject->setLevel(level);
+			}
+		}
+	}
 }

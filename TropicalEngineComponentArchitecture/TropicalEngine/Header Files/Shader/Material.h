@@ -1,8 +1,6 @@
 #pragma once
 #include <glm.hpp>
 
-#include <QtCore/qvector.h>
-
 #include <Serialization/ISerializableJSON.h>
 
 #include "MaterialParameter.h"

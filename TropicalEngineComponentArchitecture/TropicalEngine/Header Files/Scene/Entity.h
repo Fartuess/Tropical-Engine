@@ -23,6 +23,7 @@ namespace TropicalEngine
 		TYPENAME(Entity)
 
 		friend class Component;
+		friend class Level;
 		friend class PropertiesWidget;
 
 		TransformComponent transform;
@@ -42,15 +43,19 @@ namespace TropicalEngine
 		void DeleteComponent(Component* component);	//is needed?
 		Entity& operator<<(Component* component);
 
+		class Level* getLevel()	{ return level; }
+
 		QJsonObject toJSON() override;
 		IDeserializableFromJSON* fromJSON(QJsonObject JSON) override;
 
 	private:
-		Entity* parrent;
-
+		Entity* parrent = nullptr;
+		class Level* level = nullptr;
 		QList<Entity*> subobjects;
 
 		void DetachComponent(Component* component);
+
+		void setLevel(class Level* level);
 	};
 
 }

@@ -2,19 +2,22 @@
 #include <glm.hpp>
 #include <gtc/matrix_transform.hpp>
 
+#include <QtCore/qdebug.h>
+#include <QtCore/qthread.h>
 #include <QtGui/qkeyevent>
 #include <QtGui/qmouseevent>
-#include <QtCore/qdebug.h>
 #include <QtWidgets/qapplication.h>
-#include <QtCore/qthread.h>
 #include <QtWidgets/qdesktopwidget.h>
 
 #include <Scene/Entity.h>
+#include <Scene/Scene.h>
+
 #include <Camera/CameraComponent.h>
 #include <Input/InputManager.h>
-#include <Scene/SceneManager.h>
 #include <TempHelpers/OglDevTut03.h>
 #include <Interface/OpenGLWidget.h>
+
+#include <Texture/RenderTexture.h>
 
 #include "TropicalEngineApplication.h"
 
@@ -26,6 +29,11 @@ namespace TropicalEngine
 		screenCenter = new QPoint(QApplication::desktop()->screenGeometry().center());
 		abstractMousePosition = new QPoint(*screenCenter);
 		mouseGrabPoint = new QPoint(0, 0);
+	}
+
+	OpenGLWidget::OpenGLWidget(Scene* scene) : OpenGLWidget()
+	{
+		setScene(scene);
 	}
 
 	OpenGLWidget::~OpenGLWidget(void)
@@ -46,15 +54,21 @@ namespace TropicalEngine
 		glEnable(GL_DEPTH_TEST);
 		glEnable(GL_CULL_FACE);
 		glFrontFace(GL_CCW);
+		glDepthFunc(GL_LEQUAL);
+
+		//widgetFramebuffer = new RenderTexture("Viewport_color", 1024, 1024);
+		//widgetFramebuffer->BindFramebuffer();
+		//RenderTexture::BindDefaultFramebuffer();
 
 		emit initializeSignal();
 	}
 
 	void OpenGLWidget::resizeGL(int width, int height)
 	{
-		if (TropicalEngineApplication::instance()->sceneManager->getCurrentCamera() != nullptr)
-			TropicalEngineApplication::instance()->sceneManager->getCurrentCamera()->setAspectRatio((GLfloat)width / (GLfloat)height);
+		if (drawnScene->getCurrentCamera() != nullptr)
+			drawnScene->getCurrentCamera()->setAspectRatio((GLfloat)width / (GLfloat)height);
 		glViewport(0, 0, width, height);
+
 		//emit reshapeSignal(width, height);
 		//this->update();
 	}
@@ -110,11 +124,11 @@ namespace TropicalEngine
 
 		//glm::quat quat1 = glm::angleAxis(mouseEvent->globalX() / 6.0f, glm::vec3(0.0f, -1.0f, 0.0f));
 		glm::quat quat1 = glm::angleAxis(abstractMousePosition->x() / 6.0f, glm::vec3(0.0f, -1.0f, 0.0f));
-		TropicalEngineApplication::instance()->sceneManager->getCurrentCamera()->getOwner()->transform.setLocalRotation(quat1);
+		drawnScene->getCurrentCamera()->getOwner()->transform.setLocalRotation(quat1);
 		//glm::quat quat2 = glm::angleAxis(mouseEvent->globalY() / 6.0f - 90.0f, TropicalEngineApplication::instance()->sceneManager->getCurrentCamera()->getOwner()->transform.getRight());
-		glm::quat quat2 = glm::angleAxis(abstractMousePosition->y() / 6.0f - 90.0f, TropicalEngineApplication::instance()->sceneManager->getCurrentCamera()->getOwner()->transform.getRight());
+		glm::quat quat2 = glm::angleAxis(abstractMousePosition->y() / 6.0f - 90.0f, drawnScene->getCurrentCamera()->getOwner()->transform.getRight());
 
-		TropicalEngineApplication::instance()->sceneManager->getCurrentCamera()->getOwner()->transform.setLocalRotation(quat2 * quat1);
+		drawnScene->getCurrentCamera()->getOwner()->transform.setLocalRotation(quat2 * quat1);
 
 		QCursor::setPos(*screenCenter);
 	}

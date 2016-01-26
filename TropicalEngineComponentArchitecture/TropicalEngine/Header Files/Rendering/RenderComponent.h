@@ -3,13 +3,15 @@
 
 #include <Component/Component.h>
 
+#include "IRenderable.h"
+
 namespace TropicalEngine
 {
-
+	/// TODO: Figure out changing Component place in Rendering Manager after changing level owning Entity belong to.
 	/**
 	  * Base class for renderable components.
 	  */
-	class RenderComponent : public Component
+	class RenderComponent : public Component, virtual public IRenderable
 	{
 	public:
 		TYPENAME(RenderComponent)
@@ -36,6 +38,8 @@ namespace TropicalEngine
 		  */
 		~RenderComponent(void);
 
+		virtual void levelChanged() override;
+
 		virtual void Evaluate() = 0;
 
 		/**
@@ -43,7 +47,7 @@ namespace TropicalEngine
 		  *
 		  * @param Draws from perspective of this camera.
 		  */
-		virtual void Draw(class CameraComponent* viewer) = 0;
+		//virtual void Draw(class CameraComponent* viewer) = 0;
 
 	protected:
 		/**

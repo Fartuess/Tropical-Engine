@@ -35,10 +35,10 @@ namespace TropicalEngine
 		}
 	}
 
-	Entity* Component::getOwner()
-	{
-		return owner;
-	}
+	//Entity* Component::getOwner()
+	//{
+	//	return owner;
+	//}
 
 	void Component::setOwner(Entity* owner)
 	{
@@ -64,6 +64,18 @@ namespace TropicalEngine
 	{
 		owner->components.removeOne(this);
 		this->owner = nullptr;
+	}
+
+	class Level* Component::getLevel()
+	{
+		if (owner != nullptr)
+		{
+			return owner->getLevel();
+		}
+		else
+		{
+			return nullptr;
+		}
 	}
 
 	QHash<QString, unsigned int> Component::componentTypeMap = QHash<QString, unsigned int>();

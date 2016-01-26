@@ -24,6 +24,9 @@
     <ClCompile Include="GeneratedFiles\Debug\moc_PropertiesWidget.cpp" />
     <ClCompile Include="GeneratedFiles\Debug\moc_TitleBar.cpp" />
     <ClCompile Include="GeneratedFiles\Debug\moc_TropicalEngineApplication.cpp" />
+    <ClCompile Include="Source Files\Scene\SceneManager.cpp" />
+    <ClCompile Include="Source Files\Rendering\RenderingManager.cpp" />
+    <ClCompile Include="Source Files\Rendering\IRenderable.cpp" />
     <ClCompile Include="Source Files\Shader\ShaderTechnique.cpp" />
     <ClCompile Include="Source Files\Shader\ShaderBuilder\CommonMeshShaderBuilder.cpp" />
     <ClCompile Include="Source Files\Shader\ShaderBuilder\AbstractShaderBuilder.cpp" />
@@ -80,7 +83,6 @@
     <ClCompile Include="Source Files\Model\Model.cpp" />
     <ClCompile Include="Source Files\Model\ModelBuilder.cpp" />
     <ClCompile Include="Source Files\Model\ModelComponent.cpp" />
-    <ClCompile Include="Source Files\Model\ModelController.cpp" />
     <ClCompile Include="Source Files\Model\ModelManager.cpp" />
     <ClCompile Include="Source Files\TempHelpers\OglDevTut03.cpp" />
     <ClCompile Include="Source Files\Interface\OpenGLWidget.cpp" />
@@ -89,10 +91,10 @@
     <ClCompile Include="Source Files\Light\PointLightComponent.cpp" />
     <ClCompile Include="Source Files\Interface\PropertiesWidget.cpp" />
     <ClCompile Include="Source Files\Interface\PropertyItem.cpp" />
-    <ClCompile Include="Source Files\Model\RenderComponent.cpp" />
+    <ClCompile Include="Source Files\Rendering\RenderComponent.cpp" />
     <ClCompile Include="Source Files\Interface\SceneGraphItem.cpp" />
     <ClCompile Include="Source Files\Interface\SceneGraphWidget.cpp" />
-    <ClCompile Include="Source Files\Scene\SceneManager.cpp" />
+    <ClCompile Include="Source Files\Scene\Scene.cpp" />
     <ClCompile Include="Source Files\Shader\Shader.cpp" />
     <ClCompile Include="Source Files\Shader\ShaderManager.cpp" />
     <ClCompile Include="Source Files\Light\SpotLightComponent.cpp" />
@@ -427,22 +429,6 @@
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </AdditionalInputs>
     </CustomBuild>
-    <CustomBuild Include="Header Files\Model\ModelController.h">
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      </Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Performing Custom Build Tools</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      </Outputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      </AdditionalInputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-      </Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Performing Custom Build Tools</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-      </Outputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-      </AdditionalInputs>
-    </CustomBuild>
     <CustomBuild Include="Header Files\Model\ModelManager.h">
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </Command>
@@ -523,7 +509,7 @@
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </AdditionalInputs>
     </CustomBuild>
-    <CustomBuild Include="Header Files\Model\RenderComponent.h">
+    <CustomBuild Include="Header Files\Rendering\RenderComponent.h">
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Performing Custom Build Tools</Message>
@@ -571,7 +557,7 @@
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </AdditionalInputs>
     </CustomBuild>
-    <CustomBuild Include="Header Files\Scene\SceneManager.h">
+    <CustomBuild Include="Header Files\Scene\Scene.h">
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Performing Custom Build Tools</Message>
@@ -792,6 +778,7 @@
     <ClInclude Include="Header Files\Model\ModelBuilder\CylinderModelBuilder.h" />
     <ClInclude Include="Header Files\Model\ModelBuilder\BoxModelBuilder.h" />
     <ClInclude Include="Header Files\Model\ModelBuilder\AbstractModelBuilder.h" />
+    <ClInclude Include="Header Files\Utills\Directions.h" />
     <ClInclude Include="Header Files\Utills\Exception.h" />
     <!--
     <ClInclude Include="Header Files\Interface\MainWindow.h" />
@@ -820,10 +807,13 @@
     <ClInclude Include="Header Files\Model\ModelBuilder\TorusModelBuilder.h" />
     <ClInclude Include="Header Files\Utills\IUpdateable.h" />
     <ClInclude Include="Header Files\Texture\RenderTexture.h" />
+    <ClInclude Include="Header Files\Rendering\IRenderable.h" />
+    <ClInclude Include="Header Files\Rendering\RenderingManager.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Header Files\Utills\UpdateManager.h" />
     <ClInclude Include="Header Files\TempHelpers\TempMovingComponent.h" />
     <ClInclude Include="Header Files\Shader\ShaderTechnique.h" />
+    <ClInclude Include="Header Files\Scene\SceneManager.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resource Files\TropicalEngine.ico" />

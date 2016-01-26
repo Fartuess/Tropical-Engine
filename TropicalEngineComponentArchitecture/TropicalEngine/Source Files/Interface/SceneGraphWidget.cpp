@@ -1,5 +1,5 @@
 #include <Scene/Level.h>
-#include <Scene/SceneManager.h>
+#include <Scene/Scene.h>
 
 #include <Interface/SceneGraphWidget.h>
 #include <Interface/SceneGraphItem.h>
@@ -9,11 +9,13 @@
 namespace TropicalEngine
 {
 
-	SceneGraphWidget::SceneGraphWidget(void)
+	SceneGraphWidget::SceneGraphWidget(Scene* scene)
 	{
 		setColumnCount(1);
 		//setHeaderLabel("Scene Graph");
 		setHeaderHidden(true);
+
+		setScene(scene);
 	}
 
 
@@ -24,7 +26,7 @@ namespace TropicalEngine
 	void SceneGraphWidget::Reload()
 	{
 		clear();
-		QMap<QString, Level*>& levels = TropicalEngineApplication::instance()->sceneManager->getLevels();
+		QMap<QString, Level*>& levels = scene->getLevels();
 		for (QString levelName : levels.keys())
 		{
 			SceneGraphItem* levelItem = new SceneGraphItem(levelName, levels[levelName]->getRoot());

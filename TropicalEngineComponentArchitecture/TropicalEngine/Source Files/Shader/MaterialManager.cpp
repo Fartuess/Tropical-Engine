@@ -3,7 +3,6 @@
 #include <Shader/Material.h>
 #include <Shader/MaterialManager.h>
 #include <Model/ModelComponent.h>
-#include <Model/ModelController.h>
 
 #include "TropicalEngineApplication.h"
 
@@ -40,25 +39,25 @@ namespace TropicalEngine
 		///TODO: implement it.
 		if (!materials.contains(name))
 			return;
-		Material* material = materials[name];
-		if (forced)
-		{
-			for (ModelComponent* modelComponent : TropicalEngineApplication::instance()->modelController->modelComponents)
-			{
-				if (modelComponent->material == material)
-					modelComponent->material = material->getShader()->defaultMaterial;
-			}
-			delete material;
-		}
-		else
-		{
-			for (ModelComponent* modelComponent : TropicalEngineApplication::instance()->modelController->modelComponents)
-			{
-				if (modelComponent->material == material)
-					return;
-			}
-			delete material;
-		}
+		//Material* material = materials[name];
+		//if (forced)
+		//{
+		//	for (ModelComponent* modelComponent : TropicalEngineApplication::instance()->modelController->modelComponents)
+		//	{
+		//		if (modelComponent->material == material)
+		//			modelComponent->material = material->getShader()->defaultMaterial;
+		//	}
+		//	delete material;
+		//}
+		//else
+		//{
+		//	for (ModelComponent* modelComponent : TropicalEngineApplication::instance()->modelController->modelComponents)
+		//	{
+		//		if (modelComponent->material == material)
+		//			return;
+		//	}
+		//	delete material;
+		//}
 	}
 
 }
