@@ -16,9 +16,14 @@ Author: Adam "Fartuess" Beczyński
 * GLM
 
 ### Features ###
+#### Architecture and Gameplay Scripting ####
 * Component architecture
-* Level serialization
-* Quite flexible system of managing shaders and materials
+* Easy gameplay coding with IUpdate'able interface
+* Input Management System which allows creating abstract input actions and binding physical keys to them.
+* Level and asset serialization
+#### Shaders and Materials ####
+* Flexible system of managing shaders and materials
+* Shaders builders allow creating shaders from modules. Shader builder can create shaders for multiple passes from one set of modules.
 * Various lighting models (Phong, Blinn-Phong, Cook-Torrance, Strauss, Isotropic Ward, Anisotropic Ward)
 * Bump mapping (normal mapping)
 * Steep Parralax Mapping
@@ -27,6 +32,7 @@ Author: Adam "Fartuess" Beczyński
 * Vertex displacement and vector displacement.
 * Directional lights
 * Point lights
+#### Interface ####
 * Qt interface
 * Custom style of interface
 * Custom window frame
