@@ -13,7 +13,7 @@ namespace TropicalEngine
 
 	InputManager::~InputManager(void)
 	{
-		///TODO: implement it.
+		// TODO: implement it.
 
 		while (keyStates.isEmpty() == false)
 		{

@@ -104,7 +104,7 @@ namespace TropicalEngine
 
 		tempScene->getCurrentCamera()->CalculateMatrix();
 
-		tempScene->EvaluateLevels();	///TODO: Evaluate only changed
+		tempScene->EvaluateLevels();	// TODO: Evaluate only changed
 		renderingManager->DrawAll(tempScene);
 	}
 

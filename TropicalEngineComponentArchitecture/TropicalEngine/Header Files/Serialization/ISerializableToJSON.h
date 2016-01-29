@@ -9,7 +9,7 @@ namespace TropicalEngine
 
 	#pragma region documentation
 	/**
-	  * Interface for Serialization objects to JSON.
+	  * \brief Interface for Serialization objects to JSON.
 	  */
 #	pragma endregion
 	class ISerializableToJSON : virtual public INamedType

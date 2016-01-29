@@ -68,7 +68,7 @@ namespace TropicalEngine
 
 	void TransformComponent::setLocalPosition(glm::vec3 position)
 	{
-		///TODO: should be done differently
+		// TODO: should be done differently
 		glm::vec3 difference = position - localPosition;
 		LocalTranslate(difference);
 	}
@@ -89,7 +89,7 @@ namespace TropicalEngine
 
 	void TransformComponent::LocalTranslate(glm::vec3 translation)
 	{
-		///TODO: it should be done differently
+		// TODO: it should be done differently
 		localPosition += translation;
 		globalPosition += glm::vec3(
 			translation.x * right.x + translation.y * up.x + translation.z * (-front.x),
@@ -101,7 +101,7 @@ namespace TropicalEngine
 	void TransformComponent::GlobalTranslate(glm::vec3 translation)
 	{
 		globalPosition += translation;
-		///TODO: calculate local position.
+		// TODO: calculate local position.
 		Evaluate();
 	}
 
@@ -134,14 +134,14 @@ namespace TropicalEngine
 	void TransformComponent::setLocalRotation(glm::quat rotation)
 	{
 		localRotation = rotation;
-		///TODO: globalRotation;
+		// TODO: globalRotation;
 		Evaluate();
 	}
 
 	void TransformComponent::setGlobalRotation(glm::quat rotation)
 	{
 		localRotation = rotation;
-		///TODO: globalRotation;
+		// TODO: globalRotation;
 		Evaluate();
 	}
 
@@ -255,12 +255,12 @@ namespace TropicalEngine
 
 	void TransformComponent::EvaluateGlobals()
 	{
-		///TODO: implement it.
+		// TODO: implement it.
 	}
 
 	void TransformComponent::EvaluateInternal()
 	{
-		///TODO: make sure transformations work correctly.
+		// TODO: make sure transformations work correctly.
 
 		if (owner->getParrent() == nullptr)
 		{
@@ -331,7 +331,7 @@ namespace TropicalEngine
 
 	QJsonObject TransformComponent::toJSON()
 	{
-		///TODO: implement it.
+		// TODO: implement it.
 		QJsonObject JSON = Component::toJSON();
 		QJsonObject position = QJsonObject();
 		position["x"] = localPosition.x;
@@ -358,7 +358,7 @@ namespace TropicalEngine
 
 	IDeserializableFromJSON* TransformComponent::fromJSON(QJsonObject JSON)
 	{
-		///TODO: implement this.
+		// TODO: implement this.
 		return new TransformComponent();
 	}
 

@@ -84,11 +84,11 @@ namespace TropicalEngine
 			fragmentSource += Shader::PreprocessShaderFile("./Shader Files/Shadowmap/ShadowmapCore.glsl");
 
 			shader = Shader::createShaderFromSources(vertexSource, tessalationControlSource, tessalationEvaluationSource, fragmentSource, shaderName + "_shadowmap");
-			/// TODO: if same shader already exist use that one instead.
+			// TODO: if same shader already exist use that one instead.
 		}
 		else
 		{
-			/// TODO: This should be handled automatically without programmer having to do it in every builder.
+			// TODO: This should be handled automatically without programmer having to do it in every builder.
 			throw Exception<AbstractShaderBuilder>("This generator doesn't support this shader pass.", this);
 		}
 

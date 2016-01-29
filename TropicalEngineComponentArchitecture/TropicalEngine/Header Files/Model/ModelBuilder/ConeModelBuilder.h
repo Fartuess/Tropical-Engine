@@ -6,7 +6,7 @@ namespace TropicalEngine
 
 	#pragma region documentation
 	/**
-	  * brief Class for generating cone models.
+	  * \brief Class for generating cone models.
 	  *
 	  * Parameters are:
 	  * radius (float)

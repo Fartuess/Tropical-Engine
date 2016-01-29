@@ -17,7 +17,7 @@ namespace TropicalEngine
 
 	Scene::~Scene(void)
 	{
-		///TODO: implement it.
+		// TODO: implement it.
 	}
 
 	CameraComponent* Scene::getCurrentCamera()
@@ -28,7 +28,7 @@ namespace TropicalEngine
 		}
 		else
 		{
-			///TODO: figure out what to handle situation where there is no camera in level.
+			// TODO: figure out what to handle situation where there is no camera in level.
 			Entity* tempCamera = new Entity(glm::vec3(0.0f, 0.0f, 5.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
 			currentCamera = new CameraComponent(tempCamera, glm::vec3(0.0f, 0.0f, -1.0f), glm::vec3(0.0f, 1.0f, 0.0f), 40.0f, 4.0f / 3.0f, 0.1f, 10000.0f);
 			return currentCamera;
@@ -47,24 +47,24 @@ namespace TropicalEngine
 
 	void Scene::LoadLevel(QString fileUrl)
 	{
-		///TODO: implement it.
+		// TODO: implement it.
 		//Check in Level Manager if said level is already loaded.
 	}
 
 	void Scene::LoadLevel(QString fileUrl, QString name)
 	{
-		///TODO: implement it.
+		// TODO: implement it.
 	}
 
 	void Scene::LoadLevel(Level* level, QString name)
 	{
-		///TODO: implement it.
+		// TODO: implement it.
 		levels.insert(name, level);
 	}
 
 	void Scene::UnloadLevel(QString name)
 	{
-		///TODO: implement it.
+		// TODO: implement it.
 		Level* level = levels.take(name);
 		//delete level;
 	}

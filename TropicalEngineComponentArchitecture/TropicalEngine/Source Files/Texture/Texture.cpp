@@ -27,7 +27,7 @@ namespace TropicalEngine
 	{
 		//for (Material* material : TropicalEngineApplication::instance()->materialManager->materials)
 		//{
-		//	///TODO: set texture parameters equal to this to value typical for
+		//	// TODO: set texture parameters equal to this to value typical for
 		//	//unneccessary if caled from TextureManager
 		//}
 		if (textureLocation != 0)
@@ -43,7 +43,7 @@ namespace TropicalEngine
 
 	void Texture::setName(QString name)
 	{
-		///TODO: change keyname in Texture Managers.
+		// TODO: change keyname in Texture Managers.
 		this->name = name;
 	}
 

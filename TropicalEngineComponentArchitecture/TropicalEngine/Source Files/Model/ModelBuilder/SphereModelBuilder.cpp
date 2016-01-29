@@ -34,7 +34,7 @@ namespace TropicalEngine
 
 	Model* SphereModelBuilder::Build()
 	{
-		/// TODO: Fix tangent and bitangent generation.
+		// TODO: Fix tangent and bitangent generation.
 
 		QString& name = parameters["name"].value<QString>();
 		float radius = parameters["radius"].value<float>();

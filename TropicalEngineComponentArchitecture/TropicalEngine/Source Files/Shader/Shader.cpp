@@ -146,7 +146,7 @@ namespace TropicalEngine
 
 			if (nameString.startsWith("mat_"))
 			{
-				materialParameters->insert(nameString, QPair<GLenum, GLuint>(type, glGetUniformLocation(this->shaderProgram, nameChar)));	///TODO: figure out why +1 is needed.
+				materialParameters->insert(nameString, QPair<GLenum, GLuint>(type, glGetUniformLocation(this->shaderProgram, nameChar)));	// TODO: figure out why +1 is needed.
 			}
 		}
 	}
@@ -160,7 +160,7 @@ namespace TropicalEngine
 		}
 		glDeleteProgram(shaderProgram);
 
-		///TODO: Delete Materials using this Shader?
+		// TODO: Delete Materials using this Shader?
 	}
 
 	QString Shader::getName()
@@ -170,7 +170,7 @@ namespace TropicalEngine
 
 	void Shader::setName(QString name)
 	{
-		///TODO: change key name in Shader managers.
+		// TODO: change key name in Shader managers.
 		this->name = name;
 	}
 
@@ -256,7 +256,7 @@ namespace TropicalEngine
 		{
 			qDebug() << f.errorString();
 			return "";	//if it will go in here, everything will go wrong.
-			/// TODO: Handle it
+			// TODO: Handle it
 		}
 		QTextStream in(&f);
 		QString fileString = in.readAll();
@@ -311,7 +311,7 @@ namespace TropicalEngine
 			GLchar InfoLog[1024];
 			glGetShaderInfoLog(shaderObj, 1024, NULL, InfoLog);
 
-			/// TODO: Figure out if shader object should be deleted here or leave it for catching code.
+			// TODO: Figure out if shader object should be deleted here or leave it for catching code.
 			glDeleteShader(shaderObj);
 
 			throw ShaderException("Error compiling shader type " + QString::number(shaderType) + ": " + QString(InfoLog), this);
@@ -333,10 +333,10 @@ namespace TropicalEngine
 
 	//QString Shader::toXML()
 	//{
-	//	///TODO: implement it.
+	//	// TODO: implement it.
 	//	QString XMLString = QString(getIndent() + "<Shader name = \"" + name + "\">\n");
 	//	increaseIndent();
-	//	///TODO: save information about subshader filepaths
+	//	// TODO: save information about subshader filepaths
 	//	//foreach(subshader
 	//	XMLString += defaultMaterial->toXML();
 	//	decreaseIndent();
@@ -364,7 +364,7 @@ namespace TropicalEngine
 
 	IDeserializableFromJSON* Shader::fromJSON(QJsonObject JSON)
 	{
-		///TODO: Implement it!
+		// TODO: Implement it!
 		return new Shader(*nullShader);
 	}
 

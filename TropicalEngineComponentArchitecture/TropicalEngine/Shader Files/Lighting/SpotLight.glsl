@@ -31,7 +31,7 @@ float calculateSpotLightBrightness(SpotLight light, vec3 fragmentPosition, vec3 
 		float lightDistanceFactor = max(1.0 - (lightDistance / light.radius), 0.0);
 
 		float brightness = pow(lightDistanceFactor, light.attenuation) * light.brightness;
-		///TODO: Add inner angle support
+		// TODO: Add inner angle support
 		brightness *= max((LdotLp * (180.0 / light.outerAngle)), 0.0);
 		return brightness;
 	}

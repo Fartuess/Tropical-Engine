@@ -79,7 +79,7 @@ namespace TropicalEngine
 
 		class Scene* drawnScene = nullptr;
 
-		/// TODO: Remove testing code.
+		// TODO: Remove testing code.
 		class RenderTexture* widgetFramebuffer;
 	};
 

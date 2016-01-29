@@ -4,7 +4,7 @@
 namespace TropicalEngine
 {
 
-	///TODO: Figure out if this class should be removed.
+	// TODO: Figure out if this class should be removed.
 	class ISerializableToXML
 	{
 	public:

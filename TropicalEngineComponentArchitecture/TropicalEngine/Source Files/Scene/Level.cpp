@@ -8,20 +8,20 @@ namespace TropicalEngine
 
 	Level::Level(QString name, glm::vec3 position, glm::quat rotation, glm::vec3 scale) : root(new Entity()), internalPackage(new Package(name))
 	{
-		///TODO: implement it.
+		// TODO: implement it.
 		root->level = this;
 	}
 
 	Level::Level(TransformComponent transform, QString name) : root(new Entity()), internalPackage(new Package(name))
 	{
-		///TODO: implement it.
+		// TODO: implement it.
 	}
 
 	Level::~Level(void)
 	{
 		delete root;
 		delete internalPackage;
-		///TODO: figure out unloading used packages if neccessary.
+		// TODO: figure out unloading used packages if neccessary.
 	}
 
 	Entity* const Level::getRoot()
@@ -47,11 +47,11 @@ namespace TropicalEngine
 
 	//QString Level::toXML()
 	//{
-	//	///TODO: finish implementing it.
+	//	// TODO: finish implementing it.
 	//	QString XMLString = QString(getIndent() + "<Level name = \"" + name + "\">\n");
 	//	increaseIndent();
 	//	XMLString += internalPackage.toXML();
-	//	///TODO: Saved used packages to separated files.
+	//	// TODO: Saved used packages to separated files.
 	//	/*
 	//	foreach(Package* package, usedPackages)
 	//	{

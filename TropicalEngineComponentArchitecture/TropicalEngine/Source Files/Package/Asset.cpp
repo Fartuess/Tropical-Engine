@@ -30,7 +30,7 @@ namespace TropicalEngine
 
 	QJsonObject Asset::toJSON()
 	{
-		///TODO: Make cheating unnecessary.
+		// TODO: Make cheating unnecessary.
 		QJsonObject JSON = QJsonObject();
 		JSON["name"] = name;
 		JSON["typename"] = asset->getTypeName();

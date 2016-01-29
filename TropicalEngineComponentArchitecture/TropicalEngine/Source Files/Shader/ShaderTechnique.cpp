@@ -65,7 +65,7 @@ namespace TropicalEngine
 
 	Shader* ShaderTechnique::getShader(QString shaderPass)
 	{
-		/// TODO: This can screw up if same shader builder was used with different inputs.
+		// TODO: This can screw up if same shader builder was used with different inputs.
 
 		if (!shaderPasses.contains(shaderPass))
 		{
@@ -103,7 +103,7 @@ namespace TropicalEngine
 
 	QJsonObject ShaderTechnique::toJSON()
 	{
-		/// TODO: Implement it!
+		// TODO: Implement it!
 		QJsonObject JSON = QJsonObject();
 		
 
@@ -112,7 +112,7 @@ namespace TropicalEngine
 
 	IDeserializableFromJSON* ShaderTechnique::fromJSON(QJsonObject JSON)
 	{
-		///TODO: Implement it!
+		// TODO: Implement it!
 		return nullptr;	// new ShaderTechnique();
 	}
 

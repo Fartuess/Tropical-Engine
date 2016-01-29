@@ -96,7 +96,7 @@ namespace TropicalEngine
 		  */
 		#pragma endregion
 		void BindAction(QString actionName, int key);
-		/// TODO: Add unbinding keys?
+		// TODO: Add unbinding keys method for InputManager?
 
 		#pragma region documentation
 		/**

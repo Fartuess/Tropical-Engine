@@ -11,7 +11,7 @@ namespace TropicalEngine
 
 	//QString Package::Asset::toXML()
 	//{
-	//	///TODO: implement it.
+	//	// TODO: implement it.
 	//	QString XMLString = "";
 	//	switch (type)
 	//	{
@@ -31,7 +31,7 @@ namespace TropicalEngine
 	//		XMLString += static_cast<Model*>(asset_ptr)->toXML();
 	//		break;
 	//	default:
-	//		///TODO: send info to log
+	//		// TODO: send info to log
 	//		break;
 	//	}
 	//	
@@ -49,7 +49,7 @@ namespace TropicalEngine
 
 	Package Package::InitializeType()
 	{
-		///TODO: Figure out what to do with this.
+		// TODO: Figure out what to do with this.
 		Package* package = new Package("TemplatePackage");
 		//AssetManager::addAssetType("Package", package);
 		return *package;

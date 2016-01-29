@@ -26,7 +26,7 @@ namespace TropicalEngine
 
 	void PropertiesWidget::Reload()
 	{
-		///TODO: Clear list before filling it up again.
+		// TODO: Clear list before filling it up again.
 		while (topLevelItemCount() > 0)
 		{
 			delete takeTopLevelItem(0);

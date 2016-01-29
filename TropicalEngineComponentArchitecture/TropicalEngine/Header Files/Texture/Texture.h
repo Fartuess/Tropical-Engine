@@ -112,7 +112,7 @@ namespace TropicalEngine
 		  * \brief Path to the file with Texture data.
 		  */
 		#pragma endregion
-		QString fileUrl;	///TODO: Figure out how to implement changing paths.
+		QString fileUrl;	// TODO: Figure out how to implement changing paths.
 		#pragma region documentation
 		/**
 		  * \brief Name of the Texture.

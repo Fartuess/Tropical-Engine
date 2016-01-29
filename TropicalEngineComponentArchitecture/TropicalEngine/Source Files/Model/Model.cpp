@@ -24,7 +24,7 @@ namespace TropicalEngine
 
 	Model::~Model(void)
 	{
-		///TODO: implement it.
+		// TODO: implement it.
 
 		while (meshes.isEmpty() == false)
 		{
@@ -39,13 +39,13 @@ namespace TropicalEngine
 
 	void Model::setName(QString name)
 	{
-		///TODO: implement changing keynames in Model Managers.
+		// TODO: implement changing keynames in Model Managers.
 		this->name = name;
 	}
 
 	MeshEntry::MeshEntry()
 	{
-		///TODO: implement it.
+		// TODO: implement it.
 	}
 
 	MeshEntry::~MeshEntry()
@@ -97,14 +97,14 @@ namespace TropicalEngine
 
 	//QString Model::toXML()
 	//{
-	//	///TODO: implement it.
+	//	// TODO: implement it.
 	//	//remember that there are two kinds of models - loaded from a file and generated
 	//	return QString();
 	//}
 
 	QJsonObject Model::toJSON()
 	{
-		///TODO: Add support of generated models serialization;
+		// TODO: Add support of generated models serialization;
 		QJsonObject JSON = QJsonObject();
 		JSON["name"] = name;
 		JSON["url"] = fileUrl;

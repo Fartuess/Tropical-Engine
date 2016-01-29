@@ -24,9 +24,9 @@ namespace TropicalEngine
 
 	Model* FbxModelImporter::Load(QString name, QString fileUrl)
 	{
-		/// TODO: Add support for instanced meshes
+		// TODO: Add support for instanced meshes
 
-		/// TODO: Clean memory!
+		// TODO: Clean memory!
 
 		Model* model = new Model(name, fileUrl);
 
@@ -82,7 +82,7 @@ namespace TropicalEngine
 				MeshEntry* Mesh = new MeshEntry();
 				Mesh->NumVertex = mesh->GetControlPointsCount();
 
-				QVector<glm::vec4> vertices = QVector<glm::vec4>();	///TODO: should make pos vec3 instead of vec4 and make them vec4 in shaders to save memory?
+				QVector<glm::vec4> vertices = QVector<glm::vec4>();	// TODO: should make pos vec3 instead of vec4 and make them vec4 in shaders to save memory?
 				QVector<glm::vec3> normals = QVector<glm::vec3>();
 				QVector<glm::vec3> tangents = QVector<glm::vec3>();
 				QVector<glm::vec3> bitangents = QVector<glm::vec3>();
@@ -160,7 +160,7 @@ namespace TropicalEngine
 				model->meshes.append(Mesh);
 			}
 
-			/// TODO: Figure out why it crashes.
+			// TODO: Figure out why it crashes.
 			//scene->Clear();
 
 

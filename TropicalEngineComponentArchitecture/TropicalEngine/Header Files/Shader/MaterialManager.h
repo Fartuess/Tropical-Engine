@@ -51,7 +51,7 @@ namespace TropicalEngine
 		#pragma endregion
 		const Material* operator[](QString name) const	{ return materials[name]; };
 
-		///TODO: Rethink Load method. Maybe change name to 'Create'.
+		// TODO: Rethink Load method. Maybe change name to 'Create'.
 		#pragma region documentation
 		/**
 		  * \brief Creates new Material.
@@ -79,7 +79,7 @@ namespace TropicalEngine
 		void UseMaterial(Material* material);
 
 	private:
-		QHash<QString, Material*> materials;	/// TODO: Figure out if QHash or QMap. In some border cases materials might be created every frame.
+		QHash<QString, Material*> materials;	// TODO: Figure out if QHash or QMap. In some border cases materials might be created every frame.
 
 		void FlushMaterial(QString name, bool forced = false);
 	};

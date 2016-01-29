@@ -4,7 +4,7 @@
 namespace TropicalEngine
 {
 
-	/// TODO: Finish documenting.
+	// TODO: Finish documenting PropertyItem class.
 	#pragma region documentation
 	/**
 	  * \brief Single item in PropertiesWidget.
@@ -19,7 +19,7 @@ namespace TropicalEngine
 		  */
 		#pragma endregion
 		QString name;
-		class Component* component;	///TODO: create getters and setters for this little fellow.
+		class Component* component;	// TODO: Encapsulate component field in PropertyItem?
 
 		PropertyItem(QString name);
 		PropertyItem(QString name, PropertyItem* otherItem);

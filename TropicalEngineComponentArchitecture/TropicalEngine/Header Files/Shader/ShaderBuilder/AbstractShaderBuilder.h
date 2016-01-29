@@ -26,7 +26,7 @@ namespace TropicalEngine
 		#pragma endregion
 		~AbstractShaderBuilder()	{}
 
-		/// TODO: Maybe replace QString with QVariant?
+		// TODO: Maybe replace QString with QVariant?
 		#pragma region documentation
 		/**
 		  * \brief Sets path to the input module.
@@ -73,7 +73,7 @@ namespace TropicalEngine
 		#pragma endregion
 		virtual class Shader* createShader(QString shaderName, QString shaderPass = "Default") = 0;
 	protected:
-		/// TODO: Maybe replace QString with QVariant?
+		// TODO: Maybe replace QString with QVariant?
 		#pragma region documentation
 		/**
 		  * \brief Inputs for the generator.

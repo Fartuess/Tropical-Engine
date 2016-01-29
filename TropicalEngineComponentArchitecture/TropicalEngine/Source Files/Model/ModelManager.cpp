@@ -6,7 +6,7 @@ namespace TropicalEngine
 
 	ModelManager::ModelManager(void)
 	{
-		///TODO: implement it.
+		// TODO: implement it.
 	}
 
 	ModelManager::~ModelManager(void)
@@ -34,7 +34,7 @@ namespace TropicalEngine
 
 	void ModelManager::FlushModel(QString name, bool forced)
 	{
-		///TODO: implement it.
+		// TODO: implement it.
 		//if(!models.contains(name))
 		//	return;
 		//Model* model = models[name];

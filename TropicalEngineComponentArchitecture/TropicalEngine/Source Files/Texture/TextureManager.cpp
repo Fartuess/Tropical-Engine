@@ -23,7 +23,7 @@ namespace TropicalEngine
 	{
 		for (Material* material : TropicalEngineApplication::instance()->materialManager->materials)
 		{
-			///TODO: set all textures to null texture;
+			// TODO: set all textures to null texture;
 		}
 	}
 
@@ -67,7 +67,7 @@ namespace TropicalEngine
 		{
 			for (Material* material : TropicalEngineApplication::instance()->materialManager->materials)
 			{
-				///TODO: if material uses texture isUsed return;
+				// TODO: if material uses texture isUsed return;
 			}
 			delete TextureManager::textures[name];
 		}

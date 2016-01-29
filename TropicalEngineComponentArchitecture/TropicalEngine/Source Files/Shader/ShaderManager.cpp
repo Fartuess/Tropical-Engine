@@ -41,7 +41,7 @@ namespace TropicalEngine
 
 	void ShaderManager::FlushShader(QString name)
 	{
-		///TODO: implement it.
+		// TODO: implement it.
 	}
 
 	void ShaderManager::Load(Shader* shader, QString name)

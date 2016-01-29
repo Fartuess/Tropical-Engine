@@ -94,7 +94,7 @@ namespace TropicalEngine
 		IDeserializableFromJSON* fromJSON(QJsonObject JSON) override;
 
 	protected:
-		///TODO: Make it private?
+		// TODO: Figure out if make it private?
 		#pragma region documentation
 		/**
 		  * \brief Entity owning this Component.

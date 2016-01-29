@@ -16,7 +16,7 @@ namespace TropicalEngine
 
 	DirectionalLightComponent::~DirectionalLightComponent(void)
 	{
-		///TODO: implement it.
+		// TODO: implement it.
 	}
 
 	DirectionalLightComponent DirectionalLightComponent::InitializeType()
@@ -50,17 +50,17 @@ namespace TropicalEngine
 
 	void DirectionalLightComponent::Evaluate()
 	{
-		///TODO: implement it.
+		// TODO: implement it.
 	}
 
 	void DirectionalLightComponent::DrawShadows()
 	{
-		///TODO: implement it.
+		// TODO: implement it.
 	}
 
 	//QString DirectionalLightComponent::toXML()
 	//{
-	//	///TODO: implement it.
+	//	// TODO: implement it.
 	//	return QString(getIndent() + "<DirectionalLightComponent/>\n");
 	//}
 

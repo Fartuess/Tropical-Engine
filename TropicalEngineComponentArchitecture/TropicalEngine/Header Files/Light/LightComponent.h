@@ -9,7 +9,7 @@
 namespace TropicalEngine
 {
 
-	///TODO: Should it be an abstract class?
+	// TODO: Figure out if it should be an abstract class?
 	#pragma region documentation
 	/**
 	  * \brief Base class for concrete LightComponent classes.

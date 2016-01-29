@@ -5,7 +5,7 @@
 namespace TropicalEngine
 {
 
-	/// TODO: Finish documenting it.
+	// TODO: Finish documenting PointLightComponent class.
 	#pragma region documentation
 	/**
 	  * \brief Component enlighting Scene with point light.

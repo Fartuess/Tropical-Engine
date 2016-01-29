@@ -10,7 +10,7 @@ void steepParallaxMap(in sampler2D heightMap, float bumpScale)
 
 	float height = 1.0;
 
-	float numSteps = 15;	///TODO: Make this value non hardcoded or more adaptive.
+	float numSteps = 15;	// TODO: Make this value non hardcoded or more adaptive.
 
 	vec2 offsetCoord = g_texcoord;
 	float NB = texture2D(heightMap, offsetCoord).r;

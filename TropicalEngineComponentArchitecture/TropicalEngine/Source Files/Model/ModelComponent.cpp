@@ -69,7 +69,7 @@ namespace TropicalEngine
 
 	void ModelComponent::Evaluate()
 	{
-		///TODO: implement it.
+		// TODO: implement it.
 	}
 
 	void ModelComponent::Draw(CameraComponent* viewer, QString shaderPass)
@@ -87,11 +87,11 @@ namespace TropicalEngine
 			usedShader = material->getShaderTechnique()->getShader(shaderPass);
 		}
 
-		/// TODO: Move Uniform binding into specific classes?
+		// TODO: Move Uniform binding into specific classes?
 
 		glUniformMatrix4fv(usedShader->getModelMatrixLocation(), 1, GL_FALSE, glm::value_ptr(owner->transform.getTransformMatrix()));
 		glUniformMatrix3fv(usedShader->getNormalMatrixLocation(), 1, GL_FALSE, glm::value_ptr(owner->transform.getNormalMatrix()));
-		glUniform3fv(usedShader->getCameraPositionLocation(), 1, glm::value_ptr(viewer->getOwner()->transform.getLocalPosition()));	///TODO: Change to global position when it will work
+		glUniform3fv(usedShader->getCameraPositionLocation(), 1, glm::value_ptr(viewer->getOwner()->transform.getLocalPosition()));	// TODO: Change to global position when it will work
 		glUniformMatrix4fv(usedShader->getCameraMatrixLocation(), 1, GL_FALSE, glm::value_ptr(viewer->getCameraMatrix()));
 		glUniformMatrix4fv(usedShader->getProjectionMatrixLocation(), 1, GL_FALSE, glm::value_ptr(viewer->getProjectionMatrix()));
 
@@ -111,7 +111,7 @@ namespace TropicalEngine
 			{
 				PointLightComponent* light = static_cast<PointLightComponent*>(lightedBy[i]);
 				TransformComponent& lightTransform = light->getOwner()->transform;
-				glUniform3fv(usedShader->pointLightPositionLocations[i], 1, glm::value_ptr(-lightTransform.getLocalPosition()));	///TODO: Figure out why negation is required.
+				glUniform3fv(usedShader->pointLightPositionLocations[i], 1, glm::value_ptr(-lightTransform.getLocalPosition()));	// TODO: Figure out why negation is required.
 				glUniform3fv(usedShader->pointLightColorLocations[i], 1, glm::value_ptr(light->color));
 				glUniform1f(usedShader->pointLightBrightnessLocations[i], light->brightness);
 				glUniform1f(usedShader->pointLightRadiusLocations[i], light->getRadius());

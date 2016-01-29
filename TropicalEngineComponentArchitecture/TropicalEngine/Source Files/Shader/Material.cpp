@@ -42,7 +42,7 @@ namespace TropicalEngine
 
 	Material::~Material(void)
 	{
-		/// TODO: implement it.
+		// TODO: implement it.
 		//for (ModelComponent* modelComponent : TropicalEngineApplication::instance()->modelController->modelComponents)
 		//{
 		//	if (modelComponent->material == this)
@@ -57,7 +57,7 @@ namespace TropicalEngine
 
 	void Material::setName(QString name)
 	{
-		///TODO: implement changing keynames in Material Managers.
+		// TODO: implement changing keynames in Material Managers.
 		this->name = name;
 	}
 
@@ -154,10 +154,10 @@ namespace TropicalEngine
 
 	//QString Material::toXML()
 	//{
-	//	///TODO: implement it.
+	//	// TODO: implement it.
 	//	QString XMLString = QString(getIndent() + "<Material name = \"" + name + "\" shader = \"" + getShader()->getName() + "\">\n");
 	//	increaseIndent();
-	//	///TODO: save material parameters
+	//	// TODO: save material parameters
 	//	decreaseIndent();
 	//	XMLString += QString(getIndent() + "</Material>\n");
 	//

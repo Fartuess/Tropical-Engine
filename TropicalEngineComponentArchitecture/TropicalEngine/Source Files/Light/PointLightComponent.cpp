@@ -18,7 +18,7 @@ namespace TropicalEngine
 
 	PointLightComponent::~PointLightComponent(void)
 	{
-		///TODO: implement it.
+		// TODO: implement it.
 	}
 
 	PointLightComponent PointLightComponent::InitializeType()
@@ -54,17 +54,17 @@ namespace TropicalEngine
 
 	void PointLightComponent::Evaluate()
 	{
-		///TODO: implement it.
+		// TODO: implement it.
 	}
 
 	void PointLightComponent::DrawShadows()
 	{
-		///TODO: implement it.
+		// TODO: implement it.
 	}
 
 	//QString PointLightComponent::toXML()
 	//{
-	//	///TODO: implement it.
+	//	// TODO: implement it.
 	//	return QString(getIndent() + "<PointLightComponent/>\n");
 	//}
 
@@ -79,7 +79,7 @@ namespace TropicalEngine
 
 	IDeserializableFromJSON* PointLightComponent::fromJSON(QJsonObject JSON)
 	{
-		///TODO: implement this.
+		// TODO: implement this.
 		PointLightComponent* object = new PointLightComponent();
 
 		QJsonObject colorJSON = JSON["color"].toObject();

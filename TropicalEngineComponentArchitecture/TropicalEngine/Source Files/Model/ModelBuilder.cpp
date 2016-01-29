@@ -29,7 +29,7 @@ namespace TropicalEngine
 
 	ModelBuilder::ModelBuilder(void)
 	{
-		///TODO: implement it?
+		// TODO: implement it?
 		AddModelBuilder(new TriangleModelBuilder());
 		AddModelBuilder(new PlaneModelBuilder());
 		AddModelBuilder(new BoxModelBuilder());
@@ -42,7 +42,7 @@ namespace TropicalEngine
 
 	ModelBuilder::~ModelBuilder(void)
 	{
-		///TODO: implement it?
+		// TODO: implement it?
 	}
 
 	Model* ModelBuilder::Load(QString fileUrl)
@@ -52,13 +52,13 @@ namespace TropicalEngine
 
 	Model* ModelBuilder::Load(QString name, QString fileUrl)
 	{
-		/// TODO: there is case of unsupported type to be handled.
-		/// TODO: try to initialize importers automatically in a way that they work like plugins.
+		// TODO: there is case of unsupported type to be handled.
+		// TODO: try to initialize importers automatically in a way that they work like plugins.
 
 		return supportedExtensions[fileUrl.section(".", -1, -1).toLower()]->Load(name, fileUrl);
 	}
 
-	///TODO: Figure out if it is still needed.
+	// TODO: Figure out if it is still needed.
 	void ModelBuilder::CalculateTangentsBitangents(QVector<glm::vec4>& vertices, QVector<glm::vec3>& normals, QVector<glm::vec2>& texcoords, QVector<glm::vec3>& out_tangents, QVector<glm::vec3>& out_bitangents)
 	{
 		for (unsigned int i = 0; i < vertices.size(); i += 3){
@@ -85,7 +85,7 @@ namespace TropicalEngine
 			glm::vec3 tangent = (deltaPos1 * deltaUV2.y - deltaPos2 * deltaUV1.y)*r;
 			glm::vec3 bitangent = (deltaPos2 * deltaUV1.x - deltaPos1 * deltaUV2.x)*r;
 
-			///TODO: look at comment below and finish implementation!
+			// TODO: look at comment below and finish implementation!
 			// Set the same tangent for all three vertices of the triangle.
 			// They will be merged later, in vboindexer.cpp
 			out_tangents.push_back(tangent);

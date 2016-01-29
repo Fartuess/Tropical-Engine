@@ -5,7 +5,7 @@
 namespace TropicalEngine
 {
 	
-	/// TODO: Finish documenting it.
+	// TODO: Finish documenting TitleBar class.
 	#pragma region documentation
 	/**
 	  * \brief Custom TitleBar for frameless windows.

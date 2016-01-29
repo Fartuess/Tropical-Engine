@@ -12,17 +12,17 @@ namespace TropicalEngine
 
 	PackageManager::~PackageManager(void)
 	{
-		///TODO: implement it.
+		// TODO: implement it.
 	}
 
 	void PackageManager::LoadPackage(QString fileUrl)
 	{
-		///TODO: implement it.
+		// TODO: implement it.
 	}
 
 	bool PackageManager::LoadPackage(QJsonObject JSON)
 	{
-		///TODO: implement it.
+		// TODO: implement it.
 		bool isNewPackage = false;
 		QString usedPackageName = JSON["name"].toString();
 		if (isPackageLoaded(usedPackageName))
@@ -40,7 +40,7 @@ namespace TropicalEngine
 
 	void PackageManager::FlushPackage(QString name)
 	{
-		///TODO: implement it.
+		// TODO: implement it.
 	}
 
 	bool PackageManager::isPackageLoaded(QString name)

@@ -69,23 +69,23 @@ namespace TropicalEngine
 
 	void LightComponent::Evaluate()
 	{
-		///TODO: implement it.
+		// TODO: implement it.
 	}
 
 	//void LightComponent::DrawShadows()
 	//{
-	//	///TODO: implement it.
+	//	// TODO: implement it.
 	//}
 
 	//QString LightComponent::toXML()
 	//{
-	//	///TODO: implement it.
+	//	// TODO: implement it.
 	//	return QString(getIndent() + "<LightComponent/>\n");
 	//}
 
 	QJsonObject LightComponent::toJSON()
 	{
-		///TODO: implement it.
+		// TODO: implement it.
 		QJsonObject JSON = Component::toJSON();
 		QJsonObject colorObject = QJsonObject();
 		colorObject["r"] = color.r;

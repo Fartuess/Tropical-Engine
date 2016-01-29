@@ -9,7 +9,7 @@
 namespace TropicalEngine
 {
 
-	/// TODO: Finish documenting it.
+	// TODO: Finish documenting it.
 	#pragma region documentation
 	/**
 	  * \brief Class for managing Shaders.

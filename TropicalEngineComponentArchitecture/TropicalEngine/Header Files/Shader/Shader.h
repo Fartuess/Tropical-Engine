@@ -12,9 +12,9 @@
 namespace TropicalEngine
 {
 
-	/// TODO: Finish documenting it.
-	/// TODO: Improve encapsulation of member fields.
-	/// TODO: Create general solution for all those GPU location pointers.
+	// TODO: Finish documenting it.
+	// TODO: Improve encapsulation of member fields.
+	// TODO: Create general solution for all those GPU location pointers.
 #pragma region documentation
 	/**
 	  * \brief Class for handling GPU shaders.
@@ -31,9 +31,9 @@ namespace TropicalEngine
 
 		//temporarily public
 		GLuint shaderProgram;
-		QMap<QString, GLuint> subprograms;	///TODO: Value is shader type from now. Not it's address in GPU?
+		QMap<QString, GLuint> subprograms;	// TODO: Value is shader type from now. Not it's address in GPU?
 
-		/// TODO: Make light locations more organised.
+		// TODO: Make light locations more organised.
 		//temporarily public
 		GLuint dirLightVectorLocation;
 		GLuint dirLightColorLocation;

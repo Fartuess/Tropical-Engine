@@ -9,17 +9,17 @@ namespace TropicalEngine
 
 	LevelManager::~LevelManager(void)
 	{
-		///TODO: implement it.
+		// TODO: implement it.
 	}
 
 	void LevelManager::LoadLevel(QString fileUrl, QString name)
 	{
-		///TODO: implement it.
+		// TODO: implement it.
 	}
 
 	void LevelManager::FlushLevel(QString name)
 	{
-		///TODO: implement it.
+		// TODO: implement it.
 	}
 
 }

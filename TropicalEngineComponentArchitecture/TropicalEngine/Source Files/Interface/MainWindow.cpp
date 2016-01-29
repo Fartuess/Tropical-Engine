@@ -33,7 +33,7 @@ namespace TropicalEngine
 {
 
 	MainWindow::MainWindow(QWidget* parrent, bool isFrameless) : QMainWindow(parrent)
-		///TODO: Figure out which references to UI elements should be kept.
+		// TODO: Figure out which references to UI elements should be kept.
 	{
 		if (isFrameless == true)
 		{
@@ -179,7 +179,7 @@ namespace TropicalEngine
 
 	void MainWindow::saveLevel()
 	{
-		///TODO: Implement
+		// TODO: Implement
 	}
 
 	void MainWindow::saveLevelAs()
@@ -198,7 +198,7 @@ namespace TropicalEngine
 			return;
 		}
 		QTextStream out(&file);
-		///TODO: figure out which level to save
+		// TODO: figure out which level to save
 		//out << QJsonDocument(TropicalEngineApplication::instance()->sceneManager->getLevels().first()->toJSON()).toJson();
 		//temp
 

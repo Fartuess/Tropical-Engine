@@ -5,7 +5,7 @@ namespace TropicalEngine
 
 	LightController::LightController(void)
 	{
-		///TODO: implement it.
+		// TODO: implement it.
 	}
 
 	LightController::~LightController(void)

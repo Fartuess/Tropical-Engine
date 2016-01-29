@@ -1,7 +1,7 @@
 #ifndef _CHANNEL
 #define _CHANNEL
 
-///TODO: Implement automatic channel guarding other way as #define's cannot be used inside #defines.
+// TODO: Implement automatic channel guarding other way as #define's cannot be used inside #defines.
 
 #define CHANNEL(type, name)\
 	#ifndef DEF##name##Channel\

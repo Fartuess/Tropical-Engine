@@ -25,7 +25,7 @@ namespace TropicalEngine
 
 	SpotLightComponent::~SpotLightComponent(void)
 	{
-		///TODO: implement it.
+		// TODO: implement it.
 	}
 
 	SpotLightComponent SpotLightComponent::InitializeType()
@@ -86,7 +86,7 @@ namespace TropicalEngine
 
 	void SpotLightComponent::Evaluate()
 	{
-		///TODO: implement it.
+		// TODO: implement it.
 	}
 
 	void SpotLightComponent::DrawShadows()
@@ -95,13 +95,13 @@ namespace TropicalEngine
 		{
 			shadowmap = new RenderTexture(owner->name + "_SpotLight_Shadowmap", 1024, 1024);
 		}
-		///TODO: implement it.
+		// TODO: implement it.
 
 	}
 
 	//QString SpotLightComponent::toXML()
 	//{
-	//	///TODO: implement it.
+	//	// TODO: implement it.
 	//	return QString(getIndent() + "<SpotLightComponent/>\n");
 	//}
 

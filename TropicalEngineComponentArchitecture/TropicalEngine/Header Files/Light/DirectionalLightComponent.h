@@ -3,7 +3,7 @@
 
 namespace TropicalEngine
 {
-	/// TODO: Finish documenting it.
+	// TODO: Finish documenting DirectionalLightComponent class.
 	#pragma region documentation
 	/**
 	  * \brief Component enlighting Scene with directional light.

@@ -8,7 +8,7 @@
 namespace TropicalEngine
 {
 
-	/// TODO: Write detailed class description.
+	// TODO: Write detailed class description.
 	#pragma region documentation
 	/**
 	  * \brief Class generating Shaders.

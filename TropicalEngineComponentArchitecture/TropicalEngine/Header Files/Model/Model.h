@@ -73,7 +73,7 @@ namespace TropicalEngine
 
 		GLuint MaterialIndex;
 
-		///TODO: Make finalization supporting flexible sets of arrays.
+		// TODO: Make finalization supporting flexible sets of arrays for MeshEntry.
 		#pragma region documentation
 		/**
 		  * \brief Finalizes creation of Mesh Entry.

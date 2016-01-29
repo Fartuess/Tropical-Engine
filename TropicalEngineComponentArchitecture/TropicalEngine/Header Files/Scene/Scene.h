@@ -15,7 +15,7 @@ namespace TropicalEngine
 	class Scene
 	{
 	public:
-		/// TODO: Is it still needed?
+		// TODO: Is it still needed?
 		#pragma region documentation
 		/**
 		  * \brief Main directional light in the scene.
@@ -79,7 +79,7 @@ namespace TropicalEngine
 		  */
 		#pragma endregion
 		void LoadLevel(QString fileUrl, QString name);
-		/// TODO: Remove name element?
+		// TODO: Remove name element?
 		#pragma region documentation
 		/**
 		  * \brief Loads existing Level into the Scene.

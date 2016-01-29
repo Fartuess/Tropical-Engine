@@ -42,16 +42,16 @@ namespace TropicalEngine
 	{
 		if (!isComponentTypeUsed(getTypeName()))
 		{
-			///TODO: ??
+			// TODO: ??
 		}
 	}
 
 	CameraComponent::~CameraComponent(void)
 	{
-		///TODO: Figure out how to separate it from engine core.
+		// TODO: Figure out how to separate it from engine core.
 		if (owner != nullptr)
 		{
-			/// TODO: Handle case when destroying camera which is current camera in some scene.
+			// TODO: Handle case when destroying camera which is current camera in some scene.
 			//Scene* sceneManager = TropicalEngineApplication::instance()->sceneManager;
 			//if (sceneManager->getCurrentCamera() == this)
 			//{
@@ -96,7 +96,7 @@ namespace TropicalEngine
 		return aspectRatio;
 	}
 
-	///TODO: Figure out if Calculation of matrix after every change is required since it can be called once in main Draw method
+	// TODO: Figure out if Calculation of matrix after every change is required since it can be called once in main Draw method
 
 	void CameraComponent::setAspectRatio(float aspectRatio)
 	{
@@ -148,7 +148,7 @@ namespace TropicalEngine
 
 	//QString CameraComponent::toXML()
 	//{
-	//	///TODO: implement it.
+	//	// TODO: implement it.
 	//	return QString(getIndent() + "<CameraComponent/>\n");
 	//}
 

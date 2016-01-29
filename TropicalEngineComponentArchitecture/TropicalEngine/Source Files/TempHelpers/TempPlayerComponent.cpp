@@ -15,7 +15,7 @@ namespace TropicalEngine
 
 	TempPlayerComponent::TempPlayerComponent(Entity* owner) : Component(owner)
 	{
-		///TODO: implement it.
+		// TODO: implement it.
 		//normally controller would not define bindings.
 		InputManager* inputManager = TropicalEngineApplication::instance()->inputManager;
 
@@ -32,7 +32,7 @@ namespace TropicalEngine
 
 	TempPlayerComponent::~TempPlayerComponent(void)
 	{
-		///TODO: implement it.
+		// TODO: implement it.
 	}
 
 	void TempPlayerComponent::OnUpdate(int DeltaTime)
@@ -45,10 +45,10 @@ namespace TropicalEngine
 		glm::vec3 right = ownerTransform.getRight();
 		glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f);
 
-		///TODO: replace this temp value
+		// TODO: replace this temp value
 		float speed = 0.003f * (1 + qMin(((float)inputManager->getTime("Move Fast", DeltaTime) / (float)DeltaTime), 1.0f));
 
-		///TODO: Figure out if we are ok with faster diagonal movement
+		// TODO: Figure out if we are ok with faster diagonal movement
 		ownerTransform.LocalTranslate(front * (speed * (float)inputManager->getTime("Move Forward", DeltaTime)));
 		ownerTransform.LocalTranslate(-front * (speed * (float)inputManager->getTime("Move Backward", DeltaTime)));
 		ownerTransform.LocalTranslate(right * (speed * (float)inputManager->getTime("Move Right", DeltaTime)));
@@ -59,7 +59,7 @@ namespace TropicalEngine
 
 	IDeserializableFromJSON* TempPlayerComponent::fromJSON(QJsonObject JSON)
 	{
-		///TODO: implement this.
+		// TODO: implement this.
 		return new TempPlayerComponent(nullptr);
 	}
 
@@ -72,7 +72,7 @@ namespace TropicalEngine
 	{
 		if (!isComponentTypeUsed(getTypeName()))
 		{
-			///TODO: ??
+			// TODO: ??
 		}
 	}
 

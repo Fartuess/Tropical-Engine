@@ -16,5 +16,5 @@
 
 namespace TropicalEngine
 {
-	/// TODO: Delete this file.
+	// TODO: Delete this file.
 }

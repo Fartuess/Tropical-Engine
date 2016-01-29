@@ -6,19 +6,19 @@ namespace TropicalEngine
 	Entity::Entity(glm::vec3 position, glm::quat rotation, glm::vec3 scale) : transform(this, position, rotation, scale)
 	{
 		parrent = nullptr;
-		///TODO: implement it.
+		// TODO: implement it.
 	}
 
 	Entity::Entity(TransformComponent transform) : transform(transform)
 	{
 		parrent = nullptr;
-		///TODO: implement it.
+		// TODO: implement it.
 	}
 
 	Entity::~Entity(void)
 	{
 		//parrent = nullptr;
-		///TODO: make sure it is properly implemented.
+		// TODO: make sure it is properly implemented.
 		QList<Entity*> helperSubobjectList = QList<Entity*>(subobjects);
 		for (Entity* subobject : helperSubobjectList)
 		{
@@ -87,7 +87,7 @@ namespace TropicalEngine
 
 	void Entity::DeleteComponent(Component* component)
 	{
-		/// TODO: Currently this method can delete components owned by different Entities. Fix it!
+		// TODO: Currently this method can delete components owned by different Entities. Fix it!
 		if (component != nullptr)
 		{
 			components.removeOne(component);
@@ -159,7 +159,7 @@ namespace TropicalEngine
 		{
 			QJsonObject componentJSON = componentRef.toObject();
 
-			///TODO: create and attach component.
+			// TODO: create and attach component.
 			//Component* component;
 			//
 			//object->AttachComponent(component);

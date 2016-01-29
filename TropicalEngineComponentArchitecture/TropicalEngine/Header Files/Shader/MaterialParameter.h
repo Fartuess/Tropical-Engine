@@ -3,7 +3,7 @@
 namespace TropicalEngine
 {
 
-	///TODO: figure out if additional level of abstraction is usefull
+	// TODO: figure out if additional level of abstraction is usefull
 	#pragma region documentation
 	/**
 	  * \brief Class for containg Material Parameter data in nicer way than void* .

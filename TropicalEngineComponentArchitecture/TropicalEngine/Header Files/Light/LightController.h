@@ -6,8 +6,8 @@
 namespace TropicalEngine
 {
 
-	/// TODO: Split light information to separate scenes.
-	/// TODO: Finish documenting it.
+	// TODO: Split light information to separate scenes.
+	// TODO: Finish documenting LightCpomponent class.
 	#pragma region documentation
 	/**
 	  * \brief Class managing lights.
@@ -39,7 +39,7 @@ namespace TropicalEngine
 		  */
 		#pragma endregion
 		QList<LightComponent*> getLights();	//should it return static reference?
-		/// TODO: Get RenderComponents or even IRenderables
+		// TODO: Changer getShadowcasters method to return RenderComponents or even IRenderables.
 		#pragma region documentation
 		/**
 		  * \brief Gets list of objects casting shadows.

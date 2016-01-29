@@ -7,8 +7,8 @@
 
 namespace TropicalEngine
 {
-	/// TODO: Figure out changing Component place in Rendering Manager after changing level owning Entity belong to.
-	/// TODO: Finish documenting it.
+	// TODO: Figure out changing Component place in Rendering Manager after changing level owning Entity belong to.
+	// TODO: Finish documenting RenderComponent class.
 	#pragma region documentation
 	/**
 	  * \brief Base class for renderable components.

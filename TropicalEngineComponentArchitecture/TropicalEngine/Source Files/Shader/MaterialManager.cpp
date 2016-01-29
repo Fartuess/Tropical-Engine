@@ -15,7 +15,7 @@ namespace TropicalEngine
 
 	MaterialManager::~MaterialManager(void)
 	{
-		///TODO: implement it.
+		// TODO: implement it.
 	}
 
 	Material* MaterialManager::Load(Shader* shader, QString name)	//temporal definition for temporal declaration
@@ -36,7 +36,7 @@ namespace TropicalEngine
 
 	void MaterialManager::FlushMaterial(QString name, bool forced)
 	{
-		///TODO: implement it.
+		// TODO: implement it.
 		if (!materials.contains(name))
 			return;
 		//Material* material = materials[name];

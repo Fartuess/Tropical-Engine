@@ -3,10 +3,12 @@
 namespace TropicalEngine
 {
 
-	/// TODO: Currently this is not exactly singleton but rather lazy initialization and global accessing to first instance. 
+	// TODO: Currently this is not exactly singleton but rather lazy initialization and global accessing to first instance.
+	#pragma region documentation
 	/**
-	  * Template class for Singletons.
+	  *\brief  Template class for Singletons.
 	  */
+	#pragma endregion
 	template <typename T>
 	class Singleton
 	{
@@ -25,11 +27,13 @@ namespace TropicalEngine
 				instance = nullptr;
 		}
 
+		#pragma region documentation
 		/**
 		  * \brief Gets singleton instance of this class.
 		  *
 		  * @return Singleton instance of this class.
 		  */
+		#pragma endregion
 		static T& Instance()
 		{
 			if (instance == nullptr)
