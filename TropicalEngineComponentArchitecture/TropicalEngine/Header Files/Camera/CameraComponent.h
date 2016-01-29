@@ -30,7 +30,6 @@ namespace TropicalEngine
 		  */
 		#pragma endregion
 		CameraComponent(Entity* owner, glm::vec3 targetOffset = glm::vec3(0.0f, 0.0f, -1.0f), glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f), float fov = 40.0f, float aspectRatio = 4.0f / 3.0f, float zNear = 0.01f, float zFar = 10000.0f);
-
 		#pragma region documentation
 		/**
 		  * \brief Default destructor
@@ -46,7 +45,6 @@ namespace TropicalEngine
 		  */
 		#pragma endregion
 		glm::vec3 getTarget();
-
 		#pragma region documentation
 		/**
 		  * \brief Sets direction where CameraComponent is looking.
@@ -64,7 +62,6 @@ namespace TropicalEngine
 		  */
 		#pragma endregion
 		glm::vec3 getUp();
-
 		#pragma region documentation
 		/**
 		  * \brief Sets Up Vector of CameraComponent.
@@ -83,7 +80,6 @@ namespace TropicalEngine
 		  */
 		#pragma endregion
 		float getFov();
-
 		#pragma region documentation
 		/**
 		  * \brief Sets Field of View of CameraComponent.
@@ -102,7 +98,6 @@ namespace TropicalEngine
 		  */
 		#pragma endregion
 		float getAspectRatio();
-
 		#pragma region documentation
 		/**
 		  * \brief Sets Aspect ratio of CameraComponent.
@@ -121,7 +116,6 @@ namespace TropicalEngine
 		  */
 		#pragma endregion
 		float getZNear();
-
 		#pragma region documentation
 		/**
 		  * \brief Sets Near Clipping Plane distance.
@@ -130,7 +124,6 @@ namespace TropicalEngine
 		  */
 		#pragma endregion
 		void setZNear(float zNear);
-
 		#pragma region documentation
 		/**
 		  * \brief Gets Far Clipping Plane distance.
@@ -139,7 +132,6 @@ namespace TropicalEngine
 		  */
 		#pragma endregion
 		float getZFar();
-
 		#pragma region documentation
 		/**
 		  * \brief Sets Far Clipping Plane distance.
@@ -158,7 +150,6 @@ namespace TropicalEngine
 		  */
 		#pragma endregion
 		glm::mat4 getCameraMatrix();
-
 		#pragma region documentation
 		/**
 		  * \brief Gets Projection Matrix.
@@ -168,7 +159,6 @@ namespace TropicalEngine
 		  */
 		#pragma endregion
 		glm::mat4 getProjectionMatrix();
-
 		#pragma region documentation
 		/**
 		  * \brief Updates Camera Matrix and Projection matrices.
@@ -186,7 +176,6 @@ namespace TropicalEngine
 		  */
 		#pragma endregion
 		QJsonObject toJSON() override;
-
 		#pragma region documentation
 		/**
 		  * \brief Deserializes CameraComponent from JSON object.

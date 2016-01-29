@@ -3,10 +3,30 @@
 
 namespace TropicalEngine
 {
+	#pragma region documentation
+	/**
+	  * \brief Enum for planar directions.
+	  */
+	#pragma endregion
 	enum PlaneDirections
 	{
+		#pragma region documentation
+		/**
+		  * Plane spanning through direction X and Y with surface facing Z.
+		  */
+		#pragma endregion
 		XY,
+		#pragma region documentation
+		/**
+		* Plane spanning through direction X and Z with surface facing Y.
+		*/
+		#pragma endregion
 		XZ,
+		#pragma region documentation
+		/**
+		* Plane spanning through direction Y and Z with surface facing X.
+		*/
+		#pragma endregion
 		YZ
 	};
 

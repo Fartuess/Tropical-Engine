@@ -6,18 +6,48 @@
 namespace TropicalEngine
 {
 
-	class ModelComponent;
-
+	/// TODO: Split light information to separate scenes.
+	/// TODO: Finish documenting it.
+	#pragma region documentation
+	/**
+	  * \brief Class managing lights.
+	  */
+	#pragma endregion
 	class LightController
 	{
 	public:
 		friend class LightComponent;
 
+		#pragma region documentation
+		/**
+		  * \brief LightController constructor.
+		  */
+		#pragma endregion
 		LightController(void);
+		#pragma region documentation
+		/**
+		  * \brief LightController destructor.
+		  */
+		#pragma endregion
 		~LightController(void);
 
+		#pragma region documentation
+		/**
+		  * \brief Gets list of lights.
+		  *
+		  * @return List of LightComponents.
+		  */
+		#pragma endregion
 		QList<LightComponent*> getLights();	//should it return static reference?
-		QList<ModelComponent*> getShadowcasters();
+		/// TODO: Get RenderComponents or even IRenderables
+		#pragma region documentation
+		/**
+		  * \brief Gets list of objects casting shadows.
+		  *
+		  * @return List of objects casting shadows.
+		  */
+		#pragma endregion
+		QList<class ModelComponent*> getShadowcasters();
 
 		void EvaluateAll();
 		void EvaluateShadowsAll();
@@ -25,7 +55,7 @@ namespace TropicalEngine
 	private:
 		QList<LightComponent*> lights;
 		QList<LightComponent*> lightShadows;
-		QList<ModelComponent*> shadowcasters;
+		QList<class ModelComponent*> shadowcasters;
 
 		void DropComponent(LightComponent* component);
 	};

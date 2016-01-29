@@ -8,16 +8,28 @@
 namespace TropicalEngine
 {
 
+	#pragma region documentation
 	/**
-	* Class for loading models using FBX SDK. This class is singleton.
+	* \brief Class for loading models using FBX SDK. This class is singleton.
 	*/
+	#pragma endregion
 	class FbxModelImporter : public AbstractModelImporter, public Singleton<FbxModelImporter>
 	{
 	public:
-
+		#pragma region documentation
+		/**
+		  * \brief FbxModelImporter constructor.
+		  */
+		#pragma endregion
 		FbxModelImporter();
+		#pragma region documentation
+		/**
+		  * \brief FbxModelImporter destructor.
+		  */
+		#pragma endregion
 		~FbxModelImporter();
 
+		#pragma region documentation
 		/**
 		* \brief Imports models from a file.
 		*
@@ -25,6 +37,7 @@ namespace TropicalEngine
 		* @param fileUrl Path to the model file.
 		* @return Loaded Model.
 		*/
+		#pragma endregion
 		Model* Load(QString name, QString fileUrl) override;
 
 	private:

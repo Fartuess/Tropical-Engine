@@ -11,15 +11,6 @@
 namespace TropicalEngine
 {
 
-	RenderingManager::RenderingManager()
-	{
-	}
-
-
-	RenderingManager::~RenderingManager()
-	{
-	}
-
 	void RenderingManager::addRenderableObject(IRenderable* renderableObject, Level* level, QString shaderPass)
 	{
 		renderableObjects[level][shaderPass].append(renderableObject);

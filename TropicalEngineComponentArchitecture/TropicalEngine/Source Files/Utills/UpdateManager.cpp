@@ -4,16 +4,6 @@
 namespace TropicalEngine
 {
 
-	UpdateManager::UpdateManager()
-	{
-
-	}
-
-
-	UpdateManager::~UpdateManager()
-	{
-	}
-
 	void UpdateManager::UpdateAll()
 	{
 		int deltaTime = time.elapsed();

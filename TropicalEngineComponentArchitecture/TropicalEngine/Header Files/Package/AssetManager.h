@@ -7,44 +7,54 @@
 namespace TropicalEngine
 {
 
+	#pragma region documentation
 	/**
-	  * Class for managing asset data.
+	  * \brief Class for managing Assets.
 	  */
+	#pragma endregion
 	class AssetManager
 	{
 	public:
+		#pragma region documentation
 		/**
 		  * \brief Default constructor.
 		  */
+		#pragma endregion
 		AssetManager();
-
+		#pragma region documentation
 		/**
 		  * \brief Default destructor.
 		  */
+		#pragma endregion
 		~AssetManager();
 
+		#pragma region documentation
 		/**
 		  * \brief Adds type of assetable resources.
 		  *
 		  * @param name Name of type.
 		  * @param typeHandle Instance of resource to be used as handle.
 		  */
+		#pragma endregion
 		static void addAssetType(QString name, ISerializableJSON* typeHandle);
-
+		#pragma region documentation
 		/**
 		  * \brief Gets handle to resource.
 		  *
 		  * @param name Name of the type.
 		  * @return Handle object of wanted type.
 		  */
+		#pragma endregion
 		static ISerializableJSON* getTypeHandle(QString name);
 
+		#pragma region documentation
 		/**
 		  * \brief Creates asset and resource from JSON.
 		  *
 		  * @param JSON JSON object for deserialization.
 		  * @return Resource in created asset.
 		  */
+		#pragma endregion
 		static ISerializableJSON& createAsset(QJsonObject JSON);
 
 	private:

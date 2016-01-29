@@ -4,7 +4,13 @@
 
 namespace TropicalEngine
 {
-
+	
+	/// TODO: Finish documenting it.
+	#pragma region documentation
+	/**
+	  * \brief Custom TitleBar for frameless windows.
+	  */
+	#pragma endregion
 	class TitleBar : public QWidget
 	{
 		Q_OBJECT

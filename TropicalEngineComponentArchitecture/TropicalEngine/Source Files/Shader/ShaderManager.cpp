@@ -61,9 +61,9 @@ namespace TropicalEngine
 		return newShader;
 	}
 
-	void ShaderManager::Load(class ShaderTechnique* shader, QString name)
+	void ShaderManager::Load(class ShaderTechnique* shaderTechnique, QString name)
 	{
-		shaderTechniques[name] = shader;
+		shaderTechniques[name] = shaderTechnique;
 	}
 
 	void ShaderManager::UseShader(QString name)

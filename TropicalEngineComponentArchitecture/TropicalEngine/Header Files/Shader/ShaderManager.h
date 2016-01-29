@@ -4,11 +4,17 @@
 #include <QtCore/qstring.h>
 #include <QtCore/qhash.h>
 
+#include "Shader.h"
+
 namespace TropicalEngine
 {
 
-	class Shader;
-
+	/// TODO: Finish documenting it.
+	#pragma region documentation
+	/**
+	  * \brief Class for managing Shaders.
+	  */
+	#pragma endregion
 	class ShaderManager
 	{
 	public:
@@ -27,22 +33,118 @@ namespace TropicalEngine
 			GLuint fragmentShader;
 		};
 
+		#pragma region documentation
+		/**
+		  * \brief ShaderManager constructor.
+		  */
+		#pragma endregion
 		ShaderManager(void);
+		#pragma region documentation
+		/**
+		  * \brief ShaderManager destructor.
+		  */
+		#pragma endregion
 		~ShaderManager(void);
 
+		#pragma region documentation
+		/**
+		  * \brief Gets Shader which is currently used for drawing.
+		  *
+		  * @return Shader which is currently used for drawing.
+		  */
+		#pragma endregion
 		Shader* const getCurrentShader();
+		#pragma region documentation
+		/**
+		  * \brief Sets Shader which will be now used for drawing.
+		  *
+		  * @param shader Shader which will be now used for drawing. 
+		  */
+		#pragma endregion
 		void setCurrentShader(Shader* shader);
+		#pragma region documentation
+		/**
+		  * \brief Gets Shader with given name.
+		  *
+		  * @param name Name of Shader to look for.
+		  * @return Shader with given name.
+		  */
+		#pragma endregion
 		Shader* const getShader(QString name);
+		#pragma region documentation
+		/**
+		  * \brief Gets ShaderTechnique with given name.
+		  *
+		  * @param name Name of ShaderTechnique to look for.
+		  * @return ShaderTechnique with given name.
+		  */
+		#pragma endregion
 		class ShaderTechnique* getShaderTechnique(QString name);
 
-		Shader* operator[](QString name)      { return shaders[name]; };
-		const Shader* operator[](QString name) const { return shaders[name]; };
+		#pragma region documentation
+		/**
+		  * \brief Gets Shader with given name.
+		  *
+		  * @param name Name of Shader to look for.
+		  * @return Shader with given name.
+		  */
+		#pragma endregion
+		Shader* operator[](QString name)      { return shaders[name]; }
+		#pragma region documentation
+		/**
+		  * \brief Gets Shader with given name.
+		  *
+		  * @param name Name of Shader to look for.
+		  * @return Shader with given name.
+		  */
+		#pragma endregion
+		const Shader* operator[](QString name) const { return shaders[name]; }
 
+		#pragma region documentation
+		/**
+		  * \brief Creates and loads Shader created from suplied vertex and fragment shader.
+		  *
+		  * @param name Name for new Shader.
+		  * @param vertexShader Path to vertex shader file.
+		  * @param fragmentShader Path to fragment shader file.
+		  * @return Created Shader.
+		  */
+		#pragma endregion
 		Shader* Load(QString name, QString vertexShader, QString fragmentShader);
+		#pragma region documentation
+		/**
+		  * \brief Loads existing Shader.
+		  *
+		  * @param shader Shader to load.
+		  * @param name Alias of Shader kept in manager.
+		  */
+		#pragma endregion
 		void Load(Shader* shader, QString name);
-		void Load(class ShaderTechnique* shader, QString name);
+		#pragma region documentation
+		/**
+		  * \brief Loads existing ShaderTechnique.
+		  *
+		  * @param shaderTechnique to load.
+		  * @param name Alias of ShaderTechnique kept in manager.
+		  */
+		#pragma endregion
+		void Load(class ShaderTechnique* shaderTechnique, QString name);
 
+		#pragma region documentation
+		/**
+		  * \brief Sets different Shader to use in next drawing.
+		  *
+		  * @param name Name of Shader to use for next drawing.
+		  */
+		#pragma endregion
 		void UseShader(QString name);
+		#pragma region documentation
+		/**
+		  * \brief Sets different Shader to use in next drawing.
+		  *
+		  * @param shader Shader to use for next drawing.
+		  */
+		#pragma endregion
 		void UseShader(Shader* shader);
 
 	protected:

@@ -6,17 +6,51 @@
 namespace TropicalEngine
 {
 
-	class OglDevTut03;
-
+	#pragma region documentation
+	/**
+	  * \brief Widget for rendering OpenGL Scene.
+	  */
+	#pragma endregion
 	class OpenGLWidget : public QGLWidget
 	{
 		Q_OBJECT
 	public:
+		#pragma region documentation
+		/**
+		  * \brief OpenGLWidget counstructor which doesn't bind any Scene.
+		  */
+		#pragma endregion
 		OpenGLWidget(void);
+		#pragma region documentation
+		/**
+		  * \brief OpenGLWidgets constructor which binds Scene.
+		  *
+		  * @param scene Scene to bind.
+		  */
+		#pragma endregion
 		OpenGLWidget(class Scene* scene);
-		~OpenGLWidget(void);
+		#pragma region documentation
+		/**
+		  * \brief Default destructor.
+		  */
+		#pragma endregion
+		~OpenGLWidget(void)	{}
 
+		#pragma region documentation
+		/**
+		  * \brief Gets pointer to Scene OpenGLWidget is drawing.
+		  *
+		  * @return Scene OpenGLWidget is drawing.
+		  */
+		#pragma endregion
 		class Scene* getScene()	{ return drawnScene; }
+		#pragma region documentation
+		/**
+		  * \brief Sets Scene to draw for OpenGLWidget.
+		  *
+		  * @param scene Scene to bind.
+		  */
+		#pragma endregion
 		void setScene(class Scene* scene)	{ drawnScene = scene; }
 
 	signals:

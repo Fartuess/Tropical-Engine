@@ -17,6 +17,11 @@
 namespace TropicalEngine
 {
 
+	#pragma region documentation
+	/**
+	  * \brief Main window of Editor Application.
+	  */
+	#pragma endregion
 	class MainWindow : public QMainWindow
 	{
 		Q_OBJECT

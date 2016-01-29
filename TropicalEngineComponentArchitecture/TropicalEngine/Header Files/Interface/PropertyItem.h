@@ -4,19 +4,28 @@
 namespace TropicalEngine
 {
 
-	class Component;
-
+	/// TODO: Finish documenting.
+	#pragma region documentation
+	/**
+	  * \brief Single item in PropertiesWidget.
+	  */
+	#pragma endregion
 	class PropertyItem : public QTreeWidgetItem
 	{
 	public:
+		#pragma region documentation
+		/**
+		  * \brief Name of item.
+		  */
+		#pragma endregion
 		QString name;
-		Component* component;	///TODO: create getters and setters for this little fellow.
+		class Component* component;	///TODO: create getters and setters for this little fellow.
 
 		PropertyItem(QString name);
 		PropertyItem(QString name, PropertyItem* otherItem);
 		~PropertyItem(void);
 
-		void Reload(Component* component);
+		void Reload(class Component* component);
 
 		static void AddTemplateItem(PropertyItem* templateItem);
 		static PropertyItem* CloneTemplateItem(QString name, QString templateName);

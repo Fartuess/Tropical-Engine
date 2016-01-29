@@ -3,13 +3,4 @@
 namespace TropicalEngine
 {
 
-	SceneManager::SceneManager()
-	{
-	}
-
-
-	SceneManager::~SceneManager()
-	{
-	}
-
 }

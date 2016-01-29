@@ -1,6 +1,5 @@
 #include <QtCore/qjsonobject.h>
 
-#include <Package/Package.h>
 #include <Package/PackageManager.h>
 #include <Package/AssetManager.h>
 

@@ -21,18 +21,18 @@ namespace TropicalEngine
 	{
 		for (Entity* subobject : entity->getSubobjects())
 		{
-			SceneGraphItem* levelItem;
+			SceneGraphItem* sceneItem;
 			if (subobject->name != "")
 			{
 				//qDebug() << *subobject->name;
-				levelItem = new SceneGraphItem(subobject->name, subobject);
+				sceneItem = new SceneGraphItem(subobject->name, subobject);
 			}
 			else
 			{
-				levelItem = new SceneGraphItem("UnnamedEntity", subobject);
+				sceneItem = new SceneGraphItem("UnnamedEntity", subobject);
 			}
-			addChild(levelItem);
-			levelItem->Reload();
+			addChild(sceneItem);
+			sceneItem->Reload();
 		}
 	}
 

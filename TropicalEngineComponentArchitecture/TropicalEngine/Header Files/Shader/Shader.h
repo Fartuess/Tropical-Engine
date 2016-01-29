@@ -12,6 +12,14 @@
 namespace TropicalEngine
 {
 
+	/// TODO: Finish documenting it.
+	/// TODO: Improve encapsulation of member fields.
+	/// TODO: Create general solution for all those GPU location pointers.
+#pragma region documentation
+	/**
+	  * \brief Class for handling GPU shaders.
+	  */
+#pragma endregion
 	class Shader : public ISerializableJSON
 	{
 	public:

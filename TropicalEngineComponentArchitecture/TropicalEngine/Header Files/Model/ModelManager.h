@@ -5,52 +5,59 @@
 namespace TropicalEngine
 {
 
-	class Model;
-	class ModelBuilder;
-
+	#pragma region documentation
 	/**
-	  * Class for managing loaded Model asset data.
+	  * \brief Class for managing loaded Model asset data.
 	  */
+	#pragma endregion
 	class ModelManager
 	{
 	public:
 		friend class ModelComponent;
 		friend class ModelBuilder;
 
+		#pragma region documentation
 		/**
 		  * \brief Constructor for ModelManger.
 		  */
+		#pragma endregion
 		ModelManager(void);
-
+		#pragma region documentation
 		/**
 		  * \brief Destructor for ModelManger.
 		  */
+		#pragma endregion
 		~ModelManager(void);
 
+		#pragma region documentation
 		/**
 		  * \brief Gets model asset by name.
 		  *
 		  * @param name Name to look for.
 		  * @return Found Model.
 		  */
-		Model* getModel(QString name);
-
+		#pragma endregion
+		class Model* getModel(QString name);
+		#pragma region documentation
 		/**
 		  * \brief Gets model asset by name.
 		  *
 		  * @param name Name to look for.
 		  * @return Found Model.
 		  */
-		Model* operator[](QString name)      { return models[name]; };
-
+		#pragma endregion
+		class Model* operator[](QString name)	{ return models[name]; };
+		#pragma region documentation
 		/**
 		  * \brief Gets model asset by name.
 		  *
 		  * @param name Name to look for.
 		  * @return Found Model.
 		  */
-		const Model* operator[](QString name) const { return models[name]; };
+		#pragma endregion
+		const class Model* operator[](QString name) const { return models[name]; };
 
+		#pragma region documentation
 		/**
 		  * \brief Imports models from a file.
 		  *
@@ -59,18 +66,20 @@ namespace TropicalEngine
 		  * @param fileUrl Path to the model file.
 		  * @return Loaded Model.
 		  */
+		#pragma endregion
 		void Load(QString fileUrl, QString name);
-
+		#pragma region documentation
 		/**
 		  * \brief Loads imported model to the manager.
 		  *
 		  * @param model Model to load to the manager.
 		  * @param name Name of the model to be set after importing.
 		  */
-		void Load(Model* model, QString name);
+		#pragma endregion
+		void Load(class Model* model, QString name);
 
 	private:
-		QHash<QString, Model*> models;
+		QHash<QString, class Model*> models;
 
 		void FlushModel(QString name, bool forced = false);
 	};

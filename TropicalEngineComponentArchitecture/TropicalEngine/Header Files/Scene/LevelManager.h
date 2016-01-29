@@ -7,6 +7,7 @@
 namespace TropicalEngine
 {
 
+	/// TODO: Currently this class is ding nothing. Figure out if it should be deleted. 
 	class LevelManager
 	{
 	public:

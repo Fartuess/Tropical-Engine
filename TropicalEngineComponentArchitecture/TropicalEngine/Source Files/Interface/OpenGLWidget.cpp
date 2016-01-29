@@ -36,10 +36,6 @@ namespace TropicalEngine
 		setScene(scene);
 	}
 
-	OpenGLWidget::~OpenGLWidget(void)
-	{
-	}
-
 	void OpenGLWidget::initializeGL()
 	{
 		glewInit();

@@ -10,15 +10,28 @@
 namespace TropicalEngine
 {
 
+	#pragma region documentation
 	/**
-	  * Class for loading models using Open Asset Importer. This class is singleton.
+	  * \brief Class for loading models using Open Asset Importer. This class is singleton.
 	  */
+	#pragma endregion
 	class AssimpModelImporter : public AbstractModelImporter, public Singleton<AssimpModelImporter>
 	{
 	public:
+		#pragma region documentation
+		/**
+		  * \brief AssimpModelImporter constructor.
+		  */
+		#pragma endregion
+		AssimpModelImporter();
+		#pragma region documentation
+		/**
+		* \brief AssimpModelImporter destructor.
+		*/
+		#pragma endregion
+		~AssimpModelImporter();
 
-		//friend class Singleton;
-
+		#pragma region documentation
 		/**
 		* \brief Imports models from a file.
 		*
@@ -26,10 +39,8 @@ namespace TropicalEngine
 		* @param fileUrl Path to the model file.
 		* @return Loaded Model.
 		*/
+		#pragma endregion
 		Model* Load(QString name, QString fileUrl) override;
-
-		AssimpModelImporter();
-		~AssimpModelImporter();
 
 	private:
 		Assimp::Importer Importer;

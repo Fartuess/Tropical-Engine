@@ -9,16 +9,6 @@
 namespace TropicalEngine
 {
 
-	GuiStyleManager::GuiStyleManager(void)
-	{
-	}
-
-
-	GuiStyleManager::~GuiStyleManager(void)
-	{
-	}
-
-
 	void GuiStyleManager::ChangeStyle(QApplication& application, QString filename)
 	{
 

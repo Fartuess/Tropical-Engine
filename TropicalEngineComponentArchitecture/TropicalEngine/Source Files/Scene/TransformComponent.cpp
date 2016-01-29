@@ -53,11 +53,6 @@ namespace TropicalEngine
 			return localPosition;
 	}
 
-	glm::vec3 TransformComponent::getLocalPosition()
-	{
-		return localPosition;
-	}
-
 	glm::vec3 TransformComponent::getGlobalPosition()
 	{
 		return glm::mat3(owner->getParrent()->transform.getTransformMatrix()) * globalPosition;

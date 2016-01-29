@@ -5,9 +5,11 @@
 namespace TropicalEngine
 {
 
+	#pragma region documentation
 	/**
-	  * Interface for Serialzing and Deserializing JSON objects.
+	  * \brief Interface for Serialzing and Deserializing JSON objects.
 	  */
+	#pragma endregion
 	class ISerializableJSON : public ISerializableToJSON, public IDeserializableFromJSON {};
 
 }

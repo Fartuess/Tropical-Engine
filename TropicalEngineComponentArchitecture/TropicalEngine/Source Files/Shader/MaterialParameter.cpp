@@ -3,15 +3,6 @@
 namespace TropicalEngine
 {
 
-	MaterialParameter::MaterialParameter()
-	{
-	}
-
-
-	MaterialParameter::~MaterialParameter()
-	{
-	}
-
 	MaterialParameter& MaterialParameter::operator=(void* data)
 	{
 		this->data = data;

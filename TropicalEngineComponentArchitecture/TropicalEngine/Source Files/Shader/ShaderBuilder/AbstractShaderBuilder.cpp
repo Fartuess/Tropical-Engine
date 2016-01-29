@@ -3,15 +3,6 @@
 namespace TropicalEngine
 {
 
-	AbstractShaderBuilder::AbstractShaderBuilder()
-	{
-	}
-
-
-	AbstractShaderBuilder::~AbstractShaderBuilder()
-	{
-	}
-
 	void AbstractShaderBuilder::setInput(QString name, QString path)
 	{
 		if (inputs.contains(name))

@@ -8,6 +8,13 @@
 namespace TropicalEngine
 {
 
+	/// TODO: Make managers into singlton classes again.
+	/// TODO: Finish documenting it.
+	#pragma region documentation
+	/**
+	  * \brief Main Application management class.
+	  */
+	#pragma endregion
 	class TropicalEngineApplication : public QApplication
 	{
 		Q_OBJECT

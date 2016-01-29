@@ -87,6 +87,7 @@ namespace TropicalEngine
 
 	void Entity::DeleteComponent(Component* component)
 	{
+		/// TODO: Currently this method can delete components owned by different Entities. Fix it!
 		if (component != nullptr)
 		{
 			components.removeOne(component);
