@@ -139,6 +139,10 @@ namespace TropicalEngine
 		skyboxTechnique->setInput("Lighting Model", "./Shader Files/LightingModels/UnlitLightingModel.glsl");
 		skyboxTechnique->setInput("Surface Shader", "./Shader Files/SurfaceShaders/Skybox.glsl");
 
+		ShaderTechnique* cubemapTechnique = new ShaderTechnique("Cubemap", &CommonMeshShaderBuilder::Instance());
+		cubemapTechnique->setInput("Lighting Model", "./Shader Files/LightingModels/UnlitLightingModel.glsl");
+		cubemapTechnique->setInput("Surface Shader", "./Shader Files/SurfaceShaders/CubemapReflected.glsl");
+
 		//Adding shaders to the internal package of the level.
 		//helperAsset = new Asset("Phong Shader", shaderManager["Phong"]);
 		//(*level->getInternalPackage()) << helperAsset;
@@ -192,6 +196,7 @@ namespace TropicalEngine
 		Material* chestMaterial					= new Material(shaderManager.getShaderTechnique("PhongBumpmapped"), "Steampunk Chest Material");
 
 		Material* skyboxMaterial				= new Material(shaderManager.getShaderTechnique("Skybox"), "Skybox Material");
+		Material* cubemapMaterial				= new Material(shaderManager.getShaderTechnique("Cubemap"), "Cubemap Material");
 
 		/*********************************
 		*
@@ -318,6 +323,7 @@ namespace TropicalEngine
 		(*chestMaterial)["mat_normal"]			= chestNRM;
 
 		(*skyboxMaterial)["mat_color"] = skyboxTexture;
+		(*cubemapMaterial)["mat_color"] = skyboxTexture;
 
 		//Adding materials to the internal package of the level.
 		helperAsset = new Asset("Phong Material", materialManager["Phong Material"]);
@@ -479,7 +485,7 @@ namespace TropicalEngine
 		*********************************/
 
 		Entity* phongExample = new Entity(glm::vec3(0.0f, 0.0f, 0.0f), glm::quat(), glm::vec3(1.0f, 1.0f, 1.0f));
-		ModelComponent* phongModelC = new ModelComponent(phongExample, lambertMaterial, (*engine->modelManager)["Torus"]);
+		ModelComponent* phongModelC = new ModelComponent(phongExample, cubemapMaterial, (*engine->modelManager)["Torus"]);
 		phongExample->name = QString("Phong Example");
 		level->getRoot()->AttachSubobject(phongExample);
 
