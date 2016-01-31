@@ -161,8 +161,18 @@ namespace TropicalEngine
 				+ 3 * sizeof(glm::vec3))
 				* meshEntry->NumVertex));
 
-			//glPolygonMode(GL_FRONT, GL_LINE);
-			//glPolygonMode(GL_BACK, GL_LINE);
+			//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+
+			if (!meshEntry->isBackfacing)
+			{
+				glFrontFace(GL_CCW);
+			}
+			else
+			{
+				glFrontFace(GL_CW);
+
+			}
+
 			glDrawArrays(usedShader->drawingMode, 0, meshEntry->NumVertex);
 
 			glDisableVertexAttribArray(usedShader->getVertexLocation());

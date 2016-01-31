@@ -16,6 +16,8 @@ namespace TropicalEngine
 
 		parameters["subdivisions axis"] = 20;
 		parameters["subdivisions height"] = 1;
+
+		parameters["backfacing"] = false;
 	}
 
 
@@ -32,6 +34,8 @@ namespace TropicalEngine
 
 		parameters["subdivisions axis"] = 20;
 		parameters["subdivisions height"] = 1;
+
+		parameters["backfacing"] = false;
 	}
 
 	Model* ConeModelBuilder::Build()
@@ -41,10 +45,12 @@ namespace TropicalEngine
 		float height = parameters["height"].value<float>();
 		int subdivisionsAxis = parameters["subdivisions axis"].value<uint>();
 		int subdivisionsHeight = parameters["subdivisions height"].value<uint>();
+		bool isBackfacing = parameters["backfacing"].value<bool>();
 
 		MeshEntry* Mesh = new MeshEntry();
 
 		Mesh->NumVertex = (subdivisionsAxis * subdivisionsHeight * 6) + (subdivisionsAxis * 3);
+		Mesh->isBackfacing = isBackfacing;
 
 		QVector<glm::vec4> vertices = QVector<glm::vec4>();
 		QVector<glm::vec3> normals = QVector<glm::vec3>();

@@ -135,6 +135,9 @@ namespace TropicalEngine
 		vectorTessellationTechnique->setInput("TCS Shader", "./Shader Files/Mesh/Tessellation/Control/DistanceBasedTessellation.glsl");
 		vectorTessellationTechnique->setInput("TES Shader", "./Shader Files/Mesh/Tessellation/Evaluation/TessellationVectorDisplacement.glsl");
 
+		ShaderTechnique* skyboxTechnique = new ShaderTechnique("Skybox", &CommonMeshShaderBuilder::Instance());
+		skyboxTechnique->setInput("Lighting Model", "./Shader Files/LightingModels/UnlitLightingModel.glsl");
+		skyboxTechnique->setInput("Surface Shader", "./Shader Files/SurfaceShaders/Skybox.glsl");
 
 		//Adding shaders to the internal package of the level.
 		//helperAsset = new Asset("Phong Shader", shaderManager["Phong"]);
@@ -188,6 +191,8 @@ namespace TropicalEngine
 		
 		Material* chestMaterial					= new Material(shaderManager.getShaderTechnique("PhongBumpmapped"), "Steampunk Chest Material");
 
+		Material* skyboxMaterial				= new Material(shaderManager.getShaderTechnique("Skybox"), "Skybox Material");
+
 		/*********************************
 		*
 		* Loading textures
@@ -215,6 +220,8 @@ namespace TropicalEngine
 
 		Texture* chestDiff					= textureManager.Load("Steampunk Chest Albedo", "./Assets/TestAssets/SteampunkChest_Diffuse.tga");
 		Texture* chestNRM					= textureManager.Load("Steampunk Chest Normals", "./Assets/TestAssets/SteampunkChest_NRM.tga");
+
+		Texture* skyboxTexture = textureManager.Load("Skybox Texture", "./Assets/TestAssets/TestSky.tga");
 
 		//Adding textures to the internal package of the level.
 		helperAsset = new Asset("Default Texture Albedo", textureManager["Default Texture Albedo"]);
@@ -310,6 +317,8 @@ namespace TropicalEngine
 		(*chestMaterial)["mat_color"]			= chestDiff;
 		(*chestMaterial)["mat_normal"]			= chestNRM;
 
+		(*skyboxMaterial)["mat_color"] = skyboxTexture;
+
 		//Adding materials to the internal package of the level.
 		helperAsset = new Asset("Phong Material", materialManager["Phong Material"]);
 		(*level->getInternalPackage()) << helperAsset;
@@ -396,6 +405,12 @@ namespace TropicalEngine
 		torusBuilder.setParameter("name", QString("Torus"));
 		torusBuilder.Build();
 
+		SphereModelBuilder skyboxBuilder = SphereModelBuilder();
+		skyboxBuilder.setParameter("name", "Skybox");
+		skyboxBuilder.setParameter("radius", 60.0f);
+		skyboxBuilder.setParameter("backfacing", true);
+		skyboxBuilder.Build();
+
 		modelBuilder.Load("TestModel", "./Assets/TestAssets/TestModel.obj");
 		modelBuilder.Load("TestModel2", "./Assets/TestAssets/TestModel2.obj");
 		modelBuilder.Load("TestTesselation", "./Assets/TestAssets/TestTesselation.obj");
@@ -447,7 +462,7 @@ namespace TropicalEngine
 		screenBuilder.setParameter("name", QString("Screen"));
 		screenBuilder.setParameter("size X", 2.0f);
 		screenBuilder.setParameter("size Y", 2.0f);
-		screenBuilder.setParameter("inversed", true);
+		screenBuilder.setParameter("backfacing", true);
 		screenBuilder.setParameter("plane", PlaneDirections::XY);
 		screenBuilder.Build();
 
@@ -568,6 +583,11 @@ namespace TropicalEngine
 		ground->name = QString("Ground");
 		level->getRoot()->AttachSubobject(ground);
 
+		Entity* skybox = new Entity(glm::vec3(30.0f, 0.0f, 0.0f));
+		ModelComponent* skyboxModel = new ModelComponent(skybox, skyboxMaterial, engine->modelManager->getModel("Skybox"));
+		skybox->name = "Skybox";
+		level->getRoot()->AttachSubobject(skybox);
+
 		//Temporary solution
 
 		phongModelC->lightedBy.append(pointLightComponent);
@@ -621,6 +641,7 @@ namespace TropicalEngine
 		FbxExampleModelC->lightedBy.append(scene->mainLight);
 		FbxExample2ModelC->lightedBy.append(scene->mainLight);
 		FbxExample3ModelC->lightedBy.append(scene->mainLight);
+		//skyboxModel->lightedBy.append(scene->mainLight);
 
 		//qDebug() << QJsonDocument(level->toJSON()).toJson();
 	}

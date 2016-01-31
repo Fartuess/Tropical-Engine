@@ -125,9 +125,12 @@
     <None Include="Shader Files\SurfaceShaders\BumpTextured.glsl" />
     <None Include="Shader Files\SurfaceShaders\ParallaxMapped.glsl" />
     <None Include="Shader Files\SurfaceShaders\SimpleColor.glsl" />
+    <None Include="Shader Files\SurfaceShaders\Skybox.glsl" />
     <None Include="Shader Files\SurfaceShaders\Textured.glsl" />
     <None Include="Shader Files\Utills\BumpMapping.glsl" />
     <None Include="Shader Files\Utills\Interpolation.glsl" />
+    <None Include="Shader Files\Utills\SkyboxMapping.glsl" />
+    <None Include="Shader Files\Utills\SphericalCoordinateSystem.glsl" />
     <None Include="Shader Files\Utills\SteepParallaxMapping.glsl" />
   </ItemGroup>
   <ItemGroup>

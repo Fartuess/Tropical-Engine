@@ -17,6 +17,8 @@ namespace TropicalEngine
 		parameters["subdivisions X"] = 1;
 		parameters["subdivisions Y"] = 1;
 		parameters["subdivisions Z"] = 1;
+
+		parameters["backfacing"] = false;
 	}
 
 
@@ -35,6 +37,8 @@ namespace TropicalEngine
 		parameters["subdivisions X"] = 1;
 		parameters["subdivisions Y"] = 1;
 		parameters["subdivisions Z"] = 1;
+
+		parameters["backfacing"] = false;
 	}
 
 	Model* BoxModelBuilder::Build()
@@ -46,10 +50,12 @@ namespace TropicalEngine
 		uint subdivisionsX = parameters["subdivisions X"].value<uint>();
 		uint subdivisionsY = parameters["subdivisions Y"].value<uint>();
 		uint subdivisionsZ = parameters["subdivisions Z"].value<uint>();
+		bool isBackfacing = parameters["backfacing"].value<bool>();
 
 		MeshEntry* Mesh = new MeshEntry();
 
 		Mesh->NumVertex = subdivisionsX * subdivisionsY * 6 * 6;
+		Mesh->isBackfacing = isBackfacing;
 
 		QVector<glm::vec4> vertices = QVector<glm::vec4>();
 		QVector<glm::vec3> normals = QVector<glm::vec3>();

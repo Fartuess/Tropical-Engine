@@ -19,7 +19,7 @@ namespace TropicalEngine
 		parameters["subdivisions Y"] = 1;
 
 		parameters["plane"] = PlaneDirections::XZ;
-		parameters["inversed"] = false;
+		parameters["backfacing"] = false;
 
 		parameters["centered"] = true;
 	}
@@ -40,20 +40,22 @@ namespace TropicalEngine
 		parameters["subdivisions Y"] = 1;
 
 		parameters["plane"] = PlaneDirections::XZ;
-		parameters["inversed"] = false;
+		parameters["backfacing"] = false;
 
 		parameters["centered"] = true;
 	}
 
 	Model* PlaneModelBuilder::Build()
 	{
+		// TODO: Change creating model with backfacing to fit convention from other builders.
+
 		QString& name = parameters["name"].value<QString>();
 		float width = parameters["size X"].value<float>();
 		float height = parameters["size Y"].value<float>();
 		uint subdivisionsWidth = parameters["subdivisions X"].value<uint>();
 		uint subdivisionsHeight = parameters["subdivisions Y"].value<uint>();
 		PlaneDirections plane = (PlaneDirections)parameters["plane"].value<int>();
-		int isInversed = parameters["inversed"].value<bool>();
+		int isInversed = parameters["backfacing"].value<bool>();
 		int inversed = -2 * ((int)isInversed) + 1;
 		bool isCentered = parameters["centered"].value<bool>();
 

@@ -73,6 +73,13 @@ namespace TropicalEngine
 
 		GLuint MaterialIndex;
 
+		#pragma region documentation
+		/**
+		  * \brief Tells what side of the mesh is facing back.
+		  */
+		#pragma endregion
+		bool isBackfacing = false;
+
 		// TODO: Make finalization supporting flexible sets of arrays for MeshEntry.
 		#pragma region documentation
 		/**

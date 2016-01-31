@@ -49,7 +49,7 @@ namespace TropicalEngine
 		glClearDepth(1.0f);
 		glEnable(GL_DEPTH_TEST);
 		glEnable(GL_CULL_FACE);
-		glFrontFace(GL_CCW);
+		//glFrontFace(GL_CCW);
 		glDepthFunc(GL_LEQUAL);
 
 		//widgetFramebuffer = new RenderTexture("Viewport_color", 1024, 1024);
