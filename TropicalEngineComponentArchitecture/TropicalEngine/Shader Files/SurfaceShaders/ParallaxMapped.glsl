@@ -35,7 +35,7 @@ uniform sampler2D mat_metalness;
 
 void processSurface()
 {
-	steepParallaxMap(mat_height, mat_bumpScale);
+	g_texcoord = steepParallaxMap(mat_height, mat_bumpScale);
 
 #ifdef DIFFUSEINPUT
 	g_diffuseInput = texture(mat_color, g_texcoord).rgb;
@@ -45,7 +45,7 @@ void processSurface()
 	g_albedoInput = texture(mat_color, g_texcoord).rgb;
 #endif
 
-	normalMap(texture(mat_normal, g_texcoord).rgb);
+	g_normal = normalMap(texture(mat_normal, g_texcoord).rgb);
 
 #ifdef SPECULARINPUT
 	if (mat_specularUsesTexture)

@@ -4,7 +4,7 @@
 #define TEXTURECOORDINATES
 #define TANGENTSPACE
 
-void steepParallaxMap(in sampler2D heightMap, float bumpScale)
+vec2 steepParallaxMap(in sampler2D heightMap, float bumpScale)
 {
 	TBN = transpose(mat3(v_tangent, v_bitangent, v_normal));
 
@@ -43,7 +43,7 @@ void steepParallaxMap(in sampler2D heightMap, float bumpScale)
 		NB = texture2D(heightMap, offsetCoord).r;
 	}
 
-	g_texcoord = offsetCoord;
+	return offsetCoord;
 }
 
 #endif

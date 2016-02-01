@@ -13,7 +13,7 @@ vec3 g_emissiveInput = vec3(0.0);
 
 void processSurface()
 {
-	cubemapReflection();
+	g_texcoord = cubemapReflection();
 	g_emissiveInput = texture(mat_color, g_texcoord).rgb;
 }
 

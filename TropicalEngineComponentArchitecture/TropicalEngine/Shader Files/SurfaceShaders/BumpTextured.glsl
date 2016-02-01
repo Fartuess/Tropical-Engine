@@ -40,7 +40,7 @@ void processSurface()
 	g_albedoInput = texture(mat_color, g_texcoord).rgb;
 #endif
 
-	normalMap(texture(mat_normal, g_texcoord).rgb);
+	g_normal = normalMap(texture(mat_normal, g_texcoord).rgb);
 
 #ifdef SPECULARINPUT
 	if (mat_specularUsesTexture)
