@@ -19,6 +19,8 @@ namespace TropicalEngine
 	public:
 		TYPENAME(Texture)
 
+		friend class AbstractTextureImporter;
+
 		#pragma region documentation
 		/**
 		  * \brief Constructor for Texture class.
@@ -65,6 +67,12 @@ namespace TropicalEngine
 		  */
 		#pragma endregion
 		void Load();
+		#pragma region documentation
+		/**
+		  * \brief Initialization of RenderTexture.
+		  */
+		#pragma endregion
+		virtual void Create();
 
 		#pragma region documentation
 		/**
@@ -101,12 +109,6 @@ namespace TropicalEngine
 		  */
 		#pragma endregion
 		Texture(QString name);
-		#pragma region documentation
-		/**
-		  * \brief Initialization of RenderTexture.
-		  */
-		#pragma endregion
-		virtual void Create();
 		#pragma region documentation
 		/**
 		  * \brief Path to the file with Texture data.

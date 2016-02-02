@@ -20,7 +20,8 @@ namespace TropicalEngine
 	Texture::Texture(QString fileUrl, QString name) : Texture(name)
 	{
 		this->fileUrl = fileUrl;
-		Load();	//maybe not always should be loaded into GPU when it is load
+		//Load();	//maybe not always should be loaded into GPU when it is load
+		TropicalEngineApplication::instance()->textureManager->Load(name, fileUrl, this);
 	}
 
 	Texture::~Texture(void)

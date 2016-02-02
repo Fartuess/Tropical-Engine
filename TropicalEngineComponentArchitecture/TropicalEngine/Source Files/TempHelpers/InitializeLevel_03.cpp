@@ -12,6 +12,7 @@
 
 #include <Texture/Texture.h>
 #include <Texture/TextureManager.h>
+#include <Texture/TextureImporter/QtTextureImporter.h>
 
 #include <Model/Model.h>
 #include <Model/ModelBuilder.h>
@@ -203,6 +204,8 @@ namespace TropicalEngine
 		* Loading textures
 		*
 		*********************************/
+
+		QtTextureImporter::Instance();
 
 		TextureManager& textureManager = *engine->textureManager;
 

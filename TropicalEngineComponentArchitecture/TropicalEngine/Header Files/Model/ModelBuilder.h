@@ -55,6 +55,7 @@ namespace TropicalEngine
 		#pragma endregion
 		class AbstractModelBuilder* getModelBuilder(QString name);
 
+		// TODO: Figure out if it should be static?
 		#pragma region documentation
 		/**
 		  * \brief Adds new ModelBuilder to the library.

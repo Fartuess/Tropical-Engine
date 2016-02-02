@@ -2,12 +2,15 @@
 #include <QtGui/qimagereader.h>
 
 #include <Texture/TextureManager.h>
+#include <Texture/TextureImporter/AbstractTextureImporter.h>
+
 #include <Shader/MaterialManager.h>
 
 #include "TropicalEngineApplication.h"
 
 namespace TropicalEngine
 {
+	QHash<QString, AbstractTextureImporter*> TextureManager::supportedExtensions = QHash<QString, AbstractTextureImporter*>();
 
 	TextureManager::TextureManager(void)
 	{
@@ -49,10 +52,26 @@ namespace TropicalEngine
 
 	Texture* TextureManager::Load(QString name, QString fileUrl)
 	{
-		Texture* newTexture = new Texture(fileUrl, name);
+		Texture* newTexture = supportedExtensions[fileUrl.section(".", -1, -1).toLower()]->Load(name, fileUrl);
 		textures.insert(name, newTexture);
 
 		return newTexture;
+	}
+
+	Texture* TextureManager::Load(QString name, QString fileUrl, Texture* targetTexture)
+	{
+		Texture* newTexture = supportedExtensions[fileUrl.section(".", -1, -1).toLower()]->Load(name, fileUrl, targetTexture);
+		textures.insert(name, targetTexture);
+
+		return newTexture;
+	}
+
+	void TextureManager::AddImporter(class AbstractTextureImporter* importer)
+	{
+		for (QString extensionName : importer->getSupportedExtensions())
+		{
+			supportedExtensions[extensionName] = importer;
+		}
 	}
 
 	void TextureManager::FlushTexture(QString name, bool forced)

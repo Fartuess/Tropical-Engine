@@ -18,6 +18,7 @@
     <None Include="Shader Files\LightingModels\LambertLightingModel.glsl" />
     <None Include="Shader Files\LightingModels\PhongLightingModel.glsl" />
     <None Include="Shader Files\LightingModels\CookTorranceLightingModel.glsl" />
+    <ClCompile Include="Source Files\Texture\TextureImporter\AbstractTextureImporter.cpp" />
     <ClCompile Include="GeneratedFiles\Debug\moc_MainWindow.cpp" />
     <ClCompile Include="GeneratedFiles\Debug\moc_OglDevTut03.cpp" />
     <ClCompile Include="GeneratedFiles\Debug\moc_OpenGLWidget.cpp" />
@@ -31,6 +32,7 @@
     <ClCompile Include="Source Files\Shader\ShaderBuilder\CommonMeshShaderBuilder.cpp" />
     <ClCompile Include="Source Files\Shader\ShaderBuilder\AbstractShaderBuilder.cpp" />
     <ClCompile Include="Source Files\Texture\RenderTexture.cpp" />
+    <ClCompile Include="Source Files\Texture\TextureImporter\QtTextureImporter.cpp" />
     <ClCompile Include="Source Files\Utills\IUpdateable.cpp" />
     <ClCompile Include="Source Files\Model\ModelBuilder\ConeModelBuilder.cpp" />
     <ClCompile Include="Source Files\Model\ModelBuilder\CylinderModelBuilder.cpp" />
@@ -779,12 +781,14 @@
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Header Files\Texture\TextureImporter\AbstractTextureImporter.h" />
     <ClInclude Include="Header Files\Shader\ShaderBuilder\CommonMeshShaderBuilder.h" />
     <ClInclude Include="Header Files\Shader\ShaderBuilder\AbstractShaderBuilder.h" />
     <ClInclude Include="Header Files\Model\ModelBuilder\ConeModelBuilder.h" />
     <ClInclude Include="Header Files\Model\ModelBuilder\CylinderModelBuilder.h" />
     <ClInclude Include="Header Files\Model\ModelBuilder\BoxModelBuilder.h" />
     <ClInclude Include="Header Files\Model\ModelBuilder\AbstractModelBuilder.h" />
+    <ClInclude Include="Header Files\Texture\TextureImporter\QtTextureImporter.h" />
     <ClInclude Include="Header Files\Utills\Directions.h" />
     <ClInclude Include="Header Files\Utills\Exception.h" />
     <!--

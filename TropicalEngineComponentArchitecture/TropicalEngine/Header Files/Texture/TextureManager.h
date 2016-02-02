@@ -17,6 +17,8 @@ namespace TropicalEngine
 	class TextureManager
 	{
 	public:
+		friend class Texture;
+
 		#pragma region documentation
 		/**
 		  * \brief Default constructor.
@@ -70,11 +72,24 @@ namespace TropicalEngine
 		  */
 		#pragma endregion
 		Texture* Load(QString name, QString fileUrl);
+
+		#pragma region documentation
+		/**
+		  * \brief Adds support of specific importer for TextureManager.
+		  *
+		  * @param importer Importer to support.
+		  */
+		#pragma endregion
+		static void AddImporter(class AbstractTextureImporter* importer);
 	private:
 		QHash<QString, Texture*> textures;
 		int textureIterator;	//for iterating over GL_TEXTUREs
 
+		static QHash<QString, class AbstractTextureImporter*> supportedExtensions;
+
 		void FlushTexture(QString name, bool forced = false);
+
+		Texture* Load(QString name, QString fileUrl, Texture* textureTarget);
 	};
 
 }
