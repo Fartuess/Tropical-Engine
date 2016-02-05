@@ -37,7 +37,7 @@ namespace TropicalEngine
 		}
 		else
 		{
-			textureData = QImage(fileUrl);
+			textureData = QImage(fileUrl).mirrored(false, true);
 		}
 
 		textureData = textureData.convertToFormat(QImage::Format_RGBA8888);

@@ -13,6 +13,7 @@
 #include <Texture/Texture.h>
 #include <Texture/TextureManager.h>
 #include <Texture/TextureImporter/QtTextureImporter.h>
+#include <Texture/TextureImporter/OpenExrTextureImporter.h>
 
 #include <Model/Model.h>
 #include <Model/ModelBuilder.h>
@@ -206,6 +207,7 @@ namespace TropicalEngine
 		*********************************/
 
 		QtTextureImporter::Instance();
+		OpenExrTextureImporter::Instance();
 
 		TextureManager& textureManager = *engine->textureManager;
 
@@ -220,7 +222,7 @@ namespace TropicalEngine
 		Texture* tessDispTex				= textureManager.Load("Stone Wall Heights", "./Assets/Core/wall_heights.png");
 
 		Texture* tessVecDispTex				= textureManager.Load("Vector Displacement AO", "./Assets/TestAssets/vectorCube_occlusion.tga");
-		Texture* tessVecDispTexNRM			= textureManager.Load("Vector Displacment Normals", "./Assets/TestAssets/vectorCube_normals.tga");
+		Texture* tessVecDispTexNRM			= textureManager.Load("Vector Displacment Normals", "./Assets/TestAssets/vectorCube_normals.png");
 		Texture* tessVecDispTexDISP_TS		= textureManager.Load("Vector Displacement Directions", "./Assets/TestAssets/vectorCube_2_directions.tga");
 
 		Texture* tgaTest					= textureManager.Load("TGA Test", "./Assets/TestAssets/dickbutt.tga");
@@ -229,7 +231,8 @@ namespace TropicalEngine
 		Texture* chestDiff					= textureManager.Load("Steampunk Chest Albedo", "./Assets/TestAssets/SteampunkChest_Diffuse.tga");
 		Texture* chestNRM					= textureManager.Load("Steampunk Chest Normals", "./Assets/TestAssets/SteampunkChest_NRM.tga");
 
-		Texture* skyboxTexture = textureManager.Load("Skybox Texture", "./Assets/TestAssets/TestSky.tga");
+		Texture* skyboxTexture = textureManager.Load("Skybox Texture", "./Assets/TestAssets/TestSky.exr");
+		//Texture* skyboxTexture = textureManager.Load("Skybox Texture", "./Assets/TestAssets/TestSky.exr");
 
 		//Adding textures to the internal package of the level.
 		helperAsset = new Asset("Default Texture Albedo", textureManager["Default Texture Albedo"]);

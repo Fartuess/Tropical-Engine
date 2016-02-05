@@ -18,6 +18,7 @@
     <None Include="Shader Files\LightingModels\LambertLightingModel.glsl" />
     <None Include="Shader Files\LightingModels\PhongLightingModel.glsl" />
     <None Include="Shader Files\LightingModels\CookTorranceLightingModel.glsl" />
+    <ClCompile Include="Source Files\Texture\TextureImporter\OpenExrTextureImporter.cpp" />
     <ClCompile Include="Source Files\Texture\TextureImporter\AbstractTextureImporter.cpp" />
     <ClCompile Include="GeneratedFiles\Debug\moc_MainWindow.cpp" />
     <ClCompile Include="GeneratedFiles\Debug\moc_OglDevTut03.cpp" />
@@ -820,6 +821,7 @@
     <ClInclude Include="Header Files\Texture\RenderTexture.h" />
     <ClInclude Include="Header Files\Rendering\IRenderable.h" />
     <ClInclude Include="Header Files\Rendering\RenderingManager.h" />
+    <ClInclude Include="Header Files\Texture\TextureImporter\OpenExrTextureImporter.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Header Files\Utills\UpdateManager.h" />
     <ClInclude Include="Header Files\TempHelpers\TempMovingComponent.h" />
@@ -877,15 +879,15 @@
       <Optimization>Disabled</Optimization>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <AdditionalIncludeDirectories>.;.\GeneratedFiles\$(ConfigurationName);$(SolutionDir)..\Middleware\glew\include;$(SolutionDir)..\Middleware\glm;$(SolutionDir)..\Middleware\assimp\include;$(SolutionDir)..\Middleware\Qt\include;$(SolutionDir)..\Middleware\Qt\include\QtCore;$(SolutionDir)..\Middleware\Qt\include\QtGui;$(SolutionDir)..\Middleware\Qt\include\QtOpenGL;$(SolutionDir)..\Middleware\Qt\include\QtWidgets;$(SolutionDir)..\Middleware\FBXSDK\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;.\GeneratedFiles\$(ConfigurationName);$(SolutionDir)..\Middleware\glew\include;$(SolutionDir)..\Middleware\glm;$(SolutionDir)..\Middleware\assimp\include;$(SolutionDir)..\Middleware\Qt\include;$(SolutionDir)..\Middleware\Qt\include\QtCore;$(SolutionDir)..\Middleware\Qt\include\QtGui;$(SolutionDir)..\Middleware\Qt\include\QtOpenGL;$(SolutionDir)..\Middleware\Qt\include\QtWidgets;$(SolutionDir)..\Middleware\FBXSDK\include;$(SolutionDir)..\Middleware\OpenExr\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <OutputFile>$(OutDir)\$(ProjectName).exe</OutputFile>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\Middleware\Qt\lib;$(SolutionDir)..\Middleware\glew\lib\Release\x64;$(SolutionDir)..\Middleware\assimp\lib;$(SolutionDir)..\Middleware\FBXSDK\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\Middleware\Qt\lib;$(SolutionDir)..\Middleware\glew\lib\Release\x64;$(SolutionDir)..\Middleware\assimp\lib;$(SolutionDir)..\Middleware\FBXSDK\lib;$(SolutionDir)..\Middleware\OpenExr\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>qtmaind.lib;Qt5Cored.lib;Qt5Widgetsd.lib;Qt5Guid.lib;Qt5OpenGLd.lib;opengl32.lib;glew32.lib;assimp.lib;libfbxsdk.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>qtmaind.lib;Qt5Cored.lib;Qt5Widgetsd.lib;Qt5Guid.lib;Qt5OpenGLd.lib;opengl32.lib;glew32.lib;assimp.lib;libfbxsdk.lib;IlmImf.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
