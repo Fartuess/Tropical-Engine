@@ -2,6 +2,8 @@
 #include <QtCore/qstring.h>
 #include <QtCore/qhash.h>
 
+#include <Utills/Singleton.h>
+
 namespace TropicalEngine
 {
 
@@ -10,7 +12,7 @@ namespace TropicalEngine
 	  * \brief Class for managing loaded Model asset data.
 	  */
 	#pragma endregion
-	class ModelManager
+	class ModelManager : public Singleton<ModelManager>
 	{
 	public:
 		friend class ModelComponent;

@@ -7,8 +7,6 @@
 #include <Texture/TextureManager.h>
 #include <Shader/MaterialManager.h>
 
-#include "TropicalEngineApplication.h"
-
 namespace TropicalEngine
 {
 
@@ -21,7 +19,7 @@ namespace TropicalEngine
 	{
 		this->fileUrl = fileUrl;
 		//Load();	//maybe not always should be loaded into GPU when it is load
-		TropicalEngineApplication::instance()->textureManager->Load(name, fileUrl, this);
+		TextureManager::instance().Load(name, fileUrl, this);
 	}
 
 	Texture::~Texture(void)
@@ -81,11 +79,11 @@ namespace TropicalEngine
 
 	void Texture::ActivateTexture(GLuint location)
 	{
-		glActiveTexture(GL_TEXTURE0 + TropicalEngineApplication::instance()->textureManager->getTextureIterator());
+		glActiveTexture(GL_TEXTURE0 + TextureManager::instance().getTextureIterator());
 		glBindTexture(GL_TEXTURE_2D, textureLocation);
-		glUniform1i(location, TropicalEngineApplication::instance()->textureManager->getTextureIterator());
+		glUniform1i(location, TextureManager::instance().getTextureIterator());
 		//int t = TropicalEngineApplication::instance()->textureManager->getTextureIterator();
-		TropicalEngineApplication::instance()->textureManager->incrementTextureIterator();
+		TextureManager::instance().incrementTextureIterator();
 	}
 
 	//QString Texture::toXML()

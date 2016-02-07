@@ -66,8 +66,8 @@ namespace TropicalEngine
 
 		level = new Level("TestLevel");
 
-		AssetManager& assetManager = *engine->assetManager;
-		PackageManager& packageManager = *engine->packageManager;
+		AssetManager& assetManager = AssetManager::instance();
+		PackageManager& packageManager = PackageManager::instance();;
 		Asset* helperAsset;
 
 		/*********************************
@@ -76,72 +76,72 @@ namespace TropicalEngine
 		*
 		*********************************/
 
-		ShaderManager& shaderManager = *engine->shaderManager;
+		ShaderManager& shaderManager = ShaderManager::instance();
 
-		ShaderTechnique* lambertTechnique = new ShaderTechnique("Lambert", &CommonMeshShaderBuilder::Instance());
+		ShaderTechnique* lambertTechnique = new ShaderTechnique("Lambert", &CommonMeshShaderBuilder::instance());
 		lambertTechnique->setInput("Lighting Model", "./Shader Files/LightingModels/LambertLightingModel.glsl");
 		
-		ShaderTechnique* phongTechnique = new ShaderTechnique("Phong", &CommonMeshShaderBuilder::Instance());
+		ShaderTechnique* phongTechnique = new ShaderTechnique("Phong", &CommonMeshShaderBuilder::instance());
 		phongTechnique->setInput("Lighting Model", "./Shader Files/LightingModels/PhongLightingModel.glsl");
 
-		ShaderTechnique* blinnPhongTechnique = new ShaderTechnique("BlinnPhong", &CommonMeshShaderBuilder::Instance());
+		ShaderTechnique* blinnPhongTechnique = new ShaderTechnique("BlinnPhong", &CommonMeshShaderBuilder::instance());
 		blinnPhongTechnique->setInput("Lighting Model", "./Shader Files/LightingModels/BlinnPhongLightingModel.glsl");
 
-		ShaderTechnique* cookTorranceTechnique = new ShaderTechnique("CookTorrance", &CommonMeshShaderBuilder::Instance());
+		ShaderTechnique* cookTorranceTechnique = new ShaderTechnique("CookTorrance", &CommonMeshShaderBuilder::instance());
 		cookTorranceTechnique->setInput("Lighting Model", "./Shader Files/LightingModels/CookTorranceLightingModel.glsl");
 
-		ShaderTechnique* straussTechnique = new ShaderTechnique("Strauss", &CommonMeshShaderBuilder::Instance());
+		ShaderTechnique* straussTechnique = new ShaderTechnique("Strauss", &CommonMeshShaderBuilder::instance());
 		straussTechnique->setInput("Lighting Model", "./Shader Files/LightingModels/StraussLightingModel.glsl");
 
-		ShaderTechnique* wardIsoTechnique = new ShaderTechnique("WardIso", &CommonMeshShaderBuilder::Instance());
+		ShaderTechnique* wardIsoTechnique = new ShaderTechnique("WardIso", &CommonMeshShaderBuilder::instance());
 		wardIsoTechnique->setInput("Lighting Model", "./Shader Files/LightingModels/WardIsotropicLightingModel.glsl");
 
-		ShaderTechnique* wardAnisoTechnique = new ShaderTechnique("WardAniso", &CommonMeshShaderBuilder::Instance());
+		ShaderTechnique* wardAnisoTechnique = new ShaderTechnique("WardAniso", &CommonMeshShaderBuilder::instance());
 		wardAnisoTechnique->setInput("Lighting Model", "./Shader Files/LightingModels/WardAnisotropicLightingModel.glsl");
 
-		ShaderTechnique* texturedLambertTechnique = new ShaderTechnique("LambertTextured", &CommonMeshShaderBuilder::Instance());
+		ShaderTechnique* texturedLambertTechnique = new ShaderTechnique("LambertTextured", &CommonMeshShaderBuilder::instance());
 		texturedLambertTechnique->setInput("Lighting Model", "./Shader Files/LightingModels/LambertLightingModel.glsl");
 		texturedLambertTechnique->setInput("Surface Shader", "./Shader Files/SurfaceShaders/Textured.glsl");
 
-		ShaderTechnique* bumpmappedPhongTechnique = new ShaderTechnique("PhongBumpmapped", &CommonMeshShaderBuilder::Instance());
+		ShaderTechnique* bumpmappedPhongTechnique = new ShaderTechnique("PhongBumpmapped", &CommonMeshShaderBuilder::instance());
 		bumpmappedPhongTechnique->setInput("Lighting Model", "./Shader Files/LightingModels/BlinnPhongLightingModel.glsl");
 		bumpmappedPhongTechnique->setInput("Surface Shader", "./Shader Files/SurfaceShaders/BumpTextured.glsl");
 
-		ShaderTechnique* maskedBumpmappedBlinnPhongTechnique = new ShaderTechnique("BlinnBumpmappedMasked", &CommonMeshShaderBuilder::Instance());
+		ShaderTechnique* maskedBumpmappedBlinnPhongTechnique = new ShaderTechnique("BlinnBumpmappedMasked", &CommonMeshShaderBuilder::instance());
 		maskedBumpmappedBlinnPhongTechnique->setInput("Lighting Model", "./Shader Files/LightingModels/BlinnPhongLightingModel.glsl");
 		maskedBumpmappedBlinnPhongTechnique->setInput("Surface Shader", "./Shader Files/SurfaceShaders/BumpTextured.glsl");
 		maskedBumpmappedBlinnPhongTechnique->setInput("Blend Mode", "./Shader Files/Blending/BlendMasked.glsl");
 
-		ShaderTechnique* parallaxedBlinnPhongTechnique = new ShaderTechnique("BlinnParallaxed", &CommonMeshShaderBuilder::Instance());
+		ShaderTechnique* parallaxedBlinnPhongTechnique = new ShaderTechnique("BlinnParallaxed", &CommonMeshShaderBuilder::instance());
 		parallaxedBlinnPhongTechnique->setInput("Lighting Model", "./Shader Files/LightingModels/PhongLightingModel.glsl");
 		parallaxedBlinnPhongTechnique->setInput("Surface Shader", "./Shader Files/SurfaceShaders/ParallaxMapped.glsl");
 
-		ShaderTechnique* staticTessellationTechnique = new ShaderTechnique("StaticTessallation", &CommonMeshShaderBuilder::Instance());
+		ShaderTechnique* staticTessellationTechnique = new ShaderTechnique("StaticTessallation", &CommonMeshShaderBuilder::instance());
 		staticTessellationTechnique->setInput("Lighting Model", "./Shader Files/LightingModels/BlinnPhongLightingModel.glsl");
 		staticTessellationTechnique->setInput("Surface Shader", "./Shader Files/SurfaceShaders/BumpTextured.glsl");
 		staticTessellationTechnique->setInput("Vertex Shader", "./Shader Files/Mesh/ObjectSpaceMesh.glsl");
 		staticTessellationTechnique->setInput("TCS Shader", "./Shader Files/Mesh/Tessellation/Control/SimpleTessellation.glsl");
 		staticTessellationTechnique->setInput("TES Shader", "./Shader Files/Mesh/Tessellation/Evaluation/TessellationDisplacement.glsl");
 
-		ShaderTechnique* distanceTessellationTechnique = new ShaderTechnique("DistanceTessallation", &CommonMeshShaderBuilder::Instance());
+		ShaderTechnique* distanceTessellationTechnique = new ShaderTechnique("DistanceTessallation", &CommonMeshShaderBuilder::instance());
 		distanceTessellationTechnique->setInput("Lighting Model", "./Shader Files/LightingModels/BlinnPhongLightingModel.glsl");
 		distanceTessellationTechnique->setInput("Surface Shader", "./Shader Files/SurfaceShaders/BumpTextured.glsl");
 		distanceTessellationTechnique->setInput("Vertex Shader", "./Shader Files/Mesh/ObjectSpaceMesh.glsl");
 		distanceTessellationTechnique->setInput("TCS Shader", "./Shader Files/Mesh/Tessellation/Control/DistanceBasedTessellation.glsl");
 		distanceTessellationTechnique->setInput("TES Shader", "./Shader Files/Mesh/Tessellation/Evaluation/TessellationDisplacement.glsl");
 
-		ShaderTechnique* vectorTessellationTechnique = new ShaderTechnique("VectorTessallation", &CommonMeshShaderBuilder::Instance());
+		ShaderTechnique* vectorTessellationTechnique = new ShaderTechnique("VectorTessallation", &CommonMeshShaderBuilder::instance());
 		vectorTessellationTechnique->setInput("Lighting Model", "./Shader Files/LightingModels/BlinnPhongLightingModel.glsl");
 		vectorTessellationTechnique->setInput("Surface Shader", "./Shader Files/SurfaceShaders/BumpTextured.glsl");
 		vectorTessellationTechnique->setInput("Vertex Shader", "./Shader Files/Mesh/ObjectSpaceMesh.glsl");
 		vectorTessellationTechnique->setInput("TCS Shader", "./Shader Files/Mesh/Tessellation/Control/DistanceBasedTessellation.glsl");
 		vectorTessellationTechnique->setInput("TES Shader", "./Shader Files/Mesh/Tessellation/Evaluation/TessellationVectorDisplacement.glsl");
 
-		ShaderTechnique* skyboxTechnique = new ShaderTechnique("Skybox", &CommonMeshShaderBuilder::Instance());
+		ShaderTechnique* skyboxTechnique = new ShaderTechnique("Skybox", &CommonMeshShaderBuilder::instance());
 		skyboxTechnique->setInput("Lighting Model", "./Shader Files/LightingModels/UnlitLightingModel.glsl");
 		skyboxTechnique->setInput("Surface Shader", "./Shader Files/SurfaceShaders/Skybox.glsl");
 
-		ShaderTechnique* cubemapTechnique = new ShaderTechnique("Cubemap", &CommonMeshShaderBuilder::Instance());
+		ShaderTechnique* cubemapTechnique = new ShaderTechnique("Cubemap", &CommonMeshShaderBuilder::instance());
 		cubemapTechnique->setInput("Lighting Model", "./Shader Files/LightingModels/UnlitLightingModel.glsl");
 		cubemapTechnique->setInput("Surface Shader", "./Shader Files/SurfaceShaders/CubemapReflected.glsl");
 
@@ -174,7 +174,7 @@ namespace TropicalEngine
 		*
 		*********************************/
 
-		MaterialManager& materialManager = *engine->materialManager;
+		MaterialManager& materialManager = MaterialManager::instance();
 
 		Material* lambertMaterial				= new Material(shaderManager.getShaderTechnique("Lambert"), "Lambert Material");
 		Material* phongMaterial					= new Material(shaderManager.getShaderTechnique("Phong"), "Phong Material");
@@ -206,10 +206,10 @@ namespace TropicalEngine
 		*
 		*********************************/
 
-		QtTextureImporter::Instance();
-		OpenExrTextureImporter::Instance();
+		QtTextureImporter::instance();
+		OpenExrTextureImporter::instance();
 
-		TextureManager& textureManager = *engine->textureManager;
+		TextureManager& textureManager = TextureManager::instance();
 
 											  textureManager.Load("Default Texture Albedo", "./Assets/Core/DefaultTexture.png");
 		Texture* testingTextureNormal		= textureManager.Load("Default Texture Normals", "./Assets/Core/DefaultTexture_NRM.png");
@@ -232,7 +232,6 @@ namespace TropicalEngine
 		Texture* chestNRM					= textureManager.Load("Steampunk Chest Normals", "./Assets/TestAssets/SteampunkChest_NRM.tga");
 
 		Texture* skyboxTexture = textureManager.Load("Skybox Texture", "./Assets/TestAssets/TestSky.exr");
-		//Texture* skyboxTexture = textureManager.Load("Skybox Texture", "./Assets/TestAssets/TestSky.exr");
 
 		//Adding textures to the internal package of the level.
 		helperAsset = new Asset("Default Texture Albedo", textureManager["Default Texture Albedo"]);
@@ -364,11 +363,11 @@ namespace TropicalEngine
 		*********************************/
 
 		//initialization of model importers
-		AssimpModelImporter::Instance();
-		FbxModelImporter::Instance();
+		AssimpModelImporter::instance();
+		FbxModelImporter::instance();
 
-		ModelBuilder& modelBuilder = *engine->modelBuilder;
-		ModelManager& modelManager = *engine->modelManager;
+		ModelBuilder& modelBuilder = ModelBuilder::instance();
+		ModelManager& modelManager = ModelManager::instance();
 
 		AbstractModelBuilder* triangleBuilder = static_cast<TriangleModelBuilder*>(modelBuilder.getModelBuilder("Triangle"));
 		triangleBuilder->setParameter("name", QString("Triangle"));
@@ -464,7 +463,7 @@ namespace TropicalEngine
 
 
 
-		ShaderTechnique* screenTechnique = new ShaderTechnique("Screen", &CommonMeshShaderBuilder::Instance());
+		ShaderTechnique* screenTechnique = new ShaderTechnique("Screen", &CommonMeshShaderBuilder::instance());
 		screenTechnique->setInput("Vertex Shader", "./Shader Files/Mesh/ObjectSpaceMesh.glsl");
 		screenTechnique->setInput("Lighting Model", "./Shader Files/LightingModels/PhongLightingModel.glsl");
 
@@ -491,77 +490,77 @@ namespace TropicalEngine
 		*********************************/
 
 		Entity* phongExample = new Entity(glm::vec3(0.0f, 0.0f, 0.0f), glm::quat(), glm::vec3(1.0f, 1.0f, 1.0f));
-		ModelComponent* phongModelC = new ModelComponent(phongExample, cubemapMaterial, (*engine->modelManager)["Torus"]);
+		ModelComponent* phongModelC = new ModelComponent(phongExample, cubemapMaterial, modelManager["Torus"]);
 		phongExample->name = QString("Phong Example");
 		level->getRoot()->AttachSubobject(phongExample);
 
 		Entity* phongBlinnExample = new Entity(glm::vec3(4.0f, 0.0f, 0.0f), glm::quat(), glm::vec3(1.0f, 1.0f, 1.0f));
-		ModelComponent* phongBlinnModelC = new ModelComponent(phongBlinnExample, phongBlinnMaterial, engine->modelManager->getModel("Sphere"));
+		ModelComponent* phongBlinnModelC = new ModelComponent(phongBlinnExample, phongBlinnMaterial, modelManager.getModel("Sphere"));
 		phongBlinnExample->name = QString("Blinn-Phong Example");
 		level->getRoot()->AttachSubobject(phongBlinnExample);
 
 		Entity* BumpMapExample = new Entity(glm::vec3(8.0f, 0.0f, 0.0f), glm::quat(), glm::vec3(1.0f, 1.0f, 1.0f));
-		ModelComponent* bumpMapModelC = new ModelComponent(BumpMapExample, bumpedMaterial, engine->modelManager->getModel("TestModel2"));
+		ModelComponent* bumpMapModelC = new ModelComponent(BumpMapExample, bumpedMaterial, modelManager.getModel("TestModel2"));
 		BumpMapExample->name = QString("Bump mapping Example");
 		level->getRoot()->AttachSubobject(BumpMapExample);
 
 		Entity* MaskedExample = new Entity(glm::vec3(12.0f, 0.0f, 0.0f), glm::quat(), glm::vec3(1.0f, 1.0f, 1.0f));
-		ModelComponent* maskedModelC = new ModelComponent(MaskedExample, maskedMaterial, engine->modelManager->getModel("Box"));
+		ModelComponent* maskedModelC = new ModelComponent(MaskedExample, maskedMaterial, modelManager.getModel("Box"));
 		MaskedExample->name = QString("Masked blend mode Example");
 		level->getRoot()->AttachSubobject(MaskedExample);
 
 		Entity* ParralaxExample = new Entity(glm::vec3(16.0f, 0.0f, 0.0f), glm::quat(), glm::vec3(1.0f, 1.0f, 1.0f));
-		ModelComponent* parralaxModelC = new ModelComponent(ParralaxExample, phongBlinnParalaxMaterial, engine->modelManager->getModel("Teapot"));
+		ModelComponent* parralaxModelC = new ModelComponent(ParralaxExample, phongBlinnParalaxMaterial, modelManager.getModel("Teapot"));
 		ParralaxExample->name = QString("Displacement Mapping Example");
 		level->getRoot()->AttachSubobject(ParralaxExample);
 
 		Entity* CookTorranceExample = new Entity(glm::vec3(20.0f, 0.0f, 0.0f), glm::quat(), glm::vec3(1.0f, 1.0f, 1.0f));
-		ModelComponent* cookTorranceModelC = new ModelComponent(CookTorranceExample, cookTorranceMaterial, engine->modelManager->getModel("Sphere"));
+		ModelComponent* cookTorranceModelC = new ModelComponent(CookTorranceExample, cookTorranceMaterial, modelManager.getModel("Sphere"));
 		CookTorranceExample->name = QString("Cook-Torrance Example");
 		level->getRoot()->AttachSubobject(CookTorranceExample);
 
 		Entity* StraussExample = new Entity(glm::vec3(24.0f, 0.0f, 0.0f), glm::quat(), glm::vec3(1.0f, 1.0f, 1.0f));
-		ModelComponent* straussModelC = new ModelComponent(StraussExample, straussMaterial, engine->modelManager->getModel("Sphere"));
+		ModelComponent* straussModelC = new ModelComponent(StraussExample, straussMaterial, modelManager.getModel("Sphere"));
 		StraussExample->name = QString("Strauss Example");
 		level->getRoot()->AttachSubobject(StraussExample);
 
 		Entity* StraussConductiveExample = new Entity(glm::vec3(28.0f, 0.0f, 0.0f), glm::quat(), glm::vec3(1.0f, 1.0f, 1.0f));
-		ModelComponent* straussConductiveModelC = new ModelComponent(StraussConductiveExample, straussMaterialMetalic, engine->modelManager->getModel("Sphere"));
+		ModelComponent* straussConductiveModelC = new ModelComponent(StraussConductiveExample, straussMaterialMetalic, modelManager.getModel("Sphere"));
 		StraussConductiveExample->name = QString("Strauss Metalic Example");
 		level->getRoot()->AttachSubobject(StraussConductiveExample);
 
 		Entity* WardExample = new Entity(glm::vec3(32.0f, 0.0f, 0.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
-		ModelComponent* wardModelC = new ModelComponent(WardExample, wardIsoMaterial, engine->modelManager->getModel("TestModel2"));
+		ModelComponent* wardModelC = new ModelComponent(WardExample, wardIsoMaterial, modelManager.getModel("TestModel2"));
 		WardExample->name = QString("Ward Example");
 		level->getRoot()->AttachSubobject(WardExample);
 
 		Entity* WardAnisotropicExample = new Entity(glm::vec3(36.0f, 0.0f, 0.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
-		ModelComponent* wardAnisoModelC = new ModelComponent(WardAnisotropicExample, wardAnisoMaterial, engine->modelManager->getModel("TestModel2"));
+		ModelComponent* wardAnisoModelC = new ModelComponent(WardAnisotropicExample, wardAnisoMaterial, modelManager.getModel("TestModel2"));
 		WardAnisotropicExample->name = QString("Ward Anisotropic Example");
 		level->getRoot()->AttachSubobject(WardAnisotropicExample);
 
 		Entity* DistanceTessellationExample = new Entity(glm::vec3(40.0f, 0.0f, 0.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
-		ModelComponent* distanceTessModelC = new ModelComponent(DistanceTessellationExample, distanceTessellationMaterial, engine->modelManager->getModel("BoxDense"));
+		ModelComponent* distanceTessModelC = new ModelComponent(DistanceTessellationExample, distanceTessellationMaterial, modelManager.getModel("BoxDense"));
 		DistanceTessellationExample->name = QString("Distance Tessellation Example");
 		level->getRoot()->AttachSubobject(DistanceTessellationExample);
 
 		Entity* VectorTessellationExample = new Entity(glm::vec3(44.0f, 0.0f, 0.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
-		ModelComponent* vectorTessModelC = new ModelComponent(VectorTessellationExample, vectorTessellationMaterial, engine->modelManager->getModel("VectorCube"));
+		ModelComponent* vectorTessModelC = new ModelComponent(VectorTessellationExample, vectorTessellationMaterial, modelManager.getModel("VectorCube"));
 		VectorTessellationExample->name = QString("Vector Displacement Tessellation Example");
 		level->getRoot()->AttachSubobject(VectorTessellationExample);
 
 		Entity* FbxExample = new Entity(glm::vec3(48.0f, 0.0f, 0.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(0.2f, 0.2f, 0.2f));
-		ModelComponent* FbxExampleModelC = new ModelComponent(FbxExample, chestMaterial, engine->modelManager->getModel("FbxChest"));
+		ModelComponent* FbxExampleModelC = new ModelComponent(FbxExample, chestMaterial, modelManager.getModel("FbxChest"));
 		FbxExample->name = QString("FBX import Example");
 		level->getRoot()->AttachSubobject(FbxExample);
 
 		Entity* FbxExample2 = new Entity(glm::vec3(52.0f, 0.0f, 0.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
-		ModelComponent* FbxExample2ModelC = new ModelComponent(FbxExample2, phongMaterial, engine->modelManager->getModel("FbxTest2"));
+		ModelComponent* FbxExample2ModelC = new ModelComponent(FbxExample2, phongMaterial, modelManager.getModel("FbxTest2"));
 		FbxExample2->name = QString("FBX Example 2");
 		level->getRoot()->AttachSubobject(FbxExample2);
 
 		Entity* FbxExample3 = new Entity(glm::vec3(60.0f, 0.0f, 0.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
-		ModelComponent* FbxExample3ModelC = new ModelComponent(FbxExample3, phongMaterial, engine->modelManager->getModel("FbxTest4"));
+		ModelComponent* FbxExample3ModelC = new ModelComponent(FbxExample3, phongMaterial, modelManager.getModel("FbxTest4"));
 		FbxExample3->name = QString("FBX Hierarchy Example");
 		level->getRoot()->AttachSubobject(FbxExample3);
 
@@ -579,24 +578,24 @@ namespace TropicalEngine
 		Entity* pointLight = new Entity(glm::vec3(5.0f, 2.0f, -5.0f), glm::quat(), glm::vec3(0.4f, 0.4f, 0.4f));
 		PointLightComponent* pointLightComponent = new PointLightComponent(pointLight, glm::vec3(1.0f, 0.2f, 1.0f), 0.8f, 18.0f, 1.0f);
 		TempMovingComponent* pointLightMoveComponent = new TempMovingComponent(pointLight, glm::vec3(60.0f, -0.2f, 3.0f), glm::vec3(0.0f, -0.2f, 3.0f), 15.0f);
-		ModelComponent* pointLightMarker = new ModelComponent(pointLight, phongMaterial, engine->modelManager->getModel("Sphere"));
+		ModelComponent* pointLightMarker = new ModelComponent(pointLight, phongMaterial, modelManager.getModel("Sphere"));
 		pointLight->name = QString("Point Light");
 		level->getRoot()->AttachSubobject(pointLight);
 
 		Entity* spotLight = new Entity(glm::vec3(5.0f, 2.0f, -5.0f), glm::quat(), glm::vec3(0.4f, 0.4f, 0.4f));
 		SpotLightComponent* spotLightComponent = new SpotLightComponent(spotLight, glm::vec3(1.0f, 0.2f, 0.1f), 1.5f, 25.0f);
 		TempMovingComponent* spotLightMoveComponent = new TempMovingComponent(spotLight, glm::vec3(60.0f, 2.2f, 0.0f), glm::vec3(0.0f, 2.2f, 0.0f), 20.0f);
-		ModelComponent* spotLightMarker = new ModelComponent(spotLight, phongMaterial, engine->modelManager->getModel("Cone"));
+		ModelComponent* spotLightMarker = new ModelComponent(spotLight, phongMaterial, modelManager.getModel("Cone"));
 		spotLight->name = QString("Spot Light");
 		level->getRoot()->AttachSubobject(spotLight);
 
 		Entity* ground = new Entity(glm::vec3(30.0f, -10.0f, 0.0f), glm::quat(), glm::vec3(15.0f));
-		ModelComponent* groundModel = new ModelComponent(ground, phongBlinnParalaxMaterial, engine->modelManager->getModel("Plane"));
+		ModelComponent* groundModel = new ModelComponent(ground, phongBlinnParalaxMaterial, modelManager.getModel("Plane"));
 		ground->name = QString("Ground");
 		level->getRoot()->AttachSubobject(ground);
 
 		Entity* skybox = new Entity(glm::vec3(30.0f, 0.0f, 0.0f));
-		ModelComponent* skyboxModel = new ModelComponent(skybox, skyboxMaterial, engine->modelManager->getModel("Skybox"));
+		ModelComponent* skyboxModel = new ModelComponent(skybox, skyboxMaterial, modelManager.getModel("Skybox"));
 		skybox->name = "Skybox";
 		level->getRoot()->AttachSubobject(skybox);
 

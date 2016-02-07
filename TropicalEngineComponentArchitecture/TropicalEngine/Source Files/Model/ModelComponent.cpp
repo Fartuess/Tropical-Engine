@@ -20,8 +20,6 @@
 #include <Light/PointLightComponent.h>
 #include <Light/SpotLightComponent.h>
 
-#include "TropicalEngineApplication.h"
-
 namespace TropicalEngine
 {
 
@@ -212,8 +210,8 @@ namespace TropicalEngine
 	{
 		ModelComponent* object = new ModelComponent();
 
-		object->model = TropicalEngineApplication::instance()->modelManager->getModel(JSON["model"].toString());
-		object->material = (*TropicalEngineApplication::instance()->materialManager)[JSON["material"].toString()];
+		object->model = ModelManager::instance().getModel(JSON["model"].toString());
+		object->material = MaterialManager::instance()[JSON["material"].toString()];
 		object->castingShadows = JSON["cast shadows"].toBool();
 
 		return object;

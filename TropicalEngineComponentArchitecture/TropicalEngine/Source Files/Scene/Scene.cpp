@@ -5,14 +5,12 @@
 
 #include <Camera/CameraComponent.h>
 
-#include <TropicalEngineApplication.h>
-
 namespace TropicalEngine
 {
 
 	Scene::Scene(void)
 	{
-		TropicalEngineApplication::instance()->sceneManager->scenes.insert(this);
+		SceneManager::instance().scenes.insert(this);
 	}
 
 	Scene::~Scene(void)

@@ -8,8 +8,6 @@
 #include <Shader/ShaderException.h>
 #include <Light/PointLightComponent.h>
 
-#include "TropicalEngineApplication.h"
-
 namespace TropicalEngine
 {
 
@@ -42,7 +40,7 @@ namespace TropicalEngine
 		}
 		else
 		{
-			TropicalEngineApplication::instance()->shaderManager->Load(this, name);
+			ShaderManager::instance().Load(this, name);
 		}
 	}
 
@@ -55,7 +53,7 @@ namespace TropicalEngine
 
 		FinalizeShader();
 
-		TropicalEngineApplication::instance()->shaderManager->Load(this, name);
+		ShaderManager::instance().Load(this, name);
 	}
 
 	Shader* Shader::createShaderFromSources(QString vertexSource, QString tcsSource, QString tesSource, QString fragmentSource, QString name)
@@ -73,7 +71,7 @@ namespace TropicalEngine
 
 		shader->FinalizeShader();
 
-		TropicalEngineApplication::instance()->shaderManager->Load(shader, name);
+		ShaderManager::instance().Load(shader, name);
 
 		return shader;
 	}
@@ -324,10 +322,10 @@ namespace TropicalEngine
 
 	void Shader::Use()
 	{
-		if (this != TropicalEngineApplication::instance()->shaderManager->getCurrentShader())
+		if (this != ShaderManager::instance().getCurrentShader())
 		{
 			glUseProgram(shaderProgram);
-			TropicalEngineApplication::instance()->shaderManager->setCurrentShader(this);
+			ShaderManager::instance().setCurrentShader(this);
 		}
 	}
 

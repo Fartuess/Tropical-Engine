@@ -2,6 +2,8 @@
 #include <QtCore/qmap.h>
 #include <QtCore/qtime>
 
+#include <Utills/Singleton.h>
+
 namespace TropicalEngine
 {
 
@@ -10,7 +12,7 @@ namespace TropicalEngine
 	  * \brief Class for Updating scriptable objects.
 	  */
 	#pragma endregion
-	class UpdateManager
+	class UpdateManager : public Singleton<UpdateManager>
 	{
 	public:
 		friend class IUpdateable;

@@ -1,6 +1,8 @@
 #pragma once
 #include <QtWidgets/qapplication.h>
 
+#include <Utills/Singleton.h>
+
 namespace TropicalEngine
 {
 
@@ -9,7 +11,7 @@ namespace TropicalEngine
 	  * \brief Class for managing visual style of user interface.
 	  */
 	#pragma endregion
-	class GuiStyleManager
+	class GuiStyleManager : public Singleton<GuiStyleManager>
 	{
 	public:
 		#pragma region documentation

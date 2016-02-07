@@ -6,8 +6,6 @@
 
 #include <Utills/Exception.h>
 
-#include <TropicalEngineApplication.h>
-
 namespace TropicalEngine
 {
 
@@ -23,7 +21,7 @@ namespace TropicalEngine
 
 		if (isManaged)
 		{
-			TropicalEngineApplication::instance()->shaderManager->Load(this, name);
+			ShaderManager::instance().Load(this, name);
 		}
 	}
 
@@ -39,7 +37,7 @@ namespace TropicalEngine
 
 		if (isManaged)
 		{
-			TropicalEngineApplication::instance()->shaderManager->Load(this, name);
+			ShaderManager::instance().Load(this, name);
 		}
 	}
 
@@ -95,7 +93,7 @@ namespace TropicalEngine
 
 		if (isManaged)
 		{
-			TropicalEngineApplication::instance()->shaderManager->Load(shaderPasses[shaderPass], shaderPasses[shaderPass]->getName());
+			ShaderManager::instance().Load(shaderPasses[shaderPass], shaderPasses[shaderPass]->getName());
 		}
 
 		return shaderPasses[shaderPass];

@@ -4,6 +4,8 @@
 #include <QtCore/qstring.h>
 #include <QtCore/qhash.h>
 
+#include <Utills/Singleton.h>
+
 #include "Shader.h"
 
 namespace TropicalEngine
@@ -15,7 +17,7 @@ namespace TropicalEngine
 	  * \brief Class for managing Shaders.
 	  */
 	#pragma endregion
-	class ShaderManager
+	class ShaderManager : public Singleton<ShaderManager>
 	{
 	public:
 

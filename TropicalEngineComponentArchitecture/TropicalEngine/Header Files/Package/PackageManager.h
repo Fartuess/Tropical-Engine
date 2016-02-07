@@ -3,6 +3,8 @@
 #include <QtCore/qstring.h>
 #include <QtCore/qhash.h>
 
+#include <Utills/Singleton.h>
+
 #include "Package.h"
 
 namespace TropicalEngine
@@ -13,7 +15,7 @@ namespace TropicalEngine
 	  * \brief Class for managing packages.
 	  */
 	#pragma endregion
-	class PackageManager
+	class PackageManager : public Singleton<PackageManager>
 	{
 	public:
 		#pragma region documentation

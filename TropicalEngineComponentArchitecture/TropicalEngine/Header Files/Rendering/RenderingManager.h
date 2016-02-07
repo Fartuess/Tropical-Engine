@@ -1,8 +1,9 @@
 #pragma once
-
 #include <QtCore/qhash.h>
 #include <QtCore/qlist.h>
 #include <QtCore/qstring.h>
+
+#include <Utills/Singleton.h>
 
 namespace TropicalEngine
 {
@@ -12,7 +13,7 @@ namespace TropicalEngine
 	  * \brief Class for managing rendering and renderable objects.
 	  */
 	#pragma endregion
-	class RenderingManager
+	class RenderingManager : public Singleton<RenderingManager>
 	{
 	public:
 		#pragma region documentation

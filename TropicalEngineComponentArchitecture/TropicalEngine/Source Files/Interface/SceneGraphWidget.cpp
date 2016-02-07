@@ -4,8 +4,6 @@
 #include <Interface/SceneGraphWidget.h>
 #include <Interface/SceneGraphItem.h>
 
-#include "TropicalEngineApplication.h"
-
 namespace TropicalEngine
 {
 

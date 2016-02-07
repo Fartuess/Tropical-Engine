@@ -6,8 +6,6 @@
 
 #include <Shader/MaterialManager.h>
 
-#include "TropicalEngineApplication.h"
-
 namespace TropicalEngine
 {
 	QHash<QString, AbstractTextureImporter*> TextureManager::supportedExtensions = QHash<QString, AbstractTextureImporter*>();
@@ -24,7 +22,7 @@ namespace TropicalEngine
 
 	TextureManager::~TextureManager(void)
 	{
-		for (Material* material : TropicalEngineApplication::instance()->materialManager->materials)
+		for (Material* material : MaterialManager::instance().materials)
 		{
 			// TODO: set all textures to null texture;
 		}
@@ -84,7 +82,7 @@ namespace TropicalEngine
 		}
 		else
 		{
-			for (Material* material : TropicalEngineApplication::instance()->materialManager->materials)
+			for (Material* material : MaterialManager::instance().materials)
 			{
 				// TODO: if material uses texture isUsed return;
 			}

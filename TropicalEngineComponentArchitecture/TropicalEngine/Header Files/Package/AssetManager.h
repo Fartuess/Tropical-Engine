@@ -2,6 +2,8 @@
 #include <QtCore/qhash.h>
 #include <QtCore/qstring.h>
 
+#include <Utills/Singleton.h>
+
 #include "Asset.h"
 
 namespace TropicalEngine
@@ -12,7 +14,7 @@ namespace TropicalEngine
 	  * \brief Class for managing Assets.
 	  */
 	#pragma endregion
-	class AssetManager
+	class AssetManager : public Singleton<AssetManager>
 	{
 	public:
 		#pragma region documentation

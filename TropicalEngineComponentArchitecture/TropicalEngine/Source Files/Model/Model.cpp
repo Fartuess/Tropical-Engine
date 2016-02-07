@@ -3,15 +3,13 @@
 #include <Model/ModelManager.h>
 #include <Model/ModelBuilder.h>
 
-#include "TropicalEngineApplication.h"
-
 namespace TropicalEngine
 {
 
 	Model::Model(QString name) : meshes()
 	{
 		this->name = name;
-		TropicalEngineApplication::instance()->modelManager->Load(this, name);
+		ModelManager::instance().Load(this, name);
 	}
 
 	Model::Model(QString name, QString fileUrl) : meshes()
@@ -19,7 +17,7 @@ namespace TropicalEngine
 		this->name = name;
 		this->fileUrl = fileUrl;
 		this->type = "imported";
-		TropicalEngineApplication::instance()->modelManager->Load(this, name);
+		ModelManager::instance().Load(this, name);
 	}
 
 	Model::~Model(void)
@@ -117,7 +115,7 @@ namespace TropicalEngine
 		QString name = JSON["name"].toString();
 		QString fileUrl = JSON["url"].toString();
 
-		return TropicalEngineApplication::instance()->modelBuilder->Load(name, fileUrl);
+		return ModelBuilder::instance().Load(name, fileUrl);
 	}
 
 }

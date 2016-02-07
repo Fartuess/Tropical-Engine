@@ -4,8 +4,6 @@
 #include <Shader/Shader.h>
 #include <Shader/ShaderTechnique.h>
 
-#include <TropicalEngineApplication.h>
-
 namespace TropicalEngine
 {
 
@@ -41,18 +39,18 @@ namespace TropicalEngine
 
 	void RenderComponent::levelChanged()
 	{
-		TropicalEngineApplication::instance()->renderingManager->removeRenderableObject(this);
+		RenderingManager::instance().removeRenderableObject(this);
 
 		if (this->material->getShaderTechnique() != nullptr)
 		{
 			for (QString shaderPass : this->material->getShaderTechnique()->getShaderPasses().keys())
 			{
-				TropicalEngineApplication::instance()->renderingManager->addRenderableObject(this, getLevel(), shaderPass);
+				RenderingManager::instance().addRenderableObject(this, getLevel(), shaderPass);
 			}
 		}
 		else
 		{
-			TropicalEngineApplication::instance()->renderingManager->addRenderableObject(this, getLevel(), "Color");
+			RenderingManager::instance().addRenderableObject(this, getLevel(), "Color");
 		}
 	}
 

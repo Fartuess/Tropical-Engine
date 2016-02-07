@@ -19,7 +19,7 @@
 
 #include <Texture/RenderTexture.h>
 
-#include "TropicalEngineApplication.h"
+#include <TropicalEngineApplication.h>
 
 namespace TropicalEngine
 {
@@ -80,12 +80,12 @@ namespace TropicalEngine
 
 	void OpenGLWidget::keyPressEvent(QKeyEvent* keyEvent)
 	{
-		TropicalEngineApplication::instance()->inputManager->PressKey(keyEvent->key());
+		InputManager::instance().PressKey(keyEvent->key());
 	}
 
 	void OpenGLWidget::keyReleaseEvent(QKeyEvent* keyEvent)
 	{
-		TropicalEngineApplication::instance()->inputManager->ReleaseKey(keyEvent->key());
+		InputManager::instance().ReleaseKey(keyEvent->key());
 	}
 
 	void OpenGLWidget::mousePressEvent(QMouseEvent* mouseEvent)
@@ -116,7 +116,7 @@ namespace TropicalEngine
 		*abstractMousePosition += mouseEvent->globalPos() - *screenCenter;
 
 		//TropicalEngineApplication::instance()->inputController->mousePosition = glm::vec2(mouseEvent->globalX(), mouseEvent->globalY());
-		TropicalEngineApplication::instance()->inputManager->mousePosition = glm::vec2(abstractMousePosition->x(), abstractMousePosition->y());
+		InputManager::instance().mousePosition = glm::vec2(abstractMousePosition->x(), abstractMousePosition->y());
 
 		//glm::quat quat1 = glm::angleAxis(mouseEvent->globalX() / 6.0f, glm::vec3(0.0f, -1.0f, 0.0f));
 		glm::quat quat1 = glm::angleAxis(abstractMousePosition->x() / 6.0f, glm::vec3(0.0f, -1.0f, 0.0f));

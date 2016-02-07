@@ -6,6 +6,8 @@
 
 #include <Camera/CameraComponent.h>
 
+#include <Utills/Singleton.h>
+
 #include "InputAction.h"
 
 namespace TropicalEngine
@@ -16,7 +18,7 @@ namespace TropicalEngine
 	  * \brief Class for managing inputs.
 	  */
 	#pragma endregion
-	class InputManager
+	class InputManager : public Singleton<InputManager>
 	{
 	public:
 		#pragma region documentation

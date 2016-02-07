@@ -2,6 +2,8 @@
 #include <QtCore/qstring.h>
 #include <QtCore/qhash.h>
 
+#include <Utills/Singleton.h>
+
 #include "Material.h"
 
 namespace TropicalEngine
@@ -12,7 +14,7 @@ namespace TropicalEngine
 	  * \brief Class for managing Materials.
 	  */
 	#pragma endregion
-	class MaterialManager
+	class MaterialManager : public Singleton<MaterialManager>
 	{
 	public:
 		friend class Texture;

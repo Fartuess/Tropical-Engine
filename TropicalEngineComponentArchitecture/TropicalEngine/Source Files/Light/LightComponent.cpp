@@ -1,8 +1,6 @@
 #include <Light/LightComponent.h>
 #include <Light/LightController.h>
 
-#include <TropicalEngineApplication.h>
-
 namespace TropicalEngine
 {
 
@@ -13,11 +11,11 @@ namespace TropicalEngine
 		this->color = color;
 		this->brightness = brightness;
 		this->castingShadows = isCastingShadows;
-		TropicalEngineApplication::instance()->lightController->lights.append(this);
+		LightController::instance().lights.append(this);
 		Evaluate();
 		if (castingShadows)
 		{
-			TropicalEngineApplication::instance()->lightController->lightShadows.append(this);
+			LightController::instance().lightShadows.append(this);
 			//DrawShadows();
 		}
 
@@ -37,10 +35,10 @@ namespace TropicalEngine
 	{
 		if (owner != nullptr)
 		{
-			TropicalEngineApplication::instance()->lightController->lights.removeOne(this);
+			LightController::instance().lights.removeOne(this);
 			if (castingShadows)
 			{
-				TropicalEngineApplication::instance()->lightController->lightShadows.removeAll(this);
+				LightController::instance().lightShadows.removeAll(this);
 			}
 		}
 	}
@@ -56,11 +54,11 @@ namespace TropicalEngine
 		{
 			if (isCastingShadows == true)
 			{
-				TropicalEngineApplication::instance()->lightController->lightShadows.append(this);
+				LightController::instance().lightShadows.append(this);
 			}
 			else
 			{
-				TropicalEngineApplication::instance()->lightController->lightShadows.removeAll(this);
+				LightController::instance().lightShadows.removeAll(this);
 			}
 			castingShadows = isCastingShadows;
 		}

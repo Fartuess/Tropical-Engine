@@ -45,30 +45,30 @@ namespace TropicalEngine
 		splashScreen = new QSplashScreen(*splashImage);
 		splashScreen->show();
 
-		shaderManager = new ShaderManager();
-		materialManager = new MaterialManager();
-
-		textureManager = new TextureManager();
-
-		modelManager = new ModelManager();
-		modelBuilder = new ModelBuilder();
-
-		assetManager = new AssetManager();
-		packageManager = new PackageManager();
-		sceneManager = new SceneManager();
+		//shaderManager = new ShaderManager();
+		//materialManager = new MaterialManager();
+		//
+		//textureManager = new TextureManager();
+		//
+		//modelManager = new ModelManager();
+		//modelBuilder = new ModelBuilder();
+		//
+		//assetManager = new AssetManager();
+		//packageManager = new PackageManager();
+		//sceneManager = new SceneManager();
 		tempScene = new Scene();
-		renderingManager = new RenderingManager();
+		//renderingManager = new RenderingManager();
+		//
+		//lightController = new LightController();
+		//
+		//updateManager = new UpdateManager();
+		//
+		//inputManager = new InputManager();
+		//
+		//renderer = new OglDevTut03();
+		//
 
-		lightController = new LightController();
-
-		updateManager = new UpdateManager();
-
-		inputManager = new InputManager();
-
-		renderer = new OglDevTut03();
-
-		styleManager = new GuiStyleManager();
-		styleManager->ChangeStyle(*this, "./Resource Files/TropicalEngineEditorStyle.css");
+		GuiStyleManager::instance().ChangeStyle(*this, "./Resource Files/TropicalEngineEditorStyle.css");
 
 		EngineSettings = new QSettings("./Resource Files/EngineSettings.ini", QSettings::IniFormat);
 		EditorSettings = new QSettings("./Resource Files/EditorSettings.ini", QSettings::IniFormat);
@@ -86,7 +86,7 @@ namespace TropicalEngine
 	void TropicalEngineApplication::Initialize()
 	{
 		deltaTimer.start();
-		renderer->InitializeLevel(tempScene);
+		OglDevTut03::instance().InitializeLevel(tempScene);
 		sceneGraph->Reload();
 		splashScreen->close();
 	}
@@ -98,14 +98,14 @@ namespace TropicalEngine
 		glPatchParameteri(GL_PATCH_VERTICES, 3);
 
 
-		updateManager->UpdateAll();
-		inputManager->Update();
+		UpdateManager::instance().UpdateAll();
+		InputManager::instance().Update();
 		deltaTime = deltaTimer.restart();
 
 		tempScene->getCurrentCamera()->CalculateMatrix();
 
 		tempScene->EvaluateLevels();	// TODO: Evaluate only changed
-		renderingManager->DrawAll(tempScene);
+		RenderingManager::instance().DrawAll(tempScene);
 	}
 
 }

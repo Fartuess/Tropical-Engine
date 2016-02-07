@@ -1,4 +1,3 @@
-#include <TropicalEngineApplication.h>
 #include <Package/PackageManager.h>
 
 #include <Scene/Level.h>
@@ -93,9 +92,9 @@ namespace TropicalEngine
 
 		for (QJsonValueRef usedPackageRef : JSON["used packages"].toArray())
 		{
-			TropicalEngineApplication::instance()->packageManager->LoadPackage(usedPackageRef.toObject());
+			PackageManager::instance().LoadPackage(usedPackageRef.toObject());
 			QString packageName = usedPackageRef.toObject()["name"].toString();
-			usedPackages[packageName] = TropicalEngineApplication::instance()->packageManager->getPackage(packageName);
+			usedPackages[packageName] = PackageManager::instance().getPackage(packageName);
 		}
 
 		return object;

@@ -22,35 +22,35 @@ namespace TropicalEngine
 		/*
 		* Resource management
 		*/
-		class ShaderManager* shaderManager;
-		class MaterialManager* materialManager;
-		class TextureManager* textureManager;
-		class ModelManager* modelManager;
-		class ModelBuilder* modelBuilder;
-		class AssetManager* assetManager;
-		class PackageManager* packageManager;
+		//class ShaderManager* shaderManager;
+		//class MaterialManager* materialManager;
+		//class TextureManager* textureManager;
+		//class ModelManager* modelManager;
+		//class ModelBuilder* modelBuilder;
+		//class AssetManager* assetManager;
+		//class PackageManager* packageManager;
 		/*
 		* Scene controlling
 		*/
 		class Scene* tempScene;
-		class SceneManager* sceneManager;
-		class LightController* lightController;
+		//class SceneManager* sceneManager;
+		//class LightController* lightController;
 		/*
 		 * Updatings
 		 */
-		class UpdateManager* updateManager;
-		class RenderingManager* renderingManager;
-		class OglDevTut03* renderer;	//temporarily
+		//class UpdateManager* updateManager;
+		//class RenderingManager* renderingManager;
+		//class OglDevTut03* renderer;	//temporarily
 
 		/*
 		* Input
 		*/
-		class InputManager* inputManager;
+		//class InputManager* inputManager;
 
 		/*
 		* Gui
 		*/
-		class GuiStyleManager* styleManager;
+		//class GuiStyleManager* styleManager;
 		class SceneGraphWidget* sceneGraph;
 		/*
 		* Settings

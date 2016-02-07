@@ -8,8 +8,6 @@
 #include <Scene/Entity.h>
 #include <Scene/Scene.h>
 
-#include "TropicalEngineApplication.h"
-
 namespace TropicalEngine
 {
 
@@ -17,17 +15,17 @@ namespace TropicalEngine
 	{
 		// TODO: implement it.
 		//normally controller would not define bindings.
-		InputManager* inputManager = TropicalEngineApplication::instance()->inputManager;
+		InputManager& inputManager = InputManager::instance();
 
-		inputManager->AddAction("Move Forward", Qt::Key_W);
-		inputManager->AddAction("Move Backward", Qt::Key_S);
-		inputManager->AddAction("Move Left", Qt::Key_A);
-		inputManager->AddAction("Move Right", Qt::Key_D);
-		inputManager->AddAction("Move Up", Qt::Key_Space);
-		inputManager->AddAction("Move Down", Qt::Key_C);
+		inputManager.AddAction("Move Forward", Qt::Key_W);
+		inputManager.AddAction("Move Backward", Qt::Key_S);
+		inputManager.AddAction("Move Left", Qt::Key_A);
+		inputManager.AddAction("Move Right", Qt::Key_D);
+		inputManager.AddAction("Move Up", Qt::Key_Space);
+		inputManager.AddAction("Move Down", Qt::Key_C);
 
-		inputManager->AddAction("Move Fast");
-		inputManager->BindAction("Move Fast", Qt::Key_Shift);
+		inputManager.AddAction("Move Fast");
+		inputManager.BindAction("Move Fast", Qt::Key_Shift);
 	}
 
 	TempPlayerComponent::~TempPlayerComponent(void)
@@ -37,7 +35,7 @@ namespace TropicalEngine
 
 	void TempPlayerComponent::OnUpdate(int DeltaTime)
 	{
-		InputManager* inputManager = TropicalEngineApplication::instance()->inputManager;
+		InputManager& inputManager = InputManager::instance();
 
 		TransformComponent& ownerTransform = this->getOwner()->transform;
 
@@ -46,15 +44,15 @@ namespace TropicalEngine
 		glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f);
 
 		// TODO: replace this temp value
-		float speed = 0.003f * (1 + qMin(((float)inputManager->getTime("Move Fast", DeltaTime) / (float)DeltaTime), 1.0f));
+		float speed = 0.003f * (1 + qMin(((float)inputManager.getTime("Move Fast", DeltaTime) / (float)DeltaTime), 1.0f));
 
 		// TODO: Figure out if we are ok with faster diagonal movement
-		ownerTransform.LocalTranslate(front * (speed * (float)inputManager->getTime("Move Forward", DeltaTime)));
-		ownerTransform.LocalTranslate(-front * (speed * (float)inputManager->getTime("Move Backward", DeltaTime)));
-		ownerTransform.LocalTranslate(right * (speed * (float)inputManager->getTime("Move Right", DeltaTime)));
-		ownerTransform.LocalTranslate(-right * (speed * (float)inputManager->getTime("Move Left", DeltaTime)));
-		ownerTransform.LocalTranslate(up * (speed * (float)inputManager->getTime("Move Up", DeltaTime)));
-		ownerTransform.LocalTranslate(-up * (speed * (float)inputManager->getTime("Move Down", DeltaTime)));
+		ownerTransform.LocalTranslate(front * (speed * (float)inputManager.getTime("Move Forward", DeltaTime)));
+		ownerTransform.LocalTranslate(-front * (speed * (float)inputManager.getTime("Move Backward", DeltaTime)));
+		ownerTransform.LocalTranslate(right * (speed * (float)inputManager.getTime("Move Right", DeltaTime)));
+		ownerTransform.LocalTranslate(-right * (speed * (float)inputManager.getTime("Move Left", DeltaTime)));
+		ownerTransform.LocalTranslate(up * (speed * (float)inputManager.getTime("Move Up", DeltaTime)));
+		ownerTransform.LocalTranslate(-up * (speed * (float)inputManager.getTime("Move Down", DeltaTime)));
 	}
 
 	IDeserializableFromJSON* TempPlayerComponent::fromJSON(QJsonObject JSON)

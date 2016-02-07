@@ -12,19 +12,12 @@ namespace TropicalEngine
 	template <typename T>
 	class Singleton
 	{
-	protected:
-		static T* instance;
 	public:
-		Singleton(void)
-		{
-			if (!instance)
-				instance = static_cast<T*>(this);
-		}
-	public:
+		// TODO: Temporarily public?
 		virtual ~Singleton(void)
 		{
-			if (instance)
-				instance = nullptr;
+			if (instanceObject)
+				instanceObject = nullptr;
 		}
 
 		#pragma region documentation
@@ -34,15 +27,23 @@ namespace TropicalEngine
 		  * @return Singleton instance of this class.
 		  */
 		#pragma endregion
-		static T& Instance()
+		static T& instance()
 		{
-			if (instance == nullptr)
-				instance = new T();
-			return (*instance);
+			if (instanceObject == nullptr)
+				instanceObject = new T();
+			return (*instanceObject);
 		}
+	protected:
+		Singleton(void)
+		{
+			if (!instanceObject)
+				instanceObject = static_cast<T*>(this);
+		}
+	private:
+		static T* instanceObject;
 	};
 
 	template <typename T>
-	T* Singleton<T>::instance = nullptr;
+	T* Singleton<T>::instanceObject = nullptr;
 
 }

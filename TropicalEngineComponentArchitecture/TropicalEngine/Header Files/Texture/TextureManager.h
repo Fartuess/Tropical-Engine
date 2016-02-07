@@ -14,7 +14,7 @@ namespace TropicalEngine
 	  * \brief Class for managing textures.
 	  */
 	#pragma endregion
-	class TextureManager
+	class TextureManager : public Singleton<TextureManager>
 	{
 	public:
 		friend class Texture;

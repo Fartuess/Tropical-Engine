@@ -1,6 +1,8 @@
 #pragma once
 #include <QtCore/qlist.h>
 
+#include <Utills/Singleton.h>
+
 #include "LightComponent.h"
 
 namespace TropicalEngine
@@ -13,7 +15,7 @@ namespace TropicalEngine
 	  * \brief Class managing lights.
 	  */
 	#pragma endregion
-	class LightController
+	class LightController : public Singleton<LightController>
 	{
 	public:
 		friend class LightComponent;

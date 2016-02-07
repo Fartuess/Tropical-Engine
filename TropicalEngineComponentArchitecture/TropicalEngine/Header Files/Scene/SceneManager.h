@@ -1,6 +1,8 @@
 #pragma once
 #include <QtCore/qset.h>
 
+#include <Utills/Singleton.h>
+
 namespace TropicalEngine
 {
 
@@ -9,7 +11,7 @@ namespace TropicalEngine
 	  * \brief Class for managing Scenes.
 	  */
 	#pragma endregion
-	class SceneManager
+	class SceneManager : public Singleton<SceneManager>
 	{
 	public:
 		friend class Scene;

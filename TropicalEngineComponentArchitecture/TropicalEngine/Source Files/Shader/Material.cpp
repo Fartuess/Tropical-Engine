@@ -10,8 +10,6 @@
 
 #include <Utills/Exception.h>
 
-#include "TropicalEngineApplication.h"
-
 namespace TropicalEngine
 {
 
@@ -24,7 +22,7 @@ namespace TropicalEngine
 		{
 			parameters[parameterName] = nullptr;
 		}
-		TropicalEngineApplication::instance()->materialManager->materials.insert(name, this);
+		MaterialManager::instance().materials.insert(name, this);
 	}
 
 	Material::Material(ShaderTechnique* shaderTechnique, QString name)
@@ -37,7 +35,7 @@ namespace TropicalEngine
 		{
 			parameters[parameterName] = nullptr;
 		}
-		TropicalEngineApplication::instance()->materialManager->materials.insert(name, this);
+		MaterialManager::instance().materials.insert(name, this);
 	}
 
 	Material::~Material(void)
@@ -69,7 +67,7 @@ namespace TropicalEngine
 	void Material::Use()
 	{
 		shader->Use();
-		TropicalEngineApplication::instance()->textureManager->resetTextureIterator();
+		TextureManager::instance().resetTextureIterator();
 		if (shader->getCurrentMaterial() != this)
 		{
 			for (QString parameter : parameters.keys())
@@ -348,12 +346,12 @@ namespace TropicalEngine
 
 		if (JSON.contains("shader technique"))
 		{
-			ShaderTechnique* shaderTechnique = TropicalEngineApplication::instance()->shaderManager->getShaderTechnique(JSON["shader technique"].toString());
+			ShaderTechnique* shaderTechnique = ShaderManager::instance().getShaderTechnique(JSON["shader technique"].toString());
 			object = new Material(shaderTechnique, name);
 		}
 		else if (JSON.contains("shader"))
 		{
-			Shader* shader = TropicalEngineApplication::instance()->shaderManager->getShader(JSON["shader"].toString());
+			Shader* shader = ShaderManager::instance().getShader(JSON["shader"].toString());
 			object = new Material(shader, name);
 		}
 		else
@@ -449,7 +447,7 @@ namespace TropicalEngine
 			{
 				Texture* value;
 
-				value = TropicalEngineApplication::instance()->textureManager->getTexture(parameterJSON.toObject()["name"].toString());
+				value = TextureManager::instance().getTexture(parameterJSON.toObject()["name"].toString());
 
 				object->SetParameter(parameterName, value);
 				break;

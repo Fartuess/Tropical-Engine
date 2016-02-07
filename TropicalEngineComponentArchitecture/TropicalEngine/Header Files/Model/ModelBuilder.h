@@ -1,8 +1,11 @@
 #pragma once
+#include <glm.hpp>
+
 #include <QtCore/qstring.h>
 #include <QtCore/qvector.h>
 #include <QtCore/qhash.h>
-#include <glm.hpp>
+
+#include <Utills/Singleton.h>
 
 namespace TropicalEngine
 {
@@ -12,7 +15,7 @@ namespace TropicalEngine
 	  * \brief Class for building and importing Model assets.
 	  */
 	#pragma endregion
-	class ModelBuilder
+	class ModelBuilder : public Singleton<ModelBuilder>
 	{
 	public:
 		friend class ModelManager;
