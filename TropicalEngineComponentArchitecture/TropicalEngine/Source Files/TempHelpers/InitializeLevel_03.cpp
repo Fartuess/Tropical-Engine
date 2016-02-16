@@ -145,6 +145,11 @@ namespace TropicalEngine
 		cubemapTechnique->setInput("Lighting Model", "./Shader Files/LightingModels/UnlitLightingModel.glsl");
 		cubemapTechnique->setInput("Surface Shader", "./Shader Files/SurfaceShaders/CubemapReflected.glsl");
 
+		ShaderTechnique* iblTechnique = new ShaderTechnique("Ibl", &CommonMeshShaderBuilder::instance());
+		iblTechnique->setInput("Lighting Model", "./Shader Files/LightingModels/BlinnPhongLightingModel.glsl");
+		iblTechnique->setInput("Custom Lighting", "./Shader Files/CustomLighting/ImageBasedLighting.glsl");
+		iblTechnique->setInput("Surface Shader", "./Shader Files/SurfaceShaders/BumpTextured.glsl");
+
 		//Adding shaders to the internal package of the level.
 		//helperAsset = new Asset("Phong Shader", shaderManager["Phong"]);
 		//(*level->getInternalPackage()) << helperAsset;
@@ -195,10 +200,12 @@ namespace TropicalEngine
 		Material* distanceTessellationMaterial	= new Material(shaderManager.getShaderTechnique("DistanceTessallation"), "Distance Tessallated Material");
 		Material* vectorTessellationMaterial	= new Material(shaderManager.getShaderTechnique("VectorTessallation"), "Vector Tessallated Material");
 		
-		Material* chestMaterial					= new Material(shaderManager.getShaderTechnique("PhongBumpmapped"), "Steampunk Chest Material");
+		Material* chestMaterial					= new Material(shaderManager.getShaderTechnique("Ibl"), "Steampunk Chest Material");
 
 		Material* skyboxMaterial				= new Material(shaderManager.getShaderTechnique("Skybox"), "Skybox Material");
 		Material* cubemapMaterial				= new Material(shaderManager.getShaderTechnique("Cubemap"), "Cubemap Material");
+
+		Material* iblMaterial					= new Material(shaderManager.getShaderTechnique("Ibl"), "Ibl Material");
 
 		/*********************************
 		*
@@ -326,9 +333,15 @@ namespace TropicalEngine
 
 		(*chestMaterial)["mat_color"]			= chestDiff;
 		(*chestMaterial)["mat_normal"]			= chestNRM;
+		(*chestMaterial)["mat_environmentMap"] = skyboxTexture;
 
 		(*skyboxMaterial)["mat_color"] = skyboxTexture;
 		(*cubemapMaterial)["mat_color"] = skyboxTexture;
+
+		(*iblMaterial)["mat_environmentMap"] = skyboxTexture;
+		(*iblMaterial)["mat_color"] = textureManager["Default Texture Albedo"];
+		(*iblMaterial)["mat_normal"] = testingTextureNormal;
+		(*iblMaterial)["mat_specularExponent"] = new float(40.0f);
 
 		//Adding materials to the internal package of the level.
 		helperAsset = new Asset("Phong Material", materialManager["Phong Material"]);
@@ -500,7 +513,7 @@ namespace TropicalEngine
 		level->getRoot()->AttachSubobject(phongBlinnExample);
 
 		Entity* BumpMapExample = new Entity(glm::vec3(8.0f, 0.0f, 0.0f), glm::quat(), glm::vec3(1.0f, 1.0f, 1.0f));
-		ModelComponent* bumpMapModelC = new ModelComponent(BumpMapExample, bumpedMaterial, modelManager.getModel("TestModel2"));
+		ModelComponent* bumpMapModelC = new ModelComponent(BumpMapExample, iblMaterial, modelManager.getModel("TestModel2"));
 		BumpMapExample->name = QString("Bump mapping Example");
 		level->getRoot()->AttachSubobject(BumpMapExample);
 
@@ -639,7 +652,7 @@ namespace TropicalEngine
 
 		phongModelC->lightedBy.append(scene->mainLight);
 		phongBlinnModelC->lightedBy.append(scene->mainLight);
-		bumpMapModelC->lightedBy.append(scene->mainLight);
+		//bumpMapModelC->lightedBy.append(scene->mainLight);
 		maskedModelC->lightedBy.append(scene->mainLight);
 		parralaxModelC->lightedBy.append(scene->mainLight);
 		cookTorranceModelC->lightedBy.append(scene->mainLight);
@@ -649,7 +662,7 @@ namespace TropicalEngine
 		wardAnisoModelC->lightedBy.append(scene->mainLight);
 		distanceTessModelC->lightedBy.append(scene->mainLight);
 		vectorTessModelC->lightedBy.append(scene->mainLight);
-		FbxExampleModelC->lightedBy.append(scene->mainLight);
+		//FbxExampleModelC->lightedBy.append(scene->mainLight);
 		FbxExample2ModelC->lightedBy.append(scene->mainLight);
 		FbxExample3ModelC->lightedBy.append(scene->mainLight);
 		//skyboxModel->lightedBy.append(scene->mainLight);

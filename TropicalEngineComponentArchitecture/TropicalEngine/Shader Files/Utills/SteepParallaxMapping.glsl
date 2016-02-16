@@ -6,7 +6,7 @@
 
 vec2 steepParallaxMap(in sampler2D heightMap, float bumpScale)
 {
-	TBN = transpose(mat3(v_tangent, v_bitangent, v_normal));
+	mat3 TBN = transpose(mat3(v_tangent, v_bitangent, v_normal));
 
 	float height = 1.0;
 

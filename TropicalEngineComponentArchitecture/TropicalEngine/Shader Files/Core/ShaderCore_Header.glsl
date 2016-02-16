@@ -15,8 +15,6 @@ vec3 g_bitangent;
 vec2 g_texcoord;
 vec3 g_eye;
 
-mat3 TBN = mat3(1.0);
-
 layout(location = 0) out vec4 FragColor;
 
 #endif

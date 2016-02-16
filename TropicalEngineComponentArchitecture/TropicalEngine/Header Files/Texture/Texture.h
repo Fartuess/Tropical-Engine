@@ -72,7 +72,7 @@ namespace TropicalEngine
 		  * \brief Initialization of RenderTexture.
 		  */
 		#pragma endregion
-		virtual void Create();
+		virtual void Create(int wrappingS, int wrappingT);
 
 		#pragma region documentation
 		/**

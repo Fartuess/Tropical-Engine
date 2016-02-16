@@ -14,6 +14,7 @@
     <None Include="Shader Files\Blending\BlendMasked.glsl" />
     <None Include="Shader Files\Core\Channel.glsl" />
     <None Include="Shader Files\Core\ShaderCore_Header.glsl" />
+    <None Include="Shader Files\CustomLighting\ImageBasedLighting.glsl" />
     <None Include="Shader Files\LightingModels\BlinnPhongLightingModel.glsl" />
     <None Include="Shader Files\LightingModels\LambertLightingModel.glsl" />
     <None Include="Shader Files\LightingModels\PhongLightingModel.glsl" />
@@ -116,6 +117,8 @@
     <None Include="Shader Files\LightingModels\UnlitLightingModel.glsl" />
     <None Include="Shader Files\LightingModels\WardAnisotropicLightingModel.glsl" />
     <None Include="Shader Files\LightingModels\WardIsotropicLightingModel.glsl" />
+    <None Include="Shader Files\Lighting\Lighting_Header.glsl" />
+    <None Include="Shader Files\Lighting\LightingResult.glsl" />
     <None Include="Shader Files\Lighting\PointLight.glsl" />
     <None Include="Shader Files\Lighting\SpotLight.glsl" />
     <None Include="Shader Files\Mesh\DefaultMesh.glsl" />

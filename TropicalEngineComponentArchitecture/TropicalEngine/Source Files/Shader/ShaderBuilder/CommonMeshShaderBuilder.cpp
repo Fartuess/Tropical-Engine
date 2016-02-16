@@ -25,6 +25,7 @@ namespace TropicalEngine
 		inputs["TCS Shader"] = "";
 		inputs["TES Shader"] = "";
 
+		inputs["Custom Lighting"] = "";
 		inputs["Lighting Model"] = "./Shader Files/LightingModels/LambertLightingModel.glsl";
 		inputs["Surface Shader"] = "./Shader Files/SurfaceShaders/SimpleColor.glsl";
 		inputs["Blend Mode"] = "./Shader Files/Blending/BlendOpaque.glsl";
@@ -56,13 +57,20 @@ namespace TropicalEngine
 			fragmentSource += "\n";
 			fragmentSource += Shader::PreprocessShaderFile("./Shader Files/Core/ShaderCore_Header.glsl");
 			fragmentSource += "\n";
-			fragmentSource += Shader::PreprocessShaderFile("./Shader Files/Lighting/Lighting.glsl");
+			fragmentSource += Shader::PreprocessShaderFile("./Shader Files/Lighting/Lighting_Header.glsl");
 			fragmentSource += "\n";
 			fragmentSource += Shader::PreprocessShaderFile(inputs["Lighting Model"]);
 			fragmentSource += "\n";
 			fragmentSource += Shader::PreprocessShaderFile(inputs["Blend Mode"]);
 			fragmentSource += "\n";
 			fragmentSource += Shader::PreprocessShaderFile(inputs["Surface Shader"]);
+			fragmentSource += "\n";
+			if (inputs["Custom Lighting"] != "")
+			{
+				fragmentSource += Shader::PreprocessShaderFile(inputs["Custom Lighting"]);
+				fragmentSource += "\n";
+			}
+			fragmentSource += Shader::PreprocessShaderFile("./Shader Files/Lighting/Lighting.glsl");
 			fragmentSource += "\n";
 			fragmentSource += Shader::PreprocessShaderFile("./Shader Files/Core/ShaderCore.glsl");
 

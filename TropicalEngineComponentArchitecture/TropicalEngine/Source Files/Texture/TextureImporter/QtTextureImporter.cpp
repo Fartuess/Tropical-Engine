@@ -42,7 +42,7 @@ namespace TropicalEngine
 
 		textureData = textureData.convertToFormat(QImage::Format_RGBA8888);
 
-		newTexture->Create();
+		newTexture->Create(GL_REPEAT, GL_REPEAT);
 
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, textureData.width(), textureData.height(), 0, GL_RGBA, GL_UNSIGNED_BYTE, textureData.bits());
 		glGenerateMipmap(GL_TEXTURE_2D);

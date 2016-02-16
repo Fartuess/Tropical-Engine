@@ -1,6 +1,8 @@
 #ifndef _BLINNPHONGLIGHTINGMODEL
 #define _BLINNPHONGLIGHTINGMODEL
 
+#include "Lighting/LightingResult.glsl"
+
 #define DIFFUSEINPUT
 vec3 g_diffuseInput = vec3(0.5, 0.5, 0.5);
 
@@ -16,8 +18,9 @@ vec3 g_diffuseChannel;
 vec3 g_specularChannel;
 
 //private
-void calculateBlinnPhong(in vec3 lightVector, in vec3 lightColor, in float brightness, in vec3 normal, in vec3 eye, float specularExponent, inout vec3 diffuseIntensity, inout vec3 specularIntensity)
+LightingResult calculateBlinnPhong(in vec3 lightVector, in vec3 lightColor, in float brightness, in vec3 normal, in vec3 eye, float specularExponent)
 {
+	LightingResult lightingResult = LightingResult(vec3(0.0), vec3(0.0));
 	float nDotL = max(dot(lightVector, normal), 0.0);
 	if (nDotL > 0.0)
 	{
@@ -25,17 +28,18 @@ void calculateBlinnPhong(in vec3 lightVector, in vec3 lightColor, in float brigh
 		vec3 H = (lightVector + eye) / length(lightVector + eye);	//maybe just use normalize?
 		float nDotH = max(dot(normal, H), 0.0);
 
-		diffuseIntensity += lightColor * brightness * nDotL;
-		specularIntensity += lightColor * brightness * pow(nDotH, specularExponent);
+		lightingResult.diffuse = lightColor * brightness * nDotL;
+		lightingResult.specular = lightColor * brightness * pow(nDotH, specularExponent);
 	}
+	return lightingResult;
 }
 
 /**
 * Common interface for calculating lighting models.
 */
-void calculateLightingModel(in vec3 lightVector, in vec3 lightColor, in float lightBrightness)
+LightingResult calculateLightingModel(in vec3 lightVector, in vec3 lightColor, in float lightBrightness, in vec3 eye)
 {
-	calculateBlinnPhong(lightVector, lightColor, lightBrightness, g_normal, g_eye, g_specularExponentInput, g_diffuseChannel, g_specularChannel);
+	return calculateBlinnPhong(lightVector, lightColor, lightBrightness, g_normal, eye, g_specularExponentInput);
 }
 
 /**
@@ -46,8 +50,8 @@ void finalizeLightingModel()
 #ifdef AMBIENTCHANNEL
 	g_color += g_ambientChannel * g_diffuseInput;
 #endif
-	g_color += g_diffuseChannel * g_diffuseInput;
-	g_color += g_specularChannel * g_specularInput;
+	g_color += g_lightingResult.diffuse * g_diffuseInput;
+	g_color += g_lightingResult.specular * g_specularInput;
 }
 
 #endif

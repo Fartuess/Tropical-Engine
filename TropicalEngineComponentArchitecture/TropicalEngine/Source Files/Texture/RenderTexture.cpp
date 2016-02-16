@@ -10,7 +10,7 @@ namespace TropicalEngine
 		this->width = width;
 		this->height = height;
 
-		Create();
+		Create(GL_CLAMP_TO_EDGE, GL_CLAMP_TO_EDGE);
 	}
 
 	RenderTexture::~RenderTexture()
@@ -37,7 +37,7 @@ namespace TropicalEngine
 		glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
 	}
 
-	void RenderTexture::Create()
+	void RenderTexture::Create(int wrappingS, int wrappingT)
 	{
 		//glViewport(0, 0, width, height);
 		glGenTextures(1, &textureLocation);
@@ -45,8 +45,8 @@ namespace TropicalEngine
 		
 		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, wrappingS);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, wrappingT);
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, NULL);
 
 		glGenFramebuffers(1, &framebufferLocation);

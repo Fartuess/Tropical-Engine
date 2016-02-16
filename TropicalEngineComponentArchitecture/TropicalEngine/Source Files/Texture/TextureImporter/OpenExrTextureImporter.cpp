@@ -70,7 +70,7 @@ namespace TropicalEngine
 			std::cerr << e.what() << std::endl;
 		}
 
-		newTexture->Create();
+		newTexture->Create(GL_REPEAT, GL_CLAMP_TO_EDGE);
 
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA16F, dimensions.x, dimensions.y, 0, GL_RGBA, GL_HALF_FLOAT, textureData);
 		glGenerateMipmap(GL_TEXTURE_2D);

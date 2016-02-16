@@ -62,7 +62,7 @@ namespace TropicalEngine
 		  * \brief Initialization of RenderTexture.
 		  */
 		#pragma endregion
-		virtual void Create() override;
+		virtual void Create(int wrappingS, int wrappingT) override;
 	private:
 		GLuint framebufferLocation;
 	};

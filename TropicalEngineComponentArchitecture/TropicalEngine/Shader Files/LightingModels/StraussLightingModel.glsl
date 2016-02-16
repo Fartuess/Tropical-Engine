@@ -1,6 +1,8 @@
 #ifndef _STRAUSSLIGHTINGMODEL
 #define _STRAUSSLIGHTINGMODEL
 
+#include "Lighting/LightingResult.glsl"
+
 #define ALBEDOINPUT
 vec3 g_albedoInput = vec3(0.5, 0.5, 0.5);
 
@@ -52,8 +54,7 @@ float microfacetShadow(float x)
 	return ((1 / pow(x - kg, 2)) - ((1 / pow(kg, 2)))) / ((1 / pow(1 - kg, 2)) - (1 / pow(kg, 2)));
 }
 
-void calculateStrauss(in vec3 lightVector, in vec3 lightColor, in float brightness, in vec3 normal, in vec3 eye, vec3 albedo, float roughness, float metalness,
-	inout vec3 ambientIntensity, inout vec3 diffuseIntensity, inout vec3 specularIntensity)
+LightingResult calculateStrauss(in vec3 lightVector, in vec3 lightColor, in float brightness, in vec3 normal, in vec3 eye, vec3 albedo, float roughness, float metalness)
 {
 	calculateConst();
 
@@ -65,10 +66,12 @@ void calculateStrauss(in vec3 lightVector, in vec3 lightColor, in float brightne
 	float HdotV = dot(h, eye);
 	float fNdotL = fresnel(NdotL);
 
+	LightingResult lightingResult = LightingResult(vec3(0.0), vec3(0.0));
+
 	if (NdotL > 0.0)
 	{
 		// Evaluate the diffuse term
-		diffuseIntensity += NdotL * d * Rd * albedo * lightColor * brightness;
+		lightingResult.diffuse = NdotL * d * Rd * albedo * lightColor * brightness;
 
 		// Compute the inputs into the specular term
 		float r = (1.0) - Rd;
@@ -85,16 +88,18 @@ void calculateStrauss(in vec3 lightVector, in vec3 lightColor, in float brightne
 		vec3 Cs = vec3_1f + metalness * (1.0 - fNdotL) * (albedo - vec3_1f);
 
 		// Evaluate the specular term
-		specularIntensity += (Cs * reflect * pow(-HdotV, 3.0 / (1.0 - roughness)))  * lightColor * brightness;
+		lightingResult.specular = (Cs * reflect * pow(-HdotV, 3.0 / (1.0 - roughness)))  * lightColor * brightness;
 	}
+
+	return lightingResult;
 }
 
 /**
 * Common interface for calculating lighting models.
 */
-void calculateLightingModel(in vec3 lightVector, in vec3 lightColor, in float lightBrightness)
+LightingResult calculateLightingModel(in vec3 lightVector, in vec3 lightColor, in float lightBrightness, in vec3 eye)
 {
-	calculateStrauss(lightVector, lightColor, lightBrightness, g_normal, g_eye, g_albedoInput, g_roughnessInput, g_metalnessInput, g_ambientChannel, g_diffuseChannel, g_specularChannel);
+	return calculateStrauss(lightVector, lightColor, lightBrightness, g_normal, g_eye, g_albedoInput, g_roughnessInput, g_metalnessInput);
 }
 
 /**
@@ -111,7 +116,7 @@ void finalizeLightingModel()
 	g_color += g_ambientChannel;
 #endif
 
-	g_color += (max(vec3(0.0), g_diffuseChannel) + max(vec3(0.0), g_specularChannel));
+	g_color += (max(vec3(0.0), g_lightingResult.diffuse) + max(vec3(0.0), g_lightingResult.specular));
 }
 
 #endif

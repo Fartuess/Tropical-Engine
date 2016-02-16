@@ -1,31 +1,6 @@
 #ifndef _LIGHTING
 #define _LIGHTING
 
-#include "Lighting/PointLight.glsl"
-#include "Lighting/SpotLight.glsl"
-
-uniform float u_lightAmbient;
-uniform vec3 u_lightAmbientColor = vec3(1.0, 1.0, 1.0);
-
-//struct DirectionalLight
-//{
-//	vec3 direction;
-//	vec3 color;
-//	float brightness;
-//};
-//uniform DirectionalLight u_directionalLight;
-
-uniform vec3 u_lightVector;
-uniform vec3 u_lightColor;
-uniform float u_lightBrightness;
-
-#ifndef AMBIENTCHANNEL
-#define AMBIENTCHANNEL
-vec3 g_ambientChannel;
-#endif
-
-void calculateLightingModel(in vec3 lightVector, in vec3 lightColor, in float lightBrightness);
-
 // private
 void calculateAmbientLighting()
 {
@@ -33,30 +8,30 @@ void calculateAmbientLighting()
 }
 
 // private
-void calculateDirectionalLighting()
+LightingResult calculateDirectionalLighting()
 {
-	vec3 lightVector = normalize(TBN * u_lightVector);
+	vec3 lightVector = normalize(u_lightVector);
 
-	calculateLightingModel(lightVector, u_lightColor, u_lightBrightness);
+	return calculateLightingModel(lightVector, u_lightColor, u_lightBrightness, g_eye);
 }
 
 // private
-void calculatePointLighting(PointLight light)
+LightingResult calculatePointLighting(PointLight light)
 {
 
-	vec3 lightVector = normalize(TBN * calculatePointLightVector(light, v_globalPosition));
+	vec3 lightVector = normalize(calculatePointLightVector(light, v_globalPosition));
 	float brightness = calculatePointLightBrightness(light, v_globalPosition);
 
-	calculateLightingModel(lightVector, light.color, brightness);
+	return calculateLightingModel(lightVector, light.color, brightness, g_eye);
 }
 
 // private
-void calculateSpotLighting(SpotLight light)
+LightingResult calculateSpotLighting(SpotLight light)
 {
-	vec3 lightVector = normalize(TBN * calculateSpotLightVector(light, v_globalPosition));
+	vec3 lightVector = normalize(calculateSpotLightVector(light, v_globalPosition));
 	float brightness = calculateSpotLightBrightness(light, v_globalPosition, lightVector);
 
-	calculateLightingModel(lightVector, light.color, brightness);
+	return calculateLightingModel(lightVector, light.color, brightness, g_eye);
 }
 
 /**
@@ -64,16 +39,30 @@ void calculateSpotLighting(SpotLight light)
   */
 void calculateLighting()
 {
+	LightingResult helperLightingResult = LightingResult(vec3(0.0), vec3(0.0));
+
 	calculateAmbientLighting();
-	calculateDirectionalLighting();
+	helperLightingResult = calculateDirectionalLighting();
+	g_lightingResult.diffuse += helperLightingResult.diffuse;
+	g_lightingResult.specular += helperLightingResult.specular;
 	for (int i = 0; i < u_pointLights.length(); i++)
 	{
-		calculatePointLighting(u_pointLights[i]);
+		helperLightingResult = calculatePointLighting(u_pointLights[i]);
+		g_lightingResult.diffuse += helperLightingResult.diffuse;
+		g_lightingResult.specular += helperLightingResult.specular;
 	}
 	for (int i = 0; i < u_spotLights.length(); i++)
 	{
-		calculateSpotLighting(u_spotLights[i]);
+		helperLightingResult = calculateSpotLighting(u_spotLights[i]);
+		g_lightingResult.diffuse += helperLightingResult.diffuse;
+		g_lightingResult.specular += helperLightingResult.specular;
 	}
+
+#ifdef CUSTOMLIGHTING
+	helperLightingResult = calculateCustomLighting();
+	g_lightingResult.diffuse += helperLightingResult.diffuse;
+	g_lightingResult.specular += helperLightingResult.specular;
+#endif
 }
 
 #endif

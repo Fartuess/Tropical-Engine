@@ -6,15 +6,12 @@
 
 vec3 normalMap(in vec3 pixelTBNdirection)
 {
-	vec3 newNormal = normalize(pixelTBNdirection * 2.0 - 1.0);
+	vec3 newNormal = normalize(pixelTBNdirection * 2.0 - 1.0) * vec3(1.0, -1.0, 1.0);
+	vec3 newNormal2 = normalize(v_tangent) * newNormal.x + normalize(v_bitangent) * newNormal.y + normalize(v_normal) * newNormal.z;
 
-	// TODO: Change g_tangent and g_bitangent for shaders which uses them (like anisotropic lighting models)
+	g_eye = normalize(v_eye);
 
-	TBN = transpose(mat3(v_tangent, v_bitangent, v_normal));
-
-	g_eye = normalize(TBN * v_eye);
-
-	return newNormal;
+	return newNormal2;
 }
 
 #endif
