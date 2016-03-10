@@ -36,8 +36,19 @@ namespace TropicalEngine
 			newTexture = spawnTexture(name);
 		}
 
-		Imf::Rgba* textureData;
-		//Imath::V2i dimensions;
+		TextureData* textureData = LoadData(fileUrl);
+
+		newTexture->Create(GL_REPEAT, GL_CLAMP_TO_EDGE);
+
+		glTexImage2D(GL_TEXTURE_2D, 0, textureData->internalFormat, textureData->getWidth(), textureData->getHeight(), 0, textureData->format, textureData->type, textureData->rawData());
+		glGenerateMipmap(GL_TEXTURE_2D);
+
+		return newTexture;
+	}
+
+	TextureData* OpenExrTextureImporter::LoadData(QString fileUrl, bool flipY)
+	{
+		Imf::Rgba* image;
 		glm::ivec2 dimensions;
 		try
 		{
@@ -54,13 +65,20 @@ namespace TropicalEngine
 
 			inputFile.setFrameBuffer(pixels - dx - dy * dimensions.x, 1, dimensions.x);
 			inputFile.readPixels(window.min.y, window.max.y);
-			
-			// Flipping image manually. OpenEXR doesn't have code documentation.
-			textureData = new Imf::Rgba[dimensions.x * dimensions.y];
 
-			for (int y = 0; y < dimensions.y; y++) for (int x = 0; x < dimensions.x; x++)
+			if (!flipY)
 			{
-				textureData[(dimensions.x) * y + x] = pixels[(dimensions.x) * (dimensions.y - 1 - y) + x];
+				// Flipping image manually. OpenEXR doesn't have code documentation.
+				image = new Imf::Rgba[dimensions.x * dimensions.y];
+
+				for (int y = 0; y < dimensions.y; y++) for (int x = 0; x < dimensions.x; x++)
+				{
+					image[(dimensions.x) * y + x] = pixels[(dimensions.x) * (dimensions.y - 1 - y) + x];
+				}
+			}
+			else
+			{
+				image = pixels;
 			}
 
 			// TODO: Clean memory?
@@ -70,11 +88,11 @@ namespace TropicalEngine
 			std::cerr << e.what() << std::endl;
 		}
 
-		newTexture->Create(GL_REPEAT, GL_CLAMP_TO_EDGE);
+		TextureData* textureData = newTextureData(Imf::Rgba, (Imf::Rgba*)image, glm::ivec2(dimensions.x, dimensions.y));
+		textureData->internalFormat = GL_RGBA16F;
+		textureData->format = GL_RGBA;
+		textureData->type = GL_HALF_FLOAT;
 
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA16F, dimensions.x, dimensions.y, 0, GL_RGBA, GL_HALF_FLOAT, textureData);
-		glGenerateMipmap(GL_TEXTURE_2D);
-
-		return newTexture;
+		return textureData;
 	}
 }

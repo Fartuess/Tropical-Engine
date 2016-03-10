@@ -4,6 +4,7 @@
 #include <Shader/MaterialManager.h>
 #include <Shader/ShaderTechnique.h>
 
+#include <Texture/CubemapTexture.h>
 #include <Texture/TextureManager.h>
 
 #include <Model/ModelComponent.h>
@@ -105,6 +106,9 @@ namespace TropicalEngine
 		case GL_SAMPLER_2D:
 			ActivateParameter(parameterLocation, (Texture*)(value));
 			break;
+		case GL_SAMPLER_CUBE:
+			ActivateParameter(parameterLocation, (CubemapTexture*)(value));
+			break;
 		default:
 			break;
 		}
@@ -141,6 +145,11 @@ namespace TropicalEngine
 	}
 
 	void Material::ActivateParameter(GLuint location, Texture* value)
+	{
+		value->ActivateTexture(location);
+	}
+
+	void Material::ActivateParameter(GLuint location, CubemapTexture* value)
 	{
 		value->ActivateTexture(location);
 	}

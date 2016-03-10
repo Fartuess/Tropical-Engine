@@ -46,27 +46,6 @@ namespace TropicalEngine
 		this->name = name;
 	}
 
-	// TODO: Remove this method.
-	void Texture::Load()
-	{
-		QImage textureData;
-		if (fileUrl.endsWith(".tga", Qt::CaseInsensitive))
-		{
-			textureData = QImage(fileUrl).mirrored(false, true);
-		}
-		else
-		{
-			textureData = QImage(fileUrl);
-		}
-
-		textureData = textureData.convertToFormat(QImage::Format_RGBA8888);
-
-		Create(GL_REPEAT, GL_REPEAT);
-
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, textureData.width(), textureData.height(), 0, GL_RGBA, GL_UNSIGNED_BYTE, textureData.bits());
-		glGenerateMipmap(GL_TEXTURE_2D);
-	}
-
 	void Texture::Create(int wrappingS, int wrappingT)
 	{
 		glGenTextures(1, &textureLocation);
@@ -83,7 +62,6 @@ namespace TropicalEngine
 		glActiveTexture(GL_TEXTURE0 + TextureManager::instance().getTextureIterator());
 		glBindTexture(GL_TEXTURE_2D, textureLocation);
 		glUniform1i(location, TextureManager::instance().getTextureIterator());
-		//int t = TropicalEngineApplication::instance()->textureManager->getTextureIterator();
 		TextureManager::instance().incrementTextureIterator();
 	}
 

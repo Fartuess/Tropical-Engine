@@ -13,6 +13,8 @@ namespace TropicalEngine
 		~QtTextureImporter();
 
 		virtual Texture* Load(QString name, QString fileUrl, Texture* textureTarget = nullptr) override;
+
+		virtual TextureData* LoadData(QString fileUrl, bool flipY = false) override;
 	};
 
 }

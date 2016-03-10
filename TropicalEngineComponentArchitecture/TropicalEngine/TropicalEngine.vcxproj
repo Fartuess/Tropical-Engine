@@ -19,6 +19,7 @@
     <None Include="Shader Files\LightingModels\LambertLightingModel.glsl" />
     <None Include="Shader Files\LightingModels\PhongLightingModel.glsl" />
     <None Include="Shader Files\LightingModels\CookTorranceLightingModel.glsl" />
+    <ClCompile Include="Source Files\Texture\CubemapTexture.cpp" />
     <ClCompile Include="Source Files\Texture\TextureImporter\OpenExrTextureImporter.cpp" />
     <ClCompile Include="Source Files\Texture\TextureImporter\AbstractTextureImporter.cpp" />
     <ClCompile Include="GeneratedFiles\Debug\moc_MainWindow.cpp" />
@@ -135,6 +136,8 @@
     <None Include="Shader Files\SurfaceShaders\SimpleColor.glsl" />
     <None Include="Shader Files\SurfaceShaders\Skybox.glsl" />
     <None Include="Shader Files\SurfaceShaders\Textured.glsl" />
+    <None Include="Shader Files\SurfaceShaders\TexturedCubemap.glsl" />
+    <None Include="Shader Files\SurfaceShaders\TexturedCubemapReflected.glsl" />
     <None Include="Shader Files\Utills\BumpMapping.glsl" />
     <None Include="Shader Files\Utills\CubeMapping.glsl" />
     <None Include="Shader Files\Utills\CubemapReflection.glsl" />
@@ -785,6 +788,7 @@
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Header Files\Texture\CubemapTexture.h" />
     <ClInclude Include="Header Files\Texture\TextureImporter\AbstractTextureImporter.h" />
     <ClInclude Include="Header Files\Shader\ShaderBuilder\CommonMeshShaderBuilder.h" />
     <ClInclude Include="Header Files\Shader\ShaderBuilder\AbstractShaderBuilder.h" />
@@ -812,6 +816,7 @@
     <ClInclude Include="Header Files\TempHelpers\OglDevTut03.h" />
     <ClInclude Include="Header Files\TropicalEngineApplication.h" />
     -->
+    <ClInclude Include="Header Files\Utills\Stringization.h" />
     <ClInclude Include="Header Files\Utills\INamedType.h" />
     <ClInclude Include="Header Files\Serialization\ISerializableJSON.h" />
     <ClInclude Include="Header Files\Shader\MaterialParameter.h" />
@@ -878,7 +883,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <PreprocessorDefinitions>UNICODE;WIN32;WIN64;QT_DLL;QT_CORE_LIB;QT_GUI_LIB;QT_OPENGL_LIB;QT_WIDGETS_LIB;FBXSDK_SHARED;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>UNICODE;WIN32;WIN64;QT_DLL;QT_CORE_LIB;QT_GUI_LIB;QT_OPENGL_LIB;QT_WIDGETS_LIB;FBXSDK_SHARED;OPENEXR_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <Optimization>Disabled</Optimization>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -890,7 +895,7 @@
       <OutputFile>$(OutDir)\$(ProjectName).exe</OutputFile>
       <AdditionalLibraryDirectories>$(SolutionDir)..\Middleware\Qt\lib;$(SolutionDir)..\Middleware\glew\lib\Release\x64;$(SolutionDir)..\Middleware\assimp\lib;$(SolutionDir)..\Middleware\FBXSDK\lib;$(SolutionDir)..\Middleware\OpenExr\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>qtmaind.lib;Qt5Cored.lib;Qt5Widgetsd.lib;Qt5Guid.lib;Qt5OpenGLd.lib;opengl32.lib;glew32.lib;assimp.lib;libfbxsdk.lib;IlmImf.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>qtmaind.lib;Qt5Cored.lib;Qt5Widgetsd.lib;Qt5Guid.lib;Qt5OpenGLd.lib;opengl32.lib;glew32.lib;assimp.lib;libfbxsdk.lib;IlmImf.lib;Imath.lib;Half.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

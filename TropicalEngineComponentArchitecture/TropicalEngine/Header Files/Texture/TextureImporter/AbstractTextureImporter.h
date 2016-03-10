@@ -27,6 +27,8 @@ namespace TropicalEngine
 		#pragma endregion
 		virtual Texture* Load(QString name, QString fileUrl, Texture* textureTarget = nullptr) = 0;
 
+		virtual TextureData* LoadData(QString fileUrl, bool flipY = false) = 0;
+
 		#pragma region documentation
 		/**
 		  * \brief Gets list of file formats supported by given TextureImporter.

@@ -170,6 +170,7 @@ namespace TropicalEngine
 		void ActivateParameter(GLuint location, glm::mat3* value);
 		void ActivateParameter(GLuint location, glm::mat4* value);
 		void ActivateParameter(GLuint location, class Texture* value);
+		void ActivateParameter(GLuint location, class CubemapTexture* value);
 	};
 
 }

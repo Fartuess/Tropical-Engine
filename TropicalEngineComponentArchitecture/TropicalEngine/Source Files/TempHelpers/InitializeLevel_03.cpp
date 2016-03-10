@@ -11,6 +11,7 @@
 #include <Shader/ShaderTechnique.h>
 
 #include <Texture/Texture.h>
+#include <Texture/CubemapTexture.h>
 #include <Texture/TextureManager.h>
 #include <Texture/TextureImporter/QtTextureImporter.h>
 #include <Texture/TextureImporter/OpenExrTextureImporter.h>
@@ -145,6 +146,10 @@ namespace TropicalEngine
 		cubemapTechnique->setInput("Lighting Model", "./Shader Files/LightingModels/UnlitLightingModel.glsl");
 		cubemapTechnique->setInput("Surface Shader", "./Shader Files/SurfaceShaders/CubemapReflected.glsl");
 
+		ShaderTechnique* cubemapTexturedTechnique = new ShaderTechnique("CubemapTextured", &CommonMeshShaderBuilder::instance());
+		cubemapTexturedTechnique->setInput("Lighting Model", "./Shader Files/LightingModels/UnlitLightingModel.glsl");
+		cubemapTexturedTechnique->setInput("Surface Shader", "./Shader Files/SurfaceShaders/TexturedCubemap.glsl");
+
 		ShaderTechnique* iblTechnique = new ShaderTechnique("Ibl", &CommonMeshShaderBuilder::instance());
 		iblTechnique->setInput("Lighting Model", "./Shader Files/LightingModels/BlinnPhongLightingModel.glsl");
 		iblTechnique->setInput("Custom Lighting", "./Shader Files/CustomLighting/ImageBasedLighting.glsl");
@@ -205,6 +210,8 @@ namespace TropicalEngine
 		Material* skyboxMaterial				= new Material(shaderManager.getShaderTechnique("Skybox"), "Skybox Material");
 		Material* cubemapMaterial				= new Material(shaderManager.getShaderTechnique("Cubemap"), "Cubemap Material");
 
+		Material* cubemapTexturedMaterial = new Material(shaderManager.getShaderTechnique("CubemapTextured"), "CubemapTextured Material");
+
 		Material* iblMaterial					= new Material(shaderManager.getShaderTechnique("Ibl"), "Ibl Material");
 
 		/*********************************
@@ -237,6 +244,17 @@ namespace TropicalEngine
 
 		Texture* chestDiff					= textureManager.Load("Steampunk Chest Albedo", "./Assets/TestAssets/SteampunkChest_Diffuse.tga");
 		Texture* chestNRM					= textureManager.Load("Steampunk Chest Normals", "./Assets/TestAssets/SteampunkChest_NRM.tga");
+
+		//CubemapTexture* cubemapTexture = textureManager.Load("Cubemap Test",
+		//	"./Assets/Core/CubeTop.tga",
+		//	"./Assets/Core/CubeBottom.tga",
+		//	"./Assets/Core/CubeFront.tga",
+		//	"./Assets/Core/CubeBack.tga",
+		//	"./Assets/Core/CubeLeft.tga",
+		//	"./Assets/Core/CubeRight.tga"
+		//	);
+
+		CubemapTexture* cubemapTexture = new CubemapTexture("./Assets/TestAssets/TestSky.exr", "Cubemap Test");
 
 		Texture* skyboxTexture = textureManager.Load("Skybox Texture", "./Assets/TestAssets/TestSky.exr");
 
@@ -337,6 +355,8 @@ namespace TropicalEngine
 
 		(*skyboxMaterial)["mat_color"] = skyboxTexture;
 		(*cubemapMaterial)["mat_color"] = skyboxTexture;
+
+		(*cubemapTexturedMaterial)["mat_color"] = cubemapTexture;
 
 		(*iblMaterial)["mat_environmentMap"] = skyboxTexture;
 		(*iblMaterial)["mat_color"] = textureManager["Default Texture Albedo"];
@@ -503,7 +523,7 @@ namespace TropicalEngine
 		*********************************/
 
 		Entity* phongExample = new Entity(glm::vec3(0.0f, 0.0f, 0.0f), glm::quat(), glm::vec3(1.0f, 1.0f, 1.0f));
-		ModelComponent* phongModelC = new ModelComponent(phongExample, cubemapMaterial, modelManager["Torus"]);
+		ModelComponent* phongModelC = new ModelComponent(phongExample, cubemapTexturedMaterial, modelManager["Sphere"]);
 		phongExample->name = QString("Phong Example");
 		level->getRoot()->AttachSubobject(phongExample);
 

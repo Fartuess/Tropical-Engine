@@ -18,6 +18,7 @@ namespace TropicalEngine
 	{
 	public:
 		friend class Texture;
+		friend class CubemapTexture;
 
 		#pragma region documentation
 		/**
@@ -63,6 +64,9 @@ namespace TropicalEngine
 		  */
 		#pragma endregion
 		Texture* const operator[](QString name)	const	{ return textures[name]; };
+
+		TextureData* LoadData(QString fileUrl, bool flipY = false);
+
 		#pragma region documentation
 		/**
 		  * \brief Loads Texture from a file.
@@ -72,6 +76,20 @@ namespace TropicalEngine
 		  */
 		#pragma endregion
 		Texture* Load(QString name, QString fileUrl);
+		#pragma region documentation
+		/**
+		  * \brief Loads CubemapTexture from six files.
+		  *
+		  * @param name Name to be set for loaded CubemapTexture.
+		  * @param fileUrlTop Path to file for top Texture.
+		  * @param fileUrlBottom Path to file for bottom Texture.
+		  * @param fileUrlFront Path to file for front Texture.
+		  * @param fileUrlBack Path to file for back Texture.
+		  * @param fileUrlLeft Path to file for left Texture.
+		  * @param fileUrlRight Path to file for right Texture.
+		  */
+		#pragma endregion
+		class CubemapTexture* Load(QString name, QString fileUrlTop, QString fileUrlBottom, QString fileUrlFront, QString fileUrlBack, QString fileUrlLeft, QString fileUrlRight);
 
 		#pragma region documentation
 		/**
@@ -90,6 +108,8 @@ namespace TropicalEngine
 		void FlushTexture(QString name, bool forced = false);
 
 		Texture* Load(QString name, QString fileUrl, Texture* textureTarget);
+
+		class CubemapTexture* Load(QString name, class CubemapTexture* textureTarget);
 	};
 
 }
