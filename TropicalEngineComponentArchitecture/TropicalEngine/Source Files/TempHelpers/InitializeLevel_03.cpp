@@ -100,6 +100,10 @@ namespace TropicalEngine
 		ShaderTechnique* wardAnisoTechnique = new ShaderTechnique("WardAniso", &CommonMeshShaderBuilder::instance());
 		wardAnisoTechnique->setInput("Lighting Model", "./Shader Files/LightingModels/WardAnisotropicLightingModel.glsl");
 
+		ShaderTechnique* celShadingTechnique = new ShaderTechnique("CelShading", &CommonMeshShaderBuilder::instance());
+		celShadingTechnique->setInput("Lighting Model", "./Shader Files/LightingModels/CelShadingLightingModel.glsl");
+		celShadingTechnique->setInput("Surface Shader", "./Shader Files/SurfaceShaders/Textured.glsl");
+
 		ShaderTechnique* texturedLambertTechnique = new ShaderTechnique("LambertTextured", &CommonMeshShaderBuilder::instance());
 		texturedLambertTechnique->setInput("Lighting Model", "./Shader Files/LightingModels/LambertLightingModel.glsl");
 		texturedLambertTechnique->setInput("Surface Shader", "./Shader Files/SurfaceShaders/Textured.glsl");
@@ -148,12 +152,17 @@ namespace TropicalEngine
 
 		ShaderTechnique* cubemapTexturedTechnique = new ShaderTechnique("CubemapTextured", &CommonMeshShaderBuilder::instance());
 		cubemapTexturedTechnique->setInput("Lighting Model", "./Shader Files/LightingModels/UnlitLightingModel.glsl");
-		cubemapTexturedTechnique->setInput("Surface Shader", "./Shader Files/SurfaceShaders/TexturedCubemap.glsl");
+		cubemapTexturedTechnique->setInput("Surface Shader", "./Shader Files/SurfaceShaders/TexturedCubemapReflected.glsl");
 
 		ShaderTechnique* iblTechnique = new ShaderTechnique("Ibl", &CommonMeshShaderBuilder::instance());
 		iblTechnique->setInput("Lighting Model", "./Shader Files/LightingModels/BlinnPhongLightingModel.glsl");
 		iblTechnique->setInput("Custom Lighting", "./Shader Files/CustomLighting/ImageBasedLighting.glsl");
 		iblTechnique->setInput("Surface Shader", "./Shader Files/SurfaceShaders/BumpTextured.glsl");
+
+		ShaderTechnique* iblCubemapTechnique = new ShaderTechnique("IblCubemap", &CommonMeshShaderBuilder::instance());
+		iblCubemapTechnique->setInput("Lighting Model", "./Shader Files/LightingModels/BlinnPhongLightingModel.glsl");
+		iblCubemapTechnique->setInput("Custom Lighting", "./Shader Files/CustomLighting/ImageBasedLightingCubemap.glsl");
+		iblCubemapTechnique->setInput("Surface Shader", "./Shader Files/SurfaceShaders/BumpTextured.glsl");
 
 		//Adding shaders to the internal package of the level.
 		//helperAsset = new Asset("Phong Shader", shaderManager["Phong"]);
@@ -195,6 +204,8 @@ namespace TropicalEngine
 		Material* wardIsoMaterial				= new Material(shaderManager.getShaderTechnique("WardIso"), "Isotropic Ward Material");
 		Material* wardAnisoMaterial				= new Material(shaderManager.getShaderTechnique("WardAniso"), "Anisotropic Ward Material");
 
+		Material* celShadingMaterial = new Material(shaderManager.getShaderTechnique("CelShading"), "Cel Shading Material");
+
 		Material* texturedMaterial				= new Material(shaderManager.getShaderTechnique("LambertTextured"), "Textured Material");
 		Material* bumpedMaterial				= new Material(shaderManager.getShaderTechnique("PhongBumpmapped"), "Bumped Material");
 		Material* maskedMaterial				= new Material(shaderManager.getShaderTechnique("BlinnBumpmappedMasked"), "Masked Material");
@@ -213,6 +224,8 @@ namespace TropicalEngine
 		Material* cubemapTexturedMaterial = new Material(shaderManager.getShaderTechnique("CubemapTextured"), "CubemapTextured Material");
 
 		Material* iblMaterial					= new Material(shaderManager.getShaderTechnique("Ibl"), "Ibl Material");
+
+		Material* iblCubemapMaterial = new Material(shaderManager.getShaderTechnique("IblCubemap"), "IblCubemap Material");
 
 		/*********************************
 		*
@@ -245,16 +258,16 @@ namespace TropicalEngine
 		Texture* chestDiff					= textureManager.Load("Steampunk Chest Albedo", "./Assets/TestAssets/SteampunkChest_Diffuse.tga");
 		Texture* chestNRM					= textureManager.Load("Steampunk Chest Normals", "./Assets/TestAssets/SteampunkChest_NRM.tga");
 
-		//CubemapTexture* cubemapTexture = textureManager.Load("Cubemap Test",
-		//	"./Assets/Core/CubeTop.tga",
-		//	"./Assets/Core/CubeBottom.tga",
-		//	"./Assets/Core/CubeFront.tga",
-		//	"./Assets/Core/CubeBack.tga",
-		//	"./Assets/Core/CubeLeft.tga",
-		//	"./Assets/Core/CubeRight.tga"
-		//	);
+		CubemapTexture* cubemapTexture = textureManager.Load("Cubemap Test",
+			"./Assets/TestAssets/TestSky_Top.exr",
+			"./Assets/TestAssets/TestSky_Bottom.exr",
+			"./Assets/TestAssets/TestSky_Front.exr",
+			"./Assets/TestAssets/TestSky_Back.exr",
+			"./Assets/TestAssets/TestSky_Left.exr",
+			"./Assets/TestAssets/TestSky_Right.exr"
+			);
 
-		CubemapTexture* cubemapTexture = new CubemapTexture("./Assets/TestAssets/TestSky.exr", "Cubemap Test");
+		//CubemapTexture* cubemapTexture = new CubemapTexture("./Assets/TestAssets/TestSky.exr", "Cubemap Test");
 
 		Texture* skyboxTexture = textureManager.Load("Skybox Texture", "./Assets/TestAssets/TestSky.exr");
 
@@ -319,6 +332,8 @@ namespace TropicalEngine
 		(*wardAnisoMaterial)["mat_color"]				= new glm::vec3(1.0f, 0.7f, 0.0f);
 		(*wardAnisoMaterial)["mat_roughness"]			= new glm::vec2(0.5f, 0.1f);
 
+		(*celShadingMaterial)["mat_color"] = textureManager["Default Texture Albedo"];
+
 		(*texturedMaterial)["mat_color"] = textureManager["Default Texture Albedo"];
 
 		(*bumpedMaterial)["mat_color"] = textureManager["Default Texture Albedo"];
@@ -362,6 +377,11 @@ namespace TropicalEngine
 		(*iblMaterial)["mat_color"] = textureManager["Default Texture Albedo"];
 		(*iblMaterial)["mat_normal"] = testingTextureNormal;
 		(*iblMaterial)["mat_specularExponent"] = new float(40.0f);
+
+		(*iblCubemapMaterial)["mat_environmentMap"] = cubemapTexture;
+		(*iblCubemapMaterial)["mat_color"] = textureManager["Default Texture Albedo"];
+		(*iblCubemapMaterial)["mat_normal"] = testingTextureNormal;
+		(*iblCubemapMaterial)["mat_specularExponent"] = new float(20.0f);
 
 		//Adding materials to the internal package of the level.
 		helperAsset = new Asset("Phong Material", materialManager["Phong Material"]);
@@ -523,7 +543,7 @@ namespace TropicalEngine
 		*********************************/
 
 		Entity* phongExample = new Entity(glm::vec3(0.0f, 0.0f, 0.0f), glm::quat(), glm::vec3(1.0f, 1.0f, 1.0f));
-		ModelComponent* phongModelC = new ModelComponent(phongExample, cubemapTexturedMaterial, modelManager["Sphere"]);
+		ModelComponent* phongModelC = new ModelComponent(phongExample, celShadingMaterial, modelManager["Sphere"]);
 		phongExample->name = QString("Phong Example");
 		level->getRoot()->AttachSubobject(phongExample);
 
@@ -533,7 +553,7 @@ namespace TropicalEngine
 		level->getRoot()->AttachSubobject(phongBlinnExample);
 
 		Entity* BumpMapExample = new Entity(glm::vec3(8.0f, 0.0f, 0.0f), glm::quat(), glm::vec3(1.0f, 1.0f, 1.0f));
-		ModelComponent* bumpMapModelC = new ModelComponent(BumpMapExample, iblMaterial, modelManager.getModel("TestModel2"));
+		ModelComponent* bumpMapModelC = new ModelComponent(BumpMapExample, iblCubemapMaterial, modelManager.getModel("TestModel2"));
 		BumpMapExample->name = QString("Bump mapping Example");
 		level->getRoot()->AttachSubobject(BumpMapExample);
 

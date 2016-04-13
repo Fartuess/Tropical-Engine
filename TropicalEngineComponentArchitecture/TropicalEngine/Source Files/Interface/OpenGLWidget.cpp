@@ -52,6 +52,8 @@ namespace TropicalEngine
 		//glFrontFace(GL_CCW);
 		glDepthFunc(GL_LEQUAL);
 
+		glEnable(GL_TEXTURE_CUBE_MAP_SEAMLESS);
+
 		//widgetFramebuffer = new RenderTexture("Viewport_color", 1024, 1024);
 		//widgetFramebuffer->BindFramebuffer();
 		//RenderTexture::BindDefaultFramebuffer();

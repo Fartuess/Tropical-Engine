@@ -384,7 +384,10 @@ namespace TropicalEngine
 		if (!Success)
 		{
 			glGetProgramInfoLog(shaderProgram, sizeof(ErrorLog), NULL, ErrorLog);
-			throw ShaderException("Invalid shader program: " + QString(ErrorLog), this);
+
+			// TODO: Validation checks correctness at moment of creation shader. But shader state might become correct later.
+
+			//throw ShaderException("Invalid shader program: " + QString(ErrorLog), this);
 		}
 
 		vertexLocation = glGetAttribLocation(this->shaderProgram, "a_vertex");

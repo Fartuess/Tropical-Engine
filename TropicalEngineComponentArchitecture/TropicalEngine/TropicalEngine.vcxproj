@@ -15,7 +15,9 @@
     <None Include="Shader Files\Core\Channel.glsl" />
     <None Include="Shader Files\Core\ShaderCore_Header.glsl" />
     <None Include="Shader Files\CustomLighting\ImageBasedLighting.glsl" />
+    <None Include="Shader Files\CustomLighting\ImageBasedLightingCubemap.glsl" />
     <None Include="Shader Files\LightingModels\BlinnPhongLightingModel.glsl" />
+    <None Include="Shader Files\LightingModels\CelShadingLightingModel.glsl" />
     <None Include="Shader Files\LightingModels\LambertLightingModel.glsl" />
     <None Include="Shader Files\LightingModels\PhongLightingModel.glsl" />
     <None Include="Shader Files\LightingModels\CookTorranceLightingModel.glsl" />
