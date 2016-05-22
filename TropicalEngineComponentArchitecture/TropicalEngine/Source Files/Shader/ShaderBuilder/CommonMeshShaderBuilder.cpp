@@ -74,7 +74,7 @@ namespace TropicalEngine
 			fragmentSource += "\n";
 			fragmentSource += Shader::PreprocessShaderFile("./Shader Files/Core/ShaderCore.glsl");
 
-			std::cout << fragmentSource.toStdString();
+			//std::cout << fragmentSource.toStdString();
 
 			shader = Shader::createShaderFromSources(vertexSource, tessalationControlSource, tessalationEvaluationSource, fragmentSource, shaderName + "_color");
 		}

@@ -40,6 +40,8 @@ namespace TropicalEngine
 		#pragma endregion
 		Model* Load(QString name, QString fileUrl) override;
 
+		Model* Load(QString name, class FbxMesh* mesh);
+
 	private:
 		FbxManager* SdkManager;
 		FbxIOSettings* IOSettings;

@@ -50,7 +50,7 @@ namespace TropicalEngine
 		  * @param scale Scale of Entity relative to parent.
 		  */
 		#pragma endregion
-		Entity(glm::vec3 position = glm::vec3(0.0f), glm::quat rotation = glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3 scale = glm::vec3(1.0f));
+		Entity(glm::vec3 position = glm::vec3(0.0f), glm::quat rotation = glm::quat(), glm::vec3 scale = glm::vec3(1.0f));
 		#pragma region documentation
 		/**
 		  * \brief Constructor of Entity.

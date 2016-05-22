@@ -47,6 +47,8 @@ namespace TropicalEngine
 
 	Model* ModelBuilder::Load(QString fileUrl)
 	{
+		// TODO: Implement it.
+
 		return nullptr;
 	}
 

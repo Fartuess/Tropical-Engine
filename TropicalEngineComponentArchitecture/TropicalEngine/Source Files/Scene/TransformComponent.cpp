@@ -3,6 +3,8 @@
 #include <Scene/TransformComponent.h>
 #include <Scene/Entity.h>
 
+#include <QtCore/qdebug.h>
+
 namespace TropicalEngine
 {
 
@@ -10,7 +12,7 @@ namespace TropicalEngine
 
 	TransformComponent::TransformComponent() {}
 
-	TransformComponent::TransformComponent(Entity* owner, glm::vec3 localPosition, glm::quat localRotation, glm::vec3 localScale) :Component(owner)
+	TransformComponent::TransformComponent(Entity* owner, glm::vec3 localPosition, glm::quat localRotation, glm::vec3 localScale) : Component(owner)
 	{
 		this->localPosition = localPosition;
 		this->localRotation = localRotation;
@@ -156,14 +158,17 @@ namespace TropicalEngine
 	void TransformComponent::LocalRotate(glm::quat rotation)
 	{
 		glm::quat helper;
-		if (glm::axis(rotation) == glm::vec3(0.0f, 1.0f, 0.0f))
-		{
-			helper = glm::normalize(rotation) * localRotation;
-		}
-		else
-		{
-			helper = glm::normalize(rotation) * localRotation;
-		}
+		//if (glm::axis(rotation) == glm::vec3(0.0f, 1.0f, 0.0f))
+		//{
+		//	helper = glm::normalize(rotation) * localRotation;
+		//}
+		//else
+		//{
+		//	helper = glm::normalize(rotation) * localRotation;
+		//}
+
+		helper = glm::rotate(localRotation, glm::angle(rotation), glm::axis(rotation));
+
 		setLocalRotation(helper);
 	}
 
@@ -260,50 +265,29 @@ namespace TropicalEngine
 
 	void TransformComponent::EvaluateInternal()
 	{
-		// TODO: make sure transformations work correctly.
+		glm::mat4 translationMatrix = glm::translate(glm::mat4(), localPosition);
+		glm::mat4 rotationMatrix = glm::mat4_cast(localRotation);
+		glm::mat4 scalingMatrix = glm::scale(glm::mat4(), localScale);
 
 		if (owner->getParrent() == nullptr)
 		{
-			//transformMatrix = glm::translate(glm::rotate(glm::scale(glm::mat4(1.0f), localScale), glm::angle(localRotation), glm::axis(localRotation)), localPosition);
-			//normalMatrix = glm::mat3(glm::translate(glm::rotate(glm::transpose(glm::scale(glm::mat4(1.0f), localScale)), glm::angle(localRotation), glm::axis(localRotation)), localPosition));
+			transformMatrix = translationMatrix * rotationMatrix * scalingMatrix;
 
-			//transformMatrix = glm::scale(glm::rotate(glm::translate(glm::mat4(1.0f), localPosition), glm::angle(localRotation), glm::axis(localRotation)), localScale);
-			transformMatrix = glm::translate(glm::mat4(), localPosition)
-				* glm::rotate(glm::mat4(), glm::angle(localRotation), glm::axis(localRotation))
-				* glm::scale(glm::mat4(), localScale);
-			//normalMatrix = glm::mat3(glm::translate(glm::rotate(glm::transpose(glm::scale(glm::mat4(1.0f), localScale)), glm::angle(localRotation), glm::axis(localRotation)), localPosition));
-			normalMatrix = glm::mat3(
-				glm::translate(glm::mat4(), localPosition)
-				* glm::rotate(glm::mat4(), glm::angle(localRotation), glm::axis(localRotation))
-				* glm::transpose(glm::scale(glm::mat4(), localScale))
-				);
+			normalMatrix = glm::mat3(translationMatrix * rotationMatrix * glm::transpose(scalingMatrix));
 
-
-			front = glm::vec3(glm::rotate(glm::mat4(1.0f), glm::angle(localRotation), glm::axis(localRotation)) * glm::vec4(0.0f, 0.0f, -1.0f, 1.0f));
-			up = glm::vec3(glm::rotate(glm::mat4(1.0f), glm::angle(localRotation), glm::axis(localRotation)) * glm::vec4(0.0f, 1.0f, 0.0f, 1.0f));
-			right = glm::vec3(glm::rotate(glm::mat4(1.0f), glm::angle(localRotation), glm::axis(localRotation)) * glm::vec4(1.0f, 0.0f, 0.0f, 1.0f));
+			front = glm::vec3(rotationMatrix * glm::vec4(0.0f, 0.0f, -1.0f, 1.0f));
+			up = glm::vec3(rotationMatrix * glm::vec4(0.0f, 1.0f, 0.0f, 1.0f));
+			right = glm::vec3(rotationMatrix * glm::vec4(1.0f, 0.0f, 0.0f, 1.0f));
 		}
 		else
 		{
-			//transformMatrix = owner->getParrent()->transform.getTransformMatrix() * glm::translate(glm::rotate(glm::scale(glm::mat4(1.0f), localScale), glm::angle(localRotation), glm::axis(localRotation)), localPosition);
-			//normalMatrix = glm::mat3(glm::translate(glm::rotate(glm::transpose(glm::scale(glm::mat4(1.0f), localScale) * owner->getParrent()->transform.getTransformMatrix()), glm::angle(localRotation), glm::axis(localRotation)), localPosition));
+			transformMatrix = owner->getParrent()->transform.getTransformMatrix() * translationMatrix * rotationMatrix * scalingMatrix;
 
-			//transformMatrix = owner->getParrent()->transform.getTransformMatrix() * glm::scale(glm::rotate(glm::translate(glm::mat4(1.0f), localPosition), glm::angle(localRotation), glm::axis(localRotation)), localScale);
-			transformMatrix = owner->getParrent()->transform.getTransformMatrix()
-				* glm::translate(glm::mat4(), localPosition)
-				* glm::rotate(glm::mat4(), glm::angle(localRotation), glm::axis(localRotation))
-				* glm::scale(glm::mat4(), localScale);
-			//normalMatrix = glm::mat3(glm::translate(glm::rotate(glm::transpose(glm::scale(glm::mat4(1.0f), localScale) * owner->getParrent()->transform.getTransformMatrix()), glm::angle(localRotation), glm::axis(localRotation)), localPosition));
-			normalMatrix = owner->getParrent()->transform.getNormalMatrix()
-				* glm::mat3(
-				glm::translate(glm::mat4(), localPosition)
-				* glm::rotate(glm::mat4(), glm::angle(localRotation), glm::axis(localRotation))
-				* glm::transpose(glm::scale(glm::mat4(), localScale))
-				);
+			normalMatrix = owner->getParrent()->transform.getNormalMatrix() * glm::mat3(translationMatrix * rotationMatrix * glm::transpose(scalingMatrix));
 
-			front = glm::normalize(glm::vec3(owner->getParrent()->transform.getTransformMatrix() * glm::rotate(glm::mat4(1.0f), glm::angle(localRotation), glm::axis(localRotation)) * glm::vec4(0.0f, 0.0f, -1.0f, 1.0f)));
-			up = glm::normalize(glm::vec3(owner->getParrent()->transform.getTransformMatrix() * glm::rotate(glm::mat4(1.0f), glm::angle(localRotation), glm::axis(localRotation)) * glm::vec4(0.0f, 1.0f, 0.0f, 1.0f)));
-			right = glm::normalize(glm::vec3(owner->getParrent()->transform.getTransformMatrix() * glm::rotate(glm::mat4(1.0f), glm::angle(localRotation), glm::axis(localRotation)) * glm::vec4(1.0f, 0.0f, 0.0f, 1.0f)));
+			front = glm::normalize(glm::vec3(owner->getParrent()->transform.getTransformMatrix() * rotationMatrix * glm::vec4(0.0f, 0.0f, -1.0f, 1.0f)));
+			up = glm::normalize(glm::vec3(owner->getParrent()->transform.getTransformMatrix() * rotationMatrix * glm::vec4(0.0f, 1.0f, 0.0f, 1.0f)));
+			right = glm::normalize(glm::vec3(owner->getParrent()->transform.getTransformMatrix() * rotationMatrix * glm::vec4(1.0f, 0.0f, 0.0f, 1.0f)));
 		}
 	}
 

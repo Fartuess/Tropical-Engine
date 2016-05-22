@@ -16,10 +16,14 @@ namespace TropicalEngine
 		LevelManager(void);
 		~LevelManager(void);
 
-		void LoadLevel(QString fileUrl, QString name);
+		Level* LoadLevel(QString fileUrl, QString name);
+
+		static void AddImporter(class AbstractLevelImporter* importer);
 
 	private:
-		QHash<QString, Level> levels;
+		QHash<QString, Level*> levels;
+
+		static QHash<QString, class AbstractLevelImporter*> supportedExtensions;
 
 		void FlushLevel(QString name);
 	};

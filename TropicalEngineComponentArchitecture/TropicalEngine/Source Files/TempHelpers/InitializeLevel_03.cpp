@@ -33,6 +33,7 @@
 #include <Camera/CameraComponent.h>
 
 #include <Scene/Entity.h>
+#include <Scene/LevelImporter/FbxLevelImporter.h>
 
 #include <Light/DirectionalLightComponent.h>
 #include <Light/PointLightComponent.h>
@@ -233,6 +234,7 @@ namespace TropicalEngine
 		*
 		*********************************/
 
+		// TODO: Figure out way that it is not needed.
 		QtTextureImporter::instance();
 		OpenExrTextureImporter::instance();
 
@@ -686,9 +688,12 @@ namespace TropicalEngine
 		FbxExample2ModelC->lightedBy.append(spotLightComponent);
 		FbxExample3ModelC->lightedBy.append(spotLightComponent);
 
-		scene->LoadLevel(level, "TestLevel");
+		//scene->LoadLevel(level, "TestLevel");
 		scene->setCurrentCamera(mainCameraComponent);
 		scene->mainLight = new DirectionalLightComponent(level->getRoot(), glm::vec3(1.0f, 1.0f, 0.9f), glm::vec3(0.5, 0.6, 1.0), 1.0f);
+
+		scene->LoadLevel(FbxLevelImporter::instance().Load("Sponza", "./Assets/Levels/Sponza/Sponza.fbx"), "Sponza");
+		//scene->LoadLevel(FbxLevelImporter::instance().Load("Sponza", "./Assets/Levels/TransformTest/TransformTest2.fbx"), "TransformTest");
 
 		phongModelC->lightedBy.append(scene->mainLight);
 		phongBlinnModelC->lightedBy.append(scene->mainLight);
