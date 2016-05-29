@@ -599,7 +599,8 @@ namespace TropicalEngine
 		DistanceTessellationExample->name = QString("Distance Tessellation Example");
 		level->getRoot()->AttachSubobject(DistanceTessellationExample);
 
-		Entity* VectorTessellationExample = new Entity(glm::vec3(44.0f, 0.0f, 0.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
+		Entity* VectorTessellationExample = new Entity(glm::vec3(44.0f, 0.0f, 0.0f));
+		VectorTessellationExample->transform.LocalRotate(glm::angleAxis(-90.0f, glm::vec3(0.0f, 1.0f, 0.0f)));
 		ModelComponent* vectorTessModelC = new ModelComponent(VectorTessellationExample, vectorTessellationMaterial, modelManager.getModel("VectorCube"));
 		VectorTessellationExample->name = QString("Vector Displacement Tessellation Example");
 		level->getRoot()->AttachSubobject(VectorTessellationExample);
@@ -625,7 +626,7 @@ namespace TropicalEngine
 		TempPlayerComponent* cameraController = new TempPlayerComponent(mainCamera);
 		level->getRoot()->AttachSubobject(mainCamera);
 
-		Entity* lightModelTestingCamera = new Entity(glm::vec3(5.0f, 5.0f, 5.0f), glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
+		Entity* lightModelTestingCamera = new Entity(glm::vec3(5.0f, 5.0f, 5.0f), glm::angleAxis(180.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
 		CameraComponent* lightModelTestingCameraComponent = new CameraComponent(lightModelTestingCamera, glm::vec3(0.0f, 0.0f, -1.0f), glm::vec3(0.0f, 1.0f, 0.0f), 40.0f, 4.0f / 3.0f, 0.1f, 10000.0f);
 		lightModelTestingCamera->name = QString("Light Model Testing Camera");
 		level->getRoot()->AttachSubobject(lightModelTestingCamera);
@@ -688,12 +689,12 @@ namespace TropicalEngine
 		FbxExample2ModelC->lightedBy.append(spotLightComponent);
 		FbxExample3ModelC->lightedBy.append(spotLightComponent);
 
-		//scene->LoadLevel(level, "TestLevel");
+		scene->LoadLevel(level, "TestLevel");
 		scene->setCurrentCamera(mainCameraComponent);
 		scene->mainLight = new DirectionalLightComponent(level->getRoot(), glm::vec3(1.0f, 1.0f, 0.9f), glm::vec3(0.5, 0.6, 1.0), 1.0f);
 
-		scene->LoadLevel(FbxLevelImporter::instance().Load("Sponza", "./Assets/Levels/Sponza/Sponza.fbx"), "Sponza");
-		//scene->LoadLevel(FbxLevelImporter::instance().Load("Sponza", "./Assets/Levels/TransformTest/TransformTest2.fbx"), "TransformTest");
+		//scene->LoadLevel(FbxLevelImporter::instance().Load("Sponza", "./Assets/Levels/Sponza/Sponza.fbx"), "Sponza");
+		//scene->LoadLevel(FbxLevelImporter::instance().Load("Sponza", "./Assets/Levels/TransformTest/TransformTest4.fbx"), "TransformTest");
 
 		phongModelC->lightedBy.append(scene->mainLight);
 		phongBlinnModelC->lightedBy.append(scene->mainLight);

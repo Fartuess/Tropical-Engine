@@ -109,7 +109,7 @@ namespace TropicalEngine
 			{
 				PointLightComponent* light = static_cast<PointLightComponent*>(lightedBy[i]);
 				TransformComponent& lightTransform = light->getOwner()->transform;
-				glUniform3fv(usedShader->pointLightPositionLocations[i], 1, glm::value_ptr(-lightTransform.getLocalPosition()));	// TODO: Figure out why negation is required.
+				glUniform3fv(usedShader->pointLightPositionLocations[i], 1, glm::value_ptr(lightTransform.getLocalPosition()));	// TODO: Figure out why negation is required.
 				glUniform3fv(usedShader->pointLightColorLocations[i], 1, glm::value_ptr(light->color));
 				glUniform1f(usedShader->pointLightBrightnessLocations[i], light->brightness);
 				glUniform1f(usedShader->pointLightRadiusLocations[i], light->getRadius());
@@ -119,7 +119,7 @@ namespace TropicalEngine
 			{
 				SpotLightComponent* light = static_cast<SpotLightComponent*>(lightedBy[i]);
 				TransformComponent& lightTransform = light->getOwner()->transform;
-				glUniform3fv(usedShader->spotLightPositionLocations[i], 1, glm::value_ptr(lightTransform.getLocalPosition() * glm::vec3(-1.0, 1.0, -1.0)));
+				glUniform3fv(usedShader->spotLightPositionLocations[i], 1, glm::value_ptr(lightTransform.getLocalPosition() * glm::vec3(1.0, 1.0, 1.0)));
 				glUniform3fv(usedShader->spotLightDirectionLocations[i], 1, glm::value_ptr(glm::vec3(glm::rotate(glm::mat4(), glm::angle(lightTransform.getLocalRotation()), glm::axis(lightTransform.getLocalRotation())) * glm::vec4(lightTransform.getUp(), 1.0f))));
 				glUniform3fv(usedShader->spotLightColorLocations[i], 1, glm::value_ptr(light->color));
 				glUniform1f(usedShader->spotLightBrightnessLocations[i], light->brightness);

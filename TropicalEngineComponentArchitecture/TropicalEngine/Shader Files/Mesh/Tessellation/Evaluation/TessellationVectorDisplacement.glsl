@@ -33,21 +33,25 @@ out vec3 v_globalPosition;
 void main()
 {
 	// Interpolate the attributes of the output vertex using the barycentric coordinates
-	v_normal = u_normalMatrix * interpolate3D(v_normal_tcs[0], v_normal_tcs[1], v_normal_tcs[2]);
-	v_tangent = u_normalMatrix * interpolate3D(v_tangent_tcs[0], v_tangent_tcs[1], v_tangent_tcs[2]);
-	v_bitangent = u_normalMatrix * interpolate3D(v_bitangent_tcs[0], v_bitangent_tcs[1], v_bitangent_tcs[2]);
+	v_normal = interpolate3D(v_normal_tcs[0], v_normal_tcs[1], v_normal_tcs[2]);
+	v_tangent = interpolate3D(v_tangent_tcs[0], v_tangent_tcs[1], v_tangent_tcs[2]);
+	v_bitangent = interpolate3D(v_bitangent_tcs[0], v_bitangent_tcs[1], v_bitangent_tcs[2]);
 	v_texcoord = interpolate2D(v_texcoord_tcs[0], v_texcoord_tcs[1], v_texcoord_tcs[2]);
 
 	vec3 displacementVector = normalize(texture(mat_displacementTexture, v_texcoord).rgb - vec3(0.5));
 
 	float displacementAmount = texture(mat_displacementTexture, v_texcoord).a;
 
-	vec4 displacement = vec4((displacementVector.r * v_tangent + (-displacementVector.g) * v_bitangent + displacementVector.b * v_normal) * displacementAmount * mat_displacementScale, 0.0);
+	vec4 displacement = vec4(((displacementVector.r) * v_tangent + (-displacementVector.g) * v_bitangent + (displacementVector.b) * v_normal) * displacementAmount * mat_displacementScale, 0.0);
 
 	vec4 helper = u_transformationMatrix * (vec4(interpolate3D(v_vertex_tcs[0].xyz, v_vertex_tcs[1].xyz, v_vertex_tcs[2].xyz), 1.0) + displacement);
 
 	v_eye = -vec3(helper) + u_cameraPosition;
 	v_globalPosition = helper.xyz;
+
+	v_normal = u_normalMatrix * v_normal;
+	v_tangent = u_normalMatrix * v_tangent;
+	v_bitangent = u_normalMatrix * v_bitangent;
 
 	gl_Position = u_projectionMatrix * u_cameraMatrix * (helper);
 }

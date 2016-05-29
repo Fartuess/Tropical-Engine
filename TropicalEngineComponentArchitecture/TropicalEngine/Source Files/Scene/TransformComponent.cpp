@@ -15,7 +15,7 @@ namespace TropicalEngine
 	TransformComponent::TransformComponent(Entity* owner, glm::vec3 localPosition, glm::quat localRotation, glm::vec3 localScale) : Component(owner)
 	{
 		this->localPosition = localPosition;
-		this->localRotation = localRotation;
+		this->localRotation = localRotation * glm::quat();
 		this->localScale = localScale;
 		EvaluateGlobals();
 
@@ -158,14 +158,6 @@ namespace TropicalEngine
 	void TransformComponent::LocalRotate(glm::quat rotation)
 	{
 		glm::quat helper;
-		//if (glm::axis(rotation) == glm::vec3(0.0f, 1.0f, 0.0f))
-		//{
-		//	helper = glm::normalize(rotation) * localRotation;
-		//}
-		//else
-		//{
-		//	helper = glm::normalize(rotation) * localRotation;
-		//}
 
 		helper = glm::rotate(localRotation, glm::angle(rotation), glm::axis(rotation));
 
@@ -273,7 +265,7 @@ namespace TropicalEngine
 		{
 			transformMatrix = translationMatrix * rotationMatrix * scalingMatrix;
 
-			normalMatrix = glm::mat3(translationMatrix * rotationMatrix * glm::transpose(scalingMatrix));
+			normalMatrix = glm::mat3(rotationMatrix * glm::transpose(scalingMatrix));
 
 			front = glm::vec3(rotationMatrix * glm::vec4(0.0f, 0.0f, -1.0f, 1.0f));
 			up = glm::vec3(rotationMatrix * glm::vec4(0.0f, 1.0f, 0.0f, 1.0f));
@@ -283,7 +275,7 @@ namespace TropicalEngine
 		{
 			transformMatrix = owner->getParrent()->transform.getTransformMatrix() * translationMatrix * rotationMatrix * scalingMatrix;
 
-			normalMatrix = owner->getParrent()->transform.getNormalMatrix() * glm::mat3(translationMatrix * rotationMatrix * glm::transpose(scalingMatrix));
+			normalMatrix = owner->getParrent()->transform.getNormalMatrix() * glm::mat3(rotationMatrix * glm::transpose(scalingMatrix));
 
 			front = glm::normalize(glm::vec3(owner->getParrent()->transform.getTransformMatrix() * rotationMatrix * glm::vec4(0.0f, 0.0f, -1.0f, 1.0f)));
 			up = glm::normalize(glm::vec3(owner->getParrent()->transform.getTransformMatrix() * rotationMatrix * glm::vec4(0.0f, 1.0f, 0.0f, 1.0f)));

@@ -23,7 +23,7 @@ out vec2 v_texcoord_tcs[];
 
 float GetTessLevel(float Distance0, float Distance1, float length)
 {
-	float AvgDistance = ((Distance0 + Distance1) / 2.0);                                       
+	float AvgDistance = ((Distance0 + Distance1) / 2.0);
 	return max(1.0, ((1.0 * mat_tesselationMultiplier) / ((sqrt(AvgDistance)))) * (length));
 }
 
