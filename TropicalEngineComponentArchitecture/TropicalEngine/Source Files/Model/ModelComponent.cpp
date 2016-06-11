@@ -19,6 +19,7 @@
 #include <Light/DirectionalLightComponent.h>
 #include <Light/PointLightComponent.h>
 #include <Light/SpotLightComponent.h>
+#include <Light/AmbientLightComponent.h>
 
 namespace TropicalEngine
 {
@@ -32,6 +33,7 @@ namespace TropicalEngine
 		this->model = model;
 		this->castingShadows = castingShadows;
 
+		InitializeType();
 		InitializeComponentType();
 	}
 
@@ -46,7 +48,7 @@ namespace TropicalEngine
 	ModelComponent ModelComponent::InitializeType()
 	{
 		ModelComponent& modelComponent = *(new ModelComponent());
-		AssetManager::addAssetType("Model Component", &modelComponent);
+		AssetManager::instance().addAssetType("Model Component", &modelComponent);
 		return modelComponent;
 	}
 
@@ -93,9 +95,18 @@ namespace TropicalEngine
 		glUniformMatrix4fv(usedShader->getCameraMatrixLocation(), 1, GL_FALSE, glm::value_ptr(viewer->getCameraMatrix()));
 		glUniformMatrix4fv(usedShader->getProjectionMatrixLocation(), 1, GL_FALSE, glm::value_ptr(viewer->getProjectionMatrix()));
 
+		// TODO: This for range doesn't count directional and ambient light.
 		for (int i = 0; i < glm::min(usedShader->pointLightPositionLocations.size() + usedShader->spotLightPositionLocations.size(), lightedBy.size()); i++)
 		{
 			QString lightType = lightedBy[i]->getTypeName();
+
+			if (lightType == "AmbientLightComponent")
+			{
+				AmbientLightComponent* ambientLight = static_cast<AmbientLightComponent*>(lightedBy[i]);
+
+				glUniform1f(usedShader->ambientLightBrightnessLocation, ambientLight->brightness);
+				glUniform3fv(usedShader->ambientLightColorLocation, 1, glm::value_ptr(ambientLight->color));
+			}
 
 			if (lightType == "DirectionalLightComponent")
 			{
@@ -103,7 +114,6 @@ namespace TropicalEngine
 				glUniform3fv(usedShader->dirLightVectorLocation, 1, glm::value_ptr(directionalLight->getDirection()));
 				glUniform3fv(usedShader->dirLightColorLocation, 1, glm::value_ptr(directionalLight->color));
 				glUniform1f(usedShader->dirLightBrightnessLocation, directionalLight->brightness);
-				glUniform1f(usedShader->dirLightAmbientLocation, 0.2f);
 			}
 			else if (lightType == "PointLightComponent")
 			{

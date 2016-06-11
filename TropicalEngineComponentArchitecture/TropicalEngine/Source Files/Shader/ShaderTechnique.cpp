@@ -4,13 +4,18 @@
 
 #include <Shader/ShaderTechnique.h>
 
+#include <Package/AssetManager.h>
+
 #include <Utills/Exception.h>
 
 namespace TropicalEngine
 {
+	bool ShaderTechnique::isTypeInitialized = false;
 
 	ShaderTechnique::ShaderTechnique(QString name, AbstractShaderBuilder* shaderBuilder, bool managed)
 	{
+		InitializeType();
+
 		this->name = name;
 
 		this->shaderBuilder = shaderBuilder;
@@ -27,6 +32,8 @@ namespace TropicalEngine
 
 	ShaderTechnique::ShaderTechnique(QString name, class Shader* shader, QString shaderPass, bool managed)
 	{
+		InitializeType();
+
 		this->name = name;
 
 		this->shaderBuilder = nullptr;
@@ -110,8 +117,39 @@ namespace TropicalEngine
 
 	IDeserializableFromJSON* ShaderTechnique::fromJSON(QJsonObject JSON)
 	{
-		// TODO: Implement it!
-		return nullptr;	// new ShaderTechnique();
+		QString name = JSON["name"].toString();
+
+		//QString debug = JSON["shader builder"].toString();
+
+		AbstractShaderBuilder* shaderBuilder = ShaderManager::instance().getShaderBuilder(JSON["shader builder"].toString());
+
+		ShaderTechnique* shaderTechnique = new ShaderTechnique(name, shaderBuilder);
+
+		for (QJsonValueRef inputJSON : JSON["inputs"].toArray())
+		{
+			QString inputName = inputJSON.toObject()["name"].toString();
+			QString inputPath = inputJSON.toObject()["path"].toString();
+
+			shaderTechnique->setInput(inputName, inputPath);
+		}
+		
+		return shaderTechnique;
+	}
+
+	ShaderTechnique& ShaderTechnique::InitializeType()
+	{
+		ShaderTechnique* shaderTechnique;
+		if (!isTypeInitialized)
+		{
+			shaderTechnique = new ShaderTechnique();
+			AssetManager::instance().addAssetType("ShaderTechnique", shaderTechnique);
+			isTypeInitialized = true;
+		}
+		else
+		{
+			shaderTechnique = (ShaderTechnique*)AssetManager::instance().getTypeHandle("ShaderTechnique");
+		}
+		return *shaderTechnique;
 	}
 
 	//class Shader* generateShaders()

@@ -77,7 +77,7 @@ namespace TropicalEngine
 	TempPlayerComponent TempPlayerComponent::InitializeType()
 	{
 		TempPlayerComponent& tempPlayerComponent = *(new TempPlayerComponent());
-		AssetManager::addAssetType("Temp Player Component", &tempPlayerComponent);
+		AssetManager::instance().addAssetType("Temp Player Component", &tempPlayerComponent);
 		return tempPlayerComponent;
 	}
 

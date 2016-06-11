@@ -1,4 +1,7 @@
 #include <QtCore/qmap.h>
+#include <QtCore/qfileinfo.h>
+#include <QtCore/qfile.h>
+#include <QtCore/qjsondocument.h>
 
 #include <Scene/LevelImporter/FbxLevelImporter.h>
 
@@ -12,8 +15,15 @@
 #include <Shader/ShaderTechnique.h>
 #include <Shader/ShaderBuilder/CommonMeshShaderBuilder.h>
 #include <Shader/Material.h>
+#include <Shader/ShaderManager.h>
+
+#include <Package/AssetManager.h>
+
+#include <Texture/Texture.h>
+#include <Texture/TextureManager.h>
 
 #include <Light/DirectionalLightComponent.h>
+#include <Light/AmbientLightComponent.h>
 
 #include <QtCore/qdebug.h>
 
@@ -44,13 +54,14 @@ namespace TropicalEngine
 
 		// Temporary?
 
-		ShaderTechnique* phongTechnique = new ShaderTechnique("Phong", &CommonMeshShaderBuilder::instance());
+		ShaderTechnique* phongTechnique = new ShaderTechnique("Phong Default", &CommonMeshShaderBuilder::instance());
 		phongTechnique->setInput("Lighting Model", "./Shader Files/LightingModels/PhongLightingModel.glsl");
 
 		Material* defaultMaterial = new Material(phongTechnique, "defaultMaterial");
 
-		// TODO: Remove this temp stuff.
-		DirectionalLightComponent* mainLight = new DirectionalLightComponent(level->getRoot(), glm::vec3(1.0f, 1.0f, 0.9f), glm::vec3(0.5, 0.6, 1.0), 1.0f);
+		DirectionalLightComponent* mainLight = nullptr;
+
+		AmbientLightComponent* ambientLight = nullptr;
 
 		if (Importer->Initialize(fileUrl.toStdString().c_str(), -1, SdkManager->GetIOSettings()))
 		{
@@ -65,6 +76,8 @@ namespace TropicalEngine
 			QList<FbxNode*> helper;
 			QMap<FbxNode*, Entity*> objects;
 			QMap<FbxMesh*, Model*> meshes;
+			QList<ModelComponent*> modelComponents;
+			QMap<FbxSurfaceMaterial*, Material*> materials;
 
 			helper.append(scene->GetRootNode());
 
@@ -196,23 +209,211 @@ namespace TropicalEngine
 
 				objects[it] = object;
 
+				int meshCounter = 0;
+
 				for (int i = 0; i < it->GetNodeAttributeCount(); i++)
 				{
 					FbxNodeAttribute* nodeAttribute = it->GetNodeAttributeByIndex(i);
-					if (nodeAttribute->GetAttributeType() == FbxNodeAttribute::EType::eMesh)
+
+					switch (nodeAttribute->GetAttributeType())
 					{
-						// Temporary solution creates separate meshes and mesh components instead of single mesh with multiple mesh entires.
-
-						FbxMesh* mesh = (FbxMesh*)nodeAttribute;
-						QString meshName = QString(mesh->GetName());
-						if (meshes.contains(mesh) == false)
+						case FbxNodeAttribute::EType::eMesh:
 						{
-							meshes[mesh] = FbxModelImporter::instance().Load(meshName, mesh);
-						}
-						ModelComponent* modelC = new ModelComponent(object, defaultMaterial, meshes[mesh]);
+							// Temporary solution creates separate meshes and mesh components instead of single mesh with multiple mesh entires.
 
-						// TODO: Remove this temp stuff.
-						modelC->lightedBy.append(mainLight);
+							FbxMesh* mesh = (FbxMesh*)nodeAttribute;
+							QString meshName = QString(mesh->GetName());
+							if (meshes.contains(mesh) == false)
+							{
+								meshes[mesh] = FbxModelImporter::instance().Load(meshName, mesh);
+							}
+
+							int materialId = qMin(meshCounter, it->GetMaterialCount() - 1);
+							FbxSurfaceMaterial* _material = it->GetMaterial(materialId);
+							meshCounter++;
+							
+							Material* material = defaultMaterial;
+							if (materials.contains(_material) == false)
+							{
+								QString _materialName = QString(_material->GetName());
+								QStringList _materialNameSplitted = _materialName.split("_");
+
+								bool bShaderTechniqueExists = false;
+								ShaderTechnique* shaderTechnique;
+								if (ShaderManager::instance().containsShaderTechnique(_materialNameSplitted[0]))
+								{
+									shaderTechnique = ShaderManager::instance().getShaderTechnique(_materialNameSplitted[0]);
+									bShaderTechniqueExists = true;
+								}
+								else
+								{
+									QByteArray fileContents;
+									QJsonObject JSON;
+
+									if (QFileInfo(fileUrl.section("/", 0, -2) + "/" + _materialNameSplitted[0] + ".tasset").exists())
+									{
+										QFile shaderTechniqueFile(fileUrl.section("/", 0, -2) + "/" + _materialNameSplitted[0] + ".tasset");
+										shaderTechniqueFile.open(QIODevice::ReadOnly);
+										fileContents = shaderTechniqueFile.readAll();
+										bShaderTechniqueExists = true;
+									}
+									else if (QFileInfo("./Assets/Shaders/" + _materialNameSplitted[0] + ".tasset").exists())
+									{
+										QFile shaderTechniqueFile("./Assets/Shaders/" + _materialNameSplitted[0] + ".tasset");
+										shaderTechniqueFile.open(QIODevice::ReadOnly);
+										fileContents = shaderTechniqueFile.readAll();
+										bShaderTechniqueExists = true;
+									}
+									if (bShaderTechniqueExists)
+									{
+										QJsonDocument JSONDocument = QJsonDocument::fromJson(fileContents);
+										if (!JSONDocument.isNull())
+										{
+											JSON = JSONDocument.object();
+										}
+										else
+										{
+											// TODO: Make this exception more reasonable looking.
+											throw Exception<void>("Shader Technique File couldn't be parsed as JSON properly.", 0);
+										}
+
+										ShaderTechnique::InitializeType();
+										shaderTechnique = (ShaderTechnique*)AssetManager::instance().getTypeHandle("ShaderTechnique")->fromJSON(JSON);
+									}
+								}
+								if (bShaderTechniqueExists)
+								{
+									material = new Material(shaderTechnique, _materialNameSplitted[1]);
+								}
+
+								FbxProperty& itProperty = _material->GetFirstProperty();
+
+								while (itProperty.IsValid())
+								{
+									QStringList parameterNameSplitted = QString(itProperty.GetName()).split("_");
+
+									if (parameterNameSplitted[0] == "mat")
+									{
+										if (material->hasParameter("mat_" + parameterNameSplitted[1]))
+										{
+											// TODO: Check if types are correct otherwise in some cases dung can hit the fan.
+											if (parameterNameSplitted[2] == "float")
+											{
+												float* value = new float(itProperty.Get<FbxDouble>());
+
+												(*material)["mat_" + parameterNameSplitted[1]] = value;
+											}
+											else if (parameterNameSplitted[2] == "vector2")
+											{
+												FbxDouble2 _vector2 = itProperty.Get<FbxDouble2>();
+												glm::vec2* vector2 = new glm::vec2(_vector2[0], _vector2[1]);
+
+												(*material)["mat_" + parameterNameSplitted[1]] = vector2;
+											}
+											else if (parameterNameSplitted[2] == "vector3")
+											{
+												FbxDouble3 _vector3 = itProperty.Get<FbxDouble3>();
+												glm::vec3* vector3 = new glm::vec3(_vector3[0], _vector3[1], _vector3[2]);
+
+												(*material)["mat_" + parameterNameSplitted[1]] = vector3;
+											}
+											else if (parameterNameSplitted[2] == "texture")
+											{
+												QString texturePath = QString((const char*)itProperty.Get<FbxString>());
+
+												QString textureName = texturePath.section(".", -2, -2).section("/", -1);
+
+												Texture* texture;
+												if (TextureManager::instance().hasTexture(textureName))
+												{
+													texture = TextureManager::instance()[textureName];
+												}
+												else
+												{
+													texture = TextureManager::instance().Load(textureName, texturePath);
+												}
+
+												(*material)["mat_" + parameterNameSplitted[1]] = texture;
+
+												// TODO: This is temporary.
+												if (parameterNameSplitted[1] == "specularTexture")
+												{
+													(*material)["mat_specularUsesTexture"] = new bool(true);
+												}
+
+												// TODO: This is temporary.
+												if (parameterNameSplitted[1] == "mask")
+												{
+													(*material)["mat_maskSeparateTexture"] = new bool(true);
+												}
+											}
+										}
+									}
+
+									itProperty = _material->GetNextProperty(itProperty);
+								}
+
+								materials[_material] = material;
+							}
+							else
+							{
+								material = materials[_material];
+							}
+
+							ModelComponent* modelC = new ModelComponent(object, material, meshes[mesh]);
+
+							modelComponents.push_back(modelC);
+
+							break;
+						}
+						case FbxNodeAttribute::EType::eLight:
+						{
+							FbxLight* light = (FbxLight*)nodeAttribute;
+
+							switch (light->LightType)
+							{
+								case FbxLight::EType::eDirectional:
+								{
+									FbxDouble3 _lightColor = light->Color.Get();
+									glm::vec3 lightColor = glm::vec3(_lightColor[0], _lightColor[1], _lightColor[2]);
+
+									float lightBrightness = light->Intensity.Get() / 100.0f;
+
+									bool lightCastShadows = light->CastShadows.Get();
+
+									// TODO: Figure out how to handle cases with multiple directional lights in the scene.
+									if (mainLight == nullptr)
+									{
+										mainLight = new DirectionalLightComponent(object, lightColor, -object->transform.getFront(), lightBrightness, lightCastShadows);
+									}
+
+									break;
+								}
+								case FbxLight::EType::ePoint:
+								{
+									FbxDouble3 _lightColor = light->Color.Get();
+									glm::vec3 lightColor = glm::vec3(_lightColor[0], _lightColor[1], _lightColor[2]);
+
+									float lightBrightness = light->Intensity.Get() / 100.0f;
+
+									// FBX exporter converts ambient light into point light
+									if (light->DecayType.Get() == FbxLight::EDecayType::eNone)
+									{
+										if (ambientLight == nullptr)
+										{
+											ambientLight = new AmbientLightComponent(object, lightColor, lightBrightness);
+										}
+									}
+									break;
+								}
+								default:
+									break;
+							}
+
+							break;
+						}
+						default:
+							break;
 					}
 				}
 
@@ -223,6 +424,21 @@ namespace TropicalEngine
 				else
 				{
 					object->AttachTo(level->getRoot());
+				}
+			}
+
+			if (mainLight == nullptr)
+			{
+				mainLight = new DirectionalLightComponent(level->getRoot(), glm::vec3(1.0f, 1.0f, 0.9f), glm::vec3(0.5, 0.6, 1.0), 1.0f);
+				ambientLight = new AmbientLightComponent(level->getRoot(), glm::vec3(1.0f, 1.0f, 1.0f), 0.2f);
+			}
+
+			for (ModelComponent* modelC : modelComponents)
+			{
+				modelC->lightedBy.append(mainLight);
+				if (ambientLight != nullptr)
+				{
+					modelC->lightedBy.append(ambientLight);
 				}
 			}
 		}

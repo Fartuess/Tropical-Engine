@@ -51,7 +51,7 @@ namespace TropicalEngine
 		  * @return Path to shader file for selected module.
 		  */
 		#pragma endregion
-		QString& operator[](QString name)      { return inputs[name]; };
+		QString& operator[](QString name) { return inputs[name]; };
 		#pragma region documentation
 		/**
 		  * \brief Gets path to the input module.

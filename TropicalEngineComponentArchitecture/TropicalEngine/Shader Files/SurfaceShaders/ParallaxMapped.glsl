@@ -33,6 +33,11 @@ uniform sampler2D mat_roughness;
 uniform sampler2D mat_metalness;
 #endif
 
+#ifdef MASKINPUT
+uniform bool mat_maskSeparateTexture = false;
+uniform sampler2D mat_mask;
+#endif
+
 void processSurface()
 {
 	g_texcoord = steepParallaxMap(mat_height, mat_bumpScale);
@@ -75,7 +80,14 @@ void processSurface()
 #endif
 
 #ifdef MASKINPUT
-	g_maskInput = texture(mat_color, g_texcoord).a;
+	if (mat_maskSeparateTexture)
+	{
+		g_maskInput = texture(mat_mask, g_texcoord).r;
+	}
+	else
+	{
+		g_maskInput = texture(mat_color, g_texcoord).a;
+	}
 #endif
 }
 

@@ -24,7 +24,7 @@ namespace TropicalEngine
 	PointLightComponent PointLightComponent::InitializeType()
 	{
 		PointLightComponent& pointLightComponent = *(new PointLightComponent());
-		AssetManager::addAssetType("Point Light Component", &pointLightComponent);
+		AssetManager::instance().addAssetType("Point Light Component", &pointLightComponent);
 		return pointLightComponent;
 	}
 

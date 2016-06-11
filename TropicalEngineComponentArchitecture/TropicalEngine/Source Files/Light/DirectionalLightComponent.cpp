@@ -7,7 +7,7 @@ namespace TropicalEngine
 
 	DirectionalLightComponent::DirectionalLightComponent() {}
 
-	DirectionalLightComponent::DirectionalLightComponent(Entity* owner, glm::vec3 color, glm::vec3 direction, float brightness, bool isCastingShadows) :LightComponent(owner, color, brightness, isCastingShadows)
+	DirectionalLightComponent::DirectionalLightComponent(Entity* owner, glm::vec3 color, glm::vec3 direction, float brightness, bool isCastingShadows) : LightComponent(owner, color, brightness, isCastingShadows)
 	{
 		this->direction = direction;
 
@@ -22,7 +22,7 @@ namespace TropicalEngine
 	DirectionalLightComponent DirectionalLightComponent::InitializeType()
 	{
 		DirectionalLightComponent& directionalLightComponent = *(new DirectionalLightComponent());
-		AssetManager::addAssetType("Directional Light Component", &directionalLightComponent);
+		AssetManager::instance().addAssetType("Directional Light Component", &directionalLightComponent);
 		return directionalLightComponent;
 	}
 

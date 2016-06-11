@@ -31,7 +31,7 @@ namespace TropicalEngine
 	SpotLightComponent SpotLightComponent::InitializeType()
 	{
 		SpotLightComponent& spotLightComponent = *(new SpotLightComponent());
-		AssetManager::addAssetType("Spot Light Component", &spotLightComponent);
+		AssetManager::instance().addAssetType("Spot Light Component", &spotLightComponent);
 		return spotLightComponent;
 	}
 

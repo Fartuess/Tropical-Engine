@@ -21,6 +21,7 @@
     <None Include="Shader Files\LightingModels\LambertLightingModel.glsl" />
     <None Include="Shader Files\LightingModels\PhongLightingModel.glsl" />
     <None Include="Shader Files\LightingModels\CookTorranceLightingModel.glsl" />
+    <ClCompile Include="Source Files\Light\AmbientLightComponent.cpp" />
     <ClCompile Include="Source Files\Scene\LevelImporter\FbxLevelImporter.cpp" />
     <ClCompile Include="Source Files\Scene\LevelImporter\AbstractLevelImporter.cpp" />
     <ClCompile Include="Source Files\Texture\CubemapTexture.cpp" />
@@ -792,6 +793,7 @@
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Header Files\Light\AmbientLightComponent.h" />
     <ClInclude Include="Header Files\Scene\LevelImporter\FbxLevelImporter.h" />
     <ClInclude Include="Header Files\Scene\LevelImporter\AbstractLevelImporter.h" />
     <ClInclude Include="Header Files\Texture\CubemapTexture.h" />

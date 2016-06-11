@@ -33,7 +33,7 @@ namespace TropicalEngine
 	TransformComponent TransformComponent::InitializeType()
 	{
 		TransformComponent& transformComponent = *(new TransformComponent());
-		AssetManager::addAssetType("Transform Component", &transformComponent);
+		AssetManager::instance().addAssetType("Transform Component", &transformComponent);
 		return transformComponent;
 	}
 

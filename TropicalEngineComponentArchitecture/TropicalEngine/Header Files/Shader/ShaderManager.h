@@ -64,6 +64,10 @@ namespace TropicalEngine
 		  */
 		#pragma endregion
 		void setCurrentShader(Shader* shader);
+
+		bool containsShader(QString name);
+		bool containsShaderTechnique(QString name);
+
 		#pragma region documentation
 		/**
 		  * \brief Gets Shader with given name.
@@ -91,7 +95,7 @@ namespace TropicalEngine
 		  * @return Shader with given name.
 		  */
 		#pragma endregion
-		Shader* operator[](QString name)      { return shaders[name]; }
+		Shader* operator[](QString name) { return shaders[name]; }
 		#pragma region documentation
 		/**
 		  * \brief Gets Shader with given name.
@@ -149,10 +153,15 @@ namespace TropicalEngine
 		#pragma endregion
 		void UseShader(Shader* shader);
 
+		class AbstractShaderBuilder* getShaderBuilder(QString name) { return shaderBuilders[name]; }
+		void registerShaderBuilder(QString name, class AbstractShaderBuilder* shaderBuilder);
+
 	protected:
 		QHash<QString, class ShaderTechnique*> shaderTechniques;
 		QHash<QString, Shader*> shaders;
 		Shader* currentShader;	//shader currently enabled on GPU
+
+		QHash<QString, class AbstractShaderBuilder*> shaderBuilders;
 
 		void FlushShader(QString name);
 	};

@@ -32,14 +32,14 @@
 
 #include <Camera/CameraComponent.h>
 
-#include <Scene/Entity.h>
-#include <Scene/LevelImporter/FbxLevelImporter.h>
-
+#include <Light/AmbientLightComponent.h>
 #include <Light/DirectionalLightComponent.h>
 #include <Light/PointLightComponent.h>
 #include <Light/SpotLightComponent.h>
 
 #include <Scene/Scene.h>
+#include <Scene/Entity.h>
+#include <Scene/LevelImporter/FbxLevelImporter.h>
 
 #include <Package/Asset.h>
 #include <Package/AssetManager.h>
@@ -80,87 +80,87 @@ namespace TropicalEngine
 
 		ShaderManager& shaderManager = ShaderManager::instance();
 
-		ShaderTechnique* lambertTechnique = new ShaderTechnique("Lambert", &CommonMeshShaderBuilder::instance());
+		ShaderTechnique* lambertTechnique = new ShaderTechnique("LambertTest", &CommonMeshShaderBuilder::instance());
 		lambertTechnique->setInput("Lighting Model", "./Shader Files/LightingModels/LambertLightingModel.glsl");
 		
-		ShaderTechnique* phongTechnique = new ShaderTechnique("Phong", &CommonMeshShaderBuilder::instance());
+		ShaderTechnique* phongTechnique = new ShaderTechnique("PhongTest", &CommonMeshShaderBuilder::instance());
 		phongTechnique->setInput("Lighting Model", "./Shader Files/LightingModels/PhongLightingModel.glsl");
 
-		ShaderTechnique* blinnPhongTechnique = new ShaderTechnique("BlinnPhong", &CommonMeshShaderBuilder::instance());
+		ShaderTechnique* blinnPhongTechnique = new ShaderTechnique("BlinnPhongTest", &CommonMeshShaderBuilder::instance());
 		blinnPhongTechnique->setInput("Lighting Model", "./Shader Files/LightingModels/BlinnPhongLightingModel.glsl");
 
-		ShaderTechnique* cookTorranceTechnique = new ShaderTechnique("CookTorrance", &CommonMeshShaderBuilder::instance());
+		ShaderTechnique* cookTorranceTechnique = new ShaderTechnique("CookTorranceTest", &CommonMeshShaderBuilder::instance());
 		cookTorranceTechnique->setInput("Lighting Model", "./Shader Files/LightingModels/CookTorranceLightingModel.glsl");
 
-		ShaderTechnique* straussTechnique = new ShaderTechnique("Strauss", &CommonMeshShaderBuilder::instance());
+		ShaderTechnique* straussTechnique = new ShaderTechnique("StraussTest", &CommonMeshShaderBuilder::instance());
 		straussTechnique->setInput("Lighting Model", "./Shader Files/LightingModels/StraussLightingModel.glsl");
 
-		ShaderTechnique* wardIsoTechnique = new ShaderTechnique("WardIso", &CommonMeshShaderBuilder::instance());
+		ShaderTechnique* wardIsoTechnique = new ShaderTechnique("WardIsoTest", &CommonMeshShaderBuilder::instance());
 		wardIsoTechnique->setInput("Lighting Model", "./Shader Files/LightingModels/WardIsotropicLightingModel.glsl");
 
-		ShaderTechnique* wardAnisoTechnique = new ShaderTechnique("WardAniso", &CommonMeshShaderBuilder::instance());
+		ShaderTechnique* wardAnisoTechnique = new ShaderTechnique("WardAnisoTest", &CommonMeshShaderBuilder::instance());
 		wardAnisoTechnique->setInput("Lighting Model", "./Shader Files/LightingModels/WardAnisotropicLightingModel.glsl");
 
-		ShaderTechnique* celShadingTechnique = new ShaderTechnique("CelShading", &CommonMeshShaderBuilder::instance());
+		ShaderTechnique* celShadingTechnique = new ShaderTechnique("CelShadingTest", &CommonMeshShaderBuilder::instance());
 		celShadingTechnique->setInput("Lighting Model", "./Shader Files/LightingModels/CelShadingLightingModel.glsl");
 		celShadingTechnique->setInput("Surface Shader", "./Shader Files/SurfaceShaders/Textured.glsl");
 
-		ShaderTechnique* texturedLambertTechnique = new ShaderTechnique("LambertTextured", &CommonMeshShaderBuilder::instance());
+		ShaderTechnique* texturedLambertTechnique = new ShaderTechnique("LambertTexturedTest", &CommonMeshShaderBuilder::instance());
 		texturedLambertTechnique->setInput("Lighting Model", "./Shader Files/LightingModels/LambertLightingModel.glsl");
 		texturedLambertTechnique->setInput("Surface Shader", "./Shader Files/SurfaceShaders/Textured.glsl");
 
-		ShaderTechnique* bumpmappedPhongTechnique = new ShaderTechnique("PhongBumpmapped", &CommonMeshShaderBuilder::instance());
+		ShaderTechnique* bumpmappedPhongTechnique = new ShaderTechnique("PhongBumpmappedTest", &CommonMeshShaderBuilder::instance());
 		bumpmappedPhongTechnique->setInput("Lighting Model", "./Shader Files/LightingModels/BlinnPhongLightingModel.glsl");
 		bumpmappedPhongTechnique->setInput("Surface Shader", "./Shader Files/SurfaceShaders/BumpTextured.glsl");
 
-		ShaderTechnique* maskedBumpmappedBlinnPhongTechnique = new ShaderTechnique("BlinnBumpmappedMasked", &CommonMeshShaderBuilder::instance());
+		ShaderTechnique* maskedBumpmappedBlinnPhongTechnique = new ShaderTechnique("BlinnBumpmappedMaskedTest", &CommonMeshShaderBuilder::instance());
 		maskedBumpmappedBlinnPhongTechnique->setInput("Lighting Model", "./Shader Files/LightingModels/BlinnPhongLightingModel.glsl");
 		maskedBumpmappedBlinnPhongTechnique->setInput("Surface Shader", "./Shader Files/SurfaceShaders/BumpTextured.glsl");
 		maskedBumpmappedBlinnPhongTechnique->setInput("Blend Mode", "./Shader Files/Blending/BlendMasked.glsl");
 
-		ShaderTechnique* parallaxedBlinnPhongTechnique = new ShaderTechnique("BlinnParallaxed", &CommonMeshShaderBuilder::instance());
+		ShaderTechnique* parallaxedBlinnPhongTechnique = new ShaderTechnique("BlinnParallaxedTest", &CommonMeshShaderBuilder::instance());
 		parallaxedBlinnPhongTechnique->setInput("Lighting Model", "./Shader Files/LightingModels/PhongLightingModel.glsl");
 		parallaxedBlinnPhongTechnique->setInput("Surface Shader", "./Shader Files/SurfaceShaders/ParallaxMapped.glsl");
 
-		ShaderTechnique* staticTessellationTechnique = new ShaderTechnique("StaticTessallation", &CommonMeshShaderBuilder::instance());
+		ShaderTechnique* staticTessellationTechnique = new ShaderTechnique("StaticTessallationTest", &CommonMeshShaderBuilder::instance());
 		staticTessellationTechnique->setInput("Lighting Model", "./Shader Files/LightingModels/BlinnPhongLightingModel.glsl");
 		staticTessellationTechnique->setInput("Surface Shader", "./Shader Files/SurfaceShaders/BumpTextured.glsl");
 		staticTessellationTechnique->setInput("Vertex Shader", "./Shader Files/Mesh/ObjectSpaceMesh.glsl");
 		staticTessellationTechnique->setInput("TCS Shader", "./Shader Files/Mesh/Tessellation/Control/SimpleTessellation.glsl");
 		staticTessellationTechnique->setInput("TES Shader", "./Shader Files/Mesh/Tessellation/Evaluation/TessellationDisplacement.glsl");
 
-		ShaderTechnique* distanceTessellationTechnique = new ShaderTechnique("DistanceTessallation", &CommonMeshShaderBuilder::instance());
+		ShaderTechnique* distanceTessellationTechnique = new ShaderTechnique("DistanceTessallationTest", &CommonMeshShaderBuilder::instance());
 		distanceTessellationTechnique->setInput("Lighting Model", "./Shader Files/LightingModels/BlinnPhongLightingModel.glsl");
 		distanceTessellationTechnique->setInput("Surface Shader", "./Shader Files/SurfaceShaders/BumpTextured.glsl");
 		distanceTessellationTechnique->setInput("Vertex Shader", "./Shader Files/Mesh/ObjectSpaceMesh.glsl");
 		distanceTessellationTechnique->setInput("TCS Shader", "./Shader Files/Mesh/Tessellation/Control/DistanceBasedTessellation.glsl");
 		distanceTessellationTechnique->setInput("TES Shader", "./Shader Files/Mesh/Tessellation/Evaluation/TessellationDisplacement.glsl");
 
-		ShaderTechnique* vectorTessellationTechnique = new ShaderTechnique("VectorTessallation", &CommonMeshShaderBuilder::instance());
+		ShaderTechnique* vectorTessellationTechnique = new ShaderTechnique("VectorTessallationTest", &CommonMeshShaderBuilder::instance());
 		vectorTessellationTechnique->setInput("Lighting Model", "./Shader Files/LightingModels/BlinnPhongLightingModel.glsl");
 		vectorTessellationTechnique->setInput("Surface Shader", "./Shader Files/SurfaceShaders/BumpTextured.glsl");
 		vectorTessellationTechnique->setInput("Vertex Shader", "./Shader Files/Mesh/ObjectSpaceMesh.glsl");
 		vectorTessellationTechnique->setInput("TCS Shader", "./Shader Files/Mesh/Tessellation/Control/DistanceBasedTessellation.glsl");
 		vectorTessellationTechnique->setInput("TES Shader", "./Shader Files/Mesh/Tessellation/Evaluation/TessellationVectorDisplacement.glsl");
 
-		ShaderTechnique* skyboxTechnique = new ShaderTechnique("Skybox", &CommonMeshShaderBuilder::instance());
+		ShaderTechnique* skyboxTechnique = new ShaderTechnique("SkyboxTest", &CommonMeshShaderBuilder::instance());
 		skyboxTechnique->setInput("Lighting Model", "./Shader Files/LightingModels/UnlitLightingModel.glsl");
 		skyboxTechnique->setInput("Surface Shader", "./Shader Files/SurfaceShaders/Skybox.glsl");
 
-		ShaderTechnique* cubemapTechnique = new ShaderTechnique("Cubemap", &CommonMeshShaderBuilder::instance());
+		ShaderTechnique* cubemapTechnique = new ShaderTechnique("CubemapTest", &CommonMeshShaderBuilder::instance());
 		cubemapTechnique->setInput("Lighting Model", "./Shader Files/LightingModels/UnlitLightingModel.glsl");
 		cubemapTechnique->setInput("Surface Shader", "./Shader Files/SurfaceShaders/CubemapReflected.glsl");
 
-		ShaderTechnique* cubemapTexturedTechnique = new ShaderTechnique("CubemapTextured", &CommonMeshShaderBuilder::instance());
+		ShaderTechnique* cubemapTexturedTechnique = new ShaderTechnique("CubemapTexturedTest", &CommonMeshShaderBuilder::instance());
 		cubemapTexturedTechnique->setInput("Lighting Model", "./Shader Files/LightingModels/UnlitLightingModel.glsl");
 		cubemapTexturedTechnique->setInput("Surface Shader", "./Shader Files/SurfaceShaders/TexturedCubemapReflected.glsl");
 
-		ShaderTechnique* iblTechnique = new ShaderTechnique("Ibl", &CommonMeshShaderBuilder::instance());
+		ShaderTechnique* iblTechnique = new ShaderTechnique("IblTest", &CommonMeshShaderBuilder::instance());
 		iblTechnique->setInput("Lighting Model", "./Shader Files/LightingModels/BlinnPhongLightingModel.glsl");
 		iblTechnique->setInput("Custom Lighting", "./Shader Files/CustomLighting/ImageBasedLighting.glsl");
 		iblTechnique->setInput("Surface Shader", "./Shader Files/SurfaceShaders/BumpTextured.glsl");
 
-		ShaderTechnique* iblCubemapTechnique = new ShaderTechnique("IblCubemap", &CommonMeshShaderBuilder::instance());
+		ShaderTechnique* iblCubemapTechnique = new ShaderTechnique("IblCubemapTest", &CommonMeshShaderBuilder::instance());
 		iblCubemapTechnique->setInput("Lighting Model", "./Shader Files/LightingModels/BlinnPhongLightingModel.glsl");
 		iblCubemapTechnique->setInput("Custom Lighting", "./Shader Files/CustomLighting/ImageBasedLightingCubemap.glsl");
 		iblCubemapTechnique->setInput("Surface Shader", "./Shader Files/SurfaceShaders/BumpTextured.glsl");
@@ -196,37 +196,37 @@ namespace TropicalEngine
 
 		MaterialManager& materialManager = MaterialManager::instance();
 
-		Material* lambertMaterial				= new Material(shaderManager.getShaderTechnique("Lambert"), "Lambert Material");
-		Material* phongMaterial					= new Material(shaderManager.getShaderTechnique("Phong"), "Phong Material");
-		Material* phongBlinnMaterial			= new Material(shaderManager.getShaderTechnique("BlinnPhong"), "Blinn-Phong Material");
-		Material* cookTorranceMaterial			= new Material(shaderManager.getShaderTechnique("CookTorrance"), "CookTorrance Material");
-		Material* straussMaterial				= new Material(shaderManager.getShaderTechnique("Strauss"), "Strauss Material");
-		Material* straussMaterialMetalic		= new Material(shaderManager.getShaderTechnique("Strauss"), "Strauss Material Metalic");
-		Material* wardIsoMaterial				= new Material(shaderManager.getShaderTechnique("WardIso"), "Isotropic Ward Material");
-		Material* wardAnisoMaterial				= new Material(shaderManager.getShaderTechnique("WardAniso"), "Anisotropic Ward Material");
+		Material* lambertMaterial				= new Material(shaderManager.getShaderTechnique("LambertTest"), "Lambert Material");
+		Material* phongMaterial					= new Material(shaderManager.getShaderTechnique("PhongTest"), "Phong Material");
+		Material* phongBlinnMaterial			= new Material(shaderManager.getShaderTechnique("BlinnPhongTest"), "Blinn-Phong Material");
+		Material* cookTorranceMaterial			= new Material(shaderManager.getShaderTechnique("CookTorranceTest"), "CookTorrance Material");
+		Material* straussMaterial				= new Material(shaderManager.getShaderTechnique("StraussTest"), "Strauss Material");
+		Material* straussMaterialMetalic		= new Material(shaderManager.getShaderTechnique("StraussTest"), "Strauss Material Metalic");
+		Material* wardIsoMaterial				= new Material(shaderManager.getShaderTechnique("WardIsoTest"), "Isotropic Ward Material");
+		Material* wardAnisoMaterial				= new Material(shaderManager.getShaderTechnique("WardAnisoTest"), "Anisotropic Ward Material");
 
-		Material* celShadingMaterial = new Material(shaderManager.getShaderTechnique("CelShading"), "Cel Shading Material");
+		Material* celShadingMaterial = new Material(shaderManager.getShaderTechnique("CelShadingTest"), "Cel Shading Material");
 
-		Material* texturedMaterial				= new Material(shaderManager.getShaderTechnique("LambertTextured"), "Textured Material");
-		Material* bumpedMaterial				= new Material(shaderManager.getShaderTechnique("PhongBumpmapped"), "Bumped Material");
-		Material* maskedMaterial				= new Material(shaderManager.getShaderTechnique("BlinnBumpmappedMasked"), "Masked Material");
+		Material* texturedMaterial				= new Material(shaderManager.getShaderTechnique("LambertTexturedTest"), "Textured Material");
+		Material* bumpedMaterial				= new Material(shaderManager.getShaderTechnique("PhongBumpmappedTest"), "Bumped Material");
+		Material* maskedMaterial				= new Material(shaderManager.getShaderTechnique("BlinnBumpmappedMaskedTest"), "Masked Material");
 
-		Material* phongBlinnParalaxMaterial		= new Material(shaderManager.getShaderTechnique("BlinnParallaxed"), "Paralaxed Material");
+		Material* phongBlinnParalaxMaterial		= new Material(shaderManager.getShaderTechnique("BlinnParallaxedTest"), "Paralaxed Material");
 
-		Material* staticTessellationMaterial	= new Material(shaderManager.getShaderTechnique("StaticTessallation"), "Tessallated Material");
-		Material* distanceTessellationMaterial	= new Material(shaderManager.getShaderTechnique("DistanceTessallation"), "Distance Tessallated Material");
-		Material* vectorTessellationMaterial	= new Material(shaderManager.getShaderTechnique("VectorTessallation"), "Vector Tessallated Material");
+		Material* staticTessellationMaterial	= new Material(shaderManager.getShaderTechnique("StaticTessallationTest"), "Tessallated Material");
+		Material* distanceTessellationMaterial	= new Material(shaderManager.getShaderTechnique("DistanceTessallationTest"), "Distance Tessallated Material");
+		Material* vectorTessellationMaterial	= new Material(shaderManager.getShaderTechnique("VectorTessallationTest"), "Vector Tessallated Material");
 		
-		Material* chestMaterial					= new Material(shaderManager.getShaderTechnique("Ibl"), "Steampunk Chest Material");
+		Material* chestMaterial					= new Material(shaderManager.getShaderTechnique("IblTest"), "Steampunk Chest Material");
 
-		Material* skyboxMaterial				= new Material(shaderManager.getShaderTechnique("Skybox"), "Skybox Material");
-		Material* cubemapMaterial				= new Material(shaderManager.getShaderTechnique("Cubemap"), "Cubemap Material");
+		Material* skyboxMaterial				= new Material(shaderManager.getShaderTechnique("SkyboxTest"), "Skybox Material");
+		Material* cubemapMaterial				= new Material(shaderManager.getShaderTechnique("CubemapTest"), "Cubemap Material");
 
-		Material* cubemapTexturedMaterial = new Material(shaderManager.getShaderTechnique("CubemapTextured"), "CubemapTextured Material");
+		Material* cubemapTexturedMaterial = new Material(shaderManager.getShaderTechnique("CubemapTexturedTest"), "CubemapTextured Material");
 
-		Material* iblMaterial					= new Material(shaderManager.getShaderTechnique("Ibl"), "Ibl Material");
+		Material* iblMaterial					= new Material(shaderManager.getShaderTechnique("IblTest"), "Ibl Material");
 
-		Material* iblCubemapMaterial = new Material(shaderManager.getShaderTechnique("IblCubemap"), "IblCubemap Material");
+		Material* iblCubemapMaterial = new Material(shaderManager.getShaderTechnique("IblCubemapTest"), "IblCubemap Material");
 
 		/*********************************
 		*
@@ -689,12 +689,14 @@ namespace TropicalEngine
 		FbxExample2ModelC->lightedBy.append(spotLightComponent);
 		FbxExample3ModelC->lightedBy.append(spotLightComponent);
 
-		scene->LoadLevel(level, "TestLevel");
+		//scene->LoadLevel(level, "TestLevel");
 		scene->setCurrentCamera(mainCameraComponent);
 		scene->mainLight = new DirectionalLightComponent(level->getRoot(), glm::vec3(1.0f, 1.0f, 0.9f), glm::vec3(0.5, 0.6, 1.0), 1.0f);
+		AmbientLightComponent* ambientLight = new AmbientLightComponent(level->getRoot(), glm::vec3(1.0f), 0.2f);
 
-		//scene->LoadLevel(FbxLevelImporter::instance().Load("Sponza", "./Assets/Levels/Sponza/Sponza.fbx"), "Sponza");
-		//scene->LoadLevel(FbxLevelImporter::instance().Load("Sponza", "./Assets/Levels/TransformTest/TransformTest4.fbx"), "TransformTest");
+		scene->LoadLevel(FbxLevelImporter::instance().Load("Sponza", "./Assets/Levels/Sponza/Sponza.fbx"), "Sponza");
+		//scene->LoadLevel(FbxLevelImporter::instance().Load("TransformTest", "./Assets/Levels/TransformTest/TransformTest3.fbx"), "TransformTest");
+		//scene->LoadLevel(FbxLevelImporter::instance().Load("MaterialTest", "./Assets/Levels/MaterialTest/MaterialTest2.fbx"), "MaterialTest");
 
 		phongModelC->lightedBy.append(scene->mainLight);
 		phongBlinnModelC->lightedBy.append(scene->mainLight);
@@ -712,6 +714,23 @@ namespace TropicalEngine
 		FbxExample2ModelC->lightedBy.append(scene->mainLight);
 		FbxExample3ModelC->lightedBy.append(scene->mainLight);
 		//skyboxModel->lightedBy.append(scene->mainLight);
+
+		phongModelC->lightedBy.append(ambientLight);
+		phongBlinnModelC->lightedBy.append(ambientLight);
+		//bumpMapModelC->lightedBy.append(ambientLight);
+		maskedModelC->lightedBy.append(ambientLight);
+		parralaxModelC->lightedBy.append(ambientLight);
+		cookTorranceModelC->lightedBy.append(ambientLight);
+		straussModelC->lightedBy.append(ambientLight);
+		straussConductiveModelC->lightedBy.append(ambientLight);
+		wardModelC->lightedBy.append(ambientLight);
+		wardAnisoModelC->lightedBy.append(ambientLight);
+		distanceTessModelC->lightedBy.append(ambientLight);
+		vectorTessModelC->lightedBy.append(ambientLight);
+		//FbxExampleModelC->lightedBy.append(ambientLight);
+		FbxExample2ModelC->lightedBy.append(ambientLight);
+		FbxExample3ModelC->lightedBy.append(ambientLight);
+		//skyboxModel->lightedBy.append(ambientLight);
 
 		//qDebug() << QJsonDocument(level->toJSON()).toJson();
 	}

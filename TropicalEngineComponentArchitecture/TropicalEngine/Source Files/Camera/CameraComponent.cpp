@@ -34,7 +34,7 @@ namespace TropicalEngine
 	CameraComponent CameraComponent::InitializeType()
 	{
 		CameraComponent& cameraComponent = *(new CameraComponent());
-		AssetManager::addAssetType("Camera Component", &cameraComponent);
+		AssetManager::instance().addAssetType("Camera Component", &cameraComponent);
 		return cameraComponent;
 	}
 

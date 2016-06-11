@@ -1,7 +1,7 @@
 #include <iostream>
 
 #include <Shader/Shader.h>
-
+#include <Shader/ShaderManager.h>
 #include <Shader/ShaderBuilder/CommonMeshShaderBuilder.h>
 
 #include <Utills/Exception.h>
@@ -12,6 +12,7 @@ namespace TropicalEngine
 	CommonMeshShaderBuilder::CommonMeshShaderBuilder()
 	{
 		resetInputs();
+		ShaderManager::instance().registerShaderBuilder("Common Mesh", this);
 	}
 
 

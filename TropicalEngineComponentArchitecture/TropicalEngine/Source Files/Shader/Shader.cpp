@@ -81,7 +81,8 @@ namespace TropicalEngine
 		dirLightVectorLocation = glGetUniformLocation(this->shaderProgram, "u_lightVector");
 		dirLightColorLocation = glGetUniformLocation(this->shaderProgram, "u_lightColor");
 		dirLightBrightnessLocation = glGetUniformLocation(this->shaderProgram, "u_lightBrightness");
-		dirLightAmbientLocation = glGetUniformLocation(this->shaderProgram, "u_lightAmbient");
+		ambientLightBrightnessLocation = glGetUniformLocation(this->shaderProgram, "u_lightAmbient");
+		ambientLightColorLocation = glGetUniformLocation(this->shaderProgram, "u_lightAmbientColor");
 
 		pointLightPositionLocations = QVector<GLuint>();
 		pointLightColorLocations = QVector<GLuint>();
@@ -134,13 +135,6 @@ namespace TropicalEngine
 			GLint size;	//to prevent crash?
 			glGetActiveUniform(shaderProgram, i, 128, &nameLenght, &size, &type, nameChar);
 			QString nameString = QString(nameChar);
-
-			int test = glGetUniformLocation(this->shaderProgram, nameChar);
-
-			if (test == -1)
-			{
-				int lol = 5050;
-			}
 
 			if (nameString.startsWith("mat_"))
 			{

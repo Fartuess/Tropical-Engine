@@ -65,6 +65,28 @@ namespace TropicalEngine
 	//	return shader;
 	//}
 
+	bool Material::hasParameter(QString name)
+	{
+		return parameters.contains(name);
+	}
+
+	MaterialParameter* Material::getParameter(QString name)
+	{
+		if (hasParameter(name))
+		{
+			return &parameters[name];
+		}
+		else
+		{
+			return nullptr;
+		}
+	}
+
+	void Material::setParameter(QString name, void* parameter)
+	{
+		parameters[name] = parameter;
+	}
+
 	void Material::Use()
 	{
 		shader->Use();
@@ -85,6 +107,9 @@ namespace TropicalEngine
 		GLuint parameterLocation = shader->getParameterLocation(name);
 		switch (shader->getParameterType(name))
 		{
+		case GL_BOOL:
+			ActivateParameter(parameterLocation, (bool*)(value));
+			break;
 		case GL_FLOAT:
 			ActivateParameter(parameterLocation, (float*)(value));
 			break;
@@ -112,6 +137,11 @@ namespace TropicalEngine
 		default:
 			break;
 		}
+	}
+
+	void Material::ActivateParameter(GLuint location, bool* value)
+	{
+		glUniform1i(location, *value);
 	}
 
 	void Material::ActivateParameter(GLuint location, float* value)
@@ -152,11 +182,6 @@ namespace TropicalEngine
 	void Material::ActivateParameter(GLuint location, CubemapTexture* value)
 	{
 		value->ActivateTexture(location);
-	}
-
-	void Material::SetParameter(QString name, void* parameter)
-	{
-		parameters[name] = parameter;
 	}
 
 	//QString Material::toXML()
@@ -376,7 +401,7 @@ namespace TropicalEngine
 			case GL_FLOAT:
 			{
 				float* value = new float(parameterJSON.toObject()["x"].toDouble());
-				object->SetParameter(parameterName, value);
+				object->setParameter(parameterName, value);
 				break;
 			}
 			case GL_FLOAT_VEC2:
@@ -384,7 +409,7 @@ namespace TropicalEngine
 				glm::vec2* value = new glm::vec2();
 				value->x = parameterJSON.toObject()["x"].toDouble();
 				value->y = parameterJSON.toObject()["y"].toDouble();
-				object->SetParameter(parameterName, value);
+				object->setParameter(parameterName, value);
 				break;
 			}
 			case GL_FLOAT_VEC3:
@@ -393,7 +418,7 @@ namespace TropicalEngine
 				value->x = parameterJSON.toObject()["x"].toDouble();
 				value->y = parameterJSON.toObject()["y"].toDouble();
 				value->z = parameterJSON.toObject()["z"].toDouble();
-				object->SetParameter(parameterName, value);
+				object->setParameter(parameterName, value);
 				break;
 			}
 			case GL_FLOAT_VEC4:
@@ -403,7 +428,7 @@ namespace TropicalEngine
 				value->y = parameterJSON.toObject()["y"].toDouble();
 				value->z = parameterJSON.toObject()["z"].toDouble();
 				value->w = parameterJSON.toObject()["w"].toDouble();
-				object->SetParameter(parameterName, value);
+				object->setParameter(parameterName, value);
 				break;
 			}
 			case GL_FLOAT_MAT3:
@@ -426,7 +451,7 @@ namespace TropicalEngine
 					row++;
 				}
 
-				object->SetParameter(parameterName, value);
+				object->setParameter(parameterName, value);
 				break;
 			}
 			case GL_FLOAT_MAT4:
@@ -449,7 +474,7 @@ namespace TropicalEngine
 					row++;
 				}
 
-				object->SetParameter(parameterName, value);
+				object->setParameter(parameterName, value);
 				break;
 			}
 			case GL_SAMPLER_2D:
@@ -458,7 +483,7 @@ namespace TropicalEngine
 
 				value = TextureManager::instance().getTexture(parameterJSON.toObject()["name"].toString());
 
-				object->SetParameter(parameterName, value);
+				object->setParameter(parameterName, value);
 				break;
 			}
 			default:

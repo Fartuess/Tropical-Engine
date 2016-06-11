@@ -120,7 +120,7 @@ namespace TropicalEngine
 		{
 			QJsonObject assetJSON = assetRef.toObject();
 
-			Asset* asset = static_cast<Asset*>(AssetManager::getTypeHandle("Asset")->fromJSON(assetJSON));
+			Asset* asset = static_cast<Asset*>(AssetManager::instance().getTypeHandle("Asset")->fromJSON(assetJSON));
 
 			package->assets[assetJSON["name"].toString()] = asset;
 		}

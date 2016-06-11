@@ -32,7 +32,7 @@ namespace TropicalEngine
 		}
 		else
 		{
-			packages[usedPackageName] = PackageUsage(static_cast<Package*>(AssetManager::getTypeHandle("Package")->fromJSON(JSON)), 1);
+			packages[usedPackageName] = PackageUsage(static_cast<Package*>(AssetManager::instance().getTypeHandle("Package")->fromJSON(JSON)), 1);
 			isNewPackage = true;
 		}
 		return isNewPackage;

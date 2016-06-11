@@ -38,7 +38,10 @@ namespace TropicalEngine
 		GLuint dirLightVectorLocation;
 		GLuint dirLightColorLocation;
 		GLuint dirLightBrightnessLocation;
-		GLuint dirLightAmbientLocation;
+		//GLuint dirLightAmbientLocation;
+
+		GLuint ambientLightBrightnessLocation;
+		GLuint ambientLightColorLocation;
 
 		QVector<GLuint> pointLightPositionLocations;
 		QVector<GLuint> pointLightColorLocations;

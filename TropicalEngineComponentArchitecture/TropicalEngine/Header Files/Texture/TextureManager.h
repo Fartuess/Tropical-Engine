@@ -37,6 +37,8 @@ namespace TropicalEngine
 		void incrementTextureIterator();
 		void resetTextureIterator();
 
+
+		bool hasTexture(QString name);
 		#pragma region documentation
 		/**
 		  * \brief Gets Texture by name.

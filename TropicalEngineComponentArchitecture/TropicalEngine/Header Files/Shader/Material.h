@@ -84,6 +84,9 @@ namespace TropicalEngine
 		#pragma endregion
 		void Use();
 
+		bool hasParameter(QString name);
+		MaterialParameter* getParameter(QString name);
+
 		#pragma region documentation
 		/**
 		  * \brief Sets value of material parameter.
@@ -92,7 +95,7 @@ namespace TropicalEngine
 		  * @param parameter pointer to new value of the parameter.
 		  */
 		#pragma endregion
-		void SetParameter(QString name, void* parameter);
+		void setParameter(QString name, void* parameter);
 
 		#pragma region documentation
 		/**
@@ -101,7 +104,7 @@ namespace TropicalEngine
 		  * @param name Name of the parameter.
 		  */
 		#pragma endregion
-		MaterialParameter& operator[](QString name)      { return parameters[name]; };
+		MaterialParameter& operator[](QString name) { return parameters[name]; };
 		#pragma region documentation
 		/**
 		  * \brief Gets material parameter.
@@ -163,6 +166,7 @@ namespace TropicalEngine
 	private:
 		void ActivateParameter(QString name, void* value);
 
+		void ActivateParameter(GLuint location, bool* value);
 		void ActivateParameter(GLuint location, float* value);
 		void ActivateParameter(GLuint location, glm::vec2* value);
 		void ActivateParameter(GLuint location, glm::vec3* value);

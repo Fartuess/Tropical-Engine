@@ -2,11 +2,10 @@
 
 namespace TropicalEngine
 {
-
-	QHash<QString, ISerializableJSON*> AssetManager::assetTypes;
-
 	AssetManager::AssetManager()
 	{
+		//TODO: Fix this temp solution.
+		assetTypes = new QHash<QString, ISerializableJSON*>();
 	}
 
 	AssetManager::~AssetManager()
@@ -15,15 +14,15 @@ namespace TropicalEngine
 
 	void AssetManager::addAssetType(QString name, ISerializableJSON* typeHandle)
 	{
-		if (!assetTypes.contains(name))
+		if (!assetTypes->contains(name))
 		{
-			assetTypes[name] = typeHandle;
+			(*assetTypes)[name] = typeHandle;
 		}
 	}
 
 	ISerializableJSON* AssetManager::getTypeHandle(QString name)
 	{
-		return assetTypes[name];
+		return (*assetTypes)[name];
 	}
 
 	ISerializableJSON& AssetManager::createAsset(QJsonObject JSON)

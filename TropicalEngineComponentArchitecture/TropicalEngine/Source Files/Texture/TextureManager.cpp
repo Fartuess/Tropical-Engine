@@ -39,6 +39,11 @@ namespace TropicalEngine
 		textureIterator = 0;
 	}
 
+	bool TextureManager::hasTexture(QString name)
+	{
+		return textures.contains(name);
+	}
+
 	Texture* const TextureManager::getTexture(QString name)
 	{
 		return textures[name];

@@ -44,7 +44,7 @@ namespace TropicalEngine
 		asset->name = JSON["name"].toString();
 		asset->type = JSON["typeName"].toString();
 		//Assuming that all Assets can be serialized back again.
-		asset->asset = static_cast<ISerializableJSON*>(AssetManager::getTypeHandle(asset->type)->fromJSON(JSON["asset"].toObject()));
+		asset->asset = static_cast<ISerializableJSON*>(AssetManager::instance().getTypeHandle(asset->type)->fromJSON(JSON["asset"].toObject()));
 
 		return asset;
 	}

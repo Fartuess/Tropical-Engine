@@ -6,7 +6,7 @@
 
 #include "Lighting/LightingResult.glsl"
 
-uniform float u_lightAmbient;
+uniform float u_lightAmbient = 0.0;
 uniform vec3 u_lightAmbientColor = vec3(1.0, 1.0, 1.0);
 
 //struct DirectionalLight

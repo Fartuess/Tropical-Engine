@@ -1,0 +1,18 @@
+﻿{
+	"name": "BlinnBumpMask",
+	"shader builder": "Common Mesh",
+	"inputs": [
+		{
+			"name": "Lighting Model",
+			"path": "./Shader Files/LightingModels/BlinnPhongLightingModel.glsl"
+		},
+		{
+			"name": "Surface Shader",
+			"path": "./Shader Files/SurfaceShaders/BumpTextured.glsl"
+		},
+		{
+			"name": "Blend Mode",
+			"path": "./Shader Files/Blending/BlendMasked.glsl"
+		}
+	]
+}

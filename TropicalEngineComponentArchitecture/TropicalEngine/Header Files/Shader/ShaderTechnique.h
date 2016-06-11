@@ -8,7 +8,7 @@
 namespace TropicalEngine
 {
 
-#pragma region documentation
+	#pragma region documentation
 	/**
 	  * \brief Class made of set of different shaders for different shader passes.
 	  */
@@ -118,6 +118,8 @@ namespace TropicalEngine
 		#pragma endregion
 		IDeserializableFromJSON* fromJSON(QJsonObject JSON) override;
 
+		static ShaderTechnique& InitializeType();
+
 	protected:
 		#pragma region documentation
 		/**
@@ -144,12 +146,16 @@ namespace TropicalEngine
 		#pragma endregion
 		QMap<QString, class Shader*> shaderPasses;
 
+		ShaderTechnique() {};
+
 		#pragma region documentation
 		/**
 		  * \brief Collection of inputs for ShaderBuilder used by this ShaderTechnique. Keys are names of inputs and values are paths to shader module files.
 		  */
 		#pragma endregion
 		QMap<QString, QString> inputs;
+		
+		static bool isTypeInitialized;
 	};
 
 }

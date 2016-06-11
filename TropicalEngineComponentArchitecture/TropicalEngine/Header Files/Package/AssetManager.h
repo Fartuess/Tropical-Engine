@@ -18,11 +18,12 @@ namespace TropicalEngine
 	{
 	public:
 		#pragma region documentation
-		/**
-		  * \brief Default constructor.
-		  */
+				/**
+				* \brief Default constructor.
+				*/
 		#pragma endregion
 		AssetManager();
+
 		#pragma region documentation
 		/**
 		  * \brief Default destructor.
@@ -38,7 +39,7 @@ namespace TropicalEngine
 		  * @param typeHandle Instance of resource to be used as handle.
 		  */
 		#pragma endregion
-		static void addAssetType(QString name, ISerializableJSON* typeHandle);
+		void addAssetType(QString name, ISerializableJSON* typeHandle);
 		#pragma region documentation
 		/**
 		  * \brief Gets handle to resource.
@@ -47,7 +48,7 @@ namespace TropicalEngine
 		  * @return Handle object of wanted type.
 		  */
 		#pragma endregion
-		static ISerializableJSON* getTypeHandle(QString name);
+		ISerializableJSON* getTypeHandle(QString name);
 
 		#pragma region documentation
 		/**
@@ -57,10 +58,14 @@ namespace TropicalEngine
 		  * @return Resource in created asset.
 		  */
 		#pragma endregion
-		static ISerializableJSON& createAsset(QJsonObject JSON);
+		ISerializableJSON& createAsset(QJsonObject JSON);
+
+	protected:
+	
 
 	private:
-		static QHash<QString, ISerializableJSON*> assetTypes;
+		//TODO: Should be shard through possible mutiple AssetManaagers.
+		QHash<QString, ISerializableJSON*>* assetTypes;
 	};
 
 }

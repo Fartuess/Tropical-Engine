@@ -86,9 +86,9 @@ namespace TropicalEngine
 	IDeserializableFromJSON* Level::fromJSON(QJsonObject JSON)
 	{
 		Level* object = new Level(JSON["name"].toString());
-		object->root = static_cast<Entity*>(AssetManager::getTypeHandle("Asset")->fromJSON(JSON["root entity"].toObject()));
+		object->root = static_cast<Entity*>(AssetManager::instance().getTypeHandle("Asset")->fromJSON(JSON["root entity"].toObject()));
 
-		object->internalPackage = static_cast<Package*>(AssetManager::getTypeHandle("Package")->fromJSON(JSON["internal Package"].toObject()));
+		object->internalPackage = static_cast<Package*>(AssetManager::instance().getTypeHandle("Package")->fromJSON(JSON["internal Package"].toObject()));
 
 		for (QJsonValueRef usedPackageRef : JSON["used packages"].toArray())
 		{

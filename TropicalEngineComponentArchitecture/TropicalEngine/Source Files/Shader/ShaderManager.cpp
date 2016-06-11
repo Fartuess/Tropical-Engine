@@ -3,6 +3,7 @@
 #include <Shader/Shader.h>
 #include <Shader/ShaderTechnique.h>
 #include <Shader/ShaderManager.h>
+#include <Shader/ShaderBuilder/AbstractShaderBuilder.h>
 
 namespace TropicalEngine
 {
@@ -27,6 +28,16 @@ namespace TropicalEngine
 	void ShaderManager::setCurrentShader(Shader* shader)
 	{
 		currentShader = shader;
+	}
+
+	bool ShaderManager::containsShader(QString name)
+	{
+		return shaders.contains(name);
+	}
+
+	bool ShaderManager::containsShaderTechnique(QString name)
+	{
+		return shaderTechniques.contains(name);
 	}
 
 	Shader* const ShaderManager::getShader(QString name)
@@ -74,5 +85,10 @@ namespace TropicalEngine
 	void ShaderManager::UseShader(Shader* shader)
 	{
 		shader->Use();
+	}
+
+	void ShaderManager::registerShaderBuilder(QString name, AbstractShaderBuilder* shaderBuilder)
+	{
+		shaderBuilders[name] = shaderBuilder;
 	}
 }
