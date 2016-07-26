@@ -520,9 +520,14 @@ namespace TropicalEngine
 
 		ShaderTechnique* screenTechnique = new ShaderTechnique("Screen", &CommonMeshShaderBuilder::instance());
 		screenTechnique->setInput("Vertex Shader", "./Shader Files/Mesh/ObjectSpaceMesh.glsl");
-		screenTechnique->setInput("Lighting Model", "./Shader Files/LightingModels/PhongLightingModel.glsl");
+		screenTechnique->setInput("Lighting Model", "./Shader Files/LightingModels/UnlitLightingModel.glsl");
+		screenTechnique->setInput("Surface Shader", "./Shader Files/SurfaceShaders/Textured.glsl");
 
-		Material* screenMaterial = new Material(shaderManager.getShaderTechnique("Screen"), "Screen Material");
+		ShaderTechnique* screenTechniquePostProcess = new ShaderTechnique("Screen PP", screenTechnique->getShader(), "PostProcess");
+
+		Material* screenMaterial = new Material(shaderManager.getShaderTechnique("Screen PP"), "Screen Material");
+		(*screenMaterial)["mat_emissive"] = textureManager["Screen Color Pass"];
+		(*screenMaterial)["mat_usesEmissive"] = new bool(true);
 
 		PlaneModelBuilder screenBuilder = PlaneModelBuilder();
 		screenBuilder.setParameter("name", QString("Screen"));
@@ -533,7 +538,7 @@ namespace TropicalEngine
 		screenBuilder.Build();
 
 		Entity* screenEntity = new Entity(glm::vec3(0.0f, 0.0f, 0.0f), glm::quat(), glm::vec3(1.0f, 1.0f, 1.0f));
-		//ModelComponent* screenEntityModelC = new ModelComponent(screenEntity, screenMaterial, (*engine->modelManager)["Screen"]);
+		ModelComponent* screenEntityModelC = new ModelComponent(screenEntity, screenMaterial, ModelManager::instance()["Screen"]);
 		screenEntity->name = QString("Screen Entity");
 		level->getRoot()->AttachSubobject(screenEntity);
 
@@ -689,12 +694,12 @@ namespace TropicalEngine
 		FbxExample2ModelC->lightedBy.append(spotLightComponent);
 		FbxExample3ModelC->lightedBy.append(spotLightComponent);
 
-		//scene->LoadLevel(level, "TestLevel");
+		scene->LoadLevel(level, "TestLevel");
 		scene->setCurrentCamera(mainCameraComponent);
 		scene->mainLight = new DirectionalLightComponent(level->getRoot(), glm::vec3(1.0f, 1.0f, 0.9f), glm::vec3(0.5, 0.6, 1.0), 1.0f);
 		AmbientLightComponent* ambientLight = new AmbientLightComponent(level->getRoot(), glm::vec3(1.0f), 0.2f);
 
-		scene->LoadLevel(FbxLevelImporter::instance().Load("Sponza", "./Assets/Levels/Sponza/Sponza.fbx"), "Sponza");
+		//scene->LoadLevel(FbxLevelImporter::instance().Load("Sponza", "./Assets/Levels/Sponza/Sponza.fbx"), "Sponza");
 		//scene->LoadLevel(FbxLevelImporter::instance().Load("TransformTest", "./Assets/Levels/TransformTest/TransformTest3.fbx"), "TransformTest");
 		//scene->LoadLevel(FbxLevelImporter::instance().Load("MaterialTest", "./Assets/Levels/MaterialTest/MaterialTest2.fbx"), "MaterialTest");
 

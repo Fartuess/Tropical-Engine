@@ -9,19 +9,23 @@ in vec3 a_tangent;
 in vec3 a_bitangent;
 in vec2 a_texcoord;
 
-out vec4 v_vertex_v;
-out vec3 v_normal_v;
-out vec3 v_tangent_v;
-out vec3 v_bitangent_v;
-out vec2 v_texcoord_v;
+out vec4 v_vertex;
+out vec3 v_normal;
+out vec3 v_tangent;
+out vec3 v_bitangent;
+out vec2 v_texcoord;
+
+out vec3 v_eye;
 
 void main()
 {
-	v_normal_v = a_normal;
-	v_tangent_v = a_tangent;
-	v_bitangent_v = a_bitangent;
-	v_texcoord_v = a_texcoord;
-	v_vertex_v = a_vertex;
+	v_normal = a_normal;
+	v_tangent = a_tangent;
+	v_bitangent = a_bitangent;
+	v_texcoord = a_texcoord;
+	v_vertex = a_vertex;
+
+	v_eye = -vec3(a_vertex);
 
 	gl_Position = a_vertex;
 }

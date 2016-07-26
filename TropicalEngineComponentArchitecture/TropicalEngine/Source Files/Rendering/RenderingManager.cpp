@@ -6,10 +6,16 @@
 
 #include <Camera/CameraComponent.h>
 
+#include <Texture/RenderTexture.h>
+
 #include <TropicalEngineApplication.h>
 
 namespace TropicalEngine
 {
+	RenderingManager::RenderingManager()
+	{
+		screenTexture = new RenderTexture("Screen Color Pass", 1024, 1024);
+	}
 
 	void RenderingManager::addRenderableObject(IRenderable* renderableObject, Level* level, QString shaderPass)
 	{
@@ -60,8 +66,12 @@ namespace TropicalEngine
 	void RenderingManager::DrawAll(Scene* scene)
 	{
 		DrawAll(scene, "Shadowmap");
+		screenTexture->BindFramebuffer();
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		DrawAll(scene, "Default");
 		DrawAll(scene, "Color");
+		RenderTexture::BindDefaultFramebuffer();
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		DrawAll(scene, "PostProcess");
 	}
 

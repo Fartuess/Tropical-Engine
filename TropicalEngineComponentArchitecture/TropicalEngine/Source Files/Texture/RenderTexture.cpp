@@ -1,6 +1,7 @@
 #include <Utills/Exception.h>
 
 #include <Texture/RenderTexture.h>
+#include <Texture/TextureManager.h>
 
 namespace TropicalEngine
 {
@@ -24,11 +25,6 @@ namespace TropicalEngine
 	void RenderTexture::BindFramebuffer()
 	{
 		glBindFramebuffer(GL_DRAW_FRAMEBUFFER, framebufferLocation);
-		//glDrawBuffer(GL_COLOR_ATTACHMENT0);
-		//glReadBuffer(GL_COLOR_ATTACHMENT0);
-		//glBindFramebuffer(GL_READ_FRAMEBUFFER, framebufferLocation);
-		//glDrawBuffer(framebufferLocation);
-		//glReadBuffer(framebufferLocation);
 		glViewport(0, 0, width, height);
 	}
 
@@ -39,18 +35,17 @@ namespace TropicalEngine
 
 	void RenderTexture::Create(int wrappingS, int wrappingT)
 	{
-		//glViewport(0, 0, width, height);
+		glGenFramebuffers(1, &framebufferLocation);
+
 		glGenTextures(1, &textureLocation);
 		glBindTexture(GL_TEXTURE_2D, textureLocation);
 		
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, NULL);
 		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, wrappingS);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, wrappingT);
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, NULL);
-
-		glGenFramebuffers(1, &framebufferLocation);
-
+		
 		glBindFramebuffer(GL_DRAW_FRAMEBUFFER, framebufferLocation);
 		glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, textureLocation, 0);
 

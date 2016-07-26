@@ -1,6 +1,8 @@
 #ifndef _LIGHTING
 #define _LIGHTING
 
+#ifndef UNLIT
+
 // private
 void calculateAmbientLighting()
 {
@@ -64,5 +66,7 @@ void calculateLighting()
 	g_lightingResult.specular += helperLightingResult.specular;
 #endif
 }
+
+#endif
 
 #endif

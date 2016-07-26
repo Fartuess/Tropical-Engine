@@ -1,6 +1,8 @@
 #ifndef _LIGHTING_HEADER
 #define _LIGHTING_HEADER
 
+#ifndef UNLIT
+
 #include "Lighting/PointLight.glsl"
 #include "Lighting/SpotLight.glsl"
 
@@ -29,5 +31,7 @@ vec3 g_ambientChannel;
 LightingResult g_lightingResult = LightingResult(vec3(0.0), vec3(0.0));
 
 LightingResult calculateLightingModel(in vec3 lightVector, in vec3 lightColor, in float lightBrightness, in vec3 eye);
+
+#endif
 
 #endif

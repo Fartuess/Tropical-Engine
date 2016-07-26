@@ -5,6 +5,7 @@
 *.lastbuildstate
 *.pdb
 TropicalEngineComponentArchitecture/TropicalEngine/x64/**/*.obj
+TropicalEngineComponentArchitecture/Tropicalengine/.vscode/
 *.ilk
 *.sdf
 !*.lib
