@@ -67,6 +67,8 @@ namespace TropicalEngine
 		#pragma endregion
 		Texture* const operator[](QString name)	const	{ return textures[name]; };
 
+		void RegisterTexture(QString name, Texture* texture);
+
 		TextureData* LoadData(QString fileUrl, bool flipY = false);
 
 		#pragma region documentation

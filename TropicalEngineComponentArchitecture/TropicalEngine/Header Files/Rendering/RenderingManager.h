@@ -29,6 +29,9 @@ namespace TropicalEngine
 		#pragma endregion
 		~RenderingManager()	{}
 
+		//temp
+		void setScreenSize(int width, int height);
+
 		#pragma region documentation
 		/**
 		  * \brief Adds renderable object into the manager.
@@ -88,6 +91,8 @@ namespace TropicalEngine
 		QHash<class Level*, QHash<QString, QList<class IRenderable*>>> renderableObjects;
 
 	private:
+		int screenWidth;	//temp?
+		int screenHeight;	//temp?
 		class RenderTexture* screenTexture;
 	};
 

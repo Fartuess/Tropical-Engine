@@ -17,6 +17,12 @@ namespace TropicalEngine
 		screenTexture = new RenderTexture("Screen Color Pass", 1024, 1024);
 	}
 
+	void RenderingManager::setScreenSize(int width, int height)
+	{
+		screenWidth = width;
+		screenHeight = height;
+	}
+
 	void RenderingManager::addRenderableObject(IRenderable* renderableObject, Level* level, QString shaderPass)
 	{
 		renderableObjects[level][shaderPass].append(renderableObject);
@@ -65,12 +71,16 @@ namespace TropicalEngine
 
 	void RenderingManager::DrawAll(Scene* scene)
 	{
-		DrawAll(scene, "Shadowmap");
-		screenTexture->BindFramebuffer();
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		DrawAll(scene, "Default");
-		DrawAll(scene, "Color");
 		RenderTexture::BindDefaultFramebuffer();
+		//DrawAll(scene, "Shadowmap");
+		screenTexture->BindFramebuffer();
+		//glViewport(0, 0, 1024, 1024);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		//RenderTexture::BindDefaultFramebuffer();
+		DrawAll(scene, "Default");
+		//DrawAll(scene, "Color");
+		RenderTexture::BindDefaultFramebuffer();
+		glViewport(0, 0, screenWidth, screenHeight);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		DrawAll(scene, "PostProcess");
 	}

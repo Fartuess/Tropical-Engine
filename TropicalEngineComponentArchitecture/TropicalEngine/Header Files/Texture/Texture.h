@@ -250,6 +250,9 @@ namespace TropicalEngine
 		#pragma endregion
 		void setName(QString name);
 
+		void setWrapping(int wrappingS = GL_REPEAT, int wrappingT = GL_REPEAT);
+		void setFiltering(int minFilter = GL_LINEAR_MIPMAP_LINEAR, int magFilter = GL_LINEAR);
+
 		// TODO: Create flexible interface for changing texture parameters.
 		#pragma region documentation
 		/**

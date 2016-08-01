@@ -434,6 +434,7 @@ namespace TropicalEngine
 		planeBuilder.setParameter("size Y", float(10.0f));
 		planeBuilder.setParameter("subdivisions X", int(50));
 		planeBuilder.setParameter("subdivisions Y", int(50));
+		planeBuilder.setParameter("tiled", true);
 		planeBuilder.Build();
 
 		BoxModelBuilder boxBuilder = BoxModelBuilder();
@@ -521,13 +522,19 @@ namespace TropicalEngine
 		ShaderTechnique* screenTechnique = new ShaderTechnique("Screen", &CommonMeshShaderBuilder::instance());
 		screenTechnique->setInput("Vertex Shader", "./Shader Files/Mesh/ObjectSpaceMesh.glsl");
 		screenTechnique->setInput("Lighting Model", "./Shader Files/LightingModels/UnlitLightingModel.glsl");
-		screenTechnique->setInput("Surface Shader", "./Shader Files/SurfaceShaders/Textured.glsl");
+		screenTechnique->setInput("Surface Shader", "./Shader Files/SurfaceShaders/Tests/LUTColorGrading.glsl");
 
 		ShaderTechnique* screenTechniquePostProcess = new ShaderTechnique("Screen PP", screenTechnique->getShader(), "PostProcess");
+
+		Texture* LutTestTexture = textureManager.Load("LUT test", "./Assets/TestAssets/TestLUT.tga");
+		//Texture* LutTestTexture = textureManager.Load("LUT test", "./Assets/Core/DefaultColorLUT.tga");
+		LutTestTexture->setWrapping(GL_MIRRORED_REPEAT, GL_MIRRORED_REPEAT);
+		LutTestTexture->setFiltering(GL_NEAREST, GL_NEAREST);
 
 		Material* screenMaterial = new Material(shaderManager.getShaderTechnique("Screen PP"), "Screen Material");
 		(*screenMaterial)["mat_emissive"] = textureManager["Screen Color Pass"];
 		(*screenMaterial)["mat_usesEmissive"] = new bool(true);
+		(*screenMaterial)["mat_LUT"] = textureManager["LUT test"];
 
 		PlaneModelBuilder screenBuilder = PlaneModelBuilder();
 		screenBuilder.setParameter("name", QString("Screen"));

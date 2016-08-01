@@ -12,6 +12,8 @@
 #include <Scene/Entity.h>
 #include <Scene/Scene.h>
 
+#include <Rendering/RenderingManager.h>
+
 #include <Camera/CameraComponent.h>
 #include <Input/InputManager.h>
 #include <TempHelpers/OglDevTut03.h>
@@ -66,6 +68,7 @@ namespace TropicalEngine
 		if (drawnScene->getCurrentCamera() != nullptr)
 			drawnScene->getCurrentCamera()->setAspectRatio((GLfloat)width / (GLfloat)height);
 		glViewport(0, 0, width, height);
+		RenderingManager::instance().setScreenSize(width, height);
 
 		//emit reshapeSignal(width, height);
 		//this->update();
