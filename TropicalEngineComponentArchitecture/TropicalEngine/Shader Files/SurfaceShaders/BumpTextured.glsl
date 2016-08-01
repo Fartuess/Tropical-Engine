@@ -35,8 +35,22 @@ uniform bool mat_maskSeparateTexture = false;
 uniform sampler2D mat_mask;
 #endif
 
+#ifndef EMISSIVEINPUT
+#define EMISSIVEINPUT
+uniform sampler2D mat_emissive;
+uniform bool mat_usesEmissive = false;
+vec3 g_emissiveInput = vec3(0.0);
+#endif
+
 void processSurface()
 {
+#ifdef EMISSIVEINPUT
+	if (mat_usesEmissive)
+	{
+		g_emissiveInput = texture(mat_emissive, g_texcoord).rgb;
+	}
+#endif
+
 #ifdef DIFFUSEINPUT
 	g_diffuseInput = texture(mat_color, g_texcoord).rgb;
 #endif

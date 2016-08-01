@@ -46,6 +46,20 @@ namespace TropicalEngine
 		this->name = name;
 	}
 
+	void Texture::setWrapping(int wrappingS, int wrappingT)
+	{
+		glBindTexture(GL_TEXTURE_2D, textureLocation);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, wrappingS);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, wrappingT);
+	}
+
+	void Texture::setFiltering(int minFilter, int magFilter)
+	{
+		glBindTexture(GL_TEXTURE_2D, textureLocation);
+		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, minFilter);
+		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, magFilter);
+	}
+
 	void Texture::Create(int wrappingS, int wrappingT)
 	{
 		glGenTextures(1, &textureLocation);

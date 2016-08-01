@@ -140,6 +140,8 @@
     <None Include="Shader Files\SurfaceShaders\ParallaxMapped.glsl" />
     <None Include="Shader Files\SurfaceShaders\SimpleColor.glsl" />
     <None Include="Shader Files\SurfaceShaders\Skybox.glsl" />
+    <None Include="Shader Files\SurfaceShaders\Tests\Desaturated.glsl" />
+    <None Include="Shader Files\SurfaceShaders\Tests\LUTColorGrading.glsl" />
     <None Include="Shader Files\SurfaceShaders\Textured.glsl" />
     <None Include="Shader Files\SurfaceShaders\TexturedCubemap.glsl" />
     <None Include="Shader Files\SurfaceShaders\TexturedCubemapReflected.glsl" />

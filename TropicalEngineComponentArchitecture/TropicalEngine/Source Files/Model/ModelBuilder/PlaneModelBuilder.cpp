@@ -22,6 +22,8 @@ namespace TropicalEngine
 		parameters["backfacing"] = false;
 
 		parameters["centered"] = true;
+
+		parameters["tiled"] = false;
 	}
 
 
@@ -43,6 +45,8 @@ namespace TropicalEngine
 		parameters["backfacing"] = false;
 
 		parameters["centered"] = true;
+
+		parameters["tiled"] = false;
 	}
 
 	Model* PlaneModelBuilder::Build()
@@ -58,6 +62,7 @@ namespace TropicalEngine
 		int isInversed = parameters["backfacing"].value<bool>();
 		int inversed = -2 * ((int)isInversed) + 1;
 		bool isCentered = parameters["centered"].value<bool>();
+		bool isTiled = parameters["tiled"].value<bool>();
 
 		MeshEntry* Mesh = new MeshEntry();
 
@@ -217,12 +222,24 @@ namespace TropicalEngine
 					bitangents.push_back(bitangent);
 				}
 
-				texCoords.push_back(glm::vec2(i * width / subdivisionsWidth, j * height / subdivisionsHeight));
-				texCoords.push_back(glm::vec2(i * width / subdivisionsWidth, (j + 1) * height / subdivisionsHeight));
-				texCoords.push_back(glm::vec2((i + 1) * width / subdivisionsWidth, j * height / subdivisionsHeight));
-				texCoords.push_back(glm::vec2((i + 1) * width / subdivisionsWidth, j * height / subdivisionsHeight));
-				texCoords.push_back(glm::vec2(i * width / subdivisionsWidth, (j + 1) * height / subdivisionsHeight));
-				texCoords.push_back(glm::vec2((i + 1) * width / subdivisionsWidth, (j + 1) * height / subdivisionsHeight));
+				if (isTiled)
+				{
+					texCoords.push_back(glm::vec2(i * width / subdivisionsWidth, j * height / subdivisionsHeight));
+					texCoords.push_back(glm::vec2(i * width / subdivisionsWidth, (j + 1) * height / subdivisionsHeight));
+					texCoords.push_back(glm::vec2((i + 1) * width / subdivisionsWidth, j * height / subdivisionsHeight));
+					texCoords.push_back(glm::vec2((i + 1) * width / subdivisionsWidth, j * height / subdivisionsHeight));
+					texCoords.push_back(glm::vec2(i * width / subdivisionsWidth, (j + 1) * height / subdivisionsHeight));
+					texCoords.push_back(glm::vec2((i + 1) * width / subdivisionsWidth, (j + 1) * height / subdivisionsHeight));
+				}
+				else
+				{
+					texCoords.push_back(glm::vec2(i / subdivisionsWidth, j / subdivisionsHeight));
+					texCoords.push_back(glm::vec2(i / subdivisionsWidth, (j + 1) / subdivisionsHeight));
+					texCoords.push_back(glm::vec2((i + 1) / subdivisionsWidth, j / subdivisionsHeight));
+					texCoords.push_back(glm::vec2((i + 1) / subdivisionsWidth, j / subdivisionsHeight));
+					texCoords.push_back(glm::vec2(i / subdivisionsWidth, (j + 1) / subdivisionsHeight));
+					texCoords.push_back(glm::vec2((i + 1) / subdivisionsWidth, (j + 1) / subdivisionsHeight));
+				}
 			}
 		}
 

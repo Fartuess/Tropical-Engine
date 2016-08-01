@@ -1,23 +1,9 @@
 #include <QtCore/qdir.h>
 #include <QtCore/qdebug.h>
 
-#include <Shader/ShaderManager.h>
-#include <Shader/MaterialManager.h>
-
-#include <Texture/TextureManager.h>
-
-#include <Model/ModelManager.h>
-#include <Model/ModelBuilder.h>
-
-#include <Package/AssetManager.h>
-#include <Package/PackageManager.h>
-
 #include <Scene/Scene.h>
-#include <Scene/SceneManager.h>
 
 #include <Rendering/RenderingManager.h>
-
-#include <Light/LightController.h>
 
 #include <Input/InputManager.h>
 
@@ -36,7 +22,6 @@ namespace TropicalEngine
 
 	TropicalEngineApplication::TropicalEngineApplication(int argc, char* argv[]) : QApplication(argc, argv)
 	{
-		//math::registerGLMtypes();
 
 		QDir::setCurrent(QCoreApplication::applicationDirPath() + "/../..");
 		setWindowIcon(QIcon("./Resource Files/TropicalEngine.png"));
@@ -45,28 +30,7 @@ namespace TropicalEngine
 		splashScreen = new QSplashScreen(*splashImage);
 		splashScreen->show();
 
-		//shaderManager = new ShaderManager();
-		//materialManager = new MaterialManager();
-		//
-		//textureManager = new TextureManager();
-		//
-		//modelManager = new ModelManager();
-		//modelBuilder = new ModelBuilder();
-		//
-		//assetManager = new AssetManager();
-		//packageManager = new PackageManager();
-		//sceneManager = new SceneManager();
 		tempScene = new Scene();
-		//renderingManager = new RenderingManager();
-		//
-		//lightController = new LightController();
-		//
-		//updateManager = new UpdateManager();
-		//
-		//inputManager = new InputManager();
-		//
-		//renderer = new OglDevTut03();
-		//
 
 		GuiStyleManager::instance().ChangeStyle(*this, "./Resource Files/TropicalEngineEditorStyle.css");
 
@@ -86,6 +50,7 @@ namespace TropicalEngine
 	void TropicalEngineApplication::Initialize()
 	{
 		deltaTimer.start();
+		RenderingManager::instance();
 		OglDevTut03::instance().InitializeLevel(tempScene);
 		sceneGraph->Reload();
 		splashScreen->close();
@@ -96,7 +61,6 @@ namespace TropicalEngine
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		glPatchParameteri(GL_PATCH_VERTICES, 3);
-
 
 		UpdateManager::instance().UpdateAll();
 		InputManager::instance().Update();

@@ -74,14 +74,21 @@ namespace TropicalEngine
 
 		if (!shaderPasses.contains(shaderPass))
 		{
-			generateShader(shaderPass);
+			if (shaderPass == "Default" && shaderBuilder == nullptr)
+			{
+				return shaderPasses.first();
+			}
+			else
+			{
+				generateShader(shaderPass);
+			}
 		}
 		return shaderPasses[shaderPass];
 	}
 
 	class Shader* ShaderTechnique::generateShader(QString shaderPass)
 	{
-		if (shaderBuilder == nullptr)
+		if (shaderBuilder == nullptr && !shaderPasses.contains(shaderPass))
 		{
 			throw Exception<ShaderTechnique>("Can't generate shader without any builder.", this);
 		}

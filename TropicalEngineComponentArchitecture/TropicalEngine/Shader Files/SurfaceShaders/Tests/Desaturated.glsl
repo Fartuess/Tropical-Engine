@@ -1,5 +1,5 @@
-#ifndef _TEXTURED
-#define _TEXTURED
+#ifndef _DESATURATED
+#define _DESATURATED
 
 #define TEXTURECOORDINATES
 
@@ -44,7 +44,9 @@ void processSurface()
 #ifdef EMISSIVEINPUT
 	if (mat_usesEmissive)
 	{
-		g_emissiveInput = texture(mat_emissive, g_texcoord).rgb;
+		float greyscaleEmissive = texture(mat_emissive, g_texcoord).r * 0.2989 + texture(mat_emissive, g_texcoord).g * 0.5870 + texture(mat_emissive, g_texcoord).b * 0.1140;
+		vec3 desaturatedEmissive = vec3(greyscaleEmissive, greyscaleEmissive, greyscaleEmissive);
+		g_emissiveInput = desaturatedEmissive;
 	}
 #endif
 

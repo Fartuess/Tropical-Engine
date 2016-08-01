@@ -50,7 +50,7 @@ namespace TropicalEngine
 		}
 		else
 		{
-			RenderingManager::instance().addRenderableObject(this, getLevel(), "Color");
+			RenderingManager::instance().addRenderableObject(this, getLevel(), "Default");
 		}
 	}
 

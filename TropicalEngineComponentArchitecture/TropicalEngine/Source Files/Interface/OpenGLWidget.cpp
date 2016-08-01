@@ -12,6 +12,8 @@
 #include <Scene/Entity.h>
 #include <Scene/Scene.h>
 
+#include <Rendering/RenderingManager.h>
+
 #include <Camera/CameraComponent.h>
 #include <Input/InputManager.h>
 #include <TempHelpers/OglDevTut03.h>
@@ -66,6 +68,7 @@ namespace TropicalEngine
 		if (drawnScene->getCurrentCamera() != nullptr)
 			drawnScene->getCurrentCamera()->setAspectRatio((GLfloat)width / (GLfloat)height);
 		glViewport(0, 0, width, height);
+		RenderingManager::instance().setScreenSize(width, height);
 
 		//emit reshapeSignal(width, height);
 		//this->update();
@@ -117,13 +120,10 @@ namespace TropicalEngine
 	{
 		*abstractMousePosition += mouseEvent->globalPos() - *screenCenter;
 
-		//TropicalEngineApplication::instance()->inputController->mousePosition = glm::vec2(mouseEvent->globalX(), mouseEvent->globalY());
 		InputManager::instance().mousePosition = glm::vec2(abstractMousePosition->x(), abstractMousePosition->y());
 
-		//glm::quat quat1 = glm::angleAxis(mouseEvent->globalX() / 6.0f, glm::vec3(0.0f, -1.0f, 0.0f));
 		glm::quat quat1 = glm::angleAxis(abstractMousePosition->x() / 6.0f, glm::vec3(0.0f, -1.0f, 0.0f));
 		drawnScene->getCurrentCamera()->getOwner()->transform.setLocalRotation(quat1);
-		//glm::quat quat2 = glm::angleAxis(mouseEvent->globalY() / 6.0f - 90.0f, TropicalEngineApplication::instance()->sceneManager->getCurrentCamera()->getOwner()->transform.getRight());
 		glm::quat quat2 = glm::angleAxis(abstractMousePosition->y() / 6.0f - 90.0f, -drawnScene->getCurrentCamera()->getOwner()->transform.getRight());
 
 		drawnScene->getCurrentCamera()->getOwner()->transform.setLocalRotation(quat2 * quat1);

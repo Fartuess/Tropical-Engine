@@ -21,13 +21,16 @@ namespace TropicalEngine
 		  * \brief Default constructor.
 		  */
 		#pragma endregion
-		RenderingManager()	{}
+		RenderingManager();
 		#pragma region documentation
 		/**
 		  * \brief Default destructor.
 		  */
 		#pragma endregion
 		~RenderingManager()	{}
+
+		//temp
+		void setScreenSize(int width, int height);
 
 		#pragma region documentation
 		/**
@@ -38,7 +41,7 @@ namespace TropicalEngine
 		  * @param shaderPass Name of shaderPass to use.
 		  */
 		#pragma endregion
-		void addRenderableObject(class IRenderable* renderableObject, class Level* level, QString shaderPass = "color");
+		void addRenderableObject(class IRenderable* renderableObject, class Level* level, QString shaderPass = "Default");
 		#pragma region documentation
 		/**
 		  * \brief Removes renderable object from specific level.
@@ -86,6 +89,11 @@ namespace TropicalEngine
 
 	protected:
 		QHash<class Level*, QHash<QString, QList<class IRenderable*>>> renderableObjects;
+
+	private:
+		int screenWidth;	//temp?
+		int screenHeight;	//temp?
+		class RenderTexture* screenTexture;
 	};
 
 }

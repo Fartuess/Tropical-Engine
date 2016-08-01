@@ -49,6 +49,11 @@ namespace TropicalEngine
 		return textures[name];
 	}
 
+	void TextureManager::RegisterTexture(QString name, Texture* texture)
+	{
+		textures.insert(name, texture);
+	}
+
 	TextureData* TextureManager::LoadData(QString fileUrl, bool flipY)
 	{
 		return supportedExtensions[fileUrl.section(".", -1, -1).toLower()]->LoadData(fileUrl, flipY);
