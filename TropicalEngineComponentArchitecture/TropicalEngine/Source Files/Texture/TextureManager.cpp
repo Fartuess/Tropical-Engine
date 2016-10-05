@@ -51,7 +51,10 @@ namespace TropicalEngine
 
 	void TextureManager::RegisterTexture(QString name, Texture* texture)
 	{
-		textures.insert(name, texture);
+		if (name != "")
+		{
+			textures.insert(name, texture);
+		}
 	}
 
 	TextureData* TextureManager::LoadData(QString fileUrl, bool flipY)

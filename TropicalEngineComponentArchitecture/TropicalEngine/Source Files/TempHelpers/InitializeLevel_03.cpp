@@ -60,6 +60,7 @@ namespace TropicalEngine
 	{
 		TropicalEngineApplication* engine = TropicalEngineApplication::instance();
 
+		#pragma region Creating Level and Asset Managers
 		/*********************************
 		 *
 		 * Creating empty level
@@ -71,7 +72,10 @@ namespace TropicalEngine
 		AssetManager& assetManager = AssetManager::instance();
 		PackageManager& packageManager = PackageManager::instance();;
 		Asset* helperAsset;
+		#pragma endregion
 
+
+		#pragma region Creating Shaders
 		/*********************************
 		*
 		* Creating shaders
@@ -164,6 +168,7 @@ namespace TropicalEngine
 		iblCubemapTechnique->setInput("Lighting Model", "./Shader Files/LightingModels/BlinnPhongLightingModel.glsl");
 		iblCubemapTechnique->setInput("Custom Lighting", "./Shader Files/CustomLighting/ImageBasedLightingCubemap.glsl");
 		iblCubemapTechnique->setInput("Surface Shader", "./Shader Files/SurfaceShaders/BumpTextured.glsl");
+		#pragma endregion
 
 		//Adding shaders to the internal package of the level.
 		//helperAsset = new Asset("Phong Shader", shaderManager["Phong"]);
@@ -188,6 +193,8 @@ namespace TropicalEngine
 		//(*level->getInternalPackage()) << helperAsset;
 		// TODO: tessallation shaders missing
 
+
+		#pragma region Creating Materials
 		/*********************************
 		*
 		* Creating materials
@@ -227,7 +234,9 @@ namespace TropicalEngine
 		Material* iblMaterial					= new Material(shaderManager.getShaderTechnique("IblTest"), "Ibl Material");
 
 		Material* iblCubemapMaterial = new Material(shaderManager.getShaderTechnique("IblCubemapTest"), "IblCubemap Material");
+		#pragma endregion
 
+		#pragma region Loading Textures
 		/*********************************
 		*
 		* Loading textures
@@ -272,6 +281,7 @@ namespace TropicalEngine
 		//CubemapTexture* cubemapTexture = new CubemapTexture("./Assets/TestAssets/TestSky.exr", "Cubemap Test");
 
 		Texture* skyboxTexture = textureManager.Load("Skybox Texture", "./Assets/TestAssets/TestSky.exr");
+		#pragma endregion
 
 		//Adding textures to the internal package of the level.
 		helperAsset = new Asset("Default Texture Albedo", textureManager["Default Texture Albedo"]);
@@ -303,6 +313,7 @@ namespace TropicalEngine
 		helperAsset = new Asset("Steampunk Chest Normals", textureManager["Steampunk Chest Normals"]);
 		(*level->getInternalPackage()) << helperAsset;
 
+		#pragma region Setting Material parameters
 		/*********************************
 		*
 		* Setting parameters of materials
@@ -384,6 +395,7 @@ namespace TropicalEngine
 		(*iblCubemapMaterial)["mat_color"] = textureManager["Default Texture Albedo"];
 		(*iblCubemapMaterial)["mat_normal"] = testingTextureNormal;
 		(*iblCubemapMaterial)["mat_specularExponent"] = new float(20.0f);
+		#pragma endregion
 
 		//Adding materials to the internal package of the level.
 		helperAsset = new Asset("Phong Material", materialManager["Phong Material"]);
@@ -411,6 +423,7 @@ namespace TropicalEngine
 		helperAsset = new Asset("Steampunk Chest Material", materialManager["Steampunk Chest Material"]);
 		(*level->getInternalPackage()) << helperAsset;
 
+		#pragma region Creating and loading Models
 		/*********************************
 		*
 		* Creating and loading models
@@ -490,6 +503,7 @@ namespace TropicalEngine
 		modelBuilder.Load("FbxTest3", "./Assets/TestAssets/FBXtestPrepared.fbx");
 		modelBuilder.Load("FbxTest4", "./Assets/TestAssets/FBXHierarchyTest.fbx");
 		modelBuilder.Load("FbxChest", "./Assets/TestAssets/SteamPunkChest_LP.fbx");
+		#pragma endregion
 
 		//Adding imported model assets to the internal package of the level.
 		helperAsset = new Asset("TestModel Model", modelManager["TestModel"]);
@@ -517,8 +531,7 @@ namespace TropicalEngine
 		helperAsset = new Asset("FbxChest Model", modelManager["FbxChest"]);
 		(*level->getInternalPackage()) << helperAsset;
 
-
-
+		#pragma region Setting Post Processing
 		ShaderTechnique* screenTechnique = new ShaderTechnique("Screen", &CommonMeshShaderBuilder::instance());
 		screenTechnique->setInput("Vertex Shader", "./Shader Files/Mesh/ObjectSpaceMesh.glsl");
 		screenTechnique->setInput("Lighting Model", "./Shader Files/LightingModels/UnlitLightingModel.glsl");
@@ -533,6 +546,7 @@ namespace TropicalEngine
 
 		Material* screenMaterial = new Material(shaderManager.getShaderTechnique("Screen PP"), "Screen Material");
 		(*screenMaterial)["mat_emissive"] = textureManager["Screen Color Pass"];
+		//(*screenMaterial)["mat_emissive"] = textureManager["Default Texture Albedo"];
 		(*screenMaterial)["mat_usesEmissive"] = new bool(true);
 		(*screenMaterial)["mat_LUT"] = textureManager["LUT test"];
 
@@ -548,8 +562,9 @@ namespace TropicalEngine
 		ModelComponent* screenEntityModelC = new ModelComponent(screenEntity, screenMaterial, ModelManager::instance()["Screen"]);
 		screenEntity->name = QString("Screen Entity");
 		level->getRoot()->AttachSubobject(screenEntity);
+		#pragma endregion
 
-
+		#pragma region Creating scene objects
 		/*********************************
 		*
 		* Creating scene objects
@@ -637,6 +652,12 @@ namespace TropicalEngine
 		mainCamera->name = QString("Main Camera");
 		TempPlayerComponent* cameraController = new TempPlayerComponent(mainCamera);
 		level->getRoot()->AttachSubobject(mainCamera);
+		//Entity* spotLight2 = new Entity(glm::vec3(5.0f, 2.0f, -5.0f), glm::quat(), glm::vec3(0.4f, 0.4f, 0.4f));
+		SpotLightComponent* spotLightComponent2 = new SpotLightComponent(mainCamera, glm::vec3(0.6f, 0.9f, 1.0f), 3.0f, 70.0f, 1.0f, 25.0f, 0.0f);
+		//TempMovingComponent* spotLightMoveComponent2 = new TempMovingComponent(mainCamera, glm::vec3(60.0f, 2.2f, 0.0f), glm::vec3(0.0f, 2.2f, 0.0f), 20.0f);
+		ModelComponent* spotLightMarker2 = new ModelComponent(mainCamera, phongMaterial, modelManager.getModel("Cone"));
+		//spotLight2->name = QString("Spot Light2");
+		//level->getRoot()->AttachSubobject(spotLight2);
 
 		Entity* lightModelTestingCamera = new Entity(glm::vec3(5.0f, 5.0f, 5.0f), glm::angleAxis(180.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3(1.0f, 1.0f, 1.0f));
 		CameraComponent* lightModelTestingCameraComponent = new CameraComponent(lightModelTestingCamera, glm::vec3(0.0f, 0.0f, -1.0f), glm::vec3(0.0f, 1.0f, 0.0f), 40.0f, 4.0f / 3.0f, 0.1f, 10000.0f);
@@ -650,8 +671,8 @@ namespace TropicalEngine
 		pointLight->name = QString("Point Light");
 		level->getRoot()->AttachSubobject(pointLight);
 
-		Entity* spotLight = new Entity(glm::vec3(5.0f, 2.0f, -5.0f), glm::quat(), glm::vec3(0.4f, 0.4f, 0.4f));
-		SpotLightComponent* spotLightComponent = new SpotLightComponent(spotLight, glm::vec3(1.0f, 0.2f, 0.1f), 1.5f, 25.0f);
+		Entity* spotLight = new Entity(glm::vec3(5.0f, 2.0f, -5.0f), glm::angleAxis(270.0f, glm::vec3(1.0f, 0.0f, 0.0f)), glm::vec3(0.4f, 0.4f, 0.4f));
+		SpotLightComponent* spotLightComponent = new SpotLightComponent(spotLight, glm::vec3(1.0f, 0.2f, 0.1f), 1.5f, 40.0f);
 		TempMovingComponent* spotLightMoveComponent = new TempMovingComponent(spotLight, glm::vec3(60.0f, 2.2f, 0.0f), glm::vec3(0.0f, 2.2f, 0.0f), 20.0f);
 		ModelComponent* spotLightMarker = new ModelComponent(spotLight, phongMaterial, modelManager.getModel("Cone"));
 		spotLight->name = QString("Spot Light");
@@ -666,6 +687,7 @@ namespace TropicalEngine
 		ModelComponent* skyboxModel = new ModelComponent(skybox, skyboxMaterial, modelManager.getModel("Skybox"));
 		skybox->name = "Skybox";
 		level->getRoot()->AttachSubobject(skybox);
+		#pragma endregion
 
 		//Temporary solution
 
@@ -701,14 +723,33 @@ namespace TropicalEngine
 		FbxExample2ModelC->lightedBy.append(spotLightComponent);
 		FbxExample3ModelC->lightedBy.append(spotLightComponent);
 
+		phongModelC->lightedBy.append(spotLightComponent2);
+		phongBlinnModelC->lightedBy.append(spotLightComponent2);
+		bumpMapModelC->lightedBy.append(spotLightComponent2);
+		maskedModelC->lightedBy.append(spotLightComponent2);
+		parralaxModelC->lightedBy.append(spotLightComponent2);
+		cookTorranceModelC->lightedBy.append(spotLightComponent2);
+		straussModelC->lightedBy.append(spotLightComponent2);
+		straussConductiveModelC->lightedBy.append(spotLightComponent2);
+		wardModelC->lightedBy.append(spotLightComponent2);
+		wardAnisoModelC->lightedBy.append(spotLightComponent2);
+		distanceTessModelC->lightedBy.append(spotLightComponent2);
+		vectorTessModelC->lightedBy.append(spotLightComponent2);
+		FbxExampleModelC->lightedBy.append(spotLightComponent2);
+		FbxExample2ModelC->lightedBy.append(spotLightComponent2);
+		FbxExample3ModelC->lightedBy.append(spotLightComponent2);
+
+		#pragma region Loading defined level into the scene or loading scene from file
 		scene->LoadLevel(level, "TestLevel");
 		scene->setCurrentCamera(mainCameraComponent);
+		//scene->setCurrentCamera(lightModelTestingCameraComponent);
 		scene->mainLight = new DirectionalLightComponent(level->getRoot(), glm::vec3(1.0f, 1.0f, 0.9f), glm::vec3(0.5, 0.6, 1.0), 1.0f);
 		AmbientLightComponent* ambientLight = new AmbientLightComponent(level->getRoot(), glm::vec3(1.0f), 0.2f);
 
 		//scene->LoadLevel(FbxLevelImporter::instance().Load("Sponza", "./Assets/Levels/Sponza/Sponza.fbx"), "Sponza");
-		//scene->LoadLevel(FbxLevelImporter::instance().Load("TransformTest", "./Assets/Levels/TransformTest/TransformTest3.fbx"), "TransformTest");
+		//scene->LoadLevel(FbxLevelImporter::instance().Load("TransformTest", "./Assets/Levels/TransformTest/TransformTest4.fbx"), "TransformTest");
 		//scene->LoadLevel(FbxLevelImporter::instance().Load("MaterialTest", "./Assets/Levels/MaterialTest/MaterialTest2.fbx"), "MaterialTest");
+		#pragma endregion
 
 		phongModelC->lightedBy.append(scene->mainLight);
 		phongBlinnModelC->lightedBy.append(scene->mainLight);

@@ -14,6 +14,11 @@ namespace TropicalEngine
 	public:
 		TYPENAME(RenderTexture)
 
+		enum targetType	// TODO: Make it into final solution
+		{
+			Color,
+			Depth
+		};
 		#pragma region documentation
 		/**
 		* \brief RenderTexture constructor.
@@ -23,7 +28,7 @@ namespace TropicalEngine
 		* @param height Height for new RenderTexture
 		*/
 		#pragma endregion
-		RenderTexture(QString name, int width, int height);
+		RenderTexture(QString name, int width, int height, targetType type = targetType::Color);
 		#pragma region documentation
 		/**
 		* \brief RenderTexture destructor.
@@ -65,6 +70,7 @@ namespace TropicalEngine
 		virtual void Create(int wrappingS, int wrappingT) override;
 	private:
 		GLuint framebufferLocation;
+		targetType type;
 	};
 
 }

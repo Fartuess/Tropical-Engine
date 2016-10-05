@@ -66,8 +66,6 @@ namespace TropicalEngine
 		InputManager::instance().Update();
 		deltaTime = deltaTimer.restart();
 
-		tempScene->getCurrentCamera()->CalculateMatrix();
-
 		tempScene->EvaluateLevels();	// TODO: Evaluate only changed
 		RenderingManager::instance().DrawAll(tempScene);
 	}

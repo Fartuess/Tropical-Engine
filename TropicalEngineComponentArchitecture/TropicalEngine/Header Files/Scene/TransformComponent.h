@@ -4,6 +4,8 @@
 
 #include <Component/Component.h>
 
+#include "Transform.h"
+
 namespace TropicalEngine
 {
 
@@ -27,7 +29,16 @@ namespace TropicalEngine
 		  * @param localScale Local Scale for object owning this Component.
 		  */
 		#pragma endregion
-		TransformComponent(Entity* owner, glm::vec3 localPosition = glm::vec3(0.0f), glm::quat localRotation = glm::quat(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)), glm::vec3 localScale = glm::vec3(1.0f));
+		TransformComponent(Entity* owner, glm::vec3 localPosition = glm::vec3(0.0f), glm::quat localRotation = glm::quat(), glm::vec3 localScale = glm::vec3(1.0f));
+		#pragma region documentation
+		/**
+		  * \brief TransformComponent constructor.
+		  *
+		  * @param owner Entity to attach this Component to.
+		  * @param localTransform Transform data for this Component.
+		  */
+		#pragma endregion
+		TransformComponent(Entity* owner, Transform localTransform);
 		#pragma region documentation
 		/**
 		  * \brief TransformComponent destructor.
@@ -37,6 +48,31 @@ namespace TropicalEngine
 
 		static TransformComponent InitializeType();
 
+		#pragma region documentation
+		/**
+		  * \brief Gets Transform data of this component.
+		  *
+		  * @param isGlobal Decides if local Transform or global transfor shouldbe returned.
+		  * @return Transform data of this component.
+		  */
+		#pragma endregion
+		Transform& getTransform(bool isGlobal = false);
+		#pragma region documentation
+		/**
+		  * \brief Gets local Transform data of this component.
+		  *
+		  * @return Local Transform data of this component.
+		  */
+		#pragma endregion
+		Transform& getLocalTransform();
+		#pragma region documentation
+		/**
+		  * \brief Gets global Transform data of this component.
+		  *
+		  * @return Global Transform data of this component.
+		  */
+		#pragma endregion
+		Transform& getGlobalTransform();
 		#pragma region documentation
 		/**
 		  * \brief Gets global or local position.
@@ -53,7 +89,7 @@ namespace TropicalEngine
 		  * @return Local position.
 		  */
 		#pragma endregion
-		glm::vec3 getLocalPosition()	{ return localPosition; }
+		glm::vec3 getLocalPosition();
 		#pragma region documentation
 		/**
 		  * \brief Gets global position.
@@ -312,18 +348,18 @@ namespace TropicalEngine
 
 		#pragma region documentation
 		/**
-		* \brief Serializes TransformComponent to JSON.
-		*
-		* @return Serialized TransformComponent.
-		*/
+		  * \brief Serializes TransformComponent to JSON.
+		  *
+		  * @return Serialized TransformComponent.
+		  */
 		#pragma endregion
 		QJsonObject toJSON() override;
 		#pragma region documentation
 		/**
-		* \brief Deserializes JSON to TransformComponent.
-		*
-		* @return TransformComponent in form of IDeserializableFromJSON. Can be casted to TransformComponent directly.
-		*/
+		  * \brief Deserializes JSON to TransformComponent.
+		  *
+		  * @return TransformComponent in form of IDeserializableFromJSON. Can be casted to TransformComponent directly.
+		  */
 		#pragma endregion
 		IDeserializableFromJSON* fromJSON(QJsonObject JSON) override;
 
@@ -337,24 +373,11 @@ namespace TropicalEngine
 		void InitializeComponentType() override;
 
 	private:
-		glm::vec3 localPosition;
-		glm::quat localRotation;
-		glm::vec3 localScale;
-
-		glm::vec3 globalPosition;
-		glm::quat globalRotation;
-		glm::vec3 globalScale;
-
-		glm::mat4x4 transformMatrix;
-		glm::mat3 normalMatrix;
-
-		glm::vec3 front;
-		glm::vec3 up;
-		glm::vec3 right;
+		Transform localTransform;
+		Transform globalTransform;
 
 		static TransformComponent templateObject;
 
-		void EvaluateGlobals();
 		void EvaluateInternal();
 	};
 

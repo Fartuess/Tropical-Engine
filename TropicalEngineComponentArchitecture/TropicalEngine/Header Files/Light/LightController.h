@@ -19,6 +19,7 @@ namespace TropicalEngine
 	{
 	public:
 		friend class LightComponent;
+		friend class ModelComponent;
 
 		#pragma region documentation
 		/**

@@ -19,6 +19,10 @@ namespace TropicalEngine
 		this->attenuation = attenuation;
 		this->outerConeRadius = outerConeRadius;
 		this->innerConeRadius = innerConeRadius;
+		if (isCastingShadows)
+		{
+			shadowmap = new RenderTexture("", 1024, 1024, RenderTexture::targetType::Depth);
+		}
 
 		InitializeComponentType();
 	}

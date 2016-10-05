@@ -6,10 +6,11 @@
 namespace TropicalEngine
 {
 
-	RenderTexture::RenderTexture(QString name, int width, int height) : Texture(name)
+	RenderTexture::RenderTexture(QString name, int width, int height, RenderTexture::targetType type) : Texture(name)
 	{
 		this->width = width;
 		this->height = height;
+		this->type = type;
 
 		//Create(GL_CLAMP_TO_EDGE, GL_CLAMP_TO_EDGE);
 		Create(GL_REPEAT, GL_REPEAT);
@@ -44,33 +45,53 @@ namespace TropicalEngine
 		glGenTextures(1, &textureLocation);
 		glBindTexture(GL_TEXTURE_2D, textureLocation);
 		
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, NULL);
-		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, wrappingS);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, wrappingT);
-		
-		//temp{
+		if (type == targetType::Color)
+		{
+			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, NULL);
+			glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+			glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, wrappingS);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, wrappingT);
 
-		GLuint depthLocation;
+			// TODO: Figure out if necessary
+			//temp{
 
-		glGenTextures(1, &depthLocation);
-		glBindTexture(GL_TEXTURE_2D, depthLocation);
+			GLuint depthLocation;
 
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT, width, height, 0, GL_DEPTH_COMPONENT, GL_UNSIGNED_BYTE, NULL);
-		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, wrappingS);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, wrappingT);
+			glGenTextures(1, &depthLocation);
+			glBindTexture(GL_TEXTURE_2D, depthLocation);
 
-		//}temp
-		
-		//glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, textureLocation, 0);
-		glFramebufferTexture(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, textureLocation, 0);
-		glFramebufferTexture(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, depthLocation, 0);
+			glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT, width, height, 0, GL_DEPTH_COMPONENT, GL_UNSIGNED_BYTE, NULL);
+			glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+			glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, wrappingS);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, wrappingT);
 
-		glDrawBuffer(GL_COLOR_ATTACHMENT0);
-		glReadBuffer(GL_COLOR_ATTACHMENT0);
+			//}temp
+
+			//glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, textureLocation, 0);
+			glFramebufferTexture(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, textureLocation, 0);
+			glFramebufferTexture(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, depthLocation, 0);
+
+			glDrawBuffer(GL_COLOR_ATTACHMENT0);
+			glReadBuffer(GL_COLOR_ATTACHMENT0);
+		}
+		else if (type == targetType::Depth)
+		{
+			glGenTextures(1, &textureLocation);
+			glBindTexture(GL_TEXTURE_2D, textureLocation);
+
+			glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT, width, height, 0, GL_DEPTH_COMPONENT, GL_UNSIGNED_BYTE, NULL);
+			glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+			glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, wrappingS);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, wrappingT);
+
+			glFramebufferTexture(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, textureLocation, 0);
+
+			glDrawBuffer(GL_DEPTH_ATTACHMENT);
+			glReadBuffer(GL_DEPTH_ATTACHMENT);
+		}
 		
 		GLenum status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
 		

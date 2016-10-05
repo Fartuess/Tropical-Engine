@@ -11,6 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source Files\Scene\Transform.cpp" />
     <None Include="Shader Files\Blending\BlendMasked.glsl" />
     <None Include="Shader Files\Core\Channel.glsl" />
     <None Include="Shader Files\Core\ShaderCore_Header.glsl" />
@@ -21,6 +22,7 @@
     <None Include="Shader Files\LightingModels\LambertLightingModel.glsl" />
     <None Include="Shader Files\LightingModels\PhongLightingModel.glsl" />
     <None Include="Shader Files\LightingModels\CookTorranceLightingModel.glsl" />
+    <ClCompile Include="Source Files\Camera\Camera.cpp" />
     <ClCompile Include="Source Files\Light\AmbientLightComponent.cpp" />
     <ClCompile Include="Source Files\Scene\LevelImporter\FbxLevelImporter.cpp" />
     <ClCompile Include="Source Files\Scene\LevelImporter\AbstractLevelImporter.cpp" />
@@ -795,6 +797,7 @@
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Header Files\Camera\Camera.h" />
     <ClInclude Include="Header Files\Light\AmbientLightComponent.h" />
     <ClInclude Include="Header Files\Scene\LevelImporter\FbxLevelImporter.h" />
     <ClInclude Include="Header Files\Scene\LevelImporter\AbstractLevelImporter.h" />
@@ -845,6 +848,7 @@
     <ClInclude Include="Header Files\TempHelpers\TempMovingComponent.h" />
     <ClInclude Include="Header Files\Shader\ShaderTechnique.h" />
     <ClInclude Include="Header Files\Scene\SceneManager.h" />
+    <ClInclude Include="Header Files\Scene\Transform.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resource Files\TropicalEngine.ico" />

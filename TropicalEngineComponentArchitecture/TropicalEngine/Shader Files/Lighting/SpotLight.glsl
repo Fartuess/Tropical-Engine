@@ -25,14 +25,21 @@ vec3 calculateSpotLightVector(SpotLight light, vec3 fragmentPosition)
 float calculateSpotLightBrightness(SpotLight light, vec3 fragmentPosition, vec3 lightVector)
 {
 	float LdotLp = dot(light.direction, lightVector);
-	if(LdotLp > cos(light.outerAngle / 90.0 * M_PI))
+
+	if(LdotLp > cos((light.outerAngle / 360.0) * M_PI))
 	{
 		float lightDistance = distance(light.position, fragmentPosition);
 		float lightDistanceFactor = max(1.0 - (lightDistance / light.radius), 0.0);
 
 		float brightness = pow(lightDistanceFactor, light.attenuation) * light.brightness;
-		// TODO: Add inner angle support
-		brightness *= max((LdotLp * (180.0 / light.outerAngle)), 0.0);
+
+		float Xs = cos(light.innerAngle / 360.0 * M_PI);
+		float Xe = cos(light.outerAngle / 360.0 * M_PI);
+		float spot = 0.0;
+		spot = clamp((LdotLp - Xe) / (Xs - Xe), 0.0, 1.0);
+
+		brightness *= spot;
+
 		return brightness;
 	}
 	else

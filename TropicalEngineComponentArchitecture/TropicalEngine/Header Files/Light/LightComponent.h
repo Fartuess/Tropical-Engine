@@ -70,6 +70,8 @@ namespace TropicalEngine
 		#pragma endregion
 		void isCastingShadows(bool isCastingShadows);
 
+		class Texture* getShadowmap();
+
 		virtual void Evaluate();
 		virtual void DrawShadows() {};
 
@@ -89,6 +91,8 @@ namespace TropicalEngine
 		  */
 		#pragma endregion
 		bool castingShadows;
+
+		class RenderTexture* shadowmap = nullptr;
 
 		#pragma region documentation
 		/**

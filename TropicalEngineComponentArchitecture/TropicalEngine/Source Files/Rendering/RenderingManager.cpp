@@ -71,18 +71,19 @@ namespace TropicalEngine
 
 	void RenderingManager::DrawAll(Scene* scene)
 	{
+		//for (Level* level : scene->getLevels())
+		//{
+		//	level->getRoot()->transform.Evaluate();
+		//}
+
 		RenderTexture::BindDefaultFramebuffer();
-		//DrawAll(scene, "Shadowmap");
-		screenTexture->BindFramebuffer();
-		//glViewport(0, 0, 1024, 1024);
+		//screenTexture->BindFramebuffer();
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		//RenderTexture::BindDefaultFramebuffer();
 		DrawAll(scene, "Default");
-		//DrawAll(scene, "Color");
-		RenderTexture::BindDefaultFramebuffer();
-		glViewport(0, 0, screenWidth, screenHeight);
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		DrawAll(scene, "PostProcess");
+		//RenderTexture::BindDefaultFramebuffer();
+		//glViewport(0, 0, screenWidth, screenHeight);
+		//glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		//DrawAll(scene, "PostProcess");
 	}
 
 }

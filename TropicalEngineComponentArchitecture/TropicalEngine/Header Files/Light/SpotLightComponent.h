@@ -155,8 +155,6 @@ namespace TropicalEngine
 		float outerConeRadius;
 		float innerConeRadius;
 
-		class RenderTexture* shadowmap = nullptr;
-
 		static SpotLightComponent templateObject;
 	};
 

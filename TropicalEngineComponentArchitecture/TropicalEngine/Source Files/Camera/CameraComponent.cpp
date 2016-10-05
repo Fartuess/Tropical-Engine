@@ -16,19 +16,15 @@ namespace TropicalEngine
 
 	CameraComponent::CameraComponent() {}
 
-	CameraComponent::CameraComponent(Entity* owner, glm::vec3 targetOffset, glm::vec3 up, float fov, float aspectRatio, float zNear, float zFar) :Component(owner)
+	CameraComponent::CameraComponent(Entity* owner, glm::vec3 targetOffset, glm::vec3 up, float fov, float aspectRatio, float zNear, float zFar)
+		: Component(owner), camera((owner != nullptr ? owner->transform.getTransform(true) : Transform()), targetOffset, up, fov, aspectRatio, zNear, zFar)
 	{
 		setTarget(targetOffset);
 		setUp(up);
 
-		this->fov = fov;
-		this->aspectRatio = aspectRatio;
-		this->zNear = zNear;
-		this->zFar = zFar;
-
 		InitializeComponentType();
 
-		CalculateMatrix();
+		//CalculateMatrix();
 	}
 
 	CameraComponent CameraComponent::InitializeType()
@@ -62,135 +58,106 @@ namespace TropicalEngine
 
 	glm::vec3 CameraComponent::getTarget()
 	{
-		return target;
+		return camera.getTarget();
 	}
 
 	void CameraComponent::setTarget(glm::vec3 targetOffset)
 	{
-		target = glm::normalize(targetOffset);
+		camera.setTarget(targetOffset);
 	}
 
 	glm::vec3 CameraComponent::getUp()
 	{
-		return up;
+		return camera.getUp();
 	}
 
 	void CameraComponent::setUp(glm::vec3 up)
 	{
-		this->up = glm::normalize(up);
+		camera.setUp(up);
 	}
 
 	float CameraComponent::getFov()
 	{
-		return fov;
+		return camera.getFov();
 	}
 
 	void CameraComponent::setFov(float fov)
 	{
-		this->fov = fov;
-		CalculateMatrix();
+		camera.setFov(fov);
+		//CalculateMatrix();
 	}
 
 	float CameraComponent::getAspectRatio()
 	{
-		return aspectRatio;
+		return camera.getAspectRatio();
 	}
 
 	// TODO: Figure out if Calculation of matrix after every change is required since it can be called once in main Draw method
 
 	void CameraComponent::setAspectRatio(float aspectRatio)
 	{
-		if (aspectRatio != 0.0f)
-		{
-			this->aspectRatio = aspectRatio;
-			CalculateMatrix();
-		}
+		camera.setAspectRatio(aspectRatio);
+		//CalculateMatrix();
 	}
 
 	float CameraComponent::getZNear()
 	{
-		return zNear;
+		return camera.getZNear();
 	}
 
 	void CameraComponent::setZNear(float zNear)
 	{
-		this->zNear = zNear;
-		CalculateMatrix();
+		camera.setZNear(zNear);
+		//CalculateMatrix();
 	}
 
 	float CameraComponent::getZFar()
 	{
-		return zFar;
+		return camera.getZFar();
 	}
 
 	void CameraComponent::setZFar(float zFar)
 	{
-		this->zFar = zFar;
-		CalculateMatrix();
+		camera.setZFar(zFar);
+		//CalculateMatrix();
 	}
 
 	glm::mat4 CameraComponent::getCameraMatrix()
 	{
-		return cameraMatrix;
+		camera.setTransformReference(this->getOwner()->transform.getTransform(true));
+		return camera.getCameraMatrix();
 	}
 
 	glm::mat4 CameraComponent::getProjectionMatrix()
 	{
-		return projectionMatrix;
+		camera.setTransformReference(this->getOwner()->transform.getTransform(true));
+		return camera.getProjectionMatrix();
 	}
 
-	void CameraComponent::CalculateMatrix()
-	{
-		glm::vec3 targetOffset = owner->transform.getFront();
-		cameraMatrix = glm::lookAt(this->getOwner()->transform.getPosition(), this->getOwner()->transform.getPosition() + targetOffset, this->up);
-		projectionMatrix = glm::perspective(fov, aspectRatio, zNear, zFar);
-	}
-
-	//QString CameraComponent::toXML()
-	//{
-	//	// TODO: implement it.
-	//	return QString(getIndent() + "<CameraComponent/>\n");
-	//}
+//	void CameraComponent::CalculateMatrix()
+//	{
+//		camera.setTransformReference(this->getOwner()->transform.getTransform(true));
+//	}
 
 	QJsonObject CameraComponent::toJSON()
 	{
 		QJsonObject JSON = Component::toJSON();
-		QJsonObject targetObject = QJsonObject();
-		targetObject["x"] = target.x;
-		targetObject["y"] = target.y;
-		targetObject["z"] = target.z;
-		JSON["target"] = targetObject;
-		QJsonObject upObject = QJsonObject();
-		upObject["x"] = up.x;
-		upObject["y"] = up.y;
-		upObject["z"] = up.z;
-		JSON["up"] = upObject;
-		JSON["fov"] = fov;
-		JSON["aspect ratio"] = aspectRatio;
-		JSON["Z near"] = zNear;
-		JSON["Z far"] = zFar;
+		JSON["camera"] = camera.toJSON();
 
 		return JSON;
 	}
 
 	IDeserializableFromJSON* CameraComponent::fromJSON(QJsonObject JSON)
 	{
-		CameraComponent* camera = new CameraComponent();
+		CameraComponent* cameraComponent = new CameraComponent();
+		QJsonObject cameraJSON = JSON["camera"].toObject();
+		Camera t;
+		Camera camera = *(Camera*)t.fromJSON(cameraJSON);
 
-		QJsonObject targetJSON = JSON["target"].toObject();
-		camera->setTarget(glm::vec3(targetJSON["x"].toDouble(), targetJSON["y"].toDouble(), targetJSON["z"].toDouble()));
+		// TODO: Finish implementing.
+		//cameraComponent->camera = camera;
 
-		QJsonObject upJSON = JSON["up"].toObject();
-		camera->setUp(glm::vec3(upJSON["x"].toDouble(), upJSON["y"].toDouble(), upJSON["z"].toDouble()));
-
-		camera->fov = JSON["fov"].toDouble();
-		camera->aspectRatio = JSON["aspect ratio"].toDouble();
-		camera->zNear = JSON["Z near"].toDouble();
-		camera->zFar = JSON["Z far"].toDouble();
-
-		camera->CalculateMatrix();
-
-		return camera;
+		return cameraComponent;
 	}
 
 }

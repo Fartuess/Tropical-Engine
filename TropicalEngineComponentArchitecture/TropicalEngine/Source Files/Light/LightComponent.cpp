@@ -1,6 +1,9 @@
 #include <Light/LightComponent.h>
 #include <Light/LightController.h>
 
+#include <Texture/Texture.h>
+#include <Texture/RenderTexture.h>
+
 namespace TropicalEngine
 {
 
@@ -16,7 +19,6 @@ namespace TropicalEngine
 		if (castingShadows)
 		{
 			LightController::instance().lightShadows.append(this);
-			//DrawShadows();
 		}
 
 		InitializeComponentType();
@@ -62,7 +64,11 @@ namespace TropicalEngine
 			}
 			castingShadows = isCastingShadows;
 		}
-		//DrawShadows();
+	}
+
+	Texture* LightComponent::getShadowmap()
+	{
+		return shadowmap;
 	}
 
 	void LightComponent::Evaluate()

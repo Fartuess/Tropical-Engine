@@ -77,6 +77,8 @@ namespace TropicalEngine
 		  */
 		#pragma endregion
 		void DrawAll(class Scene* scene, QString shaderPass);
+
+		//void DrawAll(class Scene* scene, QString shaderPass, )
 		#pragma region documentation
 		/**
 		  * \brief Draws Scene.

@@ -1,84 +1,87 @@
 #pragma once
+
 #include <glm.hpp>
 
-#include <Component/Component.h>
+#include <Serialization/ISerializableJSON.h>
 
-
-#include <Camera/Camera.h>
+#include <Scene/Transform.h>
 
 namespace TropicalEngine
 {
-
 	#pragma region documentation
 	/**
-	  * \brief Component for Cameras.
+	  * \brief Class storing camera information.
 	  */
 	#pragma endregion
-	class CameraComponent : public Component
+	class Camera : public ISerializableJSON
 	{
 	public:
-		TYPENAME(CameraComponent)
-		
+		TYPENAME(Camera)
+
+		friend class CameraComponent;
+
 		#pragma region documentation
 		/**
 		  * \brief Camera component costructor.
 		  *
-		  * @param owner Entity object to which CameraComponent will be attached to.
-		  * @param targetOffset defines direction where camera is looking at.
-		  * @param up vector defining camera roll.
-		  * @param fov field of view of the camera.
-		  * @param aspectRatio width to height ratio of the camera.
+		  * @param transform Reference to Transform information this camera is using.
+		  * @param targetOffset defines direction where Camera is looking at.
+		  * @param up vector defining Camera roll.
+		  * @param fov field of view of the Camera.
+		  * @param aspectRatio width to height ratio of the Camera.
 		  * @param zNear Near clipping plane distance.
 		  * @param zFar Far clipping plane distance.
 		  */
 		#pragma endregion
-		CameraComponent(Entity* owner, glm::vec3 targetOffset = glm::vec3(0.0f, 0.0f, -1.0f), glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f),
+		Camera(Transform& transform, glm::vec3 targetOffset = glm::vec3(0.0f, 0.0f, -1.0f), glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f),
 			float fov = 40.0f, float aspectRatio = 4.0f / 3.0f, float zNear = 0.01f, float zFar = 10000.0f);
 		#pragma region documentation
 		/**
 		  * \brief Default destructor
 		  */
 		#pragma endregion
-		~CameraComponent(void);
+		~Camera();
+
+		void setTransformReference(Transform& transform);
 
 		#pragma region documentation
 		/**
-		  * \brief Gets target offset of the CameraComponent.
+		  * \brief Gets target offset of the Camera.
 		  *
-		  * @return Vector describing target offset of CameraComponent
+		  * @return Vector describing target offset of Camera.
 		  */
 		#pragma endregion
 		glm::vec3 getTarget();
 		#pragma region documentation
 		/**
-		  * \brief Sets direction where CameraComponent is looking.
+		  * \brief Sets direction where Camera is looking.
 		  *
-		  * @param targetOffset Position offset describing direction where CameraComponent is looking at.
+		  * @param targetOffset Position offset describing direction where Camera is looking at.
 		  */
 		#pragma endregion
 		void setTarget(glm::vec3 targetOffset);
 
 		#pragma region documentation
 		/**
-		  * \brief Gets Up Vector of CameraComponent.
+		  * \brief Gets Up Vector of Camera.
 		  *
-		  * @return Up Vector of the CamerComponent.
+		  * @return Up Vector of the Camera.
 		  */
 		#pragma endregion
 		glm::vec3 getUp();
 		#pragma region documentation
 		/**
-		  * \brief Sets Up Vector of CameraComponent.
+		  * \brief Sets Up Vector of Camera.
 		  *
-		  * Sets roll of the camera by defining Up vector.
-		  * @param Up Vector defining up direction of the camera.
+		  * Sets roll of the Camera by defining Up vector.
+		  * @param Up Vector defining up direction of the Camera.
 		  */
 		#pragma endregion
 		void setUp(glm::vec3 up);
 
 		#pragma region documentation
 		/**
-		  * \brief Gets Field of View of CameraComponent.
+		  * \brief Gets Field of View of Camera.
 		  *
 		  * @return Field of View value.
 		  */
@@ -86,7 +89,7 @@ namespace TropicalEngine
 		float getFov();
 		#pragma region documentation
 		/**
-		  * \brief Sets Field of View of CameraComponent.
+		  * \brief Sets Field of View of Camera.
 		  *
 		  * @param fov Field of View value.
 		  */
@@ -95,19 +98,19 @@ namespace TropicalEngine
 
 		#pragma region documentation
 		/**
-		  * \brief Gets Aspect ratio of CameraComponent.
+		  * \brief Gets Aspect ratio of Camera.
 		  *
-		  * Returns width to height proportions of the CameraComponent.
-		  * @return Aspect Ratio of the CameraComponent.
+		  * Returns width to height proportions of the Camera.
+		  * @return Aspect Ratio of the Camera.
 		  */
 		#pragma endregion
 		float getAspectRatio();
 		#pragma region documentation
 		/**
-		  * \brief Sets Aspect ratio of CameraComponent.
+		  * \brief Sets Aspect ratio of Camera.
 		  *
-		  * Sets width to height proportions of the CameraComponent.
-		  * @param aspectRatio Aspect Ratio of the CameraComponent.
+		  * Sets width to height proportions of the Camera.
+		  * @param aspectRatio Aspect Ratio of the Camera.
 		  */
 		#pragma endregion
 		void setAspectRatio(float aspectRatio);
@@ -163,18 +166,10 @@ namespace TropicalEngine
 		  */
 		#pragma endregion
 		glm::mat4 getProjectionMatrix();
-//		#pragma region documentation
-//		/**
-//		  * \brief Updates Camera Matrix and Projection matrices.
-//		  *
-//		  * Mostly for internal use in engine part of code.
-//		  */
-//		#pragma endregion
-//		void CalculateMatrix();
 
 		#pragma region documentation
 		/**
-		  * \brief Serializes CameraComponent to JSON object.
+		  * \brief Serializes Camera to JSON object.
 		  *
 		  * @return Result of serialization.
 		  */
@@ -182,10 +177,10 @@ namespace TropicalEngine
 		QJsonObject toJSON() override;
 		#pragma region documentation
 		/**
-		  * \brief Deserializes CameraComponent from JSON object.
+		  * \brief Deserializes Camera from JSON object.
 		  *
 		  * @param JSON JSON object to deserialize from.
-		  * @return CameraComponent object.
+		  * @return Camera object.
 		  */
 		#pragma endregion
 		IDeserializableFromJSON* fromJSON(QJsonObject JSON) override;
@@ -193,24 +188,35 @@ namespace TropicalEngine
 	protected:
 		#pragma region documentation
 		/**
-		  * \brief Simple Constructor used to create CameraComponent instance while serializing.
+		  * \brief Simple Constructor used to create Camera instance while serializing.
 		  */
 		#pragma endregion
-		CameraComponent();
+		Camera();
 
 		#pragma region documentation
 		/**
-		  * \brief Initialized type in global typemap.
+		  * \brief Updates Camera Matrix and Projection matrices.
+		  *
+		  * Mostly for internal use in engine part of code.
 		  */
 		#pragma endregion
-		void InitializeComponentType() override;
+		void CalculateMatrix();
 
 	private:
-		Camera camera;
+		Transform* transform;
+		Transform previousTransform;
 
-		static CameraComponent templateObject;
-		static CameraComponent InitializeType();
+		glm::vec3 target;
+		glm::vec3 up;
+
+		bool isEvaluated = false;
+		glm::mat4 cameraMatrix;
+		glm::mat4 projectionMatrix;
+
+		float fov;
+		float aspectRatio;
+		float zNear;
+		float zFar;
 	};
 
 }
-
