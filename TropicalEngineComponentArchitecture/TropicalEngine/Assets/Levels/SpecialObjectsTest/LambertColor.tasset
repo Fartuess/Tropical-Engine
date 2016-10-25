@@ -1,0 +1,10 @@
+﻿{
+	"name": "LambertColor",
+	"shader builder": "Common Mesh",
+	"inputs": [
+		{
+			"name": "Lighting Model",
+			"path": "./Shader Files/LightingModels/LambertLightingModel.glsl"
+		}
+	]
+}

@@ -37,6 +37,8 @@
 #include <Light/PointLightComponent.h>
 #include <Light/SpotLightComponent.h>
 
+#include <ReflectionProbe/ReflectionProbeManager.h>
+
 #include <Scene/Scene.h>
 #include <Scene/Entity.h>
 #include <Scene/LevelImporter/FbxLevelImporter.h>
@@ -346,6 +348,7 @@ namespace TropicalEngine
 		(*wardAnisoMaterial)["mat_roughness"]			= new glm::vec2(0.5f, 0.1f);
 
 		(*celShadingMaterial)["mat_color"] = textureManager["Default Texture Albedo"];
+		//(*celShadingMaterial)["mat_color"] = ReflectionProbeManager::instance().getTexture();
 
 		(*texturedMaterial)["mat_color"] = textureManager["Default Texture Albedo"];
 
@@ -386,7 +389,8 @@ namespace TropicalEngine
 
 		(*cubemapTexturedMaterial)["mat_color"] = cubemapTexture;
 
-		(*iblMaterial)["mat_environmentMap"] = skyboxTexture;
+		//(*iblMaterial)["mat_environmentMap"] = skyboxTexture;
+		(*iblMaterial)["mat_environmentMap"] = ReflectionProbeManager::instance().getTexture();
 		(*iblMaterial)["mat_color"] = textureManager["Default Texture Albedo"];
 		(*iblMaterial)["mat_normal"] = testingTextureNormal;
 		(*iblMaterial)["mat_specularExponent"] = new float(40.0f);
@@ -564,6 +568,34 @@ namespace TropicalEngine
 		level->getRoot()->AttachSubobject(screenEntity);
 		#pragma endregion
 
+		#pragma region Reflection Probe
+
+		// TODO: make it more universal.
+
+		ShaderTechnique* reflectionBlendingTechnique = new ShaderTechnique("Reflection Blending", &CommonMeshShaderBuilder::instance());
+		reflectionBlendingTechnique->setInput("Vertex Shader", "./Shader Files/Mesh/ObjectSpaceMesh.glsl");
+		reflectionBlendingTechnique->setInput("Lighting Model", "./Shader Files/LightingModels/UnlitLightingModel.glsl");
+		reflectionBlendingTechnique->setInput("Surface Shader", "./Shader Files/Lighting/ReflectionProbes/PoiReflectionBlend.glsl");
+
+		ShaderTechnique* reflectionBlendingTechnique2 = new ShaderTechnique("Reflection Blending 2", reflectionBlendingTechnique->getShader(), "ReflectionPOI");
+
+		Material* reflectionBlendingMaterial = new Material(shaderManager.getShaderTechnique("Reflection Blending 2"), "Reflection Blending Material");
+		
+		PlaneModelBuilder FrameBuilder = PlaneModelBuilder();
+		FrameBuilder.setParameter("name", QString("Frame"));
+		FrameBuilder.setParameter("size X", 2.0f);
+		FrameBuilder.setParameter("size Y", 2.0f);
+		FrameBuilder.setParameter("backfacing", true);
+		FrameBuilder.setParameter("plane", PlaneDirections::XY);
+		FrameBuilder.Build();
+
+		Entity* reflectionEntity = new Entity(glm::vec3(0.0f, 0.0f, 0.0f), glm::quat(), glm::vec3(1.0f, 1.0f, 1.0f));
+		ModelComponent* reflectionEntityModelC = new ModelComponent(reflectionEntity, reflectionBlendingMaterial, ModelManager::instance()["Frame"]);
+		reflectionEntity->name = QString("POI Reflection Blending Entity");
+		level->getRoot()->AttachSubobject(reflectionEntity);
+
+		#pragma endregion
+
 		#pragma region Creating scene objects
 		/*********************************
 		*
@@ -572,7 +604,7 @@ namespace TropicalEngine
 		*********************************/
 
 		Entity* phongExample = new Entity(glm::vec3(0.0f, 0.0f, 0.0f), glm::quat(), glm::vec3(1.0f, 1.0f, 1.0f));
-		ModelComponent* phongModelC = new ModelComponent(phongExample, celShadingMaterial, modelManager["Sphere"]);
+		ModelComponent* phongModelC = new ModelComponent(phongExample, iblMaterial, modelManager["Sphere"]);
 		phongExample->name = QString("Phong Example");
 		level->getRoot()->AttachSubobject(phongExample);
 
@@ -653,9 +685,9 @@ namespace TropicalEngine
 		TempPlayerComponent* cameraController = new TempPlayerComponent(mainCamera);
 		level->getRoot()->AttachSubobject(mainCamera);
 		//Entity* spotLight2 = new Entity(glm::vec3(5.0f, 2.0f, -5.0f), glm::quat(), glm::vec3(0.4f, 0.4f, 0.4f));
-		SpotLightComponent* spotLightComponent2 = new SpotLightComponent(mainCamera, glm::vec3(0.6f, 0.9f, 1.0f), 3.0f, 70.0f, 1.0f, 25.0f, 0.0f);
+		SpotLightComponent* spotLightComponent2 = new SpotLightComponent(mainCamera, glm::vec3(0.6f, 0.9f, 1.0f), 0.5f, 70.0f, 1.0f, 25.0f, 0.0f);
 		//TempMovingComponent* spotLightMoveComponent2 = new TempMovingComponent(mainCamera, glm::vec3(60.0f, 2.2f, 0.0f), glm::vec3(0.0f, 2.2f, 0.0f), 20.0f);
-		ModelComponent* spotLightMarker2 = new ModelComponent(mainCamera, phongMaterial, modelManager.getModel("Cone"));
+		//ModelComponent* spotLightMarker2 = new ModelComponent(mainCamera, phongMaterial, modelManager.getModel("Cone"));
 		//spotLight2->name = QString("Spot Light2");
 		//level->getRoot()->AttachSubobject(spotLight2);
 
@@ -748,7 +780,8 @@ namespace TropicalEngine
 
 		//scene->LoadLevel(FbxLevelImporter::instance().Load("Sponza", "./Assets/Levels/Sponza/Sponza.fbx"), "Sponza");
 		//scene->LoadLevel(FbxLevelImporter::instance().Load("TransformTest", "./Assets/Levels/TransformTest/TransformTest4.fbx"), "TransformTest");
-		//scene->LoadLevel(FbxLevelImporter::instance().Load("MaterialTest", "./Assets/Levels/MaterialTest/MaterialTest2.fbx"), "MaterialTest");
+		//scene->LoadLevel(FbxLevelImporter::instance().Load("MaterialTest", "./Assets/Levels/MaterialTest/MaterialTest1b.fbx"), "MaterialTest");
+		scene->LoadLevel(FbxLevelImporter::instance().Load("TransformTest", "./Assets/Levels/SpecialObjectsTest/ReflectionProbesTest.fbx"), "ReflectionProbesTest");
 		#pragma endregion
 
 		phongModelC->lightedBy.append(scene->mainLight);

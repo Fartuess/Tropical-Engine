@@ -3,6 +3,8 @@
 #include <QtCore/qfile.h>
 #include <QtCore/qjsondocument.h>
 
+#include <fbxsdk/core/base/fbxstring.h>
+
 #include <Scene/LevelImporter/FbxLevelImporter.h>
 
 #include <Scene/LevelManager.h>
@@ -24,6 +26,8 @@
 
 #include <Light/DirectionalLightComponent.h>
 #include <Light/AmbientLightComponent.h>
+
+#include <ReflectionProbe/ReflectionProbeComponent.h>
 
 #include <QtCore/qdebug.h>
 
@@ -210,13 +214,60 @@ namespace TropicalEngine
 				objects[it] = object;
 
 				int meshCounter = 0;
+				
+				
 
-				for (int i = 0; i < it->GetNodeAttributeCount(); i++)
+				FbxProperty specialTypeName = it->FindProperty("TropicalEngineType");
+
+				#pragma region Attribute collecting
+				//QMap<QString, FbxNodeAttribute*> attributes;
+				//for (int i = 0; i < it->GetNodeAttributeCount(); i++)
+				//{
+				//	FbxNodeAttribute* nodeAttribute = it->GetNodeAttributeByIndex(i);
+				//	QString attributeName = QString(nodeAttribute->GetName());
+				//	attributes[attributeName] = nodeAttribute;
+				//}
+				#pragma endregion
+
+				#pragma region Handling Special Objects
+
+				if (specialTypeName.IsValid())
 				{
-					FbxNodeAttribute* nodeAttribute = it->GetNodeAttributeByIndex(i);
-
-					switch (nodeAttribute->GetAttributeType())
+					if (specialTypeName.Get<FbxString>() == FbxString("ReflectionProbe"))
 					{
+						float radius = it->FindProperty("Radius").Get<FbxDouble>();
+						float strength = it->FindProperty("InfluenceIntensity").Get<FbxDouble>();
+						float attenuation = it->FindProperty("InfluenceAttenuation").Get<FbxDouble>();
+
+						QString texturePath = QString((const char*)it->FindProperty("TexturePath").Get<FbxString>());
+
+						QString textureName = texturePath.section(".", -2, -2).section("/", -1);
+
+						Texture* texture;
+						if (TextureManager::instance().hasTexture(textureName))
+						{
+							texture = TextureManager::instance()[textureName];
+						}
+						else
+						{
+							texture = TextureManager::instance().Load(textureName, texturePath);
+						}
+
+						ReflectionProbeComponent* reflectionProbeComponent = new ReflectionProbeComponent(object, texture ,radius, strength, attenuation);
+					}
+				}
+				#pragma endregion
+
+				#pragma region Handling Standard Objects
+				else
+				{
+
+					for (int i = 0; i < it->GetNodeAttributeCount(); i++)
+					{
+						FbxNodeAttribute* nodeAttribute = it->GetNodeAttributeByIndex(i);
+
+						switch (nodeAttribute->GetAttributeType())
+						{
 						case FbxNodeAttribute::EType::eMesh:
 						{
 							// Temporary solution creates separate meshes and mesh components instead of single mesh with multiple mesh entires.
@@ -231,7 +282,7 @@ namespace TropicalEngine
 							int materialId = qMin(meshCounter, it->GetMaterialCount() - 1);
 							FbxSurfaceMaterial* _material = it->GetMaterial(materialId);
 							meshCounter++;
-							
+
 							Material* material = defaultMaterial;
 							if (materials.contains(_material) == false)
 							{
@@ -368,54 +419,58 @@ namespace TropicalEngine
 						}
 						case FbxNodeAttribute::EType::eLight:
 						{
+							// TODO: Add support of point lights and spot lights.
+
 							FbxLight* light = (FbxLight*)nodeAttribute;
 
 							switch (light->LightType)
 							{
-								case FbxLight::EType::eDirectional:
+							case FbxLight::EType::eDirectional:
+							{
+								FbxDouble3 _lightColor = light->Color.Get();
+								glm::vec3 lightColor = glm::vec3(_lightColor[0], _lightColor[1], _lightColor[2]);
+
+								float lightBrightness = light->Intensity.Get() / 100.0f;
+
+								bool lightCastShadows = light->CastShadows.Get();
+
+								// TODO: Figure out how to handle cases with multiple directional lights in the scene.
+								if (mainLight == nullptr)
 								{
-									FbxDouble3 _lightColor = light->Color.Get();
-									glm::vec3 lightColor = glm::vec3(_lightColor[0], _lightColor[1], _lightColor[2]);
-
-									float lightBrightness = light->Intensity.Get() / 100.0f;
-
-									bool lightCastShadows = light->CastShadows.Get();
-
-									// TODO: Figure out how to handle cases with multiple directional lights in the scene.
-									if (mainLight == nullptr)
-									{
-										mainLight = new DirectionalLightComponent(object, lightColor, -object->transform.getFront(), lightBrightness, lightCastShadows);
-									}
-
-									break;
+									mainLight = new DirectionalLightComponent(object, lightColor, -object->transform.getFront(), lightBrightness, lightCastShadows);
 								}
-								case FbxLight::EType::ePoint:
+
+								break;
+							}
+							case FbxLight::EType::ePoint:
+							{
+								FbxDouble3 _lightColor = light->Color.Get();
+								glm::vec3 lightColor = glm::vec3(_lightColor[0], _lightColor[1], _lightColor[2]);
+
+								float lightBrightness = light->Intensity.Get() / 100.0f;
+
+								// FBX exporter converts ambient light into point light
+								if (light->DecayType.Get() == FbxLight::EDecayType::eNone)
 								{
-									FbxDouble3 _lightColor = light->Color.Get();
-									glm::vec3 lightColor = glm::vec3(_lightColor[0], _lightColor[1], _lightColor[2]);
-
-									float lightBrightness = light->Intensity.Get() / 100.0f;
-
-									// FBX exporter converts ambient light into point light
-									if (light->DecayType.Get() == FbxLight::EDecayType::eNone)
+									if (ambientLight == nullptr)
 									{
-										if (ambientLight == nullptr)
-										{
-											ambientLight = new AmbientLightComponent(object, lightColor, lightBrightness);
-										}
+										ambientLight = new AmbientLightComponent(object, lightColor, lightBrightness);
 									}
-									break;
 								}
-								default:
-									break;
+								break;
+							}
+							default:
+								break;
 							}
 
 							break;
 						}
 						default:
 							break;
+						}
 					}
 				}
+				#pragma endregion
 
 				if (it->GetParent() != NULL)
 				{

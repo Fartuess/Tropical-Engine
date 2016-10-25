@@ -11,6 +11,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source Files\ReflectionProbe\ReflectionProbeManager.cpp" />
+    <ClCompile Include="Source Files\ReflectionProbe\ReflectionProbeComponent.cpp" />
     <ClCompile Include="Source Files\Scene\Transform.cpp" />
     <None Include="Shader Files\Blending\BlendMasked.glsl" />
     <None Include="Shader Files\Core\Channel.glsl" />
@@ -128,6 +130,7 @@
     <None Include="Shader Files\Lighting\Lighting_Header.glsl" />
     <None Include="Shader Files\Lighting\LightingResult.glsl" />
     <None Include="Shader Files\Lighting\PointLight.glsl" />
+    <None Include="Shader Files\Lighting\ReflectionProbes\PoiReflectionBlend.glsl" />
     <None Include="Shader Files\Lighting\SpotLight.glsl" />
     <None Include="Shader Files\Mesh\DefaultMesh.glsl" />
     <None Include="Shader Files\Mesh\ObjectSpaceMesh.glsl" />
@@ -843,6 +846,8 @@
     <ClInclude Include="Header Files\Rendering\IRenderable.h" />
     <ClInclude Include="Header Files\Rendering\RenderingManager.h" />
     <ClInclude Include="Header Files\Texture\TextureImporter\OpenExrTextureImporter.h" />
+    <ClInclude Include="Header Files\ReflectionProbe\ReflectionProbeComponent.h" />
+    <ClInclude Include="Header Files\ReflectionProbe\ReflectionProbeManager.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Header Files\Utills\UpdateManager.h" />
     <ClInclude Include="Header Files\TempHelpers\TempMovingComponent.h" />

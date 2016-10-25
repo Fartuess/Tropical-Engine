@@ -22,7 +22,7 @@ vec2 cubemapReflection()
 		fixer = vec2(0.0, 0.0);
 	}
 
-	vec2 newTexcoord = inSpherical.zy + fixer;
+	vec2 newTexcoord = (inSpherical.zy + fixer + vec2(-0.25, 0.0)) * vec2(-1.0, 1.0);
 	return newTexcoord;
 }
 

@@ -8,6 +8,8 @@
 
 #include <Texture/RenderTexture.h>
 
+#include <ReflectionProbe/ReflectionProbeManager.h>
+
 #include <TropicalEngineApplication.h>
 
 namespace TropicalEngine
@@ -76,8 +78,13 @@ namespace TropicalEngine
 		//	level->getRoot()->transform.Evaluate();
 		//}
 
+		ReflectionProbeManager::instance().Reevaluate(scene->getCurrentCamera()->getOwner()->transform.getGlobalPosition(), true);
+
 		RenderTexture::BindDefaultFramebuffer();
+		glViewport(0, 0, screenWidth, screenHeight);
+
 		//screenTexture->BindFramebuffer();
+		//RenderTexture::BindDefaultFramebuffer();
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		DrawAll(scene, "Default");
 		//RenderTexture::BindDefaultFramebuffer();

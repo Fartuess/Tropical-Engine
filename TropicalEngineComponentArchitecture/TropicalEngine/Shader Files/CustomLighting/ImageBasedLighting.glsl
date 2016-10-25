@@ -39,6 +39,11 @@ LightingResult calculateIBLLighting()
 	
 	LightingResult lightingResult = calculateLightingModel(g_normal, vec3(1.0), 1.0, g_normal);
 	lightingResult.diffuse *= diffuseEnvPixel;
+
+	//temp test
+	lightingResult.diffuse *= 0.0;
+
+
 	lightingResult.specular *= specularEnvPixel * specularScale;
 
 	return lightingResult;
