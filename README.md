@@ -4,7 +4,7 @@ Author: Adam "Fartuess" Beczyński
 
 "TropicalEngineComponentArchitecture" - Current Project
 
-"Tropical Apartment Scene" - Old OpenGL3 Project.
+WARNING! Due to use of Git-LFS Project can't be downloaded in form of a zip, but has to be pulled using git.
 
 ### Languages technologies and libraries used ###
 * C++
@@ -12,8 +12,10 @@ Author: Adam "Fartuess" Beczyński
 * GLSL
 * Qt5
 * Open Asset Importer
+* FBX SDK
 * GLEW
 * GLM
+* OpenExr
 
 ### Features ###
 #### Architecture and Gameplay Scripting ####
@@ -21,6 +23,9 @@ Author: Adam "Fartuess" Beczyński
 * Easy gameplay coding with IUpdate'able interface
 * Input Management System which allows creating abstract input actions and binding physical keys to them.
 * Level and asset serialization
+* Importing models using Open Asset Importer or FBX SDK.
+* Importing levels from FBX allows creating them in 3D applications like Maya, 3ds Max or Blender.
+
 #### Shaders and Materials ####
 * Flexible system of managing shaders and materials
 * Shaders builders allow creating shaders from modules. Shader builder can create shaders for multiple passes from one set of modules.
@@ -30,8 +35,10 @@ Author: Adam "Fartuess" Beczyński
 * Alpha testing (aka masked translucency)
 * Adaptive tessalation
 * Vertex displacement and vector displacement.
-* Directional lights
-* Point lights
+* Directional lights, Point lights, Spot lights and ambient lights.
+* LUT postprocessing
+* Simple early Reflection Probes implementation.
+
 #### Interface ####
 * Qt interface
 * Custom style of interface
