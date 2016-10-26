@@ -30,6 +30,7 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="TropicalEngine.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Tropical Engine
    </div>
@@ -135,7 +136,7 @@ Inheritance diagram for TropicalEngine::CameraComponent:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ab49815960dae76dd43acae10b2a97177"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tropical_engine_1_1_camera_component.html#ab49815960dae76dd43acae10b2a97177">CameraComponent</a> (<a class="el" href="class_tropical_engine_1_1_entity.html">Entity</a> *<a class="el" href="class_tropical_engine_1_1_component.html#a8fc87cb03c413a9a893aec984be790cc">owner</a>, glm::vec3 targetOffset=glm::vec3(0.0f, 0.0f,-1.0f), glm::vec3 up=glm::vec3(0.0f, 1.0f, 0.0f), float fov=40.0f, float aspectRatio=4.0f/3.0f, float zNear=0.01f, float zFar=10000.0f)</td></tr>
-<tr class="memdesc:ab49815960dae76dd43acae10b2a97177"><td class="mdescLeft">&#160;</td><td class="mdescRight">Camera component costructor.  <a href="#ab49815960dae76dd43acae10b2a97177">More...</a><br /></td></tr>
+<tr class="memdesc:ab49815960dae76dd43acae10b2a97177"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_tropical_engine_1_1_camera.html" title="Class storing camera information. ">Camera</a> component costructor.  <a href="#ab49815960dae76dd43acae10b2a97177">More...</a><br /></td></tr>
 <tr class="separator:ab49815960dae76dd43acae10b2a97177"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aab84573dc91caf4f5b7d82852afb9383"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aab84573dc91caf4f5b7d82852afb9383"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tropical_engine_1_1_camera_component.html#aab84573dc91caf4f5b7d82852afb9383">~CameraComponent</a> (void)</td></tr>
@@ -178,16 +179,13 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a9b28544f9d1e937bdaea32af35ce41a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets Far Clipping Plane distance.  <a href="#a9b28544f9d1e937bdaea32af35ce41a8">More...</a><br /></td></tr>
 <tr class="separator:a9b28544f9d1e937bdaea32af35ce41a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af1210431f54601a31ee404b374ab667c"><td class="memItemLeft" align="right" valign="top">glm::mat4&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tropical_engine_1_1_camera_component.html#af1210431f54601a31ee404b374ab667c">getCameraMatrix</a> ()</td></tr>
-<tr class="memdesc:af1210431f54601a31ee404b374ab667c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets Camera Matrix.  <a href="#af1210431f54601a31ee404b374ab667c">More...</a><br /></td></tr>
+<tr class="memdesc:af1210431f54601a31ee404b374ab667c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets <a class="el" href="class_tropical_engine_1_1_camera.html" title="Class storing camera information. ">Camera</a> Matrix.  <a href="#af1210431f54601a31ee404b374ab667c">More...</a><br /></td></tr>
 <tr class="separator:af1210431f54601a31ee404b374ab667c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5788579ec059ef9ad8d456897fc3d522"><td class="memItemLeft" align="right" valign="top">glm::mat4&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tropical_engine_1_1_camera_component.html#a5788579ec059ef9ad8d456897fc3d522">getProjectionMatrix</a> ()</td></tr>
 <tr class="memdesc:a5788579ec059ef9ad8d456897fc3d522"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets Projection Matrix.  <a href="#a5788579ec059ef9ad8d456897fc3d522">More...</a><br /></td></tr>
 <tr class="separator:a5788579ec059ef9ad8d456897fc3d522"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a257b9aaa824900a6ec97db9793e0118d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tropical_engine_1_1_camera_component.html#a257b9aaa824900a6ec97db9793e0118d">CalculateMatrix</a> ()</td></tr>
-<tr class="memdesc:a257b9aaa824900a6ec97db9793e0118d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates Camera Matrix and Projection matrices.  <a href="#a257b9aaa824900a6ec97db9793e0118d">More...</a><br /></td></tr>
-<tr class="separator:a257b9aaa824900a6ec97db9793e0118d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a37e1d6a423181b0d2f5ece9d5ae9eaf9"><td class="memItemLeft" align="right" valign="top">QJsonObject&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tropical_engine_1_1_camera_component.html#a37e1d6a423181b0d2f5ece9d5ae9eaf9">toJSON</a> () override</td></tr>
-<tr class="memdesc:a37e1d6a423181b0d2f5ece9d5ae9eaf9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Serializes <a class="el" href="class_tropical_engine_1_1_camera_component.html" title="Component for Cameras. ">CameraComponent</a> to JSON object.  <a href="#a37e1d6a423181b0d2f5ece9d5ae9eaf9">More...</a><br /></td></tr>
+<tr class="memdesc:a37e1d6a423181b0d2f5ece9d5ae9eaf9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates <a class="el" href="class_tropical_engine_1_1_camera.html" title="Class storing camera information. ">Camera</a> Matrix and Projection matrices.  <a href="#a37e1d6a423181b0d2f5ece9d5ae9eaf9">More...</a><br /></td></tr>
 <tr class="separator:a37e1d6a423181b0d2f5ece9d5ae9eaf9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a136e1abe69fee913441b0bdd6bbc23c2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tropical_engine_1_1_i_deserializable_from_j_s_o_n.html">IDeserializableFromJSON</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tropical_engine_1_1_camera_component.html#a136e1abe69fee913441b0bdd6bbc23c2">fromJSON</a> (QJsonObject JSON) override</td></tr>
 <tr class="memdesc:a136e1abe69fee913441b0bdd6bbc23c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deserializes <a class="el" href="class_tropical_engine_1_1_camera_component.html" title="Component for Cameras. ">CameraComponent</a> from JSON object.  <a href="#a136e1abe69fee913441b0bdd6bbc23c2">More...</a><br /></td></tr>
@@ -330,7 +328,7 @@ class <a class="el" href="class_tropical_engine_1_1_entity.html">Entity</a> *&#1
       </table>
 </div><div class="memdoc">
 
-<p>Camera component costructor. </p>
+<p><a class="el" href="class_tropical_engine_1_1_camera.html" title="Class storing camera information. ">Camera</a> component costructor. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">owner</td><td><a class="el" href="class_tropical_engine_1_1_entity.html" title="Basic scene object with transform node. Functionality is extended by attaching components. ">Entity</a> object to which <a class="el" href="class_tropical_engine_1_1_camera_component.html" title="Component for Cameras. ">CameraComponent</a> will be attached to. </td></tr>
@@ -347,24 +345,6 @@ class <a class="el" href="class_tropical_engine_1_1_entity.html">Entity</a> *&#1
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a257b9aaa824900a6ec97db9793e0118d"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void TropicalEngine::CameraComponent::CalculateMatrix </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Updates Camera Matrix and Projection matrices. </p>
-<p>Mostly for internal use in engine part of code. </p>
-
-</div>
-</div>
 <a class="anchor" id="a136e1abe69fee913441b0bdd6bbc23c2"></a>
 <div class="memitem">
 <div class="memproto">
@@ -431,8 +411,8 @@ class <a class="el" href="class_tropical_engine_1_1_entity.html">Entity</a> *&#1
       </table>
 </div><div class="memdoc">
 
-<p>Gets Camera Matrix. </p>
-<p>Gets Camera Matrix without Projection. </p><dl class="section return"><dt>Returns</dt><dd>4x4 Camera Martix. </dd></dl>
+<p>Gets <a class="el" href="class_tropical_engine_1_1_camera.html" title="Class storing camera information. ">Camera</a> Matrix. </p>
+<p>Gets <a class="el" href="class_tropical_engine_1_1_camera.html" title="Class storing camera information. ">Camera</a> Matrix without Projection. </p><dl class="section return"><dt>Returns</dt><dd>4x4 <a class="el" href="class_tropical_engine_1_1_camera.html" title="Class storing camera information. ">Camera</a> Martix. </dd></dl>
 
 </div>
 </div>
@@ -468,7 +448,7 @@ class <a class="el" href="class_tropical_engine_1_1_entity.html">Entity</a> *&#1
 </div><div class="memdoc">
 
 <p>Gets Projection Matrix. </p>
-<p>Gets Projection Matrix without Camera Matrix. </p><dl class="section return"><dt>Returns</dt><dd>4x4 Projection Matrix.2 </dd></dl>
+<p>Gets Projection Matrix without <a class="el" href="class_tropical_engine_1_1_camera.html" title="Class storing camera information. ">Camera</a> Matrix. </p><dl class="section return"><dt>Returns</dt><dd>4x4 Projection Matrix.2 </dd></dl>
 
 </div>
 </div>
@@ -709,7 +689,8 @@ class <a class="el" href="class_tropical_engine_1_1_entity.html">Entity</a> *&#1
 </table>
 </div><div class="memdoc">
 
-<p>Serializes <a class="el" href="class_tropical_engine_1_1_camera_component.html" title="Component for Cameras. ">CameraComponent</a> to JSON object. </p>
+<p>Updates <a class="el" href="class_tropical_engine_1_1_camera.html" title="Class storing camera information. ">Camera</a> Matrix and Projection matrices. </p>
+<p>Mostly for internal use in engine part of code. Serializes <a class="el" href="class_tropical_engine_1_1_camera_component.html" title="Component for Cameras. ">CameraComponent</a> to JSON object.</p>
 <dl class="section return"><dt>Returns</dt><dd>Result of serialization. </dd></dl>
 
 <p>Implements <a class="el" href="class_tropical_engine_1_1_i_serializable_to_j_s_o_n.html#ae8bef9970996e36729ec590d96be5a89">TropicalEngine::ISerializableToJSON</a>.</p>

@@ -3,7 +3,6 @@ var class_tropical_engine_1_1_camera_component =
     [ "CameraComponent", "class_tropical_engine_1_1_camera_component.html#ab49815960dae76dd43acae10b2a97177", null ],
     [ "~CameraComponent", "class_tropical_engine_1_1_camera_component.html#aab84573dc91caf4f5b7d82852afb9383", null ],
     [ "CameraComponent", "class_tropical_engine_1_1_camera_component.html#ab0b5a576d31b9517065362d2f57bbca1", null ],
-    [ "CalculateMatrix", "class_tropical_engine_1_1_camera_component.html#a257b9aaa824900a6ec97db9793e0118d", null ],
     [ "fromJSON", "class_tropical_engine_1_1_camera_component.html#a136e1abe69fee913441b0bdd6bbc23c2", null ],
     [ "getAspectRatio", "class_tropical_engine_1_1_camera_component.html#a186bf8b4e26474051318ddad4a4216e7", null ],
     [ "getCameraMatrix", "class_tropical_engine_1_1_camera_component.html#af1210431f54601a31ee404b374ab667c", null ],

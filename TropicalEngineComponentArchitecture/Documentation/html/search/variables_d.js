@@ -6,5 +6,5 @@ var searchData=
   ['shadercore',['shaderCore',['../class_tropical_engine_1_1_common_mesh_shader_builder.html#a5917e9c5dbe60c44062dec54a5ea17e8',1,'TropicalEngine::CommonMeshShaderBuilder']]],
   ['shaderpasses',['shaderPasses',['../class_tropical_engine_1_1_shader_technique.html#a97b76450cee8ab84134784e79ee1528a',1,'TropicalEngine::ShaderTechnique']]],
   ['shadertechnique',['shaderTechnique',['../class_tropical_engine_1_1_material.html#a92c263ab90ba144b58d0f1e92f3ce9e8',1,'TropicalEngine::Material']]],
-  ['supportedextensions',['supportedExtensions',['../class_tropical_engine_1_1_abstract_model_importer.html#a11adf87fa3f040301edb767234053cd6',1,'TropicalEngine::AbstractModelImporter']]]
+  ['supportedextensions',['supportedExtensions',['../class_tropical_engine_1_1_abstract_model_importer.html#a11adf87fa3f040301edb767234053cd6',1,'TropicalEngine::AbstractModelImporter::supportedExtensions()'],['../class_tropical_engine_1_1_abstract_texture_importer.html#a7a395800d7bdcc8ee7222ac3af0b2c35',1,'TropicalEngine::AbstractTextureImporter::supportedExtensions()']]]
 ];

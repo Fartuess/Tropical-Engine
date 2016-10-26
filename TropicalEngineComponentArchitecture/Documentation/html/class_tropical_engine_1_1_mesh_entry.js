@@ -4,6 +4,7 @@ var class_tropical_engine_1_1_mesh_entry =
     [ "~MeshEntry", "class_tropical_engine_1_1_mesh_entry.html#a53c7f78cb3dd0eb604dc08560d280637", null ],
     [ "Finalize", "class_tropical_engine_1_1_mesh_entry.html#af09022c0f7164b48cd1c3210d0e48599", null ],
     [ "bitangentVBO", "class_tropical_engine_1_1_mesh_entry.html#a08df20fe565abf08f107069591c131dd", null ],
+    [ "isBackfacing", "class_tropical_engine_1_1_mesh_entry.html#aee0897917dbeeb8aa29cbf54dbd30f65", null ],
     [ "MaterialIndex", "class_tropical_engine_1_1_mesh_entry.html#ab153208ef484873afd9900c4f14d10ab", null ],
     [ "normalVBO", "class_tropical_engine_1_1_mesh_entry.html#acf3a4a64731bec8513cc17ad94eb6cf1", null ],
     [ "NumVertex", "class_tropical_engine_1_1_mesh_entry.html#a6037435d76a5da2b1ff5e3a5c9bec1f1", null ],

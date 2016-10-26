@@ -30,6 +30,7 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="TropicalEngine.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Tropical Engine
    </div>
@@ -96,6 +97,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="functions_func_m.html#index_m"><span>m</span></a></li>
       <li><a href="functions_func_o.html#index_o"><span>o</span></a></li>
       <li><a href="functions_func_p.html#index_p"><span>p</span></a></li>
+      <li><a href="functions_func_q.html#index_q"><span>q</span></a></li>
       <li><a href="functions_func_r.html#index_r"><span>r</span></a></li>
       <li class="current"><a href="functions_func_s.html#index_s"><span>s</span></a></li>
       <li><a href="functions_func_t.html#index_t"><span>t</span></a></li>
@@ -137,7 +139,8 @@ $(document).ready(function(){initNavTree('functions_func_s.html','');});
 
 <h3><a class="anchor" id="index_s"></a>- s -</h3><ul>
 <li>Scale()
-: <a class="el" href="class_tropical_engine_1_1_transform_component.html#aa4489b3baf1145889357ada4618fa563">TropicalEngine::TransformComponent</a>
+: <a class="el" href="class_tropical_engine_1_1_transform.html#aeffdd92a4ddc65196de6011c789ca707">TropicalEngine::Transform</a>
+, <a class="el" href="class_tropical_engine_1_1_transform_component.html#a3410176480cd1d8a649c09891a1ec32d">TropicalEngine::TransformComponent</a>
 </li>
 <li>Scene()
 : <a class="el" href="class_tropical_engine_1_1_scene.html#a924daff870f0836e9e5cf4ab21569154">TropicalEngine::Scene</a>
@@ -152,10 +155,12 @@ $(document).ready(function(){initNavTree('functions_func_s.html','');});
 : <a class="el" href="class_tropical_engine_1_1_scene_manager.html#ac9d9c9abae0f6ac95e385a8c8b3d9606">TropicalEngine::SceneManager</a>
 </li>
 <li>setAspectRatio()
-: <a class="el" href="class_tropical_engine_1_1_camera_component.html#ab68616d3710b2c60f8ae30df4c1315de">TropicalEngine::CameraComponent</a>
+: <a class="el" href="class_tropical_engine_1_1_camera.html#ab07c3661f276f644aaf16f1c99fb4178">TropicalEngine::Camera</a>
+, <a class="el" href="class_tropical_engine_1_1_camera_component.html#ab68616d3710b2c60f8ae30df4c1315de">TropicalEngine::CameraComponent</a>
 </li>
 <li>setAttenuation()
-: <a class="el" href="class_tropical_engine_1_1_spot_light_component.html#a3ee2af9e97a1ac505621d881cbe82c1c">TropicalEngine::SpotLightComponent</a>
+: <a class="el" href="class_tropical_engine_1_1_reflection_probe_component.html#a14b47429d53c7b7e3557455c4f8a3c62">TropicalEngine::ReflectionProbeComponent</a>
+, <a class="el" href="class_tropical_engine_1_1_spot_light_component.html#a3ee2af9e97a1ac505621d881cbe82c1c">TropicalEngine::SpotLightComponent</a>
 </li>
 <li>setCurrentCamera()
 : <a class="el" href="class_tropical_engine_1_1_scene.html#a7fd8c9ead7bf5e0af0c8e64fa995e231">TropicalEngine::Scene</a>
@@ -166,8 +171,12 @@ $(document).ready(function(){initNavTree('functions_func_s.html','');});
 <li>setDirection()
 : <a class="el" href="class_tropical_engine_1_1_directional_light_component.html#a0a56e59479c370a1ebb988e925efb7ee">TropicalEngine::DirectionalLightComponent</a>
 </li>
+<li>setFiltering()
+: <a class="el" href="class_tropical_engine_1_1_texture.html#ab331187a4ce46edebe6bc9f091aa44d7">TropicalEngine::Texture</a>
+</li>
 <li>setFov()
-: <a class="el" href="class_tropical_engine_1_1_camera_component.html#ab4c76cc33a430cb07772c62cd2f3032e">TropicalEngine::CameraComponent</a>
+: <a class="el" href="class_tropical_engine_1_1_camera.html#ad35e937ddfb86da7ee91c5b10a1adccf">TropicalEngine::Camera</a>
+, <a class="el" href="class_tropical_engine_1_1_camera_component.html#ab4c76cc33a430cb07772c62cd2f3032e">TropicalEngine::CameraComponent</a>
 </li>
 <li>setGlobalPosition()
 : <a class="el" href="class_tropical_engine_1_1_transform_component.html#a18b6738c530d846c8c19e4209a17a097">TropicalEngine::TransformComponent</a>
@@ -209,44 +218,65 @@ $(document).ready(function(){initNavTree('functions_func_s.html','');});
 </li>
 <li>setParameter()
 : <a class="el" href="class_tropical_engine_1_1_abstract_model_builder.html#ad2d2f2cf4a864cb9390375eeead3554e">TropicalEngine::AbstractModelBuilder</a>
+, <a class="el" href="class_tropical_engine_1_1_material.html#ac2934f354b0744e1f8c4562cc424090e">TropicalEngine::Material</a>
 </li>
-<li>SetParameter()
-: <a class="el" href="class_tropical_engine_1_1_material.html#a1fe4a50324c16352b24ec7dd08ce91d6">TropicalEngine::Material</a>
+<li>setPixel()
+: <a class="el" href="class_tropical_engine_1_1_texture_data.html#a57b6fafc46060d7a14dee2274854773b">TropicalEngine::TextureData</a>
 </li>
 <li>setPosition()
-: <a class="el" href="class_tropical_engine_1_1_transform_component.html#a557f97af93d42f6063eb6077ee7cefc3">TropicalEngine::TransformComponent</a>
+: <a class="el" href="class_tropical_engine_1_1_transform.html#ad7a429f9e8570ddf2f2242499c926f2b">TropicalEngine::Transform</a>
+, <a class="el" href="class_tropical_engine_1_1_transform_component.html#a557f97af93d42f6063eb6077ee7cefc3">TropicalEngine::TransformComponent</a>
 </li>
 <li>setRadius()
 : <a class="el" href="class_tropical_engine_1_1_point_light_component.html#acfa964e7c98e2369cd30d7c39e5ccb3c">TropicalEngine::PointLightComponent</a>
+, <a class="el" href="class_tropical_engine_1_1_reflection_probe_component.html#add1884a99c7f1cb807bc340b39fa1a78">TropicalEngine::ReflectionProbeComponent</a>
 , <a class="el" href="class_tropical_engine_1_1_spot_light_component.html#a4f3087924c33ea682770b9ba48cd7d67">TropicalEngine::SpotLightComponent</a>
 </li>
 <li>setRotation()
-: <a class="el" href="class_tropical_engine_1_1_transform_component.html#a36bc374bf26dea7e48e2c01db0a415f0">TropicalEngine::TransformComponent</a>
+: <a class="el" href="class_tropical_engine_1_1_transform.html#ace435b69802795d3b5fe4f2df7d7047c">TropicalEngine::Transform</a>
+, <a class="el" href="class_tropical_engine_1_1_transform_component.html#a36bc374bf26dea7e48e2c01db0a415f0">TropicalEngine::TransformComponent</a>
 </li>
 <li>setScale()
-: <a class="el" href="class_tropical_engine_1_1_transform_component.html#a4fb0d71cad1917d08d5997deb46d3c89">TropicalEngine::TransformComponent</a>
+: <a class="el" href="class_tropical_engine_1_1_transform.html#a185132d03b6e90ff33312cf32df7089a">TropicalEngine::Transform</a>
+, <a class="el" href="class_tropical_engine_1_1_transform_component.html#a4fb0d71cad1917d08d5997deb46d3c89">TropicalEngine::TransformComponent</a>
 </li>
 <li>setScene()
 : <a class="el" href="class_tropical_engine_1_1_open_g_l_widget.html#ab70b88ba56557c4874d82ad532f393e9">TropicalEngine::OpenGLWidget</a>
 , <a class="el" href="class_tropical_engine_1_1_scene_graph_widget.html#a5feaed2cb752cb4754c0f59ce7fe118d">TropicalEngine::SceneGraphWidget</a>
 </li>
+<li>setStrength()
+: <a class="el" href="class_tropical_engine_1_1_reflection_probe_component.html#a7246f3de74a15f79bf7fdd599987ab5a">TropicalEngine::ReflectionProbeComponent</a>
+</li>
 <li>setTarget()
-: <a class="el" href="class_tropical_engine_1_1_camera_component.html#ab8baa82f36181ca7c0edb1b6ddc56df1">TropicalEngine::CameraComponent</a>
+: <a class="el" href="class_tropical_engine_1_1_camera.html#a72c5ab71517d69cc54de0ae6b1f5919c">TropicalEngine::Camera</a>
+, <a class="el" href="class_tropical_engine_1_1_camera_component.html#ab8baa82f36181ca7c0edb1b6ddc56df1">TropicalEngine::CameraComponent</a>
+</li>
+<li>setTexture()
+: <a class="el" href="class_tropical_engine_1_1_reflection_probe_component.html#aa177e803e3a8357ab011b24adcd25f60">TropicalEngine::ReflectionProbeComponent</a>
 </li>
 <li>setUp()
-: <a class="el" href="class_tropical_engine_1_1_camera_component.html#ab8645462315dbdd17b97125c9eba592d">TropicalEngine::CameraComponent</a>
+: <a class="el" href="class_tropical_engine_1_1_camera.html#a4997f4cb29e62f3cbdc88cd9c70c7e7a">TropicalEngine::Camera</a>
+, <a class="el" href="class_tropical_engine_1_1_camera_component.html#ab8645462315dbdd17b97125c9eba592d">TropicalEngine::CameraComponent</a>
+</li>
+<li>setWrapping()
+: <a class="el" href="class_tropical_engine_1_1_texture.html#afe4a21082bfbf03d4ff2fe8910d7e3cb">TropicalEngine::Texture</a>
 </li>
 <li>setZFar()
-: <a class="el" href="class_tropical_engine_1_1_camera_component.html#a9b28544f9d1e937bdaea32af35ce41a8">TropicalEngine::CameraComponent</a>
+: <a class="el" href="class_tropical_engine_1_1_camera.html#a2da54d2de8a82b977c1cc2847f5754c9">TropicalEngine::Camera</a>
+, <a class="el" href="class_tropical_engine_1_1_camera_component.html#a9b28544f9d1e937bdaea32af35ce41a8">TropicalEngine::CameraComponent</a>
 </li>
 <li>setZNear()
-: <a class="el" href="class_tropical_engine_1_1_camera_component.html#a2cb66a2644afc0a8a78a2797220ed437">TropicalEngine::CameraComponent</a>
+: <a class="el" href="class_tropical_engine_1_1_camera.html#a7ef3b8d693f28407c5a0ed3ab274cc38">TropicalEngine::Camera</a>
+, <a class="el" href="class_tropical_engine_1_1_camera_component.html#a2cb66a2644afc0a8a78a2797220ed437">TropicalEngine::CameraComponent</a>
 </li>
 <li>ShaderManager()
 : <a class="el" href="class_tropical_engine_1_1_shader_manager.html#ade92d04377aca508fa987231f6b03100">TropicalEngine::ShaderManager</a>
 </li>
 <li>ShaderTechnique()
-: <a class="el" href="class_tropical_engine_1_1_shader_technique.html#a170286b1182d69df80efdd95025c4266">TropicalEngine::ShaderTechnique</a>
+: <a class="el" href="class_tropical_engine_1_1_shader_technique.html#aaca8665d7ad211216110e38885aa6895">TropicalEngine::ShaderTechnique</a>
+</li>
+<li>spawnTexture()
+: <a class="el" href="class_tropical_engine_1_1_abstract_texture_importer.html#ae0cf21fb2f6fe7fd6fefb5f93e33b2e5">TropicalEngine::AbstractTextureImporter</a>
 </li>
 <li>SphereModelBuilder()
 : <a class="el" href="class_tropical_engine_1_1_sphere_model_builder.html#a3164043ec05684fb4416630a572316f6">TropicalEngine::SphereModelBuilder</a>

@@ -30,6 +30,7 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="TropicalEngine.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Tropical Engine
    </div>
@@ -152,40 +153,50 @@ $(document).ready(function(){initNavTree('_light_component_8h_source.html','');}
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="preprocessor">        #pragma endregion</span></div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_tropical_engine_1_1_light_component.html#a8944dfdd62a4afac1f94980c52cab5b8">isCastingShadows</a>(<span class="keywordtype">bool</span> <a class="code" href="class_tropical_engine_1_1_light_component.html#a8944dfdd62a4afac1f94980c52cab5b8">isCastingShadows</a>);</div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> Evaluate();</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> DrawShadows() {};</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="preprocessor">        #pragma region documentation</span></div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="preprocessor">        #pragma endregion</span></div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        QJsonObject <a class="code" href="class_tropical_engine_1_1_light_component.html#ad9d7bac251e2dc1bc5d93da84e58d8d3">toJSON</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="preprocessor">        #pragma region documentation</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="preprocessor">        #pragma endregion</span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        <span class="keyword">class </span><a class="code" href="class_tropical_engine_1_1_texture.html">Texture</a>* <a class="code" href="class_tropical_engine_1_1_light_component.html#aded13e3d1058b7a9ba484627ef79ec44">getShadowmap</a>();</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> Evaluate();</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> DrawShadows() {};</div>
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="preprocessor">        #pragma region documentation</span></div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="preprocessor">        #pragma endregion</span></div>
-<div class="line"><a name="l00091"></a><span class="lineno"><a class="line" href="class_tropical_engine_1_1_light_component.html#a5d64eec76e9598aa13e46183559b1a61">   91</a></span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="class_tropical_engine_1_1_light_component.html#a5d64eec76e9598aa13e46183559b1a61">castingShadows</a>;</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="preprocessor">        #pragma region documentation</span></div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="preprocessor">        #pragma endregion</span></div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        <a class="code" href="class_tropical_engine_1_1_light_component.html#aa3a9ed80db538e59d412ffdd452c712e">LightComponent</a>();</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        <span class="keywordtype">void</span> InitializeComponentType() <span class="keyword">override</span>;</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    };</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;}</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="preprocessor">        #pragma region documentation</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="preprocessor">        #pragma endregion</span></div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        QJsonObject <a class="code" href="class_tropical_engine_1_1_light_component.html#ad9d7bac251e2dc1bc5d93da84e58d8d3">toJSON</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="preprocessor">        #pragma region documentation</span></div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="preprocessor">        #pragma endregion</span></div>
+<div class="line"><a name="l00100"></a><span class="lineno"><a class="line" href="class_tropical_engine_1_1_light_component.html#a5d64eec76e9598aa13e46183559b1a61">  100</a></span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="class_tropical_engine_1_1_light_component.html#a5d64eec76e9598aa13e46183559b1a61">castingShadows</a>;</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        <span class="keyword">class </span><a class="code" href="class_tropical_engine_1_1_render_texture.html">RenderTexture</a>* shadowmap = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="preprocessor">        #pragma region documentation</span></div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="preprocessor">        #pragma endregion</span></div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        <a class="code" href="class_tropical_engine_1_1_light_component.html#aa3a9ed80db538e59d412ffdd452c712e">LightComponent</a>();</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;        <span class="keywordtype">void</span> InitializeComponentType() <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    };</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;}</div>
 <div class="ttc" id="class_tropical_engine_1_1_light_component_html"><div class="ttname"><a href="class_tropical_engine_1_1_light_component.html">TropicalEngine::LightComponent</a></div><div class="ttdoc">Base class for concrete LightComponent classes. </div><div class="ttdef"><b>Definition:</b> LightComponent.h:18</div></div>
 <div class="ttc" id="class_tropical_engine_1_1_light_component_html_aa3a9ed80db538e59d412ffdd452c712e"><div class="ttname"><a href="class_tropical_engine_1_1_light_component.html#aa3a9ed80db538e59d412ffdd452c712e">TropicalEngine::LightComponent::LightComponent</a></div><div class="ttdeci">LightComponent()</div><div class="ttdoc">Simple Constructor used to create Component instance while serializing. </div></div>
 <div class="ttc" id="class_tropical_engine_1_1_entity_html"><div class="ttname"><a href="class_tropical_engine_1_1_entity.html">TropicalEngine::Entity</a></div><div class="ttdoc">Basic scene object with transform node. Functionality is extended by attaching components. </div><div class="ttdef"><b>Definition:</b> Entity.h:19</div></div>
 <div class="ttc" id="class_tropical_engine_1_1_light_component_html_aa66a5e6fe014d55751c757ec17785be1"><div class="ttname"><a href="class_tropical_engine_1_1_light_component.html#aa66a5e6fe014d55751c757ec17785be1">TropicalEngine::LightComponent::color</a></div><div class="ttdeci">glm::vec3 color</div><div class="ttdoc">Color of the light. </div><div class="ttdef"><b>Definition:</b> LightComponent.h:30</div></div>
-<div class="ttc" id="namespace_tropical_engine_html"><div class="ttname"><a href="namespace_tropical_engine.html">TropicalEngine</a></div><div class="ttdef"><b>Definition:</b> CameraComponent.h:6</div></div>
+<div class="ttc" id="namespace_tropical_engine_html"><div class="ttname"><a href="namespace_tropical_engine.html">TropicalEngine</a></div><div class="ttdef"><b>Definition:</b> Camera.h:9</div></div>
 <div class="ttc" id="class_tropical_engine_1_1_component_html"><div class="ttname"><a href="class_tropical_engine_1_1_component.html">TropicalEngine::Component</a></div><div class="ttdoc">Abstract Component class. </div><div class="ttdef"><b>Definition:</b> Component.h:16</div></div>
+<div class="ttc" id="class_tropical_engine_1_1_render_texture_html"><div class="ttname"><a href="class_tropical_engine_1_1_render_texture.html">TropicalEngine::RenderTexture</a></div><div class="ttdoc">RenderTexture is a Texture GPU can render to. </div><div class="ttdef"><b>Definition:</b> RenderTexture.h:12</div></div>
 <div class="ttc" id="class_tropical_engine_1_1_light_component_html_a6f1ff68e5b144e964fb849a3117e1095"><div class="ttname"><a href="class_tropical_engine_1_1_light_component.html#a6f1ff68e5b144e964fb849a3117e1095">TropicalEngine::LightComponent::~LightComponent</a></div><div class="ttdeci">~LightComponent(void)</div><div class="ttdoc">Destructor for LightComponent. </div></div>
 <div class="ttc" id="class_tropical_engine_1_1_light_component_html_a7ef5b26bf525a591d7658969f8196e99"><div class="ttname"><a href="class_tropical_engine_1_1_light_component.html#a7ef5b26bf525a591d7658969f8196e99">TropicalEngine::LightComponent::brightness</a></div><div class="ttdeci">float brightness</div><div class="ttdoc">Brightness of the light. </div><div class="ttdef"><b>Definition:</b> LightComponent.h:36</div></div>
 <div class="ttc" id="class_tropical_engine_1_1_light_component_html_ad9d7bac251e2dc1bc5d93da84e58d8d3"><div class="ttname"><a href="class_tropical_engine_1_1_light_component.html#ad9d7bac251e2dc1bc5d93da84e58d8d3">TropicalEngine::LightComponent::toJSON</a></div><div class="ttdeci">QJsonObject toJSON() override</div><div class="ttdoc">Serializes LightComponent to JSON object. </div></div>
-<div class="ttc" id="class_tropical_engine_1_1_light_component_html_a5d64eec76e9598aa13e46183559b1a61"><div class="ttname"><a href="class_tropical_engine_1_1_light_component.html#a5d64eec76e9598aa13e46183559b1a61">TropicalEngine::LightComponent::castingShadows</a></div><div class="ttdeci">bool castingShadows</div><div class="ttdoc">Is this light casting shadows. </div><div class="ttdef"><b>Definition:</b> LightComponent.h:91</div></div>
+<div class="ttc" id="class_tropical_engine_1_1_light_component_html_a5d64eec76e9598aa13e46183559b1a61"><div class="ttname"><a href="class_tropical_engine_1_1_light_component.html#a5d64eec76e9598aa13e46183559b1a61">TropicalEngine::LightComponent::castingShadows</a></div><div class="ttdeci">bool castingShadows</div><div class="ttdoc">Is this light casting shadows. </div><div class="ttdef"><b>Definition:</b> LightComponent.h:100</div></div>
 <div class="ttc" id="class_tropical_engine_1_1_light_component_html_a8944dfdd62a4afac1f94980c52cab5b8"><div class="ttname"><a href="class_tropical_engine_1_1_light_component.html#a8944dfdd62a4afac1f94980c52cab5b8">TropicalEngine::LightComponent::isCastingShadows</a></div><div class="ttdeci">bool isCastingShadows()</div><div class="ttdoc">Gets information if this light is casting shadows. </div></div>
+<div class="ttc" id="class_tropical_engine_1_1_texture_html"><div class="ttname"><a href="class_tropical_engine_1_1_texture.html">TropicalEngine::Texture</a></div><div class="ttdoc">Class for Texture. </div><div class="ttdef"><b>Definition:</b> Texture.h:391</div></div>
+<div class="ttc" id="class_tropical_engine_1_1_light_component_html_aded13e3d1058b7a9ba484627ef79ec44"><div class="ttname"><a href="class_tropical_engine_1_1_light_component.html#aded13e3d1058b7a9ba484627ef79ec44">TropicalEngine::LightComponent::getShadowmap</a></div><div class="ttdeci">class Texture * getShadowmap()</div><div class="ttdoc">Gets Shadowmap texture. </div></div>
 <div class="ttc" id="class_tropical_engine_1_1_component_html_a8fc87cb03c413a9a893aec984be790cc"><div class="ttname"><a href="class_tropical_engine_1_1_component.html#a8fc87cb03c413a9a893aec984be790cc">TropicalEngine::Component::owner</a></div><div class="ttdeci">class Entity * owner</div><div class="ttdoc">Entity owning this Component. </div><div class="ttdef"><b>Definition:</b> Component.h:103</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

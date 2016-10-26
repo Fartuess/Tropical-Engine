@@ -30,6 +30,7 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="TropicalEngine.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Tropical Engine
    </div>
@@ -106,6 +107,8 @@ $(document).ready(function(){initNavTree('class_tropical_engine_1_1_texture_mana
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#friends">Friends</a> &#124;
 <a href="class_tropical_engine_1_1_texture_manager-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">TropicalEngine::TextureManager Class Reference</div>  </div>
@@ -116,6 +119,15 @@ $(document).ready(function(){initNavTree('class_tropical_engine_1_1_texture_mana
  <a href="class_tropical_engine_1_1_texture_manager.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_texture_manager_8h_source.html">TextureManager.h</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for TropicalEngine::TextureManager:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="class_tropical_engine_1_1_texture_manager.png" usemap="#TropicalEngine::TextureManager_map" alt=""/>
+  <map id="TropicalEngine::TextureManager_map" name="TropicalEngine::TextureManager_map">
+<area href="class_tropical_engine_1_1_singleton.html" alt="TropicalEngine::Singleton&lt; TextureManager &gt;" shape="rect" coords="0,0,272,24"/>
+</map>
+ </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -136,6 +148,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>incrementTextureItera
 <tr class="memitem:a64aeac18620aca1c5b03a73f5e2e1f06"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a64aeac18620aca1c5b03a73f5e2e1f06"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>resetTextureIterator</b> ()</td></tr>
 <tr class="separator:a64aeac18620aca1c5b03a73f5e2e1f06"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afeb16c9b3ae36898d9cd9125a3de0f02"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tropical_engine_1_1_texture_manager.html#afeb16c9b3ae36898d9cd9125a3de0f02">hasTexture</a> (QString name)</td></tr>
+<tr class="memdesc:afeb16c9b3ae36898d9cd9125a3de0f02"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if there is <a class="el" href="class_tropical_engine_1_1_texture.html" title="Class for Texture. ">Texture</a> with given name.  <a href="#afeb16c9b3ae36898d9cd9125a3de0f02">More...</a><br /></td></tr>
+<tr class="separator:afeb16c9b3ae36898d9cd9125a3de0f02"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a30b91296baf79b08ceb0d691b059c79d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tropical_engine_1_1_texture.html">Texture</a> *const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tropical_engine_1_1_texture_manager.html#a30b91296baf79b08ceb0d691b059c79d">getTexture</a> (QString name)</td></tr>
 <tr class="memdesc:a30b91296baf79b08ceb0d691b059c79d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets <a class="el" href="class_tropical_engine_1_1_texture.html" title="Class for Texture. ">Texture</a> by name.  <a href="#a30b91296baf79b08ceb0d691b059c79d">More...</a><br /></td></tr>
 <tr class="separator:a30b91296baf79b08ceb0d691b059c79d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -145,13 +160,73 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>resetTextureIterator<
 <tr class="memitem:a4b368d40018dcdc0a65161a51b6a235c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tropical_engine_1_1_texture.html">Texture</a> *const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tropical_engine_1_1_texture_manager.html#a4b368d40018dcdc0a65161a51b6a235c">operator[]</a> (QString name) const </td></tr>
 <tr class="memdesc:a4b368d40018dcdc0a65161a51b6a235c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets <a class="el" href="class_tropical_engine_1_1_texture.html" title="Class for Texture. ">Texture</a> by name.  <a href="#a4b368d40018dcdc0a65161a51b6a235c">More...</a><br /></td></tr>
 <tr class="separator:a4b368d40018dcdc0a65161a51b6a235c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abecf177538d490e3df11790e2d0bf9df"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tropical_engine_1_1_texture_manager.html#abecf177538d490e3df11790e2d0bf9df">RegisterTexture</a> (QString name, <a class="el" href="class_tropical_engine_1_1_texture.html">Texture</a> *texture)</td></tr>
+<tr class="memdesc:abecf177538d490e3df11790e2d0bf9df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Registers existing texture to the manager.  <a href="#abecf177538d490e3df11790e2d0bf9df">More...</a><br /></td></tr>
+<tr class="separator:abecf177538d490e3df11790e2d0bf9df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9157329ffe0e477f94104b40eb2399cc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tropical_engine_1_1_texture_data.html">TextureData</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tropical_engine_1_1_texture_manager.html#a9157329ffe0e477f94104b40eb2399cc">LoadData</a> (QString fileUrl, bool flipY=false)</td></tr>
+<tr class="memdesc:a9157329ffe0e477f94104b40eb2399cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates <a class="el" href="class_tropical_engine_1_1_texture_data.html" title="Class for containing low level Texture Data before it is sent to GPU. ">TextureData</a> container from file.  <a href="#a9157329ffe0e477f94104b40eb2399cc">More...</a><br /></td></tr>
+<tr class="separator:a9157329ffe0e477f94104b40eb2399cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a95d601dda31da56267bc08250f3726f1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tropical_engine_1_1_texture.html">Texture</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tropical_engine_1_1_texture_manager.html#a95d601dda31da56267bc08250f3726f1">Load</a> (QString name, QString fileUrl)</td></tr>
 <tr class="memdesc:a95d601dda31da56267bc08250f3726f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads <a class="el" href="class_tropical_engine_1_1_texture.html" title="Class for Texture. ">Texture</a> from a file.  <a href="#a95d601dda31da56267bc08250f3726f1">More...</a><br /></td></tr>
 <tr class="separator:a95d601dda31da56267bc08250f3726f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade78aca3ae7f397ce9f94d11cba6d21f"><td class="memItemLeft" align="right" valign="top">class <a class="el" href="class_tropical_engine_1_1_cubemap_texture.html">CubemapTexture</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tropical_engine_1_1_texture_manager.html#ade78aca3ae7f397ce9f94d11cba6d21f">Load</a> (QString name, QString fileUrlTop, QString fileUrlBottom, QString fileUrlFront, QString fileUrlBack, QString fileUrlLeft, QString fileUrlRight)</td></tr>
+<tr class="memdesc:ade78aca3ae7f397ce9f94d11cba6d21f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads <a class="el" href="class_tropical_engine_1_1_cubemap_texture.html" title="class for Cubemap Texture. ">CubemapTexture</a> from six files.  <a href="#ade78aca3ae7f397ce9f94d11cba6d21f">More...</a><br /></td></tr>
+<tr class="separator:ade78aca3ae7f397ce9f94d11cba6d21f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a2e10fe366a8fcdcb6a3d96274bae6765"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tropical_engine_1_1_texture_manager.html#a2e10fe366a8fcdcb6a3d96274bae6765">AddImporter</a> (class <a class="el" href="class_tropical_engine_1_1_abstract_texture_importer.html">AbstractTextureImporter</a> *importer)</td></tr>
+<tr class="memdesc:a2e10fe366a8fcdcb6a3d96274bae6765"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds support of specific importer for <a class="el" href="class_tropical_engine_1_1_texture_manager.html" title="Class for managing textures. ">TextureManager</a>.  <a href="#a2e10fe366a8fcdcb6a3d96274bae6765">More...</a><br /></td></tr>
+<tr class="separator:a2e10fe366a8fcdcb6a3d96274bae6765"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_static_methods_class_tropical_engine_1_1_singleton"><td colspan="2" onclick="javascript:toggleInherit('pub_static_methods_class_tropical_engine_1_1_singleton')"><img src="closed.png" alt="-"/>&#160;Static Public Member Functions inherited from <a class="el" href="class_tropical_engine_1_1_singleton.html">TropicalEngine::Singleton&lt; TextureManager &gt;</a></td></tr>
+<tr class="memitem:af1393469a63da9c984b31d387ade88a8 inherit pub_static_methods_class_tropical_engine_1_1_singleton"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_tropical_engine_1_1_texture_manager.html">TextureManager</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tropical_engine_1_1_singleton.html#af1393469a63da9c984b31d387ade88a8">instance</a> ()</td></tr>
+<tr class="memdesc:af1393469a63da9c984b31d387ade88a8 inherit pub_static_methods_class_tropical_engine_1_1_singleton"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets singleton instance of this class.  <a href="#af1393469a63da9c984b31d387ade88a8">More...</a><br /></td></tr>
+<tr class="separator:af1393469a63da9c984b31d387ade88a8 inherit pub_static_methods_class_tropical_engine_1_1_singleton"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
+Friends</h2></td></tr>
+<tr class="memitem:af7f909106d08e36cd50aa58e36f9bf47"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af7f909106d08e36cd50aa58e36f9bf47"></a>
+class&#160;</td><td class="memItemRight" valign="bottom"><b>Texture</b></td></tr>
+<tr class="separator:af7f909106d08e36cd50aa58e36f9bf47"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a17ccfe088e090dbcde4d16037b649180"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a17ccfe088e090dbcde4d16037b649180"></a>
+class&#160;</td><td class="memItemRight" valign="bottom"><b>CubemapTexture</b></td></tr>
+<tr class="separator:a17ccfe088e090dbcde4d16037b649180"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Class for managing textures. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a2e10fe366a8fcdcb6a3d96274bae6765"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void TropicalEngine::TextureManager::AddImporter </td>
+          <td>(</td>
+          <td class="paramtype">class <a class="el" href="class_tropical_engine_1_1_abstract_texture_importer.html">AbstractTextureImporter</a> *&#160;</td>
+          <td class="paramname"><em>importer</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Adds support of specific importer for <a class="el" href="class_tropical_engine_1_1_texture_manager.html" title="Class for managing textures. ">TextureManager</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">importer</td><td>Importer to support. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a class="anchor" id="a30b91296baf79b08ceb0d691b059c79d"></a>
 <div class="memitem">
 <div class="memproto">
@@ -174,6 +249,31 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>resetTextureIterator<
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Found <a class="el" href="class_tropical_engine_1_1_texture.html" title="Class for Texture. ">Texture</a>. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="afeb16c9b3ae36898d9cd9125a3de0f02"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool TropicalEngine::TextureManager::hasTexture </td>
+          <td>(</td>
+          <td class="paramtype">QString&#160;</td>
+          <td class="paramname"><em>name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if there is <a class="el" href="class_tropical_engine_1_1_texture.html" title="Class for Texture. ">Texture</a> with given name. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>Name of <a class="el" href="class_tropical_engine_1_1_texture.html" title="Class for Texture. ">Texture</a> to check for.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Information if <a class="el" href="class_tropical_engine_1_1_texture.html" title="Class for Texture. ">Texture</a> was found. </dd></dl>
 
 </div>
 </div>
@@ -209,6 +309,112 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>resetTextureIterator<
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a class="anchor" id="ade78aca3ae7f397ce9f94d11cba6d21f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">class <a class="el" href="class_tropical_engine_1_1_cubemap_texture.html">CubemapTexture</a>* TropicalEngine::TextureManager::Load </td>
+          <td>(</td>
+          <td class="paramtype">QString&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QString&#160;</td>
+          <td class="paramname"><em>fileUrlTop</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QString&#160;</td>
+          <td class="paramname"><em>fileUrlBottom</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QString&#160;</td>
+          <td class="paramname"><em>fileUrlFront</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QString&#160;</td>
+          <td class="paramname"><em>fileUrlBack</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QString&#160;</td>
+          <td class="paramname"><em>fileUrlLeft</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QString&#160;</td>
+          <td class="paramname"><em>fileUrlRight</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Loads <a class="el" href="class_tropical_engine_1_1_cubemap_texture.html" title="class for Cubemap Texture. ">CubemapTexture</a> from six files. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>Name to be set for loaded <a class="el" href="class_tropical_engine_1_1_cubemap_texture.html" title="class for Cubemap Texture. ">CubemapTexture</a>. </td></tr>
+    <tr><td class="paramname">fileUrlTop</td><td>Path to file for top <a class="el" href="class_tropical_engine_1_1_texture.html" title="Class for Texture. ">Texture</a>. </td></tr>
+    <tr><td class="paramname">fileUrlBottom</td><td>Path to file for bottom <a class="el" href="class_tropical_engine_1_1_texture.html" title="Class for Texture. ">Texture</a>. </td></tr>
+    <tr><td class="paramname">fileUrlFront</td><td>Path to file for front <a class="el" href="class_tropical_engine_1_1_texture.html" title="Class for Texture. ">Texture</a>. </td></tr>
+    <tr><td class="paramname">fileUrlBack</td><td>Path to file for back <a class="el" href="class_tropical_engine_1_1_texture.html" title="Class for Texture. ">Texture</a>. </td></tr>
+    <tr><td class="paramname">fileUrlLeft</td><td>Path to file for left <a class="el" href="class_tropical_engine_1_1_texture.html" title="Class for Texture. ">Texture</a>. </td></tr>
+    <tr><td class="paramname">fileUrlRight</td><td>Path to file for right <a class="el" href="class_tropical_engine_1_1_texture.html" title="Class for Texture. ">Texture</a>. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a9157329ffe0e477f94104b40eb2399cc"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_tropical_engine_1_1_texture_data.html">TextureData</a>* TropicalEngine::TextureManager::LoadData </td>
+          <td>(</td>
+          <td class="paramtype">QString&#160;</td>
+          <td class="paramname"><em>fileUrl</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>flipY</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Creates <a class="el" href="class_tropical_engine_1_1_texture_data.html" title="Class for containing low level Texture Data before it is sent to GPU. ">TextureData</a> container from file. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fileUrl</td><td>Path to the file to load. </td></tr>
+    <tr><td class="paramname">FlipY</td><td>Whether or not flip image vertically.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Pointer to created <a class="el" href="class_tropical_engine_1_1_texture_data.html" title="Class for containing low level Texture Data before it is sent to GPU. ">TextureData</a>. </dd></dl>
 
 </div>
 </div>
@@ -275,6 +481,41 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>resetTextureIterator<
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Found <a class="el" href="class_tropical_engine_1_1_texture.html" title="Class for Texture. ">Texture</a>. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="abecf177538d490e3df11790e2d0bf9df"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TropicalEngine::TextureManager::RegisterTexture </td>
+          <td>(</td>
+          <td class="paramtype">QString&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_tropical_engine_1_1_texture.html">Texture</a> *&#160;</td>
+          <td class="paramname"><em>texture</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Registers existing texture to the manager. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>Alias of the texture in the manager. </td></tr>
+    <tr><td class="paramname">texture</td><td><a class="el" href="class_tropical_engine_1_1_texture.html" title="Class for Texture. ">Texture</a> to be registered. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

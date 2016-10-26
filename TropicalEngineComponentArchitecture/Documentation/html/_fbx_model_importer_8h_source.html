@@ -30,6 +30,7 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="TropicalEngine.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Tropical Engine
    </div>
@@ -135,19 +136,24 @@ $(document).ready(function(){initNavTree('_fbx_model_importer_8h_source.html',''
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="preprocessor">        #pragma endregion</span></div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <a class="code" href="class_tropical_engine_1_1_model.html">Model</a>* <a class="code" href="class_tropical_engine_1_1_fbx_model_importer.html#a83b7a4902bbe5f5a4e2b66354f307d72">Load</a>(QString name, QString fileUrl) <span class="keyword">override</span>;</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        FbxManager* SdkManager;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        FbxIOSettings* IOSettings;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        FbxGeometryConverter* Converter;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    };</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;}</div>
-<div class="ttc" id="namespace_tropical_engine_html"><div class="ttname"><a href="namespace_tropical_engine.html">TropicalEngine</a></div><div class="ttdef"><b>Definition:</b> CameraComponent.h:6</div></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="preprocessor">        #pragma region documentation</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="preprocessor">        #pragma endregion</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <a class="code" href="class_tropical_engine_1_1_model.html">Model</a>* <a class="code" href="class_tropical_engine_1_1_fbx_model_importer.html#a83b7a4902bbe5f5a4e2b66354f307d72">Load</a>(QString name, <span class="keyword">class</span> FbxMesh* mesh);</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        FbxManager* SdkManager;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        FbxIOSettings* IOSettings;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        FbxGeometryConverter* Converter;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    };</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;}</div>
+<div class="ttc" id="namespace_tropical_engine_html"><div class="ttname"><a href="namespace_tropical_engine.html">TropicalEngine</a></div><div class="ttdef"><b>Definition:</b> Camera.h:9</div></div>
 <div class="ttc" id="class_tropical_engine_1_1_abstract_model_importer_html"><div class="ttname"><a href="class_tropical_engine_1_1_abstract_model_importer.html">TropicalEngine::AbstractModelImporter</a></div><div class="ttdoc">Abstract class for importing models. </div><div class="ttdef"><b>Definition:</b> AbstractModelImporter.h:14</div></div>
 <div class="ttc" id="class_tropical_engine_1_1_fbx_model_importer_html_a0a5817234bf189c486fc5850db395603"><div class="ttname"><a href="class_tropical_engine_1_1_fbx_model_importer.html#a0a5817234bf189c486fc5850db395603">TropicalEngine::FbxModelImporter::~FbxModelImporter</a></div><div class="ttdeci">~FbxModelImporter()</div><div class="ttdoc">FbxModelImporter destructor. </div></div>
 <div class="ttc" id="class_tropical_engine_1_1_fbx_model_importer_html_a9b6d36002e12b0920063851b1743bbbc"><div class="ttname"><a href="class_tropical_engine_1_1_fbx_model_importer.html#a9b6d36002e12b0920063851b1743bbbc">TropicalEngine::FbxModelImporter::FbxModelImporter</a></div><div class="ttdeci">FbxModelImporter()</div><div class="ttdoc">FbxModelImporter constructor. </div></div>
 <div class="ttc" id="class_tropical_engine_1_1_fbx_model_importer_html"><div class="ttname"><a href="class_tropical_engine_1_1_fbx_model_importer.html">TropicalEngine::FbxModelImporter</a></div><div class="ttdoc">Class for loading models using FBX SDK. This class is singleton. </div><div class="ttdef"><b>Definition:</b> FbxModelImporter.h:16</div></div>
-<div class="ttc" id="class_tropical_engine_1_1_model_html"><div class="ttname"><a href="class_tropical_engine_1_1_model.html">TropicalEngine::Model</a></div><div class="ttdoc">Class containing information about Model asset. </div><div class="ttdef"><b>Definition:</b> Model.h:103</div></div>
+<div class="ttc" id="class_tropical_engine_1_1_model_html"><div class="ttname"><a href="class_tropical_engine_1_1_model.html">TropicalEngine::Model</a></div><div class="ttdoc">Class containing information about Model asset. </div><div class="ttdef"><b>Definition:</b> Model.h:110</div></div>
 <div class="ttc" id="class_tropical_engine_1_1_fbx_model_importer_html_a83b7a4902bbe5f5a4e2b66354f307d72"><div class="ttname"><a href="class_tropical_engine_1_1_fbx_model_importer.html#a83b7a4902bbe5f5a4e2b66354f307d72">TropicalEngine::FbxModelImporter::Load</a></div><div class="ttdeci">Model * Load(QString name, QString fileUrl) override</div><div class="ttdoc">Imports models from a file. </div></div>
 <div class="ttc" id="class_tropical_engine_1_1_singleton_html"><div class="ttname"><a href="class_tropical_engine_1_1_singleton.html">TropicalEngine::Singleton</a></div><div class="ttdoc">Template class for Singletons. </div><div class="ttdef"><b>Definition:</b> Singleton.h:13</div></div>
 </div><!-- fragment --></div><!-- contents -->

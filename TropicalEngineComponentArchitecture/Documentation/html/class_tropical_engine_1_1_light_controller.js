@@ -6,5 +6,6 @@ var class_tropical_engine_1_1_light_controller =
     [ "EvaluateShadowsAll", "class_tropical_engine_1_1_light_controller.html#a5d7fde2db3e82be24cea6a31b0831891", null ],
     [ "getLights", "class_tropical_engine_1_1_light_controller.html#ae36a74d11458b44068c944a01cf91ba4", null ],
     [ "getShadowcasters", "class_tropical_engine_1_1_light_controller.html#ad167d14c661702669f69886ebf1dcaf8", null ],
-    [ "LightComponent", "class_tropical_engine_1_1_light_controller.html#a2e7fdda96fb4e8a740d14d78a6808157", null ]
+    [ "LightComponent", "class_tropical_engine_1_1_light_controller.html#a2e7fdda96fb4e8a740d14d78a6808157", null ],
+    [ "ModelComponent", "class_tropical_engine_1_1_light_controller.html#a746faefa2253090b747a03f2817d8a7c", null ]
 ];

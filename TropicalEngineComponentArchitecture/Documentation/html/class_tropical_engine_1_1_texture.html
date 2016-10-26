@@ -30,6 +30,7 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="TropicalEngine.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Tropical Engine
    </div>
@@ -109,6 +110,7 @@ $(document).ready(function(){initNavTree('class_tropical_engine_1_1_texture.html
 <a href="#pub-static-attribs">Static Public Attributes</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
+<a href="#friends">Friends</a> &#124;
 <a href="class_tropical_engine_1_1_texture-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">TropicalEngine::Texture Class Reference</div>  </div>
@@ -130,7 +132,8 @@ Inheritance diagram for TropicalEngine::Texture:</div>
 <area href="class_tropical_engine_1_1_i_deserializable_from_j_s_o_n.html" title="Interface for deserializing objects from JSON. " alt="TropicalEngine::IDeserializableFromJSON" shape="rect" coords="259,56,508,80"/>
 <area href="class_tropical_engine_1_1_i_named_type.html" title="Interface for named types. " alt="TropicalEngine::INamedType" shape="rect" coords="0,0,249,24"/>
 <area href="class_tropical_engine_1_1_i_named_type.html" title="Interface for named types. " alt="TropicalEngine::INamedType" shape="rect" coords="259,0,508,24"/>
-<area href="class_tropical_engine_1_1_render_texture.html" title="RenderTexture is a Texture GPU can render to. " alt="TropicalEngine::RenderTexture" shape="rect" coords="129,224,378,248"/>
+<area href="class_tropical_engine_1_1_cubemap_texture.html" title="class for Cubemap Texture. " alt="TropicalEngine::CubemapTexture" shape="rect" coords="0,224,249,248"/>
+<area href="class_tropical_engine_1_1_render_texture.html" title="RenderTexture is a Texture GPU can render to. " alt="TropicalEngine::RenderTexture" shape="rect" coords="259,224,508,248"/>
 </map>
  </div></div>
 <table class="memberdecls">
@@ -149,13 +152,18 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ae535db7ce2249b6c9869677d9debe341"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tropical_engine_1_1_texture.html#ae535db7ce2249b6c9869677d9debe341">setName</a> (QString <a class="el" href="class_tropical_engine_1_1_texture.html#a51a8f704ceb4c38476a39b19494b3964">name</a>)</td></tr>
 <tr class="memdesc:ae535db7ce2249b6c9869677d9debe341"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets name of the <a class="el" href="class_tropical_engine_1_1_texture.html" title="Class for Texture. ">Texture</a>.  <a href="#ae535db7ce2249b6c9869677d9debe341">More...</a><br /></td></tr>
 <tr class="separator:ae535db7ce2249b6c9869677d9debe341"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aee04e90947280bb32123a978f0d68689"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aee04e90947280bb32123a978f0d68689"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tropical_engine_1_1_texture.html#aee04e90947280bb32123a978f0d68689">Load</a> ()</td></tr>
-<tr class="memdesc:aee04e90947280bb32123a978f0d68689"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads the texture. <br /></td></tr>
-<tr class="separator:aee04e90947280bb32123a978f0d68689"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a22848687a6e5e3c98e9d7f9a66e458db"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tropical_engine_1_1_texture.html#a22848687a6e5e3c98e9d7f9a66e458db">ActivateTexture</a> (GLuint location)</td></tr>
-<tr class="memdesc:a22848687a6e5e3c98e9d7f9a66e458db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets this texture as the Active one in OpenGL context.  <a href="#a22848687a6e5e3c98e9d7f9a66e458db">More...</a><br /></td></tr>
-<tr class="separator:a22848687a6e5e3c98e9d7f9a66e458db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe4a21082bfbf03d4ff2fe8910d7e3cb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tropical_engine_1_1_texture.html#afe4a21082bfbf03d4ff2fe8910d7e3cb">setWrapping</a> (int wrappingS=GL_REPEAT, int wrappingT=GL_REPEAT)</td></tr>
+<tr class="memdesc:afe4a21082bfbf03d4ff2fe8910d7e3cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets wrapping modes for <a class="el" href="class_tropical_engine_1_1_texture.html" title="Class for Texture. ">Texture</a>.  <a href="#afe4a21082bfbf03d4ff2fe8910d7e3cb">More...</a><br /></td></tr>
+<tr class="separator:afe4a21082bfbf03d4ff2fe8910d7e3cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab331187a4ce46edebe6bc9f091aa44d7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tropical_engine_1_1_texture.html#ab331187a4ce46edebe6bc9f091aa44d7">setFiltering</a> (int minFilter=GL_LINEAR_MIPMAP_LINEAR, int magFilter=GL_LINEAR)</td></tr>
+<tr class="memdesc:ab331187a4ce46edebe6bc9f091aa44d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets filtering modes for <a class="el" href="class_tropical_engine_1_1_texture.html" title="Class for Texture. ">Texture</a>.  <a href="#ab331187a4ce46edebe6bc9f091aa44d7">More...</a><br /></td></tr>
+<tr class="separator:ab331187a4ce46edebe6bc9f091aa44d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed0e77d348729708849aa40499d68452"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tropical_engine_1_1_texture.html#aed0e77d348729708849aa40499d68452">Create</a> (int wrappingS=GL_REPEAT, int wrappingT=GL_REPEAT)</td></tr>
+<tr class="memdesc:aed0e77d348729708849aa40499d68452"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets wrapping modes for <a class="el" href="class_tropical_engine_1_1_texture.html" title="Class for Texture. ">Texture</a>.  <a href="#aed0e77d348729708849aa40499d68452">More...</a><br /></td></tr>
+<tr class="separator:aed0e77d348729708849aa40499d68452"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab226eb1b1fe98fe0cb3ef5fa642fdffa"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tropical_engine_1_1_texture.html#ab226eb1b1fe98fe0cb3ef5fa642fdffa">ActivateTexture</a> (GLuint location)</td></tr>
+<tr class="memdesc:ab226eb1b1fe98fe0cb3ef5fa642fdffa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets this texture as the Active one in OpenGL context.  <a href="#ab226eb1b1fe98fe0cb3ef5fa642fdffa">More...</a><br /></td></tr>
+<tr class="separator:ab226eb1b1fe98fe0cb3ef5fa642fdffa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ada1e92f80c6fffb1e42f71758f320003"><td class="memItemLeft" align="right" valign="top">QJsonObject&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tropical_engine_1_1_texture.html#ada1e92f80c6fffb1e42f71758f320003">toJSON</a> () override</td></tr>
 <tr class="memdesc:ada1e92f80c6fffb1e42f71758f320003"><td class="mdescLeft">&#160;</td><td class="mdescRight">Serializes <a class="el" href="class_tropical_engine_1_1_texture.html" title="Class for Texture. ">Texture</a> to JSON object.  <a href="#ada1e92f80c6fffb1e42f71758f320003">More...</a><br /></td></tr>
 <tr class="separator:ada1e92f80c6fffb1e42f71758f320003"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -179,10 +187,6 @@ Protected Member Functions</h2></td></tr>
 <tr class="memitem:a8f71ee0bd2722d91419cc79dd0bc1368"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tropical_engine_1_1_texture.html#a8f71ee0bd2722d91419cc79dd0bc1368">Texture</a> (QString <a class="el" href="class_tropical_engine_1_1_texture.html#a51a8f704ceb4c38476a39b19494b3964">name</a>)</td></tr>
 <tr class="memdesc:a8f71ee0bd2722d91419cc79dd0bc1368"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper internal constructor.  <a href="#a8f71ee0bd2722d91419cc79dd0bc1368">More...</a><br /></td></tr>
 <tr class="separator:a8f71ee0bd2722d91419cc79dd0bc1368"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a563142473259bb384b7345c1c481bb84"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a563142473259bb384b7345c1c481bb84"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tropical_engine_1_1_texture.html#a563142473259bb384b7345c1c481bb84">Create</a> ()</td></tr>
-<tr class="memdesc:a563142473259bb384b7345c1c481bb84"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialization of <a class="el" href="class_tropical_engine_1_1_render_texture.html" title="RenderTexture is a Texture GPU can render to. ">RenderTexture</a>. <br /></td></tr>
-<tr class="separator:a563142473259bb384b7345c1c481bb84"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -194,9 +198,21 @@ QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tropical_engine_1_1_texture.html#a51a8f704ceb4c38476a39b19494b3964">name</a></td></tr>
 <tr class="memdesc:a51a8f704ceb4c38476a39b19494b3964"><td class="mdescLeft">&#160;</td><td class="mdescRight">Name of the <a class="el" href="class_tropical_engine_1_1_texture.html" title="Class for Texture. ">Texture</a>. <br /></td></tr>
 <tr class="separator:a51a8f704ceb4c38476a39b19494b3964"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a22f6c2ff5eec232015c60dd056d498b1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a22f6c2ff5eec232015c60dd056d498b1"></a>
+<a class="el" href="class_tropical_engine_1_1_texture_data.html">TextureData</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>textureData</b></td></tr>
+<tr class="separator:a22f6c2ff5eec232015c60dd056d498b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae8418f2ce0aeb12e0645083a10b20483"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae8418f2ce0aeb12e0645083a10b20483"></a>
 GLuint&#160;</td><td class="memItemRight" valign="bottom"><b>textureLocation</b></td></tr>
 <tr class="separator:ae8418f2ce0aeb12e0645083a10b20483"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
+Friends</h2></td></tr>
+<tr class="memitem:ac69fb8fe9018f57657f845dd0d1cad47"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac69fb8fe9018f57657f845dd0d1cad47"></a>
+class&#160;</td><td class="memItemRight" valign="bottom"><b>AbstractTextureImporter</b></td></tr>
+<tr class="separator:ac69fb8fe9018f57657f845dd0d1cad47"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ca6a28bb7270258b027ed224b74ec24"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7ca6a28bb7270258b027ed224b74ec24"></a>
+class&#160;</td><td class="memItemRight" valign="bottom"><b>TextureManager</b></td></tr>
+<tr class="separator:a7ca6a28bb7270258b027ed224b74ec24"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Class for <a class="el" href="class_tropical_engine_1_1_texture.html" title="Class for Texture. ">Texture</a>. </p>
@@ -269,18 +285,26 @@ GLuint&#160;</td><td class="memItemRight" valign="bottom"><b>textureLocation</b>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a22848687a6e5e3c98e9d7f9a66e458db"></a>
+<a class="anchor" id="ab226eb1b1fe98fe0cb3ef5fa642fdffa"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void TropicalEngine::Texture::ActivateTexture </td>
+          <td class="memname">virtual void TropicalEngine::Texture::ActivateTexture </td>
           <td>(</td>
           <td class="paramtype">GLuint&#160;</td>
           <td class="paramname"><em>location</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p>Sets this texture as the Active one in OpenGL context. </p>
@@ -290,6 +314,53 @@ GLuint&#160;</td><td class="memItemRight" valign="bottom"><b>textureLocation</b>
   </table>
   </dd>
 </dl>
+
+<p>Reimplemented in <a class="el" href="class_tropical_engine_1_1_cubemap_texture.html#aaec1c09777ef32d8be621df98f3f02ca">TropicalEngine::CubemapTexture</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aed0e77d348729708849aa40499d68452"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void TropicalEngine::Texture::Create </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>wrappingS</em> = <code>GL_REPEAT</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>wrappingT</em> = <code>GL_REPEAT</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets wrapping modes for <a class="el" href="class_tropical_engine_1_1_texture.html" title="Class for Texture. ">Texture</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">wrappingS</td><td>Horizontal texture wrapping. </td></tr>
+    <tr><td class="paramname">wrappingT</td><td>Vertical texture wrapping. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Reimplemented in <a class="el" href="class_tropical_engine_1_1_render_texture.html#a00f6f4f9998122f8ca2b88eb96212e84">TropicalEngine::RenderTexture</a>, and <a class="el" href="class_tropical_engine_1_1_cubemap_texture.html#aa9f8163ac3fa753da8e637ad3ea5922e">TropicalEngine::CubemapTexture</a>.</p>
 
 </div>
 </div>
@@ -346,6 +417,41 @@ GLuint&#160;</td><td class="memItemRight" valign="bottom"><b>textureLocation</b>
 
 </div>
 </div>
+<a class="anchor" id="ab331187a4ce46edebe6bc9f091aa44d7"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TropicalEngine::Texture::setFiltering </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>minFilter</em> = <code>GL_LINEAR_MIPMAP_LINEAR</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>magFilter</em> = <code>GL_LINEAR</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets filtering modes for <a class="el" href="class_tropical_engine_1_1_texture.html" title="Class for Texture. ">Texture</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">minFilter</td><td>Min filter type. </td></tr>
+    <tr><td class="paramname">magFilter</td><td>Magnifying filter type. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a class="anchor" id="ae535db7ce2249b6c9869677d9debe341"></a>
 <div class="memitem">
 <div class="memproto">
@@ -364,6 +470,41 @@ GLuint&#160;</td><td class="memItemRight" valign="bottom"><b>textureLocation</b>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">name</td><td>Name to be set. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="afe4a21082bfbf03d4ff2fe8910d7e3cb"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TropicalEngine::Texture::setWrapping </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>wrappingS</em> = <code>GL_REPEAT</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>wrappingT</em> = <code>GL_REPEAT</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets wrapping modes for <a class="el" href="class_tropical_engine_1_1_texture.html" title="Class for Texture. ">Texture</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">wrappingS</td><td>Horizontal texture wrapping. </td></tr>
+    <tr><td class="paramname">wrappingT</td><td>Vertical texture wrapping. </td></tr>
   </table>
   </dd>
 </dl>

@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['data',['data',['../class_tropical_engine_1_1_texture_data.html#a11f1299b453572ea5d6887eb5432fc12',1,'TropicalEngine::TextureData']]],
   ['deletecomponent',['DeleteComponent',['../class_tropical_engine_1_1_entity.html#aa7c7b3437b81935bc83d34c69197e905',1,'TropicalEngine::Entity']]],
   ['detach',['Detach',['../class_tropical_engine_1_1_component.html#aa2bf25e60347b70c1edcff91eb5888f7',1,'TropicalEngine::Component']]],
   ['directionallightcomponent',['DirectionalLightComponent',['../class_tropical_engine_1_1_directional_light_component.html#a6ae6fe796fbb8b342d88365b7d39a7d2',1,'TropicalEngine::DirectionalLightComponent::DirectionalLightComponent(Entity *owner, glm::vec3 color=glm::vec3(1.0f, 1.0f, 1.0f), glm::vec3 direction=glm::vec3(0.0f, 0.0f,-1.0f), float brightness=1.0f, bool isCastingShadows=false)'],['../class_tropical_engine_1_1_directional_light_component.html#a6b71c9fa3ab973ab89e1d805689ff23f',1,'TropicalEngine::DirectionalLightComponent::DirectionalLightComponent()']]],

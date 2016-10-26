@@ -3,6 +3,7 @@ var class_tropical_engine_1_1_shader_technique =
     [ "ShaderTechnique", "class_tropical_engine_1_1_shader_technique.html#aaca8665d7ad211216110e38885aa6895", null ],
     [ "ShaderTechnique", "class_tropical_engine_1_1_shader_technique.html#a170286b1182d69df80efdd95025c4266", null ],
     [ "~ShaderTechnique", "class_tropical_engine_1_1_shader_technique.html#ab92658f909a6ca3baa8c19418eb0797d", null ],
+    [ "ShaderTechnique", "class_tropical_engine_1_1_shader_technique.html#afa8023d525fcd0316b6a61aa2d138880", null ],
     [ "fromJSON", "class_tropical_engine_1_1_shader_technique.html#a6e2aab3747cbf06aa5bb94a222db69b6", null ],
     [ "generateShader", "class_tropical_engine_1_1_shader_technique.html#abd81b5441e7eef4f5c4ddfc8d70eeaa2", null ],
     [ "getName", "class_tropical_engine_1_1_shader_technique.html#a4c3aa39d5c4a8fb847bca876d8601032", null ],
