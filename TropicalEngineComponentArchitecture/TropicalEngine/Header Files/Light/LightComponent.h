@@ -70,6 +70,13 @@ namespace TropicalEngine
 		#pragma endregion
 		void isCastingShadows(bool isCastingShadows);
 
+		#pragma region documentation
+		/**
+		  * \brief Gets Shadowmap texture.
+		  *
+		  * @return Shadowmap texture.
+		  */
+		#pragma endregion
 		class Texture* getShadowmap();
 
 		virtual void Evaluate();

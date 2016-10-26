@@ -84,7 +84,24 @@ namespace TropicalEngine
 		#pragma endregion
 		void Use();
 
+		#pragma region documentation
+		/**
+		  * \brief Checks if material has parameter with given name.
+		  *
+		  * @param name Name of parameter to check existence.
+		  * @return Answer if asked parameter exists.
+		  */
+		#pragma endregion
 		bool hasParameter(QString name);
+		#pragma region documentation
+		/**
+		  * \brief Gets parameter with given name.
+		  *
+		  * @param name Name of parameter to get.
+		  *
+		  * @return Parameter.
+		  */
+		#pragma endregion
 		MaterialParameter* getParameter(QString name);
 
 		#pragma region documentation

@@ -27,6 +27,16 @@ namespace TropicalEngine
 		#pragma endregion
 		virtual Texture* Load(QString name, QString fileUrl, Texture* textureTarget = nullptr) = 0;
 
+		#pragma region documentation
+		/**
+		  * \brief Abstract method for creating TextureData from a file.
+		  *
+		  * @param fileUrl Path to the texture file.
+		  * @param flipY Defines if resulted image should be flipped along the Y axis.
+		  *
+		  * @return TextureData object containing informations from the file.
+		  */
+		#pragma endregion
 		virtual TextureData* LoadData(QString fileUrl, bool flipY = false) = 0;
 
 		#pragma region documentation

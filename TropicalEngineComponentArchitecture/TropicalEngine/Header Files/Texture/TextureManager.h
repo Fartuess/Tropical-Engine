@@ -37,7 +37,15 @@ namespace TropicalEngine
 		void incrementTextureIterator();
 		void resetTextureIterator();
 
-
+		#pragma region documentation
+		/**
+		  * \brief Checks if there is Texture with given name.
+		  *
+		  * @param name Name of Texture to check for.
+		  *
+		  * @return Information if Texture was found.
+		  */
+		#pragma endregion
 		bool hasTexture(QString name);
 		#pragma region documentation
 		/**
@@ -67,8 +75,26 @@ namespace TropicalEngine
 		#pragma endregion
 		Texture* const operator[](QString name)	const	{ return textures[name]; };
 
+		#pragma region documentation
+		/**
+		  * \brief Registers existing texture to the manager.
+		  *
+		  * @param name Alias of the texture in the manager.
+		  * @param texture Texture to be registered.
+		  */
+		#pragma endregion
 		void RegisterTexture(QString name, Texture* texture);
 
+		#pragma region documentation
+		/**
+		  * \brief Creates TextureData container from file.
+		  *
+		  * @param fileUrl Path to the file to load.
+		  * @param FlipY Whether or not flip image vertically.
+		  *
+		  * @return Pointer to created TextureData.
+		  */
+		#pragma endregion
 		TextureData* LoadData(QString fileUrl, bool flipY = false);
 
 		#pragma region documentation

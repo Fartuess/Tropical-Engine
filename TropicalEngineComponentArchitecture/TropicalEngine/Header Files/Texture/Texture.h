@@ -13,6 +13,12 @@
 namespace TropicalEngine
 {
 
+	// TODO: Figure out which methods from this class are not needed anymore and which aren't finished.
+	#pragma region documentation
+	/**
+	  * \brief Class for containing low level Texture Data before it is sent to GPU.
+	  */
+	#pragma endregion
 	class TextureData
 	{
 	protected:
@@ -29,11 +35,28 @@ namespace TropicalEngine
 		GLuint format;
 		GLuint type;
 
+		#pragma region documentation
+		/**
+		  * \brief Destructor freeing data memory from the CPU side, but not from the GPU.
+		  */
+		#pragma endregion
 		~TextureData()
 		{
 			free(internalData);
 		}
 
+		#pragma region documentation
+		/**
+		  * \brief Named constructor for TextureData class.
+		  *
+		  * @param data Pointer for raw memory representing texture data.
+		  * @param size Size of texture in pixels in X and Y dimension.
+		  * @param cellSize Memory size of one pixels in bytes.
+		  * @param typename Name of type used for pixel data.
+		  *
+		  * @return Created TextureData.
+		  */
+		#pragma endregion
 		static TextureData* create(void* data, glm::ivec2 size, uint cellSize, QString typeName)
 		{
 			TextureData* textureData = new TextureData();
@@ -44,34 +67,93 @@ namespace TropicalEngine
 			return textureData;
 		}
 
+		#pragma region documentation
+		/**
+		  * \brief Named constructor for TextureData class.
+		  *
+		  * @tparam T Type used for storing pixel data.
+		  * @param data Pointer for typed memory representing texture data.
+		  * @param size Size of texture in pixels in X and Y dimension.
+		  * @param typename Name of type used for pixel data.
+		  *
+		  * @return Created TextureData.
+		  */
+		#pragma endregion
 		template <typename T>
 		static TextureData* create(T* data, glm::ivec2 size, QString typeName);
 
+		#pragma region documentation
+		/**
+		  * \brief Gets name of type used for storing pixel data.
+		  *
+		  * @return Name of type used for storing pixel data.
+		  */
+		#pragma endregion
 		QString getTypeName()
 		{
 			return typeName;
 		}
 
+		#pragma region documentation
+		/**
+		  * \brief Gets memory size used by single pixel of texture.
+		  *
+		  * @return Memory size used by single pixel in bytes.
+		  */
+		#pragma endregion
 		glm::uint getCellSize()
 		{
 			return cellSize;
 		}
 
+		#pragma region documentation
+		/**
+		  * \brief Gets dimensions of the texture in pixels.
+		  *
+		  * @return Dimensions of the texture in pixels.
+		  */
+		#pragma endregion
 		glm::ivec2 getSize()
 		{
 			return size;
 		}
 
+		#pragma region documentation
+		/**
+		  * \brief Gets width of texture in pixels.
+		  *
+		  * @return Width of texture in pixels.
+		  */
+		#pragma endregion
 		int getWidth()
 		{
 			return size.x;
 		}
 
+		#pragma region documentation
+		/**
+		  * \brief Gets height of texture in pixels.
+		  *
+		  * @return Height of texture in pixels.
+		  */
+		#pragma endregion
 		int getHeight()
 		{
 			return size.y;
 		}
 
+		#pragma region documentation
+		/**
+		  * \brief Gets pointer single pixel at given coordinates.
+		  *
+		  * @tparam T type we want to retrieve pixel in.
+		  * @param x Position of pixel in X dimension.
+		  * @param y Position of pixel in Y dimension.
+		  * @param typeName Optional parameter used to check if type T is the same as internal type actualy used by texture.
+		  *
+		  * @return Pointer to pixel data.
+		  */
+		#pragma endregion
 		template <typename T>
 		T* getPixel(int x, int y, QString typeName = nullptr)
 		{
@@ -85,22 +167,64 @@ namespace TropicalEngine
 			return ((T*)internalData)[y * size.x + x];
 		}
 
+		#pragma region documentation
+		/**
+		  * \brief Gets pointer to single pixel at given coordinates.
+		  *
+		  * @tparam T type we want to retrieve pixel in.
+		  * @param position Position of pixel.
+		  * @param typeName Optional parameter used to check if type T is the same as internal type actualy used by texture.
+		  *
+		  * @return Pointer to pixel data.
+		  */
+		#pragma endregion
 		template <typename T>
 		T* getPixel(glm::ivec2 position, QString typeName = nullptr)
 		{
 			return getPixel<T>(position.x, position.y, typeName);
 		}
 
+		#pragma region documentation
+		/**
+		  * \brief Gets untyped pointer to the single pixel at given coordinates.
+		  *
+		  * @param x Position of pixel in X dimension.
+		  * @param y Position of pixel in Y dimension.
+		  *
+		  * @return Untyped pointer to pixel data.
+		  */
+		#pragma endregion
 		void* getRawPixel(int x, int y)
 		{
 			return (void*)(&internalData[(y * size.x + x) * cellSize]);
 		}
 
+		#pragma region documentation
+		/**
+		  * \brief Gets untyped pointer to the single pixel at given coordinates.
+		  *
+		  * @param position Position of pixel.
+		  *
+		  * @return Untyped pointer to pixel data.
+		  */
+		#pragma endregion
 		void* getRawPixel(glm::ivec2 position)
 		{
 			return (void*)(&internalData[(position.y * size.x + position.x) * cellSize]);
 		}
 
+		#pragma region documentation
+		/**
+		  * \brief Gets pointer to single pixel at given coordinates.
+		  *
+		  * @tparam T type we want to retrieve pixel in.
+		  * @tparam Lambda Lambda funtion type
+		  * @param position Position of pixel.
+		  * @param interpolationLambda function used for getting pixel values for positions which are not defined by integers.
+		  *
+		  * @return Pointer to pixel data.
+		  */
+		#pragma endregion
 		template <typename T, typename Lambda>
 		T* getPixel(glm::vec2 position, Lambda interpolationLambda)
 		{
@@ -124,6 +248,18 @@ namespace TropicalEngine
 			return newValue;
 		}
 
+		#pragma region documentation
+		/**
+		  * \brief Gets pointer to single pixel at given coordinates.
+		  *
+		  * @tparam T type we want to retrieve pixel in.
+		  * @tparam Lambda Lambda funtion type
+		  * @param position Position of pixel.
+		  * @param interpolationLambda function used for getting pixel values for positions which are not defined by integers.
+		  *
+		  * @return Pointer to pixel data.
+		  */
+		#pragma endregion
 		template <typename Lambda>
 		void* getRawPixel(float x, float y, Lambda interpolationLambda)
 		{
@@ -139,12 +275,24 @@ namespace TropicalEngine
 			return newValue;
 		}
 
+		// TODO: Figure out what to do with this method.
 		template <typename Lambda>
 		void* getRawPixel(glm::vec2 position, Lambda interpolationLambda)
 		{
 			return getRawPixel(position.x, position.y);
 		}
 
+		#pragma region documentation
+		/**
+		  * \brief Sets value of the pixel at given position.
+		  *
+		  * @tparam T Type used to store pixel information.
+		  * @param x Position of pixel in X dimension.
+		  * @param y Position of pixel in Y dimension.
+		  * @param value New value for the pixel.
+		  * @param typeName Optional parameter used to check if type T is the same as internal type actualy used by texture.
+		  */
+		#pragma endregion
 		template <typename T>
 		void setPixel(int x, int y, T value, QString typeName = nullptr)
 		{
@@ -158,17 +306,42 @@ namespace TropicalEngine
 			((T*)internalData)[y * size.x + x] = value;
 		}
 
+		#pragma region documentation
+		/**
+		  * \brief Sets value of the pixel at given position.
+		  *
+		  * @tparam T Type used to store pixel information.
+		  * @param position Position of pixel.
+		  * @param value New value for the pixel.
+		  * @param typeName Optional parameter used to check if type T is the same as internal type actualy used by texture.
+		  */
+		#pragma endregion
 		template <typename T>
 		void setPixel(glm::ivec2 position, T value, QString typeName = nullptr)
 		{
 			setPixel<T>(position.x, position.y, value, typeName);
 		}
 
+		#pragma region documentation
+		/**
+		  * \brief Gets pointer to the raw texture data.
+		  *
+		  * @return untyped pointer to the raw texture memory.
+		  */
+		#pragma endregion
 		void* rawData()
 		{
 			return internalData;
 		}
 
+		#pragma region documentation
+		/**
+		  * \brief Gets type pointer to the texture data.
+		  *
+		  * @tparam T Type used for storing pixel information.
+		  * @param typeName Optional parameter used to check if type T is the same as internal type actualy used by texture.
+		  */
+		#pragma endregion
 		template <typename T>
 		T* data(QString typeName = nullptr)
 		{
@@ -183,6 +356,18 @@ namespace TropicalEngine
 		}
 	};
 
+	#pragma region documentation
+	/**
+	  * \brief Named constructor for TextureData class.
+	  *
+	  * @tparam T Type of data used for storing information about pixel.
+	  * @param data Pointer for raw memory representing texture data.
+	  * @param size Size of texture in pixels in X and Y dimension.
+	  * @param typename Name of type used for pixel data.
+	  *
+	  * @return Created TextureData.
+	  */
+	#pragma endregion
 	template <typename T>
 	static TextureData* TextureData::create(T* data, glm::ivec2 size, QString typeName)
 	{
@@ -195,6 +380,7 @@ namespace TropicalEngine
 		return textureData;
 	}
 
+	// TODO: Figure out how to document macros.
 	#define newTextureData(T, data, size) TextureData::create<T>(data, size, #T)
 
 	#pragma region documentation
@@ -250,13 +436,33 @@ namespace TropicalEngine
 		#pragma endregion
 		void setName(QString name);
 
+		#pragma region documentation
+		/**
+		  * \brief Sets wrapping modes for Texture.
+		  *
+		  * @param wrappingS Horizontal texture wrapping.
+		  * @param wrappingT Vertical texture wrapping.
+		  */
+#		pragma endregion
 		void setWrapping(int wrappingS = GL_REPEAT, int wrappingT = GL_REPEAT);
+
+		#pragma region documentation
+		/**
+		  * \brief Sets filtering modes for Texture.
+		  *
+		  * @param minFilter Min filter type.
+		  * @param magFilter Magnifying filter type.
+		  */
+		#pragma endregion
 		void setFiltering(int minFilter = GL_LINEAR_MIPMAP_LINEAR, int magFilter = GL_LINEAR);
 
 		// TODO: Create flexible interface for changing texture parameters.
 		#pragma region documentation
 		/**
-		  * \brief Initialization of RenderTexture.
+		  * \brief Sets wrapping modes for Texture.
+		  *
+		  * @param wrappingS Horizontal texture wrapping.
+		  * @param wrappingT Vertical texture wrapping.
 		  */
 		#pragma endregion
 		virtual void Create(int wrappingS = GL_REPEAT, int wrappingT = GL_REPEAT);

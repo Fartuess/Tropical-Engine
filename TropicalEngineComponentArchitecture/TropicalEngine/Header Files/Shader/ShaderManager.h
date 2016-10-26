@@ -65,7 +65,26 @@ namespace TropicalEngine
 		#pragma endregion
 		void setCurrentShader(Shader* shader);
 
+		#pragma region documentation
+		/**
+		  * \brief Checks if there is Shader with given name.
+		  *
+		  * @param name Name of Shader to check for.
+		  *
+		  * @return Information if there is Shader with given name.
+		  */
+		#pragma endregion
 		bool containsShader(QString name);
+
+		#pragma region documentation
+		/**
+		  * \brief Checks if there is ShaderTechnique with given name.
+		  *
+		  * @param name Name of ShaderTechnique to check for.
+		  *
+		  * @return Information if there is ShaderTechnique with given name.
+		  */
+		#pragma endregion
 		bool containsShaderTechnique(QString name);
 
 		#pragma region documentation
@@ -153,7 +172,24 @@ namespace TropicalEngine
 		#pragma endregion
 		void UseShader(Shader* shader);
 
+		#pragma region documentation
+		/**
+		  * \brief Gets Shader Builder with a given name.
+		  *
+		  * @param name Name of Shader Builder to get.
+		  *
+		  * @return Shader Builder with given name.
+		  */
+		#pragma endregion
 		class AbstractShaderBuilder* getShaderBuilder(QString name) { return shaderBuilders[name]; }
+		#pragma region documentation
+		/**
+		  * \brief Registers Shader Builder to the ShaderManager.
+		  *
+		  * @param name Alias for Shader Builder.
+		  * @param shaderBuilder Shader Builder to register.
+		  */
+		#pragma endregion
 		void registerShaderBuilder(QString name, class AbstractShaderBuilder* shaderBuilder);
 
 	protected:

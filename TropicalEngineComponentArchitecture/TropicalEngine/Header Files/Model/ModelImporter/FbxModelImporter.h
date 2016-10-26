@@ -40,6 +40,16 @@ namespace TropicalEngine
 		#pragma endregion
 		Model* Load(QString name, QString fileUrl) override;
 
+		#pragma region documentation
+		/**
+		  * \brief Import Model from FbxMesh object.
+		  *
+		  * @param name Name for Model.
+		  * @param mesh Pointer to FbxMesh to create model from.
+		  *
+		  * @return Pointer to created Model.
+		  */
+		#pragma endregion
 		Model* Load(QString name, class FbxMesh* mesh);
 
 	private:

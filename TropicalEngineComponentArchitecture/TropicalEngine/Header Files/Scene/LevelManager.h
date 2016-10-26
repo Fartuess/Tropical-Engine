@@ -6,18 +6,48 @@
 
 namespace TropicalEngine
 {
-
-	// TODO: Currently LevelManager class is doing nothing. Figure out if it should be deleted. 
+	#pragma region documentation
+	/**
+	  * \brief Class for managing Levels.
+	  */
+	#pragma endregion
 	class LevelManager
 	{
 	public:
 		friend class Level;
 
+		#pragma region documentation
+		/**
+		  * \brief Default constructor.
+		  */
+		#pragma endregion
 		LevelManager(void);
+		#pragma region documentation
+		/**
+		  * \brief Default destructor.
+		  */
+		#pragma endregion
 		~LevelManager(void);
 
+		#pragma region documentation
+		/**
+		  * \brief Loads level from a file.
+		  *
+		  * @param fileUrl Path to the file to load.
+		  * @param name Name of the Level to set.
+		  *
+		  * @return Pointer to loaded Level.
+		  */
+		#pragma endregion
 		Level* LoadLevel(QString fileUrl, QString name);
 
+		#pragma region documentation
+		/**
+		  * \brief Registers LevelImporter.
+		  *
+		  * @param importer Importer to register.
+		  */
+		#pragma endregion
 		static void AddImporter(class AbstractLevelImporter* importer);
 
 	private:
