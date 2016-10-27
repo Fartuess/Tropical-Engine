@@ -101,8 +101,6 @@ namespace TropicalEngine
 			str[i] = key;
 			(*reflectionBlendingMaterial)["mat_RPstr" + QString::number(i)] = &(str[i]);
 
-			qDebug() << QString::number(str[i]);
-
 			i++;
 		}
 

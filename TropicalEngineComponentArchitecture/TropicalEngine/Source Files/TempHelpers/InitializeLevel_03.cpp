@@ -780,7 +780,7 @@ namespace TropicalEngine
 
 		//scene->LoadLevel(FbxLevelImporter::instance().Load("Sponza", "./Assets/Levels/Sponza/Sponza.fbx"), "Sponza");
 		//scene->LoadLevel(FbxLevelImporter::instance().Load("TransformTest", "./Assets/Levels/TransformTest/TransformTest4.fbx"), "TransformTest");
-		//scene->LoadLevel(FbxLevelImporter::instance().Load("MaterialTest", "./Assets/Levels/MaterialTest/MaterialTest1b.fbx"), "MaterialTest");
+		scene->LoadLevel(FbxLevelImporter::instance().Load("MaterialTest", "./Assets/Levels/MaterialTest/MaterialTest1b.fbx"), "MaterialTest");
 		scene->LoadLevel(FbxLevelImporter::instance().Load("TransformTest", "./Assets/Levels/SpecialObjectsTest/ReflectionProbesTest.fbx"), "ReflectionProbesTest");
 		#pragma endregion
 

@@ -4,6 +4,8 @@
 #include <QtCore/qjsondocument.h>
 
 #include <fbxsdk/core/base/fbxstring.h>
+#include <fbxsdk/scene/fbxscene.h>
+#include <fbxsdk/scene/fbxdocumentinfo.h>
 
 #include <Scene/LevelImporter/FbxLevelImporter.h>
 
@@ -29,6 +31,8 @@
 
 #include <ReflectionProbe/ReflectionProbeComponent.h>
 
+#include <QtCore/qdir.h>
+#include <QtCore/qcoreapplication.h>
 #include <QtCore/qdebug.h>
 
 namespace TropicalEngine
@@ -37,7 +41,13 @@ namespace TropicalEngine
 	FbxLevelImporter::FbxLevelImporter()
 	{
 		SdkManager = FbxManager::Create();
-		IOSettings = FbxIOSettings::Create(SdkManager, IOSROOT);
+
+		//qDebug() << QCoreApplication::applicationDirPath();
+		//qDebug() << QDir::current();
+		//qDebug() << QDir::currentPath();
+
+		//IOSettings = FbxIOSettings::Create(SdkManager, IOSROOT);
+		IOSettings = FbxIOSettings::Create(SdkManager, QDir::currentPath().toStdString().data());
 		Converter = new FbxGeometryConverter(SdkManager);
 
 		supportedExtensions << "fbx";
@@ -77,6 +87,15 @@ namespace TropicalEngine
 			{
 				qDebug() << "Not all meshes were sucessfully splitted";
 			}
+
+			// TODO: Hoping that it gets real path of the scene in relation to position of Solution.
+			QString realRelativeUrl = QString(scene->GetDocumentInfo()->Url.Get()).replace("\\", "/");
+			QString originalAbsoluteUrl = QString(scene->GetDocumentInfo()->LastSavedUrl.Get()).replace("\\", "/");
+
+			QString originalRoot = originalAbsoluteUrl.remove(realRelativeUrl);
+			QString currentRoot = QDir::current().absolutePath() + "/";
+
+			qDebug() << originalRoot;
 
 			QList<FbxNode*> helper;
 			QMap<FbxNode*, Entity*> objects;
@@ -240,7 +259,10 @@ namespace TropicalEngine
 						float strength = it->FindProperty("InfluenceIntensity").Get<FbxDouble>();
 						float attenuation = it->FindProperty("InfluenceAttenuation").Get<FbxDouble>();
 
+						// TODO: explicit conversion to const char* is not neccessary.
 						QString texturePath = QString((const char*)it->FindProperty("TexturePath").Get<FbxString>());
+						// corrects absolute path to corrct for current place of the engine.
+						texturePath = texturePath.replace(originalRoot, currentRoot);
 
 						QString textureName = texturePath.section(".", -2, -2).section("/", -1);
 
@@ -372,6 +394,8 @@ namespace TropicalEngine
 											else if (parameterNameSplitted[2] == "texture")
 											{
 												QString texturePath = QString((const char*)itProperty.Get<FbxString>());
+												// corrects absolute path to corrct for current place of the engine.
+												texturePath = texturePath.replace(originalRoot, currentRoot);
 
 												QString textureName = texturePath.section(".", -2, -2).section("/", -1);
 
