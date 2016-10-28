@@ -262,7 +262,7 @@ namespace TropicalEngine
 						// TODO: explicit conversion to const char* is not neccessary.
 						QString texturePath = QString((const char*)it->FindProperty("TexturePath").Get<FbxString>());
 						// corrects absolute path to corrct for current place of the engine.
-						texturePath = texturePath.replace(originalRoot, currentRoot);
+						texturePath = texturePath.replace("\\", "/").replace(originalRoot, currentRoot);
 
 						QString textureName = texturePath.section(".", -2, -2).section("/", -1);
 
@@ -395,7 +395,7 @@ namespace TropicalEngine
 											{
 												QString texturePath = QString((const char*)itProperty.Get<FbxString>());
 												// corrects absolute path to corrct for current place of the engine.
-												texturePath = texturePath.replace(originalRoot, currentRoot);
+												texturePath = texturePath.replace("\\", "/").replace(originalRoot, currentRoot);
 
 												QString textureName = texturePath.section(".", -2, -2).section("/", -1);
 
