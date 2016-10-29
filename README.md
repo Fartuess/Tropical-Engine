@@ -4,7 +4,7 @@ Author: Adam "Fartuess" Beczyński
 
 "TropicalEngineComponentArchitecture" - Current Project
 
-WARNING! Due to use of Git-LFS Project can't be downloaded in form of a zip, but has to be pulled using git.
+WARNING! Due to use of Git-LFS Project can't be downloaded in form of a zip, but has to be pulled using git with git-lfs extension (some git clients have built in git-lfs support)
 
 ### Languages technologies and libraries used ###
 * C++
