@@ -1,4 +1,4 @@
-WARNING! Project was moved to Perforce Server. You can log to it at ec2-35-164-134-176.us-west-2.compute.amazonaws.com:1666 using guest account.
+WARNING! Project was moved to Perforce Server. You can log to it at ec2-35-164-134-176.us-west-2.compute.amazonaws.com:1666 using Guest account.
 
 # Tropical Engine - OpenGL4 C++ 3D Game Engine #
 
